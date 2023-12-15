@@ -1,0 +1,667 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+ <meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+<meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<meta HTTP-EQUIV="expires" CONTENT="0">
+<meta name="author" content="bwrong, wang11535041@qq.com"/>
+<meta name="keywords" content="Vue.use到底是什么鬼? | BWrong的小站,前端,krpano,js,vue"/>
+<meta name="description" content="天青色等烟雨，而我在等你"/>
+<!-- <title>Vue.use到底是什么鬼? | BWrong的小站</title> -->
+<title>网站搭建测试</title>
+<link href="https://www.bwrong.cn/media/css/fz.css" rel="stylesheet">
+<link rel="stylesheet" href="https://www.bwrong.cn/styles/main.css">
+<script type="text/javascript">
+function getCSS()
+{
+        datetoday = new Date();
+        timenow=datetoday.getTime();
+        datetoday.setTime(timenow);
+        thehour = datetoday.getHours();
+
+        if (thehour<5)
+
+            display = "https://www.bwrong.cn/media/css/night.css";
+
+       else if (thehour>20)
+
+            display = "https://www.bwrong.cn/media/css/night.css";
+
+        else if (thehour>5)
+     
+            display = "https://www.bwrong.cn/media/css/day.css";
+
+        else if (thehour<20)
+
+            display = "https://www.bwrong.cn/media/css/day.css";
+
+
+var css = '<';
+        css+='link rel="stylesheet" href='+display+' \/';
+        css+='>';
+        document.write(css);
+}
+</script>
+<link href="https://at.alicdn.com/t/font_1306644_ko4c4at97is.css" rel="stylesheet" />
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://www.bwrong.cn/media/css/katex.min.css">
+<script type='text/javascript' src='https://www.bwrong.cn/media/scripts/script.js'></script>
+<link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet" />
+  <script src="https://cdn.bootcss.com/wow/1.1.2/wow.min.js"></script>
+  <script src="https://cdn.bootcss.com/highlight.js/9.15.8/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script>wow=new WOW({boxClass:'wow',animateClass:'animated',offset:0,mobile:true,live:true});wow.init();</script>
+
+<script type="text/javascript">
+window.onload=getCSS();
+</script>
+<!-- 百度统计 -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?2c0e9e3f54ae20480b34c178578c4df8";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+</head>
+<body class="post-template-default single single-post postid-70 single-format-standard">
+    <div id="wrapper">
+
+	
+<header id="header" class="site-header"
+		
+		style="background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),url(https://www.bwrong.cn/post-images/vue-use.jfif)"
+		
+		>
+			<div class="site-branding">
+									<h1 class="site-title"><a href="https://www.bwrong.cn" rel="home">BWrong的小站</a></h1>
+
+					<h2 class="site-description">天青色等烟雨，而我在等你</h2>
+
+							</div>
+			<nav id="nav-wrapper">
+				<div class="container">
+					<div class="nav-toggle">
+						<div class="bars">
+							<div class="bar"></div>
+							<div class="bar"></div>
+							<div class="bar"></div>
+						</div>
+					</div>
+					<div class="clear"></div>
+					<ul id="" class="dove">
+		 
+
+<li>
+
+	
+		<a href="/">
+		  首页
+		</a>
+	  
+
+    
+
+<li>
+
+	
+		<a href="/archives/index.html">
+		  归档
+		</a>
+	  
+
+    
+
+<li>
+
+	
+		<a href="/post/about/">
+		  关于
+		</a>
+	  
+
+    
+
+</ul>
+</li>
+
+</ul>				</div>
+			</nav>
+						<div class="jingge">
+
+
+    
+
+    
+
+<a  href="https://github.com/BWrong" target="_blank" ><i class="iconfont icon-github"></i></a>
+ 
+    
+
+    
+
+    
+
+    
+
+<a  href="https://juejin.cn/user/3421335914820280" target="_blank" ><i class="iconfont icon-telegram"></i></a>
+ 
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        </header>
+
+
+		<div id="content" class="container">
+			<div class="row">
+	<div class="col-md-8 site-main">
+
+<article id="post-70" class="post-70 post type-post status-publish format-standard hentry category-5 tag-10 tag-9 tag-11">
+
+
+
+		<div class="entry-content">
+			<h1 data-wow-delay="0.4s"  class="wow fadeInUp entry-title">Vue.use到底是什么鬼?</h1>
+<div class="entry-meta">
+<div class="wow fadeInUp"  data-wow-delay="0.6s">
+	<i class="iconfont icon-rili"> <time class="lately-a" datetime="2020-01-17 14:44:35" itemprop="datePublished" pubdate="">2020-01-17</time></i>
+	          </div>
+
+</span>
+
+		</div>
+
+			<div class="wow fadeInUp entry-summary song"  data-wow-delay="0.1s">
+				<p>字 数：3781， 阅读时间：14分钟， <a href="https://www.bwrong.cn/post/vue-use/">阅读原文</a></p>
+<p>我们在使用Vue做项目开发的时候，看到不少轮子都是通过<code>Vue.use</code>来进行使用，感觉甚是高大上。<br>
+不过<code>Vue.use</code>到底是什么鬼？不妨来看个究竟。</p>
+<p>其实这些轮子都可以称之为插件，它的功能范围没有严格的限制，一般包含如下几种：</p>
+<ol>
+<li>添加全局方法或者属性。如: <code>vue-custom-element</code></li>
+<li>添加全局资源：指令/过滤器/过渡/组件等。如 <code>vue-touch</code></li>
+<li>通过全局混入来添加一些组件选项。如 <code>vue-router</code></li>
+<li>添加 <code>Vue</code> 实例方法，通过把它们添加到 <code>Vue.prototype</code> 上实现。</li>
+<li>一个库，提供自己的 API，同时提供上面提到的一个或多个功能。如 <code>vue-router</code></li>
+</ol>
+<p>无论大小，插件要实现的功能无非就是上述这几种。但是，这并不妨碍我们创造出复杂的插件，不过我们还是希望给用户提供一个简单的使用方法，他不需要关注插件内部做了些什么。固Vue提供了use方法，专门来在<code>new Vue()</code>之前使用插件。</p>
+<p>不管是官方提供的插件（例如<code>vue-router</code>、<code>vuex</code>），还是第三方的插件（例如<code>ElementUI</code>、<code>ant</code>）都是采用了此方式，不外乎插件内部的功能不同而已。当然，还有其他诸多此类插件，<a href="https://github.com/vuejs/awesome-vue#components--libraries">awesome-vue</a> 就集合了大量由社区贡献的插件和库。</p>
+<p>接下来，我们就来看下这个神秘的<code>use</code>方法是如何实现的。</p>
+<p><code>Vue.js</code> 的插件应该暴露一个 <code>install</code> 方法。这个方法的第一个参数是 <code>Vue</code> 构造器，第二个参数是一个可选的选项对象，用于传入插件的配置：</p>
+<pre><code class="language-js">MyPlugin.install = function (Vue, options) {
+  // 1. 添加全局方法或属性
+  Vue.myGlobalMethod = function () {
+    // 逻辑...
+  }
+  // 2. 添加全局资源
+  Vue.directive('my-directive', {
+    bind (el, binding, vnode, oldVnode) {
+      // 逻辑...
+    }
+    ...
+  })
+  // 3. 注入组件选项
+  Vue.mixin({
+    created: function () {
+      // 逻辑...
+    }
+    ...
+  })
+  // 4. 添加实例方法
+  Vue.prototype.$myMethod = function (methodOptions) {
+    // 逻辑...
+  }
+  // 5. 注册全局组件
+  Vue.component('myButton',{
+    // ...组件选项
+  })
+}
+</code></pre>
+<pre><code class="language-js">Vue.use(MyPlugin,{
+  // ...options
+})
+</code></pre>
+<p>一个插件内部大概就是如上所示，其实也不外乎上述那几种东西，甚是简单😄😄。接下来我们就来看下真实的案例<code>ElementUI</code>:</p>
+<pre><code class="language-js">const components = [ Pagination, Dialog, Autocomplete/* 此处由于篇幅省略若干个组件 */];
+const install = function(Vue, opts = {}) {
+  locale.use(opts.locale);
+  locale.i18n(opts.i18n);
+  // 注册全局组件
+  components.forEach(component =&gt; {
+    Vue.component(component.name, component);
+  });
+  Vue.use(InfiniteScroll);
+  Vue.use(Loading.directive);
+  // 添加实例方法
+  Vue.prototype.$ELEMENT = {
+    size: opts.size || '',
+    zIndex: opts.zIndex || 2000
+  };
+  // 添加实例方法
+  Vue.prototype.$loading = Loading.service;
+  Vue.prototype.$msgbox = MessageBox;
+  Vue.prototype.$alert = MessageBox.alert;
+  Vue.prototype.$confirm = MessageBox.confirm;
+  Vue.prototype.$prompt = MessageBox.prompt;
+  Vue.prototype.$notify = Notification;
+  Vue.prototype.$message = Message;
+};
+/* istanbul ignore if */
+if (typeof window !== 'undefined' &amp;&amp; window.Vue) {
+  install(window.Vue);
+}
+export default {
+  version: '2.13.0',
+  locale: locale.use,
+  i18n: locale.i18n,
+  install,
+  CollapseTransition,
+  Loading,
+  Pagination,
+  Dialog,
+  Autocomplete,
+  // ...other components
+};
+</code></pre>
+<p>我们不难发现，其实自己来实现一个插件也是超级简单，只要对外暴露一个<code>install</code>方法即可，在使用<code>Vue.use</code>的时候，会调用这个方法。所以我们只要将要实现的内容放到<code>install</code>内部即可。这样的好处就是插件需要一开始调用的方法都封装在<code>install</code>里面，更加精简和可拓展性更高。</p>
+<p>大家可能也有注意到，这里的<code>install</code>其实是将所有的组件全部引入了。作为一个庞大的插件库，这样可能会有一些性能问题。用过的<code>ElementUI</code>的同学都知道，它是支持按需引入的，其实在上面的示例中也可以发现一些蛛丝马迹。</p>
+<pre><code class="language-js">const components = [ Pagination, Dialog, Autocomplete/* 此处由于篇幅省略若干个组件 */];
+// ....省去中间内容
+export default {
+  version: '2.13.0',
+  locale: locale.use,
+  i18n: locale.i18n,
+  install,
+  CollapseTransition,
+  Loading,
+  Pagination,
+  Dialog,
+  Autocomplete,
+  // ...other components
+};
+</code></pre>
+<p>这里将每个组件都单独都导出了，而在每个组件内部，也类似的暴露了<code>install</code>来组件每个组件，这样就可以单独<code>Vue.use</code>每个组件，从而实现按需引入的目的。</p>
+<pre><code class="language-js">import Alert from './src/main';
+/* istanbul ignore next */
+Alert.install = function(Vue) {
+  Vue.component(Alert.name, Alert);
+};
+export default Alert;
+</code></pre>
+<p>除了上述内容之外，还有几点值得我们注意一下：</p>
+<ul>
+<li>插件传入的如果是一个对象，则执行其<code>install</code>方法，如果是一个函数，则执行它自身，并<code>bind</code> <code>this</code>为<code>null</code>，然后传入额外的参数。</li>
+</ul>
+<pre><code class="language-js">if (typeof plugin.install === 'function') {
+  plugin.install.apply(plugin, args);
+} else if (typeof plugin === 'function') {
+  plugin.apply(null, args);
+}
+</code></pre>
+<ul>
+<li>如果插件没有被注册过，那么注册成功之后会给插件添加一个<code>installed</code>的属性，其值为<code>true</code>。<code>Vue.use</code>方法内部会检测插件的<code>installed</code>属性，从而避免重复注册插件</li>
+</ul>
+<p><code>Vue.use</code>其实并不神秘，内部还是我们平时使用的这些东西，仅仅只是给他们套上了一层高端的外衣而已。我们在开发中，也可以尝试使用这种方式。</p>
+
+							</div>
+	<div class="wow fadeInUp vt-post-tags">
+ 
+				<a href="https://www.bwrong.cn/tag/vue/" rel="tag">vue</a>
+				 
+					</div>
+<nav class="navigation3 post-navigation3" role="navigation">
+
+		<div class="nav-links3">
+      
+		<div class="wow fadeInUp nav-previous3"><a href="https://www.bwrong.cn/post/dev-tools01/" rel="prev"> 【前端工程化】篇一 扬帆起航：开发环境</a></div>
+		 
+		 
+		<div class="wow fadeInUp nav-next3"><a href="https://www.bwrong.cn/post/cli/" rel="next"> 也来盘盘前端脚手架的那些事儿</a></div>
+		
+		</div>
+	</nav>
+	<div class="wow fadeInUp author-info">
+	<div class="author-avatar pull-left"><img src="https://www.bwrong.cn/images/avatar.png" ></div>
+ 
+	<div class="author-description"><div class="author-title"><div class="author-link" rel="author">BWrong</div></div>
+
+
+	<p class="author-bio">愿你走出半生，归来仍是少年</p></div></div>
+	
+		</div>
+
+
+
+</article>
+
+<div id="marlin_lite_about_widget-2" class="wow fadeInUp widget marlin_lite_about_widget" data-wow-delay="0.1s">
+
+        
+		<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://www.bwrong.cn/media/scripts/Valine.min.js'></script>
+
+<div class="comment"></div>
+<script>
+        new Valine({
+            av: AV,
+            el: '.comment',
+            lang: 'zh-cn',
+            visitor: false, // 阅读量统计
+            
+            admin_email:'wang11535041@qq.com',
+            
+            
+            emoticon_url: '/media/alu',
+             
+      emoticon_list: ["吐.png","喷血.png","狂汗.png","不说话.png","汗.png","坐等.png","献花.png","不高兴.png","中刀.png","害羞.png","皱眉.png","小眼睛.png","中指.png","尴尬.png","瞅你.png","想一想.png","中枪.png","得意.png","肿包.png","扇耳光.png","亲亲.png","惊喜.png","脸红.png","无所谓.png","便便.png","愤怒.png","蜡烛.png","献黄瓜.png","内伤.png","投降.png","观察.png","看不见.png","击掌.png","抠鼻.png","邪恶.png","看热闹.png","口水.png","抽烟.png","锁眉.png","装大款.png","吐舌.png","无奈.png","长草.png","赞一个.png","呲牙.png","无语.png","阴暗.png","不出所料.png","咽气.png","期待.png","高兴.png","吐血倒地.png","哭泣.png","欢呼.png","黑线.png","喜极而泣.png","喷水.png","深思.png","鼓掌.png","暗地观察.png"],
+     
+      app_id: 'jaz3TfUjRowK9fOMAPb9yw6i-MdYXbMMI',
+      
+      
+      app_key: 'pbltxx4rElIP1RStL3AwujSp',
+         
+          
+      placeholder: '欢迎你留下足迹'
+       
+        });
+    </script>
+
+
+
+
+
+		</div>
+
+			</div>
+			
+
+
+<div class="tocc col l3 hide-on-med-and-down">
+
+        <div class="toc-widget">
+
+            <div class="toc-title"></div>
+
+            <div id="toc-content">
+
+
+			</div>
+        </div>
+    </div>
+
+
+<script src="https://www.bwrong.cn/media/scripts/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '.entry-summary',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h1,h2' //**
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('.entry-summary').children('h1, h2').each(function () {/**/
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget').parent();
+        // let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+    });
+</script>
+
+
+
+
+
+
+			</div>
+		</div>
+
+
+		 <footer id="colophon" class="site-footer">
+
+	<div class="container">
+
+		<div class="copyright"> <br>Theme: <a
+				href="https://github.com/alterfang/gridea-theme-pan" target="_blank" title="Pan"><span>Pan</span></a>.
+			Powered by <a href="https://gridea.dev/" target="_blank" title="Gridea"><span>Gridea</span></a> . 版权所有：<a href="https://beian.miit.gov.cn/" target="_blank"><span>蜀ICP备2023018303号-1</span></a></div>
+	</div>
+
+</footer>
+		<!-- loding -->
+		<div class="loader">
+			<div class="loader-content">
+				<div class="songjingge">
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+			</div>
+		</div>
+<script id="rendered-js">
+	window.onload = function () {
+			var loader = document.getElementsByClassName("loader")[0];
+			loader.className = "loader fadeout"; //使用渐隐的方法淡出loading page
+			setTimeout(function () {
+				loader.style.display = "none";
+			}, 0);
+	};
+</script>
+
+
+</div>
+
+<script src="https://cdn.bootcss.com/fitvids/1.2.0/jquery.fitvids.min.js"></script>
+<script type='text/javascript' src='https://www.bwrong.cn/media/scripts/marlin-scripts.js'></script>
+<script src="https://www.bwrong.cn/media/scripts/lately.min.js"></script>
+<script>jQuery(document).ready(function () { $.lately({ 'target': '.lately-a,.lately-b,.lately-c' }) });</script>
+<style type="text/css">
+  a.back_to_top {
+    text-decoration: none;
+    position: fixed;
+    bottom: 40px;
+    right: 30px;
+    background: #f0f0f0;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    line-height: 36px;
+    font-size: 18px;
+    text-align: center;
+    transition-duration: .5s;
+    transition-propety: background-color;
+    display: none;
+  }
+
+  a.back_to_top span {
+    color: #888;
+  }
+
+  a.back_to_top:hover {
+    cursor: pointer;
+    background: #dfdfdf;
+  }
+
+  a.back_to_top:hover span {
+    color: #555;
+  }
+
+  @media print,
+  screen and (max-width: 580px) {
+    .back_to_top {
+      display: none !important;
+    }
+  }
+</style><a id="back_to_top" href="#" class="back_to_top"><span><i class="iconfont icon-xiangshang"></i></span>
+</a>
+
+<script>
+$(document).ready((function (_this) {
+    return function () {
+      var bt;
+      bt = $('#back_to_top');
+      if ($(document).width() > 480) {
+        $(window).scroll(function () {
+          var st;
+          st = $(window).scrollTop();
+          if (st > 30) {
+            return bt.css('display', 'block');
+          } else {
+            return bt.css('display', 'none');
+          }
+        });
+        return bt.click(function () {
+          $('body,html').animate({
+            scrollTop: 0
+          }, 800);
+          return false;
+        });
+      }
+    };
+  })(this));
+//   $(window).load(function () {
+//     //异步延迟加载样式
+//     var link = $('<link />');
+//     link.attr('href', 'https://fonts.googleapis.com/css?family=Dancing+Script|Noto+Sans+SC:300|Montserrat&display=swap');
+//     link.attr('rel', 'stylesheet');
+//     link.appendTo($('head'));
+// });
+</script>
+
+<!-- 宠物 -->
+<canvas id="live2dcanvas" width="200" height="400" class="live2d"></canvas>
+<style>
+  #live2dcanvas {
+    position: fixed;
+    right: 0px;
+    z-index: 999;
+    pointer-events: none;
+    bottom: -40px;
+    width: 200px;
+    height: 400px;
+  }
+
+  @media (max-width: 768px) {
+    #live2dcanvas {
+      width: 150px;
+      height: 300px;
+    }
+  }
+
+  @media (max-width: 639px) {
+    #live2dcanvas {
+      display: none !important;
+    }
+  }
+</style>
+<script src="https://www.bwrong.cn/media/scripts/L2Dwidget.min.js"></script>
+<script>
+  //初始化小人物 需设置属性pluginRootPath: "live2dw/"指明资源跟路径
+  L2Dwidget.init({
+    pluginRootPath: "media/",//资源root路径
+    pluginJsPath: "scripts/",//js相对root的路径
+    pluginModelPath: "model/",//模型相对root的路径
+    tagMode: !1,
+    debug: !1,
+    model: {
+      scale: 2,
+      jsonPath: "/media/model/live2d-widget-model-epsilon/Epsilon2.1.model.json"
+    },
+    display: {//大小位置什么的自己慢慢调就是了
+      position: "right",//定位
+      width: 130,//宽度
+      height: 210,//高度
+      hOffset: -40,//左右
+      vOffset: 0//上下
+    },
+    mobile: {
+      show: !1
+    },
+    log: !1
+  });
+</script>
+<!-- 宠物结束 -->
+
+		<script data-no-instant>
+    // (function ($) {
+    //     $.extend({
+    //         adamsOverload: function () {
+    //             $('.navigation:eq(0)').remove();
+    //             $("").attr("rel" , "external");
+    //             $("a[rel='external'],a[rel='external nofollow']").attr("target","_blank");
+    //             $("a.vi").attr("rel" , "");
+    //             $.viewImage({
+    //                 'target'  : 'img',
+    //                 'exclude' : '.vsmile-icons img,.gallery img',
+    //                 'delay'   : 300
+    //             });
+    //             $.lately({
+    //                 'target' : '.commentmetadata a,.infos time,.post-list time'
+	// 			});
+	// 			console.log(prettyPrint)
+	// 			if(prettyPrint) prettyPrint();
+
+    //             $('ul.links li a').each(function(){
+    //                 if($(this).parent().find('.bg').length==0){
+    //                     $(this).parent().append('<!---<div class="bg" style="background-image:url(https://c3.glgoo.top/s2/favicons?domain='+$(this).attr("href")+')"></div>--->')
+    //                 }
+    //             });
+    //         }
+    //     });
+    // })(jQuery);
+	// jQuery.adamsOverload();
+
+    (function ($) {
+        $.extend({
+            adamsOverload: function () {
+                $.viewImage({
+                    'target'  : '.song img',
+                    'exclude' : '.vsmile-icons img',
+                    'delay'   : 300
+                });
+            }
+        });
+    })(jQuery);
+    jQuery.adamsOverload();
+</script>
+
+</body>
+</html>

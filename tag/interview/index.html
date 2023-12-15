@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+ <meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+<meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<meta HTTP-EQUIV="expires" CONTENT="0">
+<meta name="author" content="bwrong, wang11535041@qq.com"/>
+<meta name="keywords" content="面试 | BWrong的小站,前端,krpano,js,vue"/>
+<meta name="description" content="天青色等烟雨，而我在等你"/>
+<!-- <title>面试 | BWrong的小站</title> -->
+<title>网站搭建测试</title>
+<link href="https://www.bwrong.cn/media/css/fz.css" rel="stylesheet">
+<link rel="stylesheet" href="https://www.bwrong.cn/styles/main.css">
+<script type="text/javascript">
+function getCSS()
+{
+        datetoday = new Date();
+        timenow=datetoday.getTime();
+        datetoday.setTime(timenow);
+        thehour = datetoday.getHours();
+
+        if (thehour<5)
+
+            display = "https://www.bwrong.cn/media/css/night.css";
+
+       else if (thehour>20)
+
+            display = "https://www.bwrong.cn/media/css/night.css";
+
+        else if (thehour>5)
+     
+            display = "https://www.bwrong.cn/media/css/day.css";
+
+        else if (thehour<20)
+
+            display = "https://www.bwrong.cn/media/css/day.css";
+
+
+var css = '<';
+        css+='link rel="stylesheet" href='+display+' \/';
+        css+='>';
+        document.write(css);
+}
+</script>
+<link href="https://at.alicdn.com/t/font_1306644_ko4c4at97is.css" rel="stylesheet" />
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://www.bwrong.cn/media/css/katex.min.css">
+<script type='text/javascript' src='https://www.bwrong.cn/media/scripts/script.js'></script>
+<link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet" />
+  <script src="https://cdn.bootcss.com/wow/1.1.2/wow.min.js"></script>
+  <script src="https://cdn.bootcss.com/highlight.js/9.15.8/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script>wow=new WOW({boxClass:'wow',animateClass:'animated',offset:0,mobile:true,live:true});wow.init();</script>
+
+<script type="text/javascript">
+window.onload=getCSS();
+</script>
+<!-- 百度统计 -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?2c0e9e3f54ae20480b34c178578c4df8";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</head>
+<body class="home blog">
+    <div id="wrapper">
+        
+		<header id="header" class="site-header" >
+			<div class="site-branding">
+									<h1 class="site-title"><a href="https://www.bwrong.cn" rel="home">BWrong的小站</a></h1>
+
+					<h2 class="site-description">天青色等烟雨，而我在等你</h2>
+
+							</div>
+			<nav id="nav-wrapper">
+				<div class="container">
+					<div class="nav-toggle">
+						<div class="bars">
+							<div class="bar"></div>
+							<div class="bar"></div>
+							<div class="bar"></div>
+						</div>
+					</div>
+					<div class="clear"></div>
+					<ul class="dove">
+		 
+
+<li>
+
+	
+		<a href="/">
+		  首页
+		</a>
+	  
+
+    
+
+<li>
+
+	
+		<a href="/archives/index.html">
+		  归档
+		</a>
+	  
+
+    
+
+<li>
+
+	
+		<a href="/post/about/">
+		  关于
+		</a>
+	  
+
+    
+
+</ul>
+</li>
+
+</ul>				</div>
+			</nav>
+
+<div class="jingge">
+
+
+    
+
+    
+
+<a  href="https://github.com/BWrong" target="_blank" ><i class="iconfont icon-github"></i></a>
+ 
+    
+
+    
+
+    
+
+    
+
+<a  href="https://juejin.cn/user/3421335914820280" target="_blank" ><i class="iconfont icon-telegram"></i></a>
+ 
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        </header>
+
+
+		<div id="content" class="container">
+			<div class="row">
+	<div class="col-md-8 site-main">
+		
+		<div class="wow slideInLeft archive-box">
+			  <header class="page-header">
+				  
+				<h1 class="page-title">面试</h1> 
+
+</header>
+			</div>	
+ 		
+ 						
+<article class="wow zoomIn post post-index  post-318 type-post status-publish format-standard hentry category-uncategorized tag-40 tag-39">
+	
+	 
+	   
+	<div class="entry-content">
+		<h1 class="entry-title"><a href="https://www.bwrong.cn/post/get-max-and-min/" rel="bookmark">获取数组中最大和最小值</a></h1>
+		<div class="entry-meta">
+		<i class="iconfont icon-rili"> <time class="lately-a" datetime="2019-04-12 22:34:54" itemprop="datePublished" pubdate="">2019-04-12</time></i>
+	 
+			
+		</div>
+
+		<div class="entry-summary jia">
+			
+			<p class="readmore">
+				<a href="https://www.bwrong.cn/post/get-max-and-min/" class="link-more">Read more</a>
+			</p>
+		</div>
+		
+	</div>
+	
+</article>
+		
+ 
+
+
+
+
+							
+	</div>
+            
+
+
+			</div> 
+			<nav class="navigation pagination" role="navigation">
+
+		
+	</nav>
+    	<script type="text/javascript">
+//点击加载更多
+jQuery(document).ready(function($) {
+    //点击下一页的链接(即那个a标签)
+    $(' .next').click(function() {
+        $this = $(this);
+        $this.addClass('loading').text('正在努力加载'); //给a标签加载一个loading的class属性，用来添加加载效果
+        var href = $this.attr('href'); //获取下一页的链接地址
+        if (href != undefined) { //如果地址存在
+            $.ajax({ //发起ajax请求
+                url: href,
+                //请求的地址就是下一页的链接
+                type: 'get',
+                //请求类型是get
+                error: function(request) {
+                    //如果发生错误怎么处理
+                },
+                success: function(data) { //请求成功
+                    $this.removeClass('loading').text('点击查看更多'); //移除loading属性
+                    var $res = $(data).find('.post-318 '); //从数据中挑出文章数据，请根据实际情况更改
+                    $('.col-md-8').append($res.fadeIn(500)); //将数据加载加进posts-loop的标签中。
+                    var newhref = $(data).find(' .next').attr('href'); //找出新的下一页链接
+                    if (newhref != undefined) {
+                        $('.next').attr('href', newhref);
+                    } else {
+                        $('.next').remove(); //如果没有下一页了，隐藏
+                    }
+                }
+            });
+        }
+        return false;
+    });
+});
+</script>
+													   
+		</div>
+
+		
+	 <footer id="colophon" class="site-footer">
+
+	<div class="container">
+
+		<div class="copyright"> <br>Theme: <a
+				href="https://github.com/alterfang/gridea-theme-pan" target="_blank" title="Pan"><span>Pan</span></a>.
+			Powered by <a href="https://gridea.dev/" target="_blank" title="Gridea"><span>Gridea</span></a> . 版权所有：<a href="https://beian.miit.gov.cn/" target="_blank"><span>蜀ICP备2023018303号-1</span></a></div>
+	</div>
+
+</footer>
+		<!-- loding -->
+		<div class="loader">
+			<div class="loader-content">
+				<div class="songjingge">
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+			</div>
+		</div>
+<script id="rendered-js">
+	window.onload = function () {
+			var loader = document.getElementsByClassName("loader")[0];
+			loader.className = "loader fadeout"; //使用渐隐的方法淡出loading page
+			setTimeout(function () {
+				loader.style.display = "none";
+			}, 0);
+	};
+</script>
+
+
+</div>
+
+<script src="https://cdn.bootcss.com/fitvids/1.2.0/jquery.fitvids.min.js"></script>
+<script type='text/javascript' src='https://www.bwrong.cn/media/scripts/marlin-scripts.js'></script>
+<script src="https://www.bwrong.cn/media/scripts/lately.min.js"></script>
+<script>jQuery(document).ready(function () { $.lately({ 'target': '.lately-a,.lately-b,.lately-c' }) });</script>
+<style type="text/css">
+  a.back_to_top {
+    text-decoration: none;
+    position: fixed;
+    bottom: 40px;
+    right: 30px;
+    background: #f0f0f0;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    line-height: 36px;
+    font-size: 18px;
+    text-align: center;
+    transition-duration: .5s;
+    transition-propety: background-color;
+    display: none;
+  }
+
+  a.back_to_top span {
+    color: #888;
+  }
+
+  a.back_to_top:hover {
+    cursor: pointer;
+    background: #dfdfdf;
+  }
+
+  a.back_to_top:hover span {
+    color: #555;
+  }
+
+  @media print,
+  screen and (max-width: 580px) {
+    .back_to_top {
+      display: none !important;
+    }
+  }
+</style><a id="back_to_top" href="#" class="back_to_top"><span><i class="iconfont icon-xiangshang"></i></span>
+</a>
+
+<script>
+$(document).ready((function (_this) {
+    return function () {
+      var bt;
+      bt = $('#back_to_top');
+      if ($(document).width() > 480) {
+        $(window).scroll(function () {
+          var st;
+          st = $(window).scrollTop();
+          if (st > 30) {
+            return bt.css('display', 'block');
+          } else {
+            return bt.css('display', 'none');
+          }
+        });
+        return bt.click(function () {
+          $('body,html').animate({
+            scrollTop: 0
+          }, 800);
+          return false;
+        });
+      }
+    };
+  })(this));
+//   $(window).load(function () {
+//     //异步延迟加载样式
+//     var link = $('<link />');
+//     link.attr('href', 'https://fonts.googleapis.com/css?family=Dancing+Script|Noto+Sans+SC:300|Montserrat&display=swap');
+//     link.attr('rel', 'stylesheet');
+//     link.appendTo($('head'));
+// });
+</script>
+
+<!-- 宠物 -->
+<canvas id="live2dcanvas" width="200" height="400" class="live2d"></canvas>
+<style>
+  #live2dcanvas {
+    position: fixed;
+    right: 0px;
+    z-index: 999;
+    pointer-events: none;
+    bottom: -40px;
+    width: 200px;
+    height: 400px;
+  }
+
+  @media (max-width: 768px) {
+    #live2dcanvas {
+      width: 150px;
+      height: 300px;
+    }
+  }
+
+  @media (max-width: 639px) {
+    #live2dcanvas {
+      display: none !important;
+    }
+  }
+</style>
+<script src="https://www.bwrong.cn/media/scripts/L2Dwidget.min.js"></script>
+<script>
+  //初始化小人物 需设置属性pluginRootPath: "live2dw/"指明资源跟路径
+  L2Dwidget.init({
+    pluginRootPath: "media/",//资源root路径
+    pluginJsPath: "scripts/",//js相对root的路径
+    pluginModelPath: "model/",//模型相对root的路径
+    tagMode: !1,
+    debug: !1,
+    model: {
+      scale: 2,
+      jsonPath: "/media/model/live2d-widget-model-epsilon/Epsilon2.1.model.json"
+    },
+    display: {//大小位置什么的自己慢慢调就是了
+      position: "right",//定位
+      width: 130,//宽度
+      height: 210,//高度
+      hOffset: -40,//左右
+      vOffset: 0//上下
+    },
+    mobile: {
+      show: !1
+    },
+    log: !1
+  });
+</script>
+<!-- 宠物结束 -->
+
+		
+</body>
+</html>

@@ -1,0 +1,769 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+ <meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+<meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<meta HTTP-EQUIV="expires" CONTENT="0">
+<meta name="author" content="bwrong, wang11535041@qq.com"/>
+<meta name="keywords" content="Nginx入门指南 | BWrong的小站,前端,krpano,js,vue"/>
+<meta name="description" content="天青色等烟雨，而我在等你"/>
+<!-- <title>Nginx入门指南 | BWrong的小站</title> -->
+<title>网站搭建测试</title>
+<link href="https://www.bwrong.cn/media/css/fz.css" rel="stylesheet">
+<link rel="stylesheet" href="https://www.bwrong.cn/styles/main.css">
+<script type="text/javascript">
+function getCSS()
+{
+        datetoday = new Date();
+        timenow=datetoday.getTime();
+        datetoday.setTime(timenow);
+        thehour = datetoday.getHours();
+
+        if (thehour<5)
+
+            display = "https://www.bwrong.cn/media/css/night.css";
+
+       else if (thehour>20)
+
+            display = "https://www.bwrong.cn/media/css/night.css";
+
+        else if (thehour>5)
+     
+            display = "https://www.bwrong.cn/media/css/day.css";
+
+        else if (thehour<20)
+
+            display = "https://www.bwrong.cn/media/css/day.css";
+
+
+var css = '<';
+        css+='link rel="stylesheet" href='+display+' \/';
+        css+='>';
+        document.write(css);
+}
+</script>
+<link href="https://at.alicdn.com/t/font_1306644_ko4c4at97is.css" rel="stylesheet" />
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://www.bwrong.cn/media/css/katex.min.css">
+<script type='text/javascript' src='https://www.bwrong.cn/media/scripts/script.js'></script>
+<link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet" />
+  <script src="https://cdn.bootcss.com/wow/1.1.2/wow.min.js"></script>
+  <script src="https://cdn.bootcss.com/highlight.js/9.15.8/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script>wow=new WOW({boxClass:'wow',animateClass:'animated',offset:0,mobile:true,live:true});wow.init();</script>
+
+<script type="text/javascript">
+window.onload=getCSS();
+</script>
+<!-- 百度统计 -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?2c0e9e3f54ae20480b34c178578c4df8";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+</head>
+<body class="post-template-default single single-post postid-70 single-format-standard">
+    <div id="wrapper">
+
+	
+<header id="header" class="site-header"
+		
+		style="background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),url(https://www.bwrong.cn/post-images/nginx-fingerpost.jpg)"
+		
+		>
+			<div class="site-branding">
+									<h1 class="site-title"><a href="https://www.bwrong.cn" rel="home">BWrong的小站</a></h1>
+
+					<h2 class="site-description">天青色等烟雨，而我在等你</h2>
+
+							</div>
+			<nav id="nav-wrapper">
+				<div class="container">
+					<div class="nav-toggle">
+						<div class="bars">
+							<div class="bar"></div>
+							<div class="bar"></div>
+							<div class="bar"></div>
+						</div>
+					</div>
+					<div class="clear"></div>
+					<ul id="" class="dove">
+		 
+
+<li>
+
+	
+		<a href="/">
+		  首页
+		</a>
+	  
+
+    
+
+<li>
+
+	
+		<a href="/archives/index.html">
+		  归档
+		</a>
+	  
+
+    
+
+<li>
+
+	
+		<a href="/post/about/">
+		  关于
+		</a>
+	  
+
+    
+
+</ul>
+</li>
+
+</ul>				</div>
+			</nav>
+						<div class="jingge">
+
+
+    
+
+    
+
+<a  href="https://github.com/BWrong" target="_blank" ><i class="iconfont icon-github"></i></a>
+ 
+    
+
+    
+
+    
+
+    
+
+<a  href="https://juejin.cn/user/3421335914820280" target="_blank" ><i class="iconfont icon-telegram"></i></a>
+ 
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        </header>
+
+
+		<div id="content" class="container">
+			<div class="row">
+	<div class="col-md-8 site-main">
+
+<article id="post-70" class="post-70 post type-post status-publish format-standard hentry category-5 tag-10 tag-9 tag-11">
+
+
+
+		<div class="entry-content">
+			<h1 data-wow-delay="0.4s"  class="wow fadeInUp entry-title">Nginx入门指南</h1>
+<div class="entry-meta">
+<div class="wow fadeInUp"  data-wow-delay="0.6s">
+	<i class="iconfont icon-rili"> <time class="lately-a" datetime="2019-01-12 22:18:12" itemprop="datePublished" pubdate="">2019-01-12</time></i>
+	          </div>
+
+</span>
+
+		</div>
+
+			<div class="wow fadeInUp entry-summary song"  data-wow-delay="0.1s">
+				<h2 id="简介">简介</h2>
+<ul>
+<li>轻量级HTTP服务器</li>
+<li>事件驱动，异步非阻塞</li>
+<li>反向代理与负载均衡</li>
+<li>高并发，低内存占用</li>
+</ul>
+<h2 id="安装nginx">安装Nginx</h2>
+<pre><code># Ubuntu
+apt-get install nginx
+# Centos
+yum install nginx
+</code></pre>
+<h2 id="常用命令">常用命令</h2>
+<ul>
+<li>启动</li>
+</ul>
+<pre><code>nginx
+</code></pre>
+<ul>
+<li>停止</li>
+</ul>
+<pre><code># 立即停止
+nginx -s stop
+# 从容停止
+nginx -s quit
+# 杀死进程
+killall nginx
+</code></pre>
+<ul>
+<li>重新载入配置</li>
+</ul>
+<pre><code>nginx -s reload
+</code></pre>
+<h2 id="配置">配置</h2>
+<pre><code>cd /etc/nginx
+vim nginx.conf
+</code></pre>
+<ul>
+<li>nginx配置文件</li>
+</ul>
+<pre><code>#运行用户，默认即是nginx，可以不进行设置
+user  nginx;
+#Nginx进程，一般设置为和CPU核数一样
+worker_processes  1;   
+#错误日志存放目录
+error_log  /var/log/nginx/error.log warn;
+#进程pid存放位置
+pid        /var/run/nginx.pid;
+events {
+    worker_connections  1024; # 单个后台进程的最大并发数
+}
+http {
+    include       /etc/nginx/mime.types;   #文件扩展名与类型映射表
+    default_type  application/octet-stream;  #默认文件类型
+    #设置日志模式
+    log_format  main  '$remote_addr - $remote_user [$time_local] &quot;$request&quot; '
+                      '$status $body_bytes_sent &quot;$http_referer&quot; '
+                      '&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;';
+    access_log  /var/log/nginx/access.log  main;   #nginx访问日志存放位置
+    sendfile        on;   #开启高效传输模式
+    #tcp_nopush     on;    #减少网络报文段的数量
+    keepalive_timeout  65;  #保持连接的时间，也叫超时时间
+    #gzip  on;  #开启gzip压缩
+    include /etc/nginx/conf.d/*.conf; #包含的子配置项位置和文件
+}
+</code></pre>
+<ul>
+<li>子配置conf.d/xxx.conf</li>
+</ul>
+<pre><code>server {
+    listen       80;   #配置监听端口
+    server_name  localhost;  //配置域名
+    #charset koi8-r;     
+    #access_log  /var/log/nginx/host.access.log  main;
+    location / {
+        root   /usr/share/nginx/html;     #服务默认启动目录
+        index  index.html index.htm;    #默认访问文件
+    }
+    #error_page  404              /404.html;   # 配置404页面
+    # redirect server error pages to the static page /50x.html
+    #
+    error_page   500 502 503 504  /50x.html;   #错误状态码的显示页面，配置后需要重启
+    location = /50x.html {
+        root   /usr/share/nginx/html;
+    }
+    # proxy the PHP scripts to Apache listening on 127.0.0.1:80
+    #
+    #location ~ \.php$ {
+    #    proxy_pass   http://127.0.0.1;
+    #}
+    # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
+    #
+    #location ~ \.php$ {
+    #    root           html;
+    #    fastcgi_pass   127.0.0.1:9000;
+    #    fastcgi_index  index.php;
+    #    fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;
+    #    include        fastcgi_params;
+    #}
+    # deny access to .htaccess files, if Apache's document root
+    # concurs with nginx's one
+    #
+    #location ~ /\.ht {
+    #    deny  all;
+    #}
+}
+</code></pre>
+<h3 id="访问控制">访问控制</h3>
+<ul>
+<li>IP</li>
+</ul>
+<pre><code class="language-bash"> location / {
+        deny   123.9.51.42; # 禁止访问的ip
+        allow  45.76.202.231; # 允许访问的ip
+    }
+</code></pre>
+<ul>
+<li>路由</li>
+</ul>
+<pre><code># =号代表精确匹配，使用了=后是根据其后的模式进行精确匹配
+location =/img{
+    allow all;
+}
+location =/admin{
+    deny all;
+}
+</code></pre>
+<ul>
+<li>正则</li>
+</ul>
+<pre><code> location ~\.php$ {
+    deny all;
+}
+</code></pre>
+<h3 id="虚拟主机">虚拟主机</h3>
+<p>配置虚拟主机可以基于端口号、基于IP和基于域名。</p>
+<ul>
+<li>端口号</li>
+</ul>
+<pre><code>server{
+        listen 8001;
+        server_name localhost;
+        root /usr/share/nginx/html/html8001;
+        index index.html;
+}
+</code></pre>
+<ul>
+<li>IP</li>
+</ul>
+<pre><code>server{
+        listen 80;
+        server_name 112.74.164.244;
+        root /usr/share/nginx/html/html8001;
+        index index.html;
+}
+</code></pre>
+<ul>
+<li>域名</li>
+</ul>
+<pre><code>server{
+        listen 80;
+        server_name nginx2.jspang.com;
+        location / {
+                root /usr/share/nginx/html/html8001;
+                index index.html index.htm;
+        }
+}
+</code></pre>
+<h3 id="反向代理">反向代理</h3>
+<pre><code>server{
+        listen 80;
+        server_name nginx2.jspang.com;
+        location / {
+               proxy_pass http://jspang.com;
+        }
+}
+</code></pre>
+<p>其他配置：</p>
+<ul>
+<li>
+<p>proxy_set_header :在将客户端请求发送给后端服务器之前，更改来自客户端的请求头信息。</p>
+</li>
+<li>
+<p>proxy_connect_timeout:配置Nginx与后端代理服务器尝试建立连接的超时时间。</p>
+</li>
+<li>
+<p>proxy_read_timeout : 配置Nginx向后端服务器组发出read请求后，等待相应的超时时间。</p>
+</li>
+<li>
+<p>proxy_send_timeout：配置Nginx向后端服务器组发出write请求后，等待相应的超时时间。</p>
+</li>
+<li>
+<p>proxy_redirect :用于修改后端服务器返回的响应头中的Location和Refresh。</p>
+</li>
+</ul>
+<h3 id="适配pc或移动设备">适配PC或移动设备</h3>
+<p>Nginx通过内置变量$http_user_agent，可以获取到请求客户端的userAgent，就可以用户目前处于移动端还是PC端，进而展示不同的页面给用户。</p>
+<pre><code>server{
+     listen 80;
+     server_name nginx2.jspang.com;
+     location / {
+      root /usr/share/nginx/pc;
+      if ($http_user_agent ~* '(Android|webOS|iPhone|iPod|BlackBerry)') {
+         root /usr/share/nginx/mobile;
+      }
+      index index.html;
+     }
+}
+</code></pre>
+<h3 id="gzip">Gzip</h3>
+<pre><code>http {
+   .....
+    gzip on;
+    gzip_types text/plain application/javascript text/css;
+   .....
+}
+</code></pre>
+<p>Nginx提供了专门的gzip模块，并且模块中的指令非常丰富。</p>
+<ul>
+<li>gzip : 该指令用于开启或 关闭gzip模块。</li>
+<li>gzip_buffers : 设置系统获取几个单位的缓存用于存储gzip的压缩结果数据流。</li>
+<li>gzip_comp_level : gzip压缩比，压缩级别是1-9，1的压缩级别最低，9的压缩级别最高。压缩级别越高压缩率越大，压缩时间越长。</li>
+<li>gzip_disable : 可以通过该指令对一些特定的User-Agent不使用压缩功能。</li>
+<li>gzip_min_length:设置允许压缩的页面最小字节数，页面字节数从相应消息头的Content-length中进行获取。</li>
+<li>gzip_http_version：识别HTTP协议版本，其值可以是1.1.或1.0.</li>
+<li>gzip_proxied : 用于设置启用或禁用从代理服务器上收到相应内容gzip压缩。</li>
+<li>gzip_vary : 用于在响应消息头中添加Vary：Accept-Encoding,使代理服务器根据请求头中的Accept-Encoding识别是否启用gzip压缩。</li>
+</ul>
+
+							</div>
+	<div class="wow fadeInUp vt-post-tags">
+ 
+				<a href="https://www.bwrong.cn/tag/devops/" rel="tag">运维</a>
+				 
+				<a href="https://www.bwrong.cn/tag/nginx/" rel="tag">nginx</a>
+				 
+					</div>
+<nav class="navigation3 post-navigation3" role="navigation">
+
+		<div class="nav-links3">
+      
+		<div class="wow fadeInUp nav-previous3"><a href="https://www.bwrong.cn/post/git-bei-wang-shou-ce/" rel="prev"> GIT备忘手册</a></div>
+		 
+		 
+		<div class="wow fadeInUp nav-next3"><a href="https://www.bwrong.cn/post/git-clonegit-pull-he-git-fetch-de-yong-fa-ji-qu-bie/" rel="next"> git clone、git pull和git fetch的用法及区别</a></div>
+		
+		</div>
+	</nav>
+	<div class="wow fadeInUp author-info">
+	<div class="author-avatar pull-left"><img src="https://www.bwrong.cn/images/avatar.png" ></div>
+ 
+	<div class="author-description"><div class="author-title"><div class="author-link" rel="author">BWrong</div></div>
+
+
+	<p class="author-bio">愿你走出半生，归来仍是少年</p></div></div>
+	
+		</div>
+
+
+
+</article>
+
+<div id="marlin_lite_about_widget-2" class="wow fadeInUp widget marlin_lite_about_widget" data-wow-delay="0.1s">
+
+        
+		<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://www.bwrong.cn/media/scripts/Valine.min.js'></script>
+
+<div class="comment"></div>
+<script>
+        new Valine({
+            av: AV,
+            el: '.comment',
+            lang: 'zh-cn',
+            visitor: false, // 阅读量统计
+            
+            admin_email:'wang11535041@qq.com',
+            
+            
+            emoticon_url: '/media/alu',
+             
+      emoticon_list: ["吐.png","喷血.png","狂汗.png","不说话.png","汗.png","坐等.png","献花.png","不高兴.png","中刀.png","害羞.png","皱眉.png","小眼睛.png","中指.png","尴尬.png","瞅你.png","想一想.png","中枪.png","得意.png","肿包.png","扇耳光.png","亲亲.png","惊喜.png","脸红.png","无所谓.png","便便.png","愤怒.png","蜡烛.png","献黄瓜.png","内伤.png","投降.png","观察.png","看不见.png","击掌.png","抠鼻.png","邪恶.png","看热闹.png","口水.png","抽烟.png","锁眉.png","装大款.png","吐舌.png","无奈.png","长草.png","赞一个.png","呲牙.png","无语.png","阴暗.png","不出所料.png","咽气.png","期待.png","高兴.png","吐血倒地.png","哭泣.png","欢呼.png","黑线.png","喜极而泣.png","喷水.png","深思.png","鼓掌.png","暗地观察.png"],
+     
+      app_id: 'jaz3TfUjRowK9fOMAPb9yw6i-MdYXbMMI',
+      
+      
+      app_key: 'pbltxx4rElIP1RStL3AwujSp',
+         
+          
+      placeholder: '欢迎你留下足迹'
+       
+        });
+    </script>
+
+
+
+
+
+		</div>
+
+			</div>
+			
+
+
+<div class="tocc col l3 hide-on-med-and-down">
+
+        <div class="toc-widget">
+
+            <div class="toc-title"></div>
+
+            <div id="toc-content">
+
+
+			</div>
+        </div>
+    </div>
+
+
+<script src="https://www.bwrong.cn/media/scripts/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '.entry-summary',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h1,h2' //**
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('.entry-summary').children('h1, h2').each(function () {/**/
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget').parent();
+        // let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+    });
+</script>
+
+
+
+
+
+
+			</div>
+		</div>
+
+
+		 <footer id="colophon" class="site-footer">
+
+	<div class="container">
+
+		<div class="copyright"> <br>Theme: <a
+				href="https://github.com/alterfang/gridea-theme-pan" target="_blank" title="Pan"><span>Pan</span></a>.
+			Powered by <a href="https://gridea.dev/" target="_blank" title="Gridea"><span>Gridea</span></a> . 版权所有：<a href="https://beian.miit.gov.cn/" target="_blank"><span>蜀ICP备2023018303号-1</span></a></div>
+	</div>
+
+</footer>
+		<!-- loding -->
+		<div class="loader">
+			<div class="loader-content">
+				<div class="songjingge">
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+			</div>
+		</div>
+<script id="rendered-js">
+	window.onload = function () {
+			var loader = document.getElementsByClassName("loader")[0];
+			loader.className = "loader fadeout"; //使用渐隐的方法淡出loading page
+			setTimeout(function () {
+				loader.style.display = "none";
+			}, 0);
+	};
+</script>
+
+
+</div>
+
+<script src="https://cdn.bootcss.com/fitvids/1.2.0/jquery.fitvids.min.js"></script>
+<script type='text/javascript' src='https://www.bwrong.cn/media/scripts/marlin-scripts.js'></script>
+<script src="https://www.bwrong.cn/media/scripts/lately.min.js"></script>
+<script>jQuery(document).ready(function () { $.lately({ 'target': '.lately-a,.lately-b,.lately-c' }) });</script>
+<style type="text/css">
+  a.back_to_top {
+    text-decoration: none;
+    position: fixed;
+    bottom: 40px;
+    right: 30px;
+    background: #f0f0f0;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    line-height: 36px;
+    font-size: 18px;
+    text-align: center;
+    transition-duration: .5s;
+    transition-propety: background-color;
+    display: none;
+  }
+
+  a.back_to_top span {
+    color: #888;
+  }
+
+  a.back_to_top:hover {
+    cursor: pointer;
+    background: #dfdfdf;
+  }
+
+  a.back_to_top:hover span {
+    color: #555;
+  }
+
+  @media print,
+  screen and (max-width: 580px) {
+    .back_to_top {
+      display: none !important;
+    }
+  }
+</style><a id="back_to_top" href="#" class="back_to_top"><span><i class="iconfont icon-xiangshang"></i></span>
+</a>
+
+<script>
+$(document).ready((function (_this) {
+    return function () {
+      var bt;
+      bt = $('#back_to_top');
+      if ($(document).width() > 480) {
+        $(window).scroll(function () {
+          var st;
+          st = $(window).scrollTop();
+          if (st > 30) {
+            return bt.css('display', 'block');
+          } else {
+            return bt.css('display', 'none');
+          }
+        });
+        return bt.click(function () {
+          $('body,html').animate({
+            scrollTop: 0
+          }, 800);
+          return false;
+        });
+      }
+    };
+  })(this));
+//   $(window).load(function () {
+//     //异步延迟加载样式
+//     var link = $('<link />');
+//     link.attr('href', 'https://fonts.googleapis.com/css?family=Dancing+Script|Noto+Sans+SC:300|Montserrat&display=swap');
+//     link.attr('rel', 'stylesheet');
+//     link.appendTo($('head'));
+// });
+</script>
+
+<!-- 宠物 -->
+<canvas id="live2dcanvas" width="200" height="400" class="live2d"></canvas>
+<style>
+  #live2dcanvas {
+    position: fixed;
+    right: 0px;
+    z-index: 999;
+    pointer-events: none;
+    bottom: -40px;
+    width: 200px;
+    height: 400px;
+  }
+
+  @media (max-width: 768px) {
+    #live2dcanvas {
+      width: 150px;
+      height: 300px;
+    }
+  }
+
+  @media (max-width: 639px) {
+    #live2dcanvas {
+      display: none !important;
+    }
+  }
+</style>
+<script src="https://www.bwrong.cn/media/scripts/L2Dwidget.min.js"></script>
+<script>
+  //初始化小人物 需设置属性pluginRootPath: "live2dw/"指明资源跟路径
+  L2Dwidget.init({
+    pluginRootPath: "media/",//资源root路径
+    pluginJsPath: "scripts/",//js相对root的路径
+    pluginModelPath: "model/",//模型相对root的路径
+    tagMode: !1,
+    debug: !1,
+    model: {
+      scale: 2,
+      jsonPath: "/media/model/live2d-widget-model-epsilon/Epsilon2.1.model.json"
+    },
+    display: {//大小位置什么的自己慢慢调就是了
+      position: "right",//定位
+      width: 130,//宽度
+      height: 210,//高度
+      hOffset: -40,//左右
+      vOffset: 0//上下
+    },
+    mobile: {
+      show: !1
+    },
+    log: !1
+  });
+</script>
+<!-- 宠物结束 -->
+
+		<script data-no-instant>
+    // (function ($) {
+    //     $.extend({
+    //         adamsOverload: function () {
+    //             $('.navigation:eq(0)').remove();
+    //             $("").attr("rel" , "external");
+    //             $("a[rel='external'],a[rel='external nofollow']").attr("target","_blank");
+    //             $("a.vi").attr("rel" , "");
+    //             $.viewImage({
+    //                 'target'  : 'img',
+    //                 'exclude' : '.vsmile-icons img,.gallery img',
+    //                 'delay'   : 300
+    //             });
+    //             $.lately({
+    //                 'target' : '.commentmetadata a,.infos time,.post-list time'
+	// 			});
+	// 			console.log(prettyPrint)
+	// 			if(prettyPrint) prettyPrint();
+
+    //             $('ul.links li a').each(function(){
+    //                 if($(this).parent().find('.bg').length==0){
+    //                     $(this).parent().append('<!---<div class="bg" style="background-image:url(https://c3.glgoo.top/s2/favicons?domain='+$(this).attr("href")+')"></div>--->')
+    //                 }
+    //             });
+    //         }
+    //     });
+    // })(jQuery);
+	// jQuery.adamsOverload();
+
+    (function ($) {
+        $.extend({
+            adamsOverload: function () {
+                $.viewImage({
+                    'target'  : '.song img',
+                    'exclude' : '.vsmile-icons img',
+                    'delay'   : 300
+                });
+            }
+        });
+    })(jQuery);
+    jQuery.adamsOverload();
+</script>
+
+</body>
+</html>

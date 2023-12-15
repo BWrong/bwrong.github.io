@@ -1,0 +1,1328 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+ <meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+<meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<meta HTTP-EQUIV="expires" CONTENT="0">
+<meta name="author" content="bwrong, wang11535041@qq.com"/>
+<meta name="keywords" content="【前端工程化】篇六 规矩方圆-ESLint | BWrong的小站,前端,krpano,js,vue"/>
+<meta name="description" content="天青色等烟雨，而我在等你"/>
+<!-- <title>【前端工程化】篇六 规矩方圆-ESLint | BWrong的小站</title> -->
+<title>网站搭建测试</title>
+<link href="https://www.bwrong.cn/media/css/fz.css" rel="stylesheet">
+<link rel="stylesheet" href="https://www.bwrong.cn/styles/main.css">
+<script type="text/javascript">
+function getCSS()
+{
+        datetoday = new Date();
+        timenow=datetoday.getTime();
+        datetoday.setTime(timenow);
+        thehour = datetoday.getHours();
+
+        if (thehour<5)
+
+            display = "https://www.bwrong.cn/media/css/night.css";
+
+       else if (thehour>20)
+
+            display = "https://www.bwrong.cn/media/css/night.css";
+
+        else if (thehour>5)
+     
+            display = "https://www.bwrong.cn/media/css/day.css";
+
+        else if (thehour<20)
+
+            display = "https://www.bwrong.cn/media/css/day.css";
+
+
+var css = '<';
+        css+='link rel="stylesheet" href='+display+' \/';
+        css+='>';
+        document.write(css);
+}
+</script>
+<link href="https://at.alicdn.com/t/font_1306644_ko4c4at97is.css" rel="stylesheet" />
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://www.bwrong.cn/media/css/katex.min.css">
+<script type='text/javascript' src='https://www.bwrong.cn/media/scripts/script.js'></script>
+<link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet" />
+  <script src="https://cdn.bootcss.com/wow/1.1.2/wow.min.js"></script>
+  <script src="https://cdn.bootcss.com/highlight.js/9.15.8/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script>wow=new WOW({boxClass:'wow',animateClass:'animated',offset:0,mobile:true,live:true});wow.init();</script>
+
+<script type="text/javascript">
+window.onload=getCSS();
+</script>
+<!-- 百度统计 -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?2c0e9e3f54ae20480b34c178578c4df8";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+</head>
+<body class="post-template-default single single-post postid-70 single-format-standard">
+    <div id="wrapper">
+
+	
+<header id="header" class="site-header"
+		
+		style="background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),url(https://www.bwrong.cn/post-images/dev-tools06.jpg)"
+		
+		>
+			<div class="site-branding">
+									<h1 class="site-title"><a href="https://www.bwrong.cn" rel="home">BWrong的小站</a></h1>
+
+					<h2 class="site-description">天青色等烟雨，而我在等你</h2>
+
+							</div>
+			<nav id="nav-wrapper">
+				<div class="container">
+					<div class="nav-toggle">
+						<div class="bars">
+							<div class="bar"></div>
+							<div class="bar"></div>
+							<div class="bar"></div>
+						</div>
+					</div>
+					<div class="clear"></div>
+					<ul id="" class="dove">
+		 
+
+<li>
+
+	
+		<a href="/">
+		  首页
+		</a>
+	  
+
+    
+
+<li>
+
+	
+		<a href="/archives/index.html">
+		  归档
+		</a>
+	  
+
+    
+
+<li>
+
+	
+		<a href="/post/about/">
+		  关于
+		</a>
+	  
+
+    
+
+</ul>
+</li>
+
+</ul>				</div>
+			</nav>
+						<div class="jingge">
+
+
+    
+
+    
+
+<a  href="https://github.com/BWrong" target="_blank" ><i class="iconfont icon-github"></i></a>
+ 
+    
+
+    
+
+    
+
+    
+
+<a  href="https://juejin.cn/user/3421335914820280" target="_blank" ><i class="iconfont icon-telegram"></i></a>
+ 
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        </header>
+
+
+		<div id="content" class="container">
+			<div class="row">
+	<div class="col-md-8 site-main">
+
+<article id="post-70" class="post-70 post type-post status-publish format-standard hentry category-5 tag-10 tag-9 tag-11">
+
+
+
+		<div class="entry-content">
+			<h1 data-wow-delay="0.4s"  class="wow fadeInUp entry-title">【前端工程化】篇六 规矩方圆-ESLint</h1>
+<div class="entry-meta">
+<div class="wow fadeInUp"  data-wow-delay="0.6s">
+	<i class="iconfont icon-rili"> <time class="lately-a" datetime="2021-03-31 15:53:48" itemprop="datePublished" pubdate="">2021-03-31</time></i>
+	          </div>
+
+</span>
+
+		</div>
+
+			<div class="wow fadeInUp entry-summary song"  data-wow-delay="0.1s">
+				<p>字数：7543， 阅读时间：20分钟，点击<a href="https://www.bwrong.cn/post/dev-tools06/">阅读原文</a></p>
+<blockquote>
+<p>天下从事者，不可以无法仪。无法仪而其事能成者，无有也。        -------墨子《法仪》</p>
+</blockquote>
+<p>【前端工程化】系列文章链接：</p>
+<ul>
+<li><a href="https://www.bwrong.cn/post/dev-tools01/">01 扬帆起航-开发环境</a></li>
+<li><a href="https://www.bwrong.cn/post/dev-tools02/">02 白璧微瑕-包管理器</a></li>
+<li><a href="https://www.bwrong.cn/post/dev-tools03/">03 席卷八荒-Webpack基础篇</a></li>
+<li><a href="https://www.bwrong.cn/post/dev-tools04/">04 席卷八荒-Webpack进阶篇</a></li>
+<li><a href="https://www.bwrong.cn/post/dev-tools05/">05 未来已来-Babel</a></li>
+</ul>
+<p><em>示例代码仓库：<a href="https://github.com/BWrong/dev-tools">https://github.com/BWrong/dev-tools</a></em></p>
+<p><em>声明：如按照文中代码执行报错，请检查依赖版本是否和示例代码仓库中一致。</em></p>
+<p>古人有云“不以规矩，不能成方圆”，看来规矩方圆之说古已有之，而在高度文明的现代社会，法制规则更加完善，只有大家遵守这些规则，我们的生活才能井井有条，社会才能稳定和谐。</p>
+<p>万事均有规矩，编程也是如此，尤其是在多人协作的时候，遵循好的编程规范尤其重要，所以也诞生了很多的工具来做代码审查工作。这篇文章我们仅介绍<code>ESLint</code>，它也是目前前端最流行的代码审查工具。</p>
+<h1 id="概述">概述</h1>
+<p><code>JavaScript</code>是一门动态弱类型语言，虽说使用时很灵活，不过也容易出错。而<code>Lint</code>工具有助于我们在开发时就发现由于书写不规范导致的一些问题。</p>
+<p>Lint工具主要解决如下问题：</p>
+<ul>
+<li>避免一些低级错误的发生，找出语法错误，冗余代码</li>
+<li>确保代码遵循推荐的风格，统一团队的代码规范</li>
+</ul>
+<h2 id="进化史">进化史</h2>
+<p>在Lint工具（仅指JS）的进化过程中，诞生过三个有代表性的工具：JSLint、JSHint 和 ESLint。</p>
+<ul>
+<li>JSLint</li>
+</ul>
+<p>JSLint是第一个JavaScript的Lint工具，它是由Douglas Crockford 大佬（《JavaScript 语言精粹》作者）开发，当时前端还处在萌芽阶段，一片混沌，Lint工具作用巨大。不过如作者大佬一般，JSLint极具个人风格，它不允许使用者更改规则，如果要使用它，就必须遵守全部规则。</p>
+<ul>
+<li>JSHint</li>
+</ul>
+<p>由于JSLint无法更改规则，很多人无法忍受，所以JSHint出现了，它提供了丰富的配置项，开发者可以根据自己的情况来做个性化的定制。而且它是由社区驱动，所以它出现后，用户迅速增长。早期的jQuery也是采用JSHint做代码检查。</p>
+<ul>
+<li>ESLint</li>
+</ul>
+<p>在2013年的时候，Nicholas C. Zakas (《JavaScript 高级程序设计》作者)在开发时，想在JSHint增加一条自定义处理规则，可是发现并不可行。受到PHP Linter的启发，在同年六月份的一个周末，大神就自己搞了一个Linter，这就是ESLint。这就是牛人，一言不合就造轮子。</p>
+<p>与前面两个工具不同，ESLint是通过AST的方式对代码进行解析检测，具有很高的扩展性，所以在ES6和jsx这类东西出现后，只要有对应的解析器或插件，就可以快速支持，这是其他两个工具无法实现的。所以ESLint在ES6出现后迅速火了起来，Babel也为它提供了babel-eslint解析器，让ESLint更加流行。</p>
+<p>在2016年，ESLint整合了和它同一时期诞生的另一个Linter工具JSCS（也是基于AST的方式），至此，ESLint坐稳了JS Linter的王座，成为了前端工程化必不可少的一个工具。</p>
+<p>在TypeScript前期，并没有使用ESLint，而是使用了自研TSLint，但是由于其设计问题，在2019年的时候，官方放弃了TSLint，投入了ESLint的怀抱，通过为ESLint提供解析器和插件的方式来进行支持。</p>
+<p>ESLint无疑是成功的，它的成功得益于采用了良好的架构设计：</p>
+<ol>
+<li>关注点分离：解析器、核心、规则都是相对独立的，各司其职，具有良好的可维护性和可扩展性。</li>
+<li>支持自定义规则：可以自定义规则及相关事件，给与开发者更多的扩展空间。迄今，社区已经拥有许多的规则插件，如<code>eslint-plugin-react</code>，<code>eslint-plugin-vue</code>等。</li>
+<li>保持内核尽量简单：内核尽量保持简单，通过插件的方式进行功能扩展，核心不和任何框架、库耦合，具有较强的适应性。</li>
+</ol>
+<p>关于ESLint成功的原因，Zakas也专门写了<a href="https://humanwhocodes.com/blog/2016/02/reflections-on-eslints-success/">一篇文章</a>，想了解的可以看看。</p>
+<p>参考资料：<a href="https://zhuanlan.zhihu.com/p/34656263/">JS Linter 进化史</a></p>
+<h2 id="eslint">ESLint</h2>
+<p><code>ESLint</code>官方定义为一个用于查找并报告代码中问题的工具，并且支持部分问题自动修复。除了JSLint和JSHint类似的功能外，ESLint还有如下特点：</p>
+<ul>
+<li>ESLint使用<a href="https://github.com/eslint/espree">Espree</a>进行JavaScript解析。</li>
+<li>ESLint使用AST评估代码中的模式。</li>
+<li>ESLint是完全可插拔的，每个规则都是一个插件，可以在运行时添加更多内容。</li>
+</ul>
+<p>说了这么多，下面我们就一起来看下如何使用ESLint。</p>
+<h1 id="使用">使用</h1>
+<h2 id="安装">安装</h2>
+<p>可以采用全局或者本地安装，推荐使用本地安装，后面我们也是采用此方式。</p>
+<pre><code class="language-shell"># 全局安装
+npm install -g eslint
+# 项目本地安装（推荐）
+npm install -D eslint
+</code></pre>
+<p>安装成功后，在项目根目录执行如下命令，完成一系列设置来创建配置文件。</p>
+<pre><code class="language-shell">npx eslint --init
+</code></pre>
+<figure data-type="image" tabindex="1"><img src="https://gitee.com/letwrong/Picture/raw/master/20200918112423.png" alt="image-20200918112422980" loading="lazy"></figure>
+<p>执行如上命令，会在项目根目录创建一个<code>.eslintrc.js</code>文件，内容如下：</p>
+<pre><code class="language-js">module.exports = {
+    'env': { // 环境设置
+        'browser': true,
+        'es2021': true,
+        'node': true
+    },
+    'extends': 'eslint:recommended', // 使用官方或社区预设的规则
+    'parserOptions': { // 解析器配置
+        'ecmaVersion': 12,
+        'sourceType': 'module'
+    },
+    'rules': {  // 自定义规则
+        'indent': [
+            'error',
+            4
+        ],
+        'linebreak-style': [
+            'error',
+            'windows'
+        ],
+        'quotes': [
+            'error',
+            'single'
+        ],
+        'semi': [
+            'error',
+            'always'
+        ]
+    }
+};
+</code></pre>
+<p>这个就是ESLint的配置文件，当然还有很多其他方式进行配置，我们在后面的配置部分会详细介绍，这里我们暂时使用这种方式。</p>
+<h2 id="如何使用">如何使用</h2>
+<p>ESLint使用非常灵活，可以在多种场景使用，下面我们就瞧瞧。</p>
+<h3 id="命令行">命令行</h3>
+<p>现在创建一个文件<code>./src/index.js</code>：</p>
+<pre><code class="language-js">// ./src/index.js
+let test = 1
+</code></pre>
+<p>然后在命令行输入命令：</p>
+<pre><code class="language-shell">npx eslint ./src/index.js
+</code></pre>
+<figure data-type="image" tabindex="2"><img src="https://gitee.com/letwrong/Picture/raw/master/20200918171659.png" alt="image-20200918171659654" loading="lazy"></figure>
+<p>可以看到，ESLint给我们提示了两个错误：</p>
+<ul>
+<li><code>test</code>变量定义了，但是未使用</li>
+<li><code>let test = 1</code>后面缺少分号，因为在上面的配置文件中是要求始终添加分号的</li>
+</ul>
+<p>这就是ESLint的第一个功能：找出并警告代码中有问题的地方。</p>
+<p>像给代码加上分号这种小事情，其实没必要我们亲力亲为的（懒果然是程序猿的共性），ESLint提供了自动修复的功能，可以帮我们自动修复一些简单的问题。</p>
+<p>执行命令，加上<code>--fix</code>参数：</p>
+<pre><code class="language-shell">npx eslint --fix ./src/index.js
+</code></pre>
+<figure data-type="image" tabindex="3"><img src="https://gitee.com/letwrong/Picture/raw/master/20200918172959.png" alt="image-20200918172959131" loading="lazy"></figure>
+<p>我们可以看到，只有一个错误了，另外再看下<code>./src/index.js</code>：</p>
+<pre><code class="language-js">// ./src/index.js
+let test = 1;
+</code></pre>
+<p>是不是自动加上分号了呢？oh~oh!，太酷了。</p>
+<p><strong>注意：</strong></p>
+<ol>
+<li>自动修复只能修复一些简单的问题，一般是书写格式之类的，修复不会影响代码的执行结果，如上面的第一个问题，ESLint是不知道如何修复，所以它不会处理，而直接抛出报错或警告了。</li>
+<li>执行命令时，除了指定具体的文件外，也可以使用通配符，指定多个文件，如<code>npx eslint ./src/**</code>就可以检查src目录下的所有文件。</li>
+</ol>
+<p>上面我们介绍了ESLint最基础的使用场景---命令行方式，这种方式除了上面的用法，还可以传入很多参数，下面列出几个常用的：</p>
+<ul>
+<li><code>-c</code>， <code>--config</code>：指定配置文件</li>
+<li><code>--env</code>：指定执行环境</li>
+<li><code>--global</code>：定义全局变量</li>
+<li><code>-h</code>：查看帮助</li>
+</ul>
+<p>更多用法请查看<a href="https://eslint.org/docs/user-guide/command-line-interface">官方文档</a>。</p>
+<h3 id="webpackeslint-loader">Webpack（eslint-loader）</h3>
+<p>前面我们介绍了如何在命令行模式下的使用，在需要检测的时候必须要在命令行中执行相关命令才可以，有没有方法能够在我们启动项目的时候自动运行呢？</p>
+<p>答案是肯定的，webpack作为当下最流行的构建工具，ESLint也为其提供了<code>eslint-loader</code>，以在构建的时候来做代码检查和修复。</p>
+<p>首先需要安装<code>eslint-loader</code>和<code>eslint</code>：</p>
+<pre><code class="language-shell">npm install eslint-loader eslint --save-dev
+</code></pre>
+<p>然后在webpack配置中添加对应配置：</p>
+<pre><code class="language-js">// webpack.config.js
+module.exports = {
+  // ...
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'eslint-loader',
+        options: {
+          // 这里是eslint的配置，建议是用配置文件
+        },
+      },
+    ],
+  },
+  // ...
+};
+</code></pre>
+<p><strong>注意：</strong></p>
+<ol>
+<li>因为ESLint是针对我们书写的代码做检查，而不是针对其他loader编译后的代码，所以我们必须要保证<code>eslint-loader</code>最先执行，所以应该放在该规则的最后面，也可以使用<code>enforce: 'pre'</code>设置来强制设置到其他loader前面执行。</li>
+<li><code>eslint-loader</code>的配置推荐放在eslint的配置文件中，而不放在loader的options中。</li>
+</ol>
+<p>如上配置以后，在执行构建命令的时候，就会先执行检查并在终端输出检查结果（仅做检查，不会影响构建结果）。</p>
+<figure data-type="image" tabindex="4"><img src="https://gitee.com/letwrong/Picture/raw/master/20200922160134.png" alt="image-20200922160134442" loading="lazy"></figure>
+<p>不过，我们一般编码的时候，终端都运行在后台的，查看这些信息就必须要来回切换，甚是不便。作为一个懒癌患者，肯定是不愿意的。用过vue-cli的同学都知道，如果有错误提示，是会在浏览器弹出浮层提示的。</p>
+<p>其实配置相当简单，不明白的自己回去看看前面webpack那部分吧。</p>
+<pre><code class="language-js">// webpack.config.js
+module.exports = {
+    // ...
+ 	devServer: {
+        overlay: true  // 默认此项为false，设置为true即可
+    }
+    // ...
+}
+</code></pre>
+<figure data-type="image" tabindex="5"><img src="https://gitee.com/letwrong/Picture/raw/master/20200922161111.png" alt="image-20200922161111872" loading="lazy"></figure>
+<h3 id="在编辑器中使用vscode">在编辑器中使用（VSCode）</h3>
+<p>前面介绍的使用方式已经非常方便了，但是作为一个懒癌重度患者，在使用中我还是发现了一些问题：</p>
+<ul>
+<li>需要编译后才能发现代码中的问题，而不是书写代码的时候，所以缺乏及时性，那能在书写的时候就立即提示吗？</li>
+<li>如果是一些简单的格式问题，在保存前，能不能执行自动修复，而不用我们来操心呢？</li>
+<li>一些古老的项目并没有使用webpack来构建，在我们编码的时候，怎么给与错误提示呢？</li>
+</ul>
+<p>果然懒才是生产力，一些大佬为编辑器提供了ESLint插件，完美的解决了如上的问题。</p>
+<p><em>提示：下面仅介绍VSCode中的使用，其他编辑器请自行查阅使用方法。</em></p>
+<p>首先安装<a href="https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint">ESLint</a>插件，在VSCode中<code>ctrl+p</code>然后输入以下命令：</p>
+<pre><code class="language-shell">ext install dbaeumer.vscode-eslint
+</code></pre>
+<figure data-type="image" tabindex="6"><img src="https://gitee.com/letwrong/Picture/raw/master/20200922163527.png" alt="image-20200922163527375" loading="lazy"></figure>
+<p>现在用VSCode打开前面的代码，可以看到有的代码下面会有黄色（警告）或者红色（错误）的波浪线提示，把鼠标移上去，还可以看到错误详情以及修复方案。</p>
+<figure data-type="image" tabindex="7"><img src="https://gitee.com/letwrong/Picture/raw/master/20200922163709.png" alt="image-20200922163709515" loading="lazy"></figure>
+<p>现在，我们书写代码的时候，就会立即给与提示，不用再去终端或者浏览器查看错误信息，然后再去文件中查找问题代码了。</p>
+<p>那么，第二问题呢，一些简单的格式能不能自动修复呢？</p>
+<p>只需要在VSCode的配置中加上如下配置，当保存文件的时候，一些简单的格式问题就会被自动修复，是不是又可以多撸几把王者农药了呢。</p>
+<pre><code class="language-json">&quot;editor.codeActionsOnSave&quot;: {
+    &quot;source.fixAll.eslint&quot;: true
+ }
+</code></pre>
+<figure data-type="image" tabindex="8"><img src="https://gitee.com/letwrong/Picture/raw/master/20200922170339.gif" alt="img" loading="lazy"></figure>
+<p><em>提示：vscode-eslint是支持<a href="https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint">配置</a>的，提供了<code>eslint.options</code>来设置全局配置，如果项目中没有配置，会以这里的配置兜底。</em></p>
+<pre><code class="language-json">&quot;eslint.options&quot;: {
+  &quot;root&quot;: true,
+  &quot;plugins&quot;: [],
+  &quot;env&quot;: {},
+  &quot;extends&quot;: [],
+  &quot;rules&quot;: {},
+  &quot;exclude&quot;: []
+  &quot;parserOptions&quot;: {}
+},
+</code></pre>
+<p>对于一些项目，即使没有使用webpack也没有关系，只需要在项目中安装ESLint和添加对应的配置，在编写代码的时候也是能够生效的。</p>
+<blockquote>
+<p>ESLint插件还提供了全局的方式，全局安装ESLint，并在VSCode的ESLint插件配置中放入eslint规则配置，则会对所有打开的文件生效。</p>
+<p>如果项目中也有自己的配置，那么会执行配置合并，如果配置项有冲突，项目中的配置项拥有优先使用权，会覆盖全局的配置。</p>
+</blockquote>
+<p>至此，ESLint常见的使用方式就介绍完了，接下来我们就来看看比较核心的东东。</p>
+<h1 id="配置">配置</h1>
+<p>ESLint提供了丰富的配置项，让使用者可以根据自己的需求对其<strong>解析器</strong>、<strong>环境</strong>、<strong>全局</strong>、<strong>规则</strong>、<strong>插件</strong>进行配置。</p>
+<p>具体这些配置项我们后面再详细介绍，先来看看如何添加配置。</p>
+<h2 id="配置方式">配置方式</h2>
+<p>ESLint支持多种配置方式，总结起来大概分为如下几种：</p>
+<ul>
+<li><a href="https://eslint.org/docs/user-guide/command-line-interface#-rule">命令行</a>：在执行eslint命令的时候，将配置信息通过cli提供的配置参数传入，使用比较繁琐，一般不使用此方式。</li>
+</ul>
+<pre><code class="language-shell"># 一些常用配置
+# --env：设置环境
+eslint --env browser,node file.js
+eslint --env browser --env node file.js
+# --global：设置全局变量
+eslint --global require,exports:true file.js
+eslint --global require --global exports:true
+# --rule：设置规则
+eslint --rule 'quotes: [2, double]'
+eslint --rule 'guard-for-in: 2' --rule 'brace-style: [2, 1tbs]'
+eslint --rule 'jquery/dollar-sign: 2'
+# ...
+</code></pre>
+<ul>
+<li><a href="https://eslint.org/docs/user-guide/configuring#using-configuration-comments">内联注释</a>：将配置以注释的方式写在代码文件中（一般放在文件的最前面），由于缺乏复用性，所以也不常用，如果某个文件需要特殊配置，可以采用此方式。</li>
+</ul>
+<pre><code class="language-js">/* eslint-env browser, node */     // 设置环境
+/* global var1, var2:writable */   // 设置全局变量
+/* eslint eqeqeq: &quot;off&quot;, curly: &quot;error&quot; */    // 设置规则
+</code></pre>
+<ul>
+<li><a href="https://eslint.org/docs/user-guide/configuring#using-configuration-files-2">配置文件</a>（推荐）：提供<code>.eslintrc.*</code>文件或者在<code>package.json</code>中<code>eslintConfig</code>属性中配置。</li>
+</ul>
+<p><em>提示：由于使用配置文件简单直观，所以是我最常用的方式，下面的内容也基于此方式，其他方式也大同小异，唯格式有所差异。</em></p>
+<p>上面的.eslintrc.中的是指ESLint的配置文件支持多种文件格式：<code>js</code>、<code>cjs</code>、<code>yaml</code>、<code>yml</code>、<code>json</code>，如果在当前目录同时存在多个格式的配置文件，ESLint仅会选择其中一个，优先选择的顺序如下：</p>
+<ol>
+<li><code>.eslintrc.js</code>（推荐，<code>eslint --init</code>生成的默认就是此格式的配置）</li>
+<li><code>.eslintrc.cjs</code></li>
+<li><code>.eslintrc.yaml</code></li>
+<li><code>.eslintrc.yml</code></li>
+<li><code>.eslintrc.json</code></li>
+<li><code>.eslintrc</code>(废弃)</li>
+<li><code>package.json</code></li>
+</ol>
+<p>由于<code>.eslintrc.js</code>配置比较灵活且具有较高的优先级，所以一般我们都适用此格式的配置文件。</p>
+<h4 id="配置组合及优先级">配置组合及优先级</h4>
+<p>当使用<code>.eslintrc.*</code>和<code>package.json</code>方式进行配置时，会触发级联组合行为。它的工作方式是：</p>
+<ul>
+<li>优先使用就近的<code>.eslintrc.*</code>配置，然后在所有父级目录依次查找所有配置，以此类推，直到根目录或找到某个配置了<code>&quot;root&quot;:true</code>的配置文件，才会停止继续向上级查找。</li>
+<li>上一步匹配到的所有配置将会按照查找到的顺序（由内而外）进行组合，内层的配置拥有更高的优先级，如果组合后配置项有冲突，将采用高优先级的配置项（内&gt;外）。</li>
+<li>如果在同一目录中同时有<code>.eslintrc.*</code>和<code>package.json</code>文件，将使用前者的配置，后者的配置将会忽略。</li>
+<li>可以在配置中添加<code>&quot;root&quot;:true</code>将该目录强制设置为根目录，来阻止继续查找。</li>
+</ul>
+<p>举个🌰：</p>
+<pre><code>your-project
+├── package.json  &lt;- { &quot;eslintConfig&quot;: {...} }
+├── .eslintrc.js
+├── lib
+  └── source.js
+└─┬ test1
+  ├── .eslintrc.js
+  └── index.js
+└─┬ test2
+  ├── .eslintrc.js  &lt;- { &quot;root&quot;: true }
+  └── index.js
+</code></pre>
+<p>如上的目录结构，大概有以下几种组合方式：</p>
+<table>
+<thead>
+<tr>
+<th>目标</th>
+<th>生效配置</th>
+<th>组合方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/lib/*</code></td>
+<td><code>/.eslintrc.js</code></td>
+<td><code>lib</code>目录无配置文件，会向上级查找，找到<code>/.eslintrc.js</code>和<code>/package.json</code>，但是它们在同一目录，仅<code>/.eslintrc.js</code>生效。</td>
+</tr>
+<tr>
+<td><code>/test1/*</code></td>
+<td><code>/test1/.eslintrc.js</code>+<code>/.eslintrc.js</code></td>
+<td><code>test1</code>目录找到配置后，继续向上查找，找到<code>/.eslintrc.js</code>和<code>/package.json</code>（忽略），将<code>/test1/.eslintrc.js</code>和<code>/.eslintrc.js</code>组合</td>
+</tr>
+<tr>
+<td><code>/test2/*</code></td>
+<td><code>/test2/.eslintrc.js</code></td>
+<td><code>test2</code>目录存在配置，且配置了<code>&quot;root&quot;:true</code>，所以不会向上查找，仅<code>/test2/.eslintrc.js</code>生效</td>
+</tr>
+</tbody>
+</table>
+<p>ESLint支持的配置方式比较多，有必要介绍一下他们的优先级，从高到低的顺序如下：</p>
+<table>
+<thead>
+<tr>
+<th>优先级</th>
+<th>配置方式</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>内联注释配置</td>
+<td><code>/*eslint-disable*/</code> 和 <code>/*eslint-enable*/</code> <code>/*global*/</code> <code>/*eslint*/</code> <code>/*eslint-env*/</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td>命令行选项</td>
+<td><code>--global</code> <code>--rule</code> <code>--env</code> <code>-c</code>， <code>--config</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td>项目级配置文件</td>
+<td><code>.eslintrc.*</code>或<code>package.json</code></td>
+</tr>
+</tbody>
+</table>
+<p>了解这些组合规则及优先级很有必要，可以进行合理利用。</p>
+<h2 id="配置项">配置项</h2>
+<p>前面我们有提到，ESLint配置主要是针对<strong>解析器</strong>、<strong>环境</strong>、<strong>全局</strong>、<strong>规则</strong>、<strong>插件</strong>这几个内容，那么下面我们就来仔细看看。</p>
+<p><em>提示：后面的配置均采用<code>.eslintrc.js</code>方式，如需其他方式请自行探索。</em></p>
+<h3 id="解析器">解析器</h3>
+<p>默认情况下，ESLint使用<a href="https://github.com/eslint/espree">Espree</a>作为其解析器，不过我们也可以指定其他解析器。</p>
+<pre><code class="language-js">// .eslintrc.js
+module.exports = {
+	parser: &quot;esprima&quot;
+}
+</code></pre>
+<p>下面是一些常用的解析器：</p>
+<ul>
+<li><a href="https://www.npmjs.com/package/esprima">Esprima</a>：ESLint早期采用的解析器，Espree最初就是在它基础上创建的。</li>
+<li><a href="https://www.npmjs.com/package/@babel/eslint-parser">@ babel/eslint-parser</a> ：使babel和ESLint兼容，对一些Babel语法提供支持。</li>
+<li><a href="https://www.npmjs.com/package/@typescript-eslint/parser">@ typescript-eslint/parser</a>：TSLint被弃用后，TypeScript提供了此解析器用于将其与ESTree兼容，使ESLint对TypeScript进行支持。</li>
+</ul>
+<p>除了配置解析器，还可以提供一些选项对解析器进行配置：</p>
+<pre><code class="language-js">// .eslintrc.js
+module.exports = {
+	&quot;parser&quot;: &quot;esprima&quot;,
+	&quot;parserOptions&quot;: {
+        &quot;ecmaVersion&quot;: 6, // 默认5，指定ECMAScript版本，支持年份和版本号两种格式，用于支持该版本新语法
+        &quot;sourceType&quot;: &quot;module&quot;, // 默认'script'，使用了ESModule需要设置为'module'，否则import、export关键字会报错
+        &quot;ecmaFeatures&quot;: {
+            &quot;jsx&quot;: true,   // 启用jsx语法
+            &quot;globalReturn&quot;: false,  // 是否允许全局return
+            &quot;impliedStrict&quot;: false  // 是否启用严格模式，仅ecmaVersion大于5有效
+        }
+    }
+}
+</code></pre>
+<h3 id="环境">环境</h3>
+<p>环境配置主要用于预定义一些全局环境变量及相应环境的语法支持，可以指定一个或者多个环境。</p>
+<pre><code class="language-js">// .eslintrc.js
+module.exports = {
+    &quot;env&quot;: {
+        &quot;browser&quot;: true,
+        &quot;node&quot;: true
+    }
+}
+</code></pre>
+<p>常用的环境如下：</p>
+<table>
+<thead>
+<tr>
+<th>环境</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>browser</code></td>
+<td>添加浏览器的全局变量，如<code>window</code></td>
+</tr>
+<tr>
+<td><code>node</code></td>
+<td>添加Node.js全局变量和Node.js作用域</td>
+</tr>
+<tr>
+<td><code>es6</code>、 <code>es2017</code>、<code>es2020</code>、 <code>es2021</code>...</td>
+<td>添加该版本的全局变量，并将<code>parserOptions.ecmaVersion</code>设置为该版本号</td>
+</tr>
+<tr>
+<td><code>amd</code></td>
+<td>添加<code>require()</code>和<code>define()</code>全局变量</td>
+</tr>
+<tr>
+<td><code>jquery</code></td>
+<td>添加<code>jQuery</code>和<code>$</code>全局变量</td>
+</tr>
+</tbody>
+</table>
+<p>更多环境请查看<a href="https://eslint.org/docs/user-guide/configuring#specifying-environments">官方文档</a>。</p>
+<p>一些插件中提供了环境，可以按照如下格式使用：</p>
+<pre><code class="language-js">// .eslintrc.js
+module.exports = {
+    &quot;plugins&quot;: [&quot;example&quot;],
+    &quot;env&quot;: {
+        &quot;example/custom&quot;: true
+    }
+}
+</code></pre>
+<h3 id="全局变量">全局变量</h3>
+<p>在使用一些全局变量，而这些变量又没在当前文件中定义时，ESLint会抛出错误，告诉我们该变量未定义，这时我们可以手动在配置文件中将该变量添加到全局变量。</p>
+<pre><code class="language-js">// .eslintrc.js
+module.exports = {
+    &quot;globals&quot;: {
+        &quot;var1&quot;: &quot;writable&quot;,
+        &quot;var2&quot;: &quot;readonly&quot;,
+        &quot;var3&quot;: &quot;off&quot;
+    }
+}
+</code></pre>
+<p>支持三种配置值：</p>
+<ul>
+<li>writable：允许变量被修改覆盖</li>
+<li>readonly：设置变量仅为只读，不可覆盖</li>
+<li>off：设置变量禁止使用</li>
+</ul>
+<h3 id="插件">插件</h3>
+<p>ESLint提供了插件机制，可以让开发者自定义校验逻辑、校验规则，或对一些特殊语法提供支持，插件可以对外提供其扩展配置、规则、环境等配置。ESLint的插件均以<code>eslint-plugin-</code>开头，在配置的时候需要省略该前缀。</p>
+<pre><code class="language-js">// .eslintrc.js
+module.exports = {
+    // ...
+    &quot;plugins&quot;: [
+        &quot;jquery&quot;,   // eslint-plugin-jquery
+        &quot;@foo/foo&quot;, // @foo/eslint-plugin-foo
+        &quot;@bar&quot;      // @bar/eslint-plugin
+    ],
+    &quot;extends&quot;: [
+        // 扩展插件中的配置，需要加上plugin:
+        &quot;plugin:@foo/foo/recommended&quot;,
+        &quot;plugin:@bar/recommended&quot;
+    ],
+    &quot;rules&quot;: {
+        // 修改插件中的规则
+        &quot;jquery/a-rule&quot;: &quot;error&quot;,
+        &quot;@foo/foo/some-rule&quot;: &quot;error&quot;,
+        &quot;@bar/another-rule&quot;: &quot;error&quot;
+    },
+    &quot;env&quot;: {
+        // 修改插件中的环境
+        &quot;jquery/jquery&quot;: true,
+        &quot;@foo/foo/env-foo&quot;: true,
+        &quot;@bar/env-bar&quot;: true,
+    }
+    // ...
+}
+</code></pre>
+<p>一些常用的插件：</p>
+<table>
+<thead>
+<tr>
+<th>插件</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://www.npmjs.com/package/eslint-plugin-react"><code>eslint-plugin-react</code></a></td>
+<td>对react提供支持</td>
+</tr>
+<tr>
+<td><a href="https://eslint.vuejs.org/"><code>eslint-plugin-vue</code></a></td>
+<td>对vue提供支持，支持<code>.vue</code>文件</td>
+</tr>
+<tr>
+<td><a href="https://www.npmjs.com/package/eslint-plugin-prettier"><code>eslint-plugin-prettier</code></a></td>
+<td>prettier支持按ESLint规则格式化</td>
+</tr>
+<tr>
+<td><a href="https://www.npmjs.com/package/@typescript-eslint/eslint-plugin"><code>@typescript-eslint/eslint-plugin</code></a></td>
+<td>提供对TypeScript的支持</td>
+</tr>
+</tbody>
+</table>
+<p><em>提示：如果想自己开发插件，可以基于ESLint官方提供的模板<code>generator-eslint</code>开发。</em></p>
+<h3 id="规则">规则</h3>
+<p>ESLint提供了大量的<a href="https://eslint.org/docs/rules/">规则</a> ，我们可以针对这些规则进行精细的的控制。</p>
+<p>配置的格式如下：</p>
+<pre><code class="language-js">// .eslintrc.js
+module.exports = {
+    &quot;rules&quot;: {
+        &quot;eqeqeq&quot;: &quot;off&quot;,
+        &quot;curly&quot;: &quot;error&quot;,
+        &quot;quotes&quot;: [&quot;error&quot;, &quot;double&quot;]
+    }
+}
+</code></pre>
+<p>上面的配置值也可以采用数值的形式，对应关系如下：</p>
+<table>
+<thead>
+<tr>
+<th>配置值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>off</code>或<code>0</code></td>
+<td>关闭对该规则的检测</td>
+</tr>
+<tr>
+<td><code>warn</code>或<code>1</code></td>
+<td>启用对改规则的检测，不满足时抛出<strong>警告</strong></td>
+</tr>
+<tr>
+<td><code>error</code>或<code>2</code></td>
+<td>启用对改规则的检测，不满足时抛出<strong>错误</strong></td>
+</tr>
+</tbody>
+</table>
+<p>配置的规则如果有配置项，可以把值写成数组格式，第一个元素为配置的值，第二个元素为配置项。</p>
+<h3 id="扩展配置">扩展配置</h3>
+<p>ESLint提供了如此多的规则，我们不可能每次都从头一个一个去配置吧！所以ESLint提供了<code>extends</code>配置项，我们可以基于一些成熟的配置来做扩展，也可以覆写其规则：</p>
+<pre><code class="language-js">// .eslintrc.js
+module.exports = {
+    &quot;plugins&quot;: [
+        &quot;react&quot;
+    ],
+    &quot;extends&quot;: [
+        &quot;eslint:recommended&quot;,
+        &quot;plugin:react/recommended&quot; // 扩展插件中的配置
+    ],
+    &quot;rules&quot;: {
+       &quot;react/no-set-state&quot;: &quot;off&quot;  // 覆写规则
+    }
+}
+</code></pre>
+<p>目前社区提供了很多<a href="https://www.npmjs.com/search?q=eslintconfig">配置集</a>供我们扩展，这里列举一些常用的：</p>
+<table>
+<thead>
+<tr>
+<th>配置</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>eslint:recommended</code></td>
+<td>ESLint内置，开启了一些推荐的核心校验规则</td>
+</tr>
+<tr>
+<td><code>eslint:all</code></td>
+<td>ESLint内置，开启了所有的核心校验规则</td>
+</tr>
+<tr>
+<td><a href="https://www.npmjs.com/package/eslint-config-airbnb"><code>eslint-config-airbnb</code></a></td>
+<td>按照airbnb风格规则进行校验</td>
+</tr>
+<tr>
+<td><a href="https://www.npmjs.com/package/eslint-config-standard"><code>eslint-config-standard</code></a></td>
+<td>按照standard风格规则进行校验</td>
+</tr>
+<tr>
+<td><a href="https://www.npmjs.com/package/eslint-config-prettier"><code>eslint-config-prettier</code></a></td>
+<td>关闭prettier有冲突的规则</td>
+</tr>
+</tbody>
+</table>
+<p>除了使用社区提供的配置，团队也可以自己定制一套配置，然后发布到npm，以便团队<a href="https://eslint.org/docs/developer-guide/shareable-configs">共享配置</a>。发布的包须以<code>eslint-config-</code>开头来进行命名，如<code>eslint-config-myconfig</code>，并建议将关键字设为<code>eslintconfig</code>，以便其他人能够找到。包的内容和<code>.eslintrc.js</code>类似：</p>
+<pre><code class="language-js">// eslint-config-myconfig/index.js
+module.exports = {
+
+    globals: {
+        MyGlobal: true
+    },
+
+    rules: {
+        semi: [2, &quot;always&quot;]
+    }
+
+};
+</code></pre>
+<h2 id="禁用和忽略">禁用和忽略</h2>
+<p>ESLint虽好，但是总有些情况我们还是想静静，不愿被这太多的“俗世凡尘”规则所羁绊。尤其是拿到一份上古时代的代码，开启ESLint校验后，可能会让你怀疑你的出现可能是个错误💔💔💔，这时禁用或忽略一些规则和文件就是个不错的主意了。</p>
+<p>禁用规则有如下几种方式：</p>
+<pre><code class="language-js">// 1. 放在文件最前面，对该文件检测时禁止所有规则
+/* eslint-disable */
+alert('foo');
+
+// 2. 对该文件检测时禁止指定的规则
+/* eslint-disable no-alert, no-console */
+alert('foo');
+console.log('bar');
+
+// 3. 对该行检测时禁止所有规则
+alert('foo'); // eslint-disable-line
+alert('foo'); /* eslint-disable-line */
+
+// 4. 对下一行行检测时禁止所有规则
+// eslint-disable-next-line
+alert('foo');
+/* eslint-disable-next-line */
+alert('foo');
+
+// 5. 对该行检测时禁止指定规则
+alert('foo'); // eslint-disable-line no-alert, quotes, semi
+alert('foo'); /* eslint-disable-line no-alert, quotes, semi */
+
+// 6. 对下一行行检测时禁止指定规则
+// eslint-disable-next-line no-alert, quotes, semi
+alert('foo');
+/* eslint-disable-next-line no-alert, quotes, semi */
+alert('foo');
+</code></pre>
+<p>除了上述在文件中配置的方式外，也可以通过配置来对一组文件禁用校验规则：</p>
+<pre><code class="language-js">// .eslintrc.js
+module.exports = {
+  &quot;rules&quot;: {...},
+  &quot;overrides&quot;: [
+    {
+      &quot;files&quot;: [&quot;*-test.js&quot;,&quot;*.spec.js&quot;],
+      &quot;rules&quot;: {
+        &quot;no-unused-expressions&quot;: &quot;off&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+<p>ESLint还提供了一个文件<code>.eslintignore</code>用来忽略对文件的校验，其中配置的目录均会被ESLint忽略。</p>
+<pre><code class="language-js">/build/
+/config/
+/dist/
+/*.js
+</code></pre>
+<h1 id="一些案例">一些案例</h1>
+<p>上面我们介绍了ESLint的使用方法，下面我们就来看一下一些常用的使用案例：</p>
+<h2 id="eslint-typescript">ESLint +TypeScript</h2>
+<p>要对TypeScript进行支持，需要配置对应的解析器<a href="https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/parser"><code>@typescript-eslint/parser </code></a>来支持TS特殊的语法，另外还需要安装<a href="https://www.npmjs.com/package/@typescript-eslint/eslint-plugin"><code>@typescript-eslint/eslint-plugin</code></a>来提供校验规则。</p>
+<ol>
+<li>安装依赖包</li>
+</ol>
+<pre><code class="language-shell">npm install @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint typescript --save-dev
+</code></pre>
+<ol start="2">
+<li>配置解析器，更多的解析器配置查看[该文档 <a href="../../../../../Desktop/nginx.conf">nginx.conf</a> ](https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/parser)</li>
+</ol>
+<pre><code class="language-js">// .eslintrc.js
+module.exports = {
+  &quot;parser&quot;: &quot;@typescript-eslint/parser&quot;, // 配置解析器
+  &quot;parserOptions&quot;: {
+      &quot;ecmaFeatures&quot;: {
+        &quot;jsx&quot;: true  // 如果用到jsx需要开启
+      },
+      &quot;project&quot;: &quot;./tsconfig.json&quot;,  // ts配置文件
+      // ...更多配置
+  }
+}
+</code></pre>
+<ol start="3">
+<li>配置插件及规则配置</li>
+</ol>
+<pre><code class="language-js">// .eslintrc.js
+module.exports = {
+  &quot;parser&quot;: &quot;@typescript-eslint/parser&quot;,
+  &quot;plugins&quot;: [&quot;@typescript-eslint&quot;], // 配置插件
+  &quot;extends&quot;: [&quot;plugin:@typescript-eslint/recommended&quot;] // 扩展继承typescript-eslint推荐的规则
+  &quot;rules&quot;: {
+      &quot;@typescript-eslint/indent&quot;: [&quot;error&quot;, 2], // 覆写插件校验规则配置
+  }
+  // ...
+}
+</code></pre>
+<p>更多typescript-eslint用法可以查看<a href="https://github.com/typescript-eslint/typescript-eslint">typescript-eslint文档</a>。</p>
+<h2 id="eslint-prettier">ESLint + Prettier</h2>
+<h3 id="prettier">Prettier</h3>
+<p>在开始这部分内容前，有必要先简单了解一下<a href="https://prettier.io/">Prettier</a>。</p>
+<p>Prettier是一款“有主见”的代码格式化工具，它支持多种语法，如JSX、Vue(vetur中使用了Prettier)、TypeScript、Less、Sass、JSON、GraphQL等，基本上前端能用到的文件格式它都可以搞定。而且它能够在多种场景下使用，是当下最流行的格式化工具。</p>
+<p>下面我们来看下最常用的一种方式，即作为编辑器插件来使用：</p>
+<ol>
+<li>安装VSCode插件<a href="https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode"><code>Prettier - Code formatter</code></a></li>
+</ol>
+<pre><code>ext install esbenp.prettier-vscode
+</code></pre>
+<figure data-type="image" tabindex="9"><img src="https://gitee.com/letwrong/Picture/raw/master/20200925171823.png" alt="image-20200925171718606" loading="lazy"></figure>
+<ol start="2">
+<li>安装Prettier</li>
+</ol>
+<pre><code class="language-shell">npm install -g prettier # 全局安装
+npm install -D prettier # 推荐本地安装
+</code></pre>
+<ol start="3">
+<li>在项目中添加配置，Prettier同样支持多种格式的<a href="https://prettier.io/docs/en/configuration.html">配置文件</a>，这里我们使用<code>prettier.config.js</code></li>
+</ol>
+<pre><code class="language-js">module.exports = {
+  printWidth: 80, // 每行代码长度（默认80）
+  tabWidth: 2, // 每个tab使用多少空格（默认2）
+  useTabs: false, // 使用tab进行缩进（默认false）
+  semi: true, // 结尾使用分号(默认true)
+  singleQuote: false, // 使用单引号（默认false）
+  trailingComma: 'none', // 使用尾逗号（默认none）
+  bracketSpacing: true, // 对象大括号间使用空格（默认true）
+  jsxBracketSameLine: false, // 多行JSX中的&gt;放置在最后一行的结尾，而不放在新行（默认false）
+  arrowParens: &quot;avoid&quot; // 箭头函数的参数只有一个时是否带括号（默认avoid）
+};
+</code></pre>
+<p><em>提示：关于更多配置项请查看<a href="https://prettier.io/docs/en/options.html">Prettier-Options</a>。</em></p>
+<p>这样配置好以后，在VSCode执行格式化时，选择Prettier即可按照我们配置的格式进行格式化了。这样就避免了因为大家编辑器配置不一样而导致格式化后的代码风格不统一的问题。</p>
+<p>那这货和ESLint有什么关系呢？他俩为什么会有一腿呢？</p>
+<h3 id="eslint和prettier的冲突">ESLint和Prettier的冲突</h3>
+<p>原来他们都会对代码的格式有操作，ESLint会检查并尽可能修复代码格式，Prettier按照配置格式化代码，而他们之间配置是不通用的，有些配置规则是有冲突的。所以就会出现用Prettier格式化后的代码，ESLint觉得是有问题的，而抛出错误提示。</p>
+<p>而为了解决这个问题，就需要使用到<code>eslint-plugin-prettier</code>和<code>eslint-config-prettier</code>:</p>
+<ul>
+<li>
+<p>`eslint-plugin-prettier：将Prettier的规则设置到ESLint的规则中。</p>
+</li>
+<li>
+<p><code>eslint-config-prettier</code>：关闭ESLint中与prettier中会发生冲突的规则。</p>
+</li>
+</ul>
+<pre><code class="language-shell">npm install -D eslint-plugin-prettier eslint-config-prettier
+</code></pre>
+<pre><code class="language-js">// .eslintrc.js
+module.exports = {
+    extends: [
+        'plugin:prettier/recommended' // 也可以配置extends：[&quot;prettier&quot;],plugins: [&quot;prettier&quot;]
+      	// 'prettier/@typescript-eslint' // 如果是TypeScript可以加上这个，解决@typescript-eslint和prettier的冲突
+    ],
+    rules: {
+        &quot;prettier/prettier&quot;: [  // 覆写、自定义prettier规则
+          &quot;error&quot;,
+          {
+            &quot;singleQuote&quot;: true,
+            &quot;trailingComma&quot;: &quot;none&quot;,
+            &quot;bracketSpacing&quot;: true,
+            &quot;jsxBracketSameLine&quot;: true
+          }
+        ]
+    }
+}
+
+</code></pre>
+<p>现在，ESLint和Prettier就可以幸福的在一起了🎉🎉🎉🎉。</p>
+<h2 id="工程化">工程化</h2>
+<p>前面我们了解了ESLint和Prettier，这些工具可以很好的规范我们书写的代码，他们都只工作在我们开发的时候，而并不能保证大家提交到仓库的代码都是符合规范的。</p>
+<p>比如，部门新来了一个小伙伴，觉得有这些条条框框的限制很麻烦，所以他禁用掉了这些工具，开发完成直接把代码提交到了仓库。所以我们需要做一些限制，不合规范的代码是禁止提交的，来提高库中代码的质量。</p>
+<p>这里我们可以使用git hooks来做，借助 <a href="https://github.com/typicode/husky">husky</a> &amp; <a href="https://github.com/okonet/lint-staged">lint-staged</a> 来实现。</p>
+<ul>
+<li><a href="https://github.com/typicode/husky">husky</a>：可以很方便的在<code>package.json</code>里面定义git钩子</li>
+<li><a href="https://github.com/okonet/lint-staged">lint-staged</a>：仅对git<strong>提交的代码</strong>（不是所有）使用一些Linter操作，</li>
+</ul>
+<pre><code class="language-shell"># 安装 husky  lint-staged
+npm i -D lint-staged husky
+</code></pre>
+<pre><code class="language-json">// package.json
+&quot;lint-staged&quot;: {
+  &quot;**/**.{js,json,pcss,md,vue}&quot;: [
+    &quot;prettier --write&quot;, // 先执行格式化
+    &quot;eslint --fix&quot;,
+    &quot;git add&quot;
+  ]
+},
+&quot;husky&quot;: {
+  &quot;hooks&quot;: {
+    &quot;pre-commit&quot;: &quot;lint-staged&quot;
+  }
+},
+</code></pre>
+<p>这样设置以后，在每次提交的时候就会进行代码检查，只有通过检查后才能进行提交。</p>
+<p><em>提示：由于这些操作都是在本地，所以还是能通过一定手段跳过检查，有CI/CD的话可以在远端来做，防止跳过检查。</em></p>
+<p>参考资料：<a href="https://juejin.im/post/6844903778227847181">eslint+husky+prettier+lint-staged提升前端应用质量</a>、<a href="https://mp.weixin.qq.com/s?__biz=MzI3ODU4MzQ1MA==&amp;mid=2247485956&amp;idx=1&amp;sn=975ff087c4789a551576167fd3549977&amp;chksm=eb558bf1dc2202e7aeb9b5e1a079c2e51439dc924dd05ad76c1ff3e9b2a70aada720178623e3&amp;mpshare=1&amp;scene=1&amp;srcid=0914TwrZwso96G1iRDzmtOY9&amp;sharer_sharetime=1600094024894&amp;sharer_shareid=cc9e69c259001141830ac92e7623bf34&amp;key=1f34014b3f438b54726cdd3c6f13745e618efd2bcbee3ddd9a50cb3aa91bb44a79d0a06c8ea381e597757858bb930f0df32bc7ae5195fde3b46fb604df78395b54c5fc9dd7f5a2bdc1f98afe38bde1a523be766b7561bdb858be28f0e75e64d562d3f63c624e731b6fa1eb5743a799ffe43578f514d07132e4db53d932d9fad7&amp;ascene=1&amp;uin=MTg4NTc2OTc1&amp;devicetype=Windows+10+x64&amp;version=62090538&amp;lang=zh_CN&amp;exportkey=ATaQN2OK0EZnIcJlhsK5M1g%3D&amp;pass_ticket=ptqgjL68BaGfDGVbXHJOC%2BErE%2BsfTo8ofV70c5%2BU80s%3D&amp;wx_header=0">如何制定企业级代码规范与静态检查</a></p>
+<h1 id="结语">结语</h1>
+<p>到这里，ESLint就介绍完了，如果想更加深入了解ESLint可以查看<a href="https://zhuanlan.zhihu.com/p/53680918">ESLint 工作原理探讨</a>。</p>
+<p>无论在写代码还是做其他事情，其实都应该用长远的眼光来看，刚刚使用的时候可能会有很多问题，改起来也很费时费力，但是只要坚持下去，代码质量和开发效率都会得到提升，前期的付出都是值得的。</p>
+<p>这些工具并不是必须的，没有他们你同样可以可以完成功能开发，但是利用好这些工具，可以写出更高质量的代码。特别是一些刚刚接触的人，可能会觉得麻烦而放弃使用这些工具，失去了一次提升代码的好机会。</p>
+
+							</div>
+	<div class="wow fadeInUp vt-post-tags">
+ 
+				<a href="https://www.bwrong.cn/tag/7EqCRMv2m/" rel="tag">eslint</a>
+				 
+					</div>
+<nav class="navigation3 post-navigation3" role="navigation">
+
+		<div class="nav-links3">
+      
+		<div class="wow fadeInUp nav-previous3"><a href="https://www.bwrong.cn/post/dev-tools07/" rel="prev"> 【前端工程化】篇七 沧海遗珠-其他工具</a></div>
+		 
+		 
+		<div class="wow fadeInUp nav-next3"><a href="https://www.bwrong.cn/post/dfvWZp8Jg/" rel="next"> 【转】你不一定要逆风翻盘，但请一定向阳而生</a></div>
+		
+		</div>
+	</nav>
+	<div class="wow fadeInUp author-info">
+	<div class="author-avatar pull-left"><img src="https://www.bwrong.cn/images/avatar.png" ></div>
+ 
+	<div class="author-description"><div class="author-title"><div class="author-link" rel="author">BWrong</div></div>
+
+
+	<p class="author-bio">愿你走出半生，归来仍是少年</p></div></div>
+	
+		</div>
+
+
+
+</article>
+
+<div id="marlin_lite_about_widget-2" class="wow fadeInUp widget marlin_lite_about_widget" data-wow-delay="0.1s">
+
+        
+		<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://www.bwrong.cn/media/scripts/Valine.min.js'></script>
+
+<div class="comment"></div>
+<script>
+        new Valine({
+            av: AV,
+            el: '.comment',
+            lang: 'zh-cn',
+            visitor: false, // 阅读量统计
+            
+            admin_email:'wang11535041@qq.com',
+            
+            
+            emoticon_url: '/media/alu',
+             
+      emoticon_list: ["吐.png","喷血.png","狂汗.png","不说话.png","汗.png","坐等.png","献花.png","不高兴.png","中刀.png","害羞.png","皱眉.png","小眼睛.png","中指.png","尴尬.png","瞅你.png","想一想.png","中枪.png","得意.png","肿包.png","扇耳光.png","亲亲.png","惊喜.png","脸红.png","无所谓.png","便便.png","愤怒.png","蜡烛.png","献黄瓜.png","内伤.png","投降.png","观察.png","看不见.png","击掌.png","抠鼻.png","邪恶.png","看热闹.png","口水.png","抽烟.png","锁眉.png","装大款.png","吐舌.png","无奈.png","长草.png","赞一个.png","呲牙.png","无语.png","阴暗.png","不出所料.png","咽气.png","期待.png","高兴.png","吐血倒地.png","哭泣.png","欢呼.png","黑线.png","喜极而泣.png","喷水.png","深思.png","鼓掌.png","暗地观察.png"],
+     
+      app_id: 'jaz3TfUjRowK9fOMAPb9yw6i-MdYXbMMI',
+      
+      
+      app_key: 'pbltxx4rElIP1RStL3AwujSp',
+         
+          
+      placeholder: '欢迎你留下足迹'
+       
+        });
+    </script>
+
+
+
+
+
+		</div>
+
+			</div>
+			
+
+
+<div class="tocc col l3 hide-on-med-and-down">
+
+        <div class="toc-widget">
+
+            <div class="toc-title"></div>
+
+            <div id="toc-content">
+
+
+			</div>
+        </div>
+    </div>
+
+
+<script src="https://www.bwrong.cn/media/scripts/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '.entry-summary',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h1,h2' //**
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('.entry-summary').children('h1, h2').each(function () {/**/
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget').parent();
+        // let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+    });
+</script>
+
+
+
+
+
+
+			</div>
+		</div>
+
+
+		 <footer id="colophon" class="site-footer">
+
+	<div class="container">
+
+		<div class="copyright"> <br>Theme: <a
+				href="https://github.com/alterfang/gridea-theme-pan" target="_blank" title="Pan"><span>Pan</span></a>.
+			Powered by <a href="https://gridea.dev/" target="_blank" title="Gridea"><span>Gridea</span></a> . 版权所有：<a href="https://beian.miit.gov.cn/" target="_blank"><span>蜀ICP备2023018303号-1</span></a></div>
+	</div>
+
+</footer>
+		<!-- loding -->
+		<div class="loader">
+			<div class="loader-content">
+				<div class="songjingge">
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+			</div>
+		</div>
+<script id="rendered-js">
+	window.onload = function () {
+			var loader = document.getElementsByClassName("loader")[0];
+			loader.className = "loader fadeout"; //使用渐隐的方法淡出loading page
+			setTimeout(function () {
+				loader.style.display = "none";
+			}, 0);
+	};
+</script>
+
+
+</div>
+
+<script src="https://cdn.bootcss.com/fitvids/1.2.0/jquery.fitvids.min.js"></script>
+<script type='text/javascript' src='https://www.bwrong.cn/media/scripts/marlin-scripts.js'></script>
+<script src="https://www.bwrong.cn/media/scripts/lately.min.js"></script>
+<script>jQuery(document).ready(function () { $.lately({ 'target': '.lately-a,.lately-b,.lately-c' }) });</script>
+<style type="text/css">
+  a.back_to_top {
+    text-decoration: none;
+    position: fixed;
+    bottom: 40px;
+    right: 30px;
+    background: #f0f0f0;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    line-height: 36px;
+    font-size: 18px;
+    text-align: center;
+    transition-duration: .5s;
+    transition-propety: background-color;
+    display: none;
+  }
+
+  a.back_to_top span {
+    color: #888;
+  }
+
+  a.back_to_top:hover {
+    cursor: pointer;
+    background: #dfdfdf;
+  }
+
+  a.back_to_top:hover span {
+    color: #555;
+  }
+
+  @media print,
+  screen and (max-width: 580px) {
+    .back_to_top {
+      display: none !important;
+    }
+  }
+</style><a id="back_to_top" href="#" class="back_to_top"><span><i class="iconfont icon-xiangshang"></i></span>
+</a>
+
+<script>
+$(document).ready((function (_this) {
+    return function () {
+      var bt;
+      bt = $('#back_to_top');
+      if ($(document).width() > 480) {
+        $(window).scroll(function () {
+          var st;
+          st = $(window).scrollTop();
+          if (st > 30) {
+            return bt.css('display', 'block');
+          } else {
+            return bt.css('display', 'none');
+          }
+        });
+        return bt.click(function () {
+          $('body,html').animate({
+            scrollTop: 0
+          }, 800);
+          return false;
+        });
+      }
+    };
+  })(this));
+//   $(window).load(function () {
+//     //异步延迟加载样式
+//     var link = $('<link />');
+//     link.attr('href', 'https://fonts.googleapis.com/css?family=Dancing+Script|Noto+Sans+SC:300|Montserrat&display=swap');
+//     link.attr('rel', 'stylesheet');
+//     link.appendTo($('head'));
+// });
+</script>
+
+<!-- 宠物 -->
+<canvas id="live2dcanvas" width="200" height="400" class="live2d"></canvas>
+<style>
+  #live2dcanvas {
+    position: fixed;
+    right: 0px;
+    z-index: 999;
+    pointer-events: none;
+    bottom: -40px;
+    width: 200px;
+    height: 400px;
+  }
+
+  @media (max-width: 768px) {
+    #live2dcanvas {
+      width: 150px;
+      height: 300px;
+    }
+  }
+
+  @media (max-width: 639px) {
+    #live2dcanvas {
+      display: none !important;
+    }
+  }
+</style>
+<script src="https://www.bwrong.cn/media/scripts/L2Dwidget.min.js"></script>
+<script>
+  //初始化小人物 需设置属性pluginRootPath: "live2dw/"指明资源跟路径
+  L2Dwidget.init({
+    pluginRootPath: "media/",//资源root路径
+    pluginJsPath: "scripts/",//js相对root的路径
+    pluginModelPath: "model/",//模型相对root的路径
+    tagMode: !1,
+    debug: !1,
+    model: {
+      scale: 2,
+      jsonPath: "/media/model/live2d-widget-model-epsilon/Epsilon2.1.model.json"
+    },
+    display: {//大小位置什么的自己慢慢调就是了
+      position: "right",//定位
+      width: 130,//宽度
+      height: 210,//高度
+      hOffset: -40,//左右
+      vOffset: 0//上下
+    },
+    mobile: {
+      show: !1
+    },
+    log: !1
+  });
+</script>
+<!-- 宠物结束 -->
+
+		<script data-no-instant>
+    // (function ($) {
+    //     $.extend({
+    //         adamsOverload: function () {
+    //             $('.navigation:eq(0)').remove();
+    //             $("").attr("rel" , "external");
+    //             $("a[rel='external'],a[rel='external nofollow']").attr("target","_blank");
+    //             $("a.vi").attr("rel" , "");
+    //             $.viewImage({
+    //                 'target'  : 'img',
+    //                 'exclude' : '.vsmile-icons img,.gallery img',
+    //                 'delay'   : 300
+    //             });
+    //             $.lately({
+    //                 'target' : '.commentmetadata a,.infos time,.post-list time'
+	// 			});
+	// 			console.log(prettyPrint)
+	// 			if(prettyPrint) prettyPrint();
+
+    //             $('ul.links li a').each(function(){
+    //                 if($(this).parent().find('.bg').length==0){
+    //                     $(this).parent().append('<!---<div class="bg" style="background-image:url(https://c3.glgoo.top/s2/favicons?domain='+$(this).attr("href")+')"></div>--->')
+    //                 }
+    //             });
+    //         }
+    //     });
+    // })(jQuery);
+	// jQuery.adamsOverload();
+
+    (function ($) {
+        $.extend({
+            adamsOverload: function () {
+                $.viewImage({
+                    'target'  : '.song img',
+                    'exclude' : '.vsmile-icons img',
+                    'delay'   : 300
+                });
+            }
+        });
+    })(jQuery);
+    jQuery.adamsOverload();
+</script>
+
+</body>
+</html>

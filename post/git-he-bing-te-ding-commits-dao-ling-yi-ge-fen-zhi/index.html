@@ -1,0 +1,746 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+ <meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+<meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<meta HTTP-EQUIV="expires" CONTENT="0">
+<meta name="author" content="bwrong, wang11535041@qq.com"/>
+<meta name="keywords" content="Git合并特定commits 到另一个分支 | BWrong的小站,前端,krpano,js,vue"/>
+<meta name="description" content="天青色等烟雨，而我在等你"/>
+<!-- <title>Git合并特定commits 到另一个分支 | BWrong的小站</title> -->
+<title>网站搭建测试</title>
+<link href="https://www.bwrong.cn/media/css/fz.css" rel="stylesheet">
+<link rel="stylesheet" href="https://www.bwrong.cn/styles/main.css">
+<script type="text/javascript">
+function getCSS()
+{
+        datetoday = new Date();
+        timenow=datetoday.getTime();
+        datetoday.setTime(timenow);
+        thehour = datetoday.getHours();
+
+        if (thehour<5)
+
+            display = "https://www.bwrong.cn/media/css/night.css";
+
+       else if (thehour>20)
+
+            display = "https://www.bwrong.cn/media/css/night.css";
+
+        else if (thehour>5)
+     
+            display = "https://www.bwrong.cn/media/css/day.css";
+
+        else if (thehour<20)
+
+            display = "https://www.bwrong.cn/media/css/day.css";
+
+
+var css = '<';
+        css+='link rel="stylesheet" href='+display+' \/';
+        css+='>';
+        document.write(css);
+}
+</script>
+<link href="https://at.alicdn.com/t/font_1306644_ko4c4at97is.css" rel="stylesheet" />
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://www.bwrong.cn/media/css/katex.min.css">
+<script type='text/javascript' src='https://www.bwrong.cn/media/scripts/script.js'></script>
+<link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet" />
+  <script src="https://cdn.bootcss.com/wow/1.1.2/wow.min.js"></script>
+  <script src="https://cdn.bootcss.com/highlight.js/9.15.8/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script>wow=new WOW({boxClass:'wow',animateClass:'animated',offset:0,mobile:true,live:true});wow.init();</script>
+
+<script type="text/javascript">
+window.onload=getCSS();
+</script>
+<!-- 百度统计 -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?2c0e9e3f54ae20480b34c178578c4df8";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+</head>
+<body class="post-template-default single single-post postid-70 single-format-standard">
+    <div id="wrapper">
+
+	
+<header id="header" class="site-header"
+		
+		>
+			<div class="site-branding">
+									<h1 class="site-title"><a href="https://www.bwrong.cn" rel="home">BWrong的小站</a></h1>
+
+					<h2 class="site-description">天青色等烟雨，而我在等你</h2>
+
+							</div>
+			<nav id="nav-wrapper">
+				<div class="container">
+					<div class="nav-toggle">
+						<div class="bars">
+							<div class="bar"></div>
+							<div class="bar"></div>
+							<div class="bar"></div>
+						</div>
+					</div>
+					<div class="clear"></div>
+					<ul id="" class="dove">
+		 
+
+<li>
+
+	
+		<a href="/">
+		  首页
+		</a>
+	  
+
+    
+
+<li>
+
+	
+		<a href="/archives/index.html">
+		  归档
+		</a>
+	  
+
+    
+
+<li>
+
+	
+		<a href="/post/about/">
+		  关于
+		</a>
+	  
+
+    
+
+</ul>
+</li>
+
+</ul>				</div>
+			</nav>
+						<div class="jingge">
+
+
+    
+
+    
+
+<a  href="https://github.com/BWrong" target="_blank" ><i class="iconfont icon-github"></i></a>
+ 
+    
+
+    
+
+    
+
+    
+
+<a  href="https://juejin.cn/user/3421335914820280" target="_blank" ><i class="iconfont icon-telegram"></i></a>
+ 
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        </header>
+
+
+		<div id="content" class="container">
+			<div class="row">
+	<div class="col-md-8 site-main">
+
+<article id="post-70" class="post-70 post type-post status-publish format-standard hentry category-5 tag-10 tag-9 tag-11">
+
+
+
+		<div class="entry-content">
+			<h1 data-wow-delay="0.4s"  class="wow fadeInUp entry-title">Git合并特定commits 到另一个分支</h1>
+<div class="entry-meta">
+<div class="wow fadeInUp"  data-wow-delay="0.6s">
+	<i class="iconfont icon-rili"> <time class="lately-a" datetime="2018-10-12 20:20:24" itemprop="datePublished" pubdate="">2018-10-12</time></i>
+	          </div>
+
+</span>
+
+		</div>
+
+			<div class="wow fadeInUp entry-summary song"  data-wow-delay="0.1s">
+				<p>经常被问到如何从一个分支合并特定的commits到另一个分支。有时候你需要这样做，只合并你需要的那些commits，不需要的commits就不合并进去了。</p>
+<h3 id="合并某个分支上的单个commit">合并某个分支上的单个commit</h3>
+<p>首先，用git log或GitX工具查看一下你想选择哪些commits进行合并，例如：</p>
+<pre><code>dd2e86 - 946992 -9143a9 - a6fd86 - 5a6057 [master]
+
+           \
+
+            76cada - 62ecb3 - b886a0 [feature]
+</code></pre>
+<p>比如，feature 分支上的commit 62ecb3 非常重要，它含有一个bug的修改，或其他人想访问的内容。无论什么原因，你现在只需要将62ecb3 合并到master，而不合并feature上的其他commits，所以我们用git cherry-pick命令来做：</p>
+<pre><code>
+git checkout master
+git cherry-pick 62ecb3
+</code></pre>
+<p>这样就好啦。现在62ecb3 就被合并到master分支，并在master中添加了commit（作为一个新的commit）。cherry-pick 和merge比较类似，如果git不能合并代码改动（比如遇到合并冲突），git需要你自己来解决冲突并手动添加commit。</p>
+<h3 id="合并某个分支上的一系列commits">合并某个分支上的一系列commits</h3>
+<p>在一些特性情况下，合并单个commit并不够，你需要合并一系列相连的commits。这种情况下就不要选择cherry-pick了，rebase 更适合。还以上例为例，假设你需要合并feature分支的commit76cada ~62ecb3 到master分支。</p>
+<p>首先需要基于feature创建一个新的分支，并指明新分支的最后一个commit：</p>
+<pre><code>git checkout -b newbranch 62ecb3
+</code></pre>
+<p>然后，rebase这个新分支的commit到master（--ontomaster）。76cada^ 指明你想从哪个特定的commit开始。</p>
+<pre><code>git rebase --onto master 76cada^
+</code></pre>
+<p>得到的结果就是feature分支的commit 76cada ~62ecb3 都被合并到了master分支。</p>
+<h3 id="流程简述">流程简述</h3>
+<ol>
+<li>切换到另一个远程仓库关联的分支</li>
+</ol>
+<pre><code>git checkout yncms_dev
+</code></pre>
+<ol start="2">
+<li>通过cherry-pick选择当前仓库中需要被合并的提交commit id</li>
+</ol>
+<pre><code>git cherry-pick 62ec3d
+</code></pre>
+<ol start="3">
+<li>推送到远程（另一个项目远程）</li>
+</ol>
+<pre><code>git push
+</code></pre>
+<ol start="4">
+<li>到另一个项目中去拉取刚刚推送的内容</li>
+</ol>
+<pre><code>git pull
+</code></pre>
+<h1 id="概述">概述</h1>
+<p>git cherry-pick可以理解为”挑拣”提交，它会获取某一个分支的单笔提交，并作为一个新的提交引入到你当前分支上。</p>
+<p>当我们需要在本地合入其他分支的提交时，如果我们不想对整个分支进行合并，而是只想将某一次提交合入到本地当前分支上，那么就要使用git cherry-pick了。</p>
+<h2 id="用法">用法</h2>
+<p><code>git cherry-pick [&lt;options&gt;] &lt;commit-ish&gt;...</code></p>
+<p>常用options:</p>
+<pre><code>    --quit                退出当前的chery-pick序列
+    --continue            继续当前的chery-pick序列
+    --abort               取消当前的chery-pick序列，恢复当前分支
+    -n, --no-commit       不自动提交
+    -e, --edit            编辑提交信息
+</code></pre>
+<h3 id="git-cherry-pick-commitid"><code>git cherry-pick commitid</code></h3>
+<p>在本地仓库中，有两个分支:branch1和branch2，我们先来查看各个分支的提交：</p>
+<pre><code class="language-bash"># 切换到branch2分支
+$ git checkout branch2
+Switched to branch 'branch2'
+
+# 查看最近三次提交
+$ git log --oneline -3
+23d9422 [Description]:branch2 commit 3
+2555c6e [Description]:branch2 commit 2
+b82ba0f [Description]:branch2 commit 1
+# 切换到branch1分支
+$ git checkout branch1
+Switched to branch 'branch1'
+# 查看最近三次提交
+$ git log --oneline -3
+20fe2f9 commit second
+c51adbe commit first
+ae2bd14 commit 3th
+</code></pre>
+<p>现在，我想要将branch2分支上的第一次提交内容合入到branch1分支上，则可以使用git cherry-pick命令：</p>
+<pre><code>$ git cherry-pick 2555c6e
+error: could not apply 2555c6e... [Description]:branch2 commit 2
+hint: after resolving the conflicts, mark the corrected paths
+hint: with 'git add &lt;paths&gt;' or 'git rm &lt;paths&gt;'
+hint: and commit the result with 'git commit'
+</code></pre>
+<p>当cherry-pick时，没有成功自动提交，这说明存在冲突，因此首先需要解决冲突,解决冲突后需要git commit手动进行提交：</p>
+<pre><code>$ git commit 
+[branch1 790f431] [Description]:branch2 commit 2
+ Date: Fri Jul 13 18:36:44 2018 +0800
+ 1 file changed, 1 insertion(+)
+ create mode 100644 only-for-branch2.txt
+</code></pre>
+<p>或者git add .后直接使用git cherry-pick --continue继续。<br>
+现在查看提交信息：</p>
+<pre><code>$ git log --oneline -3
+790f431 [Description]:branch2 commit 2
+20fe2f9 commit second
+c51adbe commit first
+</code></pre>
+<p>branch2分支上的第二次提交成功合入到了branch1分支上。</p>
+<p>以上就是git cherry-pick的基本用法，如果没有出现冲突，该命令将自动提交。</p>
+<h3 id="git-cherry-pick-n"><code>git cherry-pick -n</code></h3>
+<p>如果不想git cherry-pick自动进行提交，则加参数-n即可。比如将branch2分支上的第三次提交内容合入到branch1分支上：</p>
+<pre><code>$ git cherry-pick 23d9422
+[branch1 2c67715] [Description]:branch2 commit 3
+ Date: Fri Jul 13 18:37:05 2018 +0800
+ 1 file changed, 1 insertion(+)
+</code></pre>
+<p>查看提交log,它自动合入了branch1分支：</p>
+<pre><code>$ git log --oneline -3
+2c67715 [Description]:branch2 commit 3
+f8bc5db [Description]:branch2 commit 2
+20fe2f9 commit second
+</code></pre>
+<p>如果不想进行自动合入，则使用git cherry-pick -n：</p>
+<pre><code># 回退上次提交，再此进行cherry-pick
+$ git reset --hard HEAD~
+HEAD is now at f8bc5db [Description]:branch2 commit 2
+$ git cherry-pick -n 23d9422
+$ git status
+On branch branch1
+Changes to be committed:
+  (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)
+
+    modified:   only-for-branch2.txt
+
+</code></pre>
+<p>这时通过git status查看，发现已将branch2的提交获取但是没有合入。</p>
+<h3 id="git-cherry-pick-e"><code>git cherry-pick -e</code></h3>
+<p>如果想要在cherr-pick后重新编辑提交信息，则使用git cherry-pick -e命令，比如我们还是要将branch2分支上的第三次提交内容合入到branch1分支上，但是需要修改提交信息：</p>
+<pre><code>$ git cherry-pick -e 23d9422
+
+  1 [Description]:branch2 commit 3
+  2 #
+  3 # It looks like you may be committing a cherry-pick.
+  4 # If this is not correct, please remove the file
+  5 #       .git/CHERRY_PICK_HEAD
+  6 # and try again.
+</code></pre>
+<h3 id="git-cherry-pick-continue-abortquit"><code>git cherry-pick –continue, –abort，–quit</code></h3>
+<p>当使用git cherry-pick发生冲突后,将会出现如下信息：</p>
+<pre><code>$ git cherry-pick 23d9422
+error: could not apply 23d9422... [Description]:branch2 commit 3
+hint: after resolving the conflicts, mark the corrected paths
+hint: with 'git add &lt;paths&gt;' or 'git rm &lt;paths&gt;'
+hint: and commit the result with 'git commit'
+</code></pre>
+<p>这时如果要继续cherry-pick，则首先需要解决冲突，通过git add .将文件标记为已解决，然后可以使用git cherry-pick --continue命令，继续进行cherry-pick操作。</p>
+<p>如果要中断这次cherry-pick,则使用git cherry-pick --quit，这种情况下当前分支中未冲突的内容状态将为modified，</p>
+<p>如果要取消这次cherry-pick,则使用git cherry-pick --abort，这种情况下当前分支恢复到cherry-pick前的状态，没有改变。</p>
+<h3 id="git-cherry-pick-branchname"><code>git cherry-pick &lt; branchname &gt;</code></h3>
+<p>如果在git cherry-pick后加一个分支名，则表示将该分支顶端提交进cherry-pick，如：</p>
+<pre><code>$ git cherry-pick master
+</code></pre>
+<h2 id="git-cherry-pick-branchname-2"><code>git cherry-pick ..&lt; branchname &gt; </code></h2>
+<h2 id="git-cherry-pick-head-branchname"><code>git cherry-pick ^HEAD &lt; branchname &gt;</code></h2>
+<p>以上两个命令作用相同，表示应用所有提交引入的更改，这些提交是branchname的祖先但不是HEAD的祖先，比如，现在我的仓库中有三个分支，其提交历史如下图：</p>
+<pre><code>               C&lt;---D&lt;---E  branch2
+              /
+master   A&lt;---B  
+              \
+               F&lt;---G&lt;---H  branch3
+                         |
+                         HEAD
+</code></pre>
+<p>如果我使用git cherry-pick ..branch2或者git cherry-pick ^HEAD branch2,那么会将属于branch2的祖先但不属于branch3的祖先的所有提交引入到当前分支branch3上，并生成新的提交，执行命令如下:</p>
+<pre><code>$ git cherry-pick ..branch2
+[branch3 c95d8b0] [Description]:branch2  add only-for-branch2
+ Date: Fri Jul 13 20:34:40 2018 +0800
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 only-for-branch2
+[branch3 7199a67] [Description]:branch2 modify for only-for-branch2--1
+ Date: Fri Jul 13 20:38:35 2018 +0800
+ 1 file changed, 1 insertion(+)
+[branch3 eb8ab62] [Description]:branch2 modify for only-for-branch2--2
+ Date: Fri Jul 13 20:39:09 2018 +0800
+ 1 file changed, 1 insertion(+)
+</code></pre>
+<p>执行后的提交历史如下：</p>
+<pre><code>
+               C&lt;---D&lt;---E  branch2
+              /
+master   A&lt;---B  
+              \
+               F&lt;---G&lt;---H&lt;---C'&lt;---D'&lt;---E'  branch3
+                                          |
+                                         HEAD
+</code></pre>
+<h2 id="常见问题">常见问题:</h2>
+<h4 id="1the-previous-cherry-pick-is-now-empty-possibly-due-to-conflict-resolution">1.The previous cherry-pick is now empty, possibly due to conflict resolution.</h4>
+<ul>
+<li>
+<p>原因:<br>
+在cherry-pick时出现冲突，解决冲突后本地分支中内容和cherry-pick之前相比没有改变，因此当在以后的步骤中继续git cherry-pick或执行其他命令时，由于此时还处于上次cherry-pick，都会提示该信息，表示可能是由于解决冲突造成上一次cherry-pick内容是空的。</p>
+</li>
+<li>
+<p>解决方案:<br>
+1.执行git cherry-pick --abort取消上次操作。</p>
+</li>
+</ul>
+<p>2.执行git commit --allow-empty,表示允许空提交。</p>
+<h4 id="2fatal-you-are-in-the-middle-of-a-cherry-pick-cannot-amend">2.fatal: You are in the middle of a cherry-pick – cannot amend.</h4>
+<ul>
+<li>
+<p>原因:<br>
+在cherry-pick时出现冲突，没有解决冲突就执行git commit --amend命令，从而会提示该信息。</p>
+</li>
+<li>
+<p>解决方案:<br>
+首先在git commit --amend之前解决冲突，并完成这次cherry-pick:</p>
+</li>
+</ul>
+<pre><code>$ git add .
+$ git cherry-pick --continue
+</code></pre>
+
+							</div>
+	<div class="wow fadeInUp vt-post-tags">
+ 
+				<a href="https://www.bwrong.cn/tag/git/" rel="tag">git</a>
+				 
+					</div>
+<nav class="navigation3 post-navigation3" role="navigation">
+
+		<div class="nav-links3">
+      
+		 
+		</div>
+	</nav>
+	<div class="wow fadeInUp author-info">
+	<div class="author-avatar pull-left"><img src="https://www.bwrong.cn/images/avatar.png" ></div>
+ 
+	<div class="author-description"><div class="author-title"><div class="author-link" rel="author">BWrong</div></div>
+
+
+	<p class="author-bio">愿你走出半生，归来仍是少年</p></div></div>
+	
+		</div>
+
+
+
+</article>
+
+<div id="marlin_lite_about_widget-2" class="wow fadeInUp widget marlin_lite_about_widget" data-wow-delay="0.1s">
+
+        
+		<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://www.bwrong.cn/media/scripts/Valine.min.js'></script>
+
+<div class="comment"></div>
+<script>
+        new Valine({
+            av: AV,
+            el: '.comment',
+            lang: 'zh-cn',
+            visitor: false, // 阅读量统计
+            
+            admin_email:'wang11535041@qq.com',
+            
+            
+            emoticon_url: '/media/alu',
+             
+      emoticon_list: ["吐.png","喷血.png","狂汗.png","不说话.png","汗.png","坐等.png","献花.png","不高兴.png","中刀.png","害羞.png","皱眉.png","小眼睛.png","中指.png","尴尬.png","瞅你.png","想一想.png","中枪.png","得意.png","肿包.png","扇耳光.png","亲亲.png","惊喜.png","脸红.png","无所谓.png","便便.png","愤怒.png","蜡烛.png","献黄瓜.png","内伤.png","投降.png","观察.png","看不见.png","击掌.png","抠鼻.png","邪恶.png","看热闹.png","口水.png","抽烟.png","锁眉.png","装大款.png","吐舌.png","无奈.png","长草.png","赞一个.png","呲牙.png","无语.png","阴暗.png","不出所料.png","咽气.png","期待.png","高兴.png","吐血倒地.png","哭泣.png","欢呼.png","黑线.png","喜极而泣.png","喷水.png","深思.png","鼓掌.png","暗地观察.png"],
+     
+      app_id: 'jaz3TfUjRowK9fOMAPb9yw6i-MdYXbMMI',
+      
+      
+      app_key: 'pbltxx4rElIP1RStL3AwujSp',
+         
+          
+      placeholder: '欢迎你留下足迹'
+       
+        });
+    </script>
+
+
+
+
+
+		</div>
+
+			</div>
+			
+
+
+<div class="tocc col l3 hide-on-med-and-down">
+
+        <div class="toc-widget">
+
+            <div class="toc-title"></div>
+
+            <div id="toc-content">
+
+
+			</div>
+        </div>
+    </div>
+
+
+<script src="https://www.bwrong.cn/media/scripts/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '.entry-summary',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h1,h2' //**
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('.entry-summary').children('h1, h2').each(function () {/**/
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget').parent();
+        // let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+    });
+</script>
+
+
+
+
+
+
+			</div>
+		</div>
+
+
+		 <footer id="colophon" class="site-footer">
+
+	<div class="container">
+
+		<div class="copyright"> <br>Theme: <a
+				href="https://github.com/alterfang/gridea-theme-pan" target="_blank" title="Pan"><span>Pan</span></a>.
+			Powered by <a href="https://gridea.dev/" target="_blank" title="Gridea"><span>Gridea</span></a> . 版权所有：<a href="https://beian.miit.gov.cn/" target="_blank"><span>蜀ICP备2023018303号-1</span></a></div>
+	</div>
+
+</footer>
+		<!-- loding -->
+		<div class="loader">
+			<div class="loader-content">
+				<div class="songjingge">
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+			</div>
+		</div>
+<script id="rendered-js">
+	window.onload = function () {
+			var loader = document.getElementsByClassName("loader")[0];
+			loader.className = "loader fadeout"; //使用渐隐的方法淡出loading page
+			setTimeout(function () {
+				loader.style.display = "none";
+			}, 0);
+	};
+</script>
+
+
+</div>
+
+<script src="https://cdn.bootcss.com/fitvids/1.2.0/jquery.fitvids.min.js"></script>
+<script type='text/javascript' src='https://www.bwrong.cn/media/scripts/marlin-scripts.js'></script>
+<script src="https://www.bwrong.cn/media/scripts/lately.min.js"></script>
+<script>jQuery(document).ready(function () { $.lately({ 'target': '.lately-a,.lately-b,.lately-c' }) });</script>
+<style type="text/css">
+  a.back_to_top {
+    text-decoration: none;
+    position: fixed;
+    bottom: 40px;
+    right: 30px;
+    background: #f0f0f0;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    line-height: 36px;
+    font-size: 18px;
+    text-align: center;
+    transition-duration: .5s;
+    transition-propety: background-color;
+    display: none;
+  }
+
+  a.back_to_top span {
+    color: #888;
+  }
+
+  a.back_to_top:hover {
+    cursor: pointer;
+    background: #dfdfdf;
+  }
+
+  a.back_to_top:hover span {
+    color: #555;
+  }
+
+  @media print,
+  screen and (max-width: 580px) {
+    .back_to_top {
+      display: none !important;
+    }
+  }
+</style><a id="back_to_top" href="#" class="back_to_top"><span><i class="iconfont icon-xiangshang"></i></span>
+</a>
+
+<script>
+$(document).ready((function (_this) {
+    return function () {
+      var bt;
+      bt = $('#back_to_top');
+      if ($(document).width() > 480) {
+        $(window).scroll(function () {
+          var st;
+          st = $(window).scrollTop();
+          if (st > 30) {
+            return bt.css('display', 'block');
+          } else {
+            return bt.css('display', 'none');
+          }
+        });
+        return bt.click(function () {
+          $('body,html').animate({
+            scrollTop: 0
+          }, 800);
+          return false;
+        });
+      }
+    };
+  })(this));
+//   $(window).load(function () {
+//     //异步延迟加载样式
+//     var link = $('<link />');
+//     link.attr('href', 'https://fonts.googleapis.com/css?family=Dancing+Script|Noto+Sans+SC:300|Montserrat&display=swap');
+//     link.attr('rel', 'stylesheet');
+//     link.appendTo($('head'));
+// });
+</script>
+
+<!-- 宠物 -->
+<canvas id="live2dcanvas" width="200" height="400" class="live2d"></canvas>
+<style>
+  #live2dcanvas {
+    position: fixed;
+    right: 0px;
+    z-index: 999;
+    pointer-events: none;
+    bottom: -40px;
+    width: 200px;
+    height: 400px;
+  }
+
+  @media (max-width: 768px) {
+    #live2dcanvas {
+      width: 150px;
+      height: 300px;
+    }
+  }
+
+  @media (max-width: 639px) {
+    #live2dcanvas {
+      display: none !important;
+    }
+  }
+</style>
+<script src="https://www.bwrong.cn/media/scripts/L2Dwidget.min.js"></script>
+<script>
+  //初始化小人物 需设置属性pluginRootPath: "live2dw/"指明资源跟路径
+  L2Dwidget.init({
+    pluginRootPath: "media/",//资源root路径
+    pluginJsPath: "scripts/",//js相对root的路径
+    pluginModelPath: "model/",//模型相对root的路径
+    tagMode: !1,
+    debug: !1,
+    model: {
+      scale: 2,
+      jsonPath: "/media/model/live2d-widget-model-epsilon/Epsilon2.1.model.json"
+    },
+    display: {//大小位置什么的自己慢慢调就是了
+      position: "right",//定位
+      width: 130,//宽度
+      height: 210,//高度
+      hOffset: -40,//左右
+      vOffset: 0//上下
+    },
+    mobile: {
+      show: !1
+    },
+    log: !1
+  });
+</script>
+<!-- 宠物结束 -->
+
+		<script data-no-instant>
+    // (function ($) {
+    //     $.extend({
+    //         adamsOverload: function () {
+    //             $('.navigation:eq(0)').remove();
+    //             $("").attr("rel" , "external");
+    //             $("a[rel='external'],a[rel='external nofollow']").attr("target","_blank");
+    //             $("a.vi").attr("rel" , "");
+    //             $.viewImage({
+    //                 'target'  : 'img',
+    //                 'exclude' : '.vsmile-icons img,.gallery img',
+    //                 'delay'   : 300
+    //             });
+    //             $.lately({
+    //                 'target' : '.commentmetadata a,.infos time,.post-list time'
+	// 			});
+	// 			console.log(prettyPrint)
+	// 			if(prettyPrint) prettyPrint();
+
+    //             $('ul.links li a').each(function(){
+    //                 if($(this).parent().find('.bg').length==0){
+    //                     $(this).parent().append('<!---<div class="bg" style="background-image:url(https://c3.glgoo.top/s2/favicons?domain='+$(this).attr("href")+')"></div>--->')
+    //                 }
+    //             });
+    //         }
+    //     });
+    // })(jQuery);
+	// jQuery.adamsOverload();
+
+    (function ($) {
+        $.extend({
+            adamsOverload: function () {
+                $.viewImage({
+                    'target'  : '.song img',
+                    'exclude' : '.vsmile-icons img',
+                    'delay'   : 300
+                });
+            }
+        });
+    })(jQuery);
+    jQuery.adamsOverload();
+</script>
+
+</body>
+</html>

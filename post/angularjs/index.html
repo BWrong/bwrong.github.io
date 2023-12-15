@@ -1,0 +1,1026 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+ <meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+<meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<meta HTTP-EQUIV="expires" CONTENT="0">
+<meta name="author" content="bwrong, wang11535041@qq.com"/>
+<meta name="keywords" content="AngularJs入门 | BWrong的小站,前端,krpano,js,vue"/>
+<meta name="description" content="天青色等烟雨，而我在等你"/>
+<!-- <title>AngularJs入门 | BWrong的小站</title> -->
+<title>网站搭建测试</title>
+<link href="https://www.bwrong.cn/media/css/fz.css" rel="stylesheet">
+<link rel="stylesheet" href="https://www.bwrong.cn/styles/main.css">
+<script type="text/javascript">
+function getCSS()
+{
+        datetoday = new Date();
+        timenow=datetoday.getTime();
+        datetoday.setTime(timenow);
+        thehour = datetoday.getHours();
+
+        if (thehour<5)
+
+            display = "https://www.bwrong.cn/media/css/night.css";
+
+       else if (thehour>20)
+
+            display = "https://www.bwrong.cn/media/css/night.css";
+
+        else if (thehour>5)
+     
+            display = "https://www.bwrong.cn/media/css/day.css";
+
+        else if (thehour<20)
+
+            display = "https://www.bwrong.cn/media/css/day.css";
+
+
+var css = '<';
+        css+='link rel="stylesheet" href='+display+' \/';
+        css+='>';
+        document.write(css);
+}
+</script>
+<link href="https://at.alicdn.com/t/font_1306644_ko4c4at97is.css" rel="stylesheet" />
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://www.bwrong.cn/media/css/katex.min.css">
+<script type='text/javascript' src='https://www.bwrong.cn/media/scripts/script.js'></script>
+<link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet" />
+  <script src="https://cdn.bootcss.com/wow/1.1.2/wow.min.js"></script>
+  <script src="https://cdn.bootcss.com/highlight.js/9.15.8/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script>wow=new WOW({boxClass:'wow',animateClass:'animated',offset:0,mobile:true,live:true});wow.init();</script>
+
+<script type="text/javascript">
+window.onload=getCSS();
+</script>
+<!-- 百度统计 -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?2c0e9e3f54ae20480b34c178578c4df8";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+</head>
+<body class="post-template-default single single-post postid-70 single-format-standard">
+    <div id="wrapper">
+
+	
+<header id="header" class="site-header"
+		
+		style="background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),url(https://www.bwrong.cn/post-images/angularjs.jpg)"
+		
+		>
+			<div class="site-branding">
+									<h1 class="site-title"><a href="https://www.bwrong.cn" rel="home">BWrong的小站</a></h1>
+
+					<h2 class="site-description">天青色等烟雨，而我在等你</h2>
+
+							</div>
+			<nav id="nav-wrapper">
+				<div class="container">
+					<div class="nav-toggle">
+						<div class="bars">
+							<div class="bar"></div>
+							<div class="bar"></div>
+							<div class="bar"></div>
+						</div>
+					</div>
+					<div class="clear"></div>
+					<ul id="" class="dove">
+		 
+
+<li>
+
+	
+		<a href="/">
+		  首页
+		</a>
+	  
+
+    
+
+<li>
+
+	
+		<a href="/archives/index.html">
+		  归档
+		</a>
+	  
+
+    
+
+<li>
+
+	
+		<a href="/post/about/">
+		  关于
+		</a>
+	  
+
+    
+
+</ul>
+</li>
+
+</ul>				</div>
+			</nav>
+						<div class="jingge">
+
+
+    
+
+    
+
+<a  href="https://github.com/BWrong" target="_blank" ><i class="iconfont icon-github"></i></a>
+ 
+    
+
+    
+
+    
+
+    
+
+<a  href="https://juejin.cn/user/3421335914820280" target="_blank" ><i class="iconfont icon-telegram"></i></a>
+ 
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        </header>
+
+
+		<div id="content" class="container">
+			<div class="row">
+	<div class="col-md-8 site-main">
+
+<article id="post-70" class="post-70 post type-post status-publish format-standard hentry category-5 tag-10 tag-9 tag-11">
+
+
+
+		<div class="entry-content">
+			<h1 data-wow-delay="0.4s"  class="wow fadeInUp entry-title">AngularJs入门</h1>
+<div class="entry-meta">
+<div class="wow fadeInUp"  data-wow-delay="0.6s">
+	<i class="iconfont icon-rili"> <time class="lately-a" datetime="2019-03-06 12:54:49" itemprop="datePublished" pubdate="">2019-03-06</time></i>
+	          </div>
+
+</span>
+
+		</div>
+
+			<div class="wow fadeInUp entry-summary song"  data-wow-delay="0.1s">
+				<h1 id="01指令">01.指令</h1>
+<h2 id="内置指令">内置指令</h2>
+<pre><code class="language-HTML">&lt;!--
+    ng-app:定义应用程序的根元素,若不为&quot;&quot;时需在js脚本中初始化。
+	ng-bind:把应用程序变量绑定到某个元素的 innerHTML。
+	ng-controller:定义应用的控制器对象，可以控制的服务有$scope,$rootScope,$location,$http,$timeout,$interval,其中$scope.$watch('lastName', function() {)); 可以监控变量的变化
+	ng-model:绑定 HTML 控制器的值到应用数据,即angular变量值,变量值可以是字符串、对象甚至是对象属性。
+	ng-attr-XXX:绑定自定义属性
+	ng-init:定义应用的初始化值,一般为angular变量值。
+	ng-blur:规定 blur 事件的行为。
+	ng-change:规定在内容改变时要执行的表达式。
+	ng-checked:用于设置复选框(checkbox)或单选按钮(radio)的 checked 属性。
+	ng-class:指定 HTML 元素使用的 CSS 类。
+	ng-class-even:类似 ng-class，但只在偶数行起作用,常用table/tr/td、ul/li等元素配合使用
+	ng-class-odd:类似 ng-class，但只在奇数行起作用
+	ng-click:规定click 事件的行为。
+	*ng-cloak:在应用正要加载时防止其闪烁。如&lt;p ng-cloak&gt;{{ 5 + 5 }}&lt;/p&gt;
+	ng-copy:用户触发拷贝事件时，规定拷贝事件的行为。
+	ng-cut:用户触发剪切事件时，规定剪切事件的行为。
+	ng-paste:用户触发粘贴事件时，规定粘贴事件的行为
+	ng-dblclick:用户触发双击事件时，规定双击事件的行为。
+	ng-disabled:可设为true|false时，规定一个元素是否被禁用,但不会隐藏。
+	ng-focus:规定focus焦点事件的行为。
+	ng-hide:隐藏或显示 HTML 元素。
+	ng-show:显示或隐藏 HTML 元素。
+	ng-href:为&lt;a&gt;元素指定链接。
+	ng-if:如果条件为 false 移除 HTML 元素。
+	ng-include:在应用中包含 HTML 文件，如&lt;div ng-include=&quot;'myFile.htm'&quot;&gt;&lt;/div&gt;,但不能执行js代码，引入格式如下
+		&lt;style&gt;
+			p {
+				color: red;
+			}
+		&lt;/style&gt;
+		&lt;p&gt;大家好&lt;/p&gt;
+	ng-keydown:规定按下按键事件的行为。
+	ng-keypress:规定按下按键事件的行为,通常情况下会用ng-keydown。
+	ng-keyup:规定松开按键事件的行为。
+	*ng-list:输出时将文本转换为列表 (数组)，输入文本时用逗号隔开。
+			   &lt;input ng-model=&quot;customers&quot; ng-list/&gt;
+			   &lt;pre&gt;{{customers}}&lt;/pre&gt;
+	*ng-model-options:规定如何更新模型,option	指定了绑定数据的规则，规则如下:
+						{updateOn: 'event'}规则指定事件发生后绑定数据,如ng-model-options=&quot;{updateOn: 'blur'}&quot;
+						{debounce : 1000} 规定等待多少毫秒后绑定数据
+						{allowInvalid : true|false} 规定是否需要验证后绑定数据
+						{getterSetter : true|false} 规定是否作为 getters/setters 绑定到模型
+						{timezone : '0100'} 规则是否使用时区
+	ng-mousedown:规定按下鼠标按键时的行为。
+	ng-mouseenter:规定鼠标指针穿过元素时的行为。
+	ng-mouseleave:规定鼠标指针离开元素时的行为。
+	ng-mousemove:规定鼠标指针在指定的元素中移动时的行为。
+	ng-mouseover:规定鼠标指针位于元素上方时的行为。
+	ng-mouseup:规定当在元素上松开鼠标按钮时的行为。
+	*ng-non-bindable:规定元素或子元素不能绑定数据,如&lt;p ng-non-bindable&gt;不使用 AngularJS: {{ 5+5 }}&lt;/p&gt;显示的是“5+5”而不是“10”
+	*ng-open:指定元素的 open 属性,可设值为true|false,常与details等具展开效果的元素配合使用。
+			&lt;details ng-open=true&gt;
+				&lt;summary&gt;学的不仅是技术，更是梦想！&lt;/summary&gt;
+				&lt;p&gt; - 菜鸟教程&lt;/p&gt;
+			&lt;/details&gt;
+	ng-options:在 &lt;select&gt; 下拉列中指定 &lt;options&gt;,如&lt;select ng-model=&quot;selectedName&quot; ng-options=&quot;item for item in names&quot;&gt;&lt;/select&gt;
+			数据格式为字符串数组[&quot;&quot;,&quot;&quot;] 使用x for x in names
+			数据格式为单独的对象{&quot;a&quot;:1,&quot;b&quot;:2} 使用x for (x,y) in names
+			数据格式为对象数组[{},{}] 使用x.attr for x in names	
+	ng-selected:指定元素的 selected 属性,表示当前选择项,常需与select元素配合使用，类似于ng-checked。
+	ng-readonly:指定元素的 readonly 属性。
+	ng-repeat:定义集合中每项数据的模板,该参数还常与ng-click、ng-class配合使用
+			&lt;option ng-repeat=&quot;x in address&quot;&gt;{{x}}&lt;/option&gt;
+	ng-src:指定 &lt;img&gt; 元素的 src 属性。
+	*ng-srcset:指定 &lt;img&gt; 元素的 srcset 属性。H5的新属性，允许输入多张图片地址以匹配不同w像素值宽度的容器。  
+			&lt;img ng-src=&quot;source.jpg&quot; width=&quot;100%&quot; ng-srcset=&quot;source_400.jpg 400w, source_600.jpg 600w, source_1280.jpg 1280w&quot;&gt;
+	ng-style:指定元素的 style 属性,可在控制器中为ng-style所在变量赋值。
+	ng-submit:规定submit 事件的行为。
+	ng-switch:规定显示或隐藏子元素的条件。常与ng-switch-when配合使用，类似于switch和case
+	ng-view:路由容器
+	ng-value:规定 input 元素的值。
+	angular.lowercase()	将字符串转换为小写
+	angular.uppercase()	将字符串转换为大写
+	angular.copy()	数组或对象深度拷贝
+	*angular.forEach()	对象或数组的迭代函数
+			var objs = [{a: 1}, {a: 2}];
+			angular.forEach(objs, function(data, index, array) {
+				//data等价于array[index]
+				console.log(data.a + '=' + array[index].a);
+			});
+			
+			var objs = {&quot;a&quot;:1,&quot;b&quot;:2}
+			angular.forEach(objs, function(data, index, array) {
+				//1 &quot;a&quot; {a: 1, b: 2}
+				console.log(data,index,array);
+			});
+	angular.isArray()	如果引用的是数组返回 true
+	angular.isDate()	如果引用的是日期返回 true
+	angular.isDefined()	如果引用的已定义返回 true
+	angular.isElement()	如果引用的是 DOM 元素返回 true
+	angular.isFunction()	如果引用的是函数返回 true
+	angular.isNumber()	如果引用的是数字返回 true,如果输入框是input标签，要检测输入框内容是否为数字，则使用!isNaN($scope.myInput);
+	angular.isObject()	如果引用的是对象返回 true
+	angular.isString()	如果引用的是字符串返回 true
+	angular.isUndefined()	如果引用的未定义返回 true
+	angular.equals(a,b)	如果两个对象相等返回 true
+	*angular.fromJson()	反序列化 JSON 字符串
+	*angular.toJson()	序列化 JSON 字符串
+--&gt;
+</code></pre>
+<h2 id="自定义指令">自定义指令</h2>
+<pre><code>&lt;div ng-app=&quot;myApp&quot; w3cschool-directive&gt;&lt;/div&gt;
+&lt;script&gt;
+
+var app = angular.module(&quot;myApp&quot;, []);
+
+app.directive(&quot;w3cschoolDirective&quot;, function() {
+    return {
+        template : &quot;我在指令构造器中创建!&quot;
+    };
+});
+&lt;/script&gt;
+</code></pre>
+<h1 id="02作用域">02.作用域</h1>
+<h2 id="scope">$scope</h2>
+<pre><code>&lt;div ng-app=&quot;myApp&quot; ng-controller=&quot;myCtrl&quot;&gt;
+
+&lt;h1&gt;{{carname}}&lt;/h1&gt;
+
+&lt;/div&gt;
+
+&lt;script&gt;
+var app = angular.module('myApp', []);
+
+app.controller('myCtrl', function($scope) {
+    $scope.carname = &quot;Volvo&quot;;
+});
+&lt;/script&gt;
+</code></pre>
+<h2 id="rootscope-根作用域">$rootScope: 根作用域</h2>
+<p>所有后代controller都可以使用</p>
+<pre><code>&lt;div ng-app=&quot;myApp&quot; ng-controller=&quot;myCtrl&quot;&gt;
+
+&lt;h1&gt;{{lastname}} 家族成员:&lt;/h1&gt;
+
+&lt;ul&gt;
+    &lt;li ng-repeat=&quot;x in names&quot;&gt;{{x}} {{lastname}}&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;/div&gt;
+
+&lt;script&gt;
+var app = angular.module('myApp', []);
+
+app.controller('myCtrl', function($scope, $rootScope) {
+    $scope.names = [&quot;Emil&quot;, &quot;Tobias&quot;, &quot;Linus&quot;];
+    $rootScope.lastname = &quot;Refsnes&quot;;
+});
+&lt;/script&gt;
+</code></pre>
+<h1 id="03控制器">03.控制器</h1>
+<p>控制器由 ng-controller 指令定义。</p>
+<pre><code>&lt;div ng-app=&quot;myApp&quot; ng-controller=&quot;myCtrl&quot;&gt;
+
+名: &lt;input type=&quot;text&quot; ng-model=&quot;firstName&quot;&gt;&lt;br&gt;
+姓: &lt;input type=&quot;text&quot; ng-model=&quot;lastName&quot;&gt;&lt;br&gt;
+&lt;br&gt;
+姓名: {{firstName + &quot; &quot; + lastName}}
+
+&lt;/div&gt;
+
+&lt;script&gt;
+angular.module('myApp', [])
+    .controller('myCtrl', function($scope) {
+    $scope.firstName = &quot;John&quot;;
+    $scope.lastName = &quot;Doe&quot;;
+});
+&lt;/script&gt;
+</code></pre>
+<h1 id="04过滤器">04.过滤器</h1>
+<p>过滤器可以使用一个管道字符（|）添加到表达式和指令中。</p>
+<h3 id="内置过滤器">内置过滤器</h3>
+<ul>
+<li>uppercase:格式化字符串为大写</li>
+<li>lowercase:格式化字符串为小写</li>
+<li>currency:格式化为货币符号</li>
+<li>limitTo　: 正数，表示从头开始截取；负数表示从尾巴开始截取</li>
+<li>number : 格式化为保留小数点</li>
+<li>date : 格式化为时间<br>
+-orderBy:&quot;?&quot;:某属性按从小到大排序 ( orderBy:'-id' , id 降序排列   )  ( orderBy:'id',  id 升序排列   )</li>
+<li>filter:&quot;?&quot;:按条件过滤，如filter:{'name':'iphone'}为查找属性name值为iphone的对象</li>
+</ul>
+<h6 id="向指令添加过滤器">向指令添加过滤器</h6>
+<pre><code>&lt;li ng-repeat=&quot;x in names | orderBy:'country'&quot;&gt;
+    {{ x.name + ', ' + x.country }}
+&lt;/li&gt;
+</code></pre>
+<h6 id="过滤输入">过滤输入</h6>
+<pre><code>&lt;p&gt;&lt;input type=&quot;text&quot; ng-model=&quot;test&quot;&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li ng-repeat=&quot;x in names | filter:test | orderBy:'country'&quot;&gt;
+    {{ (x.name | uppercase) + ', ' + x.country }}
+  &lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+<h3 id="自定义">自定义</h3>
+<pre><code>app.filter('myFormat',['hexify', function(hexify) {
+    return function(x) {
+        return hexify.myFunc(x);
+    };
+}]);
+</code></pre>
+<h1 id="05服务service">05.服务Service</h1>
+<p>AngularJS 中的服务是一个函数或对象，可以创建自己的服务，或使用内建服务。</p>
+<h3 id="内建服务">内建服务</h3>
+<p>AngularJS 内建了30 多个服务：</p>
+<ul>
+<li>$location</li>
+</ul>
+<pre><code>var app = angular.module('myApp', []);
+app.controller('customersCtrl', function($scope, $location) {
+    $scope.myUrl = $location.absUrl();
+});
+</code></pre>
+<ul>
+<li>$http</li>
+</ul>
+<pre><code>var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope, $http) {
+    $http.get(&quot;welcome.htm&quot;).then(function (response) {
+        $scope.myWelcome = response.data;
+    });
+});
+</code></pre>
+<ul>
+<li>$timeout</li>
+<li>$interval</li>
+</ul>
+<h3 id="自定义服务">自定义服务</h3>
+<p>创建：</p>
+<pre><code>app.service('hexafy', function() {
+    this.myFunc = function (x) {
+        return x.toString(16);
+    }
+});
+</code></pre>
+<p>使用：</p>
+<pre><code>app.controller('myCtrl', function($scope, hexafy) {
+    $scope.hex = hexafy.myFunc(255);
+});
+</code></pre>
+<p>配合过滤器：</p>
+<pre><code>app.filter('myFormat',['hexify', function(hexify) {
+    return function(x) {
+        return hexify.myFunc(x);
+    };
+}]);
+</code></pre>
+<h1 id="06html组件">06.HTML组件</h1>
+<h2 id="选择框select">选择框select</h2>
+<p>创建options选择项的两种方式：</p>
+<ul>
+<li>ng-options:推荐</li>
+</ul>
+<pre><code>&lt;select ng-model=&quot;selectedName&quot; ng-options=&quot;x.siet for x in sites&quot;&gt;
+&lt;/select&gt;
+
+&lt;script&gt;
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope) {
+    $scope.sites = [
+        {site : &quot;Google&quot;, url : &quot;http://www.google.com&quot;},
+        {site : &quot;W3CSchool&quot;, url : &quot;http://www.w3cschool.cn&quot;},
+        {site : &quot;Taobao&quot;, url : &quot;http://www.taobao.com&quot;}
+    ];
+});
+&lt;/script&gt;
+</code></pre>
+<ul>
+<li>ng-repeat</li>
+</ul>
+<pre><code>&lt;select&gt;
+    &lt;option ng-repeat=&quot;x in sites&quot; value=&quot;{{x.url}}&quot;&gt;{{x.site}}&lt;/option&gt;
+&lt;/select&gt;
+</code></pre>
+<h2 id="表格">表格</h2>
+<pre><code>&lt;table&gt;
+  &lt;tr ng-repeat=&quot;x in names | orderBy : 'Country'&quot;&gt;
+    &lt;td&gt;{{ x.Name }}&lt;/td&gt;
+    &lt;td&gt;{{ x.Country }}&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+</code></pre>
+<h2 id="表单">表单</h2>
+<pre><code>&lt;form  ng-app=&quot;&quot;  ng-controller=&quot;validateCtrl&quot;
+name=&quot;myForm&quot; novalidate&gt;
+&lt;p&gt;Username:&lt;br&gt;
+  &lt;input type=&quot;text&quot; name=&quot;user&quot; ng-model=&quot;user&quot; required&gt;
+  &lt;span style=&quot;color:red&quot; ng-show=&quot;myForm.user.$dirty &amp;&amp; myForm.user.$invalid&quot;&gt;
+  &lt;span ng-show=&quot;myForm.user.$error.required&quot;&gt;Username is required.&lt;/span&gt;
+  &lt;/span&gt;
+&lt;/p&gt;
+&lt;p&gt;Email:&lt;br&gt;
+  &lt;input type=&quot;email&quot; name=&quot;email&quot; ng-model=&quot;email&quot; required&gt;
+  &lt;span style=&quot;color:red&quot; ng-show=&quot;myForm.email.$dirty &amp;&amp; myForm.email.$invalid&quot;&gt;
+  &lt;span ng-show=&quot;myForm.email.$error.required&quot;&gt;Email is required.&lt;/span&gt;
+  &lt;span ng-show=&quot;myForm.email.$error.email&quot;&gt;Invalid email address.&lt;/span&gt;
+  &lt;/span&gt;
+&lt;/p&gt;
+&lt;p&gt;
+  &lt;input type=&quot;submit&quot;
+  ng-disabled=&quot;myForm.user.$dirty &amp;&amp; myForm.user.$invalid ||
+  myForm.email.$dirty &amp;&amp; myForm.email.$invalid&quot;&gt;
+&lt;/p&gt;
+&lt;/form&gt;
+
+&lt;script&gt;
+function validateCtrl($scope) {
+    $scope.user = 'John Doe';
+    $scope.email = 'john.doe@gmail.com';
+}
+&lt;/script&gt;
+</code></pre>
+<h1 id="07sql">07.SQL</h1>
+<p>使用 PHP 从 MySQL 中获取数据:</p>
+<pre><code>function customersController($scope,$http) {
+    var site = &quot;http://www.w3cschool.cn&quot;;
+    var page = &quot;/statics/demosource/Customers_SQL.php&quot;;
+    $http.get(site + page)
+    .success(function(response) {$scope.names = response;});
+}
+</code></pre>
+<h1 id="08模块">08.模块</h1>
+<h2 id="创建模块">创建模块</h2>
+<pre><code>&lt;div ng-app=&quot;myApp&quot;&gt;...&lt;/div&gt;
+&lt;script&gt;
+// []中为依赖的模块，
+var app = angular.module(&quot;myApp&quot;, []); 
+&lt;/script&gt;
+</code></pre>
+<p>在Angular1.x中，框架只承认第一个ng-app，即通过var app = angular.module(&quot;myApp&quot;, []);即可获取它的操作权；此时第二个ng-app需要我们自己来初始化，代码如下：</p>
+<pre><code>&lt;div id=&quot;A1&quot; ng-app=&quot;app1&quot;&gt;
+	&lt;input ng-model=&quot;name&quot; type=&quot;text&quot; placeholder=&quot;请输入姓名&quot;&gt;
+	&lt;p&gt;我的姓名： {{name}}&lt;/p&gt;
+&lt;/div&gt;
+ 
+&lt;div id=&quot;A2&quot; ng-app=&quot;app2&quot;&gt;
+	&lt;input ng-model=&quot;age&quot; type=&quot;number&quot; placeholder=&quot;请输入年龄&quot;&gt;
+	&lt;p&gt;我的年龄: {{age}}&lt;/p&gt;
+&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+	var app1 = angular.module(&quot;app1&quot;, []); //自动加载
+	var app2 = angular.module(&quot;app2&quot;, []); //手动加载
+	angular.bootstrap(document.getElementById(&quot;A2&quot;), ['app2']); // 手动加载2
+&lt;/script&gt;
+</code></pre>
+<h1 id="09api">09.API</h1>
+<ul>
+<li><code>angular.lowercase()</code>:	转换字符串为小写</li>
+<li><code>angular.uppercase()</code>:	转换字符串为大写</li>
+<li><code>angular.isString()</code>:	判断给定的对象是否为字符串，如果是返回 true。</li>
+<li><code>angular.isNumber()</code>:	判断给定的对象是否为数字，如果是返回 true。</li>
+</ul>
+<h1 id="10动画">10.动画</h1>
+<p>AngularJS 使用动画需要引入 angular-animate.min.js 库。</p>
+<pre><code>&lt;body ng-app=&quot;ngAnimate&quot;&gt;
+...
+&lt;/body&gt;
+&lt;script src=&quot;http://apps.bdimg.com/libs/angular.js/1.4.6/angular-animate.min.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p>AngularJS 添加/移除 class 的指令:</p>
+<ul>
+<li>ng-show</li>
+<li>ng-hide</li>
+<li>ng-class</li>
+<li>ng-view</li>
+<li>ng-include</li>
+<li>ng-repeat</li>
+<li>ng-if</li>
+<li>ng-switch</li>
+</ul>
+<p>ng-show 和 ng-hide 指令用于添加或移除 ng-hide class 的值。</p>
+<p>其他指令会在进入 DOM 会添加 ng-enter 类，移除 DOM 会添加 ng-leave 属性。</p>
+<p>当 HTML 元素位置改变时，ng-repeat 指令同样可以添加 ng-move 类 。</p>
+<p>此外， 在动画完成后，HTML 元素的类集合将被移除。例如：ng-hide 指令会添加一下类：</p>
+<ul>
+<li>ng-animate</li>
+<li>ng-hide-animate</li>
+<li>ng-hide-add (如果元素将被隐藏)</li>
+<li>ng-hide-remove (如果元素将显示)</li>
+<li>ng-hide-add-active (如果元素将隐藏)</li>
+<li>ng-hide-remove-active (如果元素将显示)</li>
+</ul>
+<h1 id="11依赖注入">11.依赖注入</h1>
+<p>AngularJS 提供很好的依赖注入机制。以下5个核心组件用来作为依赖注入：</p>
+<ul>
+<li>value：简单的 javascript 对象，用于向控制器传递值</li>
+</ul>
+<pre><code>// 定义一个模块
+var mainApp = angular.module(&quot;mainApp&quot;, []);
+
+// 创建 value 对象 &quot;defaultInput&quot; 并传递数据
+mainApp.value(&quot;defaultInput&quot;, 5);
+...
+
+// 将 &quot;defaultInput&quot; 注入到控制器
+mainApp.controller('CalcController', function($scope, CalcService, defaultInput) {
+   $scope.number = defaultInput;
+   $scope.result = CalcService.square($scope.number);
+   
+   $scope.square = function() {
+      $scope.result = CalcService.square($scope.number);
+   }
+});
+</code></pre>
+<ul>
+<li>factory：一个函数用于返回值。在 service 和 controller 需要时创建</li>
+</ul>
+<pre><code>// 定义一个模块
+var mainApp = angular.module(&quot;mainApp&quot;, []);
+
+// 创建 factory &quot;MathService&quot; 用于两数的乘积 provides a method multiply to return multiplication of two numbers
+mainApp.factory('MathService', function() {
+   var factory = {};
+   
+   factory.multiply = function(a, b) {
+      return a * b
+   }
+   return factory;
+}); 
+
+// 在 service 中注入 factory &quot;MathService&quot;
+mainApp.service('CalcService', function(MathService){
+   this.square = function(a) {
+      return MathService.multiply(a,a);
+   }
+});
+</code></pre>
+<ul>
+<li>service</li>
+<li>provider:通过 provider 创建一个 service、factory等(配置阶段)。<br>
+Provider 中提供了一个 factory 方法 get()，它用于返回 value/service/factory</li>
+</ul>
+<pre><code>// 定义一个模块
+var mainApp = angular.module(&quot;mainApp&quot;, []);
+...
+
+// 使用 provider 创建 service 定义一个方法用于计算两数乘积
+mainApp.config(function($provide) {
+   $provide.provider('MathService', function() {
+      this.$get = function() {
+         var factory = {};  
+         
+         factory.multiply = function(a, b) {
+            return a * b; 
+         }
+         return factory;
+      };
+   });
+});
+</code></pre>
+<ul>
+<li>constant：constant(常量)用来在配置阶段传递数值，注意这个常量在配置阶段是不可用的</li>
+</ul>
+<pre><code>mainApp.constant(&quot;configParam&quot;, &quot;constant value&quot;);
+</code></pre>
+<h1 id="12路由">12.路由</h1>
+<pre><code>&lt;!--添加路由容器--&gt;
+&lt;div ng-view&gt;&lt;/div&gt;
+&lt;script src=&quot;http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js&quot;&gt;&lt;/script&gt;
+&lt;!--引入路由JS--&gt;
+&lt;script src=&quot;http://apps.bdimg.com/libs/angular-route/1.3.13/angular-route.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+    angular.module('routingDemoApp',['ngRoute']) // 引入路由依赖ngRoute
+    .config(['$routeProvider', function($routeProvider){ // 注入$routeProvider
+        $routeProvider
+        .when('/',{template:'这是首页页面'}) // 配置路由url（可以是正则）及路由配置对象
+        .when('/computers',{template:'这是电脑分类页面'})
+        .when('/printers',{template:'这是打印机页面'})
+        .otherwise({redirectTo:'/'});
+    }]);
+&lt;/script&gt;   
+</code></pre>
+<p>$routeProvider.when 函数的第一个参数是 URL 或者 URL 正则规则，第二个参数为路由配置对象。<br>
+路由配置对象语法规则如下：</p>
+<pre><code>$routeProvider.when(url, {
+    template: string, // 模板字符串
+    templateUrl: string, // 模板文件地址
+    controller: string, function 或 array, // 控制器
+    controllerAs: string, // 控制器别名
+    redirectTo: string, function, // 重定向
+    resolve: object&lt;key, function&gt; // 依赖
+});
+</code></pre>
+
+							</div>
+	<div class="wow fadeInUp vt-post-tags">
+ 
+				<a href="https://www.bwrong.cn/tag/angularjs/" rel="tag">angularjs</a>
+				 
+					</div>
+<nav class="navigation3 post-navigation3" role="navigation">
+
+		<div class="nav-links3">
+      
+		<div class="wow fadeInUp nav-previous3"><a href="https://www.bwrong.cn/post/get-max-and-min/" rel="prev"> 获取数组中最大和最小值</a></div>
+		 
+		 
+		<div class="wow fadeInUp nav-next3"><a href="https://www.bwrong.cn/post/git-bei-wang-shou-ce/" rel="next"> GIT备忘手册</a></div>
+		
+		</div>
+	</nav>
+	<div class="wow fadeInUp author-info">
+	<div class="author-avatar pull-left"><img src="https://www.bwrong.cn/images/avatar.png" ></div>
+ 
+	<div class="author-description"><div class="author-title"><div class="author-link" rel="author">BWrong</div></div>
+
+
+	<p class="author-bio">愿你走出半生，归来仍是少年</p></div></div>
+	
+		</div>
+
+
+
+</article>
+
+<div id="marlin_lite_about_widget-2" class="wow fadeInUp widget marlin_lite_about_widget" data-wow-delay="0.1s">
+
+        
+		<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://www.bwrong.cn/media/scripts/Valine.min.js'></script>
+
+<div class="comment"></div>
+<script>
+        new Valine({
+            av: AV,
+            el: '.comment',
+            lang: 'zh-cn',
+            visitor: false, // 阅读量统计
+            
+            admin_email:'wang11535041@qq.com',
+            
+            
+            emoticon_url: '/media/alu',
+             
+      emoticon_list: ["吐.png","喷血.png","狂汗.png","不说话.png","汗.png","坐等.png","献花.png","不高兴.png","中刀.png","害羞.png","皱眉.png","小眼睛.png","中指.png","尴尬.png","瞅你.png","想一想.png","中枪.png","得意.png","肿包.png","扇耳光.png","亲亲.png","惊喜.png","脸红.png","无所谓.png","便便.png","愤怒.png","蜡烛.png","献黄瓜.png","内伤.png","投降.png","观察.png","看不见.png","击掌.png","抠鼻.png","邪恶.png","看热闹.png","口水.png","抽烟.png","锁眉.png","装大款.png","吐舌.png","无奈.png","长草.png","赞一个.png","呲牙.png","无语.png","阴暗.png","不出所料.png","咽气.png","期待.png","高兴.png","吐血倒地.png","哭泣.png","欢呼.png","黑线.png","喜极而泣.png","喷水.png","深思.png","鼓掌.png","暗地观察.png"],
+     
+      app_id: 'jaz3TfUjRowK9fOMAPb9yw6i-MdYXbMMI',
+      
+      
+      app_key: 'pbltxx4rElIP1RStL3AwujSp',
+         
+          
+      placeholder: '欢迎你留下足迹'
+       
+        });
+    </script>
+
+
+
+
+
+		</div>
+
+			</div>
+			
+
+
+<div class="tocc col l3 hide-on-med-and-down">
+
+        <div class="toc-widget">
+
+            <div class="toc-title"></div>
+
+            <div id="toc-content">
+
+
+			</div>
+        </div>
+    </div>
+
+
+<script src="https://www.bwrong.cn/media/scripts/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '.entry-summary',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h1,h2' //**
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('.entry-summary').children('h1, h2').each(function () {/**/
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget').parent();
+        // let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+    });
+</script>
+
+
+
+
+
+
+			</div>
+		</div>
+
+
+		 <footer id="colophon" class="site-footer">
+
+	<div class="container">
+
+		<div class="copyright"> <br>Theme: <a
+				href="https://github.com/alterfang/gridea-theme-pan" target="_blank" title="Pan"><span>Pan</span></a>.
+			Powered by <a href="https://gridea.dev/" target="_blank" title="Gridea"><span>Gridea</span></a> . 版权所有：<a href="https://beian.miit.gov.cn/" target="_blank"><span>蜀ICP备2023018303号-1</span></a></div>
+	</div>
+
+</footer>
+		<!-- loding -->
+		<div class="loader">
+			<div class="loader-content">
+				<div class="songjingge">
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+			</div>
+		</div>
+<script id="rendered-js">
+	window.onload = function () {
+			var loader = document.getElementsByClassName("loader")[0];
+			loader.className = "loader fadeout"; //使用渐隐的方法淡出loading page
+			setTimeout(function () {
+				loader.style.display = "none";
+			}, 0);
+	};
+</script>
+
+
+</div>
+
+<script src="https://cdn.bootcss.com/fitvids/1.2.0/jquery.fitvids.min.js"></script>
+<script type='text/javascript' src='https://www.bwrong.cn/media/scripts/marlin-scripts.js'></script>
+<script src="https://www.bwrong.cn/media/scripts/lately.min.js"></script>
+<script>jQuery(document).ready(function () { $.lately({ 'target': '.lately-a,.lately-b,.lately-c' }) });</script>
+<style type="text/css">
+  a.back_to_top {
+    text-decoration: none;
+    position: fixed;
+    bottom: 40px;
+    right: 30px;
+    background: #f0f0f0;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    line-height: 36px;
+    font-size: 18px;
+    text-align: center;
+    transition-duration: .5s;
+    transition-propety: background-color;
+    display: none;
+  }
+
+  a.back_to_top span {
+    color: #888;
+  }
+
+  a.back_to_top:hover {
+    cursor: pointer;
+    background: #dfdfdf;
+  }
+
+  a.back_to_top:hover span {
+    color: #555;
+  }
+
+  @media print,
+  screen and (max-width: 580px) {
+    .back_to_top {
+      display: none !important;
+    }
+  }
+</style><a id="back_to_top" href="#" class="back_to_top"><span><i class="iconfont icon-xiangshang"></i></span>
+</a>
+
+<script>
+$(document).ready((function (_this) {
+    return function () {
+      var bt;
+      bt = $('#back_to_top');
+      if ($(document).width() > 480) {
+        $(window).scroll(function () {
+          var st;
+          st = $(window).scrollTop();
+          if (st > 30) {
+            return bt.css('display', 'block');
+          } else {
+            return bt.css('display', 'none');
+          }
+        });
+        return bt.click(function () {
+          $('body,html').animate({
+            scrollTop: 0
+          }, 800);
+          return false;
+        });
+      }
+    };
+  })(this));
+//   $(window).load(function () {
+//     //异步延迟加载样式
+//     var link = $('<link />');
+//     link.attr('href', 'https://fonts.googleapis.com/css?family=Dancing+Script|Noto+Sans+SC:300|Montserrat&display=swap');
+//     link.attr('rel', 'stylesheet');
+//     link.appendTo($('head'));
+// });
+</script>
+
+<!-- 宠物 -->
+<canvas id="live2dcanvas" width="200" height="400" class="live2d"></canvas>
+<style>
+  #live2dcanvas {
+    position: fixed;
+    right: 0px;
+    z-index: 999;
+    pointer-events: none;
+    bottom: -40px;
+    width: 200px;
+    height: 400px;
+  }
+
+  @media (max-width: 768px) {
+    #live2dcanvas {
+      width: 150px;
+      height: 300px;
+    }
+  }
+
+  @media (max-width: 639px) {
+    #live2dcanvas {
+      display: none !important;
+    }
+  }
+</style>
+<script src="https://www.bwrong.cn/media/scripts/L2Dwidget.min.js"></script>
+<script>
+  //初始化小人物 需设置属性pluginRootPath: "live2dw/"指明资源跟路径
+  L2Dwidget.init({
+    pluginRootPath: "media/",//资源root路径
+    pluginJsPath: "scripts/",//js相对root的路径
+    pluginModelPath: "model/",//模型相对root的路径
+    tagMode: !1,
+    debug: !1,
+    model: {
+      scale: 2,
+      jsonPath: "/media/model/live2d-widget-model-epsilon/Epsilon2.1.model.json"
+    },
+    display: {//大小位置什么的自己慢慢调就是了
+      position: "right",//定位
+      width: 130,//宽度
+      height: 210,//高度
+      hOffset: -40,//左右
+      vOffset: 0//上下
+    },
+    mobile: {
+      show: !1
+    },
+    log: !1
+  });
+</script>
+<!-- 宠物结束 -->
+
+		<script data-no-instant>
+    // (function ($) {
+    //     $.extend({
+    //         adamsOverload: function () {
+    //             $('.navigation:eq(0)').remove();
+    //             $("").attr("rel" , "external");
+    //             $("a[rel='external'],a[rel='external nofollow']").attr("target","_blank");
+    //             $("a.vi").attr("rel" , "");
+    //             $.viewImage({
+    //                 'target'  : 'img',
+    //                 'exclude' : '.vsmile-icons img,.gallery img',
+    //                 'delay'   : 300
+    //             });
+    //             $.lately({
+    //                 'target' : '.commentmetadata a,.infos time,.post-list time'
+	// 			});
+	// 			console.log(prettyPrint)
+	// 			if(prettyPrint) prettyPrint();
+
+    //             $('ul.links li a').each(function(){
+    //                 if($(this).parent().find('.bg').length==0){
+    //                     $(this).parent().append('<!---<div class="bg" style="background-image:url(https://c3.glgoo.top/s2/favicons?domain='+$(this).attr("href")+')"></div>--->')
+    //                 }
+    //             });
+    //         }
+    //     });
+    // })(jQuery);
+	// jQuery.adamsOverload();
+
+    (function ($) {
+        $.extend({
+            adamsOverload: function () {
+                $.viewImage({
+                    'target'  : '.song img',
+                    'exclude' : '.vsmile-icons img',
+                    'delay'   : 300
+                });
+            }
+        });
+    })(jQuery);
+    jQuery.adamsOverload();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1626 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+ <meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+<meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<meta HTTP-EQUIV="expires" CONTENT="0">
+<meta name="author" content="bwrong, wang11535041@qq.com"/>
+<meta name="keywords" content="ESLint里的规则教会我，无规矩 不编程 | BWrong的小站,前端,krpano,js,vue"/>
+<meta name="description" content="天青色等烟雨，而我在等你"/>
+<!-- <title>ESLint里的规则教会我，无规矩 不编程 | BWrong的小站</title> -->
+<title>网站搭建测试</title>
+<link href="https://www.bwrong.cn/media/css/fz.css" rel="stylesheet">
+<link rel="stylesheet" href="https://www.bwrong.cn/styles/main.css">
+<script type="text/javascript">
+function getCSS()
+{
+        datetoday = new Date();
+        timenow=datetoday.getTime();
+        datetoday.setTime(timenow);
+        thehour = datetoday.getHours();
+
+        if (thehour<5)
+
+            display = "https://www.bwrong.cn/media/css/night.css";
+
+       else if (thehour>20)
+
+            display = "https://www.bwrong.cn/media/css/night.css";
+
+        else if (thehour>5)
+     
+            display = "https://www.bwrong.cn/media/css/day.css";
+
+        else if (thehour<20)
+
+            display = "https://www.bwrong.cn/media/css/day.css";
+
+
+var css = '<';
+        css+='link rel="stylesheet" href='+display+' \/';
+        css+='>';
+        document.write(css);
+}
+</script>
+<link href="https://at.alicdn.com/t/font_1306644_ko4c4at97is.css" rel="stylesheet" />
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://www.bwrong.cn/media/css/katex.min.css">
+<script type='text/javascript' src='https://www.bwrong.cn/media/scripts/script.js'></script>
+<link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet" />
+  <script src="https://cdn.bootcss.com/wow/1.1.2/wow.min.js"></script>
+  <script src="https://cdn.bootcss.com/highlight.js/9.15.8/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script>wow=new WOW({boxClass:'wow',animateClass:'animated',offset:0,mobile:true,live:true});wow.init();</script>
+
+<script type="text/javascript">
+window.onload=getCSS();
+</script>
+<!-- 百度统计 -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?2c0e9e3f54ae20480b34c178578c4df8";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+</head>
+<body class="post-template-default single single-post postid-70 single-format-standard">
+    <div id="wrapper">
+
+	
+<header id="header" class="site-header"
+		
+		>
+			<div class="site-branding">
+									<h1 class="site-title"><a href="https://www.bwrong.cn" rel="home">BWrong的小站</a></h1>
+
+					<h2 class="site-description">天青色等烟雨，而我在等你</h2>
+
+							</div>
+			<nav id="nav-wrapper">
+				<div class="container">
+					<div class="nav-toggle">
+						<div class="bars">
+							<div class="bar"></div>
+							<div class="bar"></div>
+							<div class="bar"></div>
+						</div>
+					</div>
+					<div class="clear"></div>
+					<ul id="" class="dove">
+		 
+
+<li>
+
+	
+		<a href="/">
+		  首页
+		</a>
+	  
+
+    
+
+<li>
+
+	
+		<a href="/archives/index.html">
+		  归档
+		</a>
+	  
+
+    
+
+<li>
+
+	
+		<a href="/post/about/">
+		  关于
+		</a>
+	  
+
+    
+
+</ul>
+</li>
+
+</ul>				</div>
+			</nav>
+						<div class="jingge">
+
+
+    
+
+    
+
+<a  href="https://github.com/BWrong" target="_blank" ><i class="iconfont icon-github"></i></a>
+ 
+    
+
+    
+
+    
+
+    
+
+<a  href="https://juejin.cn/user/3421335914820280" target="_blank" ><i class="iconfont icon-telegram"></i></a>
+ 
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        </header>
+
+
+		<div id="content" class="container">
+			<div class="row">
+	<div class="col-md-8 site-main">
+
+<article id="post-70" class="post-70 post type-post status-publish format-standard hentry category-5 tag-10 tag-9 tag-11">
+
+
+
+		<div class="entry-content">
+			<h1 data-wow-delay="0.4s"  class="wow fadeInUp entry-title">ESLint里的规则教会我，无规矩 不编程</h1>
+<div class="entry-meta">
+<div class="wow fadeInUp"  data-wow-delay="0.6s">
+	<i class="iconfont icon-rili"> <time class="lately-a" datetime="2019-10-25 20:08:07" itemprop="datePublished" pubdate="">2019-10-25</time></i>
+	          </div>
+
+</span>
+
+		</div>
+
+			<div class="wow fadeInUp entry-summary song"  data-wow-delay="0.1s">
+				<h2 id="eslint里的规则教会我无规矩-不编程">ESLint里的规则教会我，无规矩 不编程</h2>
+<h3 id="编程风格要统一">编程风格要统一</h3>
+<p>编程风格这个东西，说实在的对于刚加入团队的新成员来说还是很难让人完全适应的。因为每人的编程风格都不同，完全是各有千秋的既视感啊<br>
+到了新公司后团队中的每个人也都有各自一套的编程习惯，撸起代码来是挡也挡不住啊，什么都别问，老夫就是干，哈哈，每个coder的代码风格都大相径庭<br>
+不过话说回来，在团队开发中，所有的代码看起来风格一致是极其重要的，所以我们也需要一些代码检查工具，从JSLint,JSHint到今天的主角ESLint，都是非常好用的检查工具<br>
+那么闲言少叙，直接进入主题，投入ESLint的怀抱吧！！！</p>
+<h3 id="eslint是伟大的作品">ESLint是伟大的作品</h3>
+<p>放眼望去，在前端，但凡有个项目，无论大小，都会看到它的身影。并非为了提高比格，让别人暗赞专业，而是它确确实实帮我们检测出不易察觉的错误，避免N多个线上bug<br>
+也通过其规则，让整个团队有了整齐划一的代码输出风格，也有业界的最佳实践写法，深入其中，受益匪浅.....好处优点不多说，用过都说好<br>
+既然都说好了，那还废话那么多，小二赶紧上菜啊</p>
+<h3 id="安装eslint">安装ESLint</h3>
+<p>现在前端项目开发中，都用到了webpack此等屌屌的构建工具(如果有对webpack不熟悉使用的可移步这里)，那么就结合着一起来看下如何使用到项目里吧</p>
+<ul>
+<li>首先安装一下</li>
+</ul>
+<pre><code>// 安装eslint
+// 安装eslint-loader 在webpack中解析
+// 安装babel-eslint  对Babel解析器的包装与ESLint兼容
+// -D 安装在开发依赖环境 devDependencies 原--save-dev的简写
+npm i eslint eslint-loader babel-eslint -D
+</code></pre>
+<p>友情提示：ESLint是基于Node的(当然webpack也是)，所以在使用之前，请确保Node已经安装</p>
+<ul>
+<li>创建.eslintrc.js配置文件(默认是.eslintrc文件)</li>
+</ul>
+<pre><code>// .eslintrc.js
+module.exports = {
+    // 指定解析器
+    'parse': '',
+    // 指定解析器选项
+    'parserOptions': {},
+    // 指定脚本的运行环境
+    'env': {},
+    // 别人可以直接使用你配置好的ESLint
+    'root': true,
+    // 脚本在执行期间访问的额外的全局变量
+    'globals': {},
+    // 启用的规则及其各自的错误级别
+    'rules': {}
+};
+</code></pre>
+<p>将配置好的规则添加到webpack中对js文件检查</p>
+<pre><code>// webpack.config.js
+
+module.exports = {
+    entry: '',
+    output: {},
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                use: ['babel-loader', 'eslint-loader']
+            }
+        ]
+    },
+    plugins: [],
+    devServer: {}
+};
+</code></pre>
+<p>按照上面的三步曲写完后，应该给自己撒花的，哈哈</p>
+<p>再放一张打包的index.js主文件的代码</p>
+<p>该配置的都配置完了，那就迫不及待的执行<code>npm run dev</code>吧，看看是不是完全OK的编译成功呢？<br>
+然并卵啊，高兴的太早了</p>
+<p>上图之所以会有error和warning的报错提示，是因为参照了下面我在公司中使用的ESLint配置规则导致的，那么就赶紧进入下一环节，看看这些规则吧<br>
+工作中用到的规则<br>
+正所谓人在江湖飘啊，哪有不挨刀的道理。谁敢说写的代码放到ESLint里完全不报错，报错纯属正常，没必要慌张<br>
+现在针对一些比较常见的规范来简单梳理一下，这么多规则，其实看的我也吃了一鲸<br>
+现在来看看编译过程中报错的规则吧<br>
+非友情提示：每个规则对应的0，1，2分别表示<code>off, warning, error</code>三个错误级别</p>
+<p><code>no-unused-vars</code><br>
+定义了变量却没有在代码中使用，这是防止产生多余没用的变量</p>
+<p><code>semi</code><br>
+缺少分号，行尾必须使用分号，这是为了在压缩代码的时候出现意外情况</p>
+<p><code>no-console</code><br>
+禁止使用 console，提醒开发者，上线时要去掉，因为是warning不会导致编译的js出问题</p>
+<p><code>consistent-this</code><br>
+this的别名规则，只允许self和that，防止有些人写成_this或者me等等，哈哈</p>
+<p><code>curly</code><br>
+if 后必须包含 { ，单行 if 除外，也是为了方便阅读代码</p>
+<pre><code>// 错误写法
+function fn (key) {
+   if (key === 'a') 
+       return 1;
+}
+fn('a');
+// 正确写法
+function fn (key) {
+   if (key === 'a') {
+       return 1;
+   }
+   if (key === 'b') return 2;
+}
+fn('a');
+</code></pre>
+<p><code>default-case</code><br>
+switch 语句必须包含 default</p>
+<pre><code>// 错误写法
+function fn (key) {
+    let str = '';
+
+    switch (key) {
+        case 'a':
+            str = 'a';
+            break;
+        case 'b':
+            str = 'b';
+            break;
+    }
+    return str;
+}
+// 正确写法
+function fn (key) {
+    let str = '';
+
+    switch(key) {
+        case 'a':
+            str = 'a';
+            break;
+        case 'b':
+            str = 'b';
+            break;
+        default:
+            str = 'c';
+            break;
+    }
+    return str;
+}
+</code></pre>
+<p><code>eqeqeq</code><br>
+必须使用全等===进行比较，防止隐式转换带来的意外问题</p>
+<p><code>guard-for-in</code><br>
+for in时需检测hasOwnProperty，避免遍历到继承来的属性方法</p>
+<p><code>max-depth</code><br>
+最大块嵌套不能超过5层</p>
+<pre><code>// 正确写法
+if () {
+    if () {
+        if () {
+            if () {
+                if () {
+                    
+                }
+            }
+        }
+    }
+}
+</code></pre>
+<p><code>max-params</code><br>
+函数的形参不能多于8个,如果形参过多，我们现在可以用扩展运算符...来代替后面多余的形参</p>
+<p><code>new-cap</code><br>
+new关键字后类名应首字母大写，区分类和函数</p>
+<p>no-array-constructor</p>
+<p>禁止使用Array构造函数，定义数组直接用最快捷的方式[1, 2, 3]</p>
+<p>no-await-in-loop</p>
+<p>禁止将await写在循环里,循环属于同步操作，不该将await异步操作写在内部</p>
+<p>no-caller</p>
+<p>禁止使用arguments.caller和arguments.callee，ES6中废弃了</p>
+<p>no-const-assign</p>
+<p>禁止对const定义重新赋值</p>
+<p>no-delete-var</p>
+<p>禁止对变量使用delete关键字，delete只适用于对象的属性，提醒使用的范围</p>
+<p>no-dupe-args</p>
+<p>函数参数禁止重名</p>
+<p>no-empty-function</p>
+<p>禁止空的function,保证写的每一个function都有用</p>
+<p>no-eval</p>
+<p>禁止使用eval，eval是“魔鬼”，所以在开发中避免</p>
+<p>no-extra-semi</p>
+<p>禁止额外的分号，有些地方没必要加分号比如if () {};这样就是错误的</p>
+<p>no-global-assign</p>
+<p>禁止对全局变量赋值</p>
+<p>好了还有一些就需要大家在使用中来去体会了，下面我将我司工作当中用到的ESLint规则贴出来，方便大家去做代码检查了</p>
+<pre><code>// .eslintrc.js
+module.exports = {
+    // 解析ES6
+    'parser': 'babel-eslint',
+    'parserOptions': {
+        // 启用ES8语法支持
+        'ecmaVersion': 2017,    
+        // module表示ECMAScript模块
+        'sourceType': 'module',
+        // 使用额外的语言特性
+        'ecmaFeatures': {
+            'experimentalObjectRestSpread': true,
+            'jsx': true,
+            'modules': true,
+        }
+    },
+    // 这些环境并不是互斥的，所以你可以同时定义多个
+    'env': {
+        'browser': true,
+        'jquery': true,
+        'node': true,
+        'commonjs': true,
+        'es6': true,
+    },
+    'root': true,
+    // 当访问当前源文件内未定义的变量时，no-undef 规则将发出警告
+    // 所以需要定义这些额外的全局变量
+    'globals': {
+        'OnlySVG': true,
+        'monitor': true,
+        'CanvasRender': true,
+        'Vue': true,
+        'VueRouter': true
+    },
+    'rules': {
+        // 设置了 setter ，必须相应设置 getter ，反之不必须
+        'accessor-pairs': 2,
+
+        // 数组方括号前后的换行符使用规则
+        // @off 不关心
+        'array-bracket-newline': 0,
+
+        // 数组方括号前后的空格使用规则
+        // @off 不关心
+        'array-bracket-spacing': 0,
+
+        // 数组的 map、filter、sort 等方法，回调函数必须有返回值
+        'array-callback-return': 2,
+
+        // 每个数组项是否独占一行
+        // @off 不关心
+        'array-element-newline': 0,
+
+        // 箭头函数的书写规则
+        // @off 不限制
+        'arrow-body-style': 0,
+
+        // 箭头函数的圆括号使用规则
+        // @off 不限制
+        'arrow-parens': 0,
+
+        // 箭头函数的空格使用规则
+        // @off 不限制
+        'arrow-spacing': 0,
+
+        // 不能在块外使用块作用域内 var 定义的变量
+        'block-scoped-var': 2,
+
+        // 代码块花括号前后的空格规则
+        // @off 不关心
+        'block-spacing': 0,
+
+        // if else 的花括号换行规则
+        // @off 不关心
+        'brace-style': 0,
+
+        // callback 之后必须立即 return
+        // @off 没必要
+        'callback-return': 0,
+
+        // 变量名必须使用驼峰式
+        // @off 暂不限制
+        'camelcase': 0,
+
+        // 注释的首字母应该大写
+        // @off 没必要
+        'capitalized-comments': 0,
+
+        // class 的非静态方法必须包含 this 关键字
+        'class-methods-use-this': 2,
+
+        // 对象的最后一项后面是否写逗号
+        // @off 此项目不关心
+        // @fixable 对于 PC 项目考虑兼容性时需要设置
+        'comma-dangle': 0,
+
+        // 逗号前后是否有空格
+        // @off 不关心
+        'comma-spacing': 0,
+
+        // 逗号写在行首还是行尾
+        // @off 不关心
+        'comma-style': 0,
+
+        // 禁止函数 if ... else if ... else 的复杂度超过 20
+        'complexity': 2,
+
+        // 使用方括号访问对象属性时，方括号前后的空格规则
+        // @off 不关心
+        'computed-property-spacing': 0,
+
+        // 禁止函数在不同条件下返回不同类型的值
+        // @off 有时候会希望通过参数获取不同类型的返回值
+        'consistent-return': 0,
+
+        // this 的别名规则，只允许 self 或 that
+        'consistent-this': [2, 'self', 'that'],
+
+        // 构造函数中必须调用 super
+        // @off 没必要
+        'constructor-super': 0,
+
+        // if 后必须包含 { ，单行 if 除外
+        'curly': [2, 'multi-line', 'consistent'],
+
+        // switch 语句必须包含 default
+        'default-case': 2,
+
+        // 链式操作时，点的位置，是在上一行结尾还是下一行开头
+        // @off 不关心
+        'dot-location': 0,
+
+        // 文件最后必须有空行
+        // @off 不限制
+        'eol-last': 0,
+
+        // 必须使用 === 和 !== ，和 null 对比时除外
+        'eqeqeq': [2, 'always', { 'null': 'ignore' }],
+
+        // for 循环不得因方向错误造成死循环
+        'for-direction': 2,
+
+        // 执行函数的圆括号前后的空格规则
+        // @off 不关心
+        'func-call-spacing': 0,
+
+        // 把函数赋给变量或对象属性时，函数名和变量名或对象属性名必须一致
+        // @off 不限制
+        'func-name-matching': 0,
+
+        // 不允许匿名函数
+        // @off 不限制
+        'func-names': 0,
+
+        // 必须只使用函数申明或只使用函数表达式
+        // @off 不限制
+        'func-style': 0,
+
+        // generator 的 * 前后空格使用规则
+        // @off 不限制
+        'generator-star-spacing': 0,
+
+        // getter 必须有返回值，允许返回 undefined
+        'getter-return': [2, { allowImplicit: true }],
+
+        // require 必须在全局作用域下
+        // @off 条件加载很常见
+        'global-require': 0,
+
+        // for in 时需检测 hasOwnProperty
+        'guard-for-in': 2,
+
+        // callback 中的 err、error 参数和变量必须被处理
+        'handle-callback-err': 2,
+
+        // id 黑名单
+        // @off 暂时没有
+        'id-blacklist': 0,
+
+        // 变量名长度限制
+        // @off 长度不是重点，清晰易读才是关键
+        'id-length': 0,
+
+        // 限制变量名必须匹配指定的正则表达式
+        // @off 没必要限制变量名
+        'id-match': 0,
+
+        // 缩进使用 tab 还是空格
+        // @off 不关心
+        'indent': 0,
+
+        // 变量必须在定义的时候赋值
+        // @off 先定义后赋值很常见
+        'init-declarations': 0,
+
+        // jsx 语法中，属性的值必须使用双引号
+        'jsx-quotes': [2, 'prefer-double'],
+
+        // 对象字面量冒号前后的空格使用规则
+        // @off 不关心
+        'key-spacing': 0,
+
+        // 关键字前后必须有空格
+        'keyword-spacing': 2,
+
+        // 换行符使用规则
+        // @off 不关心
+        'linebreak-style': 0,
+
+        // 单行注释必须写在前一行还是行尾
+        // @off 不限制
+        'line-comment-position': 0,
+
+        // 注释前后是否要空一行
+        // @off 不限制
+        'lines-around-comment': 0,
+
+        // 最大块嵌套深度为 5 层
+        'max-depth': [2, 5],
+
+        // 限制单行代码的长度
+        // @off 不限制
+        'max-len': 0,
+
+        // 限制单个文件最大行数
+        // @off 不限制
+        'max-lines': 0,
+
+        // 最大回调深度为 3 层
+        'max-nested-callbacks': [2, 3],
+
+        // 函数的形参不能多于8个
+        'max-params': [2, 8],
+
+        // 限制一行中的语句数量
+        // @off 没必要限制
+        'max-statements-per-line': 0,
+
+        // 限制函数块中的语句数量
+        // @off 没必要限制
+        'max-statements': 0,
+
+        // 三元表达式的换行规则
+        // @off 不限制
+        'multiline-ternary': 0,
+
+        // new关键字后类名应首字母大写
+        'new-cap': [2, {
+            'capIsNew': false, // 允许大写开头的函数直接执行
+        }],
+
+        // new 关键字后类应包含圆括号
+        'new-parens': 2,
+
+        // 链式调用是否要换行
+        // @off 不限制
+        'newline-per-chained-call': 0,
+
+        // 禁止 alert，提醒开发者，上线时要去掉
+        'no-alert': 1,
+
+        // 禁止使用 Array 构造函数，使用 Array(num) 直接创建长度为 num 的数组时可以
+        'no-array-constructor': 2,
+
+        // 禁止将 await 写在循环里
+        'no-await-in-loop': 2,
+
+        // 禁止位运算
+        // @off 不限制
+        'no-bitwise': 0,
+
+        // 禁止在 Node.js 中直接调用 Buffer 构造函数
+        'no-buffer-constructor': 2,
+
+        // 禁止使用 arguments.caller 和 arguments.callee
+        'no-caller': 2,
+
+        // switch的条件中出现 var、let、const、function、class 等关键字，必须使用花括号把内容括起来
+        'no-case-declarations': 2,
+
+        // catch中不得使用已定义的变量名
+        'no-catch-shadow': 2,
+
+        // class定义的类名不得与其它变量重名
+        'no-class-assign': 2,
+
+        // 禁止与 -0 做比较
+        'no-compare-neg-zero': 2,
+
+        // 禁止在 if、for、while 中出现赋值语句，除非用圆括号括起来
+        'no-cond-assign': [2, 'except-parens'],
+
+        // 禁止出现难以理解的箭头函数，除非用圆括号括起来
+        'no-confusing-arrow': [2, { 'allowParens': true }],
+
+        // 禁止使用 console，提醒开发者，上线时要去掉
+        'no-console': 1,
+
+        // 禁止使用常量作为判断条件
+        'no-constant-condition': [2, { 'checkLoops': false }],
+
+        // 禁止对 const 定义重新赋值
+        'no-const-assign': 2,
+
+        // 禁止 continue
+        // @off 很常用
+        'no-continue': 0,
+
+        // 禁止正则表达式中出现 Ctrl 键的 ASCII 表示，即/\x1f/
+        'no-control-regex': 2,
+
+        // 禁止 debugger 语句，提醒开发者，上线时要去掉
+        'no-debugger': 1,
+
+        // 禁止对变量使用 delete 关键字，删除对象的属性不受限制
+        'no-delete-var': 2,
+
+        // 禁止在正则表达式中出现形似除法操作符的开头，如 let a = /=foo/
+        // @off 有代码高亮的话，在阅读这种代码时，也完全不会产生歧义或理解上的困难
+        'no-div-regex': 0,
+
+        // 函数参数禁止重名
+        'no-dupe-args': 2,
+
+        // 禁止对象出现重名键值
+        'no-dupe-keys': 2,
+
+        // 类方法禁止重名
+        'no-dupe-class-members': 2,
+
+        // 禁止 switch 中出现相同的 case
+        'no-duplicate-case': 2,
+
+        // 禁止重复 import
+        'no-duplicate-imports': 2,
+
+        // 禁止出现 if (cond) { return a } else { return b }，应该写为 if (cond) { return a } return b
+        // @off 有时前一种写法更清晰易懂
+        'no-else-return': 0,
+
+        // 正则表达式中禁止出现空的字符集[]
+        'no-empty-character-class': 2,
+
+        // 禁止空的 function
+        // 包含注释的情况下允许
+        'no-empty-function': 2,
+
+        // 禁止解构中出现空 {} 或 []
+        'no-empty-pattern': 2,
+
+        // 禁止出现空代码块
+        'no-empty': [2, { 'allowEmptyCatch': true }],
+
+        // 禁止 == 和 != 与 null 做比较，必须用 === 或 !==
+        // @off 非严格相等可以同时判断 null 和 undefined
+        'no-eq-null': 0,
+
+        // 禁止使用 eval
+        'no-eval': 2,
+
+        // catch 定义的参数禁止赋值
+        'no-ex-assign': 2,
+
+        // 禁止扩展原生对象
+        'no-extend-native': [2, { 'exceptions': ['Array', 'Object'] }],
+
+        // 禁止额外的 bind
+        'no-extra-bind': 2,
+
+        // 禁止额外的布尔值转换
+        'no-extra-boolean-cast': 2,
+
+        // 禁止额外的 label
+        'no-extra-label': 2,
+
+        // 禁止额外的括号，仅针对函数体
+        'no-extra-parens': [2, 'functions'],
+
+        // 禁止额外的分号
+        'no-extra-semi': 2,
+
+        // 每一个 switch 的 case 都需要有 break, return 或 throw
+        // 包含注释的情况下允许
+        'no-fallthrough': [2, { 'commentPattern': '.' }],
+
+        // 不允许使用 2. 或 .5 来表示数字，需要用 2、2.0、0.5 的格式
+        'no-floating-decimal': 2,
+
+        // 禁止对函数声明重新赋值
+        'no-func-assign': 2,
+
+        // 禁止对全局变量赋值
+        'no-global-assign': 2,
+
+        // 禁止使用隐式类型转换
+        'no-implicit-coercion': [2, {
+            'allow': ['+', '!!'] // 允许 + 转数值 '' + 转字符串和 !! 转布尔值
+        }],
+
+        // 禁止在 setTimeout 和 setInterval 中传入字符串，因会触发隐式 eval
+        'no-implied-eval': 2,
+
+        // 禁止隐式定义全局变量
+        'no-implicit-globals': 2,
+
+        // 禁止行内注释
+        // @off 很常用
+        'no-inline-comments': 0,
+
+        // 禁止在块作用域内使用 var 或函数声明
+        'no-inner-declarations': [2, 'both'],
+
+        // 禁止使用非法的正则表达式
+        'no-invalid-regexp': 2,
+
+        // 禁止在类之外的地方使用 this
+        // @off this 的使用很灵活，事件回调中可以表示当前元素，函数也可以先用 this，等以后被调用的时候再 call
+        'no-invalid-this': 0,
+
+        // 禁止使用不规范空格
+        'no-irregular-whitespace': [2, {
+            'skipStrings': true, // 允许在字符串中使用
+            'skipComments': true, // 允许在注释中使用
+            'skipRegExps': true, // 允许在正则表达式中使用
+            'skipTemplates': true, // 允许在模板字符串中使用
+        }],
+
+        // 禁止使用 __iterator__
+        'no-iterator': 2,
+
+        // label 不得与已定义的变量重名
+        'no-label-var': 2,
+
+        // 禁止使用 label
+        // @off 禁止了将很难 break 多重循环和多重 switch
+        'no-labels': 0,
+
+        // 禁止使用无效的块作用域
+        'no-lone-blocks': 2,
+
+        // 禁止 else 中只有一个单独的 if
+        // @off 单独的 if 可以把逻辑表达的更清楚
+        'no-lonely-if': 0,
+
+        // 禁止 for (var i) { function() { use i } }，使用 let 则可以
+        'no-loop-func': 2,
+
+        // 禁止魔法数字
+        'no-magic-numbers': 0,
+
+        // 禁止使用混合的逻辑判断，必须把不同的逻辑用圆括号括起来
+        'no-mixed-operators': [2, {
+            &quot;groups&quot;: [
+                [&quot;&amp;&amp;&quot;, &quot;||&quot;]
+            ]
+        }],
+
+        // 相同类型的 require 必须放在一起
+        // @off 不限制
+        'no-mixed-requires': 0,
+
+        // 禁止混用空格和 tab 来做缩进，必须统一
+        'no-mixed-spaces-and-tabs': 2,
+
+        // 禁止连等赋值
+        'no-multi-assign': 2,
+
+        // 禁止使用连续的空格
+        'no-multi-spaces': 2,
+
+        // 禁止使用 \ 来定义多行字符串，统一使用模板字符串来做
+        'no-multi-str': 2,
+
+        // 连续空行的数量限制
+        'no-multiple-empty-lines': [2, {
+            max: 3, // 文件内最多连续 3 个
+            maxEOF: 1, // 文件末尾最多连续 1 个
+            maxBOF: 1 // 文件头最多连续 1 个
+        }],
+
+        // 禁止 if 中出现否定表达式 !==
+        // @off 否定的表达式可以把逻辑表达的更清楚
+        'no-negated-condition': 0,
+
+        // 禁止嵌套的三元表达式
+        // @off 没有必要限制
+        'no-nested-ternary': 0,
+
+        // 禁止 new Function
+        // @off 有时会用它来解析非标准格式的 JSON 数据
+        'no-new-func': 0,
+
+        // 禁止使用 new Object
+        'no-new-object': 2,
+
+        // 禁止使用 new require
+        'no-new-require': 2,
+
+        // 禁止使用 new Symbol
+        'no-new-symbol': 2,
+
+        // 禁止 new Boolean、Number 或 String
+        'no-new-wrappers': 2,
+
+        // 禁止 new 一个类而不存储该实例
+        'no-new': 2,
+
+        // 禁止把原生对象 Math、JSON、Reflect 当函数使用
+        'no-obj-calls': 2,
+
+        // 禁止使用八进制转义符
+        'no-octal-escape': 2,
+
+        // 禁止使用0开头的数字表示八进制
+        'no-octal': 2,
+
+        // 禁止使用 __dirname + 'file' 的形式拼接路径，应该使用 path.join 或 path.resolve 来代替
+        'no-path-concat': 2,
+
+        // 禁止对函数的参数重新赋值
+        'no-param-reassign': 2,
+
+        // 禁止 ++ 和 --
+        // @off 很常用
+        'no-plusplus': 0,
+
+        // 禁止使用 process.env.NODE_ENV
+        // @off 使用很常见
+        'no-process-env': 0,
+
+        // 禁止使用 process.exit(0)
+        // @off 使用很常见
+        'no-process-exit': 0,
+
+        // 禁止使用 hasOwnProperty, isPrototypeOf 或 propertyIsEnumerable
+        // @off 与 guard-for-in 规则冲突，且没有必要
+        'no-prototype-builtins': 0,
+
+        // 禁止使用 __proto__
+        'no-proto': 2,
+
+        // 禁止重复声明
+        'no-redeclare': 2,
+
+        // 禁止在正则表达式中出现连续空格
+        'no-regex-spaces': 2,
+
+        // 禁止特定的全局变量
+        // @off 暂时没有
+        'no-restricted-globals': 0,
+
+        // 禁止 import 特定的模块
+        // @off 暂时没有
+        'no-restricted-imports': 0,
+
+        // 禁止使用特定的模块
+        // @off 暂时没有
+        'no-restricted-modules': 'off',
+
+        // 禁止特定的对象属性
+        // @off 暂时没有
+        'no-restricted-properties': 0,
+
+        // 禁止使用特定的语法
+        // @off 暂时没有
+        'no-restricted-syntax': 0,
+
+        // 禁止在return中赋值
+        'no-return-assign': 2,
+
+        // 禁止在 return 中使用 await
+        'no-return-await': 2,
+
+        // 禁止 location.href = 'javascript:void'
+        'no-script-url': 2,
+
+        // 禁止将自己赋值给自己
+        'no-self-assign': 2,
+
+        // 禁止自己与自己作比较
+        'no-self-compare': 2,
+
+        // 禁止逗号操作符
+        'no-sequences': 2,
+
+        // 禁止使用保留字作为变量名
+        'no-shadow-restricted-names': 2,
+
+        // 禁止在嵌套作用域中出现重名的定义，如 let a; function b() { let a }
+        'no-shadow': 2,
+
+        // 禁止数组中出现连续逗号
+        'no-sparse-arrays': 2,
+
+        // 禁止使用 node 中的同步的方法，比如 fs.readFileSync
+        // @off 使用很常见
+        'no-sync': 0,
+
+        // 禁止使用 tabs
+        // @off 不限制
+        'no-tabs': 0,
+
+        // 禁止普通字符串中出现模板字符串语法
+        'no-template-curly-in-string': 2,
+
+        // 禁止三元表达式
+        // @off 很常用
+        'no-ternary': 0,
+
+        // 禁止在构造函数的 super 之前使用 this
+        'no-this-before-super': 2,
+
+        // 禁止 throw 字面量，必须 throw 一个 Error 对象
+        'no-throw-literal': 2,
+
+        // 禁止行尾空格
+        'no-trailing-spaces': [2, {
+            &quot;skipBlankLines&quot;: true, // 不检查空行
+            &quot;ignoreComments&quot;: true // 不检查注释
+        }],
+
+        // 禁止将 undefined 赋值给变量
+        'no-undef-init': 2,
+
+        // 禁止访问未定义的变量或方法
+        'no-undef': 2,
+
+        // 禁止使用 undefined，如需判断一个变量是否为 undefined，请使用 typeof a === 'undefined'
+        'no-undefined': 2,
+
+        // 禁止变量名中使用下划线
+        // @off 暂不限制
+        'no-underscore-dangle': 0,
+
+        // 禁止出现难以理解的多行代码
+        'no-unexpected-multiline': 2,
+
+        // 循环体内必须对循环条件进行修改
+        'no-unmodified-loop-condition': 2,
+
+        // 禁止不必要的三元表达式
+        'no-unneeded-ternary': [2, { 'defaultAssignment': false }],
+
+        // 禁止出现不可到达的代码，如在 return、throw 之后的代码
+        'no-unreachable': 2,
+
+        // 禁止在finally块中出现 return、throw、break、continue
+        'no-unsafe-finally': 2,
+
+        // 禁止出现不安全的否定，如 for (!key in obj} {}，应该写为 for (!(key in obj)} {}
+        'no-unsafe-negation': 2,
+
+        // 禁止出现无用的表达式
+        'no-unused-expressions': [2,
+            {
+                'allowShortCircuit': true, // 允许使用 a() || b 或 a &amp;&amp; b()
+                'allowTernary': true, // 允许在表达式中使用三元运算符
+                'allowTaggedTemplates': true, // 允许标记模板字符串
+            }
+        ],
+
+        // 禁止定义不使用的 label
+        'no-unused-labels': 2,
+
+        // 禁止定义不使用的变量
+        'no-unused-vars': [2,
+            {
+                'vars': 'all', // 变量定义必须被使用
+                'args': 'none', // 对于函数形参不检测
+                'ignoreRestSiblings': true, // 忽略剩余子项 fn(...args)，{a, b, ...coords}
+                'caughtErrors': 'none', // 忽略 catch 语句的参数使用
+            }
+        ],
+
+        // 禁止在变量被定义之前使用它
+        'no-use-before-define': [2,
+            {
+                'functions': false, // 允许函数在定义之前被调用
+                'classes': false, // 允许类在定义之前被引用
+            }
+        ],
+
+        // 禁止不必要的 call 和 apply
+        'no-useless-call': 2,
+
+        // 禁止使用不必要计算的key，如 var a = { ['0']: 0 }
+        'no-useless-computed-key': 2,
+
+        // 禁止不必要的字符串拼接
+        'no-useless-concat': 2,
+
+        // 禁止无用的构造函数
+        'no-useless-constructor': 2,
+
+        // 禁止无用的转义
+        'no-useless-escape': 2,
+
+        // 禁止无效的重命名，如 import {a as a} from xxx
+        'no-useless-rename': 2,
+
+        // 禁止没有必要的 return
+        // @off 没有必要限制
+        'no-useless-return': 0,
+
+        // 禁止使用 var，必须用 let 或 const
+        'no-var': 2,
+
+        // 禁止使用void
+        'no-void': 2,
+
+        // 禁止注释中出现 TODO 或 FIXME，用这个来提醒开发者，写了 TODO 就一定要做完
+        'no-warning-comments': 1,
+
+        // 禁止属性前出现空格，如 foo. bar()
+        'no-whitespace-before-property': 2,
+
+        // 禁止 with
+        'no-with': 2,
+
+        // 禁止 if 语句在没有花括号的情况下换行
+        'nonblock-statement-body-position': 2,
+
+        // 定义对象的花括号前后是否要加空行
+        // @off 不关心
+        'object-curly-newline': 0,
+
+        // 定义对象的花括号前后是否要加空格
+        // @off 不关心
+        'object-curly-spacing': 0,
+
+        // 对象每个属性必须独占一行
+        // @off 不限制
+        'object-property-newline': 0,
+
+        // obj = { a: a } 必须转换成 obj = { a }
+        // @off 没必要
+        'object-shorthand': 0,
+
+        // 每个变量声明必须独占一行
+        // @off 有 one-var 就不需要此规则了
+        'one-var-declaration-per-line': 0,
+
+        // 是否允许使用逗号一次声明多个变量
+        'one-var': [2, {
+            'const': 'never' // 所有 const 声明必须独占一行，不允许用逗号定义多个
+        }],
+
+        // 必须使用 x = x + y 而不是 x += y
+        // @off 没必要限制
+        'operator-assignment': 0,
+
+        // 断行时操作符位于行首还是行尾
+        // @off 不关心
+        'operator-linebreak': 0,
+
+        // 代码块首尾必须要空行
+        // @off 没必要限制
+        'padded-blocks': 0,
+
+        // 限制语句之间的空行规则，比如变量定义完之后必须要空行
+        // @off 没必要限制
+        'padding-line-between-statements': 0,
+
+        // 必须使用箭头函数作为回调
+        // @off 没必要
+        'prefer-arrow-callback': 0,
+
+        // 声明后不再修改的变量必须使用 const
+        // @off 没必要
+        'prefer-const': 0,
+
+        // 必须使用解构
+        // @off 没必要
+        'prefer-destructuring': 0,
+
+        // 必须使用 0b11111011 而不是 parseInt('111110111', 2)
+        // @off 没必要
+        'prefer-numeric-literals': 0,
+
+        // promise 的 reject 中必须传入 Error 对象，而不允许使用字面量
+        'prefer-promise-reject-errors': 2,
+
+        // 必须使用解构 ...args 来代替 arguments
+        'prefer-rest-params': 2,
+
+        // 必须使用 func(...args) 来代替 func.apply(args)
+        // @off 没必要
+        'prefer-spread': 0,
+
+        // 必须使用模板字符串来代替字符串拼接
+        // @off 不限制
+        'prefer-template': 0,
+
+        // 字符串必须使用单引号
+        'quotes': [2, 'single', {
+            'avoidEscape': true, // 允许包含单引号的字符串使用双引号
+            'allowTemplateLiterals': true, // 允许使用模板字符串
+        }],
+
+        // 对象字面量的键名禁止用引号括起来
+        // @off 没必要限制
+        'quote-props': 0,
+
+        // parseInt方法必须传进制参数
+        'radix': 2,
+
+        // async 函数中必须存在 await 语句
+        // @off async function 中没有 await 的写法很常见，比如 koa 的示例中就有这种用法
+        'require-await': 0,
+
+        // 必须使用 jsdoc 风格的注释
+        // @off 暂不考虑开启
+        'require-jsdoc': 0,
+
+        // generator 函数内必须有 yield
+        'require-yield': 2,
+
+        // ...后面不允许有空格
+        'rest-spread-spacing': [2, 'never'],
+
+        // 分号前后的空格规则
+        // @off 不限制
+        'semi-spacing': 0,
+
+        // 禁止行首出现分号
+        'semi-style': [2, 'last'],
+
+        // 行尾必须使用分号结束
+        'semi': 2,
+
+        // imports 必须排好序
+        // @off 没必要限制
+        'sort-imports': 0,
+
+        // 对象字面量的键名必须排好序
+        // @off 没必要限制
+        'sort-keys': 0,
+
+        // 变量声明必须排好序
+        // @off 没必要限制
+        'sort-vars': 0,
+
+        // function 等的花括号之前是否使用空格
+        // @off 不关心
+        'space-before-blocks': 0,
+
+        // function 的圆括号之前是否使用空格
+        // @off 不关心
+        'space-before-function-paren': 0,
+
+        // 圆括号内的空格使用规则
+        // @off 不关心
+        'space-in-parens': 0,
+
+        // 操作符前后要加空格
+        'space-infix-ops': 2,
+
+        // new, delete, typeof, void, yield 等表达式前后必须有空格，-, +, --, ++, !, !! 等表达式前后不许有空格
+        'space-unary-ops': [2, {
+            'words': true,
+            'nonwords': false,
+        }],
+
+        // 注释的斜线和星号后要加空格
+        'spaced-comment': [2, 'always', {
+            'block': {
+                exceptions: ['*'],
+                balanced: true
+            }
+        }],
+
+        // 禁用严格模式，禁止在任何地方出现 'use strict'
+        'strict': [2, 'never'],
+
+        // switch 中冒号前后的空格规则
+        // @off 不关心
+        'switch-colon-spacing': 0,
+
+        // 创建 Symbol 的时候必须传入描述
+        'symbol-description': 2,
+
+        // 模板字符串 ${} 前后的空格规则
+        // @off 不限制
+        'template-curly-spacing': 0,
+
+        // 模板字符串前后的空格规则
+        // @off 不限制
+        'template-tag-spacing': 0,
+
+        // 所有文件头禁止出现 BOM
+        'unicode-bom': 2,
+
+        // 禁止直接对 NaN 进行判断，必须使用 isNaN
+        'use-isnan': 2,
+
+        // 注释必须符合 jsdoc 的规范
+        // @off 暂不考虑开启
+        'valid-jsdoc': 0,
+
+        // typeof 判断条件只能是 &quot;undefined&quot;, &quot;object&quot;, &quot;boolean&quot;, &quot;number&quot;, &quot;string&quot;, &quot;function&quot; 或 &quot;symbol&quot;
+        'valid-typeof': 2,
+
+        // var 必须在作用域的最前面
+        // @off var 不在最前面也是很常见的用法
+        'vars-on-top': 0,
+
+        // 自执行函数必须使用圆括号括起来，如 (function(){do something...})()
+        'wrap-iife': [2, 'inside'],
+
+        // 正则表达式必须用圆括号括起来
+        // @off 不限制
+        'wrap-regex': 0,
+
+        // yield 的 * 前后空格规则
+        // @off 不限制
+        'yield-star-spacing': 0,
+
+        // 禁止Yoda格式的判断条件，如 if (true === a)，应使用 if (a === true)
+        'yoda': 2,
+    }
+};
+</code></pre>
+
+							</div>
+	<div class="wow fadeInUp vt-post-tags">
+ 
+				<a href="https://www.bwrong.cn/tag/7EqCRMv2m/" rel="tag">eslint</a>
+				 
+					</div>
+<nav class="navigation3 post-navigation3" role="navigation">
+
+		<div class="nav-links3">
+      
+		 
+		</div>
+	</nav>
+	<div class="wow fadeInUp author-info">
+	<div class="author-avatar pull-left"><img src="https://www.bwrong.cn/images/avatar.png" ></div>
+ 
+	<div class="author-description"><div class="author-title"><div class="author-link" rel="author">BWrong</div></div>
+
+
+	<p class="author-bio">愿你走出半生，归来仍是少年</p></div></div>
+	
+		</div>
+
+
+
+</article>
+
+<div id="marlin_lite_about_widget-2" class="wow fadeInUp widget marlin_lite_about_widget" data-wow-delay="0.1s">
+
+        
+		<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://www.bwrong.cn/media/scripts/Valine.min.js'></script>
+
+<div class="comment"></div>
+<script>
+        new Valine({
+            av: AV,
+            el: '.comment',
+            lang: 'zh-cn',
+            visitor: false, // 阅读量统计
+            
+            admin_email:'wang11535041@qq.com',
+            
+            
+            emoticon_url: '/media/alu',
+             
+      emoticon_list: ["吐.png","喷血.png","狂汗.png","不说话.png","汗.png","坐等.png","献花.png","不高兴.png","中刀.png","害羞.png","皱眉.png","小眼睛.png","中指.png","尴尬.png","瞅你.png","想一想.png","中枪.png","得意.png","肿包.png","扇耳光.png","亲亲.png","惊喜.png","脸红.png","无所谓.png","便便.png","愤怒.png","蜡烛.png","献黄瓜.png","内伤.png","投降.png","观察.png","看不见.png","击掌.png","抠鼻.png","邪恶.png","看热闹.png","口水.png","抽烟.png","锁眉.png","装大款.png","吐舌.png","无奈.png","长草.png","赞一个.png","呲牙.png","无语.png","阴暗.png","不出所料.png","咽气.png","期待.png","高兴.png","吐血倒地.png","哭泣.png","欢呼.png","黑线.png","喜极而泣.png","喷水.png","深思.png","鼓掌.png","暗地观察.png"],
+     
+      app_id: 'jaz3TfUjRowK9fOMAPb9yw6i-MdYXbMMI',
+      
+      
+      app_key: 'pbltxx4rElIP1RStL3AwujSp',
+         
+          
+      placeholder: '欢迎你留下足迹'
+       
+        });
+    </script>
+
+
+
+
+
+		</div>
+
+			</div>
+			
+
+
+<div class="tocc col l3 hide-on-med-and-down">
+
+        <div class="toc-widget">
+
+            <div class="toc-title"></div>
+
+            <div id="toc-content">
+
+
+			</div>
+        </div>
+    </div>
+
+
+<script src="https://www.bwrong.cn/media/scripts/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '.entry-summary',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h1,h2' //**
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('.entry-summary').children('h1, h2').each(function () {/**/
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget').parent();
+        // let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+    });
+</script>
+
+
+
+
+
+
+			</div>
+		</div>
+
+
+		 <footer id="colophon" class="site-footer">
+
+	<div class="container">
+
+		<div class="copyright"> <br>Theme: <a
+				href="https://github.com/alterfang/gridea-theme-pan" target="_blank" title="Pan"><span>Pan</span></a>.
+			Powered by <a href="https://gridea.dev/" target="_blank" title="Gridea"><span>Gridea</span></a> . 版权所有：<a href="https://beian.miit.gov.cn/" target="_blank"><span>蜀ICP备2023018303号-1</span></a></div>
+	</div>
+
+</footer>
+		<!-- loding -->
+		<div class="loader">
+			<div class="loader-content">
+				<div class="songjingge">
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+			</div>
+		</div>
+<script id="rendered-js">
+	window.onload = function () {
+			var loader = document.getElementsByClassName("loader")[0];
+			loader.className = "loader fadeout"; //使用渐隐的方法淡出loading page
+			setTimeout(function () {
+				loader.style.display = "none";
+			}, 0);
+	};
+</script>
+
+
+</div>
+
+<script src="https://cdn.bootcss.com/fitvids/1.2.0/jquery.fitvids.min.js"></script>
+<script type='text/javascript' src='https://www.bwrong.cn/media/scripts/marlin-scripts.js'></script>
+<script src="https://www.bwrong.cn/media/scripts/lately.min.js"></script>
+<script>jQuery(document).ready(function () { $.lately({ 'target': '.lately-a,.lately-b,.lately-c' }) });</script>
+<style type="text/css">
+  a.back_to_top {
+    text-decoration: none;
+    position: fixed;
+    bottom: 40px;
+    right: 30px;
+    background: #f0f0f0;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    line-height: 36px;
+    font-size: 18px;
+    text-align: center;
+    transition-duration: .5s;
+    transition-propety: background-color;
+    display: none;
+  }
+
+  a.back_to_top span {
+    color: #888;
+  }
+
+  a.back_to_top:hover {
+    cursor: pointer;
+    background: #dfdfdf;
+  }
+
+  a.back_to_top:hover span {
+    color: #555;
+  }
+
+  @media print,
+  screen and (max-width: 580px) {
+    .back_to_top {
+      display: none !important;
+    }
+  }
+</style><a id="back_to_top" href="#" class="back_to_top"><span><i class="iconfont icon-xiangshang"></i></span>
+</a>
+
+<script>
+$(document).ready((function (_this) {
+    return function () {
+      var bt;
+      bt = $('#back_to_top');
+      if ($(document).width() > 480) {
+        $(window).scroll(function () {
+          var st;
+          st = $(window).scrollTop();
+          if (st > 30) {
+            return bt.css('display', 'block');
+          } else {
+            return bt.css('display', 'none');
+          }
+        });
+        return bt.click(function () {
+          $('body,html').animate({
+            scrollTop: 0
+          }, 800);
+          return false;
+        });
+      }
+    };
+  })(this));
+//   $(window).load(function () {
+//     //异步延迟加载样式
+//     var link = $('<link />');
+//     link.attr('href', 'https://fonts.googleapis.com/css?family=Dancing+Script|Noto+Sans+SC:300|Montserrat&display=swap');
+//     link.attr('rel', 'stylesheet');
+//     link.appendTo($('head'));
+// });
+</script>
+
+<!-- 宠物 -->
+<canvas id="live2dcanvas" width="200" height="400" class="live2d"></canvas>
+<style>
+  #live2dcanvas {
+    position: fixed;
+    right: 0px;
+    z-index: 999;
+    pointer-events: none;
+    bottom: -40px;
+    width: 200px;
+    height: 400px;
+  }
+
+  @media (max-width: 768px) {
+    #live2dcanvas {
+      width: 150px;
+      height: 300px;
+    }
+  }
+
+  @media (max-width: 639px) {
+    #live2dcanvas {
+      display: none !important;
+    }
+  }
+</style>
+<script src="https://www.bwrong.cn/media/scripts/L2Dwidget.min.js"></script>
+<script>
+  //初始化小人物 需设置属性pluginRootPath: "live2dw/"指明资源跟路径
+  L2Dwidget.init({
+    pluginRootPath: "media/",//资源root路径
+    pluginJsPath: "scripts/",//js相对root的路径
+    pluginModelPath: "model/",//模型相对root的路径
+    tagMode: !1,
+    debug: !1,
+    model: {
+      scale: 2,
+      jsonPath: "/media/model/live2d-widget-model-epsilon/Epsilon2.1.model.json"
+    },
+    display: {//大小位置什么的自己慢慢调就是了
+      position: "right",//定位
+      width: 130,//宽度
+      height: 210,//高度
+      hOffset: -40,//左右
+      vOffset: 0//上下
+    },
+    mobile: {
+      show: !1
+    },
+    log: !1
+  });
+</script>
+<!-- 宠物结束 -->
+
+		<script data-no-instant>
+    // (function ($) {
+    //     $.extend({
+    //         adamsOverload: function () {
+    //             $('.navigation:eq(0)').remove();
+    //             $("").attr("rel" , "external");
+    //             $("a[rel='external'],a[rel='external nofollow']").attr("target","_blank");
+    //             $("a.vi").attr("rel" , "");
+    //             $.viewImage({
+    //                 'target'  : 'img',
+    //                 'exclude' : '.vsmile-icons img,.gallery img',
+    //                 'delay'   : 300
+    //             });
+    //             $.lately({
+    //                 'target' : '.commentmetadata a,.infos time,.post-list time'
+	// 			});
+	// 			console.log(prettyPrint)
+	// 			if(prettyPrint) prettyPrint();
+
+    //             $('ul.links li a').each(function(){
+    //                 if($(this).parent().find('.bg').length==0){
+    //                     $(this).parent().append('<!---<div class="bg" style="background-image:url(https://c3.glgoo.top/s2/favicons?domain='+$(this).attr("href")+')"></div>--->')
+    //                 }
+    //             });
+    //         }
+    //     });
+    // })(jQuery);
+	// jQuery.adamsOverload();
+
+    (function ($) {
+        $.extend({
+            adamsOverload: function () {
+                $.viewImage({
+                    'target'  : '.song img',
+                    'exclude' : '.vsmile-icons img',
+                    'delay'   : 300
+                });
+            }
+        });
+    })(jQuery);
+    jQuery.adamsOverload();
+</script>
+
+</body>
+</html>

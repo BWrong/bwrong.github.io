@@ -1,0 +1,653 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+ <meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+<meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<meta HTTP-EQUIV="expires" CONTENT="0">
+<meta name="author" content="bwrong, wang11535041@qq.com"/>
+<meta name="keywords" content="利用微信第三方平台发布零码小程序 | BWrong的小站,前端,krpano,js,vue"/>
+<meta name="description" content="天青色等烟雨，而我在等你"/>
+<!-- <title>利用微信第三方平台发布零码小程序 | BWrong的小站</title> -->
+<title>网站搭建测试</title>
+<link href="https://www.bwrong.cn/media/css/fz.css" rel="stylesheet">
+<link rel="stylesheet" href="https://www.bwrong.cn/styles/main.css">
+<script type="text/javascript">
+function getCSS()
+{
+        datetoday = new Date();
+        timenow=datetoday.getTime();
+        datetoday.setTime(timenow);
+        thehour = datetoday.getHours();
+
+        if (thehour<5)
+
+            display = "https://www.bwrong.cn/media/css/night.css";
+
+       else if (thehour>20)
+
+            display = "https://www.bwrong.cn/media/css/night.css";
+
+        else if (thehour>5)
+     
+            display = "https://www.bwrong.cn/media/css/day.css";
+
+        else if (thehour<20)
+
+            display = "https://www.bwrong.cn/media/css/day.css";
+
+
+var css = '<';
+        css+='link rel="stylesheet" href='+display+' \/';
+        css+='>';
+        document.write(css);
+}
+</script>
+<link href="https://at.alicdn.com/t/font_1306644_ko4c4at97is.css" rel="stylesheet" />
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://www.bwrong.cn/media/css/katex.min.css">
+<script type='text/javascript' src='https://www.bwrong.cn/media/scripts/script.js'></script>
+<link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet" />
+  <script src="https://cdn.bootcss.com/wow/1.1.2/wow.min.js"></script>
+  <script src="https://cdn.bootcss.com/highlight.js/9.15.8/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script>wow=new WOW({boxClass:'wow',animateClass:'animated',offset:0,mobile:true,live:true});wow.init();</script>
+
+<script type="text/javascript">
+window.onload=getCSS();
+</script>
+<!-- 百度统计 -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?2c0e9e3f54ae20480b34c178578c4df8";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+</head>
+<body class="post-template-default single single-post postid-70 single-format-standard">
+    <div id="wrapper">
+
+	
+<header id="header" class="site-header"
+		
+		>
+			<div class="site-branding">
+									<h1 class="site-title"><a href="https://www.bwrong.cn" rel="home">BWrong的小站</a></h1>
+
+					<h2 class="site-description">天青色等烟雨，而我在等你</h2>
+
+							</div>
+			<nav id="nav-wrapper">
+				<div class="container">
+					<div class="nav-toggle">
+						<div class="bars">
+							<div class="bar"></div>
+							<div class="bar"></div>
+							<div class="bar"></div>
+						</div>
+					</div>
+					<div class="clear"></div>
+					<ul id="" class="dove">
+		 
+
+<li>
+
+	
+		<a href="/">
+		  首页
+		</a>
+	  
+
+    
+
+<li>
+
+	
+		<a href="/archives/index.html">
+		  归档
+		</a>
+	  
+
+    
+
+<li>
+
+	
+		<a href="/post/about/">
+		  关于
+		</a>
+	  
+
+    
+
+</ul>
+</li>
+
+</ul>				</div>
+			</nav>
+						<div class="jingge">
+
+
+    
+
+    
+
+<a  href="https://github.com/BWrong" target="_blank" ><i class="iconfont icon-github"></i></a>
+ 
+    
+
+    
+
+    
+
+    
+
+<a  href="https://juejin.cn/user/3421335914820280" target="_blank" ><i class="iconfont icon-telegram"></i></a>
+ 
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        </header>
+
+
+		<div id="content" class="container">
+			<div class="row">
+	<div class="col-md-8 site-main">
+
+<article id="post-70" class="post-70 post type-post status-publish format-standard hentry category-5 tag-10 tag-9 tag-11">
+
+
+
+		<div class="entry-content">
+			<h1 data-wow-delay="0.4s"  class="wow fadeInUp entry-title">利用微信第三方平台发布零码小程序</h1>
+<div class="entry-meta">
+<div class="wow fadeInUp"  data-wow-delay="0.6s">
+	<i class="iconfont icon-rili"> <time class="lately-a" datetime="2023-12-15 14:12:55" itemprop="datePublished" pubdate="">2023-12-15</time></i>
+	          </div>
+
+</span>
+
+		</div>
+
+			<div class="wow fadeInUp entry-summary song"  data-wow-delay="0.1s">
+				<h2 id="难点">难点</h2>
+<ul>
+<li>将设计好的应用生成原生小程序代码：因为编辑时和运行时环境差异性，导致不能使用同一套代码，需要针对不同平台有不同的实现（实现方案二）。</li>
+<li>将设计好的应用发布到商家自己的小程序中，需要对接微信第三方平台能力，主要是因为对这套发布流程不熟悉。</li>
+</ul>
+<h2 id="实现方案">实现方案：</h2>
+<hr>
+<h3 id="一-webapph5小程序复用h5版本">一、WebApp/H5小程序：复用H5版本</h3>
+<p>在H5版本上，通过小程序<a href="https://developers.weixin.qq.com/miniprogram/dev/component/web-view.html">Webview</a>开放能力组件实现H5页面动态渲染，通过传入H5地址方式，实现不同程序内容展示。</p>
+<p><strong>特点：</strong></p>
+<ul>
+<li>实现简单，因为和编辑时使用的是同一环境，****可直接复用，不需要做单独适配。</li>
+<li>能力有限，因为使用Webview进行渲染，所以应用所能使用的能力取决于Webview组件提供的开发能力，目前可以使用的能力可查看<a href="https://developers.weixin.qq.com/miniprogram/dev/component/web-view.html#%E7%9B%B8%E5%85%B3%E6%8E%A5%E5%8F%A3-2">Webview组件文档</a></li>
+</ul>
+<figure data-type="image" tabindex="1"><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/1681960549630-bc7e7caa-c9e0-4e01-8a37-d1ca2cbe3336.jpeg" alt="" loading="lazy"></figure>
+<h3 id="二-原生小程序方案生成小程序原生组件">二、原生小程序方案：生成小程序原生组件</h3>
+<p>在web端进行应用设计完成后，将内容保存为和平台无关的通用语言数据，常用的为JSON Schema，不同平台需要实现各自的解析适配器，将内容解析为平台特有的代码，这里即为解析为微信小程序。</p>
+<p><strong>特点：</strong></p>
+<ul>
+<li>实现复杂，两个平台差异性太大，需要实现多套解析器和组件。不过可以通过使用多端开发框架（<a href="https://uniapp.dcloud.net.cn/">uniapp</a>、<a href="https://taro.jd.com/">taro</a>）来降低差异性。</li>
+<li>能力受限小，因为是生成原生组件，基本上可以使用所有原生组件能力。</li>
+</ul>
+<pre><code class="language-json">{
+  &quot;label&quot;: &quot;新增组件&quot;,
+  &quot;icon&quot;: &quot;icon-zujian&quot;,
+  &quot;fields&quot;: {
+    &quot;color_gi&quot;: {
+      &quot;label&quot;: &quot;颜色选择器&quot;,
+      &quot;type&quot;: &quot;color&quot;,
+      &quot;value&quot;: &quot;&quot;
+    },
+    &quot;string_Ao&quot;: {
+      &quot;label&quot;: &quot;输入框&quot;,
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;value&quot;: &quot;&quot;,
+      &quot;options&quot;: {
+        &quot;placeholder&quot;: &quot;请输入&quot;
+      }
+    },
+    &quot;upload_6t&quot;: {
+      &quot;label&quot;: &quot;图片上传&quot;,
+      &quot;type&quot;: &quot;upload&quot;,
+      &quot;value&quot;: &quot;&quot;
+    }
+  }
+}
+</code></pre>
+<figure data-type="image" tabindex="2"><img src="https://cdn.nlark.com/yuque/0/2023/jpeg/159460/1681990517560-e4737370-b90d-44d7-967c-c2a97eaf28f3.jpeg" alt="" loading="lazy"></figure>
+<p><strong>参考实现方案：</strong></p>
+<ul>
+<li><a href="https://github.com/silence717/taro-designer">https://github.com/silence717/taro-designer</a></li>
+<li><a href="https://github.com/ShaoGongBra/taro-design">https://github.com/ShaoGongBra/taro-design</a></li>
+<li><a href="https://ext.dcloud.net.cn/plugin?id=6740">https://ext.dcloud.net.cn/plugin?id=6740</a></li>
+<li><a href="https://pageplug.cn/">https://pageplug.cn/</a></li>
+<li><a href="https://github.com/staringos/mtbird">https://github.com/staringos/mtbird</a></li>
+</ul>
+<h2 id="如何使用第三方平台代开发">如何使用第三方平台代开发</h2>
+<p>第三方平台（简称第三方平台），由微信团队面向所有通过<a href="https://kf.qq.com/faq/170824URbmau170824r2uY7j.html">开发者资质认证</a>的第三方开发者提供提供的官方平台。在得到公众号或小程序管理员授权后，基于该平台，第三方服务商可以通过调用官方接口能力，为商家提供公众号代运营、小程序代注册、代开发等服务以及提供公众号和小程序相关的行业方案、活动营销、插件能力等全方位服务。</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2023/png/159460/1682068941157-38b4cd76-d6aa-4eda-ba30-51a0dea43a8f.png" alt="" loading="lazy"><img src="https://cdn.nlark.com/yuque/0/2023/png/159460/1682069054303-f88e6aa1-3793-4cb1-95f1-6ef6cd04384a.png" alt="" loading="lazy"></p>
+<h3 id="满足条件">满足条件</h3>
+<figure data-type="image" tabindex="3"><img src="https://cdn.nlark.com/yuque/0/2023/png/159460/1682391253106-b4dc9cdf-a06f-47c3-afed-9cf54f2ddeab.png" alt="" loading="lazy"></figure>
+<ul>
+<li>提供行业解决方案，如针对电商行业的解决方案，或针对旅游行业的解决方案等；</li>
+<li>行业：（横向）提供更加专业的运营能力，精细化运营用户公众号或小程序；</li>
+<li>功能：（纵向）对公众平台功能的优化，如专门优化图文消息视觉样式和排版的工具，或专门定制的 CRM 用户管理功能，或功能强大的小程序插件等。</li>
+</ul>
+<h3 id="流程">流程</h3>
+<figure data-type="image" tabindex="4"><img src="https://cdn.nlark.com/yuque/0/2023/png/159460/1681980164393-0fae9953-54d7-4808-a8f4-13e46c652cf9.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="5"><img src="https://cdn.nlark.com/yuque/0/2023/png/159460/1682391612230-1750c702-0d9e-407e-88a8-2c13ea64c746.png" alt="" loading="lazy"></figure>
+<h4 id="一-如何成为服务商">一、如何成为服务商</h4>
+<p>1、第三方平台帐号的审核无需缴费，但开放平台帐号的认证（即开发者资质认证）需要交300块钱认证费。一个已完成开发者资质认证的开放平台帐号，可创建5个平台型服务商第三方平台帐号。</p>
+<p>2、任何合法合规的、为小程序提供开发服务及有意愿的开发者都可以成为小程序服务商，微信不会区别对待，也无官方授权的概念。</p>
+<figure data-type="image" tabindex="6"><img src="https://cdn.nlark.com/yuque/0/2023/png/159460/1681980517223-496c322a-ec16-473a-aee5-c0065909bbec.png" alt="" loading="lazy"></figure>
+<p><a href="https://developers.weixin.qq.com/doc/oplatform/Third-party_Platforms/2.0/operation/thirdparty/prepare.html"><strong>准备材料：</strong></a></p>
+<ul>
+<li>官方网站：服务商应当有对外可用的官网，且该官网提供的服务描述与申请的第三方平台帐号名称、简介、图标均有所关联</li>
+<li>平台图标：图标必须为当前服务商所有，不可使用其他企业的图标作为第三方平台帐号图标，108 x 108像素，大小不超过300KB，且格式为PNG的图片</li>
+<li>域名和ssl证书</li>
+</ul>
+<h4 id="二-搭建三方后端服务自建模式和云服务">二、搭建三方后端服务：自建模式和云服务</h4>
+<figure data-type="image" tabindex="7"><img src="https://cdn.nlark.com/yuque/0/2023/png/159460/1681984771382-05565715-fded-4766-883c-af3bb2dd0bcc.png" alt="" loading="lazy"></figure>
+<ul>
+<li>服务商类型</li>
+</ul>
+<p><strong>平台型第三方平台帐号</strong></p>
+<ul>
+<li>这是官方推荐选择的类型，该类型的服务商可基于第三方平台接口能力，在获取商家扫码授权后，为商家提供代开发、代运营公众号和小程序服务。</li>
+<li>想要为商家实现批量化服务，例如批量运营公众号、批量代开发小程序等，则需要选择该类型的帐号。</li>
+</ul>
+<p><strong>定制化型第三方平台帐号</strong></p>
+<ul>
+<li>当你不需要以服务商身份使用第三方平台接口能力，只需生成票据用于标记商家小程序是由该服务商开发的，那么可以选择创建该类型的帐号。</li>
+<li>该类型的帐号仅有一个APPID用以作为服务商帐号id，没有secret，无法生成token，不可调用官方任何接口能力。该类型的服务商通常不基于第三方平台能力为商家提供服务。</li>
+</ul>
+<p>搭建好三方服务后需要和业务系统服务进行联调对接，然后进行<a href="https://developers.weixin.qq.com/doc/oplatform/Third-party_Platforms/2.0/operation/thirdparty/publish.html">全网发布</a>。</p>
+<h4 id="三-授权">三、授权</h4>
+<p>商家需要将其公众号或者小程序<a href="https://developers.weixin.qq.com/doc/oplatform/Third-party_Platforms/2.0/api/Before_Develop/Authorization_Process_Technical_Description.html">授权</a>给第三方平台，服务商才可以代商家进行相关操作。</p>
+<figure data-type="image" tabindex="8"><img src="https://cdn.nlark.com/yuque/0/2023/png/159460/1681980296972-49144b20-919e-4d26-bc1d-03817965cd19.png" alt="" loading="lazy"></figure>
+<h4 id="四-代商家调用接口">四、代商家调用接口</h4>
+<p>小程序的api，服务商都可以调用，只是服务商调用的时候要使用<a href="https://developers.weixin.qq.com/doc/oplatform/Third-party_Platforms/2.0/api/ThirdParty/token/api_authorizer_token.html">authorizer_access_token</a>，而不是access_token。</p>
+<p>服务商能否代商家成功调用某个公众号或者小程序的api，取决于该公众号或者小程序管理员是否将对应的权限集授权给当前第三方平台帐号。</p>
+<h4 id="五-代开发小程序">五、代开发小程序</h4>
+<figure data-type="image" tabindex="9"><img src="https://cdn.nlark.com/yuque/0/2023/png/159460/1681988187650-15d3e030-e517-4a41-9a7c-fc5073146d1c.png" alt="" loading="lazy"></figure>
+<h5 id="代码上传">代码上传</h5>
+<ul>
+<li>通过开发者工具</li>
+<li><a href="https://developers.weixin.qq.com/miniprogram/dev/devtools/ci.html">CI代码上传</a></li>
+<li><a href="https://developers.weixin.qq.com/community/develop/article/doc/0006aec26a89507900dc70f5e5b013?pass_ticket=PFmw0zP6yfVqUJz8iYlCaPgYBj0s6dm%2BoKU5cKthScDFPSrvwo9Z2cS1G9qCIrRyts29yPal4xRGPCSoPxxoeA%3D%3D">使用小程序CI自动上传代码</a></li>
+</ul>
+<figure data-type="image" tabindex="10"><img src="https://cdn.nlark.com/yuque/0/2023/png/159460/1681988652552-ed1314fb-a721-432a-b4e1-9146be97d1ea.png" alt="" loading="lazy"></figure>
+<h3 id="相关文档">相关文档</h3>
+<ul>
+<li><a href="https://developers.weixin.qq.com/doc/oplatform/Third-party_Platforms/2.0/getting_started/terminology_introduce.html">官方文档</a></li>
+<li><a href="https://developers.weixin.qq.com/doc/oplatform/openApi/OpenApiDoc/">API文档</a></li>
+<li><a href="https://juejin.cn/post/6871397648792813575">微信开放平台之第三方平台开发，一整套流程</a></li>
+</ul>
+<h3 id="相关规则">相关规则</h3>
+<ul>
+<li><a href="https://developers.weixin.qq.com/doc/oplatform/service_market/provider_guideline/audit/mini_program_develop_audit.html">小程序代开发服务上架要求</a></li>
+<li><a href="https://developers.weixin.qq.com/doc/oplatform/service_market/provider_guideline/operation/mini_program_develop_operation.html">小程序代开发运营规则</a></li>
+</ul>
+
+							</div>
+	<div class="wow fadeInUp vt-post-tags">
+ 
+					</div>
+<nav class="navigation3 post-navigation3" role="navigation">
+
+		<div class="nav-links3">
+      
+		 
+		<div class="wow fadeInUp nav-next3"><a href="https://www.bwrong.cn/post/yTzozCDtS/" rel="next"> Http请求中Content-Type</a></div>
+		
+		</div>
+	</nav>
+	<div class="wow fadeInUp author-info">
+	<div class="author-avatar pull-left"><img src="https://www.bwrong.cn/images/avatar.png" ></div>
+ 
+	<div class="author-description"><div class="author-title"><div class="author-link" rel="author">BWrong</div></div>
+
+
+	<p class="author-bio">愿你走出半生，归来仍是少年</p></div></div>
+	
+		</div>
+
+
+
+</article>
+
+<div id="marlin_lite_about_widget-2" class="wow fadeInUp widget marlin_lite_about_widget" data-wow-delay="0.1s">
+
+        
+		<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://www.bwrong.cn/media/scripts/Valine.min.js'></script>
+
+<div class="comment"></div>
+<script>
+        new Valine({
+            av: AV,
+            el: '.comment',
+            lang: 'zh-cn',
+            visitor: false, // 阅读量统计
+            
+            admin_email:'wang11535041@qq.com',
+            
+            
+            emoticon_url: '/media/alu',
+             
+      emoticon_list: ["吐.png","喷血.png","狂汗.png","不说话.png","汗.png","坐等.png","献花.png","不高兴.png","中刀.png","害羞.png","皱眉.png","小眼睛.png","中指.png","尴尬.png","瞅你.png","想一想.png","中枪.png","得意.png","肿包.png","扇耳光.png","亲亲.png","惊喜.png","脸红.png","无所谓.png","便便.png","愤怒.png","蜡烛.png","献黄瓜.png","内伤.png","投降.png","观察.png","看不见.png","击掌.png","抠鼻.png","邪恶.png","看热闹.png","口水.png","抽烟.png","锁眉.png","装大款.png","吐舌.png","无奈.png","长草.png","赞一个.png","呲牙.png","无语.png","阴暗.png","不出所料.png","咽气.png","期待.png","高兴.png","吐血倒地.png","哭泣.png","欢呼.png","黑线.png","喜极而泣.png","喷水.png","深思.png","鼓掌.png","暗地观察.png"],
+     
+      app_id: 'jaz3TfUjRowK9fOMAPb9yw6i-MdYXbMMI',
+      
+      
+      app_key: 'pbltxx4rElIP1RStL3AwujSp',
+         
+          
+      placeholder: '欢迎你留下足迹'
+       
+        });
+    </script>
+
+
+
+
+
+		</div>
+
+			</div>
+			
+
+
+<div class="tocc col l3 hide-on-med-and-down">
+
+        <div class="toc-widget">
+
+            <div class="toc-title"></div>
+
+            <div id="toc-content">
+
+
+			</div>
+        </div>
+    </div>
+
+
+<script src="https://www.bwrong.cn/media/scripts/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '.entry-summary',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h1,h2' //**
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('.entry-summary').children('h1, h2').each(function () {/**/
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget').parent();
+        // let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+    });
+</script>
+
+
+
+
+
+
+			</div>
+		</div>
+
+
+		 <footer id="colophon" class="site-footer">
+
+	<div class="container">
+
+		<div class="copyright"> <br>Theme: <a
+				href="https://github.com/alterfang/gridea-theme-pan" target="_blank" title="Pan"><span>Pan</span></a>.
+			Powered by <a href="https://gridea.dev/" target="_blank" title="Gridea"><span>Gridea</span></a> . 版权所有：<a href="https://beian.miit.gov.cn/" target="_blank"><span>蜀ICP备2023018303号-1</span></a></div>
+	</div>
+
+</footer>
+		<!-- loding -->
+		<div class="loader">
+			<div class="loader-content">
+				<div class="songjingge">
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+			</div>
+		</div>
+<script id="rendered-js">
+	window.onload = function () {
+			var loader = document.getElementsByClassName("loader")[0];
+			loader.className = "loader fadeout"; //使用渐隐的方法淡出loading page
+			setTimeout(function () {
+				loader.style.display = "none";
+			}, 0);
+	};
+</script>
+
+
+</div>
+
+<script src="https://cdn.bootcss.com/fitvids/1.2.0/jquery.fitvids.min.js"></script>
+<script type='text/javascript' src='https://www.bwrong.cn/media/scripts/marlin-scripts.js'></script>
+<script src="https://www.bwrong.cn/media/scripts/lately.min.js"></script>
+<script>jQuery(document).ready(function () { $.lately({ 'target': '.lately-a,.lately-b,.lately-c' }) });</script>
+<style type="text/css">
+  a.back_to_top {
+    text-decoration: none;
+    position: fixed;
+    bottom: 40px;
+    right: 30px;
+    background: #f0f0f0;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    line-height: 36px;
+    font-size: 18px;
+    text-align: center;
+    transition-duration: .5s;
+    transition-propety: background-color;
+    display: none;
+  }
+
+  a.back_to_top span {
+    color: #888;
+  }
+
+  a.back_to_top:hover {
+    cursor: pointer;
+    background: #dfdfdf;
+  }
+
+  a.back_to_top:hover span {
+    color: #555;
+  }
+
+  @media print,
+  screen and (max-width: 580px) {
+    .back_to_top {
+      display: none !important;
+    }
+  }
+</style><a id="back_to_top" href="#" class="back_to_top"><span><i class="iconfont icon-xiangshang"></i></span>
+</a>
+
+<script>
+$(document).ready((function (_this) {
+    return function () {
+      var bt;
+      bt = $('#back_to_top');
+      if ($(document).width() > 480) {
+        $(window).scroll(function () {
+          var st;
+          st = $(window).scrollTop();
+          if (st > 30) {
+            return bt.css('display', 'block');
+          } else {
+            return bt.css('display', 'none');
+          }
+        });
+        return bt.click(function () {
+          $('body,html').animate({
+            scrollTop: 0
+          }, 800);
+          return false;
+        });
+      }
+    };
+  })(this));
+//   $(window).load(function () {
+//     //异步延迟加载样式
+//     var link = $('<link />');
+//     link.attr('href', 'https://fonts.googleapis.com/css?family=Dancing+Script|Noto+Sans+SC:300|Montserrat&display=swap');
+//     link.attr('rel', 'stylesheet');
+//     link.appendTo($('head'));
+// });
+</script>
+
+<!-- 宠物 -->
+<canvas id="live2dcanvas" width="200" height="400" class="live2d"></canvas>
+<style>
+  #live2dcanvas {
+    position: fixed;
+    right: 0px;
+    z-index: 999;
+    pointer-events: none;
+    bottom: -40px;
+    width: 200px;
+    height: 400px;
+  }
+
+  @media (max-width: 768px) {
+    #live2dcanvas {
+      width: 150px;
+      height: 300px;
+    }
+  }
+
+  @media (max-width: 639px) {
+    #live2dcanvas {
+      display: none !important;
+    }
+  }
+</style>
+<script src="https://www.bwrong.cn/media/scripts/L2Dwidget.min.js"></script>
+<script>
+  //初始化小人物 需设置属性pluginRootPath: "live2dw/"指明资源跟路径
+  L2Dwidget.init({
+    pluginRootPath: "media/",//资源root路径
+    pluginJsPath: "scripts/",//js相对root的路径
+    pluginModelPath: "model/",//模型相对root的路径
+    tagMode: !1,
+    debug: !1,
+    model: {
+      scale: 2,
+      jsonPath: "/media/model/live2d-widget-model-epsilon/Epsilon2.1.model.json"
+    },
+    display: {//大小位置什么的自己慢慢调就是了
+      position: "right",//定位
+      width: 130,//宽度
+      height: 210,//高度
+      hOffset: -40,//左右
+      vOffset: 0//上下
+    },
+    mobile: {
+      show: !1
+    },
+    log: !1
+  });
+</script>
+<!-- 宠物结束 -->
+
+		<script data-no-instant>
+    // (function ($) {
+    //     $.extend({
+    //         adamsOverload: function () {
+    //             $('.navigation:eq(0)').remove();
+    //             $("").attr("rel" , "external");
+    //             $("a[rel='external'],a[rel='external nofollow']").attr("target","_blank");
+    //             $("a.vi").attr("rel" , "");
+    //             $.viewImage({
+    //                 'target'  : 'img',
+    //                 'exclude' : '.vsmile-icons img,.gallery img',
+    //                 'delay'   : 300
+    //             });
+    //             $.lately({
+    //                 'target' : '.commentmetadata a,.infos time,.post-list time'
+	// 			});
+	// 			console.log(prettyPrint)
+	// 			if(prettyPrint) prettyPrint();
+
+    //             $('ul.links li a').each(function(){
+    //                 if($(this).parent().find('.bg').length==0){
+    //                     $(this).parent().append('<!---<div class="bg" style="background-image:url(https://c3.glgoo.top/s2/favicons?domain='+$(this).attr("href")+')"></div>--->')
+    //                 }
+    //             });
+    //         }
+    //     });
+    // })(jQuery);
+	// jQuery.adamsOverload();
+
+    (function ($) {
+        $.extend({
+            adamsOverload: function () {
+                $.viewImage({
+                    'target'  : '.song img',
+                    'exclude' : '.vsmile-icons img',
+                    'delay'   : 300
+                });
+            }
+        });
+    })(jQuery);
+    jQuery.adamsOverload();
+</script>
+
+</body>
+</html>

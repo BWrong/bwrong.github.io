@@ -1,0 +1,2981 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+ <meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+<meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<meta HTTP-EQUIV="expires" CONTENT="0">
+<meta name="author" content="bwrong, wang11535041@qq.com"/>
+<meta name="keywords" content="VUE2.0学习笔记 | BWrong的小站,前端,krpano,js,vue"/>
+<meta name="description" content="天青色等烟雨，而我在等你"/>
+<!-- <title>VUE2.0学习笔记 | BWrong的小站</title> -->
+<title>网站搭建测试</title>
+<link href="https://www.bwrong.cn/media/css/fz.css" rel="stylesheet">
+<link rel="stylesheet" href="https://www.bwrong.cn/styles/main.css">
+<script type="text/javascript">
+function getCSS()
+{
+        datetoday = new Date();
+        timenow=datetoday.getTime();
+        datetoday.setTime(timenow);
+        thehour = datetoday.getHours();
+
+        if (thehour<5)
+
+            display = "https://www.bwrong.cn/media/css/night.css";
+
+       else if (thehour>20)
+
+            display = "https://www.bwrong.cn/media/css/night.css";
+
+        else if (thehour>5)
+     
+            display = "https://www.bwrong.cn/media/css/day.css";
+
+        else if (thehour<20)
+
+            display = "https://www.bwrong.cn/media/css/day.css";
+
+
+var css = '<';
+        css+='link rel="stylesheet" href='+display+' \/';
+        css+='>';
+        document.write(css);
+}
+</script>
+<link href="https://at.alicdn.com/t/font_1306644_ko4c4at97is.css" rel="stylesheet" />
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://www.bwrong.cn/media/css/katex.min.css">
+<script type='text/javascript' src='https://www.bwrong.cn/media/scripts/script.js'></script>
+<link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet" />
+  <script src="https://cdn.bootcss.com/wow/1.1.2/wow.min.js"></script>
+  <script src="https://cdn.bootcss.com/highlight.js/9.15.8/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script>wow=new WOW({boxClass:'wow',animateClass:'animated',offset:0,mobile:true,live:true});wow.init();</script>
+
+<script type="text/javascript">
+window.onload=getCSS();
+</script>
+<!-- 百度统计 -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?2c0e9e3f54ae20480b34c178578c4df8";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+</head>
+<body class="post-template-default single single-post postid-70 single-format-standard">
+    <div id="wrapper">
+
+	
+<header id="header" class="site-header"
+		
+		>
+			<div class="site-branding">
+									<h1 class="site-title"><a href="https://www.bwrong.cn" rel="home">BWrong的小站</a></h1>
+
+					<h2 class="site-description">天青色等烟雨，而我在等你</h2>
+
+							</div>
+			<nav id="nav-wrapper">
+				<div class="container">
+					<div class="nav-toggle">
+						<div class="bars">
+							<div class="bar"></div>
+							<div class="bar"></div>
+							<div class="bar"></div>
+						</div>
+					</div>
+					<div class="clear"></div>
+					<ul id="" class="dove">
+		 
+
+<li>
+
+	
+		<a href="/">
+		  首页
+		</a>
+	  
+
+    
+
+<li>
+
+	
+		<a href="/archives/index.html">
+		  归档
+		</a>
+	  
+
+    
+
+<li>
+
+	
+		<a href="/post/about/">
+		  关于
+		</a>
+	  
+
+    
+
+</ul>
+</li>
+
+</ul>				</div>
+			</nav>
+						<div class="jingge">
+
+
+    
+
+    
+
+<a  href="https://github.com/BWrong" target="_blank" ><i class="iconfont icon-github"></i></a>
+ 
+    
+
+    
+
+    
+
+    
+
+<a  href="https://juejin.cn/user/3421335914820280" target="_blank" ><i class="iconfont icon-telegram"></i></a>
+ 
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        </header>
+
+
+		<div id="content" class="container">
+			<div class="row">
+	<div class="col-md-8 site-main">
+
+<article id="post-70" class="post-70 post type-post status-publish format-standard hentry category-5 tag-10 tag-9 tag-11">
+
+
+
+		<div class="entry-content">
+			<h1 data-wow-delay="0.4s"  class="wow fadeInUp entry-title">VUE2.0学习笔记</h1>
+<div class="entry-meta">
+<div class="wow fadeInUp"  data-wow-delay="0.6s">
+	<i class="iconfont icon-rili"> <time class="lately-a" datetime="2017-05-10 11:08:44" itemprop="datePublished" pubdate="">2017-05-10</time></i>
+	          </div>
+
+</span>
+
+		</div>
+
+			<div class="wow fadeInUp entry-summary song"  data-wow-delay="0.1s">
+				<h1 id="1前言">1.前言</h1>
+<h2 id="安装">安装</h2>
+<ul>
+<li>直接用 <code>&lt;script&gt;</code> 引入（本地或者cdn）</li>
+<li>npm <code>npm install vue</code></li>
+<li>vue-cli官方脚手架</li>
+</ul>
+<pre><code># 全局安装 vue-cli
+$ npm install --global vue-cli
+# 创建一个基于 webpack 模板的新项目
+$ vue init webpack my-project
+# 安装依赖，走你
+$ cd my-project
+$ npm install
+$ npm run dev
+</code></pre>
+<h2 id="简介">简介</h2>
+<p>Vue (读音 /vjuː/，类似于 view) 是一套用于构建用户界面的渐进式框架。Vue 的核心库只关注视图层，对应view。</p>
+<p>Vue数据驱动，jQuery是结构驱动</p>
+<h2 id="原理">原理</h2>
+<p>内部使用Object.defineProperty（最低支持IE9）把所有属性全部转为 getter/setter，为每个组件绑定了watcher 实例对象，并且把属性作为依赖项，当依赖项的setter调用时，watcher将会重新计算，从而更新组件。</p>
+<ul>
+<li>[组件render]-&lt;创建&gt;-[getter、setter]-&lt;收集依赖&gt;-[watcher]</li>
+<li>[触发setter]-&lt;通知&gt;-[watcher]-&lt;触发&gt;-[组件渲染函数]-&lt;更新&gt;-[组件]<br>
+<img src="https://cn.vuejs.org/images/data.png" alt="image" loading="lazy"></li>
+</ul>
+<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/zoro-web/blog/master/img/vue-template(1).png" alt="image" loading="lazy"></figure>
+<h2 id="开发环境">开发环境</h2>
+<ul>
+<li>vueTools</li>
+<li>vscode【Vetur、Vue2 Snippets】</li>
+<li>weboack</li>
+</ul>
+<h1 id="2实例">2.实例</h1>
+<h2 id="声明式渲染">声明式渲染</h2>
+<pre><code>&lt;!--html--&gt;
+&lt;div id=&quot;app&quot;&gt;
+  {{ message }}
+&lt;/div&gt;
+</code></pre>
+<pre><code>//js
+var vm = new Vue({
+  el: '#app',
+  data: {
+    message: 'Hello Vue!'
+  }
+})
+</code></pre>
+<h2 id="数据与方法">数据与方法</h2>
+<p>当一个 Vue 实例被创建时，它向 Vue 的响应式系统中加入了其 data 对象中能找到的所有的属性。当这些属性的值发生改变时，视图将会产生“响应”，即匹配更新为新的值。</p>
+<pre><code>// 我们的数据对象
+var data = { a: 1 }
+
+// 该对象被加入到一个 Vue 实例中
+var vm = new Vue({
+  data: data
+})
+
+// 他们引用相同的对象！
+vm.a === data.a // =&gt; true
+
+// 设置属性也会影响到原始数据
+vm.a = 2
+data.a // =&gt; 2
+
+// ... 反之亦然
+data.a = 3
+vm.a // =&gt; 3
+</code></pre>
+<p>当这些数据改变时，视图会进行重渲染。值得注意的是只有当实例被创建时 data 中存在的属性是响应式的。也就是说如果你添加一个新的属性，将不会触发任何视图的更新。如果你知道你会在晚些时候需要一个属性，但是一开始它为空或不存在，那么你仅需要设置一些初始值。</p>
+<pre><code>var data = { a: 1 }
+var vm = new Vue({
+  el: '#example',
+  data: data
+})
+
+vm.$data === data // =&gt; true
+vm.$el === document.getElementById('example') // =&gt; true
+
+// $watch 是一个实例方法
+vm.$watch('a', function (newValue, oldValue) {
+  // 这个回调将在 `vm.a` 改变后调用
+})
+</code></pre>
+<h4 id="自身属性和方法">自身属性和方法</h4>
+<p>vue实例自身暴露的属性和方法通过前缀$来获取</p>
+<pre><code>var data = { a: 1 }
+var vm = new Vue({
+  el: '#example',
+  data: data
+})
+
+vm.$data === data // =&gt; true
+vm.$el === document.getElementById('example') // =&gt; true
+</code></pre>
+<h2 id="实例生命周期">实例生命周期</h2>
+<p>每个 Vue 实例在被创建之前都要经过一系列的初始化过程（生命周期）。在这个过程中会运行一些叫做生命周期钩子的函数，用户可以在不同阶段添加自己的代码来做一些事情。<br>
+<img src="https://cn.vuejs.org/images/lifecycle.png" alt="image" loading="lazy"></p>
+<ul>
+<li><code>beforeCreate:</code>在实例初始化之后，数据观测 (data observer) 和 event/watcher 事件配置之前被调用。</li>
+<li><code>created:</code>在实例创建完成后被立即调用。在这一步，实例已完成以下的配置：数据观测 (data observer)，属性和方法的运算，watch/event 事件回调。然而，挂载阶段还没开始，$el 属性目前不可见。</li>
+<li><code>beforeMount:</code>在挂载开始之前被调用：相关的 render 函数首次被调用。</li>
+<li><code>mounted:</code>el 被新创建的 vm.$el 替换，并挂载到实例上去之后调用该钩子。</li>
+<li><code>beforeUpdate:</code>数据更新时调用，发生在虚拟 DOM 重新渲染和打补丁之前。</li>
+<li><code>updated:</code>由于数据更改导致的虚拟 DOM 重新渲染和打补丁，在这之后会调用该钩子</li>
+<li><code>beforeDestroy:</code>实例销毁之前调用。在这一步，实例仍然完全可用。</li>
+<li><code>destroyed:</code>Vue 实例销毁后调用。调用后，Vue 实例指示的所有东西都会解绑定，所有的事件监听器会被移除，所有的子实例也会被销毁。</li>
+<li><code>activated/deactivated：</code>keep-alive 组件激活/停用时调用，</li>
+<li><code>errorCaptured：</code>当捕获一个来自子孙组件的错误时被调用。此钩子会收到三个参数：错误对象、发生错误的组件实例以及一个包含错误来源信息的字符串。此钩子可以返回 false 以阻止该错误继续向上传播。</li>
+</ul>
+<p><strong>注意：</strong></p>
+<ul>
+<li>beforeCreate，created外的钩子在服务器端渲染期间不被调用。</li>
+<li>不要在选项属性或回调上使用箭头函数，比如</li>
+</ul>
+<pre><code>//错误，会导致this不会指向Vue 实例
+created: () =&gt; console.log(this.a)
+vm.$watch('a', newValue =&gt; this.myMethod())
+</code></pre>
+<h3 id="vue对象的选项">Vue对象的选项</h3>
+<pre><code>var vm = new Vue({
+  // 数据
+  data: &quot;声明需要响应式绑定的数据对象&quot;,
+  props: &quot;接收来自父组件的数据&quot;,
+  propsData: &quot;创建实例时手动传递props，方便测试props&quot;,
+  computed: &quot;计算属性&quot;,
+  methods: &quot;定义可以通过vm对象访问的方法&quot;,
+  watch: &quot;Vue实例化时会调用$watch()方法遍历watch对象的每个属性&quot;,
+  // DOM
+  el: &quot;将页面上已存在的DOM元素作为Vue实例的挂载目标&quot;,
+  template: &quot;可以替换挂载元素的字符串模板&quot;,
+  render: &quot;渲染函数，字符串模板的替代方案&quot;,
+  renderError: &quot;仅用于开发环境，在render()出现错误时，提供另外的渲染输出&quot;,
+  // 生命周期钩子
+  beforeCreate: &quot;发生在Vue实例初始化之后，data observer和event/watcher事件被配置之前&quot;,
+  created: &quot;发生在Vue实例初始化以及data observer和event/watcher事件被配置之后&quot;,
+  beforeMount: &quot;挂载开始之前被调用，此时render()首次被调用&quot;,
+  mounted: &quot;el被新建的vm.$el替换，并挂载到实例上之后调用&quot;,
+  beforeUpdate: &quot;数据更新时调用，发生在虚拟DOM重新渲染和打补丁之前&quot;,
+  updated: &quot;数据更改导致虚拟DOM重新渲染和打补丁之后被调用&quot;,
+  activated: &quot;keep-alive组件激活时调用&quot;,
+  deactivated: &quot;keep-alive组件停用时调用&quot;,
+  beforeDestroy: &quot;实例销毁之前调用，Vue实例依然可用&quot;,
+  destroyed: &quot;Vue实例销毁后调用，事件监听和子实例全部被移除，释放系统资源&quot;,
+  // 资源
+  directives: &quot;包含Vue实例可用指令的哈希表&quot;,
+  filters: &quot;包含Vue实例可用过滤器的哈希表&quot;,
+  components: &quot;包含Vue实例可用组件的哈希表&quot;,
+  // 组合
+  parent: &quot;指定当前实例的父实例，子实例用this.$parent访问父实例，父实例通过$children数组访问子实例&quot;,
+  mixins: &quot;将属性混入Vue实例对象，并在Vue自身实例对象的属性被调用之前得到执行&quot;,
+  extends: &quot;用于声明继承另一个组件，从而无需使用Vue.extend，便于扩展单文件组件&quot;,
+  provide&amp;inject: &quot;2个属性需要一起使用，用来向所有子组件注入依赖，类似于React的Context&quot;,
+  // 其它
+  name: &quot;允许组件递归调用自身，便于调试时显示更加友好的警告信息&quot;,
+  delimiters: &quot;改变模板字符串的风格，默认为{{}}&quot;,
+  functional: &quot;让组件无状态(没有data)和无实例(没有this上下文)&quot;,
+  model: &quot;允许自定义组件使用v-model时定制prop和event&quot;,
+  inheritAttrs: &quot;默认情况下，父作用域的非props属性绑定会应用在子组件的根元素上。当编写嵌套有其它组件或元素的组件时，可以将该属性设置为false关闭这些默认行为&quot;,
+  comments: &quot;设为true时会保留并且渲染模板中的HTML注释&quot;
+});
+</code></pre>
+<h1 id="3模板语法">3.模板语法</h1>
+<p>Vue.js 使用了基于 HTML 的模板语法，必须是合法的 HTML。在底层的实现上，Vue 将模板编译成虚拟 DOM 渲染函数。</p>
+<h2 id="插值">插值</h2>
+<h4 id="文本">文本</h4>
+<pre><code>&lt;!--Mustache--&gt;
+&lt;span&gt;Message: {{ msg }}&lt;/span&gt;
+&lt;!--v-text--&gt;
+&lt;span v-text=&quot;msg&quot;&gt;&lt;/span&gt;
+&lt;!--v-once:一次性插值--&gt;
+&lt;span v-once&gt;这个将不会改变: {{ msg }}&lt;/span&gt;
+
+</code></pre>
+<h4 id="html">HTML</h4>
+<pre><code>&lt;p&gt;Using v-html directive: &lt;span v-html=&quot;rawHtml&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+</code></pre>
+<p>只对可信内容使用 HTML 插值，绝不要对用户提供的内容使用插值。</p>
+<h4 id="特性">特性</h4>
+<pre><code>&lt;div v-bind:id=&quot;dynamicId&quot;&gt;&lt;/div&gt;
+</code></pre>
+<p>在插值中可以使用表达式，但只限简单表达式。</p>
+<pre><code>{{ message.split('').reverse().join('') }}
+&lt;div v-bind:id=&quot;'list-' + id&quot;&gt;&lt;/div&gt;
+</code></pre>
+<h2 id="指令">指令</h2>
+<p>指令 (Directives) 是带有 v- 前缀的特殊属性。<br>
+指令的职责是，当表达式的值改变时，将其产生的连带影响，响应式地作用于 DOM。</p>
+<pre><code>&lt;p v-if=&quot;seen&quot;&gt;现在你看到我了&lt;/p&gt;
+&lt;a v-on:click=&quot;doSomething&quot;&gt;...&lt;/a&gt;
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>预期/限制</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>v-text</td>
+<td>string</td>
+<td>文本插值</td>
+</tr>
+<tr>
+<td>v-html</td>
+<td>string</td>
+<td>html插值</td>
+</tr>
+<tr>
+<td>v-show</td>
+<td>any</td>
+<td>条件显示</td>
+</tr>
+<tr>
+<td>v-if、v-else、v-else-if</td>
+<td>any</td>
+<td>条件渲染</td>
+</tr>
+<tr>
+<td>v-for</td>
+<td>Array/Object/number/string</td>
+<td>列表渲染</td>
+</tr>
+<tr>
+<td>v-on(@)</td>
+<td>Function/Inline Statement/Object</td>
+<td>事件绑定</td>
+</tr>
+<tr>
+<td>v-bind(😃</td>
+<td>any (with argument)/Object (without argument)</td>
+<td>特性绑定</td>
+</tr>
+<tr>
+<td>v-model</td>
+<td>仅限<input>/<select>/<textarea>/components元素使用</td>
+<td>双向绑定</td>
+</tr>
+<tr>
+<td>v-pre</td>
+<td></td>
+<td>忽略编译</td>
+</tr>
+<tr>
+<td>v-cloak</td>
+<td></td>
+<td>避免显示Mustache</td>
+</tr>
+<tr>
+<td>v-once</td>
+<td></td>
+<td>一次性渲染</td>
+</tr>
+</tbody>
+</table>
+<h4 id="修饰符">修饰符</h4>
+<p>修饰符 (Modifiers) 是以半角句号 . 指明的特殊后缀，用于指出一个指令应该以特殊方式绑定。</p>
+<pre><code>&lt;form v-on:submit.prevent=&quot;onSubmit&quot;&gt;...&lt;/form&gt;
+</code></pre>
+<ul>
+<li><strong>v-on能使用的修饰符：</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>修饰符</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.stop</td>
+<td>调用 event.stopPropagation()。</td>
+</tr>
+<tr>
+<td>.prevent</td>
+<td>调用 event.preventDefault()。</td>
+</tr>
+<tr>
+<td>.capture</td>
+<td>添加事件侦听器时使用 capture 模式。</td>
+</tr>
+<tr>
+<td>.self</td>
+<td>只当事件是从侦听器绑定的元素本身触发时才触发回调。</td>
+</tr>
+<tr>
+<td>.{keyCode / keyAlias}</td>
+<td>只当事件是从特定键触发时才触发回调。</td>
+</tr>
+<tr>
+<td>.native</td>
+<td>监听组件根元素的原生事件。</td>
+</tr>
+<tr>
+<td>.once</td>
+<td>只触发一次回调。</td>
+</tr>
+<tr>
+<td>.left</td>
+<td>(2.2.0) 只当点击鼠标左键时触发。</td>
+</tr>
+<tr>
+<td>.right</td>
+<td>(2.2.0) 只当点击鼠标右键时触发。</td>
+</tr>
+<tr>
+<td>.middle</td>
+<td>(2.2.0) 只当点击鼠标中键时触发。</td>
+</tr>
+<tr>
+<td>.passive</td>
+<td>(2.3.0) 以 { passive: true } 模式添加侦听器</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>v-bind能使用的修饰符：</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>修饰符</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.prop</td>
+<td>被用于绑定 DOM 属性 (property)。(差别在哪里？)</td>
+</tr>
+<tr>
+<td>.camel</td>
+<td>(2.1.0+) 将 kebab-case 特性名转换为 camelCase. (从 2.1.0 开始支持)</td>
+</tr>
+<tr>
+<td>.sync</td>
+<td>(2.3.0+) 语法糖，会扩展成一个更新父组件绑定值的 v-on 侦听器。</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>v-model能使用的修饰符：</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>修饰符</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.lazy</td>
+<td>取代 input 监听 change 事件</td>
+</tr>
+<tr>
+<td>.number</td>
+<td>输入字符串转为数字</td>
+</tr>
+<tr>
+<td>.trim</td>
+<td>输入首尾空格过滤</td>
+</tr>
+</tbody>
+</table>
+<h1 id="4计算属性和观察者">4.计算属性和观察者</h1>
+<h2 id="计算属性">计算属性</h2>
+<p>对于任何复杂逻辑，你都应当使用计算属性，而不应直接放在模板中。</p>
+<p>计算属性也是响应式的，但是它会基于它们的依赖进行缓存的，<strong>只有当缓存改变，它才会重新求值</strong>；否则会直接返回缓存的结果，而不必再次执行函数。</p>
+<p>应当优先使用计算属性而不是侦听属性。</p>
+<pre><code class="language-html">&lt;div id=&quot;example&quot;&gt;
+  &lt;p&gt;Original message: &quot;{{ message }}&quot;&lt;/p&gt;
+  &lt;p&gt;Computed reversed message: &quot;{{ reversedMessage }}&quot;&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-js">var vm = new Vue({
+  el: '#example',
+  data: {
+    message: 'Hello'
+  },
+  computed: {
+    // 计算属性的 getter
+    reversedMessage: function () {
+      // `this` 指向 vm 实例
+      return this.message.split('').reverse().join('')
+    }
+  }
+})
+</code></pre>
+<p>下面的计算属性不会更新，因为Date.now() 不是响应式依赖。</p>
+<pre><code class="language-js">computed: {
+  now: function () {
+    return Date.now()
+  }
+}
+</code></pre>
+<h4 id="计算属性缓存-vs-方法">计算属性缓存 vs 方法</h4>
+<pre><code>&lt;p&gt;Reversed message: &quot;{{ reversedMessage() }}&quot;&lt;/p&gt;
+</code></pre>
+<pre><code class="language-js">// 在组件中
+methods: {
+  reversedMessage: function () {
+    return this.message.split('').reverse().join('')
+  }
+}
+</code></pre>
+<p>方法在每次调用时<strong>总会再次执行函数</strong>。</p>
+<h4 id="setter">setter</h4>
+<p>计算属性默认只有 getter ，不过在需要时你也可以提供一个 setter</p>
+<pre><code>computed: {
+  fullName: {
+    // getter
+    get: function () {
+      return this.firstName + ' ' + this.lastName
+    },
+    // setter
+    set: function (newValue) {
+      var names = newValue.split(' ')
+      this.firstName = names[0]
+      this.lastName = names[names.length - 1]
+    }
+  }
+}
+</code></pre>
+<h2 id="侦听器">侦听器</h2>
+<pre><code>&lt;div id=&quot;watch-example&quot;&gt;
+  &lt;p&gt;
+    Ask a yes/no question:
+    &lt;input v-model=&quot;question&quot;&gt;
+  &lt;/p&gt;
+  &lt;p&gt;{{ answer }}&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code>watch: {
+    // 如果 `question` 发生改变，这个函数就会运行
+    question: function (newQuestion, oldQuestion) {
+      this.answer = 'Waiting for you to stop typing...'
+      this.getAnswer()
+    }
+  }
+</code></pre>
+<h4 id="销毁">销毁</h4>
+<pre><code>// const unWatch = app.$watch('text', (newText, oldText) =&gt; {
+//   console.log(`${newText} : ${oldText}`)
+// })
+// setTimeout(() =&gt; {
+//   unWatch()
+// }, 2000)
+</code></pre>
+<h1 id="5-class与style绑定">5. Class与Style绑定</h1>
+<h2 id="class">Class</h2>
+<h4 id="对象语法">对象语法</h4>
+<p>当value为真时，绑定对应的key到class</p>
+<pre><code>&lt;!--内联在模板中--&gt;
+&lt;div class=&quot;static&quot;
+     v-bind:class=&quot;{ active: isActive, 'text-danger': hasError }&quot;&gt;
+&lt;/div&gt;
+&lt;!--绑定data或者计算属性的的一个对象--&gt;
+&lt;div v-bind:class=&quot;classObject&quot;&gt;&lt;/div&gt;
+&lt;!--js--&gt;
+data: {
+  classObject: {
+    active: true,
+    'text-danger': false
+  }
+}
+</code></pre>
+<h4 id="数组语法">数组语法</h4>
+<pre><code>&lt;!--模板--&gt;
+&lt;div v-bind:class=&quot;[activeClass, errorClass]&quot;&gt;&lt;/div&gt;
+&lt;!--js--&gt;
+data: {
+  activeClass: 'active',
+  errorClass: 'text-danger'
+}
+&lt;!--结果--&gt;
+&lt;div class=&quot;active text-danger&quot;&gt;&lt;/div&gt;
+</code></pre>
+<p>也可以使用三元表达式。</p>
+<pre><code>// isActive为真添加activeClass，errorClass始终存在
+&lt;div v-bind:class=&quot;[isActive ? activeClass : '', errorClass]&quot;&gt;&lt;/div&gt;
+</code></pre>
+<h4 id="混合">混合</h4>
+<pre><code>&lt;div v-bind:class=&quot;[{ active: isActive }, errorClass]&quot;&gt;&lt;/div&gt;
+</code></pre>
+<h4 id="用在组件上">用在组件上</h4>
+<p>class将被添加到该组件的根元素上面。该元素上已经存在的class不会被覆盖。</p>
+<pre><code>&lt;my-component class=&quot;baz boo&quot;&gt;&lt;/my-component&gt;
+</code></pre>
+<p><strong>注意：和普通的class并存，并不会覆盖（不同名），最终会合成一个class。</strong></p>
+<h2 id="style">Style</h2>
+<p>自动侦测并添加相应浏览器引擎前缀。</p>
+<h4 id="对象语法-2">对象语法</h4>
+<p>CSS 属性名可以用驼峰式 (camelCase) 或短横线分隔 (kebab-case，记得用单引号括起来) 来命名。</p>
+<pre><code>&lt;!--内联在模板中--&gt;
+&lt;div v-bind:style=&quot;{ color: activeColor, fontSize: fontSize + 'px' }&quot;&gt;&lt;/div&gt;
+&lt;!--js--&gt;
+data: {
+  activeColor: 'red',
+  fontSize: 30
+}
+&lt;!--绑定data或者计算属性的的一个对象--&gt;
+&lt;div v-bind:style=&quot;styleObject&quot;&gt;&lt;/div&gt;
+&lt;!--js--&gt;
+data: {
+  styleObject: {
+    color: 'red',
+    fontSize: '13px'
+  }
+}
+</code></pre>
+<h4 id="数组语法-2">数组语法</h4>
+<p>可以将多个样式对象应用到同一个元素上</p>
+<pre><code>&lt;div v-bind:style=&quot;[baseStyles, overridingStyles]&quot;&gt;&lt;/div&gt;
+</code></pre>
+<h4 id="多重值">多重值</h4>
+<pre><code>&lt;!--常用于提供多个带前缀的值--&gt;
+&lt;div :style=&quot;{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }&quot;&gt;&lt;/div&gt;
+</code></pre>
+<h1 id="6条件渲染">6.条件渲染</h1>
+<h2 id="v-ifv-else-v-else-if">v-if(v-else、v-else-if)</h2>
+<p>根据表达式的值的真假条件渲染元素。</p>
+<pre><code>&lt;div v-if=&quot;type === 'A'&quot;&gt;
+  A
+&lt;/div&gt;
+&lt;div v-else-if=&quot;type === 'B'&quot;&gt;
+  B
+&lt;/div&gt;
+&lt;div v-else-if=&quot;type === 'C'&quot;&gt;
+  C
+&lt;/div&gt;
+&lt;div v-else&gt;
+  Not A/B/C
+&lt;/div&gt;
+</code></pre>
+<p>如果需要条件渲染多个元素，可以使用<template>包裹。</p>
+<pre><code>&lt;template v-if=&quot;ok&quot;&gt;
+  &lt;h1&gt;Title&lt;/h1&gt;
+  &lt;p&gt;Paragraph 1&lt;/p&gt;
+  &lt;p&gt;Paragraph 2&lt;/p&gt;
+&lt;/template&gt;
+</code></pre>
+<h6 id="key">key</h6>
+<p>Vue 会尽可能高效地渲染元素，通常会复用已有元素而不是从头开始渲染。<strong>添加一个具有唯一值的 key 属性可以强制其重新渲染。</strong></p>
+<h2 id="v-show">v-show</h2>
+<p>根据表达式之真假值，切换元素的 display CSS 属性。</p>
+<pre><code>&lt;h1 v-show=&quot;ok&quot;&gt;Hello!&lt;/h1&gt;
+</code></pre>
+<h1 id="7列表渲染">7.列表渲染</h1>
+<h2 id="数组">数组</h2>
+<pre><code>&lt;!--普通--&gt;
+&lt;ul id=&quot;example&quot;&gt;
+  &lt;li v-for=&quot;item in items&quot;&gt;
+    {{ item.message }}
+  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;!--带索引--&gt;
+&lt;ul id=&quot;example&quot;&gt;
+  &lt;li v-for=&quot;(item, index) in items&quot;&gt;
+    {{ parentMessage }} - {{ index }} - {{ item.message }}
+  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;!--js--&gt;
+var example = new Vue({
+  el: '#example',
+  data: {
+    items: [
+      { message: 'Foo' },
+      { message: 'Bar' }
+    ]
+  }
+})
+</code></pre>
+<h4 id="数组更新检测">数组更新检测</h4>
+<p>包含变异（改变原数组）和非变异（生成新数组，不改变原数组）两组方式，都将触发更新。</p>
+<ul>
+<li>变异方法：push()、pop()、shift()、unshift()、splice()、sort()、reverse()</li>
+<li>非变异方法（需用新数组替换原数组）：filter()、concat()、slice()</li>
+</ul>
+<p><strong>不能检测的变动：</strong></p>
+<ul>
+<li>当你利用索引直接设置一个项时，例如：vm.items[indexOfItem] = newValue</li>
+<li>当你修改数组的长度时，例如：vm.items.length = newLength</li>
+</ul>
+<h2 id="对象">对象</h2>
+<pre><code class="language-html">&lt;!--普通--&gt;
+&lt;li v-for=&quot;value in object&quot;&gt;
+{{ value }}
+&lt;/li&gt;
+&lt;!--带key--&gt;
+&lt;div v-for=&quot;(value, key) in object&quot;&gt;
+  {{ key }}: {{ value }}
+&lt;/div&gt;
+&lt;!--带key、索引--&gt;
+&lt;div v-for=&quot;(value, key, index) in object&quot;&gt;
+  {{ index }}. {{ key }}: {{ value }}
+&lt;/div&gt;
+&lt;!--js--&gt;
+new Vue({
+  data: {
+    object: {
+      firstName: 'John',
+      lastName: 'Doe',
+      age: 30
+    }
+  }
+})
+</code></pre>
+<h4 id="对象更改检测注意事项">对象更改检测注意事项</h4>
+<p>Vue 不能检测对象属性的添加或删除。</p>
+<ul>
+<li>对于已经创建的实例，Vue 不能动态添加根级别的响应式属性。</li>
+</ul>
+<pre><code>var vm = new Vue({
+  data: {
+    a: 1
+  }
+})
+// `vm.a` 现在是响应式的
+
+vm.b = 2
+// `vm.b` 不是响应式的
+</code></pre>
+<ul>
+<li>可以使用 Vue.set(object, key, value) 方法向嵌套对象添加响应式属性</li>
+</ul>
+<pre><code>var vm = new Vue({
+  data: {
+    userProfile: {
+      name: 'Anika'
+    }
+  }
+})
+vm.$set(this.userProfile, 'age', 27)
+</code></pre>
+<ul>
+<li>多个属性可以使用Object.assign() 或 _.extend()</li>
+</ul>
+<pre><code>this.userProfile = Object.assign({}, this.userProfile, {
+  age: 27,
+  favoriteColor: 'Vue Green'
+})
+</code></pre>
+<h4 id="delete">delete</h4>
+<p>对应的删除属性使用<code>vm.$delete(obj,key)</code></p>
+<h2 id="key-2">key</h2>
+<p>当 Vue.js 用 v-for 正在更新已渲染过的元素列表时，它默认用“就地复用”策略。<br>
+建议尽可能在使用 v-for 时为每一项提供一个唯一的 key。<br>
+循环组件的时候，key是必须的。</p>
+<pre><code>&lt;div v-for=&quot;item in items&quot; :key=&quot;item.id&quot;&gt;
+  &lt;!-- 内容 --&gt;
+&lt;/div&gt;
+</code></pre>
+<h2 id="其他">其他</h2>
+<ul>
+<li>v-for的循环对象也可以是计算属性和带返回值的method 方法。</li>
+<li>利用带有 v-for 的 <template> 渲染多个元素</li>
+</ul>
+<pre><code>&lt;ul&gt;
+  &lt;template v-for=&quot;item in items&quot;&gt;
+    &lt;li&gt;{{ item.msg }}&lt;/li&gt;
+    &lt;li class=&quot;divider&quot;&gt;&lt;/li&gt;
+  &lt;/template&gt;
+&lt;/ul&gt;
+</code></pre>
+<ul>
+<li>v-for和v-if处于同一节点时，v-for 具有比 v-if 更高的优先级</li>
+</ul>
+<h1 id="8事件处理">8.事件处理</h1>
+<h2 id="事件">事件</h2>
+<pre><code>&lt;div id=&quot;example-3&quot;&gt;
+  &lt;button v-on:click=&quot;say('hi')&quot;&gt;Say hi&lt;/button&gt;
+  &lt;!--访问原始的 DOM 事件--&gt;
+  &lt;button v-on:click=&quot;say2('what', $event)&quot;&gt;Say what&lt;/button&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-js">new Vue({
+  el: '#example-3',
+  methods: {
+    say: function (message) {
+      alert(message)
+    },
+    say2: function (message,event) {
+        // 现在我们可以访问原生事件对象
+        if (event) event.preventDefault()
+      alert(message)
+    }
+  }
+})
+</code></pre>
+<h2 id="事件修饰符">事件修饰符</h2>
+<p>修饰符可以串联，代码会以串联的顺序产生。</p>
+<table>
+<thead>
+<tr>
+<th>修饰符</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.stop</td>
+<td>调用 event.stopPropagation()。</td>
+</tr>
+<tr>
+<td>.prevent</td>
+<td>调用 event.preventDefault()。</td>
+</tr>
+<tr>
+<td>.capture</td>
+<td>添加事件侦听器时使用 capture 模式。</td>
+</tr>
+<tr>
+<td>.self</td>
+<td>只当事件是从侦听器绑定的元素本身触发时才触发回调。</td>
+</tr>
+<tr>
+<td>.once</td>
+<td>只触发一次回调。</td>
+</tr>
+</tbody>
+</table>
+<pre><code>&lt;!-- 阻止单击事件继续传播 --&gt;
+&lt;a v-on:click.stop=&quot;doThis&quot;&gt;&lt;/a&gt;
+
+&lt;!-- 提交事件不再重载页面 --&gt;
+&lt;form v-on:submit.prevent=&quot;onSubmit&quot;&gt;&lt;/form&gt;
+
+&lt;!-- 修饰符可以串联 --&gt;
+&lt;a v-on:click.stop.prevent=&quot;doThat&quot;&gt;&lt;/a&gt;
+
+&lt;!-- 只有修饰符 --&gt;
+&lt;form v-on:submit.prevent&gt;&lt;/form&gt;
+
+&lt;!-- 添加事件监听器时使用事件捕获模式 --&gt;
+&lt;!-- 即元素自身触发的事件先在此处处理，然后才交由内部元素进行处理 --&gt;
+&lt;div v-on:click.capture=&quot;doThis&quot;&gt;...&lt;/div&gt;
+
+&lt;!-- 只当在 event.target 是当前元素自身时触发处理函数 --&gt;
+&lt;!-- 即事件不是从内部元素触发的 --&gt;
+&lt;div v-on:click.self=&quot;doThat&quot;&gt;...&lt;/div&gt;
+&lt;!-- 点击事件将只会触发一次（可用于自定义组件） --&gt;
+&lt;a v-on:click.once=&quot;doThis&quot;&gt;&lt;/a&gt;
+</code></pre>
+<p>Vue 还对应 addEventListener 中的 passive 选项提供了 .passive 修饰符，能够提升移动端的性能，但是要避免和.prevent一起使用。</p>
+<pre><code>&lt;!-- 滚动事件的默认行为 (即滚动行为) 将会立即触发 --&gt;
+&lt;!-- 而不会等待 `onScroll` 完成  --&gt;
+&lt;!-- 这其中包含 `event.preventDefault()` 的情况 --&gt;
+&lt;div v-on:scroll.passive=&quot;onScroll&quot;&gt;...&lt;/div&gt;
+</code></pre>
+<h2 id="按键修饰符">按键修饰符</h2>
+<p>在监听键盘事件时，我们经常需要检查常见的键值。Vue 允许为 v-on 在监听键盘事件时添加按键修饰符。</p>
+<pre><code>&lt;!-- 只有在 `keyCode` 是 13 时调用 `vm.submit()` --&gt;
+&lt;input v-on:keyup.13=&quot;submit&quot;&gt;
+&lt;!-- 缩写语法 --&gt;
+&lt;input @keyup.enter=&quot;submit&quot;&gt;
+</code></pre>
+<ul>
+<li><strong>全部的按键别名：</strong><code>.enter</code>、<code>.tab</code>、<code>.delete</code> (捕获“删除”和“退格”键)、<code>.esc</code>、<code>.space</code>、<code>.up</code>、<code>.down</code>、<code>.left</code>、<code>.right</code></li>
+<li>自定义按键修饰符别名</li>
+</ul>
+<pre><code>// 可以使用 `v-on:keyup.f1`
+Vue.config.keyCodes.f1 = 112
+</code></pre>
+<ul>
+<li>自动匹配按键修饰符</li>
+</ul>
+<pre><code>&lt;!--可直接将 KeyboardEvent.key 暴露的任意有效按键名转换为 kebab-case 来作为修饰符：--&gt;
+&lt;input @keyup.page-down=&quot;onPageDown&quot;&gt;
+</code></pre>
+<h2 id="系统修饰键">系统修饰键</h2>
+<p><code>.ctrl</code>、<code>.alt</code>、<code>.shift</code>、<code>.meta</code>。<br>
+在和 keyup 事件一起用时，事件触发时修饰键必须处于按下状态。换句话说，只有在按住 ctrl 的情况下释放其它按键，才能触发 keyup.ctrl。而单单释放 ctrl 也不会触发事件。</p>
+<pre><code>&lt;!-- Alt + C --&gt;
+&lt;input @keyup.alt.67=&quot;clear&quot;&gt;
+
+&lt;!-- Ctrl + Click --&gt;
+&lt;div @click.ctrl=&quot;doSomething&quot;&gt;Do something&lt;/div&gt;
+</code></pre>
+<p><code>.exact</code> 修饰符允许你控制由精确的系统修饰符组合触发的事件。</p>
+<pre><code>&lt;!-- 即使 Alt 或 Shift 被一同按下时也会触发 --&gt;
+&lt;button @click.ctrl=&quot;onClick&quot;&gt;A&lt;/button&gt;
+
+&lt;!-- 有且只有 Ctrl 被按下的时候才触发 --&gt;
+&lt;button @click.ctrl.exact=&quot;onCtrlClick&quot;&gt;A&lt;/button&gt;
+
+&lt;!-- 没有任何系统修饰符被按下的时候才触发 --&gt;
+&lt;button @click.exact=&quot;onClick&quot;&gt;A&lt;/button&gt;
+</code></pre>
+<h4 id="鼠标按钮修饰符">鼠标按钮修饰符</h4>
+<p><code>.left</code>、<code>.right</code>、<code>.middle</code><br>
+仅响应特定的鼠标按钮</p>
+<h1 id="9表单输入绑定">9.表单输入绑定</h1>
+<h2 id="基础用法">基础用法</h2>
+<p>可以用 <code>v-model</code> 指令在表单 <code>&lt;input&gt;</code> 及 <code>&lt;textarea&gt;</code> 元素上创建双向数据绑定。</p>
+<p><code>v-model</code>仅为<code>v-on:input</code>和<code>v-bind:value</code>的<strong>语法糖</strong>而已。</p>
+<pre><code>&lt;input v-model=&quot;something&quot;&gt;
+&lt;input
+  v-bind:value=&quot;something&quot;
+  v-on:input=&quot;something = $event.target.value&quot;&gt;
+</code></pre>
+<p>注意：v-model 会忽略所有表单元素的 <code>value、checked、selected</code> 特性的初始值而<strong>总是将 Vue 实例的数据作为数据来源</strong>。你应该通过 JavaScript 在组件的 data 选项中声明初始值。</p>
+<ul>
+<li>文本/多行文本</li>
+</ul>
+<pre><code>&lt;input v-model=&quot;message&quot; placeholder=&quot;edit me&quot;&gt;
+&lt;textarea v-model=&quot;message&quot; placeholder=&quot;add multiple lines&quot;&gt;&lt;/textarea&gt;
+&lt;p&gt;Message is: {{ message }}&lt;/p&gt;
+</code></pre>
+<ul>
+<li>复选框</li>
+</ul>
+<pre><code>&lt;div id='example-3'&gt;
+  &lt;input type=&quot;checkbox&quot; id=&quot;jack&quot; value=&quot;Jack&quot; v-model=&quot;checkedNames&quot;&gt;
+  &lt;label for=&quot;jack&quot;&gt;Jack&lt;/label&gt;
+  &lt;input type=&quot;checkbox&quot; id=&quot;john&quot; value=&quot;John&quot; v-model=&quot;checkedNames&quot;&gt;
+  &lt;label for=&quot;john&quot;&gt;John&lt;/label&gt;
+  &lt;input type=&quot;checkbox&quot; id=&quot;mike&quot; value=&quot;Mike&quot; v-model=&quot;checkedNames&quot;&gt;
+  &lt;label for=&quot;mike&quot;&gt;Mike&lt;/label&gt;
+  &lt;br&gt;
+  &lt;span&gt;Checked names: {{ checkedNames }}&lt;/span&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-js">new Vue({
+  el: '#example-3',
+  data: {
+    checkedNames: []
+  }
+})
+//Checked names: [ &quot;Jack&quot;, &quot;John&quot;, &quot;Mike&quot; ]
+</code></pre>
+<ul>
+<li>单选按钮</li>
+</ul>
+<pre><code>&lt;div id=&quot;example-4&quot;&gt;
+  &lt;input type=&quot;radio&quot; id=&quot;one&quot; value=&quot;One&quot; v-model=&quot;picked&quot;&gt;
+  &lt;label for=&quot;one&quot;&gt;One&lt;/label&gt;
+  &lt;br&gt;
+  &lt;input type=&quot;radio&quot; id=&quot;two&quot; value=&quot;Two&quot; v-model=&quot;picked&quot;&gt;
+  &lt;label for=&quot;two&quot;&gt;Two&lt;/label&gt;
+  &lt;br&gt;
+  &lt;span&gt;Picked: {{ picked }}&lt;/span&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code>new Vue({
+  el: '#example-4',
+  data: {
+    picked: ''
+  }
+})
+//Picked: Two
+</code></pre>
+<ul>
+<li>选择框</li>
+</ul>
+<pre><code>&lt;div id=&quot;example-5&quot;&gt;
+  &lt;select v-model=&quot;selected&quot;&gt;
+    &lt;option disabled value=&quot;&quot;&gt;请选择&lt;/option&gt;
+    &lt;option&gt;A&lt;/option&gt;
+    &lt;option&gt;B&lt;/option&gt;
+    &lt;option&gt;C&lt;/option&gt;
+  &lt;/select&gt;
+  &lt;span&gt;Selected: {{ selected }}&lt;/span&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code>new Vue({
+  el: '...',
+  data: {
+    selected: ''
+  }
+})
+//Selected: B
+</code></pre>
+<p>为多选时则返回一个数组<code>Selected: [ &quot;A&quot;, &quot;B&quot; ]</code></p>
+<h2 id="值绑定">值绑定</h2>
+<ul>
+<li>复选框</li>
+</ul>
+<pre><code>&lt;input
+  type=&quot;checkbox&quot;
+  v-model=&quot;toggle&quot;
+  true-value=&quot;yes&quot;
+  false-value=&quot;no&quot;
+&gt;
+</code></pre>
+<ul>
+<li>单选按钮</li>
+</ul>
+<pre><code>&lt;input type=&quot;radio&quot; v-model=&quot;pick&quot; v-bind:value=&quot;a&quot;&gt;
+</code></pre>
+<ul>
+<li>选择框的选项</li>
+</ul>
+<pre><code>&lt;select v-model=&quot;selected&quot;&gt;
+    &lt;!-- 内联对象字面量 --&gt;
+  &lt;option v-bind:value=&quot;{ number: 123 }&quot;&gt;123&lt;/option&gt;
+&lt;/select&gt;
+</code></pre>
+<h2 id="修饰符-2">修饰符</h2>
+<ul>
+<li><code>.lazy</code>，默认<code>input</code>事件触发，使用此修饰则改为change事件触发</li>
+</ul>
+<pre><code>&lt;!-- 在“change”时而非“input”时更新 --&gt;
+&lt;input v-model.lazy=&quot;msg&quot; &gt;
+</code></pre>
+<ul>
+<li><code>.number</code>将输入的值转换为数值</li>
+<li><code>.trim</code>过滤掉输入内容的首尾空白字符</li>
+</ul>
+<h1 id="10组件">10.组件</h1>
+<h2 id="简介-2">简介</h2>
+<p><img src="https://cn.vuejs.org/images/components.png" alt="image" loading="lazy"><br>
+组件 (Component) 是 Vue.js 最强大的功能之一。组件可以扩展 HTML 元素，封装可重用的代码。组件是具有特殊功能的自定义元素。</p>
+<p>所有的 Vue 组件同时也都是 Vue 的实例，所以可接受相同的选项对象 (除了一些根级特有的选项) 并提供相同的生命周期钩子。</p>
+<h2 id="注册组件">注册组件</h2>
+<h4 id="全局组件">全局组件</h4>
+<pre><code>&lt;div id=&quot;example&quot;&gt;
+  &lt;my-component&gt;&lt;/my-component&gt;
+&lt;/div&gt;
+//注意确保在初始化根实例之前注册组件
+// 注册
+Vue.component('my-component', {
+  template: '&lt;div&gt;A custom component!&lt;/div&gt;'
+})
+</code></pre>
+<h4 id="局部组件">局部组件</h4>
+<pre><code>var Child = {
+  template: '&lt;div&gt;A custom component!&lt;/div&gt;'
+}
+
+new Vue({
+  // ...
+  components: {
+    // &lt;my-component&gt; 将只在父组件模板中可用
+    'my-component': Child
+  }
+})
+</code></pre>
+<h4 id="自动注册">自动注册</h4>
+<p>webpack 的 vue cli3+</p>
+<pre><code>import Vue from 'vue'
+import upperFirst from 'lodash/upperFirst'
+import camelCase from 'lodash/camelCase'
+
+const requireComponent = require.context(
+  // 其组件目录的相对路径
+  './components',
+  // 是否查询其子目录
+  false,
+  // 匹配基础组件文件名的正则表达式
+  /Base[A-Z]\w+\.(vue|js)$/
+)
+
+requireComponent.keys().forEach(fileName =&gt; {
+  // 获取组件配置
+  const componentConfig = requireComponent(fileName)
+
+  // 获取组件的 PascalCase 命名
+  const componentName = upperFirst(
+    camelCase(
+      // 剥去文件名开头的 `'./` 和结尾的扩展名
+      fileName.replace(/^\.\/(.*)\.\w+$/, '$1')
+    )
+  )
+
+  // 全局注册组件
+  Vue.component(
+    componentName,
+    // 如果这个组件选项是通过 `export default` 导出的，
+    // 那么就会优先使用 `.default`，
+    // 否则回退到使用模块的根。
+    componentConfig.default || componentConfig
+  )
+})
+</code></pre>
+<h6 id="注意">注意</h6>
+<ul>
+<li>data必须是带return的函数</li>
+<li>如果将组件用于像 <code>&lt;ul&gt;</code>、<code>&lt;ol&gt;</code>、<code>&lt;table&gt;</code>、<code>&lt;select&gt;</code> 这样的元素里面，为了遵循规范，应该使用is：</li>
+</ul>
+<pre><code>&lt;table&gt;
+  &lt;tr is=&quot;my-row&quot;&gt;&lt;/tr&gt;
+&lt;/table&gt;
+</code></pre>
+<p>以下类型模板无此限制：<code>&lt;script type=&quot;text/x-template&quot;&gt;</code>、JavaScript 内联模板字符串、<code>.vue</code> 组件</p>
+<h2 id="单文件组件">单文件组件</h2>
+<p>可以包含<code>&lt;template&gt;</code>、<code>&lt;script&gt;</code>、<code>&lt;style&gt;</code>、<code>&lt;docs&gt;</code>四个元素。</p>
+<ul>
+<li><code>&lt;template&gt;</code>内只允许有一个根元素</li>
+<li><code>&lt;style&gt;</code>可以有多个</li>
+<li><code>&lt;docs&gt;</code>说明文档</li>
+<li><code>&lt;script&gt;</code>、<code>&lt;style&gt;</code>支持src导入</li>
+</ul>
+<h2 id="组件通信">组件通信</h2>
+<figure data-type="image" tabindex="2"><img src="https://cn.vuejs.org/images/props-events.png" alt="image" loading="lazy"></figure>
+<h4 id="prop">Prop</h4>
+<p>父组件向子组件传递数据。</p>
+<pre><code>Vue.component('child', {
+  // 声明 props
+  props: ['message'],
+  // 就像 data 一样，prop 也可以在模板中使用
+  // 同样也可以在 vm 实例中通过 this.message 来使用
+  template: '&lt;span&gt;{{ message }}&lt;/span&gt;'
+})
+&lt;child message=&quot;hello!&quot;&gt;&lt;/child&gt;
+</code></pre>
+<h5 id="动态-prop">动态 Prop:</h5>
+<pre><code>&lt;child v-bind:my-message=&quot;parentMsg&quot;&gt;&lt;/child&gt;
+</code></pre>
+<p>如果你想把一个对象的所有属性作为 prop 进行传递，可以使用不带任何参数的 v-bind</p>
+<pre><code>todo: {
+  text: 'Learn Vue',
+  isComplete: false
+}
+&lt;todo-item v-bind=&quot;todo&quot;&gt;&lt;/todo-item&gt;
+//等价于
+&lt;todo-item
+  v-bind:text=&quot;todo.text&quot;
+  v-bind:is-complete=&quot;todo.isComplete&quot;
+&gt;&lt;/todo-item&gt;
+</code></pre>
+<h5 id="字面量语法-vs-动态语法">字面量语法 vs 动态语法</h5>
+<pre><code>&lt;!-- 传递了一个字符串 &quot;1&quot; --&gt;
+&lt;comp some-prop=&quot;1&quot;&gt;&lt;/comp&gt;
+&lt;!-- 传递真正的数值 --&gt;
+&lt;comp v-bind:some-prop=&quot;1&quot;&gt;&lt;/comp&gt;
+</code></pre>
+<h5 id="验证">验证</h5>
+<p>为组件的 prop 指定验证规则，会在组件实例创建之前进行校验。如果传入的数据不符合要求，Vue 会发出警告。</p>
+<pre><code>Vue.component('example', {
+  props: {
+    // 基础类型检测 (`null` 指允许任何类型)
+    propA: Number,
+    // 可能是多种类型
+    propB: [String, Number],
+    // 必传且是字符串
+    propC: {
+      type: String,
+      required: true
+    },
+    // 数值且有默认值
+    propD: {
+      type: Number,
+      default: 100
+    },
+    // 数组/对象的默认值应当由一个工厂函数返回
+    propE: {
+      type: Object,
+      default: function () {
+        return { message: 'hello' }
+      }
+    },
+    // 自定义验证函数
+    propF: {
+      validator: function (value) {
+        return value &gt; 10
+      }
+    }
+  }
+})
+</code></pre>
+<p><strong>type 可以是下面原生构造器</strong>：<code>String</code>、<code>Number</code>、<code>Boolean</code>、<code>Function</code>、<code>Object</code>、<code>Array</code>、<code>Symbol</code></p>
+<p>组件可以接收任意传入的特性，这些特性都会被添加到组件的根元素上，且会做合并处理。</p>
+<h2 id="自定义事件">自定义事件</h2>
+<p>子组件向父组件传递数据。</p>
+<ul>
+<li>使用 <code>$on(eventName)</code> 监听事件</li>
+<li>使用 <code>$emit(eventName)</code> 触发事件</li>
+</ul>
+<pre><code>&lt;div id=&quot;counter-event-example&quot;&gt;
+  &lt;p&gt;{{ total }}&lt;/p&gt;
+  &lt;button-counter v-on:increment=&quot;incrementTotal&quot;&gt;&lt;/button-counter&gt;
+  &lt;button-counter v-on:increment=&quot;incrementTotal&quot;&gt;&lt;/button-counter&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code>Vue.component('button-counter', {
+  template: '&lt;button v-on:click=&quot;incrementCounter&quot;&gt;{{ counter }}&lt;/button&gt;',
+  data: function () {
+    return {
+      counter: 0
+    }
+  },
+  methods: {
+    incrementCounter: function () {
+      this.counter += 1
+      this.$emit('increment')
+    }
+  },
+})
+
+new Vue({
+  el: '#counter-event-example',
+  data: {
+    total: 0
+  },
+  methods: {
+    incrementTotal: function () {
+      this.total += 1
+    }
+  }
+})
+</code></pre>
+<h2 id="父子双向通信">父子双向通信</h2>
+<ul>
+<li><code>.sync</code></li>
+</ul>
+<p><code>@update</code>的语法糖</p>
+<pre><code>&lt;comp :foo.sync=&quot;bar&quot;&gt;&lt;/comp&gt;
+this.$emit('update:foo', newValue)
+</code></pre>
+<p>等价于</p>
+<pre><code>&lt;comp :foo=&quot;bar&quot; @update:foo=&quot;val =&gt; bar = val&quot;&gt;&lt;/comp&gt;
+this.$emit('update:foo', newValue)
+</code></pre>
+<ul>
+<li>v-model(仅适用于表单输入组件)</li>
+</ul>
+<p><code>v-on:input</code>和<code>v-bind:value</code>的语法糖</p>
+<pre><code>&lt;input v-model=&quot;something&quot;&gt;
+// 通过 input 事件带出数值
+this.$emit('input', Number(formattedValue))
+</code></pre>
+<p>等价于</p>
+<pre><code>&lt;input
+  v-bind:value=&quot;something&quot;
+  v-on:input=&quot;something = $event.target.value&quot;&gt;
+this.$emit('input', Number(formattedValue))
+</code></pre>
+<h2 id="非父子组件通信">非父子组件通信</h2>
+<ul>
+<li>简单场景<code>bus.js</code></li>
+</ul>
+<pre><code>var bus = new Vue()
+// 触发组件 A 中的事件
+bus.$emit('id-selected', 1)
+// 在组件 B 创建的钩子中监听事件
+bus.$on('id-selected', function (id) {
+  // ...
+})
+</code></pre>
+<p><strong>注：</strong> 还可以使用<code>$ref、$parent、$child</code>进行通信，不过<strong>不推荐</strong>。</p>
+<ul>
+<li>复杂的场景请使用vuex</li>
+</ul>
+<h2 id="插槽">插槽</h2>
+<p>为了让组件可以组合，我们需要一种方式来混合父组件的内容与子组件自己的模板。这个过程被称为内容分发。<br>
+<strong>编译作用域：</strong> 父组件模板的内容在父组件作用域内编译；子组件模板的内容在子组件作用域内编译。</p>
+<h4 id="单个插槽">单个插槽</h4>
+<p>除非子组件模板包含至少一个 <code>&lt;slot&gt;</code> 插口，否则父组件的内容将会被丢弃。当子组件模板只有一个没有属性的插槽时，父组件传入的整个内容片段将插入到插槽所在的 DOM 位置，并替换掉插槽标签本身。</p>
+<p>最初在 <code>&lt;slot&gt;</code> 标签中的任何内容都被视为备用内容。备用内容在子组件的作用域内编译，并且只有在宿主元素为空，且没有要插入的内容时才显示备用内容。</p>
+<pre><code>&lt;!--子组件--&gt;
+&lt;div&gt;
+  &lt;h2&gt;我是子组件的标题&lt;/h2&gt;
+  &lt;slot&gt;
+    只有在没有要分发的内容时才会显示。
+  &lt;/slot&gt;
+&lt;/div&gt;
+
+&lt;!--父组件--&gt;
+&lt;div&gt;
+  &lt;h1&gt;我是父组件的标题&lt;/h1&gt;
+  &lt;my-component&gt;
+    &lt;p&gt;这是一些初始内容&lt;/p&gt;
+    &lt;p&gt;这是更多的初始内容&lt;/p&gt;
+  &lt;/my-component&gt;
+&lt;/div&gt;
+
+&lt;!--结果--&gt;
+&lt;div&gt;
+  &lt;h1&gt;我是父组件的标题&lt;/h1&gt;
+  &lt;div&gt;
+    &lt;h2&gt;我是子组件的标题&lt;/h2&gt;
+    &lt;p&gt;这是一些初始内容&lt;/p&gt;
+    &lt;p&gt;这是更多的初始内容&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<h4 id="具名插槽">具名插槽</h4>
+<p><code>&lt;slot&gt;</code> 元素可以用一个特殊的特性 name 来进一步配置如何分发内容。多个插槽可以有不同的名字。具名插槽将匹配内容片段中有对应 slot 特性的元素。</p>
+<p>仍然可以有一个匿名插槽，它是默认插槽，作为找不到匹配的内容片段的备用插槽。如果没有默认插槽，这些找不到匹配的内容片段将被抛弃。</p>
+<pre><code>&lt;!--子组件--&gt;
+&lt;div class=&quot;container&quot;&gt;
+  &lt;header&gt;
+    &lt;slot name=&quot;header&quot;&gt;&lt;/slot&gt;
+  &lt;/header&gt;
+  &lt;main&gt;
+    &lt;slot&gt;&lt;/slot&gt;
+  &lt;/main&gt;
+  &lt;footer&gt;
+    &lt;slot name=&quot;footer&quot;&gt;&lt;/slot&gt;
+  &lt;/footer&gt;
+&lt;/div&gt;
+
+&lt;!--父组件--&gt;
+&lt;app-layout&gt;
+  &lt;h1 slot=&quot;header&quot;&gt;这里可能是一个页面标题&lt;/h1&gt;
+
+  &lt;p&gt;主要内容的一个段落。&lt;/p&gt;
+  &lt;p&gt;另一个主要段落。&lt;/p&gt;
+
+  &lt;p slot=&quot;footer&quot;&gt;这里有一些联系信息&lt;/p&gt;
+&lt;/app-layout&gt;
+
+&lt;!--结果--&gt;
+&lt;div class=&quot;container&quot;&gt;
+  &lt;header&gt;
+    &lt;h1&gt;这里可能是一个页面标题&lt;/h1&gt;
+  &lt;/header&gt;
+  &lt;main&gt;
+    &lt;p&gt;主要内容的一个段落。&lt;/p&gt;
+    &lt;p&gt;另一个主要段落。&lt;/p&gt;
+  &lt;/main&gt;
+  &lt;footer&gt;
+    &lt;p&gt;这里有一些联系信息&lt;/p&gt;
+  &lt;/footer&gt;
+&lt;/div&gt;
+</code></pre>
+<h4 id="作用域插槽">作用域插槽</h4>
+<p>和普通的插槽对比，能够传递数据。</p>
+<pre><code>&lt;!--子组件--&gt;
+&lt;div class=&quot;child&quot;&gt;
+  &lt;slot text=&quot;hello from child&quot;&gt;&lt;/slot&gt;
+&lt;/div&gt;
+
+&lt;!--父组件--&gt;
+&lt;div class=&quot;parent&quot;&gt;
+  &lt;child&gt;
+  &lt;!--2.5.0+，slot-scope 能被用在任意元素或组件中而不再局限于 &lt;template&gt;--&gt;
+    &lt;template slot-scope=&quot;props&quot;&gt;
+      &lt;span&gt;hello from parent&lt;/span&gt;
+      &lt;span&gt;{{ props.text }}&lt;/span&gt;
+    &lt;/template&gt;
+  &lt;/child&gt;
+&lt;/div&gt;
+
+&lt;!--结果--&gt;
+&lt;div class=&quot;parent&quot;&gt;
+  &lt;div class=&quot;child&quot;&gt;
+    &lt;span&gt;hello from parent&lt;/span&gt;
+    &lt;span&gt;hello from child&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<h2 id="动态组件">动态组件</h2>
+<p>通过使用保留的 <code>&lt;component&gt;</code> 元素，并对其 is 特性进行动态绑定，你可以在同一个挂载点动态切换多个组件：</p>
+<pre><code>var vm = new Vue({
+  el: '#example',
+  data: {
+    currentView: 'home'
+  },
+  components: {
+    home: { /* ... */ },
+    posts: { /* ... */ },
+    archive: { /* ... */ }
+  }
+})
+</code></pre>
+<h2 id="keep-alive">keep-alive</h2>
+<p>把切换出去的组件保留在内存中,保留其状态或避免重新渲染</p>
+<pre><code>&lt;keep-alive&gt;
+  &lt;component :is=&quot;currentView&quot;&gt;
+    &lt;!-- 非活动组件将被缓存！ --&gt;
+  &lt;/component&gt;
+&lt;/keep-alive&gt;
+</code></pre>
+<h2 id="注意事项">注意事项</h2>
+<ul>
+<li>组件复用性，松耦合</li>
+<li>谨慎使用ref</li>
+<li>在大型应用中使用异步加载</li>
+<li>PascalCase声明， kebab-case使用</li>
+<li>为递归组件添加name</li>
+<li>对低开销的静态组件使用 v-once</li>
+</ul>
+<h1 id="11过渡和动画">11.过渡和动画</h1>
+<p>Vue 在插入、更新或者移除 DOM 时，提供多种不同方式的应用过渡效果。</p>
+<h2 id="单元素组件的过渡">单元素/组件的过渡</h2>
+<p>适用场景：条件渲染 (使用 v-if)、条件展示 (使用 v-show)、动态组件、组件根节点</p>
+<pre><code>&lt;div id=&quot;demo&quot;&gt;
+  &lt;button v-on:click=&quot;show = !show&quot;&gt;
+    Toggle
+  &lt;/button&gt;
+  &lt;transition name=&quot;fade&quot;&gt;
+    &lt;p v-if=&quot;show&quot;&gt;hello&lt;/p&gt;
+  &lt;/transition&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code>new Vue({
+  el: '#demo',
+  data: {
+    show: true
+  }
+})
+</code></pre>
+<pre><code>.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+</code></pre>
+<h4 id="过渡的类名">过渡的类名</h4>
+<ul>
+<li>v-enter：定义进入过渡的开始状态。在元素被插入时生效，在下一个帧移除。</li>
+<li>v-enter-active：定义过渡的状态。在元素整个过渡过程中作用，在元素被插入时生效，在 transition/animation 完成之后移除。这个类可以被用来定义过渡的过程时间，延迟和曲线函数。</li>
+<li>v-enter-to: 2.1.8版及以上 定义进入过渡的结束状态。在元素被插入一帧后生效 (与此同时 v-enter 被删除)，在 transition/animation 完成之后移除。</li>
+<li>v-leave: 定义离开过渡的开始状态。在离开过渡被触发时生效，在下一个帧移除。</li>
+<li>v-leave-active：定义过渡的状态。在元素整个过渡过程中作用，在离开过渡被触发后立即生效，在 transition/animation 完成之后移除。这个类可以被用来定义过渡的过程时间，延迟和曲线函数。</li>
+<li>v-leave-to: 2.1.8版及以上 定义离开过渡的结束状态。在离开过渡被触发一帧后生效 (与此同时 v-leave 被删除)，在 transition/animation 完成之后移除。<br>
+<img src="https://cn.vuejs.org/images/transition.png" alt="image" loading="lazy"></li>
+</ul>
+<h4 id="动画">动画</h4>
+<p>动画在css中使用animation即可，其他和过渡类似。</p>
+<h4 id="自定义过渡的类名">自定义过渡的类名</h4>
+<p>我们可以通过以下特性来自定义过渡类名：<br>
+<code>enter-class、enter-active-class、enter-to-class (2.1.8+)、leave-class、leave-active-class、leave-to-class (2.1.8+)</code></p>
+<pre><code>&lt;div id=&quot;example-3&quot;&gt;
+  &lt;button @click=&quot;show = !show&quot;&gt;
+    Toggle render
+  &lt;/button&gt;
+  &lt;transition
+    name=&quot;custom-classes-transition&quot;
+    enter-active-class=&quot;animated tada&quot;
+    leave-active-class=&quot;animated bounceOutRight&quot;
+  &gt;
+    &lt;p v-if=&quot;show&quot;&gt;hello&lt;/p&gt;
+  &lt;/transition&gt;
+&lt;/div&gt;
+</code></pre>
+<h4 id="设定持续时间">设定持续时间</h4>
+<pre><code>&lt;transition :duration=&quot;1000&quot;&gt;...&lt;/transition&gt;
+&lt;transition :duration=&quot;{ enter: 500, leave: 800 }&quot;&gt;...&lt;/transition&gt;
+</code></pre>
+<h4 id="javascript-钩子">JavaScript 钩子</h4>
+<pre><code>&lt;transition
+  v-on:before-enter=&quot;beforeEnter&quot;
+  v-on:enter=&quot;enter&quot;
+  v-on:after-enter=&quot;afterEnter&quot;
+  v-on:enter-cancelled=&quot;enterCancelled&quot;
+
+  v-on:before-leave=&quot;beforeLeave&quot;
+  v-on:leave=&quot;leave&quot;
+  v-on:after-leave=&quot;afterLeave&quot;
+  v-on:leave-cancelled=&quot;leaveCancelled&quot;
+&gt;
+  &lt;!-- ... --&gt;
+&lt;/transition&gt;
+</code></pre>
+<pre><code>// ...
+methods: {
+  // --------
+  // 进入中
+  // --------
+
+  beforeEnter: function (el) {
+    // ...
+  },
+  // 此回调函数是可选项的设置，done 是必须的 
+  // 与 CSS 结合时使用
+  enter: function (el, done) {
+    // ...
+    done()
+  },
+  afterEnter: function (el) {
+    // ...
+  },
+  enterCancelled: function (el) {
+    // ...
+  },
+
+  // --------
+  // 离开时
+  // --------
+
+  beforeLeave: function (el) {
+    // ...
+  },
+  // 此回调函数是可选项的设置，done 是必须的 
+  // 与 CSS 结合时使用
+  leave: function (el, done) {
+    // ...
+    done()
+  },
+  afterLeave: function (el) {
+    // ...
+  },
+  // leaveCancelled 只用于 v-show 中
+  leaveCancelled: function (el) {
+    // ...
+  }
+}
+</code></pre>
+<h2 id="初始渲染的过渡">初始渲染的过渡</h2>
+<p>可以通过 appear 特性设置节点在初始渲染的过渡</p>
+<pre><code>&lt;!--css--&gt;
+&lt;transition
+  appear
+  appear-class=&quot;custom-appear-class&quot;
+  appear-to-class=&quot;custom-appear-to-class&quot; (2.1.8+)
+  appear-active-class=&quot;custom-appear-active-class&quot;
+&gt;
+  &lt;!-- ... --&gt;
+&lt;/transition&gt;
+&lt;!--JS钩子--&gt;
+&lt;transition
+  appear
+  v-on:before-appear=&quot;customBeforeAppearHook&quot;
+  v-on:appear=&quot;customAppearHook&quot;
+  v-on:after-appear=&quot;customAfterAppearHook&quot;
+  v-on:appear-cancelled=&quot;customAppearCancelledHook&quot;
+&gt;
+  &lt;!-- ... --&gt;
+&lt;/transition&gt;
+</code></pre>
+<h2 id="多个元素的过渡">多个元素的过渡</h2>
+<p>当有相同标签名的元素切换时，建议给元素设置key。</p>
+<h4 id="过渡模式">过渡模式</h4>
+<ul>
+<li>in-out：新元素先进行过渡，完成之后当前元素过渡离开。</li>
+<li>out-in：当前元素先进行过渡，完成之后新元素过渡进入。</li>
+</ul>
+<pre><code>&lt;transition name=&quot;fade&quot; mode=&quot;out-in&quot;&gt;
+  &lt;!-- ... the buttons ... --&gt;
+&lt;/transition&gt;
+</code></pre>
+<h2 id="多个组件的过渡">多个组件的过渡</h2>
+<p>多个组件的过渡使用动态组件</p>
+<pre><code>&lt;!--html--&gt;
+&lt;transition name=&quot;component-fade&quot; mode=&quot;out-in&quot;&gt;
+  &lt;component v-bind:is=&quot;view&quot;&gt;&lt;/component&gt;
+&lt;/transition&gt;
+&lt;!--js--&gt;
+new Vue({
+  el: '#transition-components-demo',
+  data: {
+    view: 'v-a'
+  },
+  components: {
+    'v-a': {
+      template: '&lt;div&gt;Component A&lt;/div&gt;'
+    },
+    'v-b': {
+      template: '&lt;div&gt;Component B&lt;/div&gt;'
+    }
+  }
+})
+</code></pre>
+<h2 id="列表过渡">列表过渡</h2>
+<p>使用 <code>&lt;transition-group&gt; </code>组件。</p>
+<ul>
+<li>它会以一个真实元素呈现：默认为一个 <code>&lt;span&gt;</code>。你也可以通过 tag 特性更换为其他元素。</li>
+<li>内部元素 总是需要 提供唯一的 key 属性值</li>
+</ul>
+<pre><code>&lt;div id=&quot;list-demo&quot; class=&quot;demo&quot;&gt;
+  &lt;button v-on:click=&quot;add&quot;&gt;Add&lt;/button&gt;
+  &lt;button v-on:click=&quot;remove&quot;&gt;Remove&lt;/button&gt;
+  &lt;transition-group name=&quot;list&quot; tag=&quot;p&quot;&gt;
+    &lt;span v-for=&quot;item in items&quot; v-bind:key=&quot;item&quot; class=&quot;list-item&quot;&gt;
+      {{ item }}
+    &lt;/span&gt;
+  &lt;/transition-group&gt;
+&lt;/div&gt;
+</code></pre>
+<p><code>&lt;transition-group&gt;</code> 组件还有一个特殊之处。不仅可以进入和离开动画，还可以改变定位。v-move 特性，它会在元素的改变定位的过程中应用。</p>
+<pre><code>&lt;!--html--&gt;
+&lt;transition-group name=&quot;flip-list&quot; tag=&quot;ul&quot;&gt;
+    &lt;li v-for=&quot;item in items&quot; v-bind:key=&quot;item&quot;&gt;
+      {{ item }}
+    &lt;/li&gt;
+&lt;/transition-group&gt;
+&lt;!--css--&gt;
+.flip-list-move {
+  transition: transform 1s;
+}
+</code></pre>
+<p>也可以通过 move-class 属性手动设置</p>
+<h2 id="技巧">技巧</h2>
+<ul>
+<li>创建可复用过度组件，将 <transition> 或者 <transition-group> 作为根组件</li>
+</ul>
+<pre><code>&lt;transition
+    name=&quot;very-special-transition&quot;
+    mode=&quot;out-in&quot;
+    v-on:before-enter=&quot;beforeEnter&quot;
+    v-on:after-enter=&quot;afterEnter&quot;&gt;
+    &lt;slot&gt;&lt;/slot&gt;
+&lt;/transition&gt;
+</code></pre>
+<ul>
+<li>动态过渡，通过动态绑定name实现</li>
+</ul>
+<pre><code>&lt;transition v-bind:name=&quot;transitionName&quot;&gt;
+  &lt;!-- ... --&gt;
+&lt;/transition&gt;
+</code></pre>
+<h1 id="12可复用性和组合">12.可复用性和组合</h1>
+<h2 id="混合-2">混合</h2>
+<p>混合 (mixins) 是一种分发 Vue 组件中可复用功能的非常灵活的方式。混合对象可以包含任意组件选项。当组件使用混合对象时，所有混合对象的选项将被混入该组件本身的选项。</p>
+<pre><code>// 定义一个混合对象
+var myMixin = {
+  created: function () {
+    this.hello()
+  },
+  methods: {
+    hello: function () {
+      console.log('hello from mixin!')
+    }
+  }
+}
+
+// 定义一个使用混合对象的组件
+var Component = Vue.extend({
+  mixins: [myMixin]
+})
+
+</code></pre>
+<ul>
+<li>当组件和混合对象含有同名选项时，这些选项将以恰当的方式混合。比如，同名钩子函数将混合为一个数组，因此都将被调用。另外，混合对象的 钩子将在组件自身钩子 之前 调用 。</li>
+<li>值为对象的选项，例如 methods, components 和 directives，将被混合为同一个对象。两个对象键名冲突时，取组件对象的键值对。</li>
+<li><code>Vue.extend()</code> 也使用同样的策略进行合并。</li>
+</ul>
+<h2 id="自定义指令">自定义指令</h2>
+<p>除了核心功能默认内置的指令 (v-model 和 v-show)，Vue 也允许注册自定义指令。</p>
+<pre><code>// 注册一个全局自定义指令 `v-focus`
+Vue.directive('focus', {
+  // 当被绑定的元素插入到 DOM 中时……
+  inserted: function (el) {
+    // 聚焦元素
+    el.focus()
+  }
+})
+// 注册一个局部自定义指令
+directives: {
+  focus: {
+    // 指令的定义
+    inserted: function (el) {
+      el.focus()
+    }
+  }
+}
+//使用
+&lt;input v-focus&gt;
+</code></pre>
+<h4 id="钩子函数">钩子函数</h4>
+<p>一个指令定义对象可以提供如下几个钩子函数 (均为可选)：</p>
+<ul>
+<li><code>bind：</code>只调用一次，指令第一次绑定到元素时调用。在这里可以进行一次性的初始化设置。</li>
+<li><code>inserted：</code>被绑定元素插入父节点时调用 (仅保证父节点存在，但不一定已被插入文档中)。</li>
+<li><code>update：</code>所在组件的 VNode 更新时调用，但是可能发生在其子 VNode 更新之前。指令的值可能发生了改变，也可能没有。但是你可以通过比较更新前后的值来忽略不必要的模板更新 (详细的钩子函数参数见下)。</li>
+<li><code>componentUpdated：</code>指令所在组件的 VNode 及其子 VNode 全部更新后调用。</li>
+<li><code>unbind：</code>只调用一次，指令与元素解绑时调用。</li>
+</ul>
+<h4 id="钩子函数参数">钩子函数参数</h4>
+<p>指令钩子函数会被传入以下参数：</p>
+<ul>
+<li>
+<p><code>el：</code>指令所绑定的元素，可以用来直接操作 DOM 。</p>
+</li>
+<li>
+<p><code>binding：</code>一个对象，包含以下属性：</p>
+<ul>
+<li><code>name：</code>指令名，不包括 v- 前缀。</li>
+<li><code>value：</code>指令的绑定值，例如：v-my-directive=&quot;1 + 1&quot; 中，绑定值为 2。</li>
+<li><code>oldValue：</code>指令绑定的前一个值，仅在 update 和 componentUpdated 钩子中可用。无论值是否改变都可用。</li>
+<li><code>expression：</code>字符串形式的指令表达式。例如 v-my-directive=&quot;1 + 1&quot; 中，表达式为 &quot;1 + 1&quot;。</li>
+<li><code>arg：</code>传给指令的参数，可选。例如 v-my-directive:foo 中，参数为 &quot;foo&quot;。</li>
+<li><code>modifiers：</code>一个包含修饰符的对象。例如：v-my-directive.foo.bar 中，修饰符对象为 { foo: true, bar: true }。</li>
+</ul>
+</li>
+<li>
+<p><code>vnode：</code>Vue 编译生成的虚拟节点。移步 VNode API 来了解更多详情。</p>
+</li>
+<li>
+<p><code>oldVnode：</code>上一个虚拟节点，仅在 update 和 componentUpdated 钩子中可用。</p>
+</li>
+</ul>
+<h2 id="渲染函数-jsx">渲染函数 &amp; JSX</h2>
+<p>https://cn.vuejs.org/v2/guide/render-function.html</p>
+<h3 id="渲染函数render">渲染函数render</h3>
+<h4 id="createelement"><code>createElement</code></h4>
+<pre><code>// @returns {VNode}
+createElement(
+  // {String | Object | Function}
+  // 一个 HTML 标签字符串，组件选项对象，或者
+  // 解析上述任何一种的一个 async 异步函数，必要参数。
+  'div',
+
+  // {Object}
+  // 一个包含模板相关属性的数据对象
+  // 这样，您可以在 template 中使用这些属性。可选参数。
+  {
+    // (详情见下面的数据对象)
+  },
+
+  // {String | Array}
+  // 子节点 (VNodes)，由 `createElement()` 构建而成，
+  // 或使用字符串来生成“文本节点”。可选参数。
+  [
+    '先写一些文字',
+    createElement('h1', '一则头条'),
+    createElement(MyComponent, {
+      props: {
+        someProp: 'foobar'
+      }
+    })
+  ]
+)
+</code></pre>
+<p>数据对象:</p>
+<pre><code>{
+  // 和`v-bind:class`一样的 API
+  'class': {
+    foo: true,
+    bar: false
+  },
+  // 和`v-bind:style`一样的 API
+  style: {
+    color: 'red',
+    fontSize: '14px'
+  },
+  // 正常的 HTML 特性
+  attrs: {
+    id: 'foo'
+  },
+  // 组件 props
+  props: {
+    myProp: 'bar'
+  },
+  // DOM 属性
+  domProps: {
+    innerHTML: 'baz'
+  },
+  // 事件监听器基于 `on`
+  // 所以不再支持如 `v-on:keyup.enter` 修饰器
+  // 需要手动匹配 keyCode。
+  on: {
+    click: this.clickHandler
+  },
+  // 仅对于组件，用于监听原生事件，而不是组件内部使用
+  // `vm.$emit` 触发的事件。
+  nativeOn: {
+    click: this.nativeClickHandler
+  },
+  // 自定义指令。注意，你无法对 `binding` 中的 `oldValue`
+  // 赋值，因为 Vue 已经自动为你进行了同步。
+  directives: [
+    {
+      name: 'my-custom-directive',
+      value: '2',
+      expression: '1 + 1',
+      arg: 'foo',
+      modifiers: {
+        bar: true
+      }
+    }
+  ],
+  // Scoped slots in the form of
+  // { name: props =&gt; VNode | Array&lt;VNode&gt; }
+  scopedSlots: {
+    default: props =&gt; createElement('span', props.text)
+  },
+  // 如果组件是其他组件的子组件，需为插槽指定名称
+  slot: 'name-of-slot',
+  // 其他特殊顶层属性
+  key: 'myKey',
+  ref: 'myRef'
+}
+</code></pre>
+<h2 id="过滤器">过滤器</h2>
+<p>过滤器可以用在两个地方：双花括号插值和 v-bind 表达式。</p>
+<pre><code>&lt;!-- 在双花括号中 --&gt;
+{{ message | capitalize }}
+
+&lt;!-- 在 `v-bind` 中 --&gt;
+&lt;div v-bind:id=&quot;rawId | formatId&quot;&gt;&lt;/div&gt;
+</code></pre>
+<pre><code>//定义局部过滤器
+filters: {
+  capitalize: function (value) {
+    if (!value) return ''
+    value = value.toString()
+    return value.charAt(0).toUpperCase() + value.slice(1)
+  }
+}
+//定义全局过滤器
+Vue.filter('capitalize', function (value) {
+  if (!value) return ''
+  value = value.toString()
+  return value.charAt(0).toUpperCase() + value.slice(1)
+})
+</code></pre>
+<ul>
+<li>过滤器可以串联，依次执行，前面的输出作为后面一个的输入。</li>
+</ul>
+<pre><code>{{ message | filterA | filterB }}
+</code></pre>
+<ul>
+<li>过滤器可以接收参数（管道符前面的值作为第一个参数，括号内的第一个参数为第二个，依次类推）</li>
+</ul>
+<pre><code>{{ message | filterA('arg1', arg2) }}
+</code></pre>
+<h1 id="13vue-router">13.Vue-Router</h1>
+<h2 id="安装-2">安装</h2>
+<ul>
+<li>直接用 <code>&lt;script&gt;</code> 引入（本地或者cdn）</li>
+<li>npm <code>npm install vue</code></li>
+</ul>
+<p>必须要通过 <code>Vue.use()</code> 明确地安装路由功能，且要通过 router 配置参数注入Vue实例，从而让整个应用都有路由功能。</p>
+<h2 id="作用">作用</h2>
+<p>将页面组件(components)映射到路由(routes)，然后告诉 vue-router 在哪里渲染它们</p>
+<h2 id="router-link">router-link</h2>
+<ul>
+<li><code>to：</code> 属性指定目标地址，默认渲染成带有正确链接的 <a> 标签，</li>
+<li><code>replace：</code>相当于<code>router.replace()</code> 不会留下 history 记录</li>
+<li><code>append：</code>设置 append 属性后，则在当前（相对）路径前添加基路径。例如，我们从 /a 导航到一个相对路径 b，如果没有配置 append，则路径为 /b，如果配了，则为 /a/b</li>
+<li><code>tag:</code> 属性生成别的标签.。另外，当目标路由成功激活时，链接元素自动设置一个表示激活的 CSS 类名。</li>
+<li><code>active-class：</code>链接激活时使用的 CSS 类名。默认值可以通过路由的构造选项 linkActiveClass 来全局配置。</li>
+</ul>
+<p>将激活 class 应用在外层元素：</p>
+<pre><code>&lt;router-link tag=&quot;li&quot; to=&quot;/foo&quot;&gt;
+  &lt;a&gt;/foo&lt;/a&gt;
+&lt;/router-link&gt;
+</code></pre>
+<p>在这种情况下，<code>&lt;a&gt;</code> 将作为真实的链接（它会获得正确的 href 的），而 &quot;激活时的CSS类名&quot; 则设置到外层的 <code>&lt;li&gt;</code>。</p>
+<h2 id="router-view">router-view</h2>
+<p>路由视图容器</p>
+<pre><code>&lt;transition&gt;
+&lt;!--使用路由缓存--&gt;
+  &lt;keep-alive&gt;
+    &lt;router-view&gt;&lt;/router-view&gt;
+  &lt;/keep-alive&gt;
+&lt;/transition&gt;
+</code></pre>
+<p>如果 <code>&lt;router-view&gt;</code>设置了名称，则会渲染对应的路由配置中 components 下的相应组件。</p>
+<pre><code>&lt;!--html--&gt;
+&lt;router-view class=&quot;view one&quot;&gt;&lt;/router-view&gt;
+&lt;router-view class=&quot;view two&quot; name=&quot;a&quot;&gt;&lt;/router-view&gt;
+&lt;router-view class=&quot;view three&quot; name=&quot;b&quot;&gt;&lt;/router-view&gt;
+&lt;!--js--&gt;
+const router = new VueRouter({
+  routes: [
+    {
+      path: '/',
+      components: {
+        default: Foo,
+        a: Bar,
+        b: Baz
+      }
+    }
+  ]
+})
+</code></pre>
+<h2 id="动态路由匹配">动态路由匹配</h2>
+<ul>
+<li>动态路径参数<code>params</code></li>
+</ul>
+<pre><code>//定义
+routes: [
+    // 动态路径参数 以冒号开头
+    { path: '/user/:id', component: User }
+  ]
+//调用
+$route.params.id
+</code></pre>
+<ul>
+<li>动态路径查询参数<code>query</code></li>
+</ul>
+<pre><code>//定义
+routes: [
+    // 动态路径参数 以冒号开头
+    { path: '/user?id=6456456', component: User }
+  ]
+//调用
+$route.query.id
+</code></pre>
+<ul>
+<li>区别：params定义了就是路由的一部分，就必须要传，否则匹配失败，query可以缺省</li>
+</ul>
+<h4 id="响应路由参数的变化">响应路由参数的变化</h4>
+<p>当路由参数变化时，组件的生命周期钩子不会再被调用。<br>
+想对路由参数的变化作出响应的话，有以下两种方式：</p>
+<ul>
+<li>watch（监测变化） $route 对象：</li>
+</ul>
+<pre><code>const User = {
+  template: '...',
+  watch: {
+    '$route' (to, from) {
+      // 对路由变化作出响应...
+    }
+  }
+}
+</code></pre>
+<ul>
+<li>使用beforeRouteUpdate 守卫：</li>
+</ul>
+<pre><code>const User = {
+  template: '...',
+  beforeRouteUpdate (to, from, next) {
+    // react to route changes...
+    // don't forget to call next()
+  }
+}
+</code></pre>
+<h2 id="匹配优先级">匹配优先级</h2>
+<p>同一个路径可以匹配多个路由时，谁先定义的，谁的优先级就最高。<br>
+因此，404类的页面一定要放在最后，路由是按照声明顺序匹配，如果不是最后则404之后的页面都会跳转到404。</p>
+<h2 id="嵌套路由">嵌套路由</h2>
+<pre><code>const router = new VueRouter({
+  routes: [
+    { path: '/user/:id', component: User,
+      children: [
+        {
+          // 当 /user/:id/profile 匹配成功，
+          // UserProfile 会被渲染在 User 的 &lt;router-view&gt; 中
+          path: 'profile',
+          component: UserProfile
+        },
+        {
+          // 当 /user/:id/posts 匹配成功
+          // UserPosts 会被渲染在 User 的 &lt;router-view&gt; 中
+          path: 'posts',
+          component: UserPosts
+        }
+      ]
+    }
+  ]
+})
+</code></pre>
+<ul>
+<li>以 / 开头的嵌套路径会被当作根路径。 这让你充分的使用嵌套组件而无须设置嵌套的路径。</li>
+<li>如果想在父路由渲染内容，可以定义一个空的子路由。</li>
+</ul>
+<h2 id="编程式的导航">编程式的导航</h2>
+<h4 id="routerpushlocation-oncomplete-onabort">router.push(location, onComplete?, onAbort?)</h4>
+<p>导航到不同的 URL,会向 history 栈添加一个新的记录。<br>
+在 Vue 实例内部，调用 <code>this.$router.push</code></p>
+<pre><code>// 字符串
+router.push('home')
+// 对象
+router.push({ path: 'home' })
+// 命名的路由
+router.push({ name: 'user', params: { userId: 123 }})
+// 带查询参数，变成 /register?plan=private
+router.push({ path: 'register', query: { plan: 'private' }})
+</code></pre>
+<ul>
+<li>onComplete：在导航成功完成 (在所有的异步钩子被解析之后) 调用</li>
+<li>onAbort：在导航终止 (导航到相同的路由、或在当前导航完成之前导航到另一个不同的路由) 调用</li>
+</ul>
+<h4 id="routerreplacelocation-oncomplete-onabort">router.replace(location, onComplete?, onAbort?)</h4>
+<p>和router.push功能一样，唯一区别就是不会向 history 添加新记录</p>
+<h4 id="routergon">router.go(n)</h4>
+<p>前进或后退nN步，类似 window.history.go(n)</p>
+<pre><code>// 在浏览器记录中前进一步，等同于 history.forward()
+router.go(1)
+// 后退一步记录，等同于 history.back()
+router.go(-1)
+</code></pre>
+<h2 id="重定向">重定向</h2>
+<pre><code class="language-js">const router = new VueRouter({
+  routes: [
+    //path
+    { path: '/a', redirect: '/b' },
+    //name
+    { path: '/a', redirect: { name: 'foo' }},
+    //方法
+    { path: '/a', redirect: to =&gt; {
+      // 方法接收 目标路由 作为参数
+      // return 重定向的 字符串路径/路径对象
+    }}
+  ]
+})
+</code></pre>
+<h2 id="别名">别名</h2>
+<p>/a 的别名是 /b，意味着，当用户访问 /b 时，URL 会保持为 /b，但是路由匹配则为 /a，就像用户访问 /a 一样</p>
+<pre><code>const router = new VueRouter({
+  routes: [
+    { path: '/a', component: A, alias: '/b' }
+  ]
+})
+</code></pre>
+<h2 id="路由组件传参">路由组件传参</h2>
+<p>使用 props 将组件和路由解耦</p>
+<pre><code>const User = {
+  props: ['id'],
+  template: '&lt;div&gt;User {{ id }}&lt;/div&gt;'
+}
+const router = new VueRouter({
+  routes: [
+    { path: '/user/:id', component: User, props: true },
+
+    // 对于包含命名视图的路由，你必须分别为每个命名视图添加 `props` 选项：
+    {
+      path: '/user/:id',
+      components: { default: User, sidebar: Sidebar },
+      props: { default: true, sidebar: false }
+    }
+  ]
+})
+</code></pre>
+<ul>
+<li>如果 props 被设置为 true，route.params 将会被设置为组件属性</li>
+<li>如果 props 是一个对象，它会被按原样设置为组件属性。当 props 是静态的时候有用。</li>
+</ul>
+<pre><code>const router = new VueRouter({
+  routes: [
+    { path: '/promotion/from-newsletter', component: Promotion, props: { newsletterPopup: false } }
+  ]
+})
+</code></pre>
+<ul>
+<li>你可以创建一个函数返回 props。这样你便可以将参数转换成另一种类型，将静态值与基于路由的值结合等等。</li>
+</ul>
+<pre><code>const router = new VueRouter({
+  routes: [
+    { path: '/search', component: SearchUser, props: (route) =&gt; ({ query: route.query.q }) }
+  ]
+})
+</code></pre>
+<h2 id="html5-history-模式">HTML5 History 模式</h2>
+<p>vue-router 默认 hash 模式。</p>
+<p>开启history 模式，将充分利用 history.pushState API 来完成 URL 跳转而无须重新加载页面，但需要后端配合。</p>
+<pre><code>const router = new VueRouter({
+  mode: 'history',
+  routes: [...]
+})
+</code></pre>
+<h2 id="导航守卫">导航守卫</h2>
+<p>vue-router 提供的导航守卫主要用来通过跳转或取消的方式守卫导航。</p>
+<h4 id="全局">全局</h4>
+<pre><code>//前置守卫:确保要调用 next 方法，否则钩子就不会被 resolved。
+router.beforeEach((to, from, next) =&gt; {
+  // ...
+})
+//后置守卫
+router.afterEach((to, from) =&gt; {
+  // ...
+})
+//解析守卫:在导航被确认之前，同时在所有组件内守卫和异步路由组件被解析之后，解析守卫就被调用
+router.beforeResolve((to, from) =&gt; {
+  // ...
+})
+</code></pre>
+<h6 id="参数说明">参数说明</h6>
+<ul>
+<li><code>to: Route:</code> 即将要进入的目标 路由对象</li>
+<li><code>from: Route:</code> 当前导航正要离开的路由</li>
+<li><code>next: Function: </code>一定要调用该方法来 resolve 这个钩子。执行效果依赖 next 方法的调用参数。
+<ul>
+<li><code>next(): </code>进行管道中的下一个钩子。如果全部钩子执行完了，则导航的状态就是 confirmed （确认的）。</li>
+<li><code>next(false):</code> 中断当前的导航。如果浏览器的 URL 改变了（可能是用户手动或者浏览器后退按钮），那么 URL 地址会重置到 from 路由对应的地址。</li>
+<li><code>next('/') </code>或者 <code>next({ path: '/' }):</code> 跳转到一个不同的地址。当前的导航被中断，然后进行一个新的导航。你可以向 next 传递任意位置对象，且允许设置诸如 <code>replace: true、name: 'home'</code> 之类的选项以及任何用在 router-link 的 to prop 或 router.push 中的选项。</li>
+<li><code>next(error):</code> (2.4.0+) 如果传入 next 的参数是一个 Error 实例，则导航会被终止且该错误会被传递给 <code>router.onError()</code> 注册过的回调。</li>
+</ul>
+</li>
+</ul>
+<h2 id="路由独享的守卫">路由独享的守卫</h2>
+<pre><code>//与全局前置守卫的方法参数是一样的
+const router = new VueRouter({
+  routes: [
+    {
+      path: '/foo',
+      component: Foo,
+      beforeEnter: (to, from, next) =&gt; {
+        // ...
+      }
+    }
+  ]
+})
+</code></pre>
+<h2 id="组件内的守卫">组件内的守卫</h2>
+<pre><code>const Foo = {
+  template: `...`,
+  beforeRouteEnter (to, from, next) {
+    // 在渲染该组件的对应路由被 confirm 前调用
+    // 不！能！获取组件实例 `this`
+    // 因为当守卫执行前，组件实例还没被创建
+  },
+  beforeRouteUpdate (to, from, next) {
+    // 在当前路由改变，但是该组件被复用时调用
+    // 举例来说，对于一个带有动态参数的路径 /foo/:id，在 /foo/1 和 /foo/2 之间跳转的时候，
+    // 由于会渲染同样的 Foo 组件，因此组件实例会被复用。而这个钩子就会在这个情况下被调用。
+    // 可以访问组件实例 `this`
+  },
+  beforeRouteLeave (to, from, next) {
+    // 导航离开该组件的对应路由时调用
+    // 可以访问组件实例 `this`
+  }
+}
+</code></pre>
+<p>beforeRouteEnter 守卫 不能 访问 this，因为守卫在导航确认前被调用,因此即将登场的新组件还没被创建。可以通过传一个回调给 next来访问组件实例。</p>
+<pre><code>beforeRouteEnter (to, from, next) {
+  next(vm =&gt; {
+    // 通过 `vm` 访问组件实例
+  })
+}
+</code></pre>
+<h2 id="解析流程">解析流程</h2>
+<ol>
+<li>导航被触发。</li>
+<li>在失活的组件里调用离开守卫。</li>
+<li>调用全局的 beforeEach 守卫。</li>
+<li>在重用的组件里调用 beforeRouteUpdate 守卫 (2.2+)。</li>
+<li>在路由配置里调用 beforeEnter。</li>
+<li>解析异步路由组件。</li>
+<li>在被激活的组件里调用 beforeRouteEnter。</li>
+<li>调用全局的 beforeResolve 守卫 (2.5+)。</li>
+<li>导航被确认。</li>
+<li>调用全局的 afterEach 钩子。</li>
+<li>触发 DOM 更新。</li>
+<li>用创建好的实例调用 beforeRouteEnter 守卫中传给 next 的回调函数。</li>
+</ol>
+<h2 id="路由元信息">路由元信息</h2>
+<p>配置meta字段记录元信息</p>
+<pre><code>//定义
+{
+  path: 'bar',
+  component: Bar,
+  // a meta field
+  meta: { requiresAuth: true }
+}
+//访问
+$route.matched
+</code></pre>
+<h2 id="过渡动效">过渡动效</h2>
+<pre><code>&lt;transition&gt;
+  &lt;router-view&gt;&lt;/router-view&gt;
+&lt;/transition&gt;
+&lt;!-- 使用动态的 transition name --&gt;
+&lt;transition :name=&quot;transitionName&quot;&gt;
+  &lt;router-view&gt;&lt;/router-view&gt;
+&lt;/transition&gt;
+</code></pre>
+<h1 id="14vuex">14.Vuex</h1>
+<h2 id="安装-3">安装</h2>
+<ul>
+<li>直接用 <code>&lt;script&gt;</code> 引入（本地或者cdn）</li>
+<li>npm <code>npm install vuex</code><br>
+必须要通过 Vue.use() 明确地安装vuex，且要通过 store 配置参数注入Vue实例。</li>
+</ul>
+<h2 id="简介-3">简介</h2>
+<p>Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。</p>
+<figure data-type="image" tabindex="3"><img src="https://vuex.vuejs.org/zh-cn/images/vuex.png" alt="image" loading="lazy"></figure>
+<h2 id="state">state</h2>
+<ul>
+<li>状态仓库，全局的数据共享中心</li>
+<li>改变 state 中的状态的唯一途径就是显式地提交 (commit) mutation</li>
+<li>获取状态使用计算属性</li>
+<li>mapState辅助函数</li>
+</ul>
+<pre><code class="language-js">// 在单独构建的版本中辅助函数为 Vuex.mapState
+import { mapState } from 'vuex'
+
+export default {
+  // ...
+  computed: mapState({
+    // 箭头函数可使代码更简练
+    count: state =&gt; state.count,
+
+    // 传字符串参数 'count' 等同于 `state =&gt; state.count`
+    countAlias: 'count',
+
+    // 为了能够使用 `this` 获取局部状态，必须使用常规函数
+    countPlusLocalState (state) {
+      return state.count + this.localCount
+    }
+  })
+}
+--------------
+//当映射的计算属性的名称与 state 的子节点名称相同时，我们也可以给 mapState 传一个字符串数组
+computed: mapState([
+  // 映射 this.count 为 store.state.count
+  'count'
+])
+--------------
+computed: {
+  localComputed () { /* ... */ },
+  // 使用对象展开运算符将此对象混入到外部对象中
+  ...mapState({
+    // ...
+  })
+}
+</code></pre>
+<h2 id="getters">Getters</h2>
+<p>如果有多处都需要从store中派生（进行二次处理）出一些状态，那么可以使用getter（store 的计算属性，依赖更新）</p>
+<pre><code class="language-js">getters: {
+    //state 作为其第一个参数
+    doneTodos: state =&gt; {
+      return state.todos.filter(todo =&gt; todo.done)
+    },
+    //接受其他 getter 作为第二个参数
+    doneTodosCount: (state, getters) =&gt; {
+    return getters.doneTodos.length
+  }
+}
+//调用
+store.getters.doneTodosCount // -&gt; 1
+</code></pre>
+<ul>
+<li>mapGetters辅助函数将 store 中的 getter 映射到局部计算属性，用法和mapState一样</li>
+</ul>
+<pre><code>import { mapGetters } from 'vuex'
+computed: {
+    // 使用对象展开运算符将 getter 混入 computed 对象中
+    ...mapGetters([
+      'doneTodosCount',
+      'anotherGetter',
+      // ...
+    ])
+}
+</code></pre>
+<h2 id="mutations">Mutations</h2>
+<p>更改 Vuex 的 store 中的状态的唯一方法是提交 (commit)。建议名字大写。 mutation，但是请勿进行异步操作。</p>
+<pre><code>mutations: {
+    increment (state) {
+      // 变更状态
+      state.count++
+    }
+}
+//调用
+store.commit('increment')
+</code></pre>
+<ul>
+<li>提交载荷（Payload）<br>
+载荷即commit中额外的参数。</li>
+</ul>
+<pre><code class="language-js">mutations: {
+  increment (state, n) {
+    state.count += n
+  }
+}
+//调用
+store.commit('increment', 10)
+-------------
+//推荐使用对象
+mutations: {
+  increment (state, payload) {
+    state.count += payload.amount
+  }
+}
+store.commit('increment', {
+  amount: 10
+})
+//对象风格提交
+store.commit({
+  type: 'increment',
+  amount: 10
+})
+</code></pre>
+<ul>
+<li>mapMutations 辅助函数将组件中的 methods 映射为 store.commit 调用</li>
+</ul>
+<pre><code>import { mapMutations } from 'vuex'
+
+export default {
+  // ...
+  methods: {
+    ...mapMutations([
+      'increment', // 将 `this.increment()` 映射为 `this.$store.commit('increment')`
+
+      // `mapMutations` 也支持载荷：
+      'incrementBy' // 将 `this.incrementBy(amount)` 映射为 `this.$store.commit('incrementBy', amount)`
+    ]),
+    ...mapMutations({
+      add: 'increment' // 将 `this.add()` 映射为 `this.$store.commit('increment')`
+    })
+  }
+}
+</code></pre>
+<h2 id="actions">Actions</h2>
+<p>Action 类似于 mutation，区别在于：</p>
+<ul>
+<li>Action 提交的是 mutation，而不是直接变更状态。</li>
+<li>Action 可以包含任意异步操作。</li>
+</ul>
+<pre><code>actions: {
+    increment (context) {
+      context.commit('increment')
+    }
+}
+//分发
+store.dispatch('increment')
+</code></pre>
+<p>Action 函数接受一个与 store 实例（不是 store 实例本身）具有相同方法和属性的 context（<code>context.state/context.getters/context.commit</code>）对象，也可以运用参数结构。</p>
+<pre><code>actions: {
+  increment ({ commit }) {
+    commit('increment')
+  }
+}
+</code></pre>
+<ul>
+<li>同样支持载荷和对象方式</li>
+</ul>
+<pre><code>// 以载荷形式分发
+store.dispatch('incrementAsync', {
+  amount: 10
+})
+
+// 以对象形式分发
+store.dispatch({
+  type: 'incrementAsync',
+  amount: 10
+})
+</code></pre>
+<ul>
+<li>mapActions 辅助函数将组件的 methods 映射为 store.dispatch 调用</li>
+</ul>
+<pre><code>import { mapActions } from 'vuex'
+
+export default {
+  // ...
+  methods: {
+    ...mapActions([
+      'increment', // 将 `this.increment()` 映射为 `this.$store.dispatch('increment')`
+
+      // `mapActions` 也支持载荷：
+      'incrementBy' // 将 `this.incrementBy(amount)` 映射为 `this.$store.dispatch('incrementBy', amount)`
+    ]),
+    ...mapActions({
+      add: 'increment' // 将 `this.add()` 映射为 `this.$store.dispatch('increment')`
+    })
+  }
+}
+</code></pre>
+<ul>
+<li>Promise</li>
+</ul>
+<pre><code class="language-js">actions: {
+  actionA ({ commit }) {
+    return new Promise((resolve, reject) =&gt; {
+      setTimeout(() =&gt; {
+        commit('someMutation')
+        resolve()
+      }, 1000)
+    })
+  },
+  //调用其他action
+  actionB ({ dispatch, commit }) {
+    return dispatch('actionA').then(() =&gt; {
+      commit('someOtherMutation')
+    })
+  }
+}
+store.dispatch('actionA').then(() =&gt; {
+  // ...
+})
+</code></pre>
+<ul>
+<li>async / await</li>
+</ul>
+<pre><code>// 假设 getData() 和 getOtherData() 返回的是 Promise
+
+actions: {
+  async actionA ({ commit }) {
+    commit('gotData', await getData())
+  },
+  async actionB ({ dispatch, commit }) {
+    await dispatch('actionA') // 等待 actionA 完成
+    commit('gotOtherData', await getOtherData())
+  }
+}
+</code></pre>
+<h2 id="modules">Modules</h2>
+<p>将store分割成模块，每个模块拥有自己的 state、mutation、action、getter。</p>
+<ul>
+<li>获取根节点状态<strong>rootState</strong></li>
+</ul>
+<pre><code>actions: {
+    incrementIfOddOnRootSum ({ state, commit, rootState }) {
+      if ((state.count + rootState.count) % 2 === 1) {
+        commit('increment')
+      }
+    }
+}
+getters: {
+    sumWithRootCount (state, getters, rootState) {
+      return state.count + rootState.count
+    }
+}
+</code></pre>
+<ul>
+<li>命名空间：所有 getter、action 及 mutation 都会自动根据模块注册的路径调整命名</li>
+</ul>
+<pre><code> modules: {
+    account: {
+      namespaced: true,
+
+      // 模块内容（module assets）
+      state: {}, // 模块内的状态已经是嵌套的了，使用 `namespaced` 属性不会对其产生影响
+      getters: {},
+      actions: {},
+      mutations: {}
+    }
+}
+</code></pre>
+<ul>
+<li>访问全局state 和 getter</li>
+</ul>
+<pre><code class="language-js">getters: {
+  // 在这个模块的 getter 中，`getters` 被局部化了
+  // 你可以使用 getter 的第四个参数来调用 `rootGetters`
+  someGetter (state, getters, rootState, rootGetters) {}
+}
+actions: {
+    // 在这个模块中， dispatch 和 commit 也被局部化了
+    // 他们可以接受 `root` 属性以访问根 dispatch 或 commit
+    someAction ({ dispatch, commit, getters, rootGetters }) {}
+}
+</code></pre>
+<h4 id="带命名空间的绑定函数">带命名空间的绑定函数</h4>
+<ul>
+<li>mapState, mapGetters, mapActions 和 mapMutations的第一个参数接受模块的空间名称字符串</li>
+</ul>
+<pre><code>computed: {
+  ...mapState('some/nested/module', {
+    a: state =&gt; state.a,
+    b: state =&gt; state.b
+  })
+},
+methods: {
+  ...mapActions('some/nested/module', [
+    'foo',
+    'bar'
+  ])
+}
+</code></pre>
+<ul>
+<li>createNamespacedHelpers创建</li>
+</ul>
+<pre><code>import { createNamespacedHelpers } from 'vuex'
+
+const { mapState, mapActions } = createNamespacedHelpers('some/nested/module')
+
+export default {
+  computed: {
+    // 在 `some/nested/module` 中查找
+    ...mapState({
+      a: state =&gt; state.a,
+      b: state =&gt; state.b
+    })
+  },
+  methods: {
+    // 在 `some/nested/module` 中查找
+    ...mapActions([
+      'foo',
+      'bar'
+    ])
+  }
+}
+</code></pre>
+<h4 id="模块动态注册storeregistermodule">模块动态注册<code>store.registerModule</code></h4>
+<pre><code>// 注册模块 `myModule`
+store.registerModule('myModule', {
+  // ...
+})
+// 注册嵌套模块 `nested/myModule`
+store.registerModule(['nested', 'myModule'], {
+  // ...
+})
+</code></pre>
+<p>使用<code>store.unregisterModule(moduleName) </code>来动态卸载模块</p>
+<h1 id="15自定义指令">15.自定义指令</h1>
+<p>在 Vue2.0 中，代码复用和抽象的主要形式是组件。然而，有的情况下，你仍然需要对普通 DOM 元素进行底层操作，这时候就会用到自定义指令</p>
+<p>创建Vue的自定义指令的这五个钩子函数都是可选的，不一定要全部出现。而这其中bind和update两个钩子函数是最有用的。在实际使用的时候，我们应该根据需求做不同的选择。比如在恰当的时间通过bind钩子函数去初始化实例，update钩子函数去做对应的参数更新和使用unbind钩子函数去释放实例资源占用等。</p>
+<pre><code>bind(el, binding, vnode)
+inserted(el, binding, vnode)
+update(el, binding, vnode, oldVnode)
+componentUpdated(el, binding, vnode, oldVnode)
+unbind(el, binding, vnode)
+</code></pre>
+<figure data-type="image" tabindex="4"><img src="https://www.w3cplus.com/sites/default/files/blogs/2017/1712/vue-custom-directives-6.png" alt="image" loading="lazy"></figure>
+<h4 id="钩子函数参数-2">钩子函数参数</h4>
+<p>指令钩子函数会被传入以下参数：</p>
+<pre><code class="language-js">el：指令所绑定的元素，可以用来直接操作DOM
+binding：一个对象，这个对象包含一些属性，稍后列出每个属性的含义
+vnode：Vue编译生成的虚拟节点。有关于VNode更多的资料，可以阅读VNode相关的API
+oldVnode：上一个虚拟节点，仅在update和componentUpdated两个钩子函数中可用
+</code></pre>
+<p>binding参数是一个对象，其包含以下一些属性：</p>
+<pre><code>name：指令名，不包括v-前缀
+value：指令的绑定值，如例v-hello = &quot;1 + 1&quot;中，绑定值为2
+oldValue：指令绑定的前一个值，仅在update和componentUpdated钩子中可用，无论值是否改变都可用
+expression：字符串形式的指令表达式。例如v-hello = &quot;1 + 1&quot;中，表达式为&quot;1 + 1&quot;
+arg：传给指令的参数，可选。例如v-hello:message中，参数为&quot;message&quot;
+modifiers：一个包含修饰符的对象。例如v-hello.foo.bar中，修饰符对象为{foo:true, bar:true}
+</code></pre>
+<p>除了 el 之外，其它参数都应该是只读的，切勿进行修改。如果需要在钩子之间共享数据，建议通过元素的 dataset 来进行。著作权归作者所有。</p>
+<h4 id="函数简写">函数简写</h4>
+<p>在很多时候，你可能想在 bind 和 update 时触发相同行为，而不关心其它的钩子。比如这样写:</p>
+<pre><code>Vue.directive('color-swatch', function (el, binding) {
+  el.style.backgroundColor = binding.value
+})
+</code></pre>
+<h4 id="对象字面量">对象字面量</h4>
+<p>如果指令需要多个值，可以传入一个 JavaScript 对象字面量。记住，指令函数能够接受所有合法的 JavaScript 表达式。</p>
+<pre><code class="language-html">&lt;div v-demo=&quot;{ color: 'white', text: 'hello!' }&quot;&gt;&lt;/div&gt;
+</code></pre>
+<pre><code class="language-js">Vue.directive('demo', function (el, binding) {
+  console.log(binding.value.color) // =&gt; &quot;white&quot;
+  console.log(binding.value.text)  // =&gt; &quot;hello!&quot;
+})
+</code></pre>
+<h1 id="16编码规范">16.编码规范</h1>
+<h2 id="编码规范">编码规范</h2>
+<ol>
+<li>
+<p>每一个 Vue 组件（等同于模块）首先)必须专注于解决一个单一的问题，独立的、可复用的、微小的 和 可测试的。</p>
+</li>
+<li>
+<p>组件名应该始终是多个单词的，根组件 App 除外，切勿使用保留字；原则：有意义的，简短，可读性。</p>
+</li>
+<li>
+<p>组件的data必须是一个带return的函数</p>
+</li>
+<li>
+<p>props尽可能使用原始类型的数据，且需要指定其类型</p>
+</li>
+<li>
+<p>为 v-for 设置键值，避免v-if 和 v-for 同时用在同一个元素上</p>
+</li>
+<li>
+<p>为组件样式设置作用域</p>
+</li>
+<li>
+<p>组件结构合理，简洁，添加name</p>
+</li>
+<li>
+<p>谨慎使用this.<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>p</mi><mi>a</mi><mi>r</mi><mi>e</mi><mi>n</mi><mi>t</mi><mi mathvariant="normal">，</mi><mi>t</mi><mi>h</mi><mi>i</mi><mi>s</mi><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">parent，this.</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">p</span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">e</span><span class="mord mathdefault">n</span><span class="mord mathdefault">t</span><span class="mord cjk_fallback">，</span><span class="mord mathdefault">t</span><span class="mord mathdefault">h</span><span class="mord mathdefault">i</span><span class="mord mathdefault">s</span><span class="mord">.</span></span></span></span>refs</p>
+</li>
+<li>
+<p>单文件组件文件名的大小写(采用大驼峰)，模板中使用连字符kebab-case</p>
+</li>
+<li>
+<p>指令缩写</p>
+</li>
+</ol>
+<p>参考资料：<br>
+https://pablohpsilva.github.io/vuejs-component-style-guide/#/chinese<br>
+https://vue-loader.vuejs.org/zh-cn/start/spec.html</p>
+
+							</div>
+	<div class="wow fadeInUp vt-post-tags">
+ 
+				<a href="https://www.bwrong.cn/tag/vue/" rel="tag">vue</a>
+				 
+				<a href="https://www.bwrong.cn/tag/-cwNcfC1S/" rel="tag">mvvm</a>
+				 
+				<a href="https://www.bwrong.cn/tag/V8evsIMHWn/" rel="tag">javascript</a>
+				 
+					</div>
+<nav class="navigation3 post-navigation3" role="navigation">
+
+		<div class="nav-links3">
+      
+		<div class="wow fadeInUp nav-previous3"><a href="https://www.bwrong.cn/post/krpano/" rel="prev"> Krpano全景漫游开发手册</a></div>
+		 
+		 
+		</div>
+	</nav>
+	<div class="wow fadeInUp author-info">
+	<div class="author-avatar pull-left"><img src="https://www.bwrong.cn/images/avatar.png" ></div>
+ 
+	<div class="author-description"><div class="author-title"><div class="author-link" rel="author">BWrong</div></div>
+
+
+	<p class="author-bio">愿你走出半生，归来仍是少年</p></div></div>
+	
+		</div>
+
+
+
+</article>
+
+<div id="marlin_lite_about_widget-2" class="wow fadeInUp widget marlin_lite_about_widget" data-wow-delay="0.1s">
+
+        
+		<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://www.bwrong.cn/media/scripts/Valine.min.js'></script>
+
+<div class="comment"></div>
+<script>
+        new Valine({
+            av: AV,
+            el: '.comment',
+            lang: 'zh-cn',
+            visitor: false, // 阅读量统计
+            
+            admin_email:'wang11535041@qq.com',
+            
+            
+            emoticon_url: '/media/alu',
+             
+      emoticon_list: ["吐.png","喷血.png","狂汗.png","不说话.png","汗.png","坐等.png","献花.png","不高兴.png","中刀.png","害羞.png","皱眉.png","小眼睛.png","中指.png","尴尬.png","瞅你.png","想一想.png","中枪.png","得意.png","肿包.png","扇耳光.png","亲亲.png","惊喜.png","脸红.png","无所谓.png","便便.png","愤怒.png","蜡烛.png","献黄瓜.png","内伤.png","投降.png","观察.png","看不见.png","击掌.png","抠鼻.png","邪恶.png","看热闹.png","口水.png","抽烟.png","锁眉.png","装大款.png","吐舌.png","无奈.png","长草.png","赞一个.png","呲牙.png","无语.png","阴暗.png","不出所料.png","咽气.png","期待.png","高兴.png","吐血倒地.png","哭泣.png","欢呼.png","黑线.png","喜极而泣.png","喷水.png","深思.png","鼓掌.png","暗地观察.png"],
+     
+      app_id: 'jaz3TfUjRowK9fOMAPb9yw6i-MdYXbMMI',
+      
+      
+      app_key: 'pbltxx4rElIP1RStL3AwujSp',
+         
+          
+      placeholder: '欢迎你留下足迹'
+       
+        });
+    </script>
+
+
+
+
+
+		</div>
+
+			</div>
+			
+
+
+<div class="tocc col l3 hide-on-med-and-down">
+
+        <div class="toc-widget">
+
+            <div class="toc-title"></div>
+
+            <div id="toc-content">
+
+
+			</div>
+        </div>
+    </div>
+
+
+<script src="https://www.bwrong.cn/media/scripts/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '.entry-summary',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h1,h2' //**
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('.entry-summary').children('h1, h2').each(function () {/**/
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget').parent();
+        // let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+    });
+</script>
+
+
+
+
+
+
+			</div>
+		</div>
+
+
+		 <footer id="colophon" class="site-footer">
+
+	<div class="container">
+
+		<div class="copyright"> <br>Theme: <a
+				href="https://github.com/alterfang/gridea-theme-pan" target="_blank" title="Pan"><span>Pan</span></a>.
+			Powered by <a href="https://gridea.dev/" target="_blank" title="Gridea"><span>Gridea</span></a> . 版权所有：<a href="https://beian.miit.gov.cn/" target="_blank"><span>蜀ICP备2023018303号-1</span></a></div>
+	</div>
+
+</footer>
+		<!-- loding -->
+		<div class="loader">
+			<div class="loader-content">
+				<div class="songjingge">
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+			</div>
+		</div>
+<script id="rendered-js">
+	window.onload = function () {
+			var loader = document.getElementsByClassName("loader")[0];
+			loader.className = "loader fadeout"; //使用渐隐的方法淡出loading page
+			setTimeout(function () {
+				loader.style.display = "none";
+			}, 0);
+	};
+</script>
+
+
+</div>
+
+<script src="https://cdn.bootcss.com/fitvids/1.2.0/jquery.fitvids.min.js"></script>
+<script type='text/javascript' src='https://www.bwrong.cn/media/scripts/marlin-scripts.js'></script>
+<script src="https://www.bwrong.cn/media/scripts/lately.min.js"></script>
+<script>jQuery(document).ready(function () { $.lately({ 'target': '.lately-a,.lately-b,.lately-c' }) });</script>
+<style type="text/css">
+  a.back_to_top {
+    text-decoration: none;
+    position: fixed;
+    bottom: 40px;
+    right: 30px;
+    background: #f0f0f0;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    line-height: 36px;
+    font-size: 18px;
+    text-align: center;
+    transition-duration: .5s;
+    transition-propety: background-color;
+    display: none;
+  }
+
+  a.back_to_top span {
+    color: #888;
+  }
+
+  a.back_to_top:hover {
+    cursor: pointer;
+    background: #dfdfdf;
+  }
+
+  a.back_to_top:hover span {
+    color: #555;
+  }
+
+  @media print,
+  screen and (max-width: 580px) {
+    .back_to_top {
+      display: none !important;
+    }
+  }
+</style><a id="back_to_top" href="#" class="back_to_top"><span><i class="iconfont icon-xiangshang"></i></span>
+</a>
+
+<script>
+$(document).ready((function (_this) {
+    return function () {
+      var bt;
+      bt = $('#back_to_top');
+      if ($(document).width() > 480) {
+        $(window).scroll(function () {
+          var st;
+          st = $(window).scrollTop();
+          if (st > 30) {
+            return bt.css('display', 'block');
+          } else {
+            return bt.css('display', 'none');
+          }
+        });
+        return bt.click(function () {
+          $('body,html').animate({
+            scrollTop: 0
+          }, 800);
+          return false;
+        });
+      }
+    };
+  })(this));
+//   $(window).load(function () {
+//     //异步延迟加载样式
+//     var link = $('<link />');
+//     link.attr('href', 'https://fonts.googleapis.com/css?family=Dancing+Script|Noto+Sans+SC:300|Montserrat&display=swap');
+//     link.attr('rel', 'stylesheet');
+//     link.appendTo($('head'));
+// });
+</script>
+
+<!-- 宠物 -->
+<canvas id="live2dcanvas" width="200" height="400" class="live2d"></canvas>
+<style>
+  #live2dcanvas {
+    position: fixed;
+    right: 0px;
+    z-index: 999;
+    pointer-events: none;
+    bottom: -40px;
+    width: 200px;
+    height: 400px;
+  }
+
+  @media (max-width: 768px) {
+    #live2dcanvas {
+      width: 150px;
+      height: 300px;
+    }
+  }
+
+  @media (max-width: 639px) {
+    #live2dcanvas {
+      display: none !important;
+    }
+  }
+</style>
+<script src="https://www.bwrong.cn/media/scripts/L2Dwidget.min.js"></script>
+<script>
+  //初始化小人物 需设置属性pluginRootPath: "live2dw/"指明资源跟路径
+  L2Dwidget.init({
+    pluginRootPath: "media/",//资源root路径
+    pluginJsPath: "scripts/",//js相对root的路径
+    pluginModelPath: "model/",//模型相对root的路径
+    tagMode: !1,
+    debug: !1,
+    model: {
+      scale: 2,
+      jsonPath: "/media/model/live2d-widget-model-epsilon/Epsilon2.1.model.json"
+    },
+    display: {//大小位置什么的自己慢慢调就是了
+      position: "right",//定位
+      width: 130,//宽度
+      height: 210,//高度
+      hOffset: -40,//左右
+      vOffset: 0//上下
+    },
+    mobile: {
+      show: !1
+    },
+    log: !1
+  });
+</script>
+<!-- 宠物结束 -->
+
+		<script data-no-instant>
+    // (function ($) {
+    //     $.extend({
+    //         adamsOverload: function () {
+    //             $('.navigation:eq(0)').remove();
+    //             $("").attr("rel" , "external");
+    //             $("a[rel='external'],a[rel='external nofollow']").attr("target","_blank");
+    //             $("a.vi").attr("rel" , "");
+    //             $.viewImage({
+    //                 'target'  : 'img',
+    //                 'exclude' : '.vsmile-icons img,.gallery img',
+    //                 'delay'   : 300
+    //             });
+    //             $.lately({
+    //                 'target' : '.commentmetadata a,.infos time,.post-list time'
+	// 			});
+	// 			console.log(prettyPrint)
+	// 			if(prettyPrint) prettyPrint();
+
+    //             $('ul.links li a').each(function(){
+    //                 if($(this).parent().find('.bg').length==0){
+    //                     $(this).parent().append('<!---<div class="bg" style="background-image:url(https://c3.glgoo.top/s2/favicons?domain='+$(this).attr("href")+')"></div>--->')
+    //                 }
+    //             });
+    //         }
+    //     });
+    // })(jQuery);
+	// jQuery.adamsOverload();
+
+    (function ($) {
+        $.extend({
+            adamsOverload: function () {
+                $.viewImage({
+                    'target'  : '.song img',
+                    'exclude' : '.vsmile-icons img',
+                    'delay'   : 300
+                });
+            }
+        });
+    })(jQuery);
+    jQuery.adamsOverload();
+</script>
+
+</body>
+</html>
