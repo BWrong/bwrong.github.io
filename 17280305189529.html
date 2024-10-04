@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
     
-    Bwrong的博客
+    使用webpack的require.context实现路由“去中心化”管理 - Bwrong的博客
     
     </title>
     <link rel="shortcut icon" href="asset/avatar.png" type="image/png" />
@@ -79,448 +79,333 @@
             </nav>
       </div>
 
- <div class="hero-body ct-body">
-  <div class="container">
-    <div class="columns is-centered">
-      <div class="column  is-four-fifths">
-        <div class="columns is-mobile">
-          <div class="column ">
-            <h1 class="title animate__animated animate__fadeInUp">
-              Bwrong的博客
+ <div class="hero-body ct-body"></div>
 
-            </h1>
-            <h2 class="subtitle animate__animated animate__fadeInUp .animate__delay-halfs">
-              天青色等烟雨，而我在等你
-            </h2>
-          </div>
-          <div class="column is-narrow animate__animated animate__fadeInRight">
-            <figure class="image is-128x128">
-              
-              <img class="is-rounded" src="asset/avatar.png">
-              
-            </figure>
-          </div>
-        </div>
-
-
-      </div>
-
-    </div>
-
-
-
-  </div>
-</div>
 </section>
 <section class="ct-body">
   <div class="container">
-    <div class="columns is-variable bd-klmn-columns is-4 animate__animated animate__fadeInUp">
-      <div class="column is-two-thirds">
-        
-        <div class="card" >
+    <div class="columns is-variable bd-klmn-columns is-4 is-centered animate__animated animate__fadeInUp">
+      <div class="column is-four-fifths">
+        <div class="post-body single-content">
           
-          <div class="card-content">
-            <div class="content">
-              <a href="17280336310867.html">
-                <h2 class="title">利用微信第三方平台发布零码小程序</h2>
-              </a>
-              
-              <p>
-                <a href="17280336310867.html"><span class="tran-readmore">Read more...</span></a>&nbsp;&nbsp;
-                <span class="date">2023/12/15</span>
-                <span class="tran-posted-in">posted in</span>&nbsp; 
-                
-                <span class="posted-in"><a href='Other.html'>Other</a></span>
-                
-              </p>
-            </div>
-          </div>
-        </div>
-        
-        <div class="card" >
-          
-          <div class="card-content">
-            <div class="content">
-              <a href="17280335710035.html">
-                <h2 class="title">Http请求中Content-Type</h2>
-              </a>
-              
-              <p>
-                <a href="17280335710035.html"><span class="tran-readmore">Read more...</span></a>&nbsp;&nbsp;
-                <span class="date">2022/10/12</span>
-                <span class="tran-posted-in">posted in</span>&nbsp; 
-                
-                <span class="posted-in"><a href='%E7%BD%91%E7%BB%9C.html'>网络</a></span>
-                
-              </p>
-            </div>
-          </div>
-        </div>
-        
-        <div class="card" >
-          
-          <div class="card-content">
-            <div class="content">
-              <a href="17280335390285.html">
-                <h2 class="title">HTTP状态码详解</h2>
-              </a>
-              
-              <p>
-                <a href="17280335390285.html"><span class="tran-readmore">Read more...</span></a>&nbsp;&nbsp;
-                <span class="date">2022/10/10</span>
-                <span class="tran-posted-in">posted in</span>&nbsp; 
-                
-                <span class="posted-in"><a href='%E7%BD%91%E7%BB%9C.html'>网络</a></span>
-                
-              </p>
-            </div>
-          </div>
-        </div>
-        
-        <div class="card" >
-          
-          <div class="card-content">
-            <div class="content">
-              <a href="17280335013759.html">
-                <h2 class="title">【转】webgl技术风云录之BabylonJS</h2>
-              </a>
-              
-              <p>
-                <a href="17280335013759.html"><span class="tran-readmore">Read more...</span></a>&nbsp;&nbsp;
-                <span class="date">2022/05/28</span>
-                <span class="tran-posted-in">posted in</span>&nbsp; 
-                
-                <span class="posted-in"><a href='Other.html'>Other</a></span>
-                
-              </p>
-            </div>
-          </div>
-        </div>
-        
-        <div class="card" >
-          
-          <div class="card-content">
-            <div class="content">
-              <a href="17280334778925.html">
-                <h2 class="title">【转】webgl技术风云录之盈利模式</h2>
-              </a>
-              
-              <p>
-                <a href="17280334778925.html"><span class="tran-readmore">Read more...</span></a>&nbsp;&nbsp;
-                <span class="date">2022/05/28</span>
-                <span class="tran-posted-in">posted in</span>&nbsp; 
-                
-                <span class="posted-in"><a href='Other.html'>Other</a></span>
-                
-              </p>
-            </div>
-          </div>
-        </div>
-        
-        <div class="card" >
-          
-          <div class="card-content">
-            <div class="content">
-              <a href="17280334440663.html">
-                <h2 class="title">【玩转微前端4】qiankun扩展</h2>
-              </a>
-              
-              <p>
-                <a href="17280334440663.html"><span class="tran-readmore">Read more...</span></a>&nbsp;&nbsp;
-                <span class="date">2022/04/07</span>
-                <span class="tran-posted-in">posted in</span>&nbsp; 
-                
-                <span class="posted-in"><a href='%E5%BE%AE%E5%89%8D%E7%AB%AF.html'>微前端</a></span>
-                
-              </p>
-            </div>
-          </div>
-        </div>
-        
-        <div class="card" >
-          
-          <div class="card-content">
-            <div class="content">
-              <a href="17280334039483.html">
-                <h2 class="title">【玩转微前端3】需要关注的问题</h2>
-              </a>
-              
-              <p>
-                <a href="17280334039483.html"><span class="tran-readmore">Read more...</span></a>&nbsp;&nbsp;
-                <span class="date">2022/04/07</span>
-                <span class="tran-posted-in">posted in</span>&nbsp; 
-                
-                <span class="posted-in"><a href='%E5%BE%AE%E5%89%8D%E7%AB%AF.html'>微前端</a></span>
-                
-              </p>
-            </div>
-          </div>
-        </div>
-        
-        <div class="card" >
-          
-          <div class="card-content">
-            <div class="content">
-              <a href="17280333553222.html">
-                <h2 class="title">【玩转微前端2】聊聊qiankun</h2>
-              </a>
-              
-              <p>
-                <a href="17280333553222.html"><span class="tran-readmore">Read more...</span></a>&nbsp;&nbsp;
-                <span class="date">2022/04/07</span>
-                <span class="tran-posted-in">posted in</span>&nbsp; 
-                
-                <span class="posted-in"><a href='%E5%BE%AE%E5%89%8D%E7%AB%AF.html'>微前端</a></span>
-                
-              </p>
-            </div>
-          </div>
-        </div>
-        
-        <div class="card" >
-          
-          <div class="card-content">
-            <div class="content">
-              <a href="17280333095797.html">
-                <h2 class="title">【玩转微前端1】如何做技术选型</h2>
-              </a>
-              
-              <p>
-                <a href="17280333095797.html"><span class="tran-readmore">Read more...</span></a>&nbsp;&nbsp;
-                <span class="date">2022/04/07</span>
-                <span class="tran-posted-in">posted in</span>&nbsp; 
-                
-                <span class="posted-in"><a href='%E5%BE%AE%E5%89%8D%E7%AB%AF.html'>微前端</a></span>
-                
-              </p>
-            </div>
-          </div>
-        </div>
-        
-        <div class="card" >
-          
-          <div class="card-content">
-            <div class="content">
-              <a href="17280332492564.html">
-                <h2 class="title">【玩转微前端0】微前端是什么</h2>
-              </a>
-              
-              <p>
-                <a href="17280332492564.html"><span class="tran-readmore">Read more...</span></a>&nbsp;&nbsp;
-                <span class="date">2022/04/07</span>
-                <span class="tran-posted-in">posted in</span>&nbsp; 
-                
-                <span class="posted-in"><a href='%E5%BE%AE%E5%89%8D%E7%AB%AF.html'>微前端</a></span>
-                
-              </p>
-            </div>
-          </div>
-        </div>
-        
+          <h1 class="title">
+            使用webpack的require.context实现路由“去中心化”管理
+          </h1>
 
-        <nav class="pagination is-centered" role="navigation" aria-label="pagination">
-          <a class="pagination-previous" 
-            disabled="disabled" ><span class="tran-prev-page">&laquo; Prev Page</span></a>
-          <a class="pagination-next"  href="all_1.html" ><span class="tran-next-page">Next Page &raquo;</span></a>
-        </nav>
 
-      </div><!-- end column -->
-      <div class="column">
-        <div class="card animate__animated animate__fadeInUp">
-  <header class="card-header">
-    <p class="card-header-title">
-      <span class="tran-site-categories">Categories</span>
-    </p>
+          <div class="media">
+            
+            <figure class="media-left">
+              <p class="image is-48x48">
 
-  </header>
-  <div class="card-content site-categories">
-    <div class="content">
-      <ul>
-        
-        <li><a href="Vue.html">Vue</a>
-          
-            
-            
-        </li>
-        
-        <li><a href="MR.html">MR</a>
-          
-            
-            
-        </li>
-        
-        <li><a href="Other.html">Other</a>
-          
-            
-            
-        </li>
-        
-        <li><a href="JavaScript.html">JavaScript</a>
-          
-            
-            
-        </li>
-        
-        <li><a href="%E5%B7%A5%E7%A8%8B%E5%8C%96.html">工程化</a>
-          
-            
-            
-        </li>
-        
-        <li><a href="Git.html">Git</a>
-          
-            
-            
-        </li>
-        
-        <li><a href="CSS.html">CSS</a>
-          
-            
-            
-        </li>
-        
-        <li><a href="%E9%83%A8%E7%BD%B2.html">部署</a>
-          
-            
-            
-        </li>
-        
-        <li><a href="%E6%95%B0%E6%8D%AE%E5%BA%93.html">数据库</a>
-          
-            
-            
-        </li>
-        
-        <li><a href="nodejs.html">nodejs</a>
-          
-            
-            
-        </li>
-        
-        <li><a href="%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7.html">开发工具</a>
-          
-            
-            
-        </li>
-        
-        <li><a href="%E5%BF%83%E6%83%85.html">心情</a>
-          
-            
-            
-        </li>
-        
-        <li><a href="%E5%BE%AE%E5%89%8D%E7%AB%AF.html">微前端</a>
-          
-            
-            
-        </li>
-        
-        <li><a href="%E7%BD%91%E7%BB%9C.html">网络</a>
-          
-            
-            
-        </li>
-        
-      </ul>
-    </div>
-  </div>
+                <img class="is-rounded" src="asset/avatar.png">
 
-</div>
+              </p>
+            </figure>
+            
+            <div class="media-content">
+              <div class="content">
+                <p>
+                  <span class="date">2018/09/19</span>
+                  <span class="tran-posted-in">posted in</span>&nbsp; 
+                  
+                  <span class="posted-in"><a href='%E5%B7%A5%E7%A8%8B%E5%8C%96.html'>工程化</a></span>
+                  
+                  
 
-<div class="card animate__animated animate__fadeInUp animate__delay-1s">
-  <header class="card-header">
-    <p class="card-header-title">
-      <span class="tran-site-tags">Tags</span>
-    </p>
+                  
 
-  </header>
-  <div class="card-content site-tags">
-    <div class="content">
-      <div class="tags">
-        
-        <a class="tag is-link is-light" href="tag_CSS.html">#CSS</a>
-        
-        <a class="tag is-link is-light" href="tag_IP.html">#IP</a>
-        
-        <a class="tag is-link is-light" href="tag_VR.html">#VR</a>
-        
-        <a class="tag is-link is-light" href="tag_angular.html">#angular</a>
-        
-        <a class="tag is-link is-light" href="tag_array.html">#array</a>
-        
-        <a class="tag is-link is-light" href="tag_axios.html">#axios</a>
-        
-        <a class="tag is-link is-light" href="tag_babel.html">#babel</a>
-        
-        <a class="tag is-link is-light" href="tag_eslint.html">#eslint</a>
-        
-        <a class="tag is-link is-light" href="tag_git.html">#git</a>
-        
-        <a class="tag is-link is-light" href="tag_gulp.html">#gulp</a>
-        
-        <a class="tag is-link is-light" href="tag_http.html">#http</a>
-        
-        <a class="tag is-link is-light" href="tag_jsx.html">#jsx</a>
-        
-        <a class="tag is-link is-light" href="tag_krpano.html">#krpano</a>
-        
-        <a class="tag is-link is-light" href="tag_mongo.html">#mongo</a>
-        
-        <a class="tag is-link is-light" href="tag_nginx.html">#nginx</a>
-        
-        <a class="tag is-link is-light" href="tag_nodejs.html">#nodejs</a>
-        
-        <a class="tag is-link is-light" href="tag_npm.html">#npm</a>
-        
-        <a class="tag is-link is-light" href="tag_qiankun.html">#qiankun</a>
-        
-        <a class="tag is-link is-light" href="tag_router.html">#router</a>
-        
-        <a class="tag is-link is-light" href="tag_typescript.html">#typescript</a>
-        
-        <a class="tag is-link is-light" href="tag_vscode.html">#vscode</a>
-        
-        <a class="tag is-link is-light" href="tag_vue.html">#vue</a>
-        
-        <a class="tag is-link is-light" href="tag_vuex.html">#vuex</a>
-        
-        <a class="tag is-link is-light" href="tag_webpack.html">#webpack</a>
-        
-        <a class="tag is-link is-light" href="tag_webwork.html">#webwork</a>
-        
-        <a class="tag is-link is-light" href="tag_%E5%B7%A5%E7%A8%8B%E5%8C%96.html">#工程化</a>
-        
-        <a class="tag is-link is-light" href="tag_%E5%BC%82%E6%AD%A5.html">#异步</a>
-        
-        <a class="tag is-link is-light" href="tag_%E5%BE%AE%E4%BF%A1.html">#微信</a>
-        
-        <a class="tag is-link is-light" href="tag_%E5%BE%AE%E5%89%8D%E7%AB%AF.html">#微前端</a>
-        
-        <a class="tag is-link is-light" href="tag_%E6%95%B0%E6%8D%AE%E5%BA%93.html">#数据库</a>
-        
-        <a class="tag is-link is-light" href="tag_%E6%A8%A1%E5%9D%97%E5%8C%96.html">#模块化</a>
-        
-        <a class="tag is-link is-light" href="tag_%E8%84%9A%E6%89%8B%E6%9E%B6.html">#脚手架</a>
-        
-        <a class="tag is-link is-light" href="tag_%E8%8A%82%E6%B5%81.html">#节流</a>
-        
-        <a class="tag is-link is-light" href="tag_%E8%A7%84%E8%8C%83.html">#规范</a>
-        
-        <a class="tag is-link is-light" href="tag_%E9%98%B2%E6%8A%96.html">#防抖</a>
-        
+                  <br />
+                  <span class="tran-tags">Tags:</span>&nbsp;
+                  
+                  <a class="tag is-link is-light" href='tag_webpack.html'>#webpack</a>
+                  
+                  <a class="tag is-link is-light" href='tag_%E5%B7%A5%E7%A8%8B%E5%8C%96.html'>#工程化</a>
+                  
+
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <article class="markdown-body single-content">
+          <h3><a id="%E4%B8%80%E4%B8%AA%E9%A1%B9%E7%9B%AE%E4%B8%AD%E8%B7%AF%E7%94%B1%E7%9A%84%E5%8F%98%E5%8C%96%E8%BF%87%E7%A8%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一个项目中路由的变化过程</h3>
+<p>当你在开发一个大型单页面应用的时候，项目之初一般做法是所有的路由规则都维护在一个route.js的文件里。</p>
+<pre class="line-numbers"><code class="language-plain_text">// rootRoute.js
+const rootRoute = {
+    childRoutes: [
+        {
+            path: '/',
+            component: AppLayout,
+            childRoutes: [
+                {
+                    path: 'shop', // 购买详情页
+                    component: Shop
+                },
+                {
+                    path: 'order', // 订单页
+                    component: Order
+                }
+                // ...
+                // 少量其他路由
+                // ...
+            ]
+        }
+    ]
+};
+</code></pre>
+<p>随着业务代码的增长路由很快会变成：</p>
+<pre class="line-numbers"><code class="language-plain_text">// rootRoute.js
+const rootRoute = {
+    childRoutes: [
+        {
+            path: '/',
+            component: AppLayout,
+            childRoutes: [
+                {
+                    path: 'shop', // 购买详情页
+                    component: ShopLayout,
+                    childRoutes: [
+                        {
+                            path: 'foodDetail',
+                            component: FoodDetail
+                        },
+                        {
+                            path: 'shoesDetail',
+                            component: ShoesDetail
+                        }
+                        // 其他
+                    ]
+                },
+                {
+                    path: 'order', // 订单页
+                    component: Order,
+                    childRoutes: [
+                        {
+                            path: 'remark', //订单备注
+                            component: Remark
+                        },
+                        {
+                            path: 'invoice', //发票抬头
+                            component: Invoice
+                        },
+                        {
+                            path: 'payment', //付款页面
+                            component: Payment
+                        },
+                        {
+                            path: 'userValidation', //用户验证
+                            component: UserValidation
+                        },
+                        {
+                            path: 'chooseAddress', //选择地址
+                            component: ChooseAddress,
+                            childRoutes: [
+                                {
+                                    path: 'addAddress', //添加地址
+                                    component: AddAddress,
+                                    childRoutes: [
+                                        {
+                                            path: 'searchAddress', //搜索地址
+                                            component: SearchAddress
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+                // ...
+                // 大量新增路由
+                // ...
+            ]
+        }
+    ]
+};
+</code></pre>
+<p>当路由变的越来越大，大到已经难以维护时。我们按照react-router提供的思路，对路由按业务模块进行拆分。</p>
+<pre class="line-numbers"><code class="language-plain_text">// rootRoute.js
+const rootRoute = {
+    childRoutes: [
+        {
+            path: '/',
+            component: AppLayout,
+            childRoutes: [
+                require('./modules/shop/route'), //购买详情页
+                require('./modules/order/route'), // 订单页
+                require('./modules/login/route'), // 登录注册页
+                require('./modules/service/route'), // 服务中心
+                // ...
+                // 其他大量新增路由
+                // ...
+            ]
+        }
+    ]
+};
+</code></pre>
+<p>按该方式拆分后，每个业务模块维护自身的路由配置。新增业务模块路由，只需要在总的rootRoute中引入该业务模块的路由即可（也就是加一行代码）。这个方案看来是已经接近完美了。但如果想达到连一行代码都不用加？实现彻彻底底的去中心化管理</p>
+<h3><a id="require-context%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>require.context是什么？</h3>
+<p>想要彻彻底底的实现去中心化管理我们需要使用到require.context</p>
+<h4><a id="webpack%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E7%9A%84%E4%BB%8B%E7%BB%8Drequire-context" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>webpack官方文档的介绍require.context</h4>
+<p>简单说就是：有了<code>require.context</code>，我们可以通过正则匹配引入相应的文件模块。</p>
+<p><code>require.context(directory, useSubdirectories, regExp)</code></p>
+<p>require.context有三个参数：</p>
+<ul>
+<li>directory：说明需要检索的目录</li>
+<li>useSubdirectories：是否检索子目录</li>
+<li>regExp: 匹配文件的正则表达式</li>
+</ul>
+<p>使用require.context改造后的rootRoute.js文件</p>
+<pre class="line-numbers"><code class="language-plain_text">const rootRoute = {
+    childRoutes: [
+        {
+            path: '/',
+            component: AppLayout,
+            childRoutes: (r =&gt; {
+                return r.keys().map(key =&gt; r(key));
+            })(require.context('./', true, /^\.\/modules\/((?!\/)[\s\S])+\/route\.js$/))
+        }
+    ]
+};
+</code></pre>
+<p>优化后，新增一个业务模块，只要业务模块route文件遵循统一的目录结构。业务模块route就能被自动关联到rootRoute里。</p>
+<h3><a id="%E5%85%B6%E4%BB%96%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>其他应用场景</h3>
+<p>这个思路可应用于其他想要实现&quot;去中心化&quot;管理的功能模块。</p>
+
+        </article>
+        <div class="comments-wrap">
+          <div class="share-comments">
+            
+
+            
+
+            
+          </div>
+        </div><!-- end comments wrap -->
       </div>
-
+    </div><!-- end columns -->
+    <div class="toc-widget">
+      <div id="toc-content"></div>
     </div>
-  </div>
+  </div><!-- end container -->
 
-</div>
+</section>
+<style>
+  .toc-widget {
+    overflow-y: auto;
+    position: fixed;
+    right: 200px;
+    top: 500px;
+    margin: 30px 0 0 0;
+    transition: top .5s ease;
+  }
 
-      </div>
-    </div>
+  .toc-widget.toc-fixed {
+    top: 0;
+  }
 
+  @media (max-width: 991px) {
+    .toc-widget {
+      display: none !important;
+    }
+  }
 
-  </div>
-</section>    <footer class="footer">
+  .toc-widget .toc-list {
+    overflow: hidden;
+    position: relative
+  }
+
+  .toc-widget .toc-list li {
+    list-style: none
+  }
+
+  .toc-list {
+    margin: 0;
+    padding-left: 24px
+  }
+
+  a.toc-link {
+    color: currentColor;
+    max-width: 20em;
+    display: block;
+    white-space: nowrap;
+  }
+
+  .is-collapsible {
+    max-height: 1000px;
+    overflow: hidden;
+    transition: all 300ms ease-in-out
+  }
+
+  .is-collapsed {
+    max-height: 0
+  }
+
+  .is-position-fixed {
+    position: fixed !important;
+    top: 0
+  }
+
+  .is-active-link {
+    font-weight: 700
+  }
+
+  .toc-link::before {
+    background-color: #EEE;
+    content: ' ';
+    display: inline-block;
+    height: inherit;
+    left: 0;
+    margin-top: -1px;
+    position: absolute;
+    width: 2px
+  }
+
+  .is-active-link::before {
+    background-color: #54BC4B
+  }
+</style>
+<script src="asset/tocbot.min.js"></script>
+<script>
+  // 获取窗口高度
+  function getWindowHeight() {
+    return window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+  }
+  let offsetHeight = getWindowHeight() * 0.4 - 45;
+  tocbot.init({
+    tocSelector: '#toc-content',
+    contentSelector: '.markdown-body',
+    headingsOffset: -offsetHeight,
+    // headingsOffset: -205,
+    headingSelector: 'h1,h2,h3' //**
+  });
+
+  // 修改TOC链接的href
+  let tocHeading = 'toc-heading-';
+  var tocLinks = document.querySelectorAll('#toc-content a');
+  for (var i = 0; i < tocLinks.length; i++) {
+    tocLinks[i].setAttribute('href', '#' + tocHeading + (i + 1));
+  }
+
+  // 修改标题的id
+  var headings = document.querySelectorAll('.markdown-body h1, .markdown-body h2, .markdown-body h3');
+  for (var i = 0; i < headings.length; i++) {
+    headings[i].setAttribute('id', tocHeading + (i + 1));
+  }
+
+  // 设置滚动TOC固定
+  var tocWidget = document.querySelector('.toc-widget');
+  var tocHeight = parseInt(offsetHeight);
+  window.addEventListener('scroll', function () {
+    var scroll = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop;
+    if (scroll > tocHeight) {
+      tocWidget.classList.add('toc-fixed');
+    } else {
+      tocWidget.classList.remove('toc-fixed');
+    }
+  });
+</script>    <footer class="footer">
         <div class="content has-text-centered">
           <p>
             Powered by <a href="https://zh.mweb.im/" target="_blank" title="Gridea"><span>MWeb</span></a>

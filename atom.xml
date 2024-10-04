@@ -1,44 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://www.bwrong.cn</id>
-    <title>BWrong的小站</title>
-    <updated>2023-12-15T06:26:26.838Z</updated>
-    <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://www.bwrong.cn"/>
-    <link rel="self" href="https://www.bwrong.cn/atom.xml"/>
-    <subtitle>天青色等烟雨，而我在等你</subtitle>
-    <logo>https://www.bwrong.cn/images/avatar.png</logo>
-    <icon>https://www.bwrong.cn/favicon.ico</icon>
-    <rights>All rights reserved 2023, BWrong的小站</rights>
-    <entry>
-        <title type="html"><![CDATA[利用微信第三方平台发布零码小程序]]></title>
-        <id>https://www.bwrong.cn/post/Goa6oYxl_/</id>
-        <link href="https://www.bwrong.cn/post/Goa6oYxl_/">
-        </link>
-        <updated>2023-12-15T06:12:55.000Z</updated>
-        <content type="html"><![CDATA[<h2 id="难点">难点</h2>
+
+  <title><![CDATA[Bwrong的博客]]></title>
+  <link href="https://www.bwrong.cn/atom.xml" rel="self"/>
+  <link href="https://www.bwrong.cn/"/>
+  <updated>2024-10-04T17:30:41+08:00</updated>
+  <id>https://www.bwrong.cn/</id>
+  <author>
+    <name><![CDATA[]]></name>
+    
+  </author>
+  <generator uri="http://www.mweb.im/">MWeb</generator>
+  
+  <entry>
+    <title type="html"><![CDATA[利用微信第三方平台发布零码小程序]]></title>
+    <link href="https://www.bwrong.cn/17280336310867.html"/>
+    <updated>2024-10-04T17:20:31+08:00</updated>
+    <id>https://www.bwrong.cn/17280336310867.html</id>
+    <content type="html"><![CDATA[
+<h2><a id="%E9%9A%BE%E7%82%B9" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>难点</h2>
 <ul>
 <li>将设计好的应用生成原生小程序代码：因为编辑时和运行时环境差异性，导致不能使用同一套代码，需要针对不同平台有不同的实现（实现方案二）。</li>
 <li>将设计好的应用发布到商家自己的小程序中，需要对接微信第三方平台能力，主要是因为对这套发布流程不熟悉。</li>
 </ul>
-<h2 id="实现方案">实现方案：</h2>
-<hr>
-<h3 id="一-webapph5小程序复用h5版本">一、WebApp/H5小程序：复用H5版本</h3>
+<h2><a id="%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%A1%88%EF%BC%9A" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>实现方案：</h2>
+<hr />
+<h3><a id="%E4%B8%80%E3%80%81webapph5%E5%B0%8F%E7%A8%8B%E5%BA%8F%EF%BC%9A%E5%A4%8D%E7%94%A8h5%E7%89%88%E6%9C%AC" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、WebApp/H5小程序：复用H5版本</h3>
 <p>在H5版本上，通过小程序<a href="https://developers.weixin.qq.com/miniprogram/dev/component/web-view.html">Webview</a>开放能力组件实现H5页面动态渲染，通过传入H5地址方式，实现不同程序内容展示。</p>
 <p><strong>特点：</strong></p>
 <ul>
 <li>实现简单，因为和编辑时使用的是同一环境，****可直接复用，不需要做单独适配。</li>
 <li>能力有限，因为使用Webview进行渲染，所以应用所能使用的能力取决于Webview组件提供的开发能力，目前可以使用的能力可查看<a href="https://developers.weixin.qq.com/miniprogram/dev/component/web-view.html#%E7%9B%B8%E5%85%B3%E6%8E%A5%E5%8F%A3-2">Webview组件文档</a></li>
 </ul>
-<figure data-type="image" tabindex="1"><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/1681960549630-bc7e7caa-c9e0-4e01-8a37-d1ca2cbe3336.jpeg" alt="" loading="lazy"></figure>
-<h3 id="二-原生小程序方案生成小程序原生组件">二、原生小程序方案：生成小程序原生组件</h3>
+<p><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/1681960549630-bc7e7caa-c9e0-4e01-8a37-d1ca2cbe3336.jpeg" alt="" /></p>
+<h3><a id="%E4%BA%8C%E3%80%81%E5%8E%9F%E7%94%9F%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%96%B9%E6%A1%88%EF%BC%9A%E7%94%9F%E6%88%90%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%8E%9F%E7%94%9F%E7%BB%84%E4%BB%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>二、原生小程序方案：生成小程序原生组件</h3>
 <p>在web端进行应用设计完成后，将内容保存为和平台无关的通用语言数据，常用的为JSON Schema，不同平台需要实现各自的解析适配器，将内容解析为平台特有的代码，这里即为解析为微信小程序。</p>
 <p><strong>特点：</strong></p>
 <ul>
 <li>实现复杂，两个平台差异性太大，需要实现多套解析器和组件。不过可以通过使用多端开发框架（<a href="https://uniapp.dcloud.net.cn/">uniapp</a>、<a href="https://taro.jd.com/">taro</a>）来降低差异性。</li>
 <li>能力受限小，因为是生成原生组件，基本上可以使用所有原生组件能力。</li>
 </ul>
-<pre><code class="language-json">{
+<pre class="line-numbers"><code class="language-json">{
   &quot;label&quot;: &quot;新增组件&quot;,
   &quot;icon&quot;: &quot;icon-zujian&quot;,
   &quot;fields&quot;: {
@@ -63,7 +65,7 @@
   }
 }
 </code></pre>
-<figure data-type="image" tabindex="2"><img src="https://cdn.nlark.com/yuque/0/2023/jpeg/159460/1681990517560-e4737370-b90d-44d7-967c-c2a97eaf28f3.jpeg" alt="" loading="lazy"></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2023/jpeg/159460/1681990517560-e4737370-b90d-44d7-967c-c2a97eaf28f3.jpeg" alt="" /></p>
 <p><strong>参考实现方案：</strong></p>
 <ul>
 <li><a href="https://github.com/silence717/taro-designer">https://github.com/silence717/taro-designer</a></li>
@@ -72,31 +74,31 @@
 <li><a href="https://pageplug.cn/">https://pageplug.cn/</a></li>
 <li><a href="https://github.com/staringos/mtbird">https://github.com/staringos/mtbird</a></li>
 </ul>
-<h2 id="如何使用第三方平台代开发">如何使用第三方平台代开发</h2>
+<h2><a id="%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E7%AC%AC%E4%B8%89%E6%96%B9%E5%B9%B3%E5%8F%B0%E4%BB%A3%E5%BC%80%E5%8F%91" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>如何使用第三方平台代开发</h2>
 <p>第三方平台（简称第三方平台），由微信团队面向所有通过<a href="https://kf.qq.com/faq/170824URbmau170824r2uY7j.html">开发者资质认证</a>的第三方开发者提供提供的官方平台。在得到公众号或小程序管理员授权后，基于该平台，第三方服务商可以通过调用官方接口能力，为商家提供公众号代运营、小程序代注册、代开发等服务以及提供公众号和小程序相关的行业方案、活动营销、插件能力等全方位服务。</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2023/png/159460/1682068941157-38b4cd76-d6aa-4eda-ba30-51a0dea43a8f.png" alt="" loading="lazy"><img src="https://cdn.nlark.com/yuque/0/2023/png/159460/1682069054303-f88e6aa1-3793-4cb1-95f1-6ef6cd04384a.png" alt="" loading="lazy"></p>
-<h3 id="满足条件">满足条件</h3>
-<figure data-type="image" tabindex="3"><img src="https://cdn.nlark.com/yuque/0/2023/png/159460/1682391253106-b4dc9cdf-a06f-47c3-afed-9cf54f2ddeab.png" alt="" loading="lazy"></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2023/png/159460/1682068941157-38b4cd76-d6aa-4eda-ba30-51a0dea43a8f.png" alt="" /><img src="https://cdn.nlark.com/yuque/0/2023/png/159460/1682069054303-f88e6aa1-3793-4cb1-95f1-6ef6cd04384a.png" alt="" /></p>
+<h3><a id="%E6%BB%A1%E8%B6%B3%E6%9D%A1%E4%BB%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>满足条件</h3>
+<p><img src="https://cdn.nlark.com/yuque/0/2023/png/159460/1682391253106-b4dc9cdf-a06f-47c3-afed-9cf54f2ddeab.png" alt="" /></p>
 <ul>
 <li>提供行业解决方案，如针对电商行业的解决方案，或针对旅游行业的解决方案等；</li>
 <li>行业：（横向）提供更加专业的运营能力，精细化运营用户公众号或小程序；</li>
 <li>功能：（纵向）对公众平台功能的优化，如专门优化图文消息视觉样式和排版的工具，或专门定制的 CRM 用户管理功能，或功能强大的小程序插件等。</li>
 </ul>
-<h3 id="流程">流程</h3>
-<figure data-type="image" tabindex="4"><img src="https://cdn.nlark.com/yuque/0/2023/png/159460/1681980164393-0fae9953-54d7-4808-a8f4-13e46c652cf9.png" alt="" loading="lazy"></figure>
-<figure data-type="image" tabindex="5"><img src="https://cdn.nlark.com/yuque/0/2023/png/159460/1682391612230-1750c702-0d9e-407e-88a8-2c13ea64c746.png" alt="" loading="lazy"></figure>
-<h4 id="一-如何成为服务商">一、如何成为服务商</h4>
+<h3><a id="%E6%B5%81%E7%A8%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>流程</h3>
+<p><img src="https://cdn.nlark.com/yuque/0/2023/png/159460/1681980164393-0fae9953-54d7-4808-a8f4-13e46c652cf9.png" alt="" /></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2023/png/159460/1682391612230-1750c702-0d9e-407e-88a8-2c13ea64c746.png" alt="" /></p>
+<h4><a id="%E4%B8%80%E3%80%81%E5%A6%82%E4%BD%95%E6%88%90%E4%B8%BA%E6%9C%8D%E5%8A%A1%E5%95%86" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、如何成为服务商</h4>
 <p>1、第三方平台帐号的审核无需缴费，但开放平台帐号的认证（即开发者资质认证）需要交300块钱认证费。一个已完成开发者资质认证的开放平台帐号，可创建5个平台型服务商第三方平台帐号。</p>
 <p>2、任何合法合规的、为小程序提供开发服务及有意愿的开发者都可以成为小程序服务商，微信不会区别对待，也无官方授权的概念。</p>
-<figure data-type="image" tabindex="6"><img src="https://cdn.nlark.com/yuque/0/2023/png/159460/1681980517223-496c322a-ec16-473a-aee5-c0065909bbec.png" alt="" loading="lazy"></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2023/png/159460/1681980517223-496c322a-ec16-473a-aee5-c0065909bbec.png" alt="" /></p>
 <p><a href="https://developers.weixin.qq.com/doc/oplatform/Third-party_Platforms/2.0/operation/thirdparty/prepare.html"><strong>准备材料：</strong></a></p>
 <ul>
 <li>官方网站：服务商应当有对外可用的官网，且该官网提供的服务描述与申请的第三方平台帐号名称、简介、图标均有所关联</li>
 <li>平台图标：图标必须为当前服务商所有，不可使用其他企业的图标作为第三方平台帐号图标，108 x 108像素，大小不超过300KB，且格式为PNG的图片</li>
 <li>域名和ssl证书</li>
 </ul>
-<h4 id="二-搭建三方后端服务自建模式和云服务">二、搭建三方后端服务：自建模式和云服务</h4>
-<figure data-type="image" tabindex="7"><img src="https://cdn.nlark.com/yuque/0/2023/png/159460/1681984771382-05565715-fded-4766-883c-af3bb2dd0bcc.png" alt="" loading="lazy"></figure>
+<h4><a id="%E4%BA%8C%E3%80%81%E6%90%AD%E5%BB%BA%E4%B8%89%E6%96%B9%E5%90%8E%E7%AB%AF%E6%9C%8D%E5%8A%A1%EF%BC%9A%E8%87%AA%E5%BB%BA%E6%A8%A1%E5%BC%8F%E5%92%8C%E4%BA%91%E6%9C%8D%E5%8A%A1" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>二、搭建三方后端服务：自建模式和云服务</h4>
+<p><img src="https://cdn.nlark.com/yuque/0/2023/png/159460/1681984771382-05565715-fded-4766-883c-af3bb2dd0bcc.png" alt="" /></p>
 <ul>
 <li>服务商类型</li>
 </ul>
@@ -111,45 +113,47 @@
 <li>该类型的帐号仅有一个APPID用以作为服务商帐号id，没有secret，无法生成token，不可调用官方任何接口能力。该类型的服务商通常不基于第三方平台能力为商家提供服务。</li>
 </ul>
 <p>搭建好三方服务后需要和业务系统服务进行联调对接，然后进行<a href="https://developers.weixin.qq.com/doc/oplatform/Third-party_Platforms/2.0/operation/thirdparty/publish.html">全网发布</a>。</p>
-<h4 id="三-授权">三、授权</h4>
+<h4><a id="%E4%B8%89%E3%80%81%E6%8E%88%E6%9D%83" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>三、授权</h4>
 <p>商家需要将其公众号或者小程序<a href="https://developers.weixin.qq.com/doc/oplatform/Third-party_Platforms/2.0/api/Before_Develop/Authorization_Process_Technical_Description.html">授权</a>给第三方平台，服务商才可以代商家进行相关操作。</p>
-<figure data-type="image" tabindex="8"><img src="https://cdn.nlark.com/yuque/0/2023/png/159460/1681980296972-49144b20-919e-4d26-bc1d-03817965cd19.png" alt="" loading="lazy"></figure>
-<h4 id="四-代商家调用接口">四、代商家调用接口</h4>
+<p><img src="https://cdn.nlark.com/yuque/0/2023/png/159460/1681980296972-49144b20-919e-4d26-bc1d-03817965cd19.png" alt="" /></p>
+<h4><a id="%E5%9B%9B%E3%80%81%E4%BB%A3%E5%95%86%E5%AE%B6%E8%B0%83%E7%94%A8%E6%8E%A5%E5%8F%A3" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>四、代商家调用接口</h4>
 <p>小程序的api，服务商都可以调用，只是服务商调用的时候要使用<a href="https://developers.weixin.qq.com/doc/oplatform/Third-party_Platforms/2.0/api/ThirdParty/token/api_authorizer_token.html">authorizer_access_token</a>，而不是access_token。</p>
 <p>服务商能否代商家成功调用某个公众号或者小程序的api，取决于该公众号或者小程序管理员是否将对应的权限集授权给当前第三方平台帐号。</p>
-<h4 id="五-代开发小程序">五、代开发小程序</h4>
-<figure data-type="image" tabindex="9"><img src="https://cdn.nlark.com/yuque/0/2023/png/159460/1681988187650-15d3e030-e517-4a41-9a7c-fc5073146d1c.png" alt="" loading="lazy"></figure>
-<h5 id="代码上传">代码上传</h5>
+<h4><a id="%E4%BA%94%E3%80%81%E4%BB%A3%E5%BC%80%E5%8F%91%E5%B0%8F%E7%A8%8B%E5%BA%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>五、代开发小程序</h4>
+<p><img src="https://cdn.nlark.com/yuque/0/2023/png/159460/1681988187650-15d3e030-e517-4a41-9a7c-fc5073146d1c.png" alt="" /></p>
+<h5><a id="%E4%BB%A3%E7%A0%81%E4%B8%8A%E4%BC%A0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>代码上传</h5>
 <ul>
 <li>通过开发者工具</li>
 <li><a href="https://developers.weixin.qq.com/miniprogram/dev/devtools/ci.html">CI代码上传</a></li>
 <li><a href="https://developers.weixin.qq.com/community/develop/article/doc/0006aec26a89507900dc70f5e5b013?pass_ticket=PFmw0zP6yfVqUJz8iYlCaPgYBj0s6dm%2BoKU5cKthScDFPSrvwo9Z2cS1G9qCIrRyts29yPal4xRGPCSoPxxoeA%3D%3D">使用小程序CI自动上传代码</a></li>
 </ul>
-<figure data-type="image" tabindex="10"><img src="https://cdn.nlark.com/yuque/0/2023/png/159460/1681988652552-ed1314fb-a721-432a-b4e1-9146be97d1ea.png" alt="" loading="lazy"></figure>
-<h3 id="相关文档">相关文档</h3>
+<p><img src="https://cdn.nlark.com/yuque/0/2023/png/159460/1681988652552-ed1314fb-a721-432a-b4e1-9146be97d1ea.png" alt="" /></p>
+<h3><a id="%E7%9B%B8%E5%85%B3%E6%96%87%E6%A1%A3" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>相关文档</h3>
 <ul>
 <li><a href="https://developers.weixin.qq.com/doc/oplatform/Third-party_Platforms/2.0/getting_started/terminology_introduce.html">官方文档</a></li>
 <li><a href="https://developers.weixin.qq.com/doc/oplatform/openApi/OpenApiDoc/">API文档</a></li>
 <li><a href="https://juejin.cn/post/6871397648792813575">微信开放平台之第三方平台开发，一整套流程</a></li>
 </ul>
-<h3 id="相关规则">相关规则</h3>
+<h3><a id="%E7%9B%B8%E5%85%B3%E8%A7%84%E5%88%99" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>相关规则</h3>
 <ul>
 <li><a href="https://developers.weixin.qq.com/doc/oplatform/service_market/provider_guideline/audit/mini_program_develop_audit.html">小程序代开发服务上架要求</a></li>
 <li><a href="https://developers.weixin.qq.com/doc/oplatform/service_market/provider_guideline/operation/mini_program_develop_operation.html">小程序代开发运营规则</a></li>
 </ul>
+
 ]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Http请求中Content-Type]]></title>
-        <id>https://www.bwrong.cn/post/yTzozCDtS/</id>
-        <link href="https://www.bwrong.cn/post/yTzozCDtS/">
-        </link>
-        <updated>2022-10-10T02:38:40.000Z</updated>
-        <content type="html"><![CDATA[<ol>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Http请求中Content-Type]]></title>
+    <link href="https://www.bwrong.cn/17280335710035.html"/>
+    <updated>2024-10-04T17:19:30+08:00</updated>
+    <id>https://www.bwrong.cn/17280335710035.html</id>
+    <content type="html"><![CDATA[
+<ol>
 <li><strong>Content-Type</strong></li>
 </ol>
 <p>MediaType，即是Internet Media Type，互联网媒体类型；也叫做MIME类型，在Http协议消息头中，使用Content-Type来表示具体请求中的媒体类型信息。</p>
-<pre><code>1. 类型格式：type/subtype(;parameter)? type 
+<pre class="line-numbers"><code class="language-plain_text">1. 类型格式：type/subtype(;parameter)? type 
 2. 主类型，任意的字符串，如text，如果是*号代表所有；  
 3. subtype 子类型，任意的字符串，如html，如果是*号代表所有；  
 4. parameter 可选，一些参数，如Accept请求头的q参数， Content-Type的 charset参数。  
@@ -184,7 +188,7 @@
 <li><strong>Spring MVC中关于关于Content-Type类型信息的使用</strong></li>
 </ol>
 <p>首先我们来看看RequestMapping中的Class定义：</p>
-<pre><code class="language-java">@Target({ElementType.METHOD, ElementType.TYPE}) 
+<pre class="line-numbers"><code class="language-java">@Target({ElementType.METHOD, ElementType.TYPE}) 
 @Retention(RetentionPolicy.RUNTIME) 
 @Documented 
 @Mapping 
@@ -197,25 +201,25 @@ public @interface RequestMapping {
 	String[] produces() default {}; 
 } 
 </code></pre>
-<p>value: 指定请求的实际地址， 比如 /action/info之类。<br>
-method： 指定请求的method类型， GET、POST、PUT、DELETE等<br>
-consumes： 指定处理请求的提交内容类型（Content-Type），例如application/json, text/html;<br>
-produces:  指定返回的内容类型，仅当request请求头中的(Accept)类型中包含该指定类型才返回<br>
-params： 指定request中必须包含某些参数值是，才让该方法处理<br>
+<p>value: 指定请求的实际地址， 比如 /action/info之类。<br />
+method： 指定请求的method类型， GET、POST、PUT、DELETE等<br />
+consumes： 指定处理请求的提交内容类型（Content-Type），例如application/json, text/html;<br />
+produces:  指定返回的内容类型，仅当request请求头中的(Accept)类型中包含该指定类型才返回<br />
+params： 指定request中必须包含某些参数值是，才让该方法处理<br />
 headers： 指定request中必须包含某些指定的header值，才能让该方法处理请求</p>
 <p>其中，consumes， produces使用content-typ信息进行过滤信息；headers中可以使用content-type进行过滤和判断。</p>
 <ol start="3">
 <li><strong>使用示例</strong></li>
 </ol>
 <p>3.1 headers</p>
-<pre><code class="language-java">@RequestMapping(value = &quot;/test&quot;, method = RequestMethod.GET, headers=&quot;Referer=http://www.ifeng.com/&quot;)  
+<pre class="line-numbers"><code class="language-java">@RequestMapping(value = &quot;/test&quot;, method = RequestMethod.GET, headers=&quot;Referer=http://www.ifeng.com/&quot;)  
 public void testHeaders(@PathVariable String ownerId, @PathVariable String petId) {    
 	// implementation omitted  
 }  
 </code></pre>
 <p>这里的Headers里面可以匹配所有Header里面可以出现的信息，不局限在Referer信息。</p>
 <p>示例2</p>
-<pre><code class="language-java">@RequestMapping(value = &quot;/response/ContentType&quot;, headers = &quot;Accept=application/json&quot;)    
+<pre class="line-numbers"><code class="language-java">@RequestMapping(value = &quot;/response/ContentType&quot;, headers = &quot;Accept=application/json&quot;)    
 public void response2(HttpServletResponse response) throws IOException {    
     //表示响应的内容区数据的媒体类型为json格式，且编码为utf-8(客户端应该以utf-8解码)    
     response.setContentType(&quot;application/json;charset=utf-8&quot;);    
@@ -225,16 +229,16 @@ public void response2(HttpServletResponse response) throws IOException {
 }    
 </code></pre>
 <p>服务器根据请求头“Accept=application/json”生产json数据。</p>
-<p>当你有如下Accept头，将遵守如下规则进行应用：<br>
-①Accept：<code>text/html,application/xml,application/json</code><br>
-将按照如下顺序进行produces的匹配 ①text/html ②application/xml ③application/json<br>
-②Accept：<code>application/xml;q=0.5,application/json;q=0.9,text/html</code><br>
-将按照如下顺序进行produces的匹配 ①text/html ②application/json ③application/xml<br>
-参数为媒体类型的质量因子，越大则优先权越高(从0到1)<br>
-③Accept：<em><code>/*,text/*,text/html</code><br>
+<p>当你有如下Accept头，将遵守如下规则进行应用：<br />
+①Accept：<code>text/html,application/xml,application/json</code><br />
+将按照如下顺序进行produces的匹配 ①text/html ②application/xml ③application/json<br />
+②Accept：<code>application/xml;q=0.5,application/json;q=0.9,text/html</code><br />
+将按照如下顺序进行produces的匹配 ①text/html ②application/json ③application/xml<br />
+参数为媒体类型的质量因子，越大则优先权越高(从0到1)<br />
+③Accept：<em><code>/*,text/*,text/html</code><br />
 将按照如下顺序进行produces的匹配 ①text/html ②text/</em> ③*/*</p>
 <p>即匹配规则为：最明确的优先匹配。</p>
-<h2 id="requests部分">Requests部分</h2>
+<h2><a id="requests%E9%83%A8%E5%88%86" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Requests部分</h2>
 <table>
 <thead>
 <tr>
@@ -312,12 +316,12 @@ public void response2(HttpServletResponse response) throws IOException {
 <tr>
 <td>From</td>
 <td>发出请求的用户的Email</td>
-<td>From: user@email.com</td>
+<td>From: <a href="mailto:user@email.com">user@email.com</a></td>
 </tr>
 <tr>
 <td>Host</td>
 <td>指定请求的服务器的域名和端口号</td>
-<td>Host: www.zcmhi.com</td>
+<td>Host: <a href="http://www.zcmhi.com">www.zcmhi.com</a></td>
 </tr>
 <tr>
 <td>If-Match</td>
@@ -367,7 +371,7 @@ public void response2(HttpServletResponse response) throws IOException {
 <tr>
 <td>Referer</td>
 <td>先前网页的地址，当前请求网页紧随其后,即来路</td>
-<td>Referer: http://www.zcmhi.com/archives/71.html</td>
+<td>Referer: <a href="http://www.zcmhi.com/archives/71.html">http://www.zcmhi.com/archives/71.html</a></td>
 </tr>
 <tr>
 <td>TE</td>
@@ -396,7 +400,7 @@ public void response2(HttpServletResponse response) throws IOException {
 </tr>
 </tbody>
 </table>
-<h2 id="responses-部分">Responses 部分</h2>
+<h2><a id="responses%E9%83%A8%E5%88%86" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Responses 部分</h2>
 <table>
 <thead>
 <tr>
@@ -484,7 +488,7 @@ public void response2(HttpServletResponse response) throws IOException {
 <tr>
 <td>Location</td>
 <td>用来重定向接收方到非请求URL的位置来完成请求或标识新的资源</td>
-<td>Location: http://www.zcmhi.com/archives/94.html</td>
+<td>Location: <a href="http://www.zcmhi.com/archives/94.html">http://www.zcmhi.com/archives/94.html</a></td>
 </tr>
 <tr>
 <td>Pragma</td>
@@ -499,7 +503,7 @@ public void response2(HttpServletResponse response) throws IOException {
 <tr>
 <td>refresh</td>
 <td>应用于重定向或一个新的资源被创造，在5秒之后重定向（由网景提出，被大部分浏览器支持）</td>
-<td>Refresh: 5; url=http://www.zcmhi.com/archives/94.html</td>
+<td>Refresh: 5; url=<a href="http://www.zcmhi.com/archives/94.html">http://www.zcmhi.com/archives/94.html</a></td>
 </tr>
 <tr>
 <td>Retry-After</td>
@@ -549,14 +553,14 @@ public void response2(HttpServletResponse response) throws IOException {
 </tbody>
 </table>
 <p>3.2 params的示例</p>
-<pre><code class="language-java">@RequestMapping(value = &quot;/test/{userId}&quot;, method = RequestMethod.GET, params=&quot;myParam=myValue&quot;)    
+<pre class="line-numbers"><code class="language-java">@RequestMapping(value = &quot;/test/{userId}&quot;, method = RequestMethod.GET, params=&quot;myParam=myValue&quot;)    
 public void findUser(@PathVariable String userId) {        
   // implementation omitted    
 } 
 </code></pre>
 <p>仅处理请求中包含了名为“myParam”，值为“myValue”的请求，起到了一个过滤的作用。</p>
 <p>3.3 consumes/produces</p>
-<pre><code class="language-java">@Controller    
+<pre class="line-numbers"><code class="language-java">@Controller    
 @RequestMapping(value = &quot;/users&quot;, method = RequestMethod.POST, consumes=&quot;application/json&quot;, produces=&quot;application/json&quot;)    
 @ResponseBody  
 public List&lt;User&gt; addUser(@RequestBody User userl) {        
@@ -571,18 +575,20 @@ public List&lt;User&gt; addUser(@RequestBody User userl) {
 <p>在本文中，首先介绍了Content-Type主要支持的格式内容，然后基于@RequestMapping标注的内容介绍了主要的使用方法，其中,headers, consumes,produces,都是使用Content-Type中使用的各种媒体格式内容，可以基于这个格式内容来进行访问的控制和过滤。</p>
 <p>参考资料：</p>
 <ol>
-<li>HTTP中支持的Content-Type: http://tool.oschina.net/commons</li>
-<li>Media Type介绍。 http://www.iteye.com/topic/1127120</li>
+<li>HTTP中支持的Content-Type: <a href="http://tool.oschina.net/commons">http://tool.oschina.net/commons</a></li>
+<li>Media Type介绍。 <a href="http://www.iteye.com/topic/1127120">http://www.iteye.com/topic/1127120</a></li>
 </ol>
+
 ]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[HTTP状态码详解]]></title>
-        <id>https://www.bwrong.cn/post/_JBfHtjNy/</id>
-        <link href="https://www.bwrong.cn/post/_JBfHtjNy/">
-        </link>
-        <updated>2022-10-10T02:35:54.000Z</updated>
-        <content type="html"><![CDATA[<table>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[HTTP状态码详解]]></title>
+    <link href="https://www.bwrong.cn/17280335390285.html"/>
+    <updated>2024-10-04T17:18:59+08:00</updated>
+    <id>https://www.bwrong.cn/17280335390285.html</id>
+    <content type="html"><![CDATA[
+<table>
 <thead>
 <tr>
 <th><strong>状态码</strong></th>
@@ -808,33 +814,35 @@ public List&lt;User&gt; addUser(@RequestBody User userl) {
 </tr>
 </tbody>
 </table>
+
 ]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[【转】webgl技术风云录之BabylonJS]]></title>
-        <id>https://www.bwrong.cn/post/Qek0Azf5d/</id>
-        <link href="https://www.bwrong.cn/post/Qek0Azf5d/">
-        </link>
-        <updated>2022-05-28T05:21:04.000Z</updated>
-        <content type="html"><![CDATA[<p>微软除了在BabylonJS上面布局，同时还投资blender，对未来3D技术布局非常明显。BabylonJS是世界上最强大、最惊艳、最易用的Web3D渲染引擎，并且我们坚持让它完全开源和免费，无论对任何人都如此。Babylon.js 4.1版本的体积小了3倍，速度提升了12%，并且进行了无数的性能优化，在它诞生的那一刻就定位于高性能3D引擎，即使功能越来越强大也会继续贯彻这个理念不动摇。新的Node Material Editor编辑器、真正跨平台的babylon原生应用部署体验、层叠阴影、导航寻路、更强的WebXR虚拟现实及增强现实支持、更完美的glTF格式支持等新功能，让Babylon.js 4.1成为了你不可或缺的web应用开发利器。</p>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[【转】webgl技术风云录之BabylonJS]]></title>
+    <link href="https://www.bwrong.cn/17280335013759.html"/>
+    <updated>2024-10-04T17:18:21+08:00</updated>
+    <id>https://www.bwrong.cn/17280335013759.html</id>
+    <content type="html"><![CDATA[
+<p>微软除了在BabylonJS上面布局，同时还投资blender，对未来3D技术布局非常明显。BabylonJS是世界上最强大、最惊艳、最易用的Web3D渲染引擎，并且我们坚持让它完全开源和免费，无论对任何人都如此。Babylon.js 4.1版本的体积小了3倍，速度提升了12%，并且进行了无数的性能优化，在它诞生的那一刻就定位于高性能3D引擎，即使功能越来越强大也会继续贯彻这个理念不动摇。新的Node Material Editor编辑器、真正跨平台的babylon原生应用部署体验、层叠阴影、导航寻路、更强的WebXR虚拟现实及增强现实支持、更完美的glTF格式支持等新功能，让Babylon.js 4.1成为了你不可或缺的web应用开发利器。</p>
 <p>Babylonjs不光有微软强大的资金支持，同时它代码功能结构很多参考blender技术体系，如果你同时看了blender代码跟Babylonjs代码，你会发现很多地方都有共同点。</p>
 <p>官网：</p>
 <p><a href="%E2%80%8Bwww.babylonjs.com/">Babylon.js: Powerful, Beautiful, Simple, Open - Web-Based 3D At Its Best</a></p>
 <p>它主要特性有以下几个方面：</p>
 <p>1、强大的编辑器，这是threejs跟playcanvas无法比拟的。</p>
-<figure data-type="image" tabindex="1"><img src="https://pic3.zhimg.com/v2-a0d46325eecfb57ab21e6fdf02f13872_r.jpg" alt="" loading="lazy"></figure>
+<p><img src="https://pic3.zhimg.com/v2-a0d46325eecfb57ab21e6fdf02f13872_r.jpg" alt="" /></p>
 <p>编辑器中，对粒子、碰撞、脚本、GUI、精灵图等等各方面功能集成得非常完善，作为一个多年使用微软IDE从事开发的码农，个人一直认为微软的东西很人性化。</p>
 <p>2、强大的节点编辑器。在blender里面节点编辑器无处不在，它也是通过connect不同节点的input跟output来实现节点之间的数据联通，这样就把复杂的材质系统变成可视化了。</p>
 <p>Node Material Editor是一个强大而易用的材质编辑器，它以可视化的拖拽节点的方式来模拟shader编程，从而为每个从业者解锁了GPU的强大威力。从前，shaders (GPU 编程)着色器编程对于普通程序员门槛很高，因为它过于偏向底层，虽然功能强大，但是晦涩难懂，而Babylon带来的Node Material Editor可以实现与shader同样的效果，但是界面化操作，把难度降到了最低。我们相信，每个人都能使用这个编辑器来创建令人惊叹的视觉效果。</p>
-<p><img src="https://pic3.zhimg.com/80/v2-090d22ae6e18cac1fc1d18999ce5ea82_1440w.jpg" alt="" loading="lazy"><br>
+<p><img src="https://pic3.zhimg.com/80/v2-090d22ae6e18cac1fc1d18999ce5ea82_1440w.jpg" alt="" /><br />
 材质节点</p>
-<p><img src="https://pic2.zhimg.com/80/v2-e68990b0dee4ffd3b9bf0fe017d6828d_1440w.jpg" alt="" loading="lazy"><br>
+<p><img src="https://pic2.zhimg.com/80/v2-e68990b0dee4ffd3b9bf0fe017d6828d_1440w.jpg" alt="" /><br />
 Babylonjs材质节点</p>
 <p>3、NATIVE 跨平台原生应用部署。程序员们写代码都有一个梦想：一次编写实现，多平台共享运行。 所以我们重磅推出了Babylon Native，它可以用原有的Babylon.js代码在任意平台构建一个原生应用，充分释放本机设备的性能优势。 已经支持DirectX on Windows、 Metal on iOS/MacOS、 OpenGL on Android，即将推出Vulkan支持。</p>
 <p>Babylonjs的原生打包部署是通过react native技术体系来实现的，这样就可以实现一份代码原生部署，同时保证原生性能。</p>
 <p>4、支持先进的WEBXR技术。毫无疑问，在web使用AR/VR技术非常有前景，Babylon最新4.1版本在WebXR上做了进一步的优化和改进：带来了一个简单易用的体检帮助器，针对更高级用户的专用会话管理器，用babylon的相机功能来承载WebXR技术，全面支持任何接受WebXR会话的设备，完整的WebXR输入源支持，关于实验性AR功能、通信、场景交互、物理效果的整套API支持等。</p>
-<p><img src="https://pic4.zhimg.com/80/v2-113fe316a7f0ac47282d629cae4c3963_1440w.jpg" alt="" loading="lazy"><br>
-webxr支持<br>
+<p><img src="https://pic4.zhimg.com/80/v2-113fe316a7f0ac47282d629cae4c3963_1440w.jpg" alt="" /><br />
+webxr支持<br />
 总结：</p>
 <p>1、如果你要交付内部项目、而且可以是客户端、有U3D开发人员，那么用U3D去交付实现最好，通过安装exe客户端，灯光效果交互、vr支持都是非常完美，而且U3D的开发者论坛、文档、百度教程都非常丰富。</p>
 <p>2、如果你项目必须是webgl的，需要浏览器打开，webgl技术风云录中提到的那些平台都无法满足你的需求，建议你用Babylonjs，这是最好的平台，最好的框架。</p>
@@ -845,45 +853,49 @@ webxr支持<br>
 <p>下面这家公司使用的就是BabylonJS制作的云展，案例效果不错。</p>
 <p><a href="%E2%80%8Bwww.cool360.com/">虚拟博物馆(cool360.com)-官网</a></p>
 <p><a href="https://zhuanlan.zhihu.com/p/341360474">查看原文</a></p>
+
 ]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[【转】webgl技术风云录之盈利模式]]></title>
-        <id>https://www.bwrong.cn/post/gVqLNr-2_/</id>
-        <link href="https://www.bwrong.cn/post/gVqLNr-2_/">
-        </link>
-        <updated>2022-05-28T05:19:13.000Z</updated>
-        <content type="html"><![CDATA[<p>作为从事webgl开发的工程师，不得不思考行业的趋势以及同行企业的盈利模式。如果从事游戏开发，不属于此范畴，作者不对游戏行业不够熟悉。目前接触到的webgl很多都是从事展示，更多卖的不是技术本身而是设计，其实就是模型、靠的是三维设计师的能力、赚得是三维设计师的血汗。</p>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[【转】webgl技术风云录之盈利模式]]></title>
+    <link href="https://www.bwrong.cn/17280334778925.html"/>
+    <updated>2024-10-04T17:17:57+08:00</updated>
+    <id>https://www.bwrong.cn/17280334778925.html</id>
+    <content type="html"><![CDATA[
+<p>作为从事webgl开发的工程师，不得不思考行业的趋势以及同行企业的盈利模式。如果从事游戏开发，不属于此范畴，作者不对游戏行业不够熟悉。目前接触到的webgl很多都是从事展示，更多卖的不是技术本身而是设计，其实就是模型、靠的是三维设计师的能力、赚得是三维设计师的血汗。</p>
 <p>当然有些公司依然是靠webgl技术本身赚钱，而不是通过销售设计数据，目前无外乎如下几方面：</p>
-<h2 id="1-传统设计展览公司">1、传统设计展览公司</h2>
+<h2><a id="1%E3%80%81%E4%BC%A0%E7%BB%9F%E8%AE%BE%E8%AE%A1%E5%B1%95%E8%A7%88%E5%85%AC%E5%8F%B8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>1、传统设计展览公司</h2>
 <p>其实很多设计展厅公司都已经上市，他们有固定客户资源、三维设计师对行业专业程度非常高，所以他们通过线下展厅设计施工、加上U3D开发的一些数字互动功能，就可以快速交付项目。对他们来说，webgl意义不大，U3D已经足够，而且是非常好的技术方案，性能好、效果好、VR支持高，因为都是本地部署不要求跨终端浏览器访问。这些公司盈利点也是靠设计、施工、材料来实现利润增长。</p>
-<h2 id="2-720云">2、720云</h2>
+<h2><a id="2%E3%80%81720%E4%BA%91" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>2、720云</h2>
 <p>720云其实满足了很多设计师全景图的快速交付，720云本身不参与数据制作，纯靠技术平台以及全景拍摄硬件来盈利。他能盈利是因为平台本身确实解决了用户痛点，而航拍、户外大场景全景拍摄、全景效果图交付这些需要一个全景展示平台来展示作品，720云经过这些年的沉淀推广，把这一个环节做得非常完善简便，所以它有存在的价值。</p>
-<h2 id="3-酷家乐">3、酷家乐</h2>
+<h2><a id="3%E3%80%81%E9%85%B7%E5%AE%B6%E4%B9%90" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>3、酷家乐</h2>
 <p>酷家乐鼎鼎大名、80亿美金估值，短短几年时间不得不佩服，通过研究它前端代码结构、试用其产品、它的渲染速度、渲染效果都是令人非常满意。它重新定义了室内装修，让繁琐复杂、交付周期长的效果图制作大大缩短，同时降低设计师技术要求，通过模型库、户型图、渲染平台让整个流程一气呵成。webgl技术在它平台算重要的一环，其背后的渲染平台、以及后台架构更加重要，一整套技术成就了这个设计界的霸主。</p>
-<h2 id="4-style3d">4、style3d</h2>
+<h2><a id="4%E3%80%81style3d" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>4、style3d</h2>
 <p>如果你看见style3d的渲染视频，你会对他柔体建模以及展示佩服不已。三维中刚体最简单、柔体、流体、毛发是非常复杂的几大块，而style3d通过多年垂直领域的沉淀积累、技术打磨，让他成为了服装设计界的明星。它盈利天经地义。</p>
-<h2 id="5-宝珑">5、宝珑</h2>
+<h2><a id="5%E3%80%81%E5%AE%9D%E7%8F%91" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>5、宝珑</h2>
 <p>宝珑珠宝设计，早期用的是flash，而且可以直接decomp其代码，在flash技术体系内，通过shader进行珠宝设计以及展示技术很厉害了。现在他们迎合技术发展趋势，因为flash在很多平台浏览器上支持都慢慢停止，所以他们珠宝设计、展示、定制都迁移到webgl上面，通过threejs进行深度定制来实现。珠宝设计领域，可以去试试他们产品，我有两个珠宝行业朋友，用得就是他们的技术。</p>
-<h2 id="6-matterport-众趣-贝壳">6、matterport &amp; 众趣 &amp;贝壳</h2>
+<h2><a id="6%E3%80%81matterport%E4%BC%97%E8%B6%A3%E8%B4%9D%E5%A3%B3" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>6、matterport &amp; 众趣 &amp;贝壳</h2>
 <p>贝壳看房，世界杯轰炸一轮，连我退休的爸妈都知道贝壳看房，而这项技术的引领者应该就是matterport。其实在09年就有人做网上看房，那时候是基于flex，通过全景图或者简单的户型模型来实现，效果太差。matterport把整个体验重新定义，通过硬件线下采集照片以及深度数据，云端进行ai合成户型模型，然后展示端把全景图当纹理贴到户型模型上，让整个体验更加饱满、制作更加简单，而且是照片级1:1还原线下场景。这在看房领域真是福音，因为看房通过纯全景图krpano那种模式效果还是太差，不够身临其境，而matterport这在技术方案彻底解决了这一问题。</p>
-<h2 id="7-淘宝">7、淘宝</h2>
+<h2><a id="7%E3%80%81%E6%B7%98%E5%AE%9D" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>7、淘宝</h2>
 <p>阿里在短视频跟直播方面应该没有跟上脚步、直播带货也是后期才追赶，但是三维他肯定不会错过。通过投资躺平设计家、研发ace-tiny、以及今年的几场云展、场景购，已经开始布局整个三维行业，三维对未来购物肯定是非常有意义的，很多商品需要三维才能更加完美展示细节，有些商品通过场景可以提升用户购物欲望。</p>
 <p>总之：</p>
 <p>可以发现不论什么技术，它必须跟场景结合，必须跟行业结合，必须落地业务逻辑，真正解决特点场景下的某些问题它才有意义。以前大数据，多少投资人血本无归，几千万或者上亿最后只剩下一个没什么人用的看板。如今webgl一样会有很多投资人血本无归，因为光技术本身很难赚钱，除非优化某个行业数据生产方式或者深耕某个行业、跟行业内老玩家联姻，深耕技术沉淀团队方能杀出一条血路。</p>
 <p>今年疫情，导致无数个云展公司成立，通过百度推广以及阿里域名查询，就可以发现一大堆公司开始从事这一行业，很多是皮包公司，接单就转包。有些是通过720云直接交付全景图，象征性加入云展厅，因为成本最低。还有很多是传统设计公司，转型卖设计。其实在云展这个行业，卖得不是技术而是设计数据本身。</p>
 <p>蝉三维，立足于免费、提供快速模型交付，高效率精简团队可以通过部分软件功能定制、平台定制养活自己，更重要的是技术的不断积累、行业解决方案日益沉淀，最后真正解决特定用户群体切身问题，盈利模式就可以非常清晰。</p>
 <p><a href="https://zhuanlan.zhihu.com/p/341414739">查看原文</a></p>
+
 ]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[【玩转微前端】qiankun扩展]]></title>
-        <id>https://www.bwrong.cn/post/kBhnkEIQF/</id>
-        <link href="https://www.bwrong.cn/post/kBhnkEIQF/">
-        </link>
-        <updated>2022-04-07T13:46:51.000Z</updated>
-        <content type="html"><![CDATA[<h2 id="详细流程">详细流程</h2>
-<figure data-type="image" tabindex="1"><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220331175532.awebp" alt="image.png" loading="lazy"></figure>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[【玩转微前端4】qiankun扩展]]></title>
+    <link href="https://www.bwrong.cn/17280334440663.html"/>
+    <updated>2024-10-04T17:17:24+08:00</updated>
+    <id>https://www.bwrong.cn/17280334440663.html</id>
+    <content type="html"><![CDATA[
+<h2><a id="%E8%AF%A6%E7%BB%86%E6%B5%81%E7%A8%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>详细流程</h2>
+<p><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220331175532.awebp" alt="image.png" /></p>
 <p>简易流程：</p>
 <ol>
 <li>qiankun 会用 原生fetch方法，请求微应用的 entry 获取微应用资源，然后通过 response.text 把获取内容转为字符串。</li>
@@ -894,12 +906,12 @@ webxr支持<br>
 <li>由于 qiankun 是自执行函数执行微应用的 JavaScript，因此在加载后的微应用中是看不到 JavaScript 资源引用的，只有一个资源被执行替换的标识。</li>
 <li>当一切准备就绪的时候，执行微应用的 JavaScript 代码，渲染出微应用</li>
 </ol>
-<h2 id="极限应用场景">极限应用场景</h2>
+<h2><a id="%E6%9E%81%E9%99%90%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>极限应用场景</h2>
 <ul>
 <li>
 <p>与路由绑定的方式渲染微应用</p>
 <p>接入这类平台的微应用，通常只需要提供自己的 entry html 地址，并为其分配一个路由规则即可，会根据当前路由自动切换微应用加载。</p>
-<figure data-type="image" tabindex="2"><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220331164434.jpg" alt="v2-c345f8bf9c8855176037f6b48e315caf_1440w" loading="lazy"></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220331164434.jpg" alt="v2-c345f8bf9c8855176037f6b48e315caf_1440w" /></p>
 </li>
 <li>
 <p>以组件的方式使用微应用</p>
@@ -912,33 +924,35 @@ webxr支持<br>
 </li>
 <li>
 <p>多应用同时渲染：同一时刻可展示多个子应用，子应用更像是一个业务组件而不是应用。</p>
-<figure data-type="image" tabindex="3"><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220331164435.jpg" alt="v2-cc82a2a5a6fbe5c141af9dd5b42622ee_1440w" loading="lazy"></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220331164435.jpg" alt="v2-cc82a2a5a6fbe5c141af9dd5b42622ee_1440w" /></p>
 </li>
 </ul>
+
 ]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[【玩转微前端】需要关注的问题]]></title>
-        <id>https://www.bwrong.cn/post/clIOqn6ce/</id>
-        <link href="https://www.bwrong.cn/post/clIOqn6ce/">
-        </link>
-        <updated>2022-04-07T13:46:01.000Z</updated>
-        <content type="html"><![CDATA[<p>虽然qiankun已经提供了微前端的一些基本能力，但是在使用过程中还是有很多问题需要关注。</p>
-<h2 id="项目架构规划">项目架构规划</h2>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[【玩转微前端3】需要关注的问题]]></title>
+    <link href="https://www.bwrong.cn/17280334039483.html"/>
+    <updated>2024-10-04T17:16:43+08:00</updated>
+    <id>https://www.bwrong.cn/17280334039483.html</id>
+    <content type="html"><![CDATA[
+<p>虽然qiankun已经提供了微前端的一些基本能力，但是在使用过程中还是有很多问题需要关注。</p>
+<h2><a id="%E9%A1%B9%E7%9B%AE%E6%9E%B6%E6%9E%84%E8%A7%84%E5%88%92" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>项目架构规划</h2>
 <ul>
 <li>Monorepo：多应用管理可以使用<a href="https://lerna.js.org/">lerna</a>或者<a href="https://pnpm.io/zh/">pnpm</a>。</li>
 </ul>
-<figure data-type="image" tabindex="1"><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220406225207.png" alt="image-20220406225206585" loading="lazy"></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220406225207.png" alt="image-20220406225206585" /></p>
 <ul>
 <li>
 <p>Git subtree或者多仓库：在子应用较多的情况可采用此方式，缺点是每次子应用变更后，聚合库还得同步一次变更。</p>
-<figure data-type="image" tabindex="2"><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220407165035.jpg" alt="18091274-44952db2fd681a3d" loading="lazy"></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220407165035.jpg" alt="18091274-44952db2fd681a3d" /></p>
 </li>
 </ul>
-<h2 id="应用拆分粒度">应用拆分粒度</h2>
+<h2><a id="%E5%BA%94%E7%94%A8%E6%8B%86%E5%88%86%E7%B2%92%E5%BA%A6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>应用拆分粒度</h2>
 <p>微应用的拆与合思考：拆的是系统复杂度，合的是系统复用度。</p>
 <p>拆分的时候可以从平台差异、页面结构、产品业务方面考虑。并不是越细越好，业务关联紧密的功能单元应该做成一个微应用，反之关联不紧密的可以考虑拆分成多个微应用。</p>
-<h2 id="样式隔离">样式隔离</h2>
+<h2><a id="%E6%A0%B7%E5%BC%8F%E9%9A%94%E7%A6%BB" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>样式隔离</h2>
 <p>使用qiankun默认的沙箱，仅能确保单实例场景子应用之间的样式隔离，但是无法确保主应用跟子应用、或者多实例场景的子应用样式隔离。目前还没有完美的解决方案，如果遇到样式污染问题，可以考虑如下方案：</p>
 <ul>
 <li>命名规范+命名空间，可以尝试开启experimentalStyleIsolation（实验阶段）。</li>
@@ -946,7 +960,7 @@ webxr支持<br>
 <li>CSS In JS</li>
 <li>CSSModule</li>
 </ul>
-<h2 id="数据通信">数据通信</h2>
+<h2><a id="%E6%95%B0%E6%8D%AE%E9%80%9A%E4%BF%A1" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>数据通信</h2>
 <p>应用间尽量避免通信，减少耦合性，如果两个应用间有频繁的通信需求，说明这两个微应用本身就是服务于同一个业务场景，合并成一个微应用可能会更合适。</p>
 <p><strong>微前端通信方式：</strong></p>
 <ul>
@@ -955,33 +969,33 @@ webxr支持<br>
 <li><strong>GlobalState</strong>：基于发布订阅模式实现，能够满足比较复杂的场景。</li>
 <li><strong>本地Storage</strong>：仅适合静态通信场景，且 JSON.stringify()可能会造成数据丢失。</li>
 </ul>
-<h2 id="权限处理">权限处理</h2>
+<h2><a id="%E6%9D%83%E9%99%90%E5%A4%84%E7%90%86" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>权限处理</h2>
 <p>主应用负责身份验证，拿到授权信息后下发到各微应用中，各应用再根据拿到的授权信息过滤各自路由信息。</p>
-<figure data-type="image" tabindex="3"><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220331175530.awebp" alt="img" loading="lazy"></figure>
-<h2 id="资源共享">资源共享</h2>
-<h3 id="统一管理维护">统一管理维护</h3>
+<p><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220331175530.awebp" alt="img" /></p>
+<h2><a id="%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>资源共享</h2>
+<h3><a id="%E7%BB%9F%E4%B8%80%E7%AE%A1%E7%90%86%E7%BB%B4%E6%8A%A4" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>统一管理维护</h3>
 <p>将公共资源提取到一个地方，避免多个地方维护，但是仍然会多次打包。可以通过如下两种方式：</p>
 <ul>
 <li>file或link方式</li>
 </ul>
-<figure data-type="image" tabindex="4"><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220407114412.png" alt="image-20220406235834667" loading="lazy"></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220407114412.png" alt="image-20220406235834667" /></p>
 <ul>
 <li>git仓库或者私服</li>
 </ul>
-<figure data-type="image" tabindex="5"><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220406235948.png" alt="image-20220406235948554" loading="lazy"></figure>
-<h3 id="依赖提取">依赖提取</h3>
+<p><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220406235948.png" alt="image-20220406235948554" /></p>
+<h3><a id="%E4%BE%9D%E8%B5%96%E6%8F%90%E5%8F%96" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>依赖提取</h3>
 <p>在一个团队中，技术栈相对固定，所以统一技术栈很多基础依赖相对是固定的，但是默认情况下每个应用都会重复打包一次，会造成重复下载，影响运行性能。例如，如果每个微应用都包括自己的 Vue 副本，那么用户就得多次下载 Vue。</p>
 <p>在进行如下改造之前，先确认是否有此必要，因为它会增加应用间的耦合性（如技术栈、依赖版本必须一致） ，而这是和微前端思想相悖的，</p>
 <ul>
 <li>cdn或者将公共依赖抽离成单独的应用或者文件引用。</li>
 <li>由主应用下发（props或者window），需要处理子应用单独运行时依赖的来源问题。</li>
 </ul>
-<h2 id="部署与资源路径问题">部署与资源路径问题</h2>
-<h3 id="部署方案">部署方案</h3>
+<h2><a id="%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%B5%84%E6%BA%90%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>部署与资源路径问题</h2>
+<h3><a id="%E9%83%A8%E7%BD%B2%E6%96%B9%E6%A1%88" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>部署方案</h3>
 <ul>
 <li>主应用和微应用部署到同一个服务器（同一个 IP 和端口）。</li>
 </ul>
-<pre><code>└── html/                     # 根文件夹
+<pre class="line-numbers"><code class="language-plain_text">└── html/                     # 根文件夹
     ├── child/                # 存放所有微应用的文件夹
     |   ├── app1/         
     |   ├── app2/      
@@ -989,7 +1003,7 @@ webxr支持<br>
     ├── css/                  # 主应用的css文件夹
     ├── js/                   # 主应用的js文件夹
 </code></pre>
-<pre><code class="language-js">registerMicroApps([
+<pre class="line-numbers"><code class="language-js">registerMicroApps([
   {
     name: 'app1',
     entry: '/child/app1/', // http://localhost:8080/child/app1/
@@ -1007,12 +1021,12 @@ webxr支持<br>
 <ul>
 <li>主应用和微应用部署在不同的服务器，使用 Nginx 代理访问。</li>
 </ul>
-<pre><code class="language-nginx">/app1/ {
+<pre class="line-numbers"><code class="language-nginx">/app1/ {
   proxy_pass http://www.b.com/app1/;
   proxy_set_header Host $host:$server_port;
 }
 </code></pre>
-<pre><code class="language-js">registerMicroApps([
+<pre class="line-numbers"><code class="language-js">registerMicroApps([
   {
     name: 'app1',
     entry: '/app1/', // http://localhost:8080/app1/
@@ -1021,9 +1035,9 @@ webxr支持<br>
   },
 ],
 </code></pre>
-<h3 id="资源路径错误">资源路径错误</h3>
+<h3><a id="%E8%B5%84%E6%BA%90%E8%B7%AF%E5%BE%84%E9%94%99%E8%AF%AF" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>资源路径错误</h3>
 <p>在src代码中引用public资源会有问题，资源尽量放到src中，让webpack处理，注入publicPath。</p>
-<pre><code class="language-vue">&lt;template&gt;
+<pre class="line-numbers"><code class="language-vue">&lt;template&gt;
   &lt;img src=&quot;../../assets/images/logo.png&quot; alt=&quot;&quot;&gt;
   &lt;div class=&quot;img-test&quot;&gt;&lt;/div&gt;
   &lt;div class=&quot;img-test2 test&quot; :style=&quot;`background:url(${require('../../assets/images/logo.png')})`&quot;&gt;&lt;/div&gt;
@@ -1039,108 +1053,112 @@ webxr支持<br>
   }
 &lt;/style&gt;
 </code></pre>
-<h2 id="应用之间跳转">应用之间跳转</h2>
+<h2><a id="%E5%BA%94%E7%94%A8%E4%B9%8B%E9%97%B4%E8%B7%B3%E8%BD%AC" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>应用之间跳转</h2>
 <p>在微应用中如果要进行应用间跳转，不能直接使用微应用的router，可以有如下几种方式：</p>
 <ul>
 <li>将跳转动作上抛给主应用，由主应用进行切换。</li>
 <li>将主应用router下发到微应用，微应用使用该router进行跳转动作。</li>
 <li>使用原生方法改变url（不建议，会造成页面刷新）。</li>
 </ul>
-<h2 id="其他问题">其他问题</h2>
+<h2><a id="%E5%85%B6%E4%BB%96%E9%97%AE%E9%A2%98" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>其他问题</h2>
 <ul>
 <li>VueDevtools调试微应用问题，需要手动处理，但是还是会存在失效问题。</li>
 </ul>
-<figure data-type="image" tabindex="6"><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220407171516.png" alt="image-20220407171516398" loading="lazy"></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220407171516.png" alt="image-20220407171516398" /></p>
 <ul>
 <li>对vite构建的微应用支持还有缺陷，因为Vite暂时还不支持运行时修改资源路径和ESModule导致沙箱失效。</li>
 <li>各应用间的风格和交互逻辑应该统一，因为对用户来说我们的应用仍然是一体的，要避免应用间给用户造成撕裂感。</li>
 <li>运行差异性处理：如果微应用需要单独运行，需要考虑集成运行和单独运行的差异性，做一些hack兼容处理。</li>
 </ul>
+
 ]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[【玩转微前端】聊聊qiankun]]></title>
-        <id>https://www.bwrong.cn/post/yGI8PazIX/</id>
-        <link href="https://www.bwrong.cn/post/yGI8PazIX/">
-        </link>
-        <updated>2022-04-07T13:45:01.000Z</updated>
-        <content type="html"><![CDATA[<p>关于如何使用qiankun，官方文档比较完善，网上文档也较多，所以这里就不再赘述。接下来我们就来看一下目前文档中缺失的部分<a href="https://qiankun.umijs.org/zh/guide#%E5%AE%83%E6%98%AF%E5%A6%82%E4%BD%95%E5%B7%A5%E4%BD%9C%E7%9A%84">它是如何工作的</a>。</p>
-<figure data-type="image" tabindex="1"><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220331175520.awebp" alt="image.png" loading="lazy"></figure>
-<h2 id="运行流程">运行流程</h2>
-<figure data-type="image" tabindex="2"><img src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/4/6/1714da36c103427a~tplv-t2oaga2asx-zoom-in-crop-mark:1304:0:0:0.awebp" alt="qiankun" loading="lazy"></figure>
-<h2 id="核心api">核心API</h2>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[【玩转微前端2】聊聊qiankun]]></title>
+    <link href="https://www.bwrong.cn/17280333553222.html"/>
+    <updated>2024-10-04T17:15:55+08:00</updated>
+    <id>https://www.bwrong.cn/17280333553222.html</id>
+    <content type="html"><![CDATA[
+<p>关于如何使用qiankun，官方文档比较完善，网上文档也较多，所以这里就不再赘述。接下来我们就来看一下目前文档中缺失的部分<a href="https://qiankun.umijs.org/zh/guide#%E5%AE%83%E6%98%AF%E5%A6%82%E4%BD%95%E5%B7%A5%E4%BD%9C%E7%9A%84">它是如何工作的</a>。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220331175520.awebp" alt="image.png" /></p>
+<h2><a id="%E8%BF%90%E8%A1%8C%E6%B5%81%E7%A8%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>运行流程</h2>
+<p><img src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/4/6/1714da36c103427a~tplv-t2oaga2asx-zoom-in-crop-mark:1304:0:0:0.awebp" alt="qiankun" /></p>
+<h2><a id="%E6%A0%B8%E5%BF%83api" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>核心API</h2>
 <p><code>registerMicroApps</code>和<code>start</code>是qiankun两个核心的API。</p>
 <p><code>registerMicroApps</code> 函数的作用是注册子应用，并且在子应用激活时，创建运行沙箱，在不同阶段调用不同的生命周期钩子函数。<code>start</code> 函数负责初始化一些全局设置，然后启动应用。</p>
-<figure data-type="image" tabindex="3"><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220406165052.awebp" alt="qiankun" loading="lazy"></figure>
-<h2 id="沙箱">沙箱</h2>
+<p><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220406165052.awebp" alt="qiankun" /></p>
+<h2><a id="%E6%B2%99%E7%AE%B1" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>沙箱</h2>
 <p>qiankun的沙箱环境可以分为三类，主要通过运行环境是否支持Proxy和是否是单实例进行区分。</p>
-<figure data-type="image" tabindex="4"><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220406165518.awebp" alt="qiankun" loading="lazy"></figure>
-<h3 id="legacysandbox">LegacySandbox</h3>
+<p><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220406165518.awebp" alt="qiankun" /></p>
+<h3><a id="legacysandbox" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>LegacySandbox</h3>
 <p>LegacySandbox用于支持Proxy的单实例环境下，沙箱隔离是通过快照模式实现，在激活沙箱时还原子应用状态，卸载时还原主应用状态（子应用挂载前的全局状态）实现的。</p>
-<figure data-type="image" tabindex="5"><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220406170227.awebp" alt="qiankun" loading="lazy"></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220406170227.awebp" alt="qiankun" /></p>
 <ul>
 <li>当调用 <code>set</code> 向子应用 <code>proxy/window</code> 对象设置属性时，所有的属性设置和更新都会先记录在 <code>addedPropsMapInSandbox</code> 或 <code>modifiedPropsOriginalValueMapInSandbox</code> 中，然后统一记录到 <code>currentUpdatedPropsValueMap</code> 中。</li>
 <li>在激活沙箱时，沙箱会通过 <code>currentUpdatedPropsValueMap</code> 查询到子应用的独立状态池（沙箱可能会激活多次，这里是沙箱曾经激活期间被修改的全局变量），然后还原子应用状态。</li>
 <li>在关闭沙箱时，通过 <code>addedPropsMapInSandbox</code> 删除在沙箱运行期间新增的全局变量，通过 <code>modifiedPropsOriginalValueMapInSandbox</code> 还原沙箱运行期间被修改的全局变量，从而还原到子应用挂载前的状态。</li>
 </ul>
 <p>该方案使用diff算法还原window状态快照，因为使用的是同一个window，所以不能在多实例时使用，而且父子应用之间window对象还是会存在污染。</p>
-<h3 id="proxysandbox">ProxySandbox</h3>
+<h3><a id="proxysandbox" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>ProxySandbox</h3>
 <p>ProxySandbox用于支持Proxy的多实例环境下，它利用Proxy实现对微应用全局对象操作的拦截，子应用对全局属性的操作就是对该 <code>proxy</code> 对象属性的操作。</p>
-<figure data-type="image" tabindex="6"><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220406170830.awebp" alt="qiankun" loading="lazy"></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220406170830.awebp" alt="qiankun" /></p>
 <ul>
 <li>当调用 <code>set</code> 向子应用 <code>proxy/window</code> 对象设置属性时，所有的属性设置和更新都会命中 <code>updateValueMap</code>，存储在 <code>updateValueMap</code> 集合中，从而避免对 <code>window</code> 对象产生影响。</li>
 <li>当调用 <code>get</code> 从子应用 <code>proxy/window</code> 对象取值时，会优先从子应用的沙箱状态池 <code>updateValueMap</code> 中取值，如果没有命中才从主应用的 <code>window</code> 对象中取值。</li>
 </ul>
 <p><code>ProxySandbox</code> 是最完备的沙箱模式，完全隔离了对 <code>window</code> 对象的操作，在浏览器对Proxy兼容性兼容的情况下，算是最优的方案。</p>
-<h3 id="snapshotsandbox">SnapshotSandbox</h3>
+<h3><a id="snapshotsandbox" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>SnapshotSandbox</h3>
 <p>在浏览器不支持Proxy时，会回退到SnapshotSandbox沙箱，作为兜底方案。</p>
-<figure data-type="image" tabindex="7"><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220406172205.awebp" alt="qiankun" loading="lazy"></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220406172205.awebp" alt="qiankun" /></p>
 <ul>
 <li>在沙箱激活时，会先给当前 <code>window</code> 对象打一个快照，记录沙箱激活前的状态。打完快照后，函数内部将 <code>window</code> 状态通过 <code>modifyPropsMap</code> 记录还原到上次的沙箱运行环境，也就是还原沙箱激活期间（历史记录）修改过的 <code>window</code> 属性。</li>
 <li>在沙箱关闭时，调用 <code>inactive</code> 函数，在沙箱关闭前通过遍历比较每一个属性，将被改变的 <code>window</code> 对象属性值记录在 <code>modifyPropsMap</code> 集合中。在记录了 <code>modifyPropsMap</code> 后，将 <code>window</code> 对象通过快照 <code>windowSnapshot</code> 还原到被沙箱激活前的状态，相当于是将子应用运行期间对 <code>window</code> 造成的污染全部清除。</li>
 </ul>
 <p>作为兜底方案，相比较 <code>ProxySandbox</code> 而言，在子应用激活期间，<code>SnapshotSandbox</code> 将会对 <code>window</code> 对象造成污染。</p>
 <p>以上就是qiankun一些比较关键的东西，接下来就分享一下在使用的过程中需要关注的一些问题。</p>
+
 ]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[【玩转微前端】如何做技术选型]]></title>
-        <id>https://www.bwrong.cn/post/O1Y6c55zn/</id>
-        <link href="https://www.bwrong.cn/post/O1Y6c55zn/">
-        </link>
-        <updated>2022-04-07T13:44:07.000Z</updated>
-        <content type="html"><![CDATA[<p>当前市面上已出现了很多微前端方案，如何做出正确的选择是一件不容易的事情。</p>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[【玩转微前端1】如何做技术选型]]></title>
+    <link href="https://www.bwrong.cn/17280333095797.html"/>
+    <updated>2024-10-04T17:15:09+08:00</updated>
+    <id>https://www.bwrong.cn/17280333095797.html</id>
+    <content type="html"><![CDATA[
+<p>当前市面上已出现了很多微前端方案，如何做出正确的选择是一件不容易的事情。</p>
 <p>在开始介绍这些方案之前，我们有必要先了解一下微前端架构的核心原则，从而更好的去衡量微前端方案是否成熟。</p>
-<h2 id="核心原则">核心原则</h2>
-<h3 id="应用独立">应用独立</h3>
+<h2><a id="%E6%A0%B8%E5%BF%83%E5%8E%9F%E5%88%99" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>核心原则</h2>
+<h3><a id="%E5%BA%94%E7%94%A8%E7%8B%AC%E7%AB%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>应用独立</h3>
 <p>这里说的独立包含三个方面：</p>
 <ul>
 <li>独立开发：每个微应用由不同业务团队开发，实现团队自治。</li>
 </ul>
-<figure data-type="image" tabindex="1"><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220331172854.png" alt="image-20220331172853831" loading="lazy"></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220331172854.png" alt="image-20220331172853831" /></p>
 <ul>
 <li>独立部署：微应用可独立部署运行，每个应用可以有自己的交付部署流程，某个微应用出现故障不影响其他应用。</li>
 </ul>
-<figure data-type="image" tabindex="2"><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220331173032.png" alt="image-20220331173031824" loading="lazy"></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220331173032.png" alt="image-20220331173031824" /></p>
 <ul>
 <li>独立运行：既可以组合运行，也可以单独运行，运行时环境隔离，提供JavaScript沙箱，CSS 样式隔离，避免应用间运行时污染。</li>
 </ul>
-<h3 id="消息通信">消息通信</h3>
+<h3><a id="%E6%B6%88%E6%81%AF%E9%80%9A%E4%BF%A1" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>消息通信</h3>
 <p>完善的通信机制，可以降低主应用和微应用、微应用和微应用之间的数据共享难度，是否有完善的通信机制是选型考量的一个关键因素。</p>
-<h3 id="技术栈无关">技术栈无关</h3>
+<h3><a id="%E6%8A%80%E6%9C%AF%E6%A0%88%E6%97%A0%E5%85%B3" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>技术栈无关</h3>
 <p>主应用不限制子应用接入的技术栈。不限制技术栈有如下好处：</p>
 <ul>
 <li>每个应用可以结合团队情况选择不同的技术栈，也可以集成一些采用了不同技术栈的老旧项目。</li>
 <li>应用技术栈切换升级不影响其他应用，可以实现增量升级。通常我们很难对一个已有的系统做全量的技术栈升级或重构，而微前端是一种非常好的实施渐进式重构的手段和策略。</li>
 </ul>
-<h3 id="依赖复用">依赖复用</h3>
+<h3><a id="%E4%BE%9D%E8%B5%96%E5%A4%8D%E7%94%A8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>依赖复用</h3>
 <p>解决各应用间依赖、公共逻辑需要重复维护的问题。应用间相同的依赖需要重复下载。</p>
-<h2 id="方案对比">方案对比</h2>
+<h2><a id="%E6%96%B9%E6%A1%88%E5%AF%B9%E6%AF%94" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>方案对比</h2>
 <p>接下来，我们从四大流派来看一下当下有哪些方案可以选择，并简单做个对比：</p>
-<h3 id="传统式">传统式</h3>
-<h4 id="1-路由分发服务端">1. 路由分发（服务端）</h4>
+<h3><a id="%E4%BC%A0%E7%BB%9F%E5%BC%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>传统式</h3>
+<h4><a id="1%E8%B7%AF%E7%94%B1%E5%88%86%E5%8F%91%EF%BC%88%E6%9C%8D%E5%8A%A1%E7%AB%AF%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. 路由分发（服务端）</h4>
 <p><strong>描述：</strong> 在HTTP服务器通过反向代理将不同的路由分发到对应的应用上。</p>
-<pre><code class="language-nginx">http {
+<pre class="line-numbers"><code class="language-nginx">http {
   server {
     listen       80;
     server_name  www.phodal.com;
@@ -1166,7 +1184,7 @@ webxr支持<br>
 <li>切换应用需要刷新页面，体验不好；</li>
 <li>完全是基于路由的，无法同时加载多个应用。</li>
 </ul>
-<h4 id="2-iframe">2. IFrame</h4>
+<h4><a id="2-iframe" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. IFrame</h4>
 <p><strong>描述：</strong> 将微应用通过iframe载入。</p>
 <p>**优点：**接入简单，兼容性好，原生支持沙箱隔离。</p>
 <p><strong>缺点：</strong></p>
@@ -1175,8 +1193,8 @@ webxr支持<br>
 <li>应用间通信需要自行实现一套基于postMessage的通信机制。</li>
 <li>刷新会导致iframe Url状态丢失，iframe 和主页面共用一个浏览历史，后退前进按钮无法使用。</li>
 </ul>
-<h3 id="自组织式">自组织式</h3>
-<h4 id="3-npm集成">3. Npm集成</h4>
+<h3><a id="%E8%87%AA%E7%BB%84%E7%BB%87%E5%BC%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>自组织式</h3>
+<h4><a id="3-npm%E9%9B%86%E6%88%90" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>3. Npm集成</h4>
 <p><strong>描述：</strong> 将微应用抽离成包的方式，发布到Npm中，再在主应用中将这些微应用作为依赖项，构建时候集成进项目中。</p>
 <p><strong>优点：</strong> 开发与接入成本低，容易理解。</p>
 <p><strong>缺点：</strong></p>
@@ -1185,11 +1203,11 @@ webxr支持<br>
 <li>不支持动态更新，npm包更新后，需要重新更新包，主应用需要重新发布部署。</li>
 <li>因为业务应用不能发布到公开库，需要自己搭建npm私有库，提高了工程难度。</li>
 </ul>
-<h4 id="4-js集成">4. JS集成</h4>
+<h4><a id="4-js%E9%9B%86%E6%88%90" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>4. JS集成</h4>
 <p>**描述：**每个微应用提供一个入口js，会导出一个全局变量，主应用引入该js，安装应用时调用相关函数，挂载渲染微应用。</p>
 <p>**优点：**相比Npm集成方案，优化的地方是微应用不用构建到主应用中，而是独立构建的。</p>
 <p><strong>缺点：</strong> 规范、通信、沙箱都需要自己实现，依赖开发人员设计能力。</p>
-<pre><code class="language-html">&lt;html&gt;
+<pre class="line-numbers"><code class="language-html">&lt;html&gt;
   &lt;head&gt;
     &lt;title&gt;Feed me!&lt;/title&gt;
   &lt;/head&gt;
@@ -1219,17 +1237,17 @@ webxr支持<br>
   &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
-<h3 id="微件式">微件式</h3>
-<h4 id="5-web-component">5. Web Component</h4>
+<h3><a id="%E5%BE%AE%E4%BB%B6%E5%BC%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>微件式</h3>
+<h4><a id="5-web-component" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>5. Web Component</h4>
 <p>**描述：**微应用导出的是一个自定义元素（Web Component），加载微应用时渲染对应的元素即可。</p>
 <p>**优点：**浏览器自带能力，接入简单，自带Shadow DOM沙箱。</p>
 <p>**缺点：**兼容性不太好，暂时只有较新的浏览器支持，但未来可期。</p>
-<h4 id="6-microapp">6. MicroApp</h4>
-<p><strong>描述：</strong> [MicroApp](https://cangdu.org/micro-app/是京东零售推出的一款微前端框架，是基于WebComponent实现的一种用于构建微前端应用的极简方案。</p>
-<figure data-type="image" tabindex="3"><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220401104503.png" alt="d879637b4bb34253" loading="lazy"></figure>
+<h4><a id="6-microapp" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>6. MicroApp</h4>
+<p><strong>描述：</strong> [MicroApp](<a href="https://cangdu.org/micro-app/%E6%98%AF%E4%BA%AC%E4%B8%9C%E9%9B%B6%E5%94%AE%E6%8E%A8%E5%87%BA%E7%9A%84%E4%B8%80%E6%AC%BE%E5%BE%AE%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%EF%BC%8C%E6%98%AF%E5%9F%BA%E4%BA%8EWebComponent%E5%AE%9E%E7%8E%B0%E7%9A%84%E4%B8%80%E7%A7%8D%E7%94%A8%E4%BA%8E%E6%9E%84%E5%BB%BA%E5%BE%AE%E5%89%8D%E7%AB%AF%E5%BA%94%E7%94%A8%E7%9A%84%E6%9E%81%E7%AE%80%E6%96%B9%E6%A1%88%E3%80%82">https://cangdu.org/micro-app/是京东零售推出的一款微前端框架，是基于WebComponent实现的一种用于构建微前端应用的极简方案。</a></p>
+<p><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220401104503.png" alt="d879637b4bb34253" /></p>
 <p>**优点：**接入成本很低，只需一行代码即可实现微前端，提供了<code>js沙箱</code>、<code>样式隔离</code>、<code>元素隔离</code>、<code>预加载</code>、<code>数据通信</code>、<code>静态资源补全</code>等一系列完善的功能。</p>
 <p>**缺点：**依赖于CustomElements和Proxy两个较新的API，兼容性需要考虑。</p>
-<h4 id="7-emp">7. EMP</h4>
+<h4><a id="7-emp" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>7. EMP</h4>
 <p><strong>描述：</strong> <a href="https://emp2.netlify.app/">EMP</a>由欢聚时代（YY）自主研发的单页微前端解决方案，主要基于Webpack5的新特性Module Federation实现。</p>
 <p>**优点：**强调去中心化，每个微应用都可以引入其他的微应用，无中心应用（容器/主应用）的概念。</p>
 <p><strong>缺点：</strong></p>
@@ -1237,29 +1255,29 @@ webxr支持<br>
 <li>接入有一定成本，不同技术栈接入有一定难度；</li>
 <li>因为使用了Module Federation，所以仅支持webpack5+构建的应用。</li>
 </ul>
-<h3 id="基座式">基座式</h3>
-<h4 id="7-single-spa">7. Single-spa</h4>
+<h3><a id="%E5%9F%BA%E5%BA%A7%E5%BC%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>基座式</h3>
+<h4><a id="7-single-spa" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>7. Single-spa</h4>
 <p><strong>描述：</strong><a href="https://zh-hans.single-spa.js.org/">Single-spa</a>在上面的js集成方案，加入了生命周期，算是比较老牌的微前端框架了。</p>
 <p>**优点：**支持生命周期和代码延迟加载。</p>
 <p>**缺点：沙箱环境需要自行处理，有一定的侵入性。</p>
-<h4 id="8-qiankun">8. qiankun</h4>
+<h4><a id="8-qiankun" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>8. qiankun</h4>
 <p><strong>描述：</strong><a href="https://qiankun.umijs.org/zh/">qiankun</a>由蚂蚁团队基于single-spa构建的微前端解决方案，功能比较完善，已有多个成功应用案例验证，是目前应用最多的微前端框架。</p>
-<figure data-type="image" tabindex="4"><img src="https://pic2.zhimg.com/80/v2-d55549366b52cde19c93835cfa2a58c9_1440w.jpg" alt="v2-d55549366b52cde19c93835cfa2a58c9_1440w" loading="lazy"></figure>
+<p><img src="https://pic2.zhimg.com/80/v2-d55549366b52cde19c93835cfa2a58c9_1440w.jpg" alt="v2-d55549366b52cde19c93835cfa2a58c9_1440w" /></p>
 <p><strong>优点：</strong></p>
 <ul>
 <li>接入成本相对较低，框架本身已包含构建微前端系统时所需要的基本能力。</li>
 <li>微应用入口支持多种方式。</li>
 </ul>
 <p>**缺点：**没有提供依赖复用，需要自行解决。</p>
-<h4 id="9-icestark">9.  icestark</h4>
+<h4><a id="9-icestark" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>9.  icestark</h4>
 <p><strong>描述：</strong> <a href="https://micro-frontends.ice.work/">icestark</a>是阿里飞冰出品的面向大型系统的微前端解决方案。</p>
 <p>**优点：**相比qiankun，支持微模块，一种粒度更小的挂件，可以随处挂载。</p>
 <p>**缺点：**样式隔离问题目前还只能靠规范来规避，Shadow DOM方案还在实验中。</p>
-<h4 id="10-garfish">10. Garfish</h4>
+<h4><a id="10-garfish" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>10. Garfish</h4>
 <p><strong>描述：</strong><a href="https://garfish.top/">Garfish</a>是字节跳动出品，包含构建微前端系统时所需要的基本能力。</p>
-<figure data-type="image" tabindex="5"><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220406160138.png" alt="image.png" loading="lazy"></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220406160138.png" alt="image.png" /></p>
 <p>**优点：**api简单，接入成本低，自带依赖共享api，支持插件扩展。</p>
-<h2 id="路在何方">路在何方</h2>
+<h2><a id="%E8%B7%AF%E5%9C%A8%E4%BD%95%E6%96%B9" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>路在何方</h2>
 <p>可以看到，在上述方案中，比较成熟的方案有MicroApp、EMP、qiankun、Garfish。当下微前端相应的解决方案其实挺多的，但是并不存在银弹，每一个方案都有优缺点，只有结合实际需求进行选择最合适的那个方案就行。</p>
 <p>当然除了前面说的几个微前端的核心原则，一般在选型时，我们还注意如下几个纬度：</p>
 <table>
@@ -1289,17 +1307,19 @@ webxr支持<br>
 </tbody>
 </table>
 <p>所以，结合上述和项目的一些因素，当时我们最终选择了qiankun。接下来我们就聊一聊qiankun。</p>
+
 ]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[【玩转微前端】微前端是什么]]></title>
-        <id>https://www.bwrong.cn/post/gddd_X1cY/</id>
-        <link href="https://www.bwrong.cn/post/gddd_X1cY/">
-        </link>
-        <updated>2022-04-07T13:43:05.000Z</updated>
-        <content type="html"><![CDATA[<h2 id="困局">困局</h2>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[【玩转微前端0】微前端是什么]]></title>
+    <link href="https://www.bwrong.cn/17280332492564.html"/>
+    <updated>2024-10-04T17:14:09+08:00</updated>
+    <id>https://www.bwrong.cn/17280332492564.html</id>
+    <content type="html"><![CDATA[
+<h2><a id="%E5%9B%B0%E5%B1%80" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>困局</h2>
 <p>在开始前，我们先来看看传统架构方式的一个发展历程：</p>
-<figure data-type="image" tabindex="1"><img src="https://swearer23.github.io/micro-frontends/ressources/diagrams/organisational/monolith-frontback-microservices.png" alt="Monolithic Frontends" loading="lazy"></figure>
+<p><img src="https://swearer23.github.io/micro-frontends/ressources/diagrams/organisational/monolith-frontback-microservices.png" alt="Monolithic Frontends" /></p>
 <p>可以归纳为三个阶段：</p>
 <ol>
 <li>前后端一体</li>
@@ -1307,7 +1327,7 @@ webxr支持<br>
 <li>前后端分离，后端微服务化</li>
 </ol>
 <p>在前后端进行分离后，后端仅负责数据处理工作，前端的职责开始扩张。同时前端技术的发展也促使前端应用的复杂度不断提升。这时，传统的单体架构在大型应用中就稍显乏力了，尤其是中后台项目，时间跨度长，很容易就演变成巨石应用，越来越难以维护。</p>
-<figure data-type="image" tabindex="2"><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220331161639.png" alt="aba723dd5766a90fca78309da0dc980893221" loading="lazy"></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220331161639.png" alt="aba723dd5766a90fca78309da0dc980893221" /></p>
 <p>举例: 一个持续多年的应用，经历几年的业务的更新迭代，当项目发展到一定程度的时候就会遇到以下问题</p>
 <ol>
 <li>业务模块之间不断的堆叠，交错引用，业务耦合如何治理？</li>
@@ -1317,23 +1337,23 @@ webxr支持<br>
 <li>代码库持续膨胀，难以维护的项目代码，是屎上雕花？还是从头再来？</li>
 </ol>
 <p>你们的项目是否有上述这些情况呢？我们该如何解决这些问题呢？</p>
-<h2 id="破局">破局</h2>
+<h2><a id="%E7%A0%B4%E5%B1%80" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>破局</h2>
 <p>“微前端”这个词首次出现是在2016年 <a href="https://link.juejin.cn/?target=https%3A%2F%2Fwww.thoughtworks.com%2Fradar%2Ftechniques%2Fmicro-frontends">ThoughtWorks Technology Radar</a> 中，但是直到最近几年才被频频提及，那么它是破局之法吗？</p>
-<figure data-type="image" tabindex="3"><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220331093221.png" alt="radar" loading="lazy"></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220331093221.png" alt="radar" /></p>
 <p>微前端源自微服务这种服务端的技术范式，微服务的核心关键在于服务的抽象，用于解决服务端高并发、高可用等问题。而微前端和微服务不尽相同，微前端是一种多个团队通过独立发布的方式来共同构建现代化 web 应用的技术手段及方法。微前端架构旨在解决单体应用在一个相对长的时间跨度下，由于参与的人员、团队的增多、变迁，从一个普通应用演变成一个巨石应用后，随之而来的工程膨胀、开发维护困难等问题。</p>
 <p>微前端背后的思想是认为：现代复杂的web应用，通常由很多 <strong>相对独立的功能模块组合而成</strong>，而对这些模块负责的可能是 <strong>相互独立的多个团队</strong>。这些独立的团队由于专业分工不同，会负责着 <strong>特定的业务领域</strong>，以及完成 <strong>特定的开发任务</strong>。这样的团队，通常在人员组成方面囊括了从前端开发到服务端开发，从UI实现到数据库设计这样 <strong>端到端</strong> 的 <strong>跨职能人员</strong> 构成。</p>
-<figure data-type="image" tabindex="4"><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220331163236.png" alt="End-To-End Teams with Micro Frontends" loading="lazy"></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220331163236.png" alt="End-To-End Teams with Micro Frontends" /></p>
 <p>然而微前端这个概念并不新鲜。它实际上与 <a href="http://scs-architecture.org/">自包含系统</a> 概念一脉相承。在过去，微前端之类的思路，会被称为 <a href="https://dev.otto.de/2014/07/29/scaling-with-microservices-and-vertical-decomposition/">面向垂直划分系统的前端集成</a>。称之为微前端，是因为这个词，对于前端开发人员来说更加易于理解。</p>
 <p><strong>定义：微前端并不是指某一具体的技术，而是一种整合了技术、策略和方法的宏观架构方案，是一种将多个可独立交付的小型前端应用聚合为一个整体的架构风格。</strong></p>
-<h2 id="使用场景">使用场景</h2>
+<h2><a id="%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>使用场景</h2>
 <p>目前来说，微前端并不是一个无脑使用的架构方案，相比现行的架构方案，还是会带来一些工程复杂度的提升。那么什么场景下可以考虑使用微前端呢？</p>
-<h3 id="1-复用别的的项目页面">1. 复用别的的项目页面</h3>
+<h3><a id="1%E5%A4%8D%E7%94%A8%E5%88%AB%E7%9A%84%E7%9A%84%E9%A1%B9%E7%9B%AE%E9%A1%B5%E9%9D%A2" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. 复用别的的项目页面</h3>
 <p>在新项目中需要集成一些其他已开发好的项目时，或者直接复用已有的一些功能模块时，常规的方案就是把代码直接拷贝过来，但是会有一些问题：</p>
 <ul>
 <li>技术栈不一致，依赖版本不一致，等等问题需要做处理。</li>
 <li>更新比较麻烦，别人代码更新，我们需要去做同步。</li>
 </ul>
-<h3 id="2-巨无霸项目的自由拆分组合">2. 巨无霸项目的自由拆分组合</h3>
+<h3><a id="2%E5%B7%A8%E6%97%A0%E9%9C%B8%E9%A1%B9%E7%9B%AE%E7%9A%84%E8%87%AA%E7%94%B1%E6%8B%86%E5%88%86%E7%BB%84%E5%90%88" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. 巨无霸项目的自由拆分组合</h3>
 <p>一个功能齐全的大型项目，在开发维护时面临到如下问题：</p>
 <ul>
 <li>代码越来越多，打包越来越慢，部署升级麻烦，一些插件的升级和公共组件的修改需要考虑的更多，很容易牵一发而动全身</li>
@@ -1342,6 +1362,3445 @@ webxr支持<br>
 </ul>
 <p>当你遇到如上两种情况，那么你可以考虑接入微前端。</p>
 <p>想了解微前端更多的信息请查阅<a href="https://swearer23.github.io/micro-frontends/">micro-frontends</a>。</p>
+
 ]]></content>
-    </entry>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[【转】以反战为名，百万周下载量node-ipc包作者进行供应链投毒]]></title>
+    <link href="https://www.bwrong.cn/17280332063046.html"/>
+    <updated>2024-10-04T17:13:26+08:00</updated>
+    <id>https://www.bwrong.cn/17280332063046.html</id>
+    <content type="html"><![CDATA[
+<p>以反战为名的供应链投毒？</p>
+<p>开始有人以为只是个恶作剧，但事情并非如此简单。有开发者在对代码进行测试处理后发现，node-ipc 包的作者 RIAEvangelist 在投毒。他起初提交的是一段恶意攻击代码：如果主机的 IP 地址来自俄罗斯或白俄罗斯，该代码将对其文件进行攻击，将文件全部替换成 ❤。该作者是个反战人士，还特意新建了一个 peacenotwar 仓库来宣传他的反战理念。</p>
+<p><img src="media/17280332063046/17280339240592.jpg" alt="" /></p>
+<p>虽然作者删除了该段代码，但贺师俊认为这仍然是一种恶劣的供应链投毒。“这里，具体的动机不重要，无论其动机多么良好（更不用说，很多人可能并不同意其政治倾向和道德立场），这样的行为都严重破坏了开源生态中的信任。”</p>
+<p>OpenHarmony 项目群工作委员会执行总监、中国科学院软件研究所高级工程师罗未也表示，开源软件供应链安全是一个及其严酷的议题，如果说 log4j 还能看做难以避免的工程误差，这件事就存在违法嫌疑。</p>
+<p>有开发者提供了该问题的解决方式：首先按照 readme 正常 install，构建结束后，用编辑器全局搜索'peacenotwar'，将其全部删除；然后在项目的 node_models 目录下，将'peacenotwar'目录删除；之后将'项目 /node_modules/node-ipc/node-ipc.js'这个文件中引用'peacenotwar'的代码注释掉，便可以正常启动项目。</p>
+<p>此外，Vue-cli 昨天发布了 新版本5.0.2 （<a href="https://github.com/vuejs/vue-cli/blob/dev/CHANGELOG.md%EF%BC%89%EF%BC%8C%E5%B0%86">https://github.com/vuejs/vue-cli/blob/dev/CHANGELOG.md），将</a> node-ipc 版本锁定到 v9.2.1，用户可以直接升级。据悉，受恶意代码受影响的 node-ipc 版本为 v10.1.3 ，已经被作者删除或被 NPM 撤下，而 WITH-LOVE-FROM-AMERICA.txt 文件是由 v11.0.0 版本引入的。</p>
+<p>在此次事件中，有开发者认为 （<a href="https://github.com/vuejs/vue-cli/issues/7054%EF%BC%89Vue">https://github.com/vuejs/vue-cli/issues/7054）Vue</a> 团队在发布新版本方面做得还不够，Vue 团队应该在官方网站上添加关于该事件的弹出窗口，弃用所有受感染的 vue-cli 包，为其添加一条消息。另外还可以在发布新版本时添加一些警告，以便用户看到警告并自动升级。</p>
+<p>脆弱的 Node.js 生态</p>
+<p>这一事件再次显示了 JS/Node/NPM 生态的脆弱。</p>
+<p>去年 10 月，NPM 官方仓库 ua-parser-js 被恶意劫持，多个版本被植入了挖矿脚本。这个库每周下载数百万次，被用于一千多个项目，包括 Facebook、微软、亚马逊、Instagram、谷歌、Slack、Mozilla、Discord、Elastic、Intuit、Reddit 等公司的项目。同年 2 月，NPM 遭遇供应链投毒攻击，其官方仓库被上传了 radar-cms 恶意包，借此窃取 K8s 集群凭证。</p>
+<p>NPM 模块备受开发人员欢迎，这些模块间还普遍存在复杂的依赖关系，某个包通常安装另一个包作为依赖项，而开发人员对此却并不知情。依赖项的绝对数量也带来了更多的安全问题。只要破坏了开发人员普遍使用的流行包，恶意代码可以直接大规模地传播给受害者，而这完全可以通过依赖混淆、劫持弱凭据、利用漏洞访问目标代码或使用开发人员放弃的包的名称来完成。</p>
+<p>另外，NPM 存储库 npmjs.com 不要求 NPM 包中的代码与链接的 GitHub 存储库中的代码相同。这意味着攻击者不需要破坏 GitHub 存储库，只要破坏 NPM 包即可。</p>
+<p>贺师俊在知乎上表示，要解决或缓解这一问题，应该考虑在 JS 语言和 JS 运行时层面引入一些机制，比如说针对包级别的权限管理（deno 那样粗粒度的应用级别的权限管理并不足以解决供应链投毒问题）、在更多的 API 中引入类似 TrustedType 的机制等。“而这显然已经超出了库、框架或工程管控的层面。这也是为什么我一直说国内头部大厂应该要投入资源去参与语言标准、引擎和平台实现。”</p>
+<p>罗未提出，开源软件可参照其他行业的处理方式，如建筑设计师要终生为建筑设计质量担责、银行批贷员要终生为发放的贷款担责等。</p>
+<p>“开源软件，特别是重要的核心开源软件，往往远比一笔贷款或一个建筑对全球社会经济影响深远。开源软件作为一个具有风险的重型工程行业，必须匹配的行业风险管控体系，这是我们不得不面对的问题。”</p>
+<p>结束语</p>
+<p>“看一遍开源协议，要么 fork 要么忍着。”有开发人员对该事件评论道。前有 Node、React、pytorch、GitHub 等官网声明支援乌克兰，后有个人开发者进行供应链投毒，战争让大家对开源有了不同以往的认识。</p>
+<p>开源组织应不应该旗帜鲜明地表达自己技术之外的立场，并利用自身影响力去支持某一方呢？这是一个仁者见仁、智者见智的问题，我们不做赘述。但这个问题实实在在地出现了，就成了整个开源行业应该考虑的问题：当开源开始“站队”时，开发者该如何自处？</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[【转】既要低头前行，也要仰望星空]]></title>
+    <link href="https://www.bwrong.cn/17280331672522.html"/>
+    <updated>2024-10-04T17:12:47+08:00</updated>
+    <id>https://www.bwrong.cn/17280331672522.html</id>
+    <content type="html"><![CDATA[
+<p>记得小时候农忙时节，农村农活非常多，放学回家自己弄好饭吃，和兄弟姐妹们自觉的就背着背篓上山了，扎进山里，整块地都被爸妈给收拾了一半了。但是剩下的还很多，一不注意天就暗下来，踏着月光和星辰，走在回家的路上。小时候总喜欢抬头望着星空，然后问爸爸，为什么天上会有这么多的星星？爸爸总是意味深长的说，星星是为了照亮你回家的路，低头看好你脚下的路。</p>
+<p><img src="https:////upload-images.jianshu.io/upload_images/15440860-587c2f1664c6d980.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/874/format/webp" alt="img" /></p>
+<p>长大后，脚下的路，越走越长，一路奋进，不停地奔走，忘了拐过多少弯，越过多少坎，停下来，才发现如迷失的登山者一样，面对茫茫的大山，却不知何去何从。</p>
+<p><img src="https:////upload-images.jianshu.io/upload_images/15440860-672a2d00a1f6feff.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/874/format/webp" alt="img" /></p>
+<p>低头走路，已经有多久，没再抬头仰望星空了。</p>
+<p><img src="https:////upload-images.jianshu.io/upload_images/15440860-c58f858482120588.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/874/format/webp" alt="img" /></p>
+<p>​    为了更好的生活，我们努力的前行，低头苦干，为生活疲于奔命。逐渐的迷失自我，有人活成了蚂蚁，终日埋头，低头苦干，忙碌奔波，不知明天在何处，也不问明天去何方；有人活得像老鼠，整天偷偷摸摸的，不务正业，只知道上蹿下跳，四处钻山打洞，，而他们心中可能都驻着一个遥不可及的梦。只有在夜晚，梦中才能和梦想对话。</p>
+<p><img src="https:////upload-images.jianshu.io/upload_images/15440860-4ce049c50fe02fbc.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/874/format/webp" alt="img" /></p>
+<p>三毛在《梦里花落知多少》一书中提到老师布置了一个作业题目，叫做《我的志愿》，三毛写道：</p>
+<p>我有一天长大了，希望做一个拾破烂的人，因为这种职业，不但可以呼吸新鲜的空气，同时又可以大街小巷的游走玩耍，一面工作一面游戏，自由快乐得如同天上的飞鸟。更重要的是，人们常常不知不觉的将许多还可以利用的好东西当作垃圾丢掉，拾破烂的人最愉快的时刻就是将这些蒙尘的好东西再度发掘出来，这……</p>
+<p><img src="https:////upload-images.jianshu.io/upload_images/15440860-114af483225924d3.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/874/format/webp" alt="img" /></p>
+<p>这个梦想近似荒唐，惹得老师大怒，结果重写了很多遍都不满意。但是当我们将时光轴拉长，纵观三毛的一生，何尝不是一个追梦的过程呢。求学西班牙，流浪撒哈拉，环游全世界，自由快乐得如同天上的飞鸟；而所到之处，都是拾荒之旅，比如荷西给三毛的定情信物是沙漠里捡来的骆驼骨。沙漠之家的家具是别人拉棺材丢弃的木料。而更多的物件和宝贝都是在地摊及自然中寻到的。</p>
+<p><img src="https:////upload-images.jianshu.io/upload_images/15440860-b9a9897f860d968f.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/874/format/webp" alt="img" /></p>
+<p>曾今我也有和三毛一样的想法，不想被一栋楼，一间办公室，一个方格子困住自己的人生，也想呼吸新鲜的空气，自由快乐得如天上的飞鸟。只是走在路上时，满以为已经找到了自己的路，不曾想又进入了另一个围城。困守于一地如笼中之鸟，勾心斗角如上演宫廷剧，一片混乱自己又无权解决。低头苦干却看不到价值和意义。</p>
+<p><img src="https:////upload-images.jianshu.io/upload_images/15440860-76a884570f4715ec.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/874/format/webp" alt="img" /></p>
+<p>​    在夜深人静时，抬头仰望星空，才再一次认识自己，回想起爸爸说过的话，星星是为了照亮你回家的路。灵魂深处，找到最初的自我，才不会迷路。</p>
+<p><img src="https:////upload-images.jianshu.io/upload_images/15440860-59989d9c74fd0482.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/874/format/webp" alt="img" /></p>
+<p>原文链接：<a href="https://www.jianshu.com/p/a32251b42b86">https://www.jianshu.com/p/a32251b42b86</a></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[前端开发规范参考]]></title>
+    <link href="https://www.bwrong.cn/17280331339857.html"/>
+    <updated>2024-10-04T17:12:13+08:00</updated>
+    <id>https://www.bwrong.cn/17280331339857.html</id>
+    <content type="html"><![CDATA[
+<h2><a id="%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>开发规范</h2>
+<h3><a id="%E5%A4%A7%E5%8E%82%E8%A7%84%E8%8C%83" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>大厂规范</h3>
+<ul>
+<li><a href="https://guide.aotu.io/">凹凸实验室</a></li>
+<li><a href="https://tgideas.qq.com/doc/index.html">腾讯</a></li>
+<li><a href="http://nec.netease.com/">网易</a></li>
+<li><a href="https://codeguide.bootcss.com/">Bootstrap</a></li>
+<li><a href="https://juejin.cn/post/6893891476913291278">推荐几个大厂的前端代码规范，学会了，你也能写出诗一样的代码</a></li>
+</ul>
+<h3><a id="js" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>JS</h3>
+<ul>
+<li><a href="https://standardjs.com/rules-zhcn.html">Standard</a></li>
+<li><a href="https://standardjs.com/rules-zhcn.html">standard</a></li>
+<li><a href="https://juejin.cn/post/6844903921412997127">前端代码规范 — JavaScript 风格指南</a></li>
+<li><a href="https://es6.ruanyifeng.com/#docs/style">ES6编程风格</a></li>
+</ul>
+<h3><a id="vue" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>vue</h3>
+<ul>
+<li><a href="https://cn.vuejs.org/v2/style-guide/">vuejs 风格指南</a></li>
+<li><a href="https://juejin.cn/post/6844903593896574990">Vue前端开发规范</a></li>
+<li><a href="https://pablohpsilva.github.io/vuejs-component-style-guide/#/chinese">Vue.js 组件编码规范</a></li>
+</ul>
+<h3><a id="%E5%91%BD%E5%90%8D" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>命名</h3>
+<ul>
+<li><a href="https://juejin.cn/post/6922225108094287880">编写高质量可维护的代码：优雅命名</a></li>
+<li><a href="https://juejin.cn/post/6844903593896574990">Vue前端开发规范</a></li>
+</ul>
+<h2><a id="%E5%8D%8F%E4%BD%9C%E8%A7%84%E8%8C%83" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>协作规范</h2>
+<ul>
+<li><a href="https://www.yuque.com/fe9/basic/nruxq8">Git 协同与提交规范</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html">Commit message 和 Change log 编写指南</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2012/07/git.html">Git分支管理策略</a></li>
+</ul>
+<h2><a id="%E5%85%B6%E4%BB%96" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>其他</h2>
+<ul>
+<li><a href="https://juejin.cn/post/6844903897610321934">if 我是前端团队 Leader，怎么制定前端协作规范?</a></li>
+<li><a href="https://juejin.cn/post/6844903824512008205">前端代码质量管理</a></li>
+<li><a href="https://juejin.cn/post/6844903479698259975">前端开发规范：命名规范、html规范、css规范、js规范</a></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[qiankun子应用无法使用vue devtools如何解决]]></title>
+    <link href="https://www.bwrong.cn/17280330897640.html"/>
+    <updated>2024-10-04T17:11:29+08:00</updated>
+    <id>https://www.bwrong.cn/17280330897640.html</id>
+    <content type="html"><![CDATA[
+<p>解决办法：将子应用的实例挂载为主应用的一个组件。</p>
+<ol>
+<li>子应用：</li>
+</ol>
+<pre class="line-numbers"><code class="language-js">new Vue({ 
+  el: '#app',
+  mounted() {
+    if (window.__POWERED_BY_QIANKUN__ &amp;&amp; process.env.NODE_ENV === 'development') {
+        // 将子应用实例挂载到window.__QIANKUN_SUB_APP_VM__  方便主应用获取
+      window.__QIANKUN_SUB_APP_VM__ = this
+    }
+  }
+})
+</code></pre>
+<ol start="2">
+<li>主应用</li>
+</ol>
+<pre class="line-numbers"><code class="language-js">let rootInstance = new Vue({ 
+    // ...
+ })
+registerMicroApps(apps, 
+  {
+    afterMount: () =&gt; {
+      if (window.proxy.__QIANKUN_SUB_APP_VM__ &amp;&amp; process.env.NODE_ENV === 'development') {
+        rootInstance.$children.push(window.proxy.__QIANKUN_SUB_APP_VM__);
+      }
+    }
+  }
+)
+</code></pre>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[【Vue3】基础与入门]]></title>
+    <link href="https://www.bwrong.cn/17280329145839.html"/>
+    <updated>2024-10-04T17:08:34+08:00</updated>
+    <id>https://www.bwrong.cn/17280329145839.html</id>
+    <content type="html"><![CDATA[
+<p>字数：7887， 阅读时间：40分钟，点击<a href="https://www.bwrong.cn/post/vue3-01/">阅读原文</a></p>
+<p>从2013年12月8日发布第一个版本至今已，Vue已走过了快八个年头，你了解每个版本名字的意义吗？</p>
+<table>
+<thead>
+<tr>
+<th>版本号</th>
+<th>名字</th>
+<th>释义</th>
+<th>时间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>V0.9</td>
+<td>Animatrix</td>
+<td>黑客帝国动画版</td>
+<td>2014.2.25</td>
+</tr>
+<tr>
+<td>V0.10</td>
+<td>Blade Runner</td>
+<td>银翼杀手</td>
+<td>2014.3.23</td>
+</tr>
+<tr>
+<td>V0.11</td>
+<td>Cowboy Bebop</td>
+<td>星际牛仔</td>
+<td>2014.11.7</td>
+</tr>
+<tr>
+<td>V0.12</td>
+<td>Dragon Ball</td>
+<td>龙珠</td>
+<td>2015.6.12</td>
+</tr>
+<tr>
+<td>V1.0</td>
+<td>Evangelion</td>
+<td>新世纪福音战士</td>
+<td>2015.10.27</td>
+</tr>
+<tr>
+<td>V2.0</td>
+<td>Ghost in the Shell</td>
+<td>攻壳机动队</td>
+<td>2016.9.30</td>
+</tr>
+<tr>
+<td>V2.1</td>
+<td>Hunter X Hunter</td>
+<td>全职猎人</td>
+<td>2016.11.22</td>
+</tr>
+<tr>
+<td>V2.2</td>
+<td>Initial D</td>
+<td>头文字D</td>
+<td>2017.2.26</td>
+</tr>
+<tr>
+<td>V2.3</td>
+<td>JoJo's Bizarre Adventure</td>
+<td>JoJo的奇妙冒险</td>
+<td>2017.4.2</td>
+</tr>
+<tr>
+<td>V2.4</td>
+<td>Kill la Kill</td>
+<td>斩服少女</td>
+<td>2017.7.13</td>
+</tr>
+<tr>
+<td><strong>V2.5</strong></td>
+<td>Level E</td>
+<td>灵异E接触</td>
+<td>2017.10.13</td>
+</tr>
+<tr>
+<td><strong>V2.6</strong></td>
+<td>Macross</td>
+<td>超时空要塞</td>
+<td>2019.2.4</td>
+</tr>
+<tr>
+<td>V3.0</td>
+<td>One Piece</td>
+<td>海贼王</td>
+<td>2020.9.18</td>
+</tr>
+<tr>
+<td>V3.1</td>
+<td>Pluto</td>
+<td>地上最强机器人</td>
+<td>2021.6.8</td>
+</tr>
+<tr>
+<td>V3.2</td>
+<td>Quintessential Quintuplets</td>
+<td>五等分的花嫁</td>
+<td>2021.8.10</td>
+</tr>
+</tbody>
+</table>
+<p>原来每个版本的名字都是以漫画命名，那么这些动漫，你看过几部呢？</p>
+<p>那么接下来我们就重点聊聊Vue3.0。</p>
+<h1><a id="%E7%BC%98%E8%B5%B7" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>缘起</h1>
+<p>一个新工具的出现，一定是为了解决已有工具存在的问题。我们常常听说Vue不适合开发大型复杂的项目，一个根本原因是 Vue 现有的 API 迫使我们通过选项组织代码，但是有的时候通过逻辑关系组织代码更有意义。另一个原因是目前缺少一种简洁且低成本的机制来提取和重用多个组件之间的逻辑。</p>
+<p>那么接下来我们就来看看2.0的问题，以及Vue3是如何来解决的。</p>
+<h2><a id="option%E5%BC%8F%E7%BB%84%E7%BB%87%E4%BB%A3%E7%A0%81%E7%9A%84%E7%BC%BA%E9%99%B7" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Option式组织代码的缺陷</h2>
+<p>options式组织代码，同一个功能分散在各个option中，导致在开发时需要在data、methods、computed等option横跳。</p>
+<p><img src="https://gitee.com/letwrong/Picture/raw/master/20210821095807.awebp" alt="option" /></p>
+<p>Vue3推出了CompositionApi，目的就是为了解决这个问题，它将分散在各个option中的逻辑组合到一起，下面我们对比看下：</p>
+<p><img src="https://gitee.com/letwrong/Picture/raw/master/20210821095754.awebp" alt="" /></p>
+<h2><a id="mixin%E7%9A%84%E9%97%AE%E9%A2%98" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Mixin的问题</h2>
+<p>对于复杂的功能，我们可能会想到使用Mixin来抽离到单独的文件。但是Mixin会有一些使用上的问题，比如命名冲突、属性来源不明确。</p>
+<p>Vue3提出了Hooks的方式，可以将每个功能提取到hooks，一个hooks即是一个独立的函数，所以不会再有上述问题。</p>
+<p><img src="https://gitee.com/letwrong/Picture/raw/master/20210821095749.awebp" alt="" /></p>
+<h2><a id="typescript%E6%94%AF%E6%8C%81%E7%9A%84%E4%B8%8D%E5%81%A5%E5%85%A8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>TypeScript支持的不健全</h2>
+<p>现在大型项目都会标配 TypeScript ，Vue 当前的 API 在集成 TypeScript 时遇到了不小的麻烦，其主要原因是 Vue 依靠一个简单的 <code>this</code> 上下文来暴露 property，我们现在使用 <code>this</code> 的方式是比较微妙的。（比如 <code>methods</code> 选项下的函数的 <code>this</code> 是指向组件实例的，而不是这个 <code>methods</code> 对象）。</p>
+<p>换句话说，Vue 现有的 API 在设计之初没有照顾到类型推导，这使适配 TypeScript 变得复杂。</p>
+<p>当前，大部分使用 TypeScript 的 Vue 开发者都在通过 <code>vue-class-component</code> 这个库将组件撰写为 TypeScript class (借助 decorator)。它必须依赖 decorator——一个在实现细节上存在许多未知数的非常不稳定的 stage 2 提案。基于它是有极大风险的。</p>
+<p>Vue3中提出的方案更多地利用了天然对类型友好的普通变量与函数，完美享用类型推导，并且也不用做太多额外的类型标注。</p>
+<p>这也同样意味着你写出的 JavaScript 代码几乎就是 TypeScript 的代码。即使是非 TypeScript 开发者也会因此得到更好的 IDE 类型支持而获益。</p>
+<h2><a id="%E6%9B%B4%E5%A5%BD%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%92%8C%E6%80%A7%E8%83%BD" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>更好的响应式和性能</h2>
+<p>众所周知，Vue2的响应式是通过<code>Object.defineProperty</code> 是给对象的某个已存在的属性添加对应的 <code>getter</code> 和 <code>setter</code>，所以它只能监听这个属性值的变化，而不能去监听对象属性的新增和删除。在 Vue 2 的实现中，在组件初始化阶段把数据变成响应式时，遇到子属性仍然是对象的情况，会递归执行 <code>Object.defineProperty</code> 定义子对象的响应式，会有一些性能问题。而且还有一个常见的问题就是通过索引修改数组、为对象直接新增属性，并不会触发响应式更新机制。</p>
+<p>而在Vue3中则使用了Proxy来实现响应式，其实并不是Proxy的本身的性能优于<code>Object.defineProperty</code>，其实恰恰相反。那么为什么还要选择Proxy呢？</p>
+<p>因为 <code>Proxy</code> 本质上是对某个对象的劫持，这样它不仅仅可以监听对象某个属性值的变化，还可以监听对象属性的新增和删除。而且在实现响应式时，采用了延时处理的方式，当嵌套较深的对象时，只有在其属性被访问的时候才会处理属性的响应式，在性能上会有一定的提升。</p>
+<h2><a id="%E6%94%AF%E6%8C%81%E5%85%A8%E5%B1%80api-treeshaking" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>支持全局API Treeshaking</h2>
+<p>Vue3重构了全局和局部的api，均采用ESModule的命名导出访问，支持tree-shaking，只打包使用到的功能，用户只为实际使用的功能买单，同时包体积的减少，也意味着性能的提升。</p>
+<pre class="line-numbers"><code class="language-js">// vue2
+import Vue from 'vue'
+
+Vue.nextTick(() =&gt; {
+  // 一些和DOM有关的东西
+})
+
+</code></pre>
+<pre class="line-numbers"><code class="language-js">// vue3
+import { nextTick } from 'vue'
+
+nextTick(() =&gt; {
+  // 一些和DOM有关的东西
+})
+</code></pre>
+<p>以上就是Vue主要的变化，那么接下来我们就来看看有哪些新特性。</p>
+<h1><a id="%E6%96%B0%E7%89%B9%E6%80%A7%E4%B8%8E%E5%8F%98%E6%9B%B4" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>新特性与变更</h1>
+<p>接下来我们主要看一下一些非兼容的重大变更：</p>
+<h2><a id="%E5%85%A8%E5%B1%80api" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>全局API</h2>
+<ul>
+<li>
+<p>支持多个应用根实例，防止全局配置污染</p>
+<pre class="line-numbers"><code class="language-js">// vue2
+// 这会影响两个根实例
+Vue.mixin({
+  /* ... */
+})
+const app1 = new Vue({ el: '#app-1' })
+const app2 = new Vue({ el: '#app-2' })
+</code></pre>
+<pre class="line-numbers"><code class="language-js">// vue3
+import { createApp } from 'vue'
+
+const app = createApp({})
+app.mixin({
+  /* ... */
+})
+</code></pre>
+<p>一些其他全局Api的变更详情请查阅<a href="https://v3.cn.vuejs.org/guide/migration/global-api.html#%E4%B8%80%E4%B8%AA%E6%96%B0%E7%9A%84%E5%85%A8%E5%B1%80-api-createapp">全局 API</a>。</p>
+</li>
+<li>
+<p>全局 API重构为可Treeshaking</p>
+<pre class="line-numbers"><code class="language-js">import { nextTick } from 'vue'
+
+nextTick(() =&gt; {
+  // 一些和DOM有关的东西
+})
+// **** 受影响的API
+// Vue.nextTick
+// Vue.observable (用 Vue.reactive 替换)
+// Vue.version
+// Vue.compile (仅完整构建版本)
+// Vue.set (仅兼容构建版本)
+// Vue.delete (仅兼容构建版本)
+</code></pre>
+</li>
+</ul>
+<h2><a id="%E6%A8%A1%E6%9D%BF%E5%92%8C%E6%8C%87%E4%BB%A4%E7%9B%B8%E5%85%B3" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>模板和指令相关</h2>
+<ul>
+<li>更好用的<code>v-model</code></li>
+</ul>
+<p>替代原有的<code>v-model</code>和<code>v-bind.sync</code>修饰符，通过参数形式，支持使用多个<code>v-model</code>进行双向绑定。</p>
+<pre class="line-numbers"><code class="language-html">&lt;!-- vue2 --&gt;
+&lt;ChildComponent v-model=&quot;pageTitle&quot; :title.sync=&quot;title&quot;/&gt;
+&lt;!-- 完整 --&gt;
+&lt;ChildComponent :value=&quot;pageTitle&quot; @input=&quot;(title)=&gt; (pageTitle=title)&quot; :title=&quot;title&quot; @update:title=&quot;(title)=&gt; (title=title)&quot;/&gt;
+</code></pre>
+<pre class="line-numbers"><code class="language-html">&lt;!-- vue3 --&gt;
+&lt;ChildComponent v-model=&quot;pageTitle&quot; v-modle:title=&quot;title&quot;/&gt;
+&lt;!-- 完整 --&gt;
+&lt;ChildComponent :model-value=&quot;pageTitle&quot; @update:modelValue=&quot;(title)=&gt; (pageTitle=title)&quot; :title=&quot;title&quot; @update:title=&quot;(title)=&gt; (title=title)&quot;/&gt;
+</code></pre>
+<ul>
+<li><code>&lt;template v-for&gt;</code>的变化</li>
+</ul>
+<pre class="line-numbers"><code class="language-vue">&lt;!-- vue2 --&gt;
+&lt;template v-for=&quot;item in list&quot;&gt;
+  &lt;div :key=&quot;'heading-' + item.id&quot;&gt;...&lt;/div&gt;
+  &lt;span :key=&quot;'content-' + item.id&quot;&gt;...&lt;/span&gt;
+&lt;/template&gt;
+</code></pre>
+<pre class="line-numbers"><code class="language-vue">&lt;!-- vue 3 --&gt;
+&lt;template v-for=&quot;item in list&quot; :key=&quot;item.id&quot;&gt;
+  &lt;div&gt;...&lt;/div&gt;
+  &lt;span&gt;...&lt;/span&gt;
+&lt;/template&gt;
+</code></pre>
+<ul>
+<li><code>v-bind</code> 合并顺序变化</li>
+</ul>
+<pre class="line-numbers"><code class="language-html">&lt;!-- vue2 --&gt;
+&lt;div id=&quot;red&quot; v-bind=&quot;{ id: 'blue' }&quot;&gt;&lt;/div&gt;
+&lt;!-- result --&gt;
+&lt;div id=&quot;red&quot;&gt;&lt;/div&gt;
+</code></pre>
+<pre class="line-numbers"><code class="language-html">&lt;!-- vue3 --&gt;
+&lt;div id=&quot;red&quot; v-bind=&quot;{ id: 'blue' }&quot;&gt;&lt;/div&gt;
+&lt;!-- result --&gt;
+&lt;div id=&quot;blue&quot;&gt;&lt;/div&gt;
+</code></pre>
+<ul>
+<li>
+<p>移除<code>v-on.native</code>修饰符</p>
+<p>在以前的版本中，要将原生 DOM 监听器添加到子组件的根元素中，可以使用 <code>.native</code> 修饰符。</p>
+</li>
+</ul>
+<pre class="line-numbers"><code class="language-html">&lt;!-- vue2 --&gt;
+&lt;my-component
+  v-on:close=&quot;handleComponentEvent&quot;
+  v-on:click.native=&quot;handleNativeClickEvent&quot;
+/&gt;
+</code></pre>
+<p>在vue3中，组件中<em>未</em>被定义为组件触发的所有事件监听器，Vue 现在将把它们作为原生事件监听器添加到子组件的根元素中 (除非在子组件的选项中设置了 <code>inheritAttrs: false</code>)</p>
+<pre class="line-numbers"><code class="language-html">&lt;!-- vue3 --&gt;
+&lt;my-component
+  v-on:close=&quot;handleComponentEvent&quot;
+  v-on:click=&quot;handleNativeClickEvent&quot;
+/&gt;
+&lt;script&gt;
+  export default {
+    emits: ['close']
+  }
+&lt;/script&gt;
+</code></pre>
+<ul>
+<li>支持片段（多根节点）</li>
+</ul>
+<pre class="line-numbers"><code class="language-vue">&lt;!-- vue2 --&gt;
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;header&gt;...&lt;/header&gt;
+    &lt;main&gt;...&lt;/main&gt;
+    &lt;footer&gt;...&lt;/footer&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+</code></pre>
+<p>在vue2中，组件必须包含在某个元素内部，不支持多个根节点，这有时会给我们写样式带来烦恼，所以vue3中支持了多根节点。</p>
+<pre class="line-numbers"><code class="language-vue">&lt;!-- vue3 --&gt;
+&lt;template&gt;
+  &lt;header&gt;...&lt;/header&gt;
+  &lt;main v-bind=&quot;$attrs&quot;&gt;...&lt;/main&gt;
+  &lt;footer&gt;...&lt;/footer&gt;
+&lt;/template&gt;
+</code></pre>
+<ul>
+<li>新增Teleport传送门</li>
+</ul>
+<p>vue应用开发的核心就是组件编写，将 UI 和相关行为封装到组件中来构建 UI。但是有时组件模板的一部分逻辑上属于该组件，而从技术角度来看，最好将模板的这一部分移动到 DOM 中 Vue app 之外的其他位置。</p>
+<p>比如最常见的模态窗，我们希望模态窗的逻辑存在于组件中，但在UI上，元素最好又挂载到DOM根节点（如body）上，方便我们进行css来定位。</p>
+<pre class="line-numbers"><code class="language-html">&lt;body&gt;
+  &lt;div style=&quot;position: relative;&quot;&gt;
+    &lt;h3&gt;Tooltips with Vue 3 Teleport&lt;/h3&gt;
+    &lt;div&gt;
+      &lt;modal-button&gt;&lt;/modal-button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
+<pre class="line-numbers"><code class="language-js">const app = Vue.createApp({});
+
+app.component('modal-button', {
+  template: `
+    &lt;button @click=&quot;modalOpen = true&quot;&gt;
+        Open full screen modal!
+    &lt;/button&gt;
+
+    &lt;div v-if=&quot;modalOpen&quot; class=&quot;modal&quot;&gt;
+      &lt;div&gt;
+        I'm a modal!
+        &lt;button @click=&quot;modalOpen = false&quot;&gt;
+          Close
+        &lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  `,
+  data() {
+    return {
+      modalOpen: false
+    }
+  }
+})
+</code></pre>
+<p>在上面的例子中，我们可以看到一个问题——模态框是在深度嵌套的 <code>div</code> 中渲染的，而模态框的 <code>position:absolute</code> 以父级相对定位的 <code>div</code> 作为引用，最终的效果会受父级定位的影响，这可能并不是我们期望的结果。</p>
+<p>Teleport 提供了一种干净的方法，允许我们控制在 DOM 中哪个父节点下渲染了 HTML，而不必求助于全局状态或将其拆分为两个组件。</p>
+<pre class="line-numbers"><code class="language-js">app.component('modal-button', {
+  template: `
+    &lt;button @click=&quot;modalOpen = true&quot;&gt;
+        Open full screen modal! (With teleport!)
+    &lt;/button&gt;
+
+    &lt;teleport to=&quot;body&quot;&gt;
+      &lt;div v-if=&quot;modalOpen&quot; class=&quot;modal&quot;&gt;
+        &lt;div&gt;
+          I'm a teleported modal!
+          (My parent is &quot;body&quot;)
+          &lt;button @click=&quot;modalOpen = false&quot;&gt;
+            Close
+          &lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/teleport&gt;
+  `,
+  data() {
+    return {
+      modalOpen: false
+    }
+  }
+})
+</code></pre>
+<h2><a id="%E7%BB%84%E4%BB%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>组件</h2>
+<ul>
+<li>函数式组件</li>
+</ul>
+<p>在vue2中我们可能因为性能和多根节点的需求而使用函数式组件，当在vue3中，针对普通组件性能做了优化，已经和函数组件性能相差无几，而且也支持多根节点，因此函数式组件的使用场景不是很有必要了，所以针对函数式组件进行了一些调整：</p>
+<pre class="line-numbers"><code class="language-vue">&lt;!-- Vue 2 函数式组件示例 --&gt;
+&lt;script&gt;
+export default {
+  functional: true,
+  props: ['level'],
+  render(h, { props, data, children }) {
+    return h(`h${props.level}`, data, children)
+  }
+}
+&lt;/script&gt;
+
+&lt;!-- Vue 2 函数式组件示例使用 &lt;template&gt; --&gt;
+&lt;template functional&gt;
+  &lt;component
+    :is=&quot;`h${props.level}`&quot;
+    v-bind=&quot;attrs&quot;
+    v-on=&quot;listeners&quot;
+  /&gt;
+&lt;/template&gt;
+&lt;script&gt;
+export default {
+  props: ['level']
+}
+&lt;/script&gt;
+</code></pre>
+<p>在vue3中删除了<code>functional option</code>和<code>functional attribute</code>,上面两种方式不能在vue3中使用了。</p>
+<p>在vue3中函数式组件即是一个普通函数，接收两个参数：<code>props</code> 和 <code>context</code>。</p>
+<pre class="line-numbers"><code class="language-js">// vue3
+import { h } from 'vue'
+
+const DynamicHeading = (props, context) =&gt; {
+  return h(`h${props.level}`, context.attrs, context.slots)
+}
+
+DynamicHeading.props = ['level']
+
+export default DynamicHeading
+</code></pre>
+<ul>
+<li>创建异步组件</li>
+</ul>
+<p>以前可以通过返回一个Promise的函数来定义异步组件：</p>
+<pre class="line-numbers"><code class="language-js">// vue2
+const asyncModal = () =&gt; import('./Modal.vue');
+// 或者带上配置
+const asyncModal = {
+  component: () =&gt; import('./Modal.vue'),
+  delay: 200,
+  timeout: 3000,
+  error: ErrorComponent,
+  loading: LoadingComponent
+}
+</code></pre>
+<p>在vue3中，新增呢一个api（defineAsyncComponent）来显示定义异步组件。</p>
+<pre class="line-numbers"><code class="language-js">// vue3
+import { defineAsyncComponent } from 'vue'
+import ErrorComponent from './components/ErrorComponent.vue'
+import LoadingComponent from './components/LoadingComponent.vue'
+
+// 不带选项的异步组件
+const asyncModal = defineAsyncComponent(() =&gt; import('./Modal.vue'))
+
+// 带选项的异步组件
+const asyncModalWithOptions = defineAsyncComponent({
+  loader: () =&gt; import('./Modal.vue'),
+  delay: 200,
+  timeout: 3000,
+  errorComponent: ErrorComponent,
+  loadingComponent: LoadingComponent
+})
+</code></pre>
+<ul>
+<li>新增<code>emits</code>选项，定义和验证发出的自定义事件</li>
+</ul>
+<pre class="line-numbers"><code class="language-vue">&lt;!-- vue2 --&gt;
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;p&gt;{{ text }}&lt;/p&gt;
+    &lt;button v-on:click=&quot;$emit('accepted')&quot;&gt;OK&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+  export default {
+    props: ['text']
+  }
+&lt;/script&gt;
+</code></pre>
+<p>vue3中增加了emits选项来显示定义组件的自定义事件，未声明 <code>emits</code> 的事件监听器都会被算入组件的 <code>$attrs</code> 并绑定在组件的根节点上。</p>
+<pre class="line-numbers"><code class="language-vue">&lt;!-- vue3 --&gt;
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;p&gt;{{ text }}&lt;/p&gt;
+    &lt;button v-on:click=&quot;$emit('accepted')&quot;&gt;OK&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+  export default {
+    props: ['text'],
+    emits: ['accepted']
+  }
+&lt;/script&gt;
+</code></pre>
+<p>emits还可以支持对自定义事件进行验证，只需要改为对象形式即可。</p>
+<pre class="line-numbers"><code class="language-js">emits: {
+    // 没有验证函数
+    click: null,
+
+    // 带有验证函数
+    submit: payload =&gt; {
+      if (payload.email &amp;&amp; payload.password) {
+        return true
+      } else {
+        console.warn(`Invalid submit event payload!`)
+        return false
+      }
+    }
+  }
+</code></pre>
+<p>强烈建议使用 <code>emits</code> 记录每个组件所触发的所有事件，而且记录的事件会有代码提示。</p>
+<h2><a id="%E6%B8%B2%E6%9F%93%E5%87%BD%E6%95%B0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>渲染函数</h2>
+<ul>
+<li>
+<p>统一插槽API</p>
+<p>以前，在组件中获取插槽是两个不同的api（<code>this.$scopedSlots</code> 和 <code>this.$slots</code>），现在统一使用<code>this.$slots</code>。</p>
+</li>
+<li>
+<p>整合<code>$listeners</code>、class、style到<code>$attrs</code></p>
+</li>
+</ul>
+<p>在vue2时，我们可以通过如下方式访问<code>attribute</code> 和事件监听器：</p>
+<pre class="line-numbers"><code class="language-vue">&lt;!-- vue3 --&gt;
+&lt;template&gt;
+  &lt;label&gt;
+    &lt;input type=&quot;text&quot; v-bind=&quot;$attrs&quot; v-on=&quot;$listeners&quot; /&gt;
+  &lt;/label&gt;
+&lt;/template&gt;
+&lt;script&gt;
+  export default {
+    inheritAttrs: false
+  }
+&lt;/script&gt;
+</code></pre>
+<p>在 Vue 3 的虚拟 DOM 中，事件监听器现在只是以 <code>on</code> 为前缀的 attribute，这样就成了 <code>$attrs</code> 对象的一部分，因此 <code>$listeners</code> 被移除了。</p>
+<pre class="line-numbers"><code class="language-vue">&lt;!-- vue3 --&gt;
+&lt;template&gt;
+  &lt;label&gt;
+    &lt;input type=&quot;text&quot; v-bind=&quot;$attrs&quot; /&gt;
+  &lt;/label&gt;
+&lt;/template&gt;
+&lt;script&gt;
+export default {
+  inheritAttrs: false
+}
+&lt;/script&gt;
+</code></pre>
+<p>在 Vue 2 的虚拟 DOM 实现中对 <code>class</code> 和 <code>style</code> attribute 有一些特殊处理。因此，它们<em>不</em>包含在 <code>$attrs</code> 中，Vue3中简化了这部分的处理，用<code>$attrs</code> 包含<em>所有的</em> attribute，包括<code>class</code>和<code>style</code>。</p>
+<h2><a id="%E8%87%AA%E5%AE%9A%E4%B9%89%E5%85%83%E7%B4%A0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>自定义元素</h2>
+<ul>
+<li>只能在<code>&lt;component&gt;</code>元素中使用<code>is</code>prop</li>
+</ul>
+<p>在vue3中不能在普通组件和元素使用<code>is</code>属性，仅能在<code>component</code>内置组件中使用。</p>
+<h2><a id="%E5%85%B6%E4%BB%96" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>其他</h2>
+<ul>
+<li>
+<p>生命周期变更</p>
+<ul>
+<li><code>destroyed</code> 生命周期选项被重命名为 <code>unmounted</code></li>
+<li><code>beforeDestroy</code> 生命周期选项被重命名为 <code>beforeUnmount</code></li>
+</ul>
+</li>
+<li>
+<p>自定义指令生命周期调整，和组件生命周期统一</p>
+<ul>
+<li>created - 新的！在元素的 attribute 或事件侦听器应用之前调用。</li>
+<li>bind → <strong>beforeMount</strong></li>
+<li>inserted → <strong>mounted</strong></li>
+<li><strong>beforeUpdate</strong>：新的！这是在元素本身更新之前调用的，很像组件生命周期钩子。</li>
+<li>update → 移除！有太多的相似之处要更新，所以这是多余的，请改用 <code>updated</code>。</li>
+<li>componentUpdated → <strong>updated</strong></li>
+<li><strong>beforeUnmount</strong>：新的！与组件生命周期钩子类似，它将在卸载元素之前调用。</li>
+<li>unbind -&gt; <strong>unmounted</strong></li>
+</ul>
+</li>
+<li>
+<p>Mixin 合并行为变更</p>
+</li>
+</ul>
+<p>当来自组件的 <code>data()</code> 及其 mixin 或 extends 基类被合并时，现在将<em>浅层次</em>执行合并。</p>
+<ul>
+<li>过渡的class名更改</li>
+</ul>
+<p>过渡类名 <code>v-enter</code> 修改为 <code>v-enter-from</code>、过渡类名 <code>v-leave</code> 修改为 <code>v-leave-from</code>。</p>
+<ul>
+<li>
+<p>VNode 生命周期事件变更</p>
+<pre class="line-numbers"><code class="language-vue">&lt;!-- vue2 --&gt;
+&lt;template&gt;
+  &lt;child-component @hook:updated=&quot;onUpdated&quot;&gt;
+&lt;/template&gt;
+</code></pre>
+<pre class="line-numbers"><code class="language-vue">&lt;!-- vue3 --&gt;
+&lt;template&gt;
+  &lt;child-component @vnode-updated=&quot;onUpdated&quot;&gt;
+&lt;/template&gt;
+</code></pre>
+</li>
+</ul>
+<h2><a id="%E5%BA%9F%E5%BC%83%E7%9A%84api" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>废弃的API</h2>
+<ul>
+<li><code>keyCode</code>作为<code>v-on</code>的修饰符及<code>config.keyCodes</code>配置。</li>
+</ul>
+<pre class="line-numbers"><code class="language-vue">&lt;!-- 键码版本（废弃） --&gt;
+&lt;input v-on:keyup.13=&quot;submit&quot; /&gt;
+
+&lt;!-- 别名版本 --&gt;
+&lt;input v-on:keyup.enter=&quot;submit&quot; /&gt;
+
+&lt;script&gt;
+Vue.config.keyCodes = { // 废弃
+  f1: 112
+}
+&lt;/script&gt;
+
+</code></pre>
+<ul>
+<li><code>$on</code>，<code>$off</code> 和 <code>$once</code> 实例方法已被移除，组件实例不再实现事件触发接口</li>
+</ul>
+<p>在vue2中我们可以通过EventBus实现组件通信：</p>
+<pre class="line-numbers"><code class="language-js">// eventBus.js
+const eventBus = new Vue()
+export default eventBus
+</code></pre>
+<pre class="line-numbers"><code class="language-js">// ChildComponent.vue
+import eventBus from './eventBus'
+export default {
+  mounted() {
+    // 添加 eventBus 监听器
+    eventBus.$on('custom-event', () =&gt; {
+      console.log('Custom event triggered!')
+    })
+  },
+  beforeDestroy() {
+    // 移除 eventBus 监听器
+    eventBus.$off('custom-event')
+  }
+}
+</code></pre>
+<pre class="line-numbers"><code class="language-js">// ParentComponent.vue
+import eventBus from './eventBus'
+export default {
+  methods: {
+    callGlobalCustomEvent() {
+      eventBus.$emit('custom-event') // 当 ChildComponent 被挂载，控制台中将显示一条消息
+    }
+  }
+}
+</code></pre>
+<p>在vue3中，此方式不再有效，因为完全移除了 <code>$on</code>、<code>$off</code> 和 <code>$once</code> 方法。如果需要，可以使用一些实现了事件触发器接口的外部库，或者使用Provide，复杂的直接上Vuex就对了。</p>
+<ul>
+<li>不再支持过滤器</li>
+</ul>
+<pre class="line-numbers"><code class="language-vue">&lt;!-- vue2 --&gt;
+&lt;template&gt;
+  &lt;h1&gt;Bank Account Balance&lt;/h1&gt;
+  &lt;p&gt;{{ accountBalance | currencyUSD }}&lt;/p&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+  export default {
+    props: {
+      accountBalance: {
+        type: Number,
+        required: true
+      }
+    },
+    filters: {
+      currencyUSD(value) {
+        return '$' + value
+      }
+    }
+  }
+&lt;/script&gt;
+</code></pre>
+<p>在vue3中可以使用方法或者计算属性替代：</p>
+<pre class="line-numbers"><code class="language-vue">&lt;!-- vue3 --&gt;
+&lt;template&gt;
+  &lt;h1&gt;Bank Account Balance&lt;/h1&gt;
+  &lt;p&gt;{{ accountInUSD }}&lt;/p&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+  export default {
+    props: {
+      accountBalance: {
+        type: Number,
+        required: true
+      }
+    },
+    computed: {
+      accountInUSD() {
+        return '$' + this.accountBalance
+      }
+    }
+  }
+&lt;/script&gt;
+</code></pre>
+<ul>
+<li>
+<p>删除<code>$children</code>property</p>
+<p><code>$children</code> property 已移除，不再支持。如果你需要访问子组件实例，我们建议使用 <a href="https://v3.cn.vuejs.org/guide/component-template-refs.html#%E6%A8%A1%E6%9D%BF%E5%BC%95%E7%94%A8">$refs</a>。</p>
+</li>
+<li>
+<p>全局函数 <code>set</code> 和 <code>delete</code> 以及实例方法 <code>$set</code> 和 <code>$delete</code>。基于代理的变化检测不再需要它们了。</p>
+</li>
+</ul>
+<p>当然，上面的只是开胃菜，接下来的才是我们最值得关注的新特性。</p>
+<p><img src="https://gitee.com/letwrong/Picture/raw/master/20210823173734.jpg" alt="" /></p>
+<h1><a id="%E7%BB%84%E5%90%88%E5%BC%8Fapi" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>组合式Api</h1>
+<p>为了解决我们前面说的逻辑复用和代码组织的问题，vue3推出了新的代码编写方式，这个vue3最重要的特性，也是未来编写vue的主要趋势。</p>
+<p>下面是一个显示某个用户的仓库列表的视图，同时带有搜索和筛选功能，伪代码如下：</p>
+<pre class="line-numbers"><code class="language-js">// src/components/UserRepositories.vue
+
+export default {
+  components: { RepositoriesFilters, RepositoriesSortBy, RepositoriesList },
+  props: {
+    user: {
+      type: String,
+      required: true
+    }
+  },
+  data () {
+    return {
+      repositories: [], // 1
+      filters: { ... }, // 3
+      searchQuery: '' // 2
+    }
+  },
+  computed: {
+    filteredRepositories () { ... }, // 3
+    repositoriesMatchingSearchQuery () { ... }, // 2
+  },
+  watch: {
+    user: 'getUserRepositories' // 1
+  },
+  methods: {
+    getUserRepositories () {
+      // 使用 `this.user` 获取用户仓库
+    }, // 1
+    updateFilters () { ... }, // 3
+  },
+  mounted () {
+    this.getUserRepositories() // 1
+  }
+}
+</code></pre>
+<p>可以看到，按option组织代码，功能逻辑点是碎片化的分散在各个组件选项中，特别是遇到一些内容较多的组件，需要在各个选项中反复跳转，阅读和书写代码将是一件非常痛苦的事情，大大降低了组件的可维护性。</p>
+<p>其实，在开发和阅读组件代码的时候，我们更多是关注的功能点，而不是去关注用了那些options，这正是组合式api解决的问题。</p>
+<pre class="line-numbers"><code class="language-js">// src/composables/useUserRepositories.js
+
+import { fetchUserRepositories } from '@/api/repositories'
+import { ref, onMounted, watch } from 'vue'
+
+export default function useUserRepositories(user) {
+  const repositories = ref([])
+  const getUserRepositories = async () =&gt; {
+    repositories.value = await fetchUserRepositories(user.value)
+  }
+
+  onMounted(getUserRepositories)
+  watch(user, getUserRepositories)
+
+  return {
+    repositories,
+    getUserRepositories
+  }
+}
+</code></pre>
+<pre class="line-numbers"><code class="language-js">// src/composables/useRepositoryNameSearch.js
+
+import { ref, computed } from 'vue'
+
+export default function useRepositoryNameSearch(repositories) {
+  const searchQuery = ref('')
+  const repositoriesMatchingSearchQuery = computed(() =&gt; {
+    return repositories.value.filter(repository =&gt; {
+      return repository.name.includes(searchQuery.value)
+    })
+  })
+
+  return {
+    searchQuery,
+    repositoriesMatchingSearchQuery
+  }
+}
+</code></pre>
+<pre class="line-numbers"><code class="language-js">// src/components/UserRepositories.vue
+import { toRefs } from 'vue'
+import useUserRepositories from '@/composables/useUserRepositories'
+import useRepositoryNameSearch from '@/composables/useRepositoryNameSearch'
+import useRepositoryFilters from '@/composables/useRepositoryFilters'
+
+export default {
+  components: { RepositoriesFilters, RepositoriesSortBy, RepositoriesList },
+  props: {
+    user: {
+      type: String,
+      required: true
+    }
+  },
+  setup(props) {
+    const { user } = toRefs(props)
+
+    const { repositories, getUserRepositories } = useUserRepositories(user)
+
+    const {
+      searchQuery,
+      repositoriesMatchingSearchQuery
+    } = useRepositoryNameSearch(repositories)
+
+    const {
+      filters,
+      updateFilters,
+      filteredRepositories
+    } = useRepositoryFilters(repositoriesMatchingSearchQuery)
+
+    return {
+      // 因为我们并不关心未经过滤的仓库
+      // 我们可以在 `repositories` 名称下暴露过滤后的结果
+      repositories: filteredRepositories,
+      getUserRepositories,
+      searchQuery,
+      filters,
+      updateFilters
+    }
+  }
+}
+</code></pre>
+<p>组合式API分离了组件的逻辑关注点，更具组织性，代码的可读性和可维护性也更好。而且可以将可复用的逻辑抽离成Hooks，具有更好的可复用性。</p>
+<p><img src="https://gitee.com/letwrong/Picture/raw/master/20210824102437.png" alt="" /></p>
+<p>由于组合式API的特殊性，需要使用新的API，接下来我们就来看看这些API。</p>
+<h2><a id="setup" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>setup</h2>
+<p>setup是组合式API的入口，所有的内容都需要包含在其中，它仅在组件创建<strong>之前</strong>执行<strong>一次</strong>，所以此时this并不是指向当前组件实例。</p>
+<pre class="line-numbers"><code class="language-js">setup(props,context){
+  const { attrs, slots, emit } = context;
+	// ...
+}
+</code></pre>
+<h3><a id="%E5%8F%82%E6%95%B0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>参数</h3>
+<ul>
+<li><code>{Data} props</code>：接收到的props数据，是响应式的。</li>
+<li><code>{SetupContext} context</code>：一个对象，包含组件需要的上下文信息，包含<code>attrs</code>、<code>slots</code>、<code>emit</code>。</li>
+</ul>
+<h3><a id="%E8%BF%94%E5%9B%9E%E5%80%BC" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>返回值</h3>
+<ul>
+<li>如果返回一个对象，那么该对象的 property 以及传递给 <code>setup</code> 的 <code>props</code> 参数中的 property 就都可以在模板中访问到。</li>
+</ul>
+<pre class="line-numbers"><code class="language-vue">&lt;!-- MyBook.vue --&gt;
+&lt;template&gt;
+  &lt;div&gt;{{ collectionName }}: {{ readersNumber }} {{ book.title }}&lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+  import { ref, reactive } from 'vue'
+
+  export default {
+    props: {
+      collectionName: String
+    },
+    setup(props) {
+      const readersNumber = ref(0)
+      const book = reactive({ title: 'Vue 3 Guide' })
+
+      // 暴露给 template
+      return {
+        readersNumber,
+        book
+      }
+    }
+  }
+&lt;/script&gt;
+</code></pre>
+<ul>
+<li>如果返回一个渲染函数，该函数可以直接使用在同一作用域中声明的响应式状态。</li>
+</ul>
+<pre class="line-numbers"><code class="language-js">// MyBook.vue
+
+import { h, ref, reactive } from 'vue'
+
+export default {
+  setup() {
+    const readersNumber = ref(0)
+    const book = reactive({ title: 'Vue 3 Guide' })
+    // 请注意这里我们需要显式调用 ref 的 value
+    return () =&gt; h('div', [readersNumber.value, book.title])
+  }
+}
+</code></pre>
+<h2><a id="%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%92%A9%E5%AD%90" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>生命周期钩子</h2>
+<p>为了使组合式 API 的功能和选项式 API 一样完整，我们还需要一种在 <code>setup</code> 中注册生命周期钩子的方法。组合式 API 上的生命周期钩子与选项式 API 的名称相同，但前缀为 <code>on</code>：即 <code>mounted</code> 看起来会像 <code>onMounted</code>。</p>
+<pre class="line-numbers"><code class="language-js">import { onMounted, onUpdated, onUnmounted } from 'vue'
+
+const MyComponent = {
+  setup() {
+    onMounted(() =&gt; {
+      console.log('mounted!')
+    })
+    onUpdated(() =&gt; {
+      console.log('updated!')
+    })
+    onUnmounted(() =&gt; {
+      console.log('unmounted!')
+    })
+  }
+}
+</code></pre>
+<p>setup代替了<code>beforeCreate</code>和<code>created</code>，对比如下：</p>
+<table>
+<thead>
+<tr>
+<th>选项式 API</th>
+<th>Hook inside <code>setup</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>beforeCreate</code></td>
+<td>Not needed*</td>
+</tr>
+<tr>
+<td><code>created</code></td>
+<td>Not needed*</td>
+</tr>
+<tr>
+<td><code>beforeMount</code></td>
+<td><code>onBeforeMount</code></td>
+</tr>
+<tr>
+<td><code>mounted</code></td>
+<td><code>onMounted</code></td>
+</tr>
+<tr>
+<td><code>beforeUpdate</code></td>
+<td><code>onBeforeUpdate</code></td>
+</tr>
+<tr>
+<td><code>updated</code></td>
+<td><code>onUpdated</code></td>
+</tr>
+<tr>
+<td><code>beforeUnmount</code></td>
+<td><code>onBeforeUnmount</code></td>
+</tr>
+<tr>
+<td><code>unmounted</code></td>
+<td><code>onUnmounted</code></td>
+</tr>
+<tr>
+<td><code>errorCaptured</code></td>
+<td><code>onErrorCaptured</code></td>
+</tr>
+<tr>
+<td><code>renderTracked</code></td>
+<td><code>onRenderTracked</code></td>
+</tr>
+<tr>
+<td><code>renderTriggered</code></td>
+<td><code>onRenderTriggered</code></td>
+</tr>
+<tr>
+<td><code>activated</code></td>
+<td><code>onActivated</code></td>
+</tr>
+<tr>
+<td><code>deactivated</code></td>
+<td><code>onDeactivated</code></td>
+</tr>
+</tbody>
+</table>
+<h2><a id="%E5%93%8D%E5%BA%94%E5%BC%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>响应式</h2>
+<p>在vue3中，使用了<code>Proxy</code>代替了<code>Object.defineProperty</code>，使 Vue 3 避免了 Vue 早期版本中存在的一些响应性问题。</p>
+<p>当我们从一个组件的 <code>data</code> 函数中返回一个普通的 JavaScript 对象时，Vue 会将该对象包裹在一个带有 <code>get</code> 和 <code>set</code> 处理程序的 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy">Proxy</a> 中。</p>
+<p>举个🌰：</p>
+<pre class="line-numbers"><code class="language-js">const dinner = {
+  meal: 'tacos'
+}
+
+const handler = {
+  get(target, property, receiver) { // 捕捉器
+    track(target, property)  // 跟踪property读取，收集依赖
+    return Reflect.get(...arguments) // Reflect将this绑定到Proxy
+  },
+  set(target, property, value, receiver) {
+    trigger(target, property) // 执行副作用依赖项
+    return Reflect.set(...arguments)
+  }
+}
+
+const proxy = new Proxy(dinner, handler)
+console.log(proxy.meal)
+
+// tacos
+</code></pre>
+<ol>
+<li><strong>当一个值被读取时进行追踪</strong>：proxy 的 <code>get</code> 处理函数中 <code>track</code> 函数记录了该 property 和当前副作用。</li>
+<li><strong>当某个值改变时进行检测</strong>：在 proxy 上调用 <code>set</code> 处理函数。</li>
+<li><strong>重新运行代码来读取原始值</strong>：<code>trigger</code> 函数查找哪些副作用依赖于该 property 并执行它们。</li>
+</ol>
+<p>该被代理的对象对于用户来说是不可见的，但是在内部，它们使 Vue 能够在 property 的值被访问或修改的情况下进行依赖跟踪和变更通知。</p>
+<p>那么组件是如何让渲染响应数据变化的呢？</p>
+<p>组件的模板会被编译成一个 <a href="https://v3.cn.vuejs.org/guide/render-function.html"><code>render</code></a> 函数，它用来创建 <a href="https://v3.cn.vuejs.org/guide/render-function.html#%E8%99%9A%E6%8B%9F-dom-%E6%A0%91">VNodes</a>，描述该组件应该如何被渲染。这个render函数被包裹在一个副作用中，允许 Vue 在运行时跟踪被“触达”的 property，当property变化的时候，就会执行对应的副作用，从而执行render重新渲染。当然在渲染并不会整个重新渲染，这里有一些优化手段，网上资料很多，这里不展开讲。</p>
+<p>接下来我们看看几个常用的响应式API。</p>
+<h3><a id="ref" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>ref</h3>
+<pre class="line-numbers"><code class="language-ts">interface Ref&lt;T&gt; {
+  value: T
+}
+function ref&lt;T&gt;(value: T): Ref&lt;T&gt;
+</code></pre>
+<p>接受一个内部值并返回一个响应式且可变的 ref 对象。ref 对象具有指向内部值的单个 property <code>.value</code>。</p>
+<pre class="line-numbers"><code class="language-js">import { ref } from 'vue'
+
+const counter = ref&lt;number&gt;(0)
+
+console.log(counter) // { value: 0 }
+console.log(counter.value) // 0
+
+counter.value++
+console.log(counter.value) // 1
+</code></pre>
+<p>因为在 JavaScript 中，<code>Number</code> 或 <code>String</code> 等基本类型是通过值而非引用传递的，在任何值周围都有一个封装对象，这样我们就可以在整个应用中安全地传递它，而不必担心在某个地方失去它的响应性。</p>
+<p><img src="https://gitee.com/letwrong/Picture/raw/master/20210824224551.gif" alt="pass-by-reference-vs-pass-by-value-animation" /></p>
+<p><em>注意：ref嵌套在响应式对象（如reactive、readonly）或者用在模板中，将自动解包</em>。</p>
+<h3><a id="reactive" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>reactive</h3>
+<pre class="line-numbers"><code class="language-ts">function reactive&lt;T extends object&gt;(target: T): UnwrapNestedRefs&lt;T&gt;
+</code></pre>
+<p>返回对象的响应式副本，即一个深层递归转换的proxy对象。</p>
+<pre class="line-numbers"><code class="language-js">import { reactive } from 'vue'
+interface IState{
+  count:number
+}
+// state 现在是一个响应式的状态
+const state = reactive&lt;IState&gt;({
+  count: 0,
+})
+</code></pre>
+<p><strong>ref和reactive</strong>：</p>
+<ul>
+<li>一般基础数据类型使用ref，对象使用reactive</li>
+<li>如果将对象分配为 ref 值，则通过 <a href="https://v3.cn.vuejs.org/api/basic-reactivity.html#reactive">reactive</a> 方法使该对象具有高度的响应式。</li>
+</ul>
+<h3><a id="readonly" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>readonly</h3>
+<p>接受一个对象 (响应式或纯对象) 或 <a href="https://v3.cn.vuejs.org/api/refs-api.html#ref">ref</a> 并返回原始对象的只读代理。只读代理是深层的：任何被访问的嵌套 property 也是只读的。</p>
+<pre class="line-numbers"><code class="language-js">const original = reactive({ count: 0 })
+
+const copy = readonly(original)
+
+watchEffect(() =&gt; {
+  // 用于响应性追踪
+  console.log(copy.count)
+})
+
+// 变更 original 会触发依赖于副本的侦听器
+original.count++
+
+// 变更副本将失败并导致警告
+copy.count++ // 警告!
+</code></pre>
+<h3><a id="unref" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>unref</h3>
+<p>如果参数是一个 <a href="https://v3.cn.vuejs.org/api/refs-api.html#ref"><code>ref</code></a>，则返回内部值，否则返回参数本身。这是 <code>val = isRef(val) ? val.value : val</code> 的语法糖函数。</p>
+<pre class="line-numbers"><code class="language-ts">function useFoo(x: number | Ref&lt;number&gt;) {
+  const unwrapped = unref(x) // unwrapped 现在一定是数字类型
+}
+</code></pre>
+<h3><a id="toref" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>toRef</h3>
+<p>可以用来为源响应式对象上的某个 property 新创建一个 <a href="https://v3.cn.vuejs.org/api/refs-api.html#ref"><code>ref</code></a>,它会保持对其源 property 的响应式连接。</p>
+<pre class="line-numbers"><code class="language-js">const state = reactive({
+  foo: 1,
+  bar: 2
+})
+
+const fooRef = toRef(state, 'foo')
+
+fooRef.value++
+console.log(state.foo) // 2
+
+state.foo++
+console.log(fooRef.value) // 3
+</code></pre>
+<h3><a id="torefs" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>toRefs</h3>
+<p>将响应式对象转换为普通对象，其中结果对象的每个 property 都是指向原始对象相应 property 的 <a href="https://v3.cn.vuejs.org/api/refs-api.html#ref"><code>ref</code></a>。</p>
+<pre class="line-numbers"><code class="language-js">function useFeatureX() {
+  const state = reactive({
+    foo: 1,
+    bar: 2
+  })
+
+  // 操作 state 的逻辑
+
+  // 返回时转换为ref
+  return toRefs(state)
+}
+
+export default {
+  setup() {
+    // 可以在不失去响应性的情况下解构
+    const { foo, bar } = useFeatureX()
+
+    return {
+      foo,
+      bar
+    }
+  }
+}
+</code></pre>
+<p>要识别数据是否使用上述api处理过，可以使用这些api：isRef<code>、</code>isProxy<code>、</code>isReactive<code>、</code>isReadonly`。</p>
+<h3><a id="computed" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>computed</h3>
+<pre class="line-numbers"><code class="language-ts">// 只读的
+function computed&lt;T&gt;(
+  getter: () =&gt; T,
+  debuggerOptions?: DebuggerOptions
+): Readonly&lt;Ref&lt;Readonly&lt;T&gt;&gt;&gt;
+
+// 可写的
+function computed&lt;T&gt;(
+  options: {
+    get: () =&gt; T
+    set: (value: T) =&gt; void
+  },
+  debuggerOptions?: DebuggerOptions
+): Ref&lt;T&gt;
+interface DebuggerOptions {
+  onTrack?: (event: DebuggerEvent) =&gt; void
+  onTrigger?: (event: DebuggerEvent) =&gt; void
+}
+interface DebuggerEvent {
+  effect: ReactiveEffect
+  target: any
+  type: OperationTypes
+  key: string | symbol | undefined
+}
+</code></pre>
+<ul>
+<li>接受一个 getter 函数，并根据 getter 的返回值返回一个不可变的响应式 <a href="https://v3.cn.vuejs.org/api/refs-api.html#ref">ref</a> 对象。</li>
+</ul>
+<pre class="line-numbers"><code class="language-js">const count = ref(1)
+const plusOne = computed(() =&gt; count.value + 1)
+
+console.log(plusOne.value) // 2
+
+plusOne.value++ // 错误
+</code></pre>
+<ul>
+<li>接受一个具有 <code>get</code> 和 <code>set</code> 函数的对象，用来创建可写的 ref 对象。</li>
+</ul>
+<pre class="line-numbers"><code class="language-js">const count = ref(1)
+const plusOne = computed({
+  get: () =&gt; count.value + 1,
+  set: val =&gt; {
+    count.value = val - 1
+  }
+})
+
+plusOne.value = 1
+console.log(count.value) // 0
+</code></pre>
+<h3><a id="watcheffect" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>watchEffect</h3>
+<pre class="line-numbers"><code class="language-ts">function watchEffect(
+  effect: (onInvalidate: InvalidateCbRegistrator) =&gt; void,
+  options?: WatchEffectOptions
+): StopHandle
+
+interface WatchEffectOptions {
+  flush?: 'pre' | 'post' | 'sync' // 默认：'pre'
+  onTrack?: (event: DebuggerEvent) =&gt; void
+  onTrigger?: (event: DebuggerEvent) =&gt; void
+}
+
+interface DebuggerEvent {
+  effect: ReactiveEffect
+  target: any
+  type: OperationTypes
+  key: string | symbol | undefined
+}
+
+type InvalidateCbRegistrator = (invalidate: () =&gt; void) =&gt; void
+
+type StopHandle = () =&gt; void
+</code></pre>
+<p>立即执行传入的一个函数，同时响应式追踪其依赖，并在其依赖变更时重新运行该函数。</p>
+<pre class="line-numbers"><code class="language-js">const count = ref(0)
+
+watchEffect(() =&gt; console.log(count.value))
+// -&gt; logs 0
+
+setTimeout(() =&gt; {
+  count.value++
+  // -&gt; logs 1
+}, 100)
+</code></pre>
+<ul>
+<li>停止侦听</li>
+</ul>
+<p>当 <code>watchEffect</code> 在组件的 <a href="https://v3.cn.vuejs.org/guide/composition-api-setup.html">setup()</a> 函数或<a href="https://v3.cn.vuejs.org/guide/composition-api-lifecycle-hooks.html">生命周期钩子</a>被调用时，侦听器会被链接到该组件的生命周期，并在组件卸载时自动停止。当然也可以显式调用返回值以停止侦听：</p>
+<pre class="line-numbers"><code class="language-js">const stop = watchEffect(() =&gt; {
+  /* ... */
+})
+// later
+stop()
+</code></pre>
+<ul>
+<li>清除副作用</li>
+</ul>
+<p>有时副作用函数会执行一些异步的副作用，这些响应需要在其失效时清除。所以侦听副作用传入的函数可以接收一个 <code>onInvalidate</code> 函数作入参，用来注册清理失效时的回调。当以下情况发生时，这个失效回调会被触发：</p>
+<ol>
+<li>
+<p>副作用即将重新执行时</p>
+</li>
+<li>
+<p>侦听器被停止 (如果在 <code>setup()</code> 或生命周期钩子函数中使用了 <code>watchEffect</code>，则在组件卸载时)</p>
+</li>
+</ol>
+<pre class="line-numbers"><code class="language-js">watchEffect(onInvalidate =&gt; {
+  const token = performAsyncOperation(id.value)
+  onInvalidate(() =&gt; {
+    // id has changed or watcher is stopped.
+    // invalidate previously pending async operation
+    token.cancel()
+  })
+})
+</code></pre>
+<p>另外可以使用flush option或者watchPostEffect<code>和</code>watchSyncEffect来调整其刷新时机。</p>
+<h3><a id="watch" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>watch</h3>
+<pre class="line-numbers"><code class="language-ts">// 侦听单一源
+function watch&lt;T&gt;(
+  source: WatcherSource&lt;T&gt;,
+  callback: (
+    value: T,
+    oldValue: T,
+    onInvalidate: InvalidateCbRegistrator
+  ) =&gt; void,
+  options?: WatchOptions
+): StopHandle
+
+// 侦听多个源
+function watch&lt;T extends WatcherSource&lt;unknown&gt;[]&gt;(
+  sources: T
+  callback: (
+    values: MapSources&lt;T&gt;,
+    oldValues: MapSources&lt;T&gt;,
+    onInvalidate: InvalidateCbRegistrator
+  ) =&gt; void,
+  options? : WatchOptions
+): StopHandle
+
+type WatcherSource&lt;T&gt; = Ref&lt;T&gt; | (() =&gt; T)
+
+type MapSources&lt;T&gt; = {
+  [K in keyof T]: T[K] extends WatcherSource&lt;infer V&gt; ? V : never
+}
+
+// 参见 `watchEffect` 共享选项的类型声明
+interface WatchOptions extends WatchEffectOptions {
+  immediate?: boolean // 默认：false
+  deep?: boolean
+}
+</code></pre>
+<p><code>watch</code> 需要侦听特定的数据源，并在单独的回调函数中执行副作用。默认情况下，它也是惰性的——即回调仅在侦听源发生变化时被调用。</p>
+<ul>
+<li>与 <a href="https://v3.cn.vuejs.org/api/computed-watch-api.html#watcheffect">watchEffect</a> 相比，<code>watch</code> 允许我们：
+<ul>
+<li>惰性地执行副作用；</li>
+<li>更具体地说明应触发侦听器重新运行的状态；</li>
+<li>访问被侦听状态的先前值和当前值。</li>
+</ul>
+</li>
+</ul>
+<pre class="line-numbers"><code class="language-js">// 侦听一个 getter
+const state = reactive({ count: 0 })
+watch(
+  () =&gt; state.count,
+  (count, prevCount) =&gt; {
+    /* ... */
+  }
+)
+
+// 直接侦听一个 ref
+const count = ref(0)
+watch(count, (count, prevCount) =&gt; {
+  /* ... */
+})
+</code></pre>
+<pre class="line-numbers"><code class="language-js">watch([fooRef, barRef], ([foo, bar], [prevFoo, prevBar]) =&gt; {
+  /* ... */
+})
+</code></pre>
+<p>当然，前面只是介绍了常用的API，更多的请查看<a href="https://v3.cn.vuejs.org/api/reactivity-api.html">响应式API</a>。</p>
+<h2><a id="%E5%BC%8A%E7%AB%AF" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>弊端</h2>
+<p>当然组合式API也并不是银弹，至少目前来说不是，还是存在一些问题。</p>
+<ul>
+<li>Ref 的心智负担</li>
+</ul>
+<p>读写ref必须带上.value，语法冗余，目前还没有确定的方案来解决此问题。不过尤大给出了refSuger2提案，就看后续社区认可度怎么样了。</p>
+<pre class="line-numbers"><code class="language-js">&lt;script setup&gt;
+  // declaring a variable that compiles to a ref
+  let count = $ref(1)
+
+  console.log(count) // 1
+
+  function inc() {
+    // the variable can be used like a plain value
+    count++
+  }
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;button @click=&quot;inc&quot;&gt;{{ count }}&lt;/button&gt;
+&lt;/template&gt;
+</code></pre>
+<ul>
+<li><del>难看冗长的返回语句</del></li>
+</ul>
+<p><code>setup()</code> 的返回语句变得冗长，像是重复劳动，而且还是存在代码上下横跳问。</p>
+<p>在vue3.2提供了SetupScript语法糖，就没有这个问题了。</p>
+<ul>
+<li>需要更多的自我克制</li>
+</ul>
+<p>虽然组合式 API 在代码组织方面提供了更多的灵活性，但它也需要开发人员更多地自我克制来 “正确地完成它”。也有些人担心 API 会让没有经验的人编写出面条代码。换句话说，虽然组合式 API 提高了代码质量的上限，但它也降低了下限。</p>
+<p>我们需要更多的考虑如何合理的组织代码，推荐根据逻辑关注点将程序分解成函数和模块来组织它。</p>
+<h2><a id="setupscript" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>SetupScript</h2>
+<p><code>&lt;script setup&gt;</code> 是在单文件组件 (SFC) 中使用组合式 API 的编译时语法糖。相比于普通的 <code>&lt;script&gt;</code> 语法，它具有更多优势：</p>
+<ul>
+<li>更少的样板内容，更简洁的代码。</li>
+<li>能够使用纯 Typescript 声明 props 和发出事件。</li>
+<li>更好的运行时性能 (其模板会被编译成与其同一作用域的渲染函数，没有任何的中间代理)。</li>
+<li>更好的 IDE 类型推断性能 (减少语言服务器从代码中抽离类型的工作)。</li>
+</ul>
+<pre class="line-numbers"><code class="language-vue">&lt;script setup&gt;
+// 导入
+import { capitalize } from './helpers'
+// 组件
+import MyComponent from './MyComponent.vue'
+// 变量
+const msg = 'Hello!'
+
+// 函数
+function log() {
+  console.log(msg)
+}
+
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;div @click=&quot;log&quot;&gt;{{ msg }}&lt;/div&gt;
+  &lt;div&gt;{{ capitalize('hello') }}&lt;/div&gt;
+  &lt;MyComponent /&gt;
+&lt;/template&gt;
+</code></pre>
+<p>上面<code>&lt;script setup&gt;</code>中的代码会被编译成组件<code>setup()</code>函数的内容，不同的是<code>&lt;script setup&gt;</code> 中的代码会在每次组件实例被创建的时候执行。而且所有<strong>顶层</strong>的绑定 (包括变量，函数声明，以及 import 引入的内容) 都会暴露给模板，可以直接使用，甚至连组件都无需手动注册。</p>
+<p>在继续下面的内容前，我们来看一个词<strong>编译器宏</strong>，他们不需要导入，且会在处理 <code>&lt;script setup&gt;</code> 的时候被编译处理掉。<code>&lt;script setup&gt;</code>提供了如下几个编译器宏：</p>
+<pre class="line-numbers"><code class="language-markdown">- defineProps
+- defineEmits
+- defineExpose
+- withDefaults
+</code></pre>
+<p>接下来看一下<code>&lt;script setup&gt;</code>独有的API：</p>
+<ul>
+<li><code>defineProps</code>声明Props，接收<code>props</code>选项相同的值</li>
+</ul>
+<pre class="line-numbers"><code class="language-js">const props = defineProps({
+  foo: {
+    type:String,
+    default:''
+  }
+})
+</code></pre>
+<p>如果使用了TypeScript，也可以使用纯类型声明来声明Props。</p>
+<pre class="line-numbers"><code class="language-ts">// 普通
+const props = defineProps&lt;{
+  foo: string
+  bar?: number
+}&gt;()
+
+
+// 默认值
+interface Props {
+  msg?: string
+  labels?: string[]
+}
+
+const props = withDefaults(defineProps&lt;Props&gt;(), {
+  msg: 'hello',
+  labels: () =&gt; ['one', 'two']
+})
+</code></pre>
+<ul>
+<li><code>defineEmits</code>声明emits，接收 <code>emits</code> 选项相同的值</li>
+</ul>
+<pre class="line-numbers"><code class="language-ts">// 普通
+const emit = defineEmits(['change', 'delete'])
+// TS类型声明
+const emit = defineEmits&lt;{
+  (e: 'change', id: number): void
+  (e: 'update', value: string): void
+}&gt;()
+</code></pre>
+<ul>
+<li><code>defineExpose</code>声明暴露的绑定</li>
+</ul>
+<p>使用 <code>&lt;script setup&gt;</code> 的组件是<strong>默认关闭</strong>的，也即通过模板 ref 或者 <code>$parent</code> 链获取到的组件的公开实例，不会暴露任何在 <code>&lt;script setup&gt;</code> 中声明的绑定。需要开发者明确声明暴露的属性。</p>
+<pre class="line-numbers"><code class="language-js">&lt;script setup&gt;
+import { ref } from 'vue'
+
+const a = 1
+const b = ref(2)
+
+defineExpose({
+  a,
+  b
+})
+&lt;/script&gt;
+</code></pre>
+<ul>
+<li><code>useSlots</code> 和 <code>useAttrs</code>分别对应<code>setupContext.slots</code> 和 <code>setupContext.attrs</code>，也可以在普通的组合式 API 中使用。</li>
+</ul>
+<pre class="line-numbers"><code class="language-vue">&lt;script setup&gt;
+import { useSlots, useAttrs } from 'vue'
+
+const slots = useSlots()
+const attrs = useAttrs()
+&lt;/script&gt;
+</code></pre>
+<p>目前还有一些事情是 <code>&lt;script setup&gt;</code>不能做到的，就需要和普通的<code>&lt;script&gt;</code>一起使用:</p>
+<pre class="line-numbers"><code class="language-vue">&lt;script&gt;
+// 普通 &lt;script&gt;, 在模块范围下执行(只执行一次)
+runSideEffectOnce()
+
+// 声明额外的选项
+export default {
+  inheritAttrs: false,
+  customOptions: {}
+}
+&lt;/script&gt;
+
+&lt;script setup&gt;
+// 在 setup() 作用域中执行 (对每个实例皆如此)
+&lt;/script&gt;
+</code></pre>
+<p>更多内容请查看<a href="https://v3.cn.vuejs.org/api/sfc-script-setup.html">SetupScript</a>。</p>
+<h1><a id="%E5%85%B6%E4%BB%96" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>其他</h1>
+<ul>
+<li>
+<p><a href="https://v3.cn.vuejs.org/api/sfc-style.html">Style新特性</a></p>
+<ul>
+<li>选择器</li>
+</ul>
+<pre class="line-numbers"><code class="language-css">/* 深度选择器 */
+.a :deep(.b) {
+  /* ... */
+}
+
+/* 插槽选择器 */
+:slotted(div) {
+  color: red;
+}
+
+/* 全局选择器 */
+:global(.red) {
+  color: red;
+}
+</code></pre>
+<ul>
+<li><code>&lt;style module&gt;</code></li>
+</ul>
+</li>
+</ul>
+<pre class="line-numbers"><code class="language-vue">&lt;template&gt;
+  &lt;p :class=&quot;$style.red&quot;&gt;
+    This should be red
+  &lt;/p&gt;
+&lt;/template&gt;
+
+&lt;style module&gt;
+.red {
+  color: red;
+}
+&lt;/style&gt;
+</code></pre>
+<p>也可以自定义注入的名称：</p>
+<pre class="line-numbers"><code class="language-vue">&lt;template&gt;
+  &lt;p :class=&quot;classes.red&quot;&gt;red&lt;/p&gt;
+&lt;/template&gt;
+
+&lt;style module=&quot;classes&quot;&gt;
+.red {
+  color: red;
+}
+&lt;/style&gt;
+</code></pre>
+<p>我们可以在组合API中通过<a href="https://v3.cn.vuejs.org/api/global-api.html#usecssmodule"><code>useCssModule</code></a>来使用：</p>
+<pre class="line-numbers"><code class="language-js">// 默认, 返回 &lt;style module&gt; 中的类
+useCssModule()
+
+// 命名, 返回 &lt;style module=&quot;classes&quot;&gt; 中的类
+useCssModule('classes')
+</code></pre>
+<p>使用状态驱动的动态 CSS：</p>
+<pre class="line-numbers"><code class="language-vue">&lt;script setup&gt;
+const theme = {
+  color: 'red'
+}
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;p&gt;hello&lt;/p&gt;
+&lt;/template&gt;
+
+&lt;style scoped&gt;
+p {
+  color: v-bind('theme.color');
+}
+&lt;/style&gt;
+</code></pre>
+<ul>
+<li>关注<a href="https://github.com/vuejs/rfcs">RFCS</a>，回溯历史，洞悉未来</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[【Vue3】实用指南]]></title>
+    <link href="https://www.bwrong.cn/17280329757438.html"/>
+    <updated>2024-10-04T17:09:35+08:00</updated>
+    <id>https://www.bwrong.cn/17280329757438.html</id>
+    <content type="html"><![CDATA[
+<p>通过上一篇文章<a href="https://juejin.cn/post/7003240214147629070">Vue3基础与入门</a>，我们知道了Vue3的一些基础用法，接下来就看看相关的生态和使用技巧。</p>
+<h1><a id="%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>如何创建项目</h1>
+<ul>
+<li>VueCli4.5+</li>
+</ul>
+<p>安装：</p>
+<pre class="line-numbers"><code class="language-bash">npm install -g @vue/cli
+# OR
+yarn global add @vue/cli
+</code></pre>
+<p>使用：</p>
+<pre class="line-numbers"><code class="language-bash">vue create &lt;项目名称&gt;
+</code></pre>
+<p><img src="https://cli.vuejs.org/cli-select-features.png" alt="cli-select-features" /></p>
+<p>或者直接使用<code>vue ui</code>命令，通过图形化界面方式创建。</p>
+<p>关于VueCli更多使用方法请查看<a href="https://cli.vuejs.org/zh/">官方文档</a>。</p>
+<ul>
+<li>Vite</li>
+</ul>
+<pre class="line-numbers"><code class="language-bash"># npm 6.x
+npm init vite@latest my-vue-app --template vue
+
+# npm 7+, 需要额外的双横线：
+npm init vite@latest my-vue-app -- --template vue
+
+# yarn
+yarn create vite my-vue-app --template vue
+</code></pre>
+<p>关于Vite更多使用方法请查看<a href="https://cn.vitejs.dev/">官方文档</a></p>
+<h1><a id="%E8%BF%81%E7%A7%BB%E6%8C%87%E5%8D%97" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>迁移指南</h1>
+<p>关于Vue2的项目是否要迁移到Vue3，个人觉得大可不必，因为官方后续也并没有废弃OptionsApi的计划。而且2.0后续也会维护，推出兼容组合式API的方案。如果是新项目那么可以考虑Vue3。</p>
+<p>如果确实需要迁移，建议查看官方的<a href="https://v3.cn.vuejs.org/guide/migration/migration-build.html">迁移指南</a>。</p>
+<h1><a id="%E7%94%9F%E6%80%81%E7%8E%B0%E7%8A%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>生态现状</h1>
+<p>截止到目前，vue3出来已经很长一段时间了，相关生态的适配已经不错了，基本使用是完全没问题的。</p>
+<p>下面就大概列一下：</p>
+<h2><a id="%E8%A7%84%E6%A8%A1%E5%8C%96" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>规模化</h2>
+<h3><a id="vue-router4" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>vue-router4</h3>
+<ul>
+<li>创建路由</li>
+</ul>
+<pre class="line-numbers"><code class="language-js">import { createRouter } from 'vue-router'
+const router = createRouter({
+  // ...
+})
+</code></pre>
+<ul>
+<li>mode配置</li>
+</ul>
+<pre class="line-numbers"><code class="language-js">import { createRouter, createWebHistory } from 'vue-router'
+// 还有 createWebHashHistory 和 createMemoryHistory
+
+createRouter({
+  history: createWebHistory(),
+  routes: [],
+})
+// 设置base
+createRouter({
+  history: createWebHistory('/base-directory/'),
+  routes: [],
+})
+</code></pre>
+<ul>
+<li><code>*</code>通配符路由</li>
+</ul>
+<p>Vue Router 不再使用 <code>path-to-regexp</code>，而是实现了自己的解析系统，允许路由排序并实现动态路由。</p>
+<pre class="line-numbers"><code class="language-js">const routes = [
+  // pathMatch 是参数的名称，例如，跳转到 /not/found 会得到
+  // { params: { params: { pathMatch: ['not', 'found'] }}
+  // 这要归功于最后一个 *，意思是重复的参数，如果你
+  // 打算直接使用未匹配的路径名称导航到该路径，这是必要的
+  { path: '/:pathMatch(.*)*', name: 'not-found', component: NotFound },
+  // 如果你省略了最后的 `*`，在解析或跳转时，参数中的 `/` 字符将被编码
+  { path: '/:pathMatch(.*)', name: 'bad-not-found', component: NotFound },
+]
+</code></pre>
+<ul>
+<li><code>&lt;router-view&gt;</code>、<code>&lt;keep-alive&gt;</code> 和 <code>&lt;transition&gt;</code></li>
+</ul>
+<pre class="line-numbers"><code class="language-html">&lt;router-view v-slot=&quot;{ Component }&quot;&gt;
+  &lt;transition&gt;
+    &lt;keep-alive&gt;
+      &lt;component :is=&quot;Component&quot; /&gt;
+    &lt;/keep-alive&gt;
+  &lt;/transition&gt;
+&lt;/router-view&gt;
+</code></pre>
+<ul>
+<li>组合式API</li>
+</ul>
+<pre class="line-numbers"><code class="language-js">import { useRouter, useRoute } from 'vue-router'
+
+export default {
+  setup() {
+    const router = useRouter() // 相当于 this.$router
+    const route = useRoute()  // 相当于 this.$route
+
+    function pushWithQuery(query) {
+      router.push({
+        name: 'search',
+        query: {
+          ...route.query,
+        },
+      })
+    }
+  },
+}
+</code></pre>
+<pre class="line-numbers"><code class="language-js">import { onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router'
+
+export default {
+  setup() {
+    // 与 beforeRouteLeave 相同，无法访问 `this`
+    onBeforeRouteLeave((to, from) =&gt; {
+      const answer = window.confirm(
+        'Do you really want to leave? you have unsaved changes!'
+      )
+      // 取消导航并停留在同一页面上
+      if (!answer) return false
+    })
+
+    const userData = ref()
+
+    // 与 beforeRouteLeave 相同，无法访问 `this`
+    onBeforeRouteUpdate(async (to, from) =&gt; {
+      //仅当 id 更改时才获取用户，例如仅 query 或 hash 值已更改
+      if (to.params.id !== from.params.id) {
+        userData.value = await fetchUser(to.params.id)
+      }
+    })
+  },
+}
+</code></pre>
+<p>关于VueRouter4的更多用法请查看<a href="https://next.router.vuejs.org/zh/">官方文档</a>。</p>
+<h3><a id="vuex4" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Vuex4</h3>
+<ul>
+<li>创建</li>
+</ul>
+<pre class="line-numbers"><code class="language-js">// src/store/index.js
+import { createStore } from 'vuex'
+
+export const store = createStore({
+  state () {
+    return {
+      count: 1
+    }
+  }
+})
+
+// src/main.js
+import { createApp } from 'vue'
+import { store } from './store'
+import App from './App.vue'
+
+const app = createApp(App)
+app.use(store)
+app.mount('#app')
+</code></pre>
+<ul>
+<li>组合式API</li>
+</ul>
+<pre class="line-numbers"><code class="language-js">import { useStore } from 'vuex'
+
+export default {
+  setup () {
+    const store = useStore() // 相当于 this.$store
+  }
+}
+</code></pre>
+<p>关于Vuex4的更多用法请查看<a href="https://next.vuex.vuejs.org/zh/index.html">官方文档</a>。</p>
+<h2><a id="%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>开发工具</h2>
+<h3><a id="%E8%84%9A%E6%89%8B%E6%9E%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>脚手架</h3>
+<ul>
+<li><a href="https://cli.vuejs.org/zh/">VueCli4.5+</a></li>
+<li><a href="https://cn.vitejs.dev/">Vite</a></li>
+</ul>
+<h3><a id="%E5%BC%80%E5%8F%91%E8%BE%85%E5%8A%A9" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>开发辅助</h3>
+<ul>
+<li><a href="https://github.com/johnsoncodehk/volar">Volar</a>：Volar 是一个专为 Vue 3 构建的语言支持插件。它基于<a href="https://www.npmjs.com/package/@vue/reactivity"><code>@vue/reactivity</code></a>按需计算一切，实现原生 TypeScript 语言服务级别性能。在Vue3的项目中强烈建议使用该插件，并禁用掉Vuter，它提供了很多好用的东西。</li>
+<li><a href="https://devtools.vuejs.org/">VueDevTools</a>：新版插件可以同时兼容Vue2和3，建议安装。</li>
+</ul>
+<p><img src="https://gitee.com/letwrong/Picture/raw/master/20210909112704.png" alt="image-20210909112702791" /></p>
+<h3><a id="hooks" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Hooks</h3>
+<p>Vue3带来的组合式API，让我们在复用代码逻辑的时候可以使用hooks，所以社区出现了一些比较好用的hooks库。</p>
+<ul>
+<li><a href="https://vueuse.org/">VueUse</a>：VueUse 是一个基于<a href="https://v3.vuejs.org/guide/composition-api-introduction.html">Composition API</a>的实用函数集合</li>
+<li><a href="https://www.attojs.org/">VueRequest</a>：一个能轻松帮你管理请求状态（支持SWR，轮询，错误重试，缓存，分页等）的 Vue 3 composition API 请求库</li>
+</ul>
+<h3><a id="ui%E7%BB%84%E4%BB%B6%E5%BA%93" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>UI组件库</h3>
+<h4><a id="pc" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>PC</h4>
+<ul>
+<li><a href="https://element-plus.org/#/zh-CN">Element+</a></li>
+<li><a href="https://2x.antdv.com/components/overview/">Antdv2.0</a></li>
+<li><a href="https://www.naiveui.com/zh-CN/os-theme">NaiveUI</a></li>
+</ul>
+<h4><a id="%E7%A7%BB%E5%8A%A8%E7%AB%AF" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>移动端</h4>
+<ul>
+<li><a href="https://youzan.github.io/vant/v3/#/zh-CN">VantUI 3.0</a></li>
+<li><a href="https://nutui.jd.com/3x/#/intro">NutUI 3.0</a></li>
+</ul>
+<h3><a id="%E8%B7%A8%E7%AB%AF%E6%96%B9%E6%A1%88" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>跨端方案</h3>
+<ul>
+<li><a href="https://uniapp.dcloud.io/">UniApp</a></li>
+<li><a href="https://taro.jd.com/">Taro</a></li>
+</ul>
+<h1><a id="%E5%A6%82%E4%BD%95%E5%B0%81%E8%A3%85%E8%87%AA%E5%B7%B1%E7%9A%84hooks" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>如何封装自己的Hooks</h1>
+<p>下面就就简单的实现一个执行Promise的hooks：</p>
+<pre class="line-numbers"><code class="language-js">// usePromise.js
+import { reactive, toRefs } from &quot;vue&quot;;
+interface _IOptions {
+  autoRun?: boolean;
+  params?: unknown;
+  initData?: unknown;
+}
+export default &lt;T = unknown&gt;(
+  promiseFn: (runParams?: unknown) =&gt; Promise&lt;any&gt;,
+  options: _IOptions = {}
+) =&gt; {
+  const {
+    autoRun = false,
+    params = null,
+    initData = [],
+  } = options as _IOptions;
+  const state = reactive({
+    loading: false,
+    data: initData as T,
+    error: null,
+  });
+  const run = (runParams?: unknown) =&gt; {
+    state.loading = true;
+    return promiseFn(runParams)
+      .then((res) =&gt; {
+        state.data = res;
+      })
+      .catch((error) =&gt; {
+        console.error(error);
+        state.error = error;
+      })
+      .finally(() =&gt; {
+        state.loading = false;
+      });
+  };
+  autoRun &amp;&amp; run(params);
+  return {
+    run,
+    ...toRefs(state),
+  };
+};
+</code></pre>
+<p>使用：</p>
+<pre class="line-numbers"><code class="language-js">// 接口或者异步任务
+const task = () =&gt;
+  new Promise((resolve) =&gt; {
+    setTimeout(() =&gt; {
+      resolve({
+        list: [1, 2, 3],
+      });
+    }, 1000);
+  });
+const { run, loading, data } = usePromise&lt;{ list: number[] }&gt;(task);
+const handleClick = () =&gt; {
+  run() // 手动调用run，或者使用自动触发方式
+};
+</code></pre>
+<h1><a id="%E4%B8%AA%E4%BA%BA%E4%BD%BF%E7%94%A8%E6%A8%A1%E6%9D%BF" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>个人使用模板</h1>
+<p>这个模板可能并不美观或者适合你，网上也有很多优秀的模板，但是我做这个一个是不想太复杂，网上很多都是功能非常完善，但是随之而来的就是使用成本，所以我只封装一些很基础的东西，降低上手难度。这套ui也只是为了应付我这边的项目（有些产品的审美你们懂滴），如果觉得丑，自己重新设计也很简单，或者使用其他优秀的模板。</p>
+<h3><a id="%E8%8E%B7%E5%8F%96%E9%80%94%E5%BE%84" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>获取途径</h3>
+<ul>
+<li><a href="https://github.com/BWrong/admin-antd-vue3">GitHub</a></li>
+<li><a href="https://github.com/BWrong/misthinTools">MisthinTools</a>：MisthinTools是一款辅助开发软件，目前提供了项目模板和自动部署两个功能，里面也可以下载这套模板。</li>
+</ul>
+<h3><a id="%E5%8A%9F%E8%83%BD%E6%A6%82%E8%BF%B0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>功能概述</h3>
+<ul>
+<li>数据请求封装</li>
+<li>数据Mock</li>
+<li>页面及按钮鉴权</li>
+<li>常用布局</li>
+<li>一些常用工具</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[【前端工程化】篇七 沧海遗珠-其他工具]]></title>
+    <link href="https://www.bwrong.cn/17280328680249.html"/>
+    <updated>2024-10-04T17:07:48+08:00</updated>
+    <id>https://www.bwrong.cn/17280328680249.html</id>
+    <content type="html"><![CDATA[
+<p>【前端工程化】系列文章链接：</p>
+<ul>
+<li><a href="https://www.bwrong.cn/post/dev-tools01/">01 扬帆起航-开发环境</a></li>
+<li><a href="https://www.bwrong.cn/post/dev-tools02/">02 白璧微瑕-包管理器</a></li>
+<li><a href="https://www.bwrong.cn/post/dev-tools03/">03 席卷八荒-Webpack基础篇</a></li>
+<li><a href="https://www.bwrong.cn/post/dev-tools04/">04 席卷八荒-Webpack进阶篇</a></li>
+<li><a href="https://www.bwrong.cn/post/dev-tools05/">05 未来已来-Babel</a></li>
+<li><a href="https://www.bwrong.cn/post/dev-tools06/">06 规矩方圆-ESLint</a></li>
+</ul>
+<p><em>示例代码仓库：<a href="https://github.com/BWrong/dev-tools">https://github.com/BWrong/dev-tools</a></em></p>
+<p><em>声明：如按照文中代码执行报错，请检查依赖版本是否和示例代码仓库中一致。</em></p>
+<p>除了前面我们介绍的几种工具外，其实还有很多实用的工具，但是由于太简单了，没必要单独开一篇文章来讲，所以这里就简单介绍一下。</p>
+<h1><a id="mock%E6%9C%8D%E5%8A%A1" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>MOCK服务</h1>
+<p>有的时候，为了赶进度，需要前后端同时开发，接口出来之前，就需要前端进行数据Mock，等接口出来再进行联调。</p>
+<p>数据Mock一般有如下几种方式：</p>
+<ul>
+<li>使用在线mock服务，如<a href="https://www.easy-mock.com/">Easy-mock</a>、<a href="https://hellosean1025.github.io/yapi/">Yapi</a>、<a href="https://apizza.net/pro/#/">Apizza</a>。</li>
+<li>基于<a href="https://github.com/typicode/json-server">json-server</a>提供本地服务。</li>
+<li>请求拦截，基于<a href="http://mockjs.com/">MockJs</a>创建本地mock服务。</li>
+</ul>
+<p>我在项目中一般会使用第三种请求拦截，这里就简单分享下我项目中的做法。主要使用<a href="https://www.npmjs.com/package/@bwrong/mock">@bwrong/mock</a>，利用webpack-dev-server的before钩子来做数据mock，以vue项目为例：</p>
+<p>实现了如下功能：</p>
+<ul>
+<li>mock的文件更新，会自动重载</li>
+<li>支持接收请求参数，动态处理返回数据</li>
+<li>延迟响应：可以设置延迟响应时间，应对调试loading的场景</li>
+<li>自定义header：可以全局设置header，也可以为某个mock接口设置header</li>
+<li>可以使用mockjs语法</li>
+</ul>
+<pre class="line-numbers"><code class="language-bash">npm i -D @bwrong/mock
+</code></pre>
+<pre class="line-numbers"><code class="language-js">// webpack.config.js
+const mockServer = require('@bwrong/mock');
+
+module.exports = {
+    // ...
+    devServer: {
+        before(app) {
+          mockServer(app, resolve('./mock/'), {
+            pattern: '**/[^_]*.js',
+            delay: 0,
+            prefix: '/api',
+            debug: true,
+            headers: {},
+            watchOptions: {}
+          });
+        }
+    }
+}
+</code></pre>
+<p>在mock目录中，<code>index.js</code>用来做文件自动载入，而其他文件则为模拟数据，每个功能模块可以分割为一个文件，模块化管理。</p>
+<p><em>提示：mock的这些文件是在webpack中使用的，需要遵循commonjs规范。</em></p>
+<pre class="line-numbers"><code class="language-js">const list = {
+  code: 0,
+  msg: '',
+  'data|10': [
+    {
+      id: '@id',
+      name: '@cname',
+      des: '@csentence',
+      web: '@url',
+      photo: '@image',
+      address: '@county(true)',
+      email: '@email',
+      lastIp: '@ip',
+      date: '@datetime(yyyy-MM-dd hh:mm:ss)'
+    }
+  ]
+};
+const info = {
+  code: 0,
+  msg: '',
+  data: {
+    id: '@id',
+    name: '@cname',
+    department: 'xxx',
+    jibTitle: 'yyy',
+    org: 'zzzzz',
+    count: {
+      sum: '@integer(0,10000)',
+      score: '@float(0,5,0,2)',
+      today: '@integer(0,200)',
+      reservation: '@integer(0,200)'
+    }
+  }
+};
+module.exports = [
+  {
+    url: '/user',
+    response: list
+  },
+  {
+    url: '/testhtml',
+    method: 'get',
+    headers: {
+      'Content-Type': 'text/html'
+    },
+    response: '&lt;html&gt;&lt;h1&gt;html测试&lt;/h1&gt;&lt;a href=&quot;https://www.bwrong.cnm&quot;&gt;bwrong&lt;/a&gt;&lt;/html&gt;'
+  },
+  {
+    url: '/user/info/:id',
+    response: (req,res) =&gt; {
+      return {
+        ...info,
+        id: req.params.id
+      }
+    }
+  }
+];
+</code></pre>
+<p>如上仅提供一种思路，如果有更好的方法，欢迎勾搭。</p>
+<h1><a id="browserslist" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Browserslist</h1>
+<p>用于在不同前端工具之间共享目标浏览器和Node.js版本的配置，消除在每个工具中进行配置的烦恼。<br />
+可用于：</p>
+<ul>
+<li>autoprefix</li>
+<li>babel</li>
+<li>postcss-preset-env</li>
+<li>eslint-plugin-compat</li>
+<li>stylelint-no-unsupported-browser-features</li>
+<li>postcss-normalize</li>
+<li>obsolete-webpack-plugin</li>
+</ul>
+<h3><a id="%E9%85%8D%E7%BD%AE%E6%96%B9%E5%BC%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>配置方式</h3>
+<ul>
+<li>package.json中</li>
+</ul>
+<pre class="line-numbers"><code class="language-json">&quot;browserslist&quot;: [
+    &quot;defaults&quot;,
+    &quot;not IE 11&quot;,
+    &quot;not IE_Mob 11&quot;,
+    &quot;maintained node versions&quot;
+]
+</code></pre>
+<ul>
+<li>.browserslistrc</li>
+</ul>
+<pre class="line-numbers"><code class="language-plain_text">last 1 version
+&gt; 1%
+IE 10
+</code></pre>
+<p>更多使用方式请查看<a href="https://github.com/browserslist/browserslist">browserslist</a>。</p>
+<h1><a id="postcss" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>PostCSS</h1>
+<p>PostCSS是一个允许使用插件来进行样式转换的工具，本身相当于一个平台，通过这个平台我们可以添加相应的插件，来实现各种转换，如<code>autoprefixer</code>、<code>cssmodules</code>、<code>stylelint</code>，而且可以和很多工具结合使用。</p>
+<pre class="line-numbers"><code class="language-js">// webpack.config.js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'style-loader',
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+            }
+          },
+          {
+            loader: 'postcss-loader'
+          }
+        ]
+      }
+    ]
+  }
+}
+</code></pre>
+<pre class="line-numbers"><code class="language-js">// postcss.config.js
+module.exports = {
+  plugins: [
+    require('precss'),
+    require('autoprefixer')
+  ]
+}
+</code></pre>
+<p>具体的使用方法请查看官方文档<a href="https://postcss.org/">官网</a>。</p>
+<h1><a id="git" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Git</h1>
+<p>我相信，git大家都很熟悉了，而且网上的教程也有很多，这里我就不介绍了。但是在使用的过程中我发现有两个问题还是值得再提一下。</p>
+<ul>
+<li>分支管理：很多人都是只有一个master分支，所有的东西都是在上面操作，这样在大一点的团队或者有多个环境的时候，会很不方便。所以便有了分支管理策略的说法，可以看看阮一峰老师的文章<a href="http://www.ruanyifeng.com/blog/2012/07/git.html">Git分支管理策略</a>。</li>
+<li>提交信息：我曾经遇到过一个同事，所有的git提交信息都是'修改'，如果要让做代码回溯，我相信加班是跑不脱了。友好的提交信息不仅可以清晰的看到开发记录，而且还可以用来生成更新日志。关于提交规范，社区其实有很多方案，目前用的比较多的是<a href="https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/edit#heading=h.greljkmo14y0">Angular规范</a>，也可以看看阮一峰老师的另一篇文章<a href="http://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html">Commit message 和 Change log 编写指南</a></li>
+</ul>
+<p>这些方案都是一些参考，并不一定就适合每个团队，最好的是根据团队情况制定出符合需求的一套规范，因地制宜才能事半功倍。</p>
+<p>阅读资料：<a href="https://www.notion.so/57b80f3f75b741e3a54546c20ae5e8e7">项目规范化开发探索</a></p>
+<h1><a id="editorconfig" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>EditorConfig</h1>
+<p>EditorConfig有助于维护跨多个编辑器和IDE从事同一项目的多个开发人员的一致编码风格，团队必备神器。</p>
+<p><strong>.editorconfig文件</strong>:</p>
+<pre class="line-numbers"><code class="language-markdown"># EditorConfig is awesome: https://EditorConfig.org
+
+# top-most EditorConfig file 表示是最顶层的配置文件，发现设为true时，才会停止查找.editorconfig文件
+root = true
+
+# Unix-style newlines with a newline ending every file 对于所有的文件  始终在文件末尾插入一个新行
+[*]
+end_of_line = lf
+insert_final_newline = true
+
+# Matches multiple files with brace expansion notation
+# Set default charset  对于所有的js,py文件，设置文件字符集为utf-8
+[*.{js,py}]
+charset = utf-8
+
+# 4 space indentation 控制py文件类型的缩进大小
+[*.py]
+indent_style = space
+indent_size = 4
+
+# Tab indentation (no size specified) 设置某中文件的缩进风格为tab Makefile未指明
+[Makefile]
+indent_style = tab
+
+# Indentation override for all JS under lib directory  设置在lib目录下所有JS的缩进为
+[lib/**.js]
+indent_style = space
+indent_size = 2
+
+# Matches the exact files either package.json or .travis.yml 设置确切文件 package.json/.travis/.yml的缩进类型
+[{package.json,.travis.yml}]
+indent_style = space
+indent_size = 2
+
+</code></pre>
+<p>配置说明：</p>
+<pre class="line-numbers"><code class="language-plain_text">
+indent_style    设置缩进风格(tab是硬缩进，space为软缩进)
+indent_size     用一个整数定义的列数来设置缩进的宽度，如果indent_style为tab，则此属性默认为tab_width
+tab_width       用一个整数来设置tab缩进的列数。默认是indent_size
+end_of_line     设置换行符，值为lf、cr和crlf
+charset         设置编码，值为latin1、utf-8、utf-8-bom、utf-16be和utf-16le，不建议使用utf-8-bom
+trim_trailing_whitespace  设为true表示会去除换行行首的任意空白字符。
+insert_final_newline      设为true表示使文件以一个空白行结尾
+root           表示是最顶层的配置文件，发现设为true时，才会停止查找.editorconfig文件
+</code></pre>
+<h1><a id="%C2%A0%E8%84%9A%E6%89%8B%E6%9E%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a> 脚手架</h1>
+<p>脚手架大家都不陌生，VueCli、Vite、CreateReactApp我相信大家都是比较熟悉了，他们的目的都是快速生成项目模板，提高开发效率。但是这些模板都是很基础的，当团队有一定规模或者有一定积累的时候，定制一些自己的项目模板就很有必要了。这时就可以考虑自己开发一套脚手架来管理这些模板，方便管理维护。</p>
+<p>这类的文章网上多如牛毛，其内容都是差不多，大致分为两种：</p>
+<ul>
+<li>基于<a href="https://yeoman.io/">Yeoman</a>实现：相当于一个开发脚手架的框架，很多东西它已经提供，自己吧模板放进去就OK，社区也有很多模板可以使用。</li>
+<li>开发脚手架：灵活，整个底层需要自己借助一些工具实现，具体的可以查看我之前的一篇博客<a href="https://www.bwrong.cn/post/cli/">也来盘盘前端脚手架的那些事儿</a>。</li>
+</ul>
+<h1><a id="%E7%BB%93%E8%AF%AD" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>结语</h1>
+<p>终于写完了，原本计划一个月结果拖拖拉拉到差不多三个月，不过总归是有所成果了。</p>
+<h3><a id="%E5%88%9D%E8%A1%B7" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>初衷</h3>
+<p>写这系列文章，其实有几个因素：</p>
+<ul>
+<li>自己对效率工具类的东西比较感兴趣，可能是因为技术太渣了吧</li>
+<li>帮助团队提高开发效率和质量，现在不都是讲合作吗，只有团队提升了，自己才能获得更好的成长，水涨船高嘛</li>
+</ul>
+<h3><a id="%E9%97%AE%E9%A2%98" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>问题</h3>
+<p>由于第一次写这种长文，问题不少：</p>
+<ul>
+<li>文章内容组织欠佳</li>
+<li>文章排班还需要优化</li>
+<li>文字功底还需要提升</li>
+<li>拖延比较严重，前面激情满满，后面停滞不前</li>
+<li>...</li>
+</ul>
+<h3><a id="%E5%90%8E%E7%BB%AD%E8%AE%A1%E5%88%92" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>后续计划</h3>
+<p>后面如果有时间，这个系列可能还会更新一些东西：</p>
+<ul>
+<li>开发规范</li>
+<li>自动化测试</li>
+<li>CI/CD</li>
+</ul>
+<p>自己收获还是蛮大的，为了尽量保证内容的完备性和正确性，会去查阅很多资料，加深了记忆；而且把这些列知识串起来了，不再是一个个孤岛，更加系统化了；另外有了这部分内容，收藏夹好多吃灰的文章就可以解放了。</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[【前端工程化】篇六 规矩方圆-ESLint]]></title>
+    <link href="https://www.bwrong.cn/17280328175326.html"/>
+    <updated>2024-10-04T17:06:57+08:00</updated>
+    <id>https://www.bwrong.cn/17280328175326.html</id>
+    <content type="html"><![CDATA[
+<p>字数：7543， 阅读时间：20分钟，点击<a href="https://www.bwrong.cn/post/dev-tools06/">阅读原文</a></p>
+<blockquote>
+<p>天下从事者，不可以无法仪。无法仪而其事能成者，无有也。        -------墨子《法仪》</p>
+</blockquote>
+<p>【前端工程化】系列文章链接：</p>
+<ul>
+<li><a href="https://www.bwrong.cn/post/dev-tools01/">01 扬帆起航-开发环境</a></li>
+<li><a href="https://www.bwrong.cn/post/dev-tools02/">02 白璧微瑕-包管理器</a></li>
+<li><a href="https://www.bwrong.cn/post/dev-tools03/">03 席卷八荒-Webpack基础篇</a></li>
+<li><a href="https://www.bwrong.cn/post/dev-tools04/">04 席卷八荒-Webpack进阶篇</a></li>
+<li><a href="https://www.bwrong.cn/post/dev-tools05/">05 未来已来-Babel</a></li>
+</ul>
+<p><em>示例代码仓库：<a href="https://github.com/BWrong/dev-tools">https://github.com/BWrong/dev-tools</a></em></p>
+<p><em>声明：如按照文中代码执行报错，请检查依赖版本是否和示例代码仓库中一致。</em></p>
+<p>古人有云“不以规矩，不能成方圆”，看来规矩方圆之说古已有之，而在高度文明的现代社会，法制规则更加完善，只有大家遵守这些规则，我们的生活才能井井有条，社会才能稳定和谐。</p>
+<p>万事均有规矩，编程也是如此，尤其是在多人协作的时候，遵循好的编程规范尤其重要，所以也诞生了很多的工具来做代码审查工作。这篇文章我们仅介绍<code>ESLint</code>，它也是目前前端最流行的代码审查工具。</p>
+<h1><a id="%E6%A6%82%E8%BF%B0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>概述</h1>
+<p><code>JavaScript</code>是一门动态弱类型语言，虽说使用时很灵活，不过也容易出错。而<code>Lint</code>工具有助于我们在开发时就发现由于书写不规范导致的一些问题。</p>
+<p>Lint工具主要解决如下问题：</p>
+<ul>
+<li>避免一些低级错误的发生，找出语法错误，冗余代码</li>
+<li>确保代码遵循推荐的风格，统一团队的代码规范</li>
+</ul>
+<h2><a id="%E8%BF%9B%E5%8C%96%E5%8F%B2" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>进化史</h2>
+<p>在Lint工具（仅指JS）的进化过程中，诞生过三个有代表性的工具：JSLint、JSHint 和 ESLint。</p>
+<ul>
+<li>JSLint</li>
+</ul>
+<p>JSLint是第一个JavaScript的Lint工具，它是由Douglas Crockford 大佬（《JavaScript 语言精粹》作者）开发，当时前端还处在萌芽阶段，一片混沌，Lint工具作用巨大。不过如作者大佬一般，JSLint极具个人风格，它不允许使用者更改规则，如果要使用它，就必须遵守全部规则。</p>
+<ul>
+<li>JSHint</li>
+</ul>
+<p>由于JSLint无法更改规则，很多人无法忍受，所以JSHint出现了，它提供了丰富的配置项，开发者可以根据自己的情况来做个性化的定制。而且它是由社区驱动，所以它出现后，用户迅速增长。早期的jQuery也是采用JSHint做代码检查。</p>
+<ul>
+<li>ESLint</li>
+</ul>
+<p>在2013年的时候，Nicholas C. Zakas (《JavaScript 高级程序设计》作者)在开发时，想在JSHint增加一条自定义处理规则，可是发现并不可行。受到PHP Linter的启发，在同年六月份的一个周末，大神就自己搞了一个Linter，这就是ESLint。这就是牛人，一言不合就造轮子。</p>
+<p>与前面两个工具不同，ESLint是通过AST的方式对代码进行解析检测，具有很高的扩展性，所以在ES6和jsx这类东西出现后，只要有对应的解析器或插件，就可以快速支持，这是其他两个工具无法实现的。所以ESLint在ES6出现后迅速火了起来，Babel也为它提供了babel-eslint解析器，让ESLint更加流行。</p>
+<p>在2016年，ESLint整合了和它同一时期诞生的另一个Linter工具JSCS（也是基于AST的方式），至此，ESLint坐稳了JS Linter的王座，成为了前端工程化必不可少的一个工具。</p>
+<p>在TypeScript前期，并没有使用ESLint，而是使用了自研TSLint，但是由于其设计问题，在2019年的时候，官方放弃了TSLint，投入了ESLint的怀抱，通过为ESLint提供解析器和插件的方式来进行支持。</p>
+<p>ESLint无疑是成功的，它的成功得益于采用了良好的架构设计：</p>
+<ol>
+<li>关注点分离：解析器、核心、规则都是相对独立的，各司其职，具有良好的可维护性和可扩展性。</li>
+<li>支持自定义规则：可以自定义规则及相关事件，给与开发者更多的扩展空间。迄今，社区已经拥有许多的规则插件，如<code>eslint-plugin-react</code>，<code>eslint-plugin-vue</code>等。</li>
+<li>保持内核尽量简单：内核尽量保持简单，通过插件的方式进行功能扩展，核心不和任何框架、库耦合，具有较强的适应性。</li>
+</ol>
+<p>关于ESLint成功的原因，Zakas也专门写了<a href="https://humanwhocodes.com/blog/2016/02/reflections-on-eslints-success/">一篇文章</a>，想了解的可以看看。</p>
+<p>参考资料：<a href="https://zhuanlan.zhihu.com/p/34656263/">JS Linter 进化史</a></p>
+<h2><a id="eslint" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>ESLint</h2>
+<p><code>ESLint</code>官方定义为一个用于查找并报告代码中问题的工具，并且支持部分问题自动修复。除了JSLint和JSHint类似的功能外，ESLint还有如下特点：</p>
+<ul>
+<li>ESLint使用<a href="https://github.com/eslint/espree">Espree</a>进行JavaScript解析。</li>
+<li>ESLint使用AST评估代码中的模式。</li>
+<li>ESLint是完全可插拔的，每个规则都是一个插件，可以在运行时添加更多内容。</li>
+</ul>
+<p>说了这么多，下面我们就一起来看下如何使用ESLint。</p>
+<h1><a id="%E4%BD%BF%E7%94%A8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>使用</h1>
+<h2><a id="%E5%AE%89%E8%A3%85" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>安装</h2>
+<p>可以采用全局或者本地安装，推荐使用本地安装，后面我们也是采用此方式。</p>
+<pre class="line-numbers"><code class="language-shell"># 全局安装
+npm install -g eslint
+# 项目本地安装（推荐）
+npm install -D eslint
+</code></pre>
+<p>安装成功后，在项目根目录执行如下命令，完成一系列设置来创建配置文件。</p>
+<pre class="line-numbers"><code class="language-shell">npx eslint --init
+</code></pre>
+<p><img src="https://gitee.com/letwrong/Picture/raw/master/20200918112423.png" alt="image-20200918112422980" /></p>
+<p>执行如上命令，会在项目根目录创建一个<code>.eslintrc.js</code>文件，内容如下：</p>
+<pre class="line-numbers"><code class="language-js">module.exports = {
+    'env': { // 环境设置
+        'browser': true,
+        'es2021': true,
+        'node': true
+    },
+    'extends': 'eslint:recommended', // 使用官方或社区预设的规则
+    'parserOptions': { // 解析器配置
+        'ecmaVersion': 12,
+        'sourceType': 'module'
+    },
+    'rules': {  // 自定义规则
+        'indent': [
+            'error',
+            4
+        ],
+        'linebreak-style': [
+            'error',
+            'windows'
+        ],
+        'quotes': [
+            'error',
+            'single'
+        ],
+        'semi': [
+            'error',
+            'always'
+        ]
+    }
+};
+</code></pre>
+<p>这个就是ESLint的配置文件，当然还有很多其他方式进行配置，我们在后面的配置部分会详细介绍，这里我们暂时使用这种方式。</p>
+<h2><a id="%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>如何使用</h2>
+<p>ESLint使用非常灵活，可以在多种场景使用，下面我们就瞧瞧。</p>
+<h3><a id="%E5%91%BD%E4%BB%A4%E8%A1%8C" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>命令行</h3>
+<p>现在创建一个文件<code>./src/index.js</code>：</p>
+<pre class="line-numbers"><code class="language-js">// ./src/index.js
+let test = 1
+</code></pre>
+<p>然后在命令行输入命令：</p>
+<pre class="line-numbers"><code class="language-shell">npx eslint ./src/index.js
+</code></pre>
+<p><img src="https://gitee.com/letwrong/Picture/raw/master/20200918171659.png" alt="image-20200918171659654" /></p>
+<p>可以看到，ESLint给我们提示了两个错误：</p>
+<ul>
+<li><code>test</code>变量定义了，但是未使用</li>
+<li><code>let test = 1</code>后面缺少分号，因为在上面的配置文件中是要求始终添加分号的</li>
+</ul>
+<p>这就是ESLint的第一个功能：找出并警告代码中有问题的地方。</p>
+<p>像给代码加上分号这种小事情，其实没必要我们亲力亲为的（懒果然是程序猿的共性），ESLint提供了自动修复的功能，可以帮我们自动修复一些简单的问题。</p>
+<p>执行命令，加上<code>--fix</code>参数：</p>
+<pre class="line-numbers"><code class="language-shell">npx eslint --fix ./src/index.js
+</code></pre>
+<p><img src="https://gitee.com/letwrong/Picture/raw/master/20200918172959.png" alt="image-20200918172959131" /></p>
+<p>我们可以看到，只有一个错误了，另外再看下<code>./src/index.js</code>：</p>
+<pre class="line-numbers"><code class="language-js">// ./src/index.js
+let test = 1;
+</code></pre>
+<p>是不是自动加上分号了呢？oh~oh!，太酷了。</p>
+<p><strong>注意：</strong></p>
+<ol>
+<li>自动修复只能修复一些简单的问题，一般是书写格式之类的，修复不会影响代码的执行结果，如上面的第一个问题，ESLint是不知道如何修复，所以它不会处理，而直接抛出报错或警告了。</li>
+<li>执行命令时，除了指定具体的文件外，也可以使用通配符，指定多个文件，如<code>npx eslint ./src/**</code>就可以检查src目录下的所有文件。</li>
+</ol>
+<p>上面我们介绍了ESLint最基础的使用场景---命令行方式，这种方式除了上面的用法，还可以传入很多参数，下面列出几个常用的：</p>
+<ul>
+<li><code>-c</code>， <code>--config</code>：指定配置文件</li>
+<li><code>--env</code>：指定执行环境</li>
+<li><code>--global</code>：定义全局变量</li>
+<li><code>-h</code>：查看帮助</li>
+</ul>
+<p>更多用法请查看<a href="https://eslint.org/docs/user-guide/command-line-interface">官方文档</a>。</p>
+<h3><a id="webpack%EF%BC%88eslint-loader%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Webpack（eslint-loader）</h3>
+<p>前面我们介绍了如何在命令行模式下的使用，在需要检测的时候必须要在命令行中执行相关命令才可以，有没有方法能够在我们启动项目的时候自动运行呢？</p>
+<p>答案是肯定的，webpack作为当下最流行的构建工具，ESLint也为其提供了<code>eslint-loader</code>，以在构建的时候来做代码检查和修复。</p>
+<p>首先需要安装<code>eslint-loader</code>和<code>eslint</code>：</p>
+<pre class="line-numbers"><code class="language-shell">npm install eslint-loader eslint --save-dev
+</code></pre>
+<p>然后在webpack配置中添加对应配置：</p>
+<pre class="line-numbers"><code class="language-js">// webpack.config.js
+module.exports = {
+  // ...
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'eslint-loader',
+        options: {
+          // 这里是eslint的配置，建议是用配置文件
+        },
+      },
+    ],
+  },
+  // ...
+};
+</code></pre>
+<p><strong>注意：</strong></p>
+<ol>
+<li>因为ESLint是针对我们书写的代码做检查，而不是针对其他loader编译后的代码，所以我们必须要保证<code>eslint-loader</code>最先执行，所以应该放在该规则的最后面，也可以使用<code>enforce: 'pre'</code>设置来强制设置到其他loader前面执行。</li>
+<li><code>eslint-loader</code>的配置推荐放在eslint的配置文件中，而不放在loader的options中。</li>
+</ol>
+<p>如上配置以后，在执行构建命令的时候，就会先执行检查并在终端输出检查结果（仅做检查，不会影响构建结果）。</p>
+<p><img src="https://gitee.com/letwrong/Picture/raw/master/20200922160134.png" alt="image-20200922160134442" /></p>
+<p>不过，我们一般编码的时候，终端都运行在后台的，查看这些信息就必须要来回切换，甚是不便。作为一个懒癌患者，肯定是不愿意的。用过vue-cli的同学都知道，如果有错误提示，是会在浏览器弹出浮层提示的。</p>
+<p>其实配置相当简单，不明白的自己回去看看前面webpack那部分吧。</p>
+<pre class="line-numbers"><code class="language-js">// webpack.config.js
+module.exports = {
+    // ...
+ 	devServer: {
+        overlay: true  // 默认此项为false，设置为true即可
+    }
+    // ...
+}
+</code></pre>
+<p><img src="https://gitee.com/letwrong/Picture/raw/master/20200922161111.png" alt="image-20200922161111872" /></p>
+<h3><a id="%E5%9C%A8%E7%BC%96%E8%BE%91%E5%99%A8%E4%B8%AD%E4%BD%BF%E7%94%A8%EF%BC%88vscode%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>在编辑器中使用（VSCode）</h3>
+<p>前面介绍的使用方式已经非常方便了，但是作为一个懒癌重度患者，在使用中我还是发现了一些问题：</p>
+<ul>
+<li>需要编译后才能发现代码中的问题，而不是书写代码的时候，所以缺乏及时性，那能在书写的时候就立即提示吗？</li>
+<li>如果是一些简单的格式问题，在保存前，能不能执行自动修复，而不用我们来操心呢？</li>
+<li>一些古老的项目并没有使用webpack来构建，在我们编码的时候，怎么给与错误提示呢？</li>
+</ul>
+<p>果然懒才是生产力，一些大佬为编辑器提供了ESLint插件，完美的解决了如上的问题。</p>
+<p><em>提示：下面仅介绍VSCode中的使用，其他编辑器请自行查阅使用方法。</em></p>
+<p>首先安装<a href="https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint">ESLint</a>插件，在VSCode中<code>ctrl+p</code>然后输入以下命令：</p>
+<pre class="line-numbers"><code class="language-shell">ext install dbaeumer.vscode-eslint
+</code></pre>
+<p><img src="https://gitee.com/letwrong/Picture/raw/master/20200922163527.png" alt="image-20200922163527375" /></p>
+<p>现在用VSCode打开前面的代码，可以看到有的代码下面会有黄色（警告）或者红色（错误）的波浪线提示，把鼠标移上去，还可以看到错误详情以及修复方案。</p>
+<p><img src="https://gitee.com/letwrong/Picture/raw/master/20200922163709.png" alt="image-20200922163709515" /></p>
+<p>现在，我们书写代码的时候，就会立即给与提示，不用再去终端或者浏览器查看错误信息，然后再去文件中查找问题代码了。</p>
+<p>那么，第二问题呢，一些简单的格式能不能自动修复呢？</p>
+<p>只需要在VSCode的配置中加上如下配置，当保存文件的时候，一些简单的格式问题就会被自动修复，是不是又可以多撸几把王者农药了呢。</p>
+<pre class="line-numbers"><code class="language-json">&quot;editor.codeActionsOnSave&quot;: {
+    &quot;source.fixAll.eslint&quot;: true
+ }
+</code></pre>
+<p><img src="https://gitee.com/letwrong/Picture/raw/master/20200922170339.gif" alt="img" /></p>
+<p><em>提示：vscode-eslint是支持<a href="https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint">配置</a>的，提供了<code>eslint.options</code>来设置全局配置，如果项目中没有配置，会以这里的配置兜底。</em></p>
+<pre class="line-numbers"><code class="language-json">&quot;eslint.options&quot;: {
+  &quot;root&quot;: true,
+  &quot;plugins&quot;: [],
+  &quot;env&quot;: {},
+  &quot;extends&quot;: [],
+  &quot;rules&quot;: {},
+  &quot;exclude&quot;: []
+  &quot;parserOptions&quot;: {}
+},
+</code></pre>
+<p>对于一些项目，即使没有使用webpack也没有关系，只需要在项目中安装ESLint和添加对应的配置，在编写代码的时候也是能够生效的。</p>
+<blockquote>
+<p>ESLint插件还提供了全局的方式，全局安装ESLint，并在VSCode的ESLint插件配置中放入eslint规则配置，则会对所有打开的文件生效。</p>
+<p>如果项目中也有自己的配置，那么会执行配置合并，如果配置项有冲突，项目中的配置项拥有优先使用权，会覆盖全局的配置。</p>
+</blockquote>
+<p>至此，ESLint常见的使用方式就介绍完了，接下来我们就来看看比较核心的东东。</p>
+<h1><a id="%E9%85%8D%E7%BD%AE" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>配置</h1>
+<p>ESLint提供了丰富的配置项，让使用者可以根据自己的需求对其<strong>解析器</strong>、<strong>环境</strong>、<strong>全局</strong>、<strong>规则</strong>、<strong>插件</strong>进行配置。</p>
+<p>具体这些配置项我们后面再详细介绍，先来看看如何添加配置。</p>
+<h2><a id="%E9%85%8D%E7%BD%AE%E6%96%B9%E5%BC%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>配置方式</h2>
+<p>ESLint支持多种配置方式，总结起来大概分为如下几种：</p>
+<ul>
+<li><a href="https://eslint.org/docs/user-guide/command-line-interface#-rule">命令行</a>：在执行eslint命令的时候，将配置信息通过cli提供的配置参数传入，使用比较繁琐，一般不使用此方式。</li>
+</ul>
+<pre class="line-numbers"><code class="language-shell"># 一些常用配置
+# --env：设置环境
+eslint --env browser,node file.js
+eslint --env browser --env node file.js
+# --global：设置全局变量
+eslint --global require,exports:true file.js
+eslint --global require --global exports:true
+# --rule：设置规则
+eslint --rule 'quotes: [2, double]'
+eslint --rule 'guard-for-in: 2' --rule 'brace-style: [2, 1tbs]'
+eslint --rule 'jquery/dollar-sign: 2'
+# ...
+</code></pre>
+<ul>
+<li><a href="https://eslint.org/docs/user-guide/configuring#using-configuration-comments">内联注释</a>：将配置以注释的方式写在代码文件中（一般放在文件的最前面），由于缺乏复用性，所以也不常用，如果某个文件需要特殊配置，可以采用此方式。</li>
+</ul>
+<pre class="line-numbers"><code class="language-js">/* eslint-env browser, node */     // 设置环境
+/* global var1, var2:writable */   // 设置全局变量
+/* eslint eqeqeq: &quot;off&quot;, curly: &quot;error&quot; */    // 设置规则
+</code></pre>
+<ul>
+<li><a href="https://eslint.org/docs/user-guide/configuring#using-configuration-files-2">配置文件</a>（推荐）：提供<code>.eslintrc.*</code>文件或者在<code>package.json</code>中<code>eslintConfig</code>属性中配置。</li>
+</ul>
+<p><em>提示：由于使用配置文件简单直观，所以是我最常用的方式，下面的内容也基于此方式，其他方式也大同小异，唯格式有所差异。</em></p>
+<p>上面的.eslintrc.中的是指ESLint的配置文件支持多种文件格式：<code>js</code>、<code>cjs</code>、<code>yaml</code>、<code>yml</code>、<code>json</code>，如果在当前目录同时存在多个格式的配置文件，ESLint仅会选择其中一个，优先选择的顺序如下：</p>
+<ol>
+<li><code>.eslintrc.js</code>（推荐，<code>eslint --init</code>生成的默认就是此格式的配置）</li>
+<li><code>.eslintrc.cjs</code></li>
+<li><code>.eslintrc.yaml</code></li>
+<li><code>.eslintrc.yml</code></li>
+<li><code>.eslintrc.json</code></li>
+<li><code>.eslintrc</code>(废弃)</li>
+<li><code>package.json</code></li>
+</ol>
+<p>由于<code>.eslintrc.js</code>配置比较灵活且具有较高的优先级，所以一般我们都适用此格式的配置文件。</p>
+<h4><a id="%E9%85%8D%E7%BD%AE%E7%BB%84%E5%90%88%E5%8F%8A%E4%BC%98%E5%85%88%E7%BA%A7" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>配置组合及优先级</h4>
+<p>当使用<code>.eslintrc.*</code>和<code>package.json</code>方式进行配置时，会触发级联组合行为。它的工作方式是：</p>
+<ul>
+<li>优先使用就近的<code>.eslintrc.*</code>配置，然后在所有父级目录依次查找所有配置，以此类推，直到根目录或找到某个配置了<code>&quot;root&quot;:true</code>的配置文件，才会停止继续向上级查找。</li>
+<li>上一步匹配到的所有配置将会按照查找到的顺序（由内而外）进行组合，内层的配置拥有更高的优先级，如果组合后配置项有冲突，将采用高优先级的配置项（内&gt;外）。</li>
+<li>如果在同一目录中同时有<code>.eslintrc.*</code>和<code>package.json</code>文件，将使用前者的配置，后者的配置将会忽略。</li>
+<li>可以在配置中添加<code>&quot;root&quot;:true</code>将该目录强制设置为根目录，来阻止继续查找。</li>
+</ul>
+<p>举个:chestnut:：</p>
+<pre class="line-numbers"><code class="language-plain_text">your-project
+├── package.json  &lt;- { &quot;eslintConfig&quot;: {...} }
+├── .eslintrc.js
+├── lib
+  └── source.js
+└─┬ test1
+  ├── .eslintrc.js
+  └── index.js
+└─┬ test2
+  ├── .eslintrc.js  &lt;- { &quot;root&quot;: true }
+  └── index.js
+</code></pre>
+<p>如上的目录结构，大概有以下几种组合方式：</p>
+<table>
+<thead>
+<tr>
+<th>目标</th>
+<th>生效配置</th>
+<th>组合方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/lib/*</code></td>
+<td><code>/.eslintrc.js</code></td>
+<td><code>lib</code>目录无配置文件，会向上级查找，找到<code>/.eslintrc.js</code>和<code>/package.json</code>，但是它们在同一目录，仅<code>/.eslintrc.js</code>生效。</td>
+</tr>
+<tr>
+<td><code>/test1/*</code></td>
+<td><code>/test1/.eslintrc.js</code>+<code>/.eslintrc.js</code></td>
+<td><code>test1</code>目录找到配置后，继续向上查找，找到<code>/.eslintrc.js</code>和<code>/package.json</code>（忽略），将<code>/test1/.eslintrc.js</code>和<code>/.eslintrc.js</code>组合</td>
+</tr>
+<tr>
+<td><code>/test2/*</code></td>
+<td><code>/test2/.eslintrc.js</code></td>
+<td><code>test2</code>目录存在配置，且配置了<code>&quot;root&quot;:true</code>，所以不会向上查找，仅<code>/test2/.eslintrc.js</code>生效</td>
+</tr>
+</tbody>
+</table>
+<p>ESLint支持的配置方式比较多，有必要介绍一下他们的优先级，从高到低的顺序如下：</p>
+<table>
+<thead>
+<tr>
+<th>优先级</th>
+<th>配置方式</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>内联注释配置</td>
+<td><code>/*eslint-disable*/</code> 和 <code>/*eslint-enable*/</code> <code>/*global*/</code> <code>/*eslint*/</code> <code>/*eslint-env*/</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td>命令行选项</td>
+<td><code>--global</code> <code>--rule</code> <code>--env</code> <code>-c</code>， <code>--config</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td>项目级配置文件</td>
+<td><code>.eslintrc.*</code>或<code>package.json</code></td>
+</tr>
+</tbody>
+</table>
+<p>了解这些组合规则及优先级很有必要，可以进行合理利用。</p>
+<h2><a id="%E9%85%8D%E7%BD%AE%E9%A1%B9" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>配置项</h2>
+<p>前面我们有提到，ESLint配置主要是针对<strong>解析器</strong>、<strong>环境</strong>、<strong>全局</strong>、<strong>规则</strong>、<strong>插件</strong>这几个内容，那么下面我们就来仔细看看。</p>
+<p><em>提示：后面的配置均采用<code>.eslintrc.js</code>方式，如需其他方式请自行探索。</em></p>
+<h3><a id="%E8%A7%A3%E6%9E%90%E5%99%A8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>解析器</h3>
+<p>默认情况下，ESLint使用<a href="https://github.com/eslint/espree">Espree</a>作为其解析器，不过我们也可以指定其他解析器。</p>
+<pre class="line-numbers"><code class="language-js">// .eslintrc.js
+module.exports = {
+	parser: &quot;esprima&quot;
+}
+</code></pre>
+<p>下面是一些常用的解析器：</p>
+<ul>
+<li><a href="https://www.npmjs.com/package/esprima">Esprima</a>：ESLint早期采用的解析器，Espree最初就是在它基础上创建的。</li>
+<li><a href="https://www.npmjs.com/package/@babel/eslint-parser">@ babel/eslint-parser</a> ：使babel和ESLint兼容，对一些Babel语法提供支持。</li>
+<li><a href="https://www.npmjs.com/package/@typescript-eslint/parser">@ typescript-eslint/parser</a>：TSLint被弃用后，TypeScript提供了此解析器用于将其与ESTree兼容，使ESLint对TypeScript进行支持。</li>
+</ul>
+<p>除了配置解析器，还可以提供一些选项对解析器进行配置：</p>
+<pre class="line-numbers"><code class="language-js">// .eslintrc.js
+module.exports = {
+	&quot;parser&quot;: &quot;esprima&quot;,
+	&quot;parserOptions&quot;: {
+        &quot;ecmaVersion&quot;: 6, // 默认5，指定ECMAScript版本，支持年份和版本号两种格式，用于支持该版本新语法
+        &quot;sourceType&quot;: &quot;module&quot;, // 默认'script'，使用了ESModule需要设置为'module'，否则import、export关键字会报错
+        &quot;ecmaFeatures&quot;: {
+            &quot;jsx&quot;: true,   // 启用jsx语法
+            &quot;globalReturn&quot;: false,  // 是否允许全局return
+            &quot;impliedStrict&quot;: false  // 是否启用严格模式，仅ecmaVersion大于5有效
+        }
+    }
+}
+</code></pre>
+<h3><a id="%E7%8E%AF%E5%A2%83" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>环境</h3>
+<p>环境配置主要用于预定义一些全局环境变量及相应环境的语法支持，可以指定一个或者多个环境。</p>
+<pre class="line-numbers"><code class="language-js">// .eslintrc.js
+module.exports = {
+    &quot;env&quot;: {
+        &quot;browser&quot;: true,
+        &quot;node&quot;: true
+    }
+}
+</code></pre>
+<p>常用的环境如下：</p>
+<table>
+<thead>
+<tr>
+<th>环境</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>browser</code></td>
+<td>添加浏览器的全局变量，如<code>window</code></td>
+</tr>
+<tr>
+<td><code>node</code></td>
+<td>添加Node.js全局变量和Node.js作用域</td>
+</tr>
+<tr>
+<td><code>es6</code>、 <code>es2017</code>、<code>es2020</code>、 <code>es2021</code>...</td>
+<td>添加该版本的全局变量，并将<code>parserOptions.ecmaVersion</code>设置为该版本号</td>
+</tr>
+<tr>
+<td><code>amd</code></td>
+<td>添加<code>require()</code>和<code>define()</code>全局变量</td>
+</tr>
+<tr>
+<td><code>jquery</code></td>
+<td>添加<code>jQuery</code>和<code>$</code>全局变量</td>
+</tr>
+</tbody>
+</table>
+<p>更多环境请查看<a href="https://eslint.org/docs/user-guide/configuring#specifying-environments">官方文档</a>。</p>
+<p>一些插件中提供了环境，可以按照如下格式使用：</p>
+<pre class="line-numbers"><code class="language-js">// .eslintrc.js
+module.exports = {
+    &quot;plugins&quot;: [&quot;example&quot;],
+    &quot;env&quot;: {
+        &quot;example/custom&quot;: true
+    }
+}
+</code></pre>
+<h3><a id="%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>全局变量</h3>
+<p>在使用一些全局变量，而这些变量又没在当前文件中定义时，ESLint会抛出错误，告诉我们该变量未定义，这时我们可以手动在配置文件中将该变量添加到全局变量。</p>
+<pre class="line-numbers"><code class="language-js">// .eslintrc.js
+module.exports = {
+    &quot;globals&quot;: {
+        &quot;var1&quot;: &quot;writable&quot;,
+        &quot;var2&quot;: &quot;readonly&quot;,
+        &quot;var3&quot;: &quot;off&quot;
+    }
+}
+</code></pre>
+<p>支持三种配置值：</p>
+<ul>
+<li>writable：允许变量被修改覆盖</li>
+<li>readonly：设置变量仅为只读，不可覆盖</li>
+<li>off：设置变量禁止使用</li>
+</ul>
+<h3><a id="%E6%8F%92%E4%BB%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>插件</h3>
+<p>ESLint提供了插件机制，可以让开发者自定义校验逻辑、校验规则，或对一些特殊语法提供支持，插件可以对外提供其扩展配置、规则、环境等配置。ESLint的插件均以<code>eslint-plugin-</code>开头，在配置的时候需要省略该前缀。</p>
+<pre class="line-numbers"><code class="language-js">// .eslintrc.js
+module.exports = {
+    // ...
+    &quot;plugins&quot;: [
+        &quot;jquery&quot;,   // eslint-plugin-jquery
+        &quot;@foo/foo&quot;, // @foo/eslint-plugin-foo
+        &quot;@bar&quot;      // @bar/eslint-plugin
+    ],
+    &quot;extends&quot;: [
+        // 扩展插件中的配置，需要加上plugin:
+        &quot;plugin:@foo/foo/recommended&quot;,
+        &quot;plugin:@bar/recommended&quot;
+    ],
+    &quot;rules&quot;: {
+        // 修改插件中的规则
+        &quot;jquery/a-rule&quot;: &quot;error&quot;,
+        &quot;@foo/foo/some-rule&quot;: &quot;error&quot;,
+        &quot;@bar/another-rule&quot;: &quot;error&quot;
+    },
+    &quot;env&quot;: {
+        // 修改插件中的环境
+        &quot;jquery/jquery&quot;: true,
+        &quot;@foo/foo/env-foo&quot;: true,
+        &quot;@bar/env-bar&quot;: true,
+    }
+    // ...
+}
+</code></pre>
+<p>一些常用的插件：</p>
+<table>
+<thead>
+<tr>
+<th>插件</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://www.npmjs.com/package/eslint-plugin-react"><code>eslint-plugin-react</code></a></td>
+<td>对react提供支持</td>
+</tr>
+<tr>
+<td><a href="https://eslint.vuejs.org/"><code>eslint-plugin-vue</code></a></td>
+<td>对vue提供支持，支持<code>.vue</code>文件</td>
+</tr>
+<tr>
+<td><a href="https://www.npmjs.com/package/eslint-plugin-prettier"><code>eslint-plugin-prettier</code></a></td>
+<td>prettier支持按ESLint规则格式化</td>
+</tr>
+<tr>
+<td><a href="https://www.npmjs.com/package/@typescript-eslint/eslint-plugin"><code>@typescript-eslint/eslint-plugin</code></a></td>
+<td>提供对TypeScript的支持</td>
+</tr>
+</tbody>
+</table>
+<p><em>提示：如果想自己开发插件，可以基于ESLint官方提供的模板<code>generator-eslint</code>开发。</em></p>
+<h3><a id="%E8%A7%84%E5%88%99" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>规则</h3>
+<p>ESLint提供了大量的<a href="https://eslint.org/docs/rules/">规则</a> ，我们可以针对这些规则进行精细的的控制。</p>
+<p>配置的格式如下：</p>
+<pre class="line-numbers"><code class="language-js">// .eslintrc.js
+module.exports = {
+    &quot;rules&quot;: {
+        &quot;eqeqeq&quot;: &quot;off&quot;,
+        &quot;curly&quot;: &quot;error&quot;,
+        &quot;quotes&quot;: [&quot;error&quot;, &quot;double&quot;]
+    }
+}
+</code></pre>
+<p>上面的配置值也可以采用数值的形式，对应关系如下：</p>
+<table>
+<thead>
+<tr>
+<th>配置值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>off</code>或<code>0</code></td>
+<td>关闭对该规则的检测</td>
+</tr>
+<tr>
+<td><code>warn</code>或<code>1</code></td>
+<td>启用对改规则的检测，不满足时抛出<strong>警告</strong></td>
+</tr>
+<tr>
+<td><code>error</code>或<code>2</code></td>
+<td>启用对改规则的检测，不满足时抛出<strong>错误</strong></td>
+</tr>
+</tbody>
+</table>
+<p>配置的规则如果有配置项，可以把值写成数组格式，第一个元素为配置的值，第二个元素为配置项。</p>
+<h3><a id="%E6%89%A9%E5%B1%95%E9%85%8D%E7%BD%AE" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>扩展配置</h3>
+<p>ESLint提供了如此多的规则，我们不可能每次都从头一个一个去配置吧！所以ESLint提供了<code>extends</code>配置项，我们可以基于一些成熟的配置来做扩展，也可以覆写其规则：</p>
+<pre class="line-numbers"><code class="language-js">// .eslintrc.js
+module.exports = {
+    &quot;plugins&quot;: [
+        &quot;react&quot;
+    ],
+    &quot;extends&quot;: [
+        &quot;eslint:recommended&quot;,
+        &quot;plugin:react/recommended&quot; // 扩展插件中的配置
+    ],
+    &quot;rules&quot;: {
+       &quot;react/no-set-state&quot;: &quot;off&quot;  // 覆写规则
+    }
+}
+</code></pre>
+<p>目前社区提供了很多<a href="https://www.npmjs.com/search?q=eslintconfig">配置集</a>供我们扩展，这里列举一些常用的：</p>
+<table>
+<thead>
+<tr>
+<th>配置</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>eslint:recommended</code></td>
+<td>ESLint内置，开启了一些推荐的核心校验规则</td>
+</tr>
+<tr>
+<td><code>eslint:all</code></td>
+<td>ESLint内置，开启了所有的核心校验规则</td>
+</tr>
+<tr>
+<td><a href="https://www.npmjs.com/package/eslint-config-airbnb"><code>eslint-config-airbnb</code></a></td>
+<td>按照airbnb风格规则进行校验</td>
+</tr>
+<tr>
+<td><a href="https://www.npmjs.com/package/eslint-config-standard"><code>eslint-config-standard</code></a></td>
+<td>按照standard风格规则进行校验</td>
+</tr>
+<tr>
+<td><a href="https://www.npmjs.com/package/eslint-config-prettier"><code>eslint-config-prettier</code></a></td>
+<td>关闭prettier有冲突的规则</td>
+</tr>
+</tbody>
+</table>
+<p>除了使用社区提供的配置，团队也可以自己定制一套配置，然后发布到npm，以便团队<a href="https://eslint.org/docs/developer-guide/shareable-configs">共享配置</a>。发布的包须以<code>eslint-config-</code>开头来进行命名，如<code>eslint-config-myconfig</code>，并建议将关键字设为<code>eslintconfig</code>，以便其他人能够找到。包的内容和<code>.eslintrc.js</code>类似：</p>
+<pre class="line-numbers"><code class="language-js">// eslint-config-myconfig/index.js
+module.exports = {
+
+    globals: {
+        MyGlobal: true
+    },
+
+    rules: {
+        semi: [2, &quot;always&quot;]
+    }
+
+};
+</code></pre>
+<h2><a id="%E7%A6%81%E7%94%A8%E5%92%8C%E5%BF%BD%E7%95%A5" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>禁用和忽略</h2>
+<p>ESLint虽好，但是总有些情况我们还是想静静，不愿被这太多的“俗世凡尘”规则所羁绊。尤其是拿到一份上古时代的代码，开启ESLint校验后，可能会让你怀疑你的出现可能是个错误:broken_heart::broken_heart::broken_heart:，这时禁用或忽略一些规则和文件就是个不错的主意了。</p>
+<p>禁用规则有如下几种方式：</p>
+<pre class="line-numbers"><code class="language-js">// 1. 放在文件最前面，对该文件检测时禁止所有规则
+/* eslint-disable */
+alert('foo');
+
+// 2. 对该文件检测时禁止指定的规则
+/* eslint-disable no-alert, no-console */
+alert('foo');
+console.log('bar');
+
+// 3. 对该行检测时禁止所有规则
+alert('foo'); // eslint-disable-line
+alert('foo'); /* eslint-disable-line */
+
+// 4. 对下一行行检测时禁止所有规则
+// eslint-disable-next-line
+alert('foo');
+/* eslint-disable-next-line */
+alert('foo');
+
+// 5. 对该行检测时禁止指定规则
+alert('foo'); // eslint-disable-line no-alert, quotes, semi
+alert('foo'); /* eslint-disable-line no-alert, quotes, semi */
+
+// 6. 对下一行行检测时禁止指定规则
+// eslint-disable-next-line no-alert, quotes, semi
+alert('foo');
+/* eslint-disable-next-line no-alert, quotes, semi */
+alert('foo');
+</code></pre>
+<p>除了上述在文件中配置的方式外，也可以通过配置来对一组文件禁用校验规则：</p>
+<pre class="line-numbers"><code class="language-js">// .eslintrc.js
+module.exports = {
+  &quot;rules&quot;: {...},
+  &quot;overrides&quot;: [
+    {
+      &quot;files&quot;: [&quot;*-test.js&quot;,&quot;*.spec.js&quot;],
+      &quot;rules&quot;: {
+        &quot;no-unused-expressions&quot;: &quot;off&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+<p>ESLint还提供了一个文件<code>.eslintignore</code>用来忽略对文件的校验，其中配置的目录均会被ESLint忽略。</p>
+<pre class="line-numbers"><code class="language-js">/build/
+/config/
+/dist/
+/*.js
+</code></pre>
+<h1><a id="%E4%B8%80%E4%BA%9B%E6%A1%88%E4%BE%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一些案例</h1>
+<p>上面我们介绍了ESLint的使用方法，下面我们就来看一下一些常用的使用案例：</p>
+<h2><a id="eslint-typescript" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>ESLint +TypeScript</h2>
+<p>要对TypeScript进行支持，需要配置对应的解析器<a href="https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/parser"><code>@typescript-eslint/parser </code></a>来支持TS特殊的语法，另外还需要安装<a href="https://www.npmjs.com/package/@typescript-eslint/eslint-plugin"><code>@typescript-eslint/eslint-plugin</code></a>来提供校验规则。</p>
+<ol>
+<li>安装依赖包</li>
+</ol>
+<pre class="line-numbers"><code class="language-shell">npm install @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint typescript --save-dev
+</code></pre>
+<ol start="2">
+<li>配置解析器，更多的解析器配置查看[该文档 <a href="../../../../../Desktop/nginx.conf">nginx.conf</a> ](<a href="https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/parser">https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/parser</a>)</li>
+</ol>
+<pre class="line-numbers"><code class="language-js">// .eslintrc.js
+module.exports = {
+  &quot;parser&quot;: &quot;@typescript-eslint/parser&quot;, // 配置解析器
+  &quot;parserOptions&quot;: {
+      &quot;ecmaFeatures&quot;: {
+        &quot;jsx&quot;: true  // 如果用到jsx需要开启
+      },
+      &quot;project&quot;: &quot;./tsconfig.json&quot;,  // ts配置文件
+      // ...更多配置
+  }
+}
+</code></pre>
+<ol start="3">
+<li>配置插件及规则配置</li>
+</ol>
+<pre class="line-numbers"><code class="language-js">// .eslintrc.js
+module.exports = {
+  &quot;parser&quot;: &quot;@typescript-eslint/parser&quot;,
+  &quot;plugins&quot;: [&quot;@typescript-eslint&quot;], // 配置插件
+  &quot;extends&quot;: [&quot;plugin:@typescript-eslint/recommended&quot;] // 扩展继承typescript-eslint推荐的规则
+  &quot;rules&quot;: {
+      &quot;@typescript-eslint/indent&quot;: [&quot;error&quot;, 2], // 覆写插件校验规则配置
+  }
+  // ...
+}
+</code></pre>
+<p>更多typescript-eslint用法可以查看<a href="https://github.com/typescript-eslint/typescript-eslint">typescript-eslint文档</a>。</p>
+<h2><a id="eslint-prettier" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>ESLint + Prettier</h2>
+<h3><a id="prettier" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Prettier</h3>
+<p>在开始这部分内容前，有必要先简单了解一下<a href="https://prettier.io/">Prettier</a>。</p>
+<p>Prettier是一款“有主见”的代码格式化工具，它支持多种语法，如JSX、Vue(vetur中使用了Prettier)、TypeScript、Less、Sass、JSON、GraphQL等，基本上前端能用到的文件格式它都可以搞定。而且它能够在多种场景下使用，是当下最流行的格式化工具。</p>
+<p>下面我们来看下最常用的一种方式，即作为编辑器插件来使用：</p>
+<ol>
+<li>安装VSCode插件<a href="https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode"><code>Prettier - Code formatter</code></a></li>
+</ol>
+<pre class="line-numbers"><code class="language-plain_text">ext install esbenp.prettier-vscode
+</code></pre>
+<p><img src="https://gitee.com/letwrong/Picture/raw/master/20200925171823.png" alt="image-20200925171718606" /></p>
+<ol start="2">
+<li>安装Prettier</li>
+</ol>
+<pre class="line-numbers"><code class="language-shell">npm install -g prettier # 全局安装
+npm install -D prettier # 推荐本地安装
+</code></pre>
+<ol start="3">
+<li>在项目中添加配置，Prettier同样支持多种格式的<a href="https://prettier.io/docs/en/configuration.html">配置文件</a>，这里我们使用<code>prettier.config.js</code></li>
+</ol>
+<pre class="line-numbers"><code class="language-js">module.exports = {
+  printWidth: 80, // 每行代码长度（默认80）
+  tabWidth: 2, // 每个tab使用多少空格（默认2）
+  useTabs: false, // 使用tab进行缩进（默认false）
+  semi: true, // 结尾使用分号(默认true)
+  singleQuote: false, // 使用单引号（默认false）
+  trailingComma: 'none', // 使用尾逗号（默认none）
+  bracketSpacing: true, // 对象大括号间使用空格（默认true）
+  jsxBracketSameLine: false, // 多行JSX中的&gt;放置在最后一行的结尾，而不放在新行（默认false）
+  arrowParens: &quot;avoid&quot; // 箭头函数的参数只有一个时是否带括号（默认avoid）
+};
+</code></pre>
+<p><em>提示：关于更多配置项请查看<a href="https://prettier.io/docs/en/options.html">Prettier-Options</a>。</em></p>
+<p>这样配置好以后，在VSCode执行格式化时，选择Prettier即可按照我们配置的格式进行格式化了。这样就避免了因为大家编辑器配置不一样而导致格式化后的代码风格不统一的问题。</p>
+<p>那这货和ESLint有什么关系呢？他俩为什么会有一腿呢？</p>
+<h3><a id="eslint%E5%92%8Cprettier%E7%9A%84%E5%86%B2%E7%AA%81" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>ESLint和Prettier的冲突</h3>
+<p>原来他们都会对代码的格式有操作，ESLint会检查并尽可能修复代码格式，Prettier按照配置格式化代码，而他们之间配置是不通用的，有些配置规则是有冲突的。所以就会出现用Prettier格式化后的代码，ESLint觉得是有问题的，而抛出错误提示。</p>
+<p>而为了解决这个问题，就需要使用到<code>eslint-plugin-prettier</code>和<code>eslint-config-prettier</code>:</p>
+<ul>
+<li>
+<p>`eslint-plugin-prettier：将Prettier的规则设置到ESLint的规则中。</p>
+</li>
+<li>
+<p><code>eslint-config-prettier</code>：关闭ESLint中与prettier中会发生冲突的规则。</p>
+</li>
+</ul>
+<pre class="line-numbers"><code class="language-shell">npm install -D eslint-plugin-prettier eslint-config-prettier
+</code></pre>
+<pre class="line-numbers"><code class="language-js">// .eslintrc.js
+module.exports = {
+    extends: [
+        'plugin:prettier/recommended' // 也可以配置extends：[&quot;prettier&quot;],plugins: [&quot;prettier&quot;]
+      	// 'prettier/@typescript-eslint' // 如果是TypeScript可以加上这个，解决@typescript-eslint和prettier的冲突
+    ],
+    rules: {
+        &quot;prettier/prettier&quot;: [  // 覆写、自定义prettier规则
+          &quot;error&quot;,
+          {
+            &quot;singleQuote&quot;: true,
+            &quot;trailingComma&quot;: &quot;none&quot;,
+            &quot;bracketSpacing&quot;: true,
+            &quot;jsxBracketSameLine&quot;: true
+          }
+        ]
+    }
+}
+
+</code></pre>
+<p>现在，ESLint和Prettier就可以幸福的在一起了:tada::tada::tada::tada:。</p>
+<h2><a id="%E5%B7%A5%E7%A8%8B%E5%8C%96" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>工程化</h2>
+<p>前面我们了解了ESLint和Prettier，这些工具可以很好的规范我们书写的代码，他们都只工作在我们开发的时候，而并不能保证大家提交到仓库的代码都是符合规范的。</p>
+<p>比如，部门新来了一个小伙伴，觉得有这些条条框框的限制很麻烦，所以他禁用掉了这些工具，开发完成直接把代码提交到了仓库。所以我们需要做一些限制，不合规范的代码是禁止提交的，来提高库中代码的质量。</p>
+<p>这里我们可以使用git hooks来做，借助 <a href="https://github.com/typicode/husky">husky</a> &amp; <a href="https://github.com/okonet/lint-staged">lint-staged</a> 来实现。</p>
+<ul>
+<li><a href="https://github.com/typicode/husky">husky</a>：可以很方便的在<code>package.json</code>里面定义git钩子</li>
+<li><a href="https://github.com/okonet/lint-staged">lint-staged</a>：仅对git<strong>提交的代码</strong>（不是所有）使用一些Linter操作，</li>
+</ul>
+<pre class="line-numbers"><code class="language-shell"># 安装 husky  lint-staged
+npm i -D lint-staged husky
+</code></pre>
+<pre class="line-numbers"><code class="language-json">// package.json
+&quot;lint-staged&quot;: {
+  &quot;**/**.{js,json,pcss,md,vue}&quot;: [
+    &quot;prettier --write&quot;, // 先执行格式化
+    &quot;eslint --fix&quot;,
+    &quot;git add&quot;
+  ]
+},
+&quot;husky&quot;: {
+  &quot;hooks&quot;: {
+    &quot;pre-commit&quot;: &quot;lint-staged&quot;
+  }
+},
+</code></pre>
+<p>这样设置以后，在每次提交的时候就会进行代码检查，只有通过检查后才能进行提交。</p>
+<p><em>提示：由于这些操作都是在本地，所以还是能通过一定手段跳过检查，有CI/CD的话可以在远端来做，防止跳过检查。</em></p>
+<p>参考资料：<a href="https://juejin.im/post/6844903778227847181">eslint+husky+prettier+lint-staged提升前端应用质量</a>、<a href="https://mp.weixin.qq.com/s?__biz=MzI3ODU4MzQ1MA==&amp;mid=2247485956&amp;idx=1&amp;sn=975ff087c4789a551576167fd3549977&amp;chksm=eb558bf1dc2202e7aeb9b5e1a079c2e51439dc924dd05ad76c1ff3e9b2a70aada720178623e3&amp;mpshare=1&amp;scene=1&amp;srcid=0914TwrZwso96G1iRDzmtOY9&amp;sharer_sharetime=1600094024894&amp;sharer_shareid=cc9e69c259001141830ac92e7623bf34&amp;key=1f34014b3f438b54726cdd3c6f13745e618efd2bcbee3ddd9a50cb3aa91bb44a79d0a06c8ea381e597757858bb930f0df32bc7ae5195fde3b46fb604df78395b54c5fc9dd7f5a2bdc1f98afe38bde1a523be766b7561bdb858be28f0e75e64d562d3f63c624e731b6fa1eb5743a799ffe43578f514d07132e4db53d932d9fad7&amp;ascene=1&amp;uin=MTg4NTc2OTc1&amp;devicetype=Windows+10+x64&amp;version=62090538&amp;lang=zh_CN&amp;exportkey=ATaQN2OK0EZnIcJlhsK5M1g%3D&amp;pass_ticket=ptqgjL68BaGfDGVbXHJOC%2BErE%2BsfTo8ofV70c5%2BU80s%3D&amp;wx_header=0">如何制定企业级代码规范与静态检查</a></p>
+<h1><a id="%E7%BB%93%E8%AF%AD" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>结语</h1>
+<p>到这里，ESLint就介绍完了，如果想更加深入了解ESLint可以查看<a href="https://zhuanlan.zhihu.com/p/53680918">ESLint 工作原理探讨</a>。</p>
+<p>无论在写代码还是做其他事情，其实都应该用长远的眼光来看，刚刚使用的时候可能会有很多问题，改起来也很费时费力，但是只要坚持下去，代码质量和开发效率都会得到提升，前期的付出都是值得的。</p>
+<p>这些工具并不是必须的，没有他们你同样可以可以完成功能开发，但是利用好这些工具，可以写出更高质量的代码。特别是一些刚刚接触的人，可能会觉得麻烦而放弃使用这些工具，失去了一次提升代码的好机会。</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[【转】你不一定要逆风翻盘，但请一定向阳而生]]></title>
+    <link href="https://www.bwrong.cn/17280330226446.html"/>
+    <updated>2024-10-04T17:10:22+08:00</updated>
+    <id>https://www.bwrong.cn/17280330226446.html</id>
+    <content type="html"><![CDATA[
+<p><a href="https://baijiahao.baidu.com/s?id=1672659795893888990&amp;wfr=spider&amp;for=pc">阅读原文</a><br />
+黎明之前，总有一段时间特别黑，你要悄悄努力惊艳所有人。你不一定要逆风翻盘，但请一定向阳而生；你知道吗？梦想，就是梦里想做的事，醒来后，努力去实现；所谓的万丈深渊，走下去，也是前程万里。</p>
+<p>嘿，朋友。也许这个世界并不美好，但你足够好。你不一定暴富，但请一定向我学习。前途未必光明坦荡，但一定充满无限可能。愿你不负青春，不负自己，做一个潇洒的人。过好自己的生活，该来的都在路上。看似不起波澜的日复一日，会突然在某一天，看到坚持的意义。余生很贵，请努力活成自己想要的样子，加油。</p>
+<p>唯有心怀光亮望向远方，才能看见幸福真正的模样。真正地拥抱自己，更好的生活，正在前方等着你。这一天也许会弯道超车，让你刮目相看，让你在背后仰望我的身影，让你为你曾经所做过的事情后悔。但请你记住，你永远是独一无二的那个你，好好努力，相信自己，就算不能逆风翻盘，也请一定向阳而生。</p>
+<p>写尽千山，落笔是你；望尽星辰，美丽是你；书尽泛黄，扉页是你；千山万水，归处是你。那一刻我心里有场海啸，可我静静地站着，没有任何人知道。无论你在什么样的逆境里，无论你在什么样的困难里，都能够看到那微弱、那切实存在的希望之光。至暗时刻，向阳而生。</p>
+<p>黄帝内经说，心为五脏六腑之大主，主明则下安，主不明则十二官危，所以护肝要先养心，保持良好乐观的心态，利用休息日并选择利于出行的天气，邀约三五个亲朋好友一起去郊外旅游踏青，置身于大自然的环保之中，使心情开朗、神清气爽，万事自然顺遂。你知道吗，人生之所以美好，是因为它不总是晴空万里，也不总是困难重重，路上总会有阴影，但抬头总会有阳光。世界的温柔是晚来的善意和心有阳光努力的你。</p>
+<p>近水楼台先得月，向阳花木易为春。机会全靠运气，运气全靠向阳而生的勇气，努力过后机会自然相聚。在不知所措的年纪，仿佛什么都不尽如人意，例如明明早起打了车，却因为堵车还是迟到了，公交晚点选择自行车，抬头一看，公交在前面。宫崎骏说，因为你我想变成更优秀的人，而我的每一次出发，是因为我想遇见，更好的我自己，好好爱自己，从热爱生活开始，哪怕是廉价的合租房，也要装扮成一个精致的小窝。努力健身也不是为了别人，是为了取悦自己，我深知自己的普通，但我的野心很大，所以没资格停下，这个世界也很公平，你不努力，凭什么都想要。无惧命运，奋勇向前。生而无畏，爱而自由。生命在于拼搏，保持乐观。只要精神不倒，谁也奈何不了。我是向阳而生，风吹不跑，雷劈不倒。</p>
+<p>那种贫穷与残酷，那种孩子的纯真与潜能，那种爱的救赎，无论生活给我们多大压力，我们也要用弱小的肩膀扛着生活前行。铭记过去，感恩当下。这俗世总叫人阵痛，但我们总会在某一时刻找到人生信仰。美好终会到来，所以你只管善良。人这一生无非是一场和自己和解的旅程，学会放下恩怨和伤害，才能卸下身上沉重的包袱，重新出发，向阳而生。</p>
+<p>散落的月光，穿过了云，躲着人群，铺成大海的鳞。愿所有心有羁绊的人，都能拨开这纷扰离乱的世间，一次又一次重逢。愿所有年轻人，以梦为马，不负韶华，心如花木，向阳而生</p>
+<p>这个世界是平衡的，每个人都想通过自己的努力，去获得自己想要生活的样子，如果你真的改变不了命运，那就尽可能的改变，其中的体验吧，你不一定逆风翻盘，但你一定要向阳而生。</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[【前端工程化】篇五 未来已来-Babel]]></title>
+    <link href="https://www.bwrong.cn/17280327574437.html"/>
+    <updated>2024-10-04T17:05:57+08:00</updated>
+    <id>https://www.bwrong.cn/17280327574437.html</id>
+    <content type="html"><![CDATA[
+<p>字数：4627， 阅读时间：12分钟，点击<a href="https://www.bwrong.cn/post/dev-tools05/">阅读原文</a></p>
+<blockquote>
+<p>枫林新叶催陈叶，雏凤清于老风声。 一一李商隐</p>
+</blockquote>
+<p>【前端工程化】系列文章链接：</p>
+<ul>
+<li><a href="https://www.bwrong.cn/post/dev-tools01/">01 扬帆起航-开发环境</a></li>
+<li><a href="https://www.bwrong.cn/post/dev-tools02/">02 白璧微瑕-包管理器</a></li>
+<li><a href="https://www.bwrong.cn/post/dev-tools03/">03 席卷八荒-Webpack基础篇</a></li>
+<li><a href="https://www.bwrong.cn/post/dev-tools04/">04 席卷八荒-Webpack进阶篇</a></li>
+</ul>
+<p><em>示例代码仓库：<a href="https://github.com/BWrong/dev-tools">https://github.com/BWrong/dev-tools</a></em></p>
+<p><em>声明：如按照文中代码执行报错，请检查依赖版本是否和示例代码仓库中一致。</em></p>
+<h1><a id="%E6%A6%82%E8%BF%B0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>概述</h1>
+<p>作为一个有追求的前端，如果你没有听过<a href="https://babeljs.io/"><code>Babel</code></a>的大名，那就真的是out了。不过说实话不太了解Babel的话，其实对日常开发的影响也不大，因为很多脚手架已经配置好了，不用自己折腾。但是如果你想玩转前端工程化这块，这就是绕不过的坎。</p>
+<p>babel官方定义为一款<code>JavaSscript</code>编译器。</p>
+<blockquote>
+<p>Use next generation JavaScript, today.</p>
+<p>现在就使用下一代JavaScript语法吧</p>
+</blockquote>
+<p>这里的“下一代”是泛指新的、暂时还不被浏览器广泛支持的，而不是局限于某个确定的版本。</p>
+<p>简单来说，浏览器（特别是一些低端浏览器，说你呢IE）对ECMAScript规范的支持是滞后的，新的语法虽然能够给我们带来更好的编程体验，却奈何往往不能不能直接在用户的浏览器运行，所以就需要在浏览器运行这些代码前将其转换成支持的语法，而Babel就是负责这个的，当然它的能力远不止如此，后面我们一一道来。</p>
+<p>Babel主要做的就是这几点：</p>
+<ul>
+<li>语法转换：将新的语法转换成兼容性更好的旧语法。</li>
+<li>特性垫片：通过<code>Polyfill</code> 实现目标环境中缺少的特性，将环境的特性差异垫平，说白了还是做兼容。</li>
+<li>more...</li>
+</ul>
+<pre class="line-numbers"><code class="language-js">// Babel Input: ES2015 arrow function
+[1, 2, 3].map((n) =&gt; n + 1);
+
+// Babel Output: ES5 equivalent
+[1, 2, 3].map(function(n) {
+  return n + 1;
+});
+</code></pre>
+<h2><a id="%E8%BF%90%E8%A1%8C%E6%96%B9%E5%BC%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>运行方式</h2>
+<p>Babel的运行过程分为三个阶段：解析 --- 转换 ---  生成</p>
+<p><img src="https://gitee.com/letwrong/Picture/raw/master/20200904114027.png" alt="" /></p>
+<ol>
+<li>解析：解析代码，并生成AST抽象语法树</li>
+<li>转换：将上一步的AST转换成目标环境支持的AST</li>
+<li>生成：根据转换后的AST生成目标代码</li>
+</ol>
+<p>不难发现，第二步就是Babel执行的核心操作。但Babel自身是不具备任何转换能力，必须借助一些插件来实现语法的转换。关于插件，后续会详细介绍，这里只需记住，插件赋予了babel强大的能力，没有插件它算个球。</p>
+<p>如果想了解具体的转换过程，请阅读<a href="https://juejin.im/post/5ab35c3cf265da23771951a2">从babel讲到AST</a>。</p>
+<blockquote>
+<p>babel解析语法的内核使用的是<code>babylon</code>，现在已更名为<code>@babel/parser</code>。</p>
+</blockquote>
+<h2><a id="babel7" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Babel7</h2>
+<p>作者在写这篇文章的时候，babel的版本是<code>7.10.0</code>，<code>babel7</code>带来了很多新的特性，为了避免给大家造成误导，这里先列出babel7的变化，避免和之前版本的配置混淆。</p>
+<p>主要的变化如下：</p>
+<ul>
+<li>preset：推荐使用 <code>env</code>替代<code>es201x</code>；删除<code>stage-x</code> ，因为这些草案中的特性不稳定，维护这些preset会浪费大量精力，所以官方放弃了。如果需要使用可以自己显式的添加对应的插件。</li>
+<li>npm包名：将所有<code>babel-*</code>更改为<code>@babel/*</code>，更加符合npm命名规范。
+<ul>
+<li><code>babel-cli</code> -&gt; <code>@babel/cli</code>。</li>
+<li><code>babel-preset-env</code> -&gt; <code>@babel/preset-env</code>，简写为 <code>@babel/env</code></li>
+</ul>
+</li>
+<li>对低于nodejs6.0不再提供支持。</li>
+<li><code>@babel/cli</code>中不再包含<code>@babel/node</code>，如要使用需要单独安装。</li>
+<li>提供<code>babel-upgrade</code>帮助开发者从6到7的版本升级。</li>
+</ul>
+<h1><a id="%E4%BD%BF%E7%94%A8%E5%92%8C%E9%85%8D%E7%BD%AE" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>使用和配置</h1>
+<h2><a id="%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>使用方式</h2>
+<p>babel的使用场景主要分为两种：命令行和构建工具。</p>
+<ul>
+<li>命令行</li>
+</ul>
+<p>babel为命令行提供了<code>@babel/cli</code>工具，支持在命令行直接执行babel命令。</p>
+<p>首先，安装必要的包：</p>
+<pre class="line-numbers"><code class="language-shell">npm install --save-dev @babel/core @babel/cli
+</code></pre>
+<blockquote>
+<p>这里必须要安装<code>@babel/core</code>，它是babel的<strong>核心</strong>，它是后续一切的基石，无论哪种方式都必不可少。</p>
+</blockquote>
+<p>安装好在项目中执行<code>babel</code>命令就可以进行转换了。</p>
+<pre class="line-numbers"><code class="language-shell">babel src --out-dir lib # 将src下的文件处理后输出到lib
+</code></pre>
+<ul>
+<li>
+<p>构建系统</p>
+<p>在构建工具中使用才是我们使用babel更常用的方式。这里我们以webpack为例。</p>
+<p>babel提供了一个loader：<code>babel-loader</code>，使用这个loader我们就能很轻松实现代码转换。</p>
+</li>
+</ul>
+<pre class="line-numbers"><code class="language-js">module: {
+  rules: [
+    {
+      test: /\.js$/,
+      loader: 'babel-loader',
+      options: {
+      	// 配置项
+      }
+    }
+  ]
+}
+
+</code></pre>
+<ul>
+<li>
+<p>运行时（不推荐）</p>
+<p>babel还提供了运行时环境下的处理，可以在代码运行时，实时进行转换。不过并不推荐这种方式，因为它是在代码运行时实时进行转换，效率较低。</p>
+<p>除了以上方式，还有一些其他的使用方式，详情可以查看<a href="https://babel.docschina.org/setup#installation">babel配置</a>。</p>
+</li>
+</ul>
+<h2><a id="%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>配置文件</h2>
+<p>前面的方式我们都没有提供配置，所以输出和输入是一样的，这完全没有意义。所以我们一般会提供一些配置，来告诉babel如何进行转换。</p>
+<p>babel7支持多种方式来进行配置：</p>
+<ul>
+<li>
+<p><a href="https://babel.dev/docs/en/configuration#babelconfigjson"><code>babel.config.json</code></a>（项目范围）</p>
+</li>
+<li>
+<p><a href="https://babel.dev/docs/en/configuration#babelrcjson"><code>.babelrc.json</code></a>（相对文件）</p>
+</li>
+<li>
+<p><code>package.json</code>中添加babel字段</p>
+</li>
+</ul>
+<pre class="line-numbers"><code class="language-json">{
+  &quot;name&quot;: &quot;my-package&quot;,
+  &quot;version&quot;: &quot;1.0.0&quot;,
+  &quot;babel&quot;: {
+    &quot;presets&quot;: [ ... ],
+    &quot;plugins&quot;: [ ... ],
+  }
+}
+</code></pre>
+<p>前面两种配置文件都使用了json格式，其实babel还支持其他格式，如 <code>.js</code>，<code>.cjs</code>（Commonjs）和<code>.mjs</code>（ESModule），它们相对于json格式更加灵活，可以在配置中进行编程处理，但是会使配置无法静态分析，失去可缓存性。</p>
+<pre class="line-numbers"><code class="language-js">// babel.config.js
+module.exports = {
+  presets: [],
+  plugins: []
+};
+
+</code></pre>
+<p>所有方式的配置内容都是类似的，我们可以根据自己的使用场景进行灵活选择。</p>
+<p>babel虽然有多种方式来写配置文件，但是配置的内容都是类似的，主要包含<code>plugins</code>和<code>presets</code>两部分，不过这里需要注意几点：</p>
+<ul>
+<li>
+<p>配置格式：<code>plugins</code>和<code>presets</code>配置项均为数组，如果每项不需要配置的话，直接放入数组（值为项的字符串名称）；如果要配置的话，则需要把格式改成数组，该数组的第一个元素是该项的字符串名字，第二个元素是该项的配置对象。</p>
+<p><em>这里填写的plugins和presets，babel会自动检查是否已被安装在<code>node_modules</code>下面，当然，也可以使用相对路径来使用本地文件。</em></p>
+</li>
+</ul>
+<pre class="line-numbers"><code class="language-json">&quot;plugins&quot;: [
+    [
+      &quot;component&quot;,
+      {
+        &quot;libraryName&quot;: &quot;element-ui&quot;,
+        &quot;styleLibraryName&quot;: &quot;theme-chalk&quot;
+      }
+    ],
+    &quot;@babel/plugin-transform-runtime&quot;
+ ]
+</code></pre>
+<ul>
+<li>
+<p>执行顺序：<strong><code>plugins</code>会从前到后执行，<code>presets</code>会从后向前执行，且<code>plugins</code>会比<code>presets</code>先执行</strong></p>
+<p><code>presets</code>逆序执行的目的是为了保证向后兼容，我们在配置的时候按照规范的时间顺序列出即可，如<code>['es2015', 'stage-1']</code>，这样就会先使用<code>stage-1</code>，否则就会出现错误。</p>
+</li>
+<li>
+<p>短名称：在配置plugin和preset名字的时候，可以省略名字中的<code>babel-plugin-</code>和<code>preset-</code>字样，仅使用插件的名字就可以了。</p>
+</li>
+</ul>
+<pre class="line-numbers"><code class="language-json">{
+  &quot;plugins&quot;: [
+    &quot;myPlugin&quot;, // 完整名字：&quot;babel-plugin-myPlugin&quot;
+    &quot;@org/myPlugin&quot; // 完整名字：&quot;@org/babel-plugin-myPlugin&quot;
+  ],
+  &quot;presets&quot;:[
+    &quot;myPreset&quot;, // 完整名字：&quot;babel-preset-myPreset&quot;
+    &quot;@babel/myPreset&quot; // 完整名字：@babel/preset-myPreset
+  ]
+}
+</code></pre>
+<p>关于一些常用<code>plugins</code>和<code>presets</code>的常用配置，我们在下面会有详细介绍。</p>
+<h1><a id="%E6%A0%B8%E5%BF%83" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>核心</h1>
+<p>babel的核心除了<code>@babel/core</code>就是<code>plugins</code>和<code>presets</code>了，我们一般使用babel其实就是在折腾这两块内容。下面我们就来一探究竟。</p>
+<h2><a id="plugin" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Plugin</h2>
+<p>前面我们说了，babel的转换完全依靠插件，babel拥有的能力完全取决于给它配置了哪些插件。</p>
+<p>babel的插件分为两种：</p>
+<ul>
+<li>
+<p>语法插件：赋予babel解析特定语法的能力，可以理解一个为babel服务的翻译官，仅做翻译解析工作，工作在<code>AST</code>转换阶段。</p>
+</li>
+<li>
+<p>转译插件：转译插件即把特定的语法转换成指定标准的语法。</p>
+<p>比如将箭头函数 <code>(x) =&gt; x</code> 转换成 <code>function (x) {return x}</code>，只需要配置箭头函数转译插件即可。</p>
+</li>
+</ul>
+<pre class="line-numbers"><code class="language-json">{
+  &quot;plugins&quot;: [
+    &quot;@babel/plugin-transform-arrow-functions&quot;
+  ]
+}
+</code></pre>
+<blockquote>
+<p>**注意：**使用了转译插件，就不再需要配置对应的语法插件了，因为转译插件会自动启用相应的语法插件。其实很容易理解，连解析都做不到，又何谈转换呢。</p>
+</blockquote>
+<p>插件的使用大概分为两步：</p>
+<ol>
+<li>将插件添加到配置文件的<code>plugins</code>属性中，可根据插件文档做相应配置。</li>
+<li>安装插件到项目中，使用npm或者yarn均可</li>
+</ol>
+<p>每个插件的功能是单一的，所以一般转换需求要使用的插件数量比较多，这时候可以考虑presets。常用的插件和用法可以查看<a href="https://babeljs.io/docs/en/plugins">babel-plugins</a></p>
+<h3><a id="%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8F%92%E4%BB%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>自定义插件</h3>
+<p>除了使用社区提供的插件，我们也可以自己开发。</p>
+<pre class="line-numbers"><code class="language-js">module.exports = function() {
+  return {
+    visitor: {
+      Identifier(path) {
+        const name = path.node.name;
+        // reverse the name: JavaScript -&gt; tpircSavaJ
+        path.node.name = name
+          .split(&quot;&quot;)
+          .reverse()
+          .join(&quot;&quot;);
+      },
+    },
+  };
+}
+</code></pre>
+<p>这里只是一个简单的例子，实际的插件开发远不是如此简单，可以执行查看<a href="https://github.com/jamiebuilds/babel-handbook/blob/master/translations/zh-Hans/plugin-handbook.md">Babel 插件手册</a>学习。</p>
+<h2><a id="presets" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Presets</h2>
+<p>在实际的开发中，我们如果用ES6来进行开发的话，那需要转换的语法是非常多的，难道要一个一个去配置吗？还要不要配陪妹子了？</p>
+<p>这个时候，就该presets登场了。presets可以理解为一组插件的集合，就像你去德克士直接点一个全家桶，而不必一个一个给服务员说要鸡腿、鸡翅、薯条...（如果想和服务员小姐姐多待一会，也不是不可以）</p>
+<p>presets的来源主要有以下几种途径：</p>
+<ul>
+<li>
+<p>官方：官方为常用的环境提供了preset。</p>
+<ul>
+<li><a href="https://babel.docschina.org/docs/en/babel-preset-env">@babel/preset-env</a></li>
+<li><a href="https://babel.docschina.org/docs/en/babel-preset-flow">@babel/preset-flow</a></li>
+<li><a href="https://babel.docschina.org/docs/en/babel-preset-react">@babel/preset-react</a></li>
+<li><a href="https://babel.docschina.org/docs/en/babel-preset-typescript">@babel/preset-typescript</a></li>
+<li>stage-X (试验性 Presets)</li>
+</ul>
+</li>
+<li>
+<p>社区：在npm上面可以找到许多社区维护的<a href="https://www.npmjs.com/search?q=babel-preset">preset</a>，比如vue和react都有维护了自己的preset。</p>
+</li>
+<li>
+<p>自定义：在有特殊需求的时候，可以自己创建preset。</p>
+</li>
+</ul>
+<pre class="line-numbers"><code class="language-js">module.exports = () =&gt; ({
+  presets: [ // 引用其他preset
+    require(&quot;@babel/preset-env&quot;),
+  ],
+  plugins: [ // 要集合的插件
+    [require(&quot;@babel/plugin-proposal-class-properties&quot;), { loose: true }],
+    require(&quot;@babel/plugin-proposal-object-rest-spread&quot;),
+  ],
+});
+</code></pre>
+<p><strong>注意：</strong><a href="%5Bhttps://babel.docschina.org/docs/en/presets#stage-x-%E8%AF%95%E9%AA%8C%E6%80%A7-presets%5D(https://babel.docschina.org/docs/en/presets#stage-x-%E8%AF%95%E9%AA%8C%E6%80%A7-presets)">Stage-x</a> presets 中的任何转换都是针对未发布的 Javascript 特性（如 ES6 / ES2015）的更改，都是不稳定的，将来这些提案可能会发生变化，请谨慎使用，特别是第三阶段前的提案。从v7开始，所有针对标准提案阶段的功能所编写的预设(stage preset)都已被弃用，官方已经移除了 <code>@babel/preset-stage-x</code>。</p>
+<h4><a id="babelpreset-env" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>@babel/preset-env</h4>
+<pre class="line-numbers"><code class="language-json">{
+    &quot;presets&quot;: [&quot;@babel/preset-env&quot;]
+}
+</code></pre>
+<p>这个是我们最常用的，也是官方现在推荐的preset，它是一个智能预设，我们无需再关心特定环境下所需的转换插件（只需要指定目标环境），就可以使用最新的语法。除了能够减少使用难度，还能够使转换出来的代码体积更小。</p>
+<p>preset-env会根据配置的目标环境中缺少的功能，选择对应的插件进行必要的转换和<code>polyfill</code>，而目标环境支持的特性就不会转换，而不是无脑的一把梭哈。</p>
+<p>如果不进行配置，它将使用默认配置，即 latest（<a href="https://github.com/babel/babel-preset-env/blob/master/data/plugin-features.js">env维护的插件列表</a>），会将最新的JS特性(ES2015,ES2016...，不包含 stage 阶段)，将其转换成ES5代码。所以如果使用了提案阶段的语法，则需要自行额外配置。</p>
+<h5><a id="%E5%A6%82%E4%BD%95%E6%8C%87%E5%AE%9A%E7%9B%AE%E6%A0%87%E7%8E%AF%E5%A2%83" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>如何指定目标环境</h5>
+<ul>
+<li>配置文件：通过配置文件的targets属性指定目标环境</li>
+</ul>
+<pre class="line-numbers"><code class="language-json">{
+  &quot;presets&quot;: [
+    [&quot;env&quot;, {
+      &quot;targets&quot;: {
+        &quot;browsers&quot;: [&quot;last 2 versions&quot;, &quot;safari &gt;= 7&quot;],
+        &quot;node&quot;: &quot;12.10&quot;
+      }
+    }]
+  ]
+}
+</code></pre>
+<ul>
+<li>
+<p>browserslistrc：如果是浏览器或者<code>Electron</code>，官方推荐使用<code>.browserslistrc</code>文件来指定目标环境（可以和autoprefixer、stylelint等其他工具共享配置）。</p>
+<p>不过如果在配置文件中设置了 <code>targets</code> 或 <code>ignoreBrowserslistConfig</code>，<code>.browserslistrc</code>中配置的内容将不会生效。</p>
+</li>
+</ul>
+<pre class="line-numbers"><code class="language-shell"># .browserslistrc
+last 2 Chrome versions
+</code></pre>
+<p>具体用法请查看<a href="https://github.com/browserslist/browserslist"><code>browserslist</code> 的更多配置</a>。</p>
+<h5><a id="%E5%85%B6%E4%BB%96%E9%85%8D%E7%BD%AE" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>其他配置</h5>
+<p>除了<code>targets</code>外，还有一些配置项也比较常用：</p>
+<ul>
+<li>
+<p>modules: 用于指定转换后的模块规范，可设置为<code>&quot;amd&quot; | &quot;umd&quot; | &quot;systemjs&quot; | &quot;commonjs&quot; | &quot;cjs&quot; | &quot;auto&quot; | false</code>，默认为<code>&quot;auto&quot;</code>。</p>
+</li>
+<li>
+<p><code>useBuiltIns</code>：此选项配置如何<code>@babel/preset-env</code>处理polyfill，在后面介绍polyfill我们会详细介绍。</p>
+</li>
+<li>
+<p><code>corejs</code>：用于指定corejs的版本，仅当使用了<code>useBuiltIns: usage</code>或者<code>useBuiltIns: entry</code>此配置才有效，使用时一定要配置正确的版本，否则会报错。</p>
+<p>当前默认的版本是<code>2.0</code>，不过建议使用<code>3.0</code>版本，因为2.0已经不会再添加新的特性了，如果使用了一些较新的语法，将会无法转换。</p>
+</li>
+</ul>
+<p>除了上述配置，还有一些不常用的配置，可以查看<a href="https://babeljs.io/docs/en/babel-preset-env#options">官方文档</a>。</p>
+<h1><a id="polyfill" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Polyfill</h1>
+<p>前面我们的配置其实是不完美的，转换出来的代码直接在浏览器运行是可能会出问题的。这是因为babel默认只转换了语法，而对于一些新的API是并没有处理的，如Generator、Set、Maps、Proxy、Promise 等全局对象及其方法都不会转码，如果我们在代码中使用到了就会报错。</p>
+<p>此时，我们就需要做Polyfill，也就是所谓的'垫片'，作用就是把浏览器的差异垫平，人话就是通过模拟为这些浏览器补全缺失的全局对象及API。</p>
+<h3><a id="babelpolyfill%EF%BC%88%E5%BA%9F%E5%BC%83%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>@babel/polyfill（废弃）</h3>
+<p>早期的方案就是<code>@babel/polyfill</code>（早期的名字是<code>babel-polyfill</code>，内部集成了 <code>core-js</code> 和 <code>regenerator</code>），在入口或者webpack配置的entry中引入<code>@babel/polyfill</code>，此工具会模拟完整的ES2015 +环境（不包含第4阶段的提议），会创建一些全局对象，或者在已有全局对象的原型上补全方法，让我们可以使用<code>Promise</code>、<code>WeakMap</code>、<code>Array.from</code>等新的API。</p>
+<blockquote>
+<p>比如<code>Array.prototype.includes</code>是ES6的API，就会在<code>Array.prototype</code>上面添加一个自己实现的includes方法来模拟原生的includes。</p>
+</blockquote>
+<pre class="line-numbers"><code class="language-js">import '@babel/polyfill';
+let include = [1,2,3].includes(1);
+new Promise((resolve, reject) =&gt; {
+    resolve();
+});
+</code></pre>
+<p>现在，我们的代码就可以在低版本的浏览器运行了。不过此方案有一些缺点：</p>
+<ul>
+<li>文件体积大：因为<code>@babel/polyfill</code>会把所有API都补全，不管你有没有使用，比如你可能在项目中只使用了一个新的API，结果他给你梭哈了，把所有的API都整进去了。所以最后打出来的包会非常大，非常浪费。</li>
+<li>污染全局变量：<code>@babel/polyfill</code>会在全局创建对象或者修改全局对象的原型链，所以会对全局变量进行污染。</li>
+</ul>
+<p>对于第一个缺点，我们可以使用前面<code>@babel/preset-env</code>提供的<code>useBuiltIns</code>配置，当设置为<code>usage</code>时（须要制定corejs版本），babel会检查我们的代码，只引入我们代码中需要的<code>polyfill</code>，这样打包出来的文件就会小很多。</p>
+<pre class="line-numbers"><code class="language-json">// babel.config.json
+{
+  &quot;presets&quot;: [
+    [
+      &quot;@babel/env&quot;,
+      {
+        &quot;useBuiltIns&quot;: &quot;usage&quot;,
+        &quot;corejs&quot;: 3
+      }
+    ]
+  ]
+}
+
+</code></pre>
+<p>例如前面的代码：</p>
+<pre class="line-numbers"><code class="language-js">// import '@babel/polyfill';  使用useBuiltIns: 'usage'时，会自动导入需要的垫片，所以不用再手动引入
+let include = [1,2,3].includes(1);
+new Promise((resolve, reject) =&gt; {
+    resolve();
+});
+</code></pre>
+<p>编译后的代码：</p>
+<pre class="line-numbers"><code class="language-js">&quot;use strict&quot;;
+require(&quot;core-js/modules/es.array.includes&quot;);
+require(&quot;core-js/modules/es.object.to-string&quot;);
+require(&quot;core-js/modules/es.promise&quot;);
+
+// import '@babel/polyfill';
+let include = [1,2,3].includes(1);
+new Promise((resolve, reject) =&gt; {
+    resolve();
+});
+</code></pre>
+<p>我们可以看到，在文件的头部仅加入了文件中用到的新语法的<code>polyfill</code>，是不是棒棒的了。</p>
+<p>不过这并没有完，试想如果很多文件都使用了这些特性，岂不是每个文件都会引入一次，有没有办法改善一下呢？</p>
+<h3><a id="babelplugin-transform-runtime" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>@babel/plugin-transform-runtime</code></h3>
+<p><code>@babel/plugin-transform-runtime</code> 是一个可重复使用Babel注入的帮助程序的插件，避免重复注入，以节省代码大小。通常还要搭配<code>@babel/runtime</code>一起使用。</p>
+<pre class="line-numbers"><code class="language-shell">npm install --save-dev @babel/plugin-transform-runtime
+npm install --save @babel/runtime # 提供缺失的特性，须要在生产环境中安装
+</code></pre>
+<pre class="line-numbers"><code class="language-json">// babel.config.json
+{
+  &quot;presets&quot;: [
+    [
+      &quot;@babel/preset-env&quot;,
+      {
+        &quot;useBuiltIns&quot;: &quot;usage&quot;,
+        &quot;corejs&quot;: 3
+      }
+    ]
+  ],
+  &quot;plugins&quot;: [[&quot;@babel/plugin-transform-runtime&quot;]]
+}
+
+</code></pre>
+<p>如上配置后，一个class转换如下：</p>
+<pre class="line-numbers"><code class="language-js">// 源码
+class Foo {
+  method() {}
+}
+</code></pre>
+<pre class="line-numbers"><code class="language-js">// 转换后
+import _classCallCheck from &quot;babel-runtime/helpers/classCallCheck&quot;;
+import _createClass from &quot;babel-runtime/helpers/createClass&quot;;
+
+let Foo = function () {
+  function Foo() {
+    _classCallCheck(this, Foo);
+  }
+
+  _createClass(Foo, [{
+    key: &quot;method&quot;,
+    value: function method() {}
+  }]);
+
+  return Foo;
+}();
+</code></pre>
+<p>我们看到，这里并不是采用全局引入的方式，而是引入了局部变量来替换新的语法，提供了一个沙箱机制，这就顺便解决了上面全局作用域污染的问题。而且这里所有模拟的特性都是从<code>@babel/runtime</code>中引入，而这个包我们是安装在生产环境中的，并不是会打包到每个文件中，这就使这些<code>polyfill</code>得到了复用，不会打包多次。</p>
+<p>**注意：**上面的corejs需要为3.0才会完全转换，如果使用2.0只会转换语法，而不会做<code>polyfill</code>，如果要做的话需要再单独引入<code>@babel/runtime-corejs3</code>来进行处理，推荐使用3.0，所以这里不再赘述。</p>
+<p>经历了一波三折，我们终于搞定了。但是，这不是银弹，未来可能还会出现其他的方案，关于Polyfill的历史可以去看云谦大佬的<a href="https://github.com/sorrycc/blog/issues/80">Polyfill 方案的过去、现在和未来</a>。</p>
+<h1><a id="%E7%94%9F%E6%80%81" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>生态</h1>
+<p>除了上面介绍的东西，babel生态也是非常繁荣，还有很多其他配套的一些工具（名字通常以<code>babel-*</code>或<code>@babel/*</code>开头），下面我们大概列举一下：</p>
+<ul>
+<li><code>babel-cli</code>：babel提供的命令行工具，提供了<code>babel</code>命令来执行编译任务。</li>
+<li><code>babel-register</code>：会在<code>require</code>加载文件前，先用babel进行转码编译，前面说到的运行时编译就是使用此工具。</li>
+<li><code>babel-loader</code>：babel为webpack提供的一个loader，也是最常见的使用方式。可以在webpack构建的工程中进行转码编译。</li>
+<li><code>babel-polyfill</code>/<code>@babel/polyfill</code>：babel提供的polyfill工具。</li>
+</ul>
+<p>babel的存在，让我们可以打破运行环境语法规范的限制，犹如一台时光机，把我们带到了未来，让我们可以用彼时的语法来编写此时的应用，为我们学习和使用最新的语法扫清了障碍，俨然babel已成为我们工程化中必不可少的一个工具。</p>
+<p>参考文档：<a href="https://babel.docschina.org/">Babel中文网</a>、<a href="https://juejin.im/post/5ddff3abe51d4502d56bd143#heading-6">不容错过的 Babel7 知识</a>、<a href="https://juejin.im/post/5c19c5e0e51d4502a232c1c6#heading-12">一口(很长的)气了解 babel</a></p>
+
+]]></content>
+  </entry>
+  
 </feed>
