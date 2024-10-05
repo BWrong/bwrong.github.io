@@ -79,7 +79,13 @@
             </nav>
       </div>
 
- <div class="hero-body ct-body"></div>
+ <div class="hero-body ct-body">
+  <div class="container">
+    <h1 class="title-only animate__animated animate__fadeInUp">
+          <span clsss="tran-archives">【前端工程化】篇一 扬帆起航：开发环境</span>
+    </h1>
+</div>
+</div>
 
 </section>
 <section class="ct-body">
@@ -88,9 +94,9 @@
       <div class="column is-four-fifths">
         <div class="post-body single-content">
           
-          <h1 class="title">
+          <!-- <h1 class="title">
             【前端工程化】篇一 扬帆起航：开发环境
-          </h1>
+          </h1> -->
 
 
           <div class="media">
@@ -328,20 +334,23 @@ npm update -s # 跳过没有使用的包
         </div><!-- end comments wrap -->
       </div>
     </div><!-- end columns -->
-    <div class="toc-widget">
-      <div id="toc-content"></div>
-    </div>
   </div><!-- end container -->
 
+  <div class="toc-widget">
+    <div id="toc-content"></div>
+  </div>
 </section>
 <style>
   .toc-widget {
     overflow-y: auto;
     position: fixed;
-    right: 200px;
-    top: 500px;
-    margin: 30px 0 0 0;
+    right: 0;
+    top: 180px;
+    margin: 20px 0 0 0;
+    padding: 20px;
     transition: top .5s ease;
+    max-width: 300px;
+    overflow-x: hidden;
   }
 
   .toc-widget.toc-fixed {
