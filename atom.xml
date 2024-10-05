@@ -4,13 +4,163 @@
   <title><![CDATA[Bwrong的博客]]></title>
   <link href="https://www.bwrong.cn/atom.xml" rel="self"/>
   <link href="https://www.bwrong.cn/"/>
-  <updated>2024-10-04T17:30:41+08:00</updated>
+  <updated>2024-10-05T21:50:18+08:00</updated>
   <id>https://www.bwrong.cn/</id>
   <author>
     <name><![CDATA[]]></name>
     
   </author>
   <generator uri="http://www.mweb.im/">MWeb</generator>
+  
+  <entry>
+    <title type="html"><![CDATA[WebGL光照渲染立方体]]></title>
+    <link href="https://www.bwrong.cn/17280514986441.html"/>
+    <updated>2024-10-04T22:18:18+08:00</updated>
+    <id>https://www.bwrong.cn/17280514986441.html</id>
+    <content type="html"><![CDATA[
+<p>光线照在物体上，物体反射光线就会构成一个光场，眼睛看到生活中的物体有立体感就是因为有光的存在。因此在学习物理光学在WebGL编程中如何应用， 你就要先了解基本的光学知识。</p>
+<p>生活中你看到一个红色立方体，从宏观的角度来看你会描述他是红色的，或者描述RGB值为(1,0,0)的立方体，这时候你要问自己一个问题， 如果呈现到眼睛中的红色平面图像，如果颜色是均匀的，你是否还有立体的感觉。换句话说就是如果把你看到的立方体图像分割成一个个像素单位， 那么每一个像素的RGB值都是(1,0,0)的话你是否有立方体的空间感，从前面课程的实验可以知道，是没有任何空间感的。 那就说明一个问题实际上在自然界中你看到的物体图像，如果看做一个光场，它就是一个变化的光场，并不是每个像素都是(1,0,0)。 这很好理解，抛开专业的物理光学不谈，其实生活中你会发现，比如太阳光照射到一个物体上，不同的面与光的角度不同，反射的到眼睛中的结果不同， 向阳面亮，背光面暗，不同的面不同的颜色，分界位置就有棱角感，。比如一个白色LED灯，靠近表面放在表面的中心， 你会感到表面反射到眼睛中的效果是越往四周越暗。</p>
+<h2><a id="%E5%85%89%E7%85%A7%E6%A8%A1%E5%9E%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>光照模型</h2>
+<h3><a id="%E6%BC%AB%E5%8F%8D%E5%B0%84" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>漫反射</h3>
+<p><img src="http://www.yanhuangxueyuan.com/WebGL_course/icon/IncidentAngle.png" alt="WebGL光照模型入射角" /> <img src="http://www.yanhuangxueyuan.com/WebGL_course/icon/diffuseReflection.png" alt="WebGL漫反射" /></p>
+<p>没有绝对的真理或迷信，所有的理论都是对生活现象的概括描述，上面提到一个几何体在太阳光下不同的面明暗不同，太阳离地球比较远，太阳光可以视为平行光，几何体不同的面与平行太阳光光线夹角不同， 换句话说就是相同强度的光线照射在表面上角度不同反射光线的强度也就不同，这里就对个现象建立数学模型。</p>
+<p>漫反射光的颜色 = 几何体表面基色 x 光线颜色 x 光线入射角余弦值</p>
+<p>这个数学模型没有考虑镜面反射描述的就是理想的漫反射体，并不能完整的描述物体表面的光场，既然是数学模型，自然就是可以修正的，比如添加一个系数，更改指数等等，这里不在详述。 比如普通的桌子桌面它的粗糙度是微米um级，相比人的脸它是平的，光的波长是纳米nm级，这时候桌子表面相比光线是凹凸不平的，宏观来看一束光线照射到物体的表面，对于理想的漫反射而言，因为表面无规则随机分布凹凸不平的反射面， 光线的反射是不定向的，换句话说任何角度的反射光都是一样的，这也就是说物体反射到眼睛中的光与人的观察位置无关，物体的漫反射光强度与光线的入射角有关如何解释，这个其实很简单，比如两块纸板面积相同，一个垂直太阳光线放置， 一个不垂直太阳光线也就是入射角不是90度，同样强度的光照条件下，垂直太阳光的纸板的光通量肯定比斜着放的纸板接收的光量大，这时候就有必要给数学模型引入一个入射角的因数。</p>
+<p><img src="http://www.yanhuangxueyuan.com/WebGL_course/icon/diffuseReflection1.png" alt="漫反射余弦值" /> <img src="http://www.yanhuangxueyuan.com/WebGL_course/icon/diffuseReflection0.png" alt="WebGL漫反射——0度" /></p>
+<p>光的颜色可以使用多种模型来表示，把上面的文字公式使用RGB具体参数来表示形式如下，比如物体表面的颜色是纯红色(1,0,0),入射光是纯白色(1,1,1),光线入射角是60度，余弦值就是0.5，代入下面公式，可以得出结果是(0.5,0,0), 结果仍然是红色，这是符合实际生活的，白色太阳光照在常见的红色物体上，反射的颜色是红色，只是太阳光线照射在物体表面的角度不同，反射的光强度不同。入射光垂直物体表面，也就是入射角是0对应的余弦值是1，光线垂直表面受光量最大， 反射光自然最大，和1对应；入射光线平行物体表面，此时的入射角是90度， 物体表面自然没什么光可以反射，</p>
+<p>(R2,G2,B2) = (R1,G1,B1) x (R0,G0,B0) x cosθ</p>
+<h3><a id="%E9%95%9C%E9%9D%A2%E5%8F%8D%E5%B0%84" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>镜面反射</h3>
+<p><img src="http://www.yanhuangxueyuan.com/WebGL_course/icon/AmbientLight.png" alt="WebGL环境光模型" /> <img src="http://www.yanhuangxueyuan.com/WebGL_course/icon/SpecularReflection.png" alt="WebGL镜面反射" /></p>
+<p>上面的漫反射数学模型没有考虑镜面反射，描述的就是理想的漫反射体，并不能完整的描述物体表面的光场。漫反射是因为几何体表面粗糙度尺寸相对光波长尺寸而言是凹凸不平的，这种凹凸不平又是随机的，所以说漫反射的光线各个方向是均匀的。 镜面反射也就是说光照在物体上的反射光线具有方向性，具体点说就是光线的反射角等于入射角。生活中的镜子它的表面粗糙度很小，和光的波长是一个数量级，当光线照在上面的时候，反射光线就会表现出方向性。</p>
+<p>实际的生活中所有的物体没有绝对的漫反射或者镜面反射，往往都是同时存在，只是表现的倾向性不同，镜子的镜面反射更明显，粗糙的树皮漫反射更明显。光照射到物体上一部分会被吸收，透明的话一部分会被折射， 除去吸收和折射的光剩余的会被反射，反射的时候根据表面的粗糙度不同，镜面反射和漫反射分配的比例不同可以使用两个系数k1、k2去描述。</p>
+<p>在室外停放着一辆车，你观察车的时候，你会发现车的外表面会在某个局部出现高光，这很好理解，车的外壳是曲面的，曲面上如果某个区域的的光线反射角刚好是你的视线方向，自然会呈现出局部高亮的现象，其他的部位是漫反射为主。 镜面反射的公式仍然可以写成上面的形式，只是角度不再是光线入射角度而是眼睛视线与反射光线的夹角，n角度余弦值的指数，实际编程的时候你可以自由定义，没有绝对完美的模型，都可以进行修正。</p>
+<p>镜面反射光的颜色 = 几何体表面基色 x 光线颜色 x 视线与反射光线的夹角余弦值n</p>
+<h3><a id="%E7%8E%AF%E5%A2%83%E5%85%89%E7%85%A7" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>环境光照</h3>
+<p>在暗的环境下，物体比较暗，光亮的环境下，物体比较光亮，描述这个现象可以使用环境光照模型。光线在自然环境中会在不同的物体之间来回反射，单束的光线具有方向性，所有方向的光线随机分布，形成一个没有特殊的光线方向的的环境光照。 多数情况下室内室外环境光颜色通常都是RGB相同的白色到黑色之间的值，(1,1,1)表示最强的环境光照颜色，(0,0,0)相当于处于完全的没有光照的黑色环境中。</p>
+<p>环境反射光颜色 = 几何体表面基色 x 环境光颜色</p>
+<h3><a id="%E5%A4%8D%E5%90%88%E5%85%89%E7%85%A7" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>复合光照</h3>
+<p>使用光照渲染模型的时候往往会使用多种光照模型，然后把每个光照模型颜色相乘的结果RGB分别相加，这时候要注意，多种模型的光照颜色相加后RGB的值要保证在区间[0,1]，因为WebGL的RGB颜色模型默认RGB分量的最大值是1，注意分配比例即可。</p>
+<p>总反射光线 = 漫反射光线 + 镜面反射光线 + 环境反射光线</p>
+<h3><a id="%E6%B3%95%E5%90%91%E9%87%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>法向量</h3>
+<p>有基本的数学知识应该都有法线的概念，垂直与面的直线就是面的法线，对于平面而言面上所有位置的法线方向是相同的，对于曲面而言不同的位置法线的方向是变化的。在三维笛卡尔坐标系中，可以使用向量(x,y,z)来表示法向量，根据几何体表面的法向量和光线的方向， 就可以求解出光线入射角的余弦值，法向量的点积计算满足下面的公式，为了方便计算，着色器语言内置了一个方法dot()用来求解两个向量之间的余弦值,已知向量a1(x1,y1,z1)、a2(x2，y2，z2)执行dot(a1，a2)可以求出两个向量a1、a2的余弦值。</p>
+<p><img src="http://www.yanhuangxueyuan.com/WebGL_course/icon/normal1.jpg" alt="WebGL法向量" /></p>
+<p><img src="http://www.yanhuangxueyuan.com/WebGL_course/icon/normal2.jpg" alt="WebGL法向量计算" /></p>
+<h2><a id="%E7%AB%8B%E6%96%B9%E4%BD%93%E6%B7%BB%E5%8A%A0%E5%B9%B3%E8%A1%8C%E5%85%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>立方体添加平行光</h2>
+<p><a href="http://www.yanhuangxueyuan.com/WebGL_course/download/light.rar">源码下载</a></p>
+<p>下面的案例是通过给一个单色的立方体添加平行光进行渲染，来体会光照模型在物体渲染中的应用，在学习下面的代码之前确定你有逐顶点和颜色插值计算的概念，了解顶点位置数据、顶点颜色数据，本节课在这两种顶点数据的基础之上在引入一种新的顶点数据。</p>
+<p>平行光照射在立方体上，与不同的平面夹角不同，自然反射的颜色RGB值强弱不同，实际绘图的时候你不可能手动计算去定义每一个像素的值，前面课程中讲解颜色插值计算的知识，应该对你有一定的启发，你只需要计算出每一个顶点在光照下的颜色， 然后利用插值计算就可以得到三个顶点之间区域的像素值，这时候顶点法向量数据就派上了用场，每一个顶点都有位置数据、颜色数据、法向量数据，法向量和颜色数据先进行计算得出新的顶点颜色数据，然后渲染管线对顶点进行装配光栅化的过程中，新的顶点颜色数据进行插值计算。 这时候提示一下大家，不要去从宏观思考法向量问题，要从逐顶点、插值计算的角度理解问题，下面的问题可能大家会有一个疑问，为什么立方体的一个顶点会有三个方向，从实际的物体来看，立方体的一个顶点就是一个顶点，但是从绘图的角度来看， 每一次是通过三个顶点绘制一个三角形面，只不过恰好三个三角形面共顶点，会有顶点位置重复而已，但是每一组的三个顶点是一个装配光栅化和插值计算的独立单元，两组的三个顶点位置有重复也不会影响他们各自的渲染得到的像素结果。</p>
+<h3><a id="%E9%A1%B6%E7%82%B9%E7%9D%80%E8%89%B2%E5%99%A8%EF%BC%9A%E6%B7%BB%E5%8A%A0%E5%8F%98%E9%87%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>顶点着色器：添加变量</h3>
+<pre class="line-numbers"><code class="language-plain_text">16   /**用于光照计算的变量a_normal、u_lightColor、u_lightDirection**/
+17   'attribute vec4 a_normal;' +//法向量变量
+18   'uniform vec3 u_lightColor;' + //uniform声明平行光颜色变量
+19   'uniform vec3 u_lightDirection;' + //平行光方向
+20   'varying vec4 v_color;'+//varying声明顶点颜色插值后变量
+</code></pre>
+<p>查看上面的代码大家可以发现一个新的关键字uniform，着色器语言中声明变量的关键词就是attribute、uniform、varying这三个关键字，在Javascript语言中只有一个var或ES6中的let，这主要是因为着色器语言的特殊性， 不同的关键字顶标着不同的功能，初学者可能比较混乱，不知怎么区分，下面进行简单总结，为了课程讲解渐进性，不做过多总结，紧密结合代码总结。</p>
+<p>attribute关键字大家课程中最早讲解，大家可以看到它都是出现在顶点着色器的代码中， 声明的变量往往与顶点数据相关，比如顶点位置坐标、顶点颜色值和本节课的顶点法向量数据，attribute关键字声明的顶点变量而且可以通过方法getAttribLocation()获取顶点数据的索引位置， 然后利用方法vertexAttribPointer()可以把类型数组创建的顶点数据传递给顶点着色器，然后逐顶点处理计算。你可以观察到这些方法中都有Attrib，通过名字就可以大致判断它的作用。</p>
+<p>varying关键字在颜色插值计算中往往会使用，在顶点着色器代码第20行中声明了一个变量v_color，每个顶点的颜色与法向量进行乘法运算后，第49行进行赋值计算，等于告诉渲染管线离散的顶点颜色进行插值计算，去填充顶点之间的片元像素值， 为了完整实现这一点，需要在片元着色器代码中同样使用关键字varying再次声明该变量，这样的话插值后的颜色值会地递给片元着色器，通过执行第56行语句gl_FragColor = v_color，把片元对应的颜色值赋值给片元。</p>
+<p>uniform关键字和attribute共同的作用是可以接收数据，不同点是接收的数据不同，attribute关键字声明顶点数据，这些数据会逐顶点处理，查看代码第18行第19行可以看出uniform关键字声明的数据不是顶点数据，这些数据往往都会重复利用，每个顶点进行计算的时候都会用到， 每个顶点对应的数据会有坐标、颜色、法向量等，但是光线的颜色和方向对于所有的顶点都是通用的，这些说明uniform关键字主要用于声明哪些会被重复利用的数据，比如光线颜色、光线方向、光线位置、模型变换矩阵。学习后面的课程可以看到uniform关键字也会用到片元着色器中， 这里没有用到就不展开讲解，不过attribute关键字只是用在顶点着色器中，一般用来接收各种类型的顶点信息。</p>
+<p>代码第18行第19行都有一个关键字vec3，vec3和float、vec4、mat4一样都表示一种数据类型，vec3数据(a,b,c)可以用来表示三维坐标系中的向量，例如光线的方向、光线的颜色RGB，vec4可以用来表示顶点位置的齐次坐标(x,y,z,w), 包含透明度的RGB颜色模型RGBA(r,g,b,a),顶点的法向量。</p>
+<h3><a id="%E9%A1%B6%E7%82%B9%E7%9D%80%E8%89%B2%E5%99%A8%EF%BC%9A%E5%85%89%E7%85%A7%E8%AE%A1%E7%AE%97" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>顶点着色器：光照计算</h3>
+<p>dot()是着色器语言内置的一个函数方法，它的参数是两个向量，执行结果是两个向量的点积，如果光线方向向量和顶点法向量两个向量都是单位向量，求解的结果就是平行光线与物体表面法线夹角的余弦值。 这也是为什么要执行第43行代码的原因，normalize()和dot()一样都是着色器语言内置的函数方法用于数学计算，它的作用就是把向量归一化，具体点说就是如果向量的模长不是1，不改变向量方向，把模长变为1，也就是把向量转化为单位向量， a_normal在第17行代码中定义的是vec4类型，第四个参数默认是1主要是为了凑成齐次坐标用于矩阵计算，表示法向量方向的是前三个参数，所以执行a_normal.xyz就相当于访问法向量的xyz值，返回的结果是一个vec3数据，如果执行vec3.xy相当于返回一个vec2数据， 如果一个顶点的a_normal数据是(1,1,1，1)，那么它的模长就不是1，而是3的平方根，这时候需要把前三个1全部除以3的平方根才可以把非单位向量转化为单位向量。</p>
+<p>第45行代码在dot代码的外面嵌套了一个函数max()，dot()的计算结果作为max()的第一个参数，dot的计算结果可能是[-1,1]之间，颜色不存在负值要舍去[-1,0),这时候就是max()方法派上用场的时候，第45行代码中max()函数的第二个参数是0， dot()方法的计算结果会和0进行比较运算，返回一个较大的值，着色器语言内置提供了max()函数，自然也有对应的求较小值的函数min()。余弦值是负值的物理意义就是光线无法照的地方，临界点是余弦值0，入射角是90度，也就是说入射光线平行平面， 平行平面相当于光线没有照射到平面上，平面没有收到光自然无法反射光，你可以尝试改变立方体顶点的旋转矩阵可以看到一些面的颜色是黑色，就是因为没有光线照射，这一点是复合实际生活和物理规律的，不管是提本身是什么颜色，没有外界光源，那就表现为黑色。</p>
+<p>第47行代码是套用理想漫反射光照模型的一个公式进行计算，a_color变量是vec4类型包含透明度，计算式中没有计算透明度A，所以使用a_color.rgb语句返回a_color数据的RGB三个分量，也就是返回一个vec3类型数据。</p>
+<p>第49行代码是通过把经顶点法线乘过的顶点颜色赋值给varying声明的一个变量实现颜色的插值计算，关于插值计算不在多谈，这里说一下着色器语言数据类型的相关转化、构造、访问相关问题，vec4、vec3等都是和float、int一样是数据类型的标识关键字，float、int在C语言中都是常见的类型， 着色器语言为了实现大规模的顶点运算增加了很多数据类型，vec4()、vec3()这时候的表达相当于一个vec4、vec3数据的构造函数，第49行代码中把一个vec3类型数据和一个vec4类型数据的一个分量a作为构造函数vec4的两个参数，来实现创建一个vec4类型数据。访问多元素数据的分量可使用点符号，从面对象的角度来看， 一个数据家是一个对象，数据的一个元素就是数据的一个分量，比如 a_color.a表示vec4类型数据 a_color的透明度分量a。</p>
+<pre class="line-numbers"><code class="language-plain_text">42   // 顶点法向量归一化
+43   '  vec3 normal = normalize(a_normal.xyz);' +
+44   // 计算平行光方向向量和顶点法向量的点积
+45   '  float dot = max(dot(u_lightDirection, normal), 0.0);' +
+46   // 计算平行光方向向量和顶点法向量的点积
+47   '  vec3 reflectedLight = u_lightColor * a_color.rgb * dot;' +
+48   //颜色插值计算
+49   '  v_color = vec4(reflectedLight, a_color.a);' 
+</code></pre>
+<h3><a id="%E8%8E%B7%E5%8F%96%E7%9D%80%E8%89%B2%E5%99%A8%E5%8F%98%E9%87%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>获取着色器变量</h3>
+<p>要想给着色器程序中声明的变量传递数据，首先要获取数据的地址，然后通过指针地址传递给变量。要想获取变量地址，不可能像普通CPU变成一样，要考虑GPU的特殊性，首先要通过59行代码调用初始化着色器函数，把着色器程序通过CPU与GPU的通信传递给GPU配置渲染管线， 执行执行初始化着色器函数的同时会返回一个program对象，通过对象program可以获取着色器程序中的变量，getAttribLocation()方法用来获取attribute关键字声明的定点变量地址，getAttribLocation()方法获取uniform关键字声明的统一变量地址。</p>
+<pre class="line-numbers"><code class="language-plain_text">60   /**
+61    * 从program对象获取相关的变量
+62    * attribute变量声明的方法使用getAttribLocation()方法
+63    * uniform变量声明的方法使用getAttribLocation()方法
+64    **/
+65   var aposLocation = gl.getAttribLocation(program,'apos');
+66   var a_color = gl.getAttribLocation(program,'a_color');
+67   var a_normal = gl.getAttribLocation(program,'a_normal');
+68   var u_lightColor = gl.getUniformLocation(program,'u_lightColor');
+69   var u_lightDirection = gl.getUniformLocation(program,'u_lightDirection');
+</code></pre>
+<h3><a id="%E4%BC%A0%E9%80%92%E6%95%B0%E6%8D%AE" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>传递数据</h3>
+<p>对于简单的数据，不像顶点有大批量数据，不需要在显存上开辟缓冲区上传数据，可以直接使用uniform3f()方法使用把数据传递给GPU，uniform3f(变量地址,x,y,z)表示传递三个浮点数，接收这个数据的变量是vec3类型,uniform2f(变量地址,x,y)表示传递2个浮点数,接收数据的变量是vec2数据类型， 以此类推还有方法uniform4f()、uniform1f()，命名的特点是数字表示传递的数据有多少分量，f是关键字float的缩写表示浮点数。</p>
+<p>u_lightDirection变量在程序中要保证是单位向量，所以第15行的代码的书写方式保证了灯光方向向量的方向是(1,2,-3),(1,2,-3)的模长是15的平方根，所以要除以Math.sqrt(15)，实际的开发中一般不是这样手动计算写出来，而是写一个通用的归一化函数可以随时调用， 这里为了简化教学代码，直接手动计算好在输入数据。</p>
+<pre class="line-numbers"><code class="language-plain_text">70   /**
+71    * 给平行光传入颜色和方向数据，RGB(1,1,1),单位向量(x,y,z)
+72    **/
+73   gl.uniform3f(u_lightColor, 1.0, 1.0, 1.0);
+74   //保证向量(x,y,z)的长度为1，即单位向量
+75   var x = 1/Math.sqrt(15), y = 2/Math.sqrt(15), z = 3/Math.sqrt(15);
+76   gl.uniform3f(u_lightDirection,x,y,-z);
+</code></pre>
+<h3><a id="%E9%A1%B6%E7%82%B9%E6%B3%95%E5%90%91%E9%87%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>顶点法向量</h3>
+<p><img src="http://www.yanhuangxueyuan.com/WebGL_course/icon/normal.png" alt="WebGL顶点法向量" /></p>
+<p>对于立方体而言六个平面也就是有六个不同的平面法向量，但是这里要注意思考如何表达一个面的法向量，你不能说直接告诉GPU一个平面的法向量是(x,y,z)，对于立方体而言而言这样比较简单，符合人的思维，但是如果是复杂的曲面这样并不合适，而且顶点着色器是逐顶点处理， 为了表示面的法向量，往往是通过顶点，具体点说是每个顶点对应一个法向量，三个顶点确定一个三角面，三角面的不同位置的法向量相当于通过他的三个顶点的法向量插值得出，或者换个说法就是三个顶点的法向量分别与各自颜色数据进行乘法运算，得到新的顶点颜色， 然后渲染管线利用新的顶点颜色进行插值计算，这就是通过顶点法向量表示面法向量的方法，通过这样的巧妙设计还可以实现法向量的插值计算，只不过插值是通过颜色插值完成的，对于平滑的曲面，过每一个顶点存在一个法平面，也就是有一个法向量，往往在不同三角面中同一位置的顶点法向量是相同的， 对于规则的长方体而言，每个顶点法向量往往在各自平面中有不同的值。</p>
+<pre class="line-numbers"><code class="language-plain_text">99   /**
+100   *顶点法向量数组normalData
+101   **/
+102  var normalData = new Float32Array([
+103  0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,//z轴正方向——面1
+104  1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,//x轴正方向——面2
+105  0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,//y轴正方向——面3
+106  -1,0,0,-1,0,0,-1,0,0,-1,0,0,-1,0,0,-1,0,0,//x轴负方向——面4
+107  0,-1,0,0,-1,0,0,-1,0,0,-1,0,0,-1,0,0,-1,0,//y轴负方向——面5
+108  0,0,-1,0,0,-1,0,0,-1,0,0,-1,0,0,-1,0,0,-1//z轴负方向——面6
+109  ]);
+</code></pre>
+<h2><a id="%E9%A1%B6%E7%82%B9%E6%B3%95%E5%90%91%E9%87%8F%E7%9F%A9%E9%98%B5%E5%8F%98%E6%8D%A2" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>顶点法向量矩阵变换</h2>
+<p>不知大家是否注意到上面的顶点法向量数据并不是立方体的外表面的法向量，主要是因为立方体的顶点坐标经过了旋转矩阵变换，不管是顶点的坐标还是顶点的法向量都是相对WebGL坐标系而言， 顶点法向量数据和顶点位置数据并没有关联关系，因此没有随着顶点位置数据的旋转而变化，正是因为这一点，你可以尝试更改着上面案例色器程序中立方体顶点的旋转变换角度， 可以看到有些表面，它的法向量和平行光光线的夹角虽然小于90度，也就是说能被光线照射到，但是它的显示颜色却是黑色，这正是因为顶点坐标虽然经过了旋转变换，但是顶点法向量没有跟着变化， 本节课的内容就是为大家解析如何利用矩阵乘法运算实现顶点法向量的跟随顶点位置同步旋转。</p>
+<h3><a id="%E6%97%8B%E8%BD%AC%E3%80%81%E5%B9%B3%E7%A7%BB%E5%8F%98%E6%8D%A2" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>旋转、平移变换</h3>
+<p>三维模型的几何变换有平移、缩放、旋转、剪切、镜像等多种，这里就简单分析下旋转变换和平移变换对顶点法向量的影响，几何体平移变换后，几何体表面相对坐标系原点整体偏移，物体的表面相对坐标轴并没有发生旋转， 几何体表面的法平面法线没有变化，也就是说平移矩阵左乘顶点坐标后，顶点的法向量数据不变化不会影响光照计算。几何体旋转变换后，它的表面相对坐标轴发生了旋转，表面的法线自然发生变化， 一个几何体在计算机图形中的描述是一个个顶点，在几何体旋转的过程中，顶点的法向量和顶点的位置坐标是同步旋转变换的，顶点位置变换是通过旋转矩阵乘法运算实现， 也就是说顶点的法向量也乘同样的旋转矩阵就可以保证几何体表面的法线随着几何体旋转而旋转。</p>
+<p>在上节课的代码中直接修改顶点着色器代码即可。</p>
+<pre class="line-numbers"><code class="language-plain_text">42   // 顶点法向量归一化
+43   '  vec3 normal = normalize(a_normal.xyz);' 
+</code></pre>
+<p>旋转矩阵mx、my连乘后，再乘以顶点法向量a_normal,这时候你可以随意更改旋转角度，通过观察颜色可以知道立方体顶点的法向量对着立方体旋转而旋转。</p>
+<pre class="line-numbers"><code class="language-plain_text">42   // 顶点法向量归一化
+43   '  vec3 normal = normalize((mx*my*a_normal).xyz);' 
+</code></pre>
+<h3><a id="%E5%A4%8D%E5%90%88%E5%8F%98%E6%8D%A2" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>复合变换</h3>
+<p>如果几何体发生多次旋转，也就意味着几何体的表面法线相对坐标系也发生多次旋转变换，把多个旋转变换矩阵连乘，再乘以顶点法向量构成的列向量即可，这一点和顶点位置坐标旋转变换计算一样。</p>
+<p>如果几何体先后进行旋转、平移变换，假设旋转矩阵为A，平移矩阵为B，矩阵AB连乘后得到复合矩阵C，C再乘以顶点位置齐次坐标，就可以得到复合变换后的顶点坐标，对于顶点法向量而言直接右乘旋转矩阵A即可， 不需要关注平移矩阵A，实际的编程中几何体可能发生非常多次平移矩阵、旋转矩阵，没有必要再计算一遍旋转矩阵连乘，可以利用复合矩阵C来求解几何变换后的顶点法向量，但是要矩阵C进行一定变换，才能再乘以顶点法向量。 这很好理解，你可以使用平移矩阵乘以一个顶点法向量，可以看得到顶点法向量的值发生变化，前面说过几何体平移不影响顶点法向量，因为复合矩阵C是包含平移矩阵的成分的，如果使用复合矩阵C直接乘以顶点法向量， 结果是不准确的。这时候线性代数的逆矩阵和转置矩阵知识就派上了用场，你可以把任意一个平移矩阵先利用初等变换的方法求解逆矩阵，再进行转置变换，也就是说求解出一个平移矩阵的逆转置矩阵，把逆转置矩阵与顶点法向量相乘， 你会发现得到的结果，顶点法向量前三个参数的值并没有发生变化，第四个参数发生了变化，不过这无所谓，进行光照计算的时候只会选择前三个参数，第四个参数只是用来辅助计算。这也就说明如果对复合矩阵C进行逆转置变换， 就可以消除平移矩阵对顶点法向量的影响，这时候会带来一个问题，复合矩阵C逆转置变化的过程中，它包含的旋转矩阵相当于也被执行了相同的变换，不过这不影响光照计算，因为旋转矩阵是正交矩阵，它的逆转置矩阵就是它本身， 正交矩阵的乘积仍然是正交矩阵，也就是说多个旋转矩阵相乘后，它的逆转置矩阵仍然是自身。</p>
+<h3><a id="%E8%A7%86%E7%BA%BF" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>视线</h3>
+<p>课程在<a href="http://www.yanhuangxueyuan.com/WebGL_course/coordinate.html">《WebGL坐标系》</a>中讲解过WebGL图形系统默认的投影方向，或者说人的眼睛观察几何体的方向，或者说照相机拍照的方向。 代码中的灯光方向的向量数据，第三个参数是负数，也就是说从z轴的角度看，平行光照射物体的方向，就是人眼睛看物体的方向，如果把灯光方向的向量数据z参数更改为正数，刷新浏览器看到的是一个漆黑的立方体投影， 这时候相当于黑暗的环境中，人站在物体的背光面，而不是向光面，对于WebGL图形系统，你可以形象的理解为把光源从屏幕前面放到了屏幕的后面，人的观察方向是沿着z轴负方向，从屏幕外向里观察，光线自然被立方体遮挡住了。</p>
+<pre class="line-numbers"><code class="language-plain_text">75       var x = 1/Math.sqrt(15), y = 2/Math.sqrt(15), z = 3/Math.sqrt(15);
+76       gl.uniform3f(u_lightDirection,x,y,-z);
+</code></pre>
+<p>灯光方向向量数据第三个参数，也就是z轴方向的数值更改为正数。</p>
+<pre class="line-numbers"><code class="language-plain_text">75       var x = 1/Math.sqrt(15), y = 2/Math.sqrt(15), z = 3/Math.sqrt(15);
+76       gl.uniform3f(u_lightDirection,x,y,z);
+</code></pre>
+<h2><a id="%E7%AB%8B%E6%96%B9%E4%BD%93%E6%B7%BB%E5%8A%A0%E7%82%B9%E5%85%89%E6%BA%90" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>立方体添加点光源</h2>
+<p><a href="http://www.yanhuangxueyuan.com/WebGL_course/download/light1.rar">源码下载</a></p>
+<p>添加平行光是直接定义光线照射物体的方向，点光源的光线是发散的，无法直接定义它的光线方向，不过只要定义好点光源的位置坐标，然后与某个顶点的位置坐标进行减法运算，计算结果就是光源射到该顶点的方向。 这很好理解，在三维空间中两个点确定一条直线，几何体顶点代表一个点，点光源的位置代表一个点，直线所在的方向就是光线的方向，在三维笛卡尔坐标系中，把两个顶点的xyz三个分量相减就可以得到一个表示直线方向的向量， 把该向量和顶点法向量作为dot()点积函数的参数，可以计算出光线入射角余弦值然后代入漫反射光照模型公式可以得到新的顶点颜色，渲染管线利用新的顶点颜色进行插值计算可以得到立方体表面每一个像素的值。</p>
+<h3><a id="%E6%B7%BB%E5%8A%A0%E7%82%B9%E5%85%89%E6%BA%90%E4%BD%8D%E7%BD%AE%E3%80%81%E9%A2%9C%E8%89%B2%E6%95%B0%E6%8D%AE" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>添加点光源位置、颜色数据</h3>
+<p>点光源的颜色数据是使用WebGL接口uniform3f()方法传入着色器中，点光源的位置数据是使用着色器语言GLSL ES直接定义在顶点着色器程序中，这两种方式实现的结果都是一样的，通过这个对比你可以进一步着色器语言和Javascript语言可以操控的可以实现CPU和GPU通信的WebGL API。</p>
+<pre class="line-numbers"><code class="language-plain_text">40   /**设置点光源位置数据**/
+41   'vec3 lightPosition = vec3(2,3,4);'
+76   /**
+77    * 传入点光源颜色数据
+78    **/
+79   gl.uniform3f(u_lightColor, 1.0, 1.0, 1.0);
+</code></pre>
+<h3><a id="%E8%AE%A1%E7%AE%97%E5%85%89%E7%BA%BF%E6%96%B9%E5%90%91" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>计算光线方向</h3>
+<p>点光源的光线是发散的，点光源与每一顶点连线的方向都需要单独计算。第47行代码的功能是计算经过旋转变换后的顶点坐标，这样可以保证光线方向随着立方体旋转动态变化，尤其是制作旋转动画。</p>
+<p>第49行代码用来计算光线方向，然后利用内置函数 normalize()归一化向量数据，vec3(vertexPosition)和vertexPosition.xyz的写法是等效的，都是为了提取vec4类型顶点数据前三个分量，返回的数据类型是vec3，比如vec2(vec4)就是提取vec4的前两个分量。</p>
+<pre class="line-numbers"><code class="language-plain_text">46   // 计算顶点位置
+47   '  vec4 vertexPosition = mx*my*apos;' +
+48   // 计算点光源照射顶点的方向并归一化
+49   '  vec3 lightDirection = normalize(vec3(vertexPosition) - lightPosition);' 
+</code></pre>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[利用微信第三方平台发布零码小程序]]></title>
@@ -4372,433 +4522,6 @@ npm i -D lint-staged husky
 <p>那种贫穷与残酷，那种孩子的纯真与潜能，那种爱的救赎，无论生活给我们多大压力，我们也要用弱小的肩膀扛着生活前行。铭记过去，感恩当下。这俗世总叫人阵痛，但我们总会在某一时刻找到人生信仰。美好终会到来，所以你只管善良。人这一生无非是一场和自己和解的旅程，学会放下恩怨和伤害，才能卸下身上沉重的包袱，重新出发，向阳而生。</p>
 <p>散落的月光，穿过了云，躲着人群，铺成大海的鳞。愿所有心有羁绊的人，都能拨开这纷扰离乱的世间，一次又一次重逢。愿所有年轻人，以梦为马，不负韶华，心如花木，向阳而生</p>
 <p>这个世界是平衡的，每个人都想通过自己的努力，去获得自己想要生活的样子，如果你真的改变不了命运，那就尽可能的改变，其中的体验吧，你不一定逆风翻盘，但你一定要向阳而生。</p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[【前端工程化】篇五 未来已来-Babel]]></title>
-    <link href="https://www.bwrong.cn/17280327574437.html"/>
-    <updated>2024-10-04T17:05:57+08:00</updated>
-    <id>https://www.bwrong.cn/17280327574437.html</id>
-    <content type="html"><![CDATA[
-<p>字数：4627， 阅读时间：12分钟，点击<a href="https://www.bwrong.cn/post/dev-tools05/">阅读原文</a></p>
-<blockquote>
-<p>枫林新叶催陈叶，雏凤清于老风声。 一一李商隐</p>
-</blockquote>
-<p>【前端工程化】系列文章链接：</p>
-<ul>
-<li><a href="https://www.bwrong.cn/post/dev-tools01/">01 扬帆起航-开发环境</a></li>
-<li><a href="https://www.bwrong.cn/post/dev-tools02/">02 白璧微瑕-包管理器</a></li>
-<li><a href="https://www.bwrong.cn/post/dev-tools03/">03 席卷八荒-Webpack基础篇</a></li>
-<li><a href="https://www.bwrong.cn/post/dev-tools04/">04 席卷八荒-Webpack进阶篇</a></li>
-</ul>
-<p><em>示例代码仓库：<a href="https://github.com/BWrong/dev-tools">https://github.com/BWrong/dev-tools</a></em></p>
-<p><em>声明：如按照文中代码执行报错，请检查依赖版本是否和示例代码仓库中一致。</em></p>
-<h1><a id="%E6%A6%82%E8%BF%B0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>概述</h1>
-<p>作为一个有追求的前端，如果你没有听过<a href="https://babeljs.io/"><code>Babel</code></a>的大名，那就真的是out了。不过说实话不太了解Babel的话，其实对日常开发的影响也不大，因为很多脚手架已经配置好了，不用自己折腾。但是如果你想玩转前端工程化这块，这就是绕不过的坎。</p>
-<p>babel官方定义为一款<code>JavaSscript</code>编译器。</p>
-<blockquote>
-<p>Use next generation JavaScript, today.</p>
-<p>现在就使用下一代JavaScript语法吧</p>
-</blockquote>
-<p>这里的“下一代”是泛指新的、暂时还不被浏览器广泛支持的，而不是局限于某个确定的版本。</p>
-<p>简单来说，浏览器（特别是一些低端浏览器，说你呢IE）对ECMAScript规范的支持是滞后的，新的语法虽然能够给我们带来更好的编程体验，却奈何往往不能不能直接在用户的浏览器运行，所以就需要在浏览器运行这些代码前将其转换成支持的语法，而Babel就是负责这个的，当然它的能力远不止如此，后面我们一一道来。</p>
-<p>Babel主要做的就是这几点：</p>
-<ul>
-<li>语法转换：将新的语法转换成兼容性更好的旧语法。</li>
-<li>特性垫片：通过<code>Polyfill</code> 实现目标环境中缺少的特性，将环境的特性差异垫平，说白了还是做兼容。</li>
-<li>more...</li>
-</ul>
-<pre class="line-numbers"><code class="language-js">// Babel Input: ES2015 arrow function
-[1, 2, 3].map((n) =&gt; n + 1);
-
-// Babel Output: ES5 equivalent
-[1, 2, 3].map(function(n) {
-  return n + 1;
-});
-</code></pre>
-<h2><a id="%E8%BF%90%E8%A1%8C%E6%96%B9%E5%BC%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>运行方式</h2>
-<p>Babel的运行过程分为三个阶段：解析 --- 转换 ---  生成</p>
-<p><img src="https://gitee.com/letwrong/Picture/raw/master/20200904114027.png" alt="" /></p>
-<ol>
-<li>解析：解析代码，并生成AST抽象语法树</li>
-<li>转换：将上一步的AST转换成目标环境支持的AST</li>
-<li>生成：根据转换后的AST生成目标代码</li>
-</ol>
-<p>不难发现，第二步就是Babel执行的核心操作。但Babel自身是不具备任何转换能力，必须借助一些插件来实现语法的转换。关于插件，后续会详细介绍，这里只需记住，插件赋予了babel强大的能力，没有插件它算个球。</p>
-<p>如果想了解具体的转换过程，请阅读<a href="https://juejin.im/post/5ab35c3cf265da23771951a2">从babel讲到AST</a>。</p>
-<blockquote>
-<p>babel解析语法的内核使用的是<code>babylon</code>，现在已更名为<code>@babel/parser</code>。</p>
-</blockquote>
-<h2><a id="babel7" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Babel7</h2>
-<p>作者在写这篇文章的时候，babel的版本是<code>7.10.0</code>，<code>babel7</code>带来了很多新的特性，为了避免给大家造成误导，这里先列出babel7的变化，避免和之前版本的配置混淆。</p>
-<p>主要的变化如下：</p>
-<ul>
-<li>preset：推荐使用 <code>env</code>替代<code>es201x</code>；删除<code>stage-x</code> ，因为这些草案中的特性不稳定，维护这些preset会浪费大量精力，所以官方放弃了。如果需要使用可以自己显式的添加对应的插件。</li>
-<li>npm包名：将所有<code>babel-*</code>更改为<code>@babel/*</code>，更加符合npm命名规范。
-<ul>
-<li><code>babel-cli</code> -&gt; <code>@babel/cli</code>。</li>
-<li><code>babel-preset-env</code> -&gt; <code>@babel/preset-env</code>，简写为 <code>@babel/env</code></li>
-</ul>
-</li>
-<li>对低于nodejs6.0不再提供支持。</li>
-<li><code>@babel/cli</code>中不再包含<code>@babel/node</code>，如要使用需要单独安装。</li>
-<li>提供<code>babel-upgrade</code>帮助开发者从6到7的版本升级。</li>
-</ul>
-<h1><a id="%E4%BD%BF%E7%94%A8%E5%92%8C%E9%85%8D%E7%BD%AE" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>使用和配置</h1>
-<h2><a id="%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>使用方式</h2>
-<p>babel的使用场景主要分为两种：命令行和构建工具。</p>
-<ul>
-<li>命令行</li>
-</ul>
-<p>babel为命令行提供了<code>@babel/cli</code>工具，支持在命令行直接执行babel命令。</p>
-<p>首先，安装必要的包：</p>
-<pre class="line-numbers"><code class="language-shell">npm install --save-dev @babel/core @babel/cli
-</code></pre>
-<blockquote>
-<p>这里必须要安装<code>@babel/core</code>，它是babel的<strong>核心</strong>，它是后续一切的基石，无论哪种方式都必不可少。</p>
-</blockquote>
-<p>安装好在项目中执行<code>babel</code>命令就可以进行转换了。</p>
-<pre class="line-numbers"><code class="language-shell">babel src --out-dir lib # 将src下的文件处理后输出到lib
-</code></pre>
-<ul>
-<li>
-<p>构建系统</p>
-<p>在构建工具中使用才是我们使用babel更常用的方式。这里我们以webpack为例。</p>
-<p>babel提供了一个loader：<code>babel-loader</code>，使用这个loader我们就能很轻松实现代码转换。</p>
-</li>
-</ul>
-<pre class="line-numbers"><code class="language-js">module: {
-  rules: [
-    {
-      test: /\.js$/,
-      loader: 'babel-loader',
-      options: {
-      	// 配置项
-      }
-    }
-  ]
-}
-
-</code></pre>
-<ul>
-<li>
-<p>运行时（不推荐）</p>
-<p>babel还提供了运行时环境下的处理，可以在代码运行时，实时进行转换。不过并不推荐这种方式，因为它是在代码运行时实时进行转换，效率较低。</p>
-<p>除了以上方式，还有一些其他的使用方式，详情可以查看<a href="https://babel.docschina.org/setup#installation">babel配置</a>。</p>
-</li>
-</ul>
-<h2><a id="%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>配置文件</h2>
-<p>前面的方式我们都没有提供配置，所以输出和输入是一样的，这完全没有意义。所以我们一般会提供一些配置，来告诉babel如何进行转换。</p>
-<p>babel7支持多种方式来进行配置：</p>
-<ul>
-<li>
-<p><a href="https://babel.dev/docs/en/configuration#babelconfigjson"><code>babel.config.json</code></a>（项目范围）</p>
-</li>
-<li>
-<p><a href="https://babel.dev/docs/en/configuration#babelrcjson"><code>.babelrc.json</code></a>（相对文件）</p>
-</li>
-<li>
-<p><code>package.json</code>中添加babel字段</p>
-</li>
-</ul>
-<pre class="line-numbers"><code class="language-json">{
-  &quot;name&quot;: &quot;my-package&quot;,
-  &quot;version&quot;: &quot;1.0.0&quot;,
-  &quot;babel&quot;: {
-    &quot;presets&quot;: [ ... ],
-    &quot;plugins&quot;: [ ... ],
-  }
-}
-</code></pre>
-<p>前面两种配置文件都使用了json格式，其实babel还支持其他格式，如 <code>.js</code>，<code>.cjs</code>（Commonjs）和<code>.mjs</code>（ESModule），它们相对于json格式更加灵活，可以在配置中进行编程处理，但是会使配置无法静态分析，失去可缓存性。</p>
-<pre class="line-numbers"><code class="language-js">// babel.config.js
-module.exports = {
-  presets: [],
-  plugins: []
-};
-
-</code></pre>
-<p>所有方式的配置内容都是类似的，我们可以根据自己的使用场景进行灵活选择。</p>
-<p>babel虽然有多种方式来写配置文件，但是配置的内容都是类似的，主要包含<code>plugins</code>和<code>presets</code>两部分，不过这里需要注意几点：</p>
-<ul>
-<li>
-<p>配置格式：<code>plugins</code>和<code>presets</code>配置项均为数组，如果每项不需要配置的话，直接放入数组（值为项的字符串名称）；如果要配置的话，则需要把格式改成数组，该数组的第一个元素是该项的字符串名字，第二个元素是该项的配置对象。</p>
-<p><em>这里填写的plugins和presets，babel会自动检查是否已被安装在<code>node_modules</code>下面，当然，也可以使用相对路径来使用本地文件。</em></p>
-</li>
-</ul>
-<pre class="line-numbers"><code class="language-json">&quot;plugins&quot;: [
-    [
-      &quot;component&quot;,
-      {
-        &quot;libraryName&quot;: &quot;element-ui&quot;,
-        &quot;styleLibraryName&quot;: &quot;theme-chalk&quot;
-      }
-    ],
-    &quot;@babel/plugin-transform-runtime&quot;
- ]
-</code></pre>
-<ul>
-<li>
-<p>执行顺序：<strong><code>plugins</code>会从前到后执行，<code>presets</code>会从后向前执行，且<code>plugins</code>会比<code>presets</code>先执行</strong></p>
-<p><code>presets</code>逆序执行的目的是为了保证向后兼容，我们在配置的时候按照规范的时间顺序列出即可，如<code>['es2015', 'stage-1']</code>，这样就会先使用<code>stage-1</code>，否则就会出现错误。</p>
-</li>
-<li>
-<p>短名称：在配置plugin和preset名字的时候，可以省略名字中的<code>babel-plugin-</code>和<code>preset-</code>字样，仅使用插件的名字就可以了。</p>
-</li>
-</ul>
-<pre class="line-numbers"><code class="language-json">{
-  &quot;plugins&quot;: [
-    &quot;myPlugin&quot;, // 完整名字：&quot;babel-plugin-myPlugin&quot;
-    &quot;@org/myPlugin&quot; // 完整名字：&quot;@org/babel-plugin-myPlugin&quot;
-  ],
-  &quot;presets&quot;:[
-    &quot;myPreset&quot;, // 完整名字：&quot;babel-preset-myPreset&quot;
-    &quot;@babel/myPreset&quot; // 完整名字：@babel/preset-myPreset
-  ]
-}
-</code></pre>
-<p>关于一些常用<code>plugins</code>和<code>presets</code>的常用配置，我们在下面会有详细介绍。</p>
-<h1><a id="%E6%A0%B8%E5%BF%83" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>核心</h1>
-<p>babel的核心除了<code>@babel/core</code>就是<code>plugins</code>和<code>presets</code>了，我们一般使用babel其实就是在折腾这两块内容。下面我们就来一探究竟。</p>
-<h2><a id="plugin" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Plugin</h2>
-<p>前面我们说了，babel的转换完全依靠插件，babel拥有的能力完全取决于给它配置了哪些插件。</p>
-<p>babel的插件分为两种：</p>
-<ul>
-<li>
-<p>语法插件：赋予babel解析特定语法的能力，可以理解一个为babel服务的翻译官，仅做翻译解析工作，工作在<code>AST</code>转换阶段。</p>
-</li>
-<li>
-<p>转译插件：转译插件即把特定的语法转换成指定标准的语法。</p>
-<p>比如将箭头函数 <code>(x) =&gt; x</code> 转换成 <code>function (x) {return x}</code>，只需要配置箭头函数转译插件即可。</p>
-</li>
-</ul>
-<pre class="line-numbers"><code class="language-json">{
-  &quot;plugins&quot;: [
-    &quot;@babel/plugin-transform-arrow-functions&quot;
-  ]
-}
-</code></pre>
-<blockquote>
-<p>**注意：**使用了转译插件，就不再需要配置对应的语法插件了，因为转译插件会自动启用相应的语法插件。其实很容易理解，连解析都做不到，又何谈转换呢。</p>
-</blockquote>
-<p>插件的使用大概分为两步：</p>
-<ol>
-<li>将插件添加到配置文件的<code>plugins</code>属性中，可根据插件文档做相应配置。</li>
-<li>安装插件到项目中，使用npm或者yarn均可</li>
-</ol>
-<p>每个插件的功能是单一的，所以一般转换需求要使用的插件数量比较多，这时候可以考虑presets。常用的插件和用法可以查看<a href="https://babeljs.io/docs/en/plugins">babel-plugins</a></p>
-<h3><a id="%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8F%92%E4%BB%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>自定义插件</h3>
-<p>除了使用社区提供的插件，我们也可以自己开发。</p>
-<pre class="line-numbers"><code class="language-js">module.exports = function() {
-  return {
-    visitor: {
-      Identifier(path) {
-        const name = path.node.name;
-        // reverse the name: JavaScript -&gt; tpircSavaJ
-        path.node.name = name
-          .split(&quot;&quot;)
-          .reverse()
-          .join(&quot;&quot;);
-      },
-    },
-  };
-}
-</code></pre>
-<p>这里只是一个简单的例子，实际的插件开发远不是如此简单，可以执行查看<a href="https://github.com/jamiebuilds/babel-handbook/blob/master/translations/zh-Hans/plugin-handbook.md">Babel 插件手册</a>学习。</p>
-<h2><a id="presets" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Presets</h2>
-<p>在实际的开发中，我们如果用ES6来进行开发的话，那需要转换的语法是非常多的，难道要一个一个去配置吗？还要不要配陪妹子了？</p>
-<p>这个时候，就该presets登场了。presets可以理解为一组插件的集合，就像你去德克士直接点一个全家桶，而不必一个一个给服务员说要鸡腿、鸡翅、薯条...（如果想和服务员小姐姐多待一会，也不是不可以）</p>
-<p>presets的来源主要有以下几种途径：</p>
-<ul>
-<li>
-<p>官方：官方为常用的环境提供了preset。</p>
-<ul>
-<li><a href="https://babel.docschina.org/docs/en/babel-preset-env">@babel/preset-env</a></li>
-<li><a href="https://babel.docschina.org/docs/en/babel-preset-flow">@babel/preset-flow</a></li>
-<li><a href="https://babel.docschina.org/docs/en/babel-preset-react">@babel/preset-react</a></li>
-<li><a href="https://babel.docschina.org/docs/en/babel-preset-typescript">@babel/preset-typescript</a></li>
-<li>stage-X (试验性 Presets)</li>
-</ul>
-</li>
-<li>
-<p>社区：在npm上面可以找到许多社区维护的<a href="https://www.npmjs.com/search?q=babel-preset">preset</a>，比如vue和react都有维护了自己的preset。</p>
-</li>
-<li>
-<p>自定义：在有特殊需求的时候，可以自己创建preset。</p>
-</li>
-</ul>
-<pre class="line-numbers"><code class="language-js">module.exports = () =&gt; ({
-  presets: [ // 引用其他preset
-    require(&quot;@babel/preset-env&quot;),
-  ],
-  plugins: [ // 要集合的插件
-    [require(&quot;@babel/plugin-proposal-class-properties&quot;), { loose: true }],
-    require(&quot;@babel/plugin-proposal-object-rest-spread&quot;),
-  ],
-});
-</code></pre>
-<p><strong>注意：</strong><a href="%5Bhttps://babel.docschina.org/docs/en/presets#stage-x-%E8%AF%95%E9%AA%8C%E6%80%A7-presets%5D(https://babel.docschina.org/docs/en/presets#stage-x-%E8%AF%95%E9%AA%8C%E6%80%A7-presets)">Stage-x</a> presets 中的任何转换都是针对未发布的 Javascript 特性（如 ES6 / ES2015）的更改，都是不稳定的，将来这些提案可能会发生变化，请谨慎使用，特别是第三阶段前的提案。从v7开始，所有针对标准提案阶段的功能所编写的预设(stage preset)都已被弃用，官方已经移除了 <code>@babel/preset-stage-x</code>。</p>
-<h4><a id="babelpreset-env" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>@babel/preset-env</h4>
-<pre class="line-numbers"><code class="language-json">{
-    &quot;presets&quot;: [&quot;@babel/preset-env&quot;]
-}
-</code></pre>
-<p>这个是我们最常用的，也是官方现在推荐的preset，它是一个智能预设，我们无需再关心特定环境下所需的转换插件（只需要指定目标环境），就可以使用最新的语法。除了能够减少使用难度，还能够使转换出来的代码体积更小。</p>
-<p>preset-env会根据配置的目标环境中缺少的功能，选择对应的插件进行必要的转换和<code>polyfill</code>，而目标环境支持的特性就不会转换，而不是无脑的一把梭哈。</p>
-<p>如果不进行配置，它将使用默认配置，即 latest（<a href="https://github.com/babel/babel-preset-env/blob/master/data/plugin-features.js">env维护的插件列表</a>），会将最新的JS特性(ES2015,ES2016...，不包含 stage 阶段)，将其转换成ES5代码。所以如果使用了提案阶段的语法，则需要自行额外配置。</p>
-<h5><a id="%E5%A6%82%E4%BD%95%E6%8C%87%E5%AE%9A%E7%9B%AE%E6%A0%87%E7%8E%AF%E5%A2%83" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>如何指定目标环境</h5>
-<ul>
-<li>配置文件：通过配置文件的targets属性指定目标环境</li>
-</ul>
-<pre class="line-numbers"><code class="language-json">{
-  &quot;presets&quot;: [
-    [&quot;env&quot;, {
-      &quot;targets&quot;: {
-        &quot;browsers&quot;: [&quot;last 2 versions&quot;, &quot;safari &gt;= 7&quot;],
-        &quot;node&quot;: &quot;12.10&quot;
-      }
-    }]
-  ]
-}
-</code></pre>
-<ul>
-<li>
-<p>browserslistrc：如果是浏览器或者<code>Electron</code>，官方推荐使用<code>.browserslistrc</code>文件来指定目标环境（可以和autoprefixer、stylelint等其他工具共享配置）。</p>
-<p>不过如果在配置文件中设置了 <code>targets</code> 或 <code>ignoreBrowserslistConfig</code>，<code>.browserslistrc</code>中配置的内容将不会生效。</p>
-</li>
-</ul>
-<pre class="line-numbers"><code class="language-shell"># .browserslistrc
-last 2 Chrome versions
-</code></pre>
-<p>具体用法请查看<a href="https://github.com/browserslist/browserslist"><code>browserslist</code> 的更多配置</a>。</p>
-<h5><a id="%E5%85%B6%E4%BB%96%E9%85%8D%E7%BD%AE" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>其他配置</h5>
-<p>除了<code>targets</code>外，还有一些配置项也比较常用：</p>
-<ul>
-<li>
-<p>modules: 用于指定转换后的模块规范，可设置为<code>&quot;amd&quot; | &quot;umd&quot; | &quot;systemjs&quot; | &quot;commonjs&quot; | &quot;cjs&quot; | &quot;auto&quot; | false</code>，默认为<code>&quot;auto&quot;</code>。</p>
-</li>
-<li>
-<p><code>useBuiltIns</code>：此选项配置如何<code>@babel/preset-env</code>处理polyfill，在后面介绍polyfill我们会详细介绍。</p>
-</li>
-<li>
-<p><code>corejs</code>：用于指定corejs的版本，仅当使用了<code>useBuiltIns: usage</code>或者<code>useBuiltIns: entry</code>此配置才有效，使用时一定要配置正确的版本，否则会报错。</p>
-<p>当前默认的版本是<code>2.0</code>，不过建议使用<code>3.0</code>版本，因为2.0已经不会再添加新的特性了，如果使用了一些较新的语法，将会无法转换。</p>
-</li>
-</ul>
-<p>除了上述配置，还有一些不常用的配置，可以查看<a href="https://babeljs.io/docs/en/babel-preset-env#options">官方文档</a>。</p>
-<h1><a id="polyfill" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Polyfill</h1>
-<p>前面我们的配置其实是不完美的，转换出来的代码直接在浏览器运行是可能会出问题的。这是因为babel默认只转换了语法，而对于一些新的API是并没有处理的，如Generator、Set、Maps、Proxy、Promise 等全局对象及其方法都不会转码，如果我们在代码中使用到了就会报错。</p>
-<p>此时，我们就需要做Polyfill，也就是所谓的'垫片'，作用就是把浏览器的差异垫平，人话就是通过模拟为这些浏览器补全缺失的全局对象及API。</p>
-<h3><a id="babelpolyfill%EF%BC%88%E5%BA%9F%E5%BC%83%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>@babel/polyfill（废弃）</h3>
-<p>早期的方案就是<code>@babel/polyfill</code>（早期的名字是<code>babel-polyfill</code>，内部集成了 <code>core-js</code> 和 <code>regenerator</code>），在入口或者webpack配置的entry中引入<code>@babel/polyfill</code>，此工具会模拟完整的ES2015 +环境（不包含第4阶段的提议），会创建一些全局对象，或者在已有全局对象的原型上补全方法，让我们可以使用<code>Promise</code>、<code>WeakMap</code>、<code>Array.from</code>等新的API。</p>
-<blockquote>
-<p>比如<code>Array.prototype.includes</code>是ES6的API，就会在<code>Array.prototype</code>上面添加一个自己实现的includes方法来模拟原生的includes。</p>
-</blockquote>
-<pre class="line-numbers"><code class="language-js">import '@babel/polyfill';
-let include = [1,2,3].includes(1);
-new Promise((resolve, reject) =&gt; {
-    resolve();
-});
-</code></pre>
-<p>现在，我们的代码就可以在低版本的浏览器运行了。不过此方案有一些缺点：</p>
-<ul>
-<li>文件体积大：因为<code>@babel/polyfill</code>会把所有API都补全，不管你有没有使用，比如你可能在项目中只使用了一个新的API，结果他给你梭哈了，把所有的API都整进去了。所以最后打出来的包会非常大，非常浪费。</li>
-<li>污染全局变量：<code>@babel/polyfill</code>会在全局创建对象或者修改全局对象的原型链，所以会对全局变量进行污染。</li>
-</ul>
-<p>对于第一个缺点，我们可以使用前面<code>@babel/preset-env</code>提供的<code>useBuiltIns</code>配置，当设置为<code>usage</code>时（须要制定corejs版本），babel会检查我们的代码，只引入我们代码中需要的<code>polyfill</code>，这样打包出来的文件就会小很多。</p>
-<pre class="line-numbers"><code class="language-json">// babel.config.json
-{
-  &quot;presets&quot;: [
-    [
-      &quot;@babel/env&quot;,
-      {
-        &quot;useBuiltIns&quot;: &quot;usage&quot;,
-        &quot;corejs&quot;: 3
-      }
-    ]
-  ]
-}
-
-</code></pre>
-<p>例如前面的代码：</p>
-<pre class="line-numbers"><code class="language-js">// import '@babel/polyfill';  使用useBuiltIns: 'usage'时，会自动导入需要的垫片，所以不用再手动引入
-let include = [1,2,3].includes(1);
-new Promise((resolve, reject) =&gt; {
-    resolve();
-});
-</code></pre>
-<p>编译后的代码：</p>
-<pre class="line-numbers"><code class="language-js">&quot;use strict&quot;;
-require(&quot;core-js/modules/es.array.includes&quot;);
-require(&quot;core-js/modules/es.object.to-string&quot;);
-require(&quot;core-js/modules/es.promise&quot;);
-
-// import '@babel/polyfill';
-let include = [1,2,3].includes(1);
-new Promise((resolve, reject) =&gt; {
-    resolve();
-});
-</code></pre>
-<p>我们可以看到，在文件的头部仅加入了文件中用到的新语法的<code>polyfill</code>，是不是棒棒的了。</p>
-<p>不过这并没有完，试想如果很多文件都使用了这些特性，岂不是每个文件都会引入一次，有没有办法改善一下呢？</p>
-<h3><a id="babelplugin-transform-runtime" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>@babel/plugin-transform-runtime</code></h3>
-<p><code>@babel/plugin-transform-runtime</code> 是一个可重复使用Babel注入的帮助程序的插件，避免重复注入，以节省代码大小。通常还要搭配<code>@babel/runtime</code>一起使用。</p>
-<pre class="line-numbers"><code class="language-shell">npm install --save-dev @babel/plugin-transform-runtime
-npm install --save @babel/runtime # 提供缺失的特性，须要在生产环境中安装
-</code></pre>
-<pre class="line-numbers"><code class="language-json">// babel.config.json
-{
-  &quot;presets&quot;: [
-    [
-      &quot;@babel/preset-env&quot;,
-      {
-        &quot;useBuiltIns&quot;: &quot;usage&quot;,
-        &quot;corejs&quot;: 3
-      }
-    ]
-  ],
-  &quot;plugins&quot;: [[&quot;@babel/plugin-transform-runtime&quot;]]
-}
-
-</code></pre>
-<p>如上配置后，一个class转换如下：</p>
-<pre class="line-numbers"><code class="language-js">// 源码
-class Foo {
-  method() {}
-}
-</code></pre>
-<pre class="line-numbers"><code class="language-js">// 转换后
-import _classCallCheck from &quot;babel-runtime/helpers/classCallCheck&quot;;
-import _createClass from &quot;babel-runtime/helpers/createClass&quot;;
-
-let Foo = function () {
-  function Foo() {
-    _classCallCheck(this, Foo);
-  }
-
-  _createClass(Foo, [{
-    key: &quot;method&quot;,
-    value: function method() {}
-  }]);
-
-  return Foo;
-}();
-</code></pre>
-<p>我们看到，这里并不是采用全局引入的方式，而是引入了局部变量来替换新的语法，提供了一个沙箱机制，这就顺便解决了上面全局作用域污染的问题。而且这里所有模拟的特性都是从<code>@babel/runtime</code>中引入，而这个包我们是安装在生产环境中的，并不是会打包到每个文件中，这就使这些<code>polyfill</code>得到了复用，不会打包多次。</p>
-<p>**注意：**上面的corejs需要为3.0才会完全转换，如果使用2.0只会转换语法，而不会做<code>polyfill</code>，如果要做的话需要再单独引入<code>@babel/runtime-corejs3</code>来进行处理，推荐使用3.0，所以这里不再赘述。</p>
-<p>经历了一波三折，我们终于搞定了。但是，这不是银弹，未来可能还会出现其他的方案，关于Polyfill的历史可以去看云谦大佬的<a href="https://github.com/sorrycc/blog/issues/80">Polyfill 方案的过去、现在和未来</a>。</p>
-<h1><a id="%E7%94%9F%E6%80%81" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>生态</h1>
-<p>除了上面介绍的东西，babel生态也是非常繁荣，还有很多其他配套的一些工具（名字通常以<code>babel-*</code>或<code>@babel/*</code>开头），下面我们大概列举一下：</p>
-<ul>
-<li><code>babel-cli</code>：babel提供的命令行工具，提供了<code>babel</code>命令来执行编译任务。</li>
-<li><code>babel-register</code>：会在<code>require</code>加载文件前，先用babel进行转码编译，前面说到的运行时编译就是使用此工具。</li>
-<li><code>babel-loader</code>：babel为webpack提供的一个loader，也是最常见的使用方式。可以在webpack构建的工程中进行转码编译。</li>
-<li><code>babel-polyfill</code>/<code>@babel/polyfill</code>：babel提供的polyfill工具。</li>
-</ul>
-<p>babel的存在，让我们可以打破运行环境语法规范的限制，犹如一台时光机，把我们带到了未来，让我们可以用彼时的语法来编写此时的应用，为我们学习和使用最新的语法扫清了障碍，俨然babel已成为我们工程化中必不可少的一个工具。</p>
-<p>参考文档：<a href="https://babel.docschina.org/">Babel中文网</a>、<a href="https://juejin.im/post/5ddff3abe51d4502d56bd143#heading-6">不容错过的 Babel7 知识</a>、<a href="https://juejin.im/post/5c19c5e0e51d4502a232c1c6#heading-12">一口(很长的)气了解 babel</a></p>
 
 ]]></content>
   </entry>
