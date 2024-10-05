@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
     
-    利用微信第三方平台发布零码小程序 - Bwrong的博客
+    利用微信第三方平台发布零码小程序 - Bwrong的拾光
     
     </title>
     <link rel="shortcut icon" href="asset/avatar.png" type="image/png" />
 
     
     
-    <link href="atom.xml" rel="alternate" title="Bwrong的博客" type="application/atom+xml">
+    <link href="atom.xml" rel="alternate" title="Bwrong的拾光" type="application/atom+xml">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="asset/css/style.min.css">
     <link rel="stylesheet" href="asset/css/doc.css">
@@ -148,7 +148,7 @@
 <li>实现简单，因为和编辑时使用的是同一环境，****可直接复用，不需要做单独适配。</li>
 <li>能力有限，因为使用Webview进行渲染，所以应用所能使用的能力取决于Webview组件提供的开发能力，目前可以使用的能力可查看<a href="https://developers.weixin.qq.com/miniprogram/dev/component/web-view.html#%E7%9B%B8%E5%85%B3%E6%8E%A5%E5%8F%A3-2">Webview组件文档</a></li>
 </ul>
-<p><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/1681960549630-bc7e7caa-c9e0-4e01-8a37-d1ca2cbe3336.jpeg" alt="" /></p>
+<p><img src="media/17280336310867/17281439430594.jpg" alt="" /></p>
 <h3><a id="%E4%BA%8C%E3%80%81%E5%8E%9F%E7%94%9F%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%96%B9%E6%A1%88%EF%BC%9A%E7%94%9F%E6%88%90%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%8E%9F%E7%94%9F%E7%BB%84%E4%BB%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>二、原生小程序方案：生成小程序原生组件</h3>
 <p>在web端进行应用设计完成后，将内容保存为和平台无关的通用语言数据，常用的为JSON Schema，不同平台需要实现各自的解析适配器，将内容解析为平台特有的代码，这里即为解析为微信小程序。</p>
 <p><strong>特点：</strong></p>
@@ -181,7 +181,7 @@
   }
 }
 </code></pre>
-<p><img src="https://cdn.nlark.com/yuque/0/2023/jpeg/159460/1681990517560-e4737370-b90d-44d7-967c-c2a97eaf28f3.jpeg" alt="" /></p>
+<p><img src="media/17280336310867/17281439430614.jpg" alt="" /></p>
 <p><strong>参考实现方案：</strong></p>
 <ul>
 <li><a href="https://github.com/silence717/taro-designer">https://github.com/silence717/taro-designer</a></li>
@@ -192,21 +192,21 @@
 </ul>
 <h2><a id="%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E7%AC%AC%E4%B8%89%E6%96%B9%E5%B9%B3%E5%8F%B0%E4%BB%A3%E5%BC%80%E5%8F%91" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>如何使用第三方平台代开发</h2>
 <p>第三方平台（简称第三方平台），由微信团队面向所有通过<a href="https://kf.qq.com/faq/170824URbmau170824r2uY7j.html">开发者资质认证</a>的第三方开发者提供提供的官方平台。在得到公众号或小程序管理员授权后，基于该平台，第三方服务商可以通过调用官方接口能力，为商家提供公众号代运营、小程序代注册、代开发等服务以及提供公众号和小程序相关的行业方案、活动营销、插件能力等全方位服务。</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2023/png/159460/1682068941157-38b4cd76-d6aa-4eda-ba30-51a0dea43a8f.png" alt="" /><img src="https://cdn.nlark.com/yuque/0/2023/png/159460/1682069054303-f88e6aa1-3793-4cb1-95f1-6ef6cd04384a.png" alt="" /></p>
+<p><img src="media/17280336310867/17281439430632.png" alt="" /><img src="media/17280336310867/17281439430647.png" alt="" /></p>
 <h3><a id="%E6%BB%A1%E8%B6%B3%E6%9D%A1%E4%BB%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>满足条件</h3>
-<p><img src="https://cdn.nlark.com/yuque/0/2023/png/159460/1682391253106-b4dc9cdf-a06f-47c3-afed-9cf54f2ddeab.png" alt="" /></p>
+<p><img src="media/17280336310867/17281439430666.png" alt="" /></p>
 <ul>
 <li>提供行业解决方案，如针对电商行业的解决方案，或针对旅游行业的解决方案等；</li>
 <li>行业：（横向）提供更加专业的运营能力，精细化运营用户公众号或小程序；</li>
 <li>功能：（纵向）对公众平台功能的优化，如专门优化图文消息视觉样式和排版的工具，或专门定制的 CRM 用户管理功能，或功能强大的小程序插件等。</li>
 </ul>
 <h3><a id="%E6%B5%81%E7%A8%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>流程</h3>
-<p><img src="https://cdn.nlark.com/yuque/0/2023/png/159460/1681980164393-0fae9953-54d7-4808-a8f4-13e46c652cf9.png" alt="" /></p>
-<p><img src="https://cdn.nlark.com/yuque/0/2023/png/159460/1682391612230-1750c702-0d9e-407e-88a8-2c13ea64c746.png" alt="" /></p>
+<p><img src="media/17280336310867/17281439430682.png" alt="" /></p>
+<p><img src="media/17280336310867/17281439430701.png" alt="" /></p>
 <h4><a id="%E4%B8%80%E3%80%81%E5%A6%82%E4%BD%95%E6%88%90%E4%B8%BA%E6%9C%8D%E5%8A%A1%E5%95%86" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、如何成为服务商</h4>
 <p>1、第三方平台帐号的审核无需缴费，但开放平台帐号的认证（即开发者资质认证）需要交300块钱认证费。一个已完成开发者资质认证的开放平台帐号，可创建5个平台型服务商第三方平台帐号。</p>
 <p>2、任何合法合规的、为小程序提供开发服务及有意愿的开发者都可以成为小程序服务商，微信不会区别对待，也无官方授权的概念。</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2023/png/159460/1681980517223-496c322a-ec16-473a-aee5-c0065909bbec.png" alt="" /></p>
+<p><img src="media/17280336310867/17281439430722.png" alt="" /></p>
 <p><a href="https://developers.weixin.qq.com/doc/oplatform/Third-party_Platforms/2.0/operation/thirdparty/prepare.html"><strong>准备材料：</strong></a></p>
 <ul>
 <li>官方网站：服务商应当有对外可用的官网，且该官网提供的服务描述与申请的第三方平台帐号名称、简介、图标均有所关联</li>
@@ -214,7 +214,7 @@
 <li>域名和ssl证书</li>
 </ul>
 <h4><a id="%E4%BA%8C%E3%80%81%E6%90%AD%E5%BB%BA%E4%B8%89%E6%96%B9%E5%90%8E%E7%AB%AF%E6%9C%8D%E5%8A%A1%EF%BC%9A%E8%87%AA%E5%BB%BA%E6%A8%A1%E5%BC%8F%E5%92%8C%E4%BA%91%E6%9C%8D%E5%8A%A1" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>二、搭建三方后端服务：自建模式和云服务</h4>
-<p><img src="https://cdn.nlark.com/yuque/0/2023/png/159460/1681984771382-05565715-fded-4766-883c-af3bb2dd0bcc.png" alt="" /></p>
+<p><img src="media/17280336310867/17281439430744.png" alt="" /></p>
 <ul>
 <li>服务商类型</li>
 </ul>
@@ -231,19 +231,19 @@
 <p>搭建好三方服务后需要和业务系统服务进行联调对接，然后进行<a href="https://developers.weixin.qq.com/doc/oplatform/Third-party_Platforms/2.0/operation/thirdparty/publish.html">全网发布</a>。</p>
 <h4><a id="%E4%B8%89%E3%80%81%E6%8E%88%E6%9D%83" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>三、授权</h4>
 <p>商家需要将其公众号或者小程序<a href="https://developers.weixin.qq.com/doc/oplatform/Third-party_Platforms/2.0/api/Before_Develop/Authorization_Process_Technical_Description.html">授权</a>给第三方平台，服务商才可以代商家进行相关操作。</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2023/png/159460/1681980296972-49144b20-919e-4d26-bc1d-03817965cd19.png" alt="" /></p>
+<p><img src="media/17280336310867/17281439430767.png" alt="" /></p>
 <h4><a id="%E5%9B%9B%E3%80%81%E4%BB%A3%E5%95%86%E5%AE%B6%E8%B0%83%E7%94%A8%E6%8E%A5%E5%8F%A3" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>四、代商家调用接口</h4>
 <p>小程序的api，服务商都可以调用，只是服务商调用的时候要使用<a href="https://developers.weixin.qq.com/doc/oplatform/Third-party_Platforms/2.0/api/ThirdParty/token/api_authorizer_token.html">authorizer_access_token</a>，而不是access_token。</p>
 <p>服务商能否代商家成功调用某个公众号或者小程序的api，取决于该公众号或者小程序管理员是否将对应的权限集授权给当前第三方平台帐号。</p>
 <h4><a id="%E4%BA%94%E3%80%81%E4%BB%A3%E5%BC%80%E5%8F%91%E5%B0%8F%E7%A8%8B%E5%BA%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>五、代开发小程序</h4>
-<p><img src="https://cdn.nlark.com/yuque/0/2023/png/159460/1681988187650-15d3e030-e517-4a41-9a7c-fc5073146d1c.png" alt="" /></p>
+<p><img src="media/17280336310867/17281439430797.png" alt="" /></p>
 <h5><a id="%E4%BB%A3%E7%A0%81%E4%B8%8A%E4%BC%A0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>代码上传</h5>
 <ul>
 <li>通过开发者工具</li>
 <li><a href="https://developers.weixin.qq.com/miniprogram/dev/devtools/ci.html">CI代码上传</a></li>
 <li><a href="https://developers.weixin.qq.com/community/develop/article/doc/0006aec26a89507900dc70f5e5b013?pass_ticket=PFmw0zP6yfVqUJz8iYlCaPgYBj0s6dm%2BoKU5cKthScDFPSrvwo9Z2cS1G9qCIrRyts29yPal4xRGPCSoPxxoeA%3D%3D">使用小程序CI自动上传代码</a></li>
 </ul>
-<p><img src="https://cdn.nlark.com/yuque/0/2023/png/159460/1681988652552-ed1314fb-a721-432a-b4e1-9146be97d1ea.png" alt="" /></p>
+<p><img src="media/17280336310867/17281439430830.png" alt="" /></p>
 <h3><a id="%E7%9B%B8%E5%85%B3%E6%96%87%E6%A1%A3" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>相关文档</h3>
 <ul>
 <li><a href="https://developers.weixin.qq.com/doc/oplatform/Third-party_Platforms/2.0/getting_started/terminology_introduce.html">官方文档</a></li>

@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
     
-    VUE2.0学习笔记 - Bwrong的博客
+    VUE2.0学习笔记 - Bwrong的拾光
     
     </title>
     <link rel="shortcut icon" href="asset/avatar.png" type="image/png" />
 
     
     
-    <link href="atom.xml" rel="alternate" title="Bwrong的博客" type="application/atom+xml">
+    <link href="atom.xml" rel="alternate" title="Bwrong的拾光" type="application/atom+xml">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="asset/css/style.min.css">
     <link rel="stylesheet" href="asset/css/doc.css">
@@ -134,8 +134,8 @@
           </div>
         </div>
         <article class="markdown-body single-content">
-          <h1><a id="1%E5%89%8D%E8%A8%80" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>1.前言</h1>
-<h2><a id="%E5%AE%89%E8%A3%85" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>安装</h2>
+          <h2><a id="1%E5%89%8D%E8%A8%80" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>1.前言</h2>
+<h3><a id="%E5%AE%89%E8%A3%85" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>安装</h3>
 <ul>
 <li>直接用 <code>&lt;script&gt;</code> 引入（本地或者cdn）</li>
 <li>npm <code>npm install vue</code></li>
@@ -150,17 +150,17 @@ $ cd my-project
 $ npm install
 $ npm run dev
 </code></pre>
-<h2><a id="%E7%AE%80%E4%BB%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>简介</h2>
+<h3><a id="%E7%AE%80%E4%BB%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>简介</h3>
 <p>Vue (读音 /vjuː/，类似于 view) 是一套用于构建用户界面的渐进式框架。Vue 的核心库只关注视图层，对应view。</p>
 <p>Vue数据驱动，jQuery是结构驱动</p>
-<h2><a id="%E5%8E%9F%E7%90%86" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>原理</h2>
+<h3><a id="%E5%8E%9F%E7%90%86" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>原理</h3>
 <p>内部使用Object.defineProperty（最低支持IE9）把所有属性全部转为 getter/setter，为每个组件绑定了watcher 实例对象，并且把属性作为依赖项，当依赖项的setter调用时，watcher将会重新计算，从而更新组件。</p>
 <ul>
 <li>[组件render]-&lt;创建&gt;-[getter、setter]-&lt;收集依赖&gt;-[watcher]</li>
 <li>[触发setter]-&lt;通知&gt;-[watcher]-&lt;触发&gt;-[组件渲染函数]-&lt;更新&gt;-[组件]<br />
-<img src="https://cn.vuejs.org/images/data.png" alt="image" /></li>
+<img src="media/17280092230763/17281435062873.png" alt="image" /></li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/zoro-web/blog/master/img/vue-template(1).png" alt="image" /></p>
+<p><img src="media/17280092230763/17281434027899.png" alt="image" /></p>
 <h2><a id="%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>开发环境</h2>
 <ul>
 <li>vueTools</li>
@@ -231,7 +231,7 @@ vm.$el === document.getElementById('example') // =&gt; true
 </code></pre>
 <h2><a id="%E5%AE%9E%E4%BE%8B%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>实例生命周期</h2>
 <p>每个 Vue 实例在被创建之前都要经过一系列的初始化过程（生命周期）。在这个过程中会运行一些叫做生命周期钩子的函数，用户可以在不同阶段添加自己的代码来做一些事情。<br />
-<img src="https://cn.vuejs.org/images/lifecycle.png" alt="image" /></p>
+<img src="media/17280092230763/17281436626543.png" alt="image" /></p>
 <ul>
 <li><code>beforeCreate:</code>在实例初始化之后，数据观测 (data observer) 和 event/watcher 事件配置之前被调用。</li>
 <li><code>created:</code>在实例创建完成后被立即调用。在这一步，实例已完成以下的配置：数据观测 (data observer)，属性和方法的运算，watch/event 事件回调。然而，挂载阶段还没开始，$el 属性目前不可见。</li>
@@ -1048,7 +1048,7 @@ Vue.config.keyCodes.f1 = 112
 </ul>
 <h1><a id="10%E7%BB%84%E4%BB%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>10.组件</h1>
 <h2><a id="%E7%AE%80%E4%BB%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>简介</h2>
-<p><img src="https://cn.vuejs.org/images/components.png" alt="image" /><br />
+<p><img src="media/17280092230763/17281436626577.png" alt="image" /><br />
 组件 (Component) 是 Vue.js 最强大的功能之一。组件可以扩展 HTML 元素，封装可重用的代码。组件是具有特殊功能的自定义元素。</p>
 <p>所有的 Vue 组件同时也都是 Vue 的实例，所以可接受相同的选项对象 (除了一些根级特有的选项) 并提供相同的生命周期钩子。</p>
 <h2><a id="%E6%B3%A8%E5%86%8C%E7%BB%84%E4%BB%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>注册组件</h2>
@@ -1131,7 +1131,7 @@ requireComponent.keys().forEach(fileName =&gt; {
 <li><code>&lt;script&gt;</code>、<code>&lt;style&gt;</code>支持src导入</li>
 </ul>
 <h2><a id="%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>组件通信</h2>
-<p><img src="https://cn.vuejs.org/images/props-events.png" alt="image" /></p>
+<p><img src="media/17280092230763/17281436626589.png" alt="image" /></p>
 <h4><a id="prop" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Prop</h4>
 <p>父组件向子组件传递数据。</p>
 <pre class="line-numbers"><code class="language-plain_text">Vue.component('child', {
@@ -1446,7 +1446,7 @@ bus.$on('id-selected', function (id) {
 <li>v-leave: 定义离开过渡的开始状态。在离开过渡被触发时生效，在下一个帧移除。</li>
 <li>v-leave-active：定义过渡的状态。在元素整个过渡过程中作用，在离开过渡被触发后立即生效，在 transition/animation 完成之后移除。这个类可以被用来定义过渡的过程时间，延迟和曲线函数。</li>
 <li>v-leave-to: 2.1.8版及以上 定义离开过渡的结束状态。在离开过渡被触发一帧后生效 (与此同时 v-leave 被删除)，在 transition/animation 完成之后移除。<br />
-<img src="https://cn.vuejs.org/images/transition.png" alt="image" /></li>
+<img src="media/17280092230763/17281436626599.png" alt="image" /></li>
 </ul>
 <h4><a id="%E5%8A%A8%E7%94%BB" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>动画</h4>
 <p>动画在css中使用animation即可，其他和过渡类似。</p>
@@ -2180,7 +2180,7 @@ $route.matched
 </ul>
 <h2><a id="%E7%AE%80%E4%BB%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>简介</h2>
 <p>Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。</p>
-<p><img src="https://vuex.vuejs.org/zh-cn/images/vuex.png" alt="image" /></p>
+<p><img src="media/17280092230763/17281438010903.jpg" alt="" /></p>
 <h2><a id="state" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>state</h2>
 <ul>
 <li>状态仓库，全局的数据共享中心</li>
@@ -2508,7 +2508,6 @@ update(el, binding, vnode, oldVnode)
 componentUpdated(el, binding, vnode, oldVnode)
 unbind(el, binding, vnode)
 </code></pre>
-<p><img src="https://www.w3cplus.com/sites/default/files/blogs/2017/1712/vue-custom-directives-6.png" alt="image" /></p>
 <h4><a id="%E9%92%A9%E5%AD%90%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>钩子函数参数</h4>
 <p>指令钩子函数会被传入以下参数：</p>
 <pre class="line-numbers"><code class="language-js">el：指令所绑定的元素，可以用来直接操作DOM

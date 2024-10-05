@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
     
-    【前端工程化】篇二 白璧微瑕-包管理器 - Bwrong的博客
+    【前端工程化】篇二 白璧微瑕-包管理器 - Bwrong的拾光
     
     </title>
     <link rel="shortcut icon" href="asset/avatar.png" type="image/png" />
 
     
     
-    <link href="atom.xml" rel="alternate" title="Bwrong的博客" type="application/atom+xml">
+    <link href="atom.xml" rel="alternate" title="Bwrong的拾光" type="application/atom+xml">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="asset/css/style.min.css">
     <link rel="stylesheet" href="asset/css/doc.css">
@@ -136,14 +136,19 @@
           </div>
         </div>
         <article class="markdown-body single-content">
-          <p>字数：4533， 阅读时间：12分钟，点击<a href="https://www.bwrong.cn/post/dev-tools02/">阅读原文</a></p>
-<p><img src="https://gitee.com/letwrong/Picture/raw/master/20201010113133.jpg" alt="" /></p>
+          <p>字数：4533， 阅读时间：12分钟</p>
 <blockquote>
 <p>一个没有长夜痛哭过的人，不配讲悲伤。一个每遇挫折都要痛哭的人，还是不必三十而立了。 ——三毛</p>
 </blockquote>
 <p>【前端工程化】系列文章链接：</p>
 <ul>
-<li><a href="https://www.bwrong.cn/post/dev-tools01/">01 扬帆起航-开发环境</a></li>
+<li><a href="17280324109501.html">【前端工程化】篇一 扬帆起航：开发环境</a></li>
+<li><a href="17280325692997.html">【前端工程化】篇二 白璧微瑕-包管理器</a></li>
+<li><a href="17280326211130.html">【前端工程化】篇三 席卷八荒-Webpack（基础）</a></li>
+<li><a href="17280327068074.html">【前端工程化】篇四 席卷八荒-Webpack（进阶）</a></li>
+<li><a href="17280327574437.html">【前端工程化】篇五 未来已来-Babel</a></li>
+<li><a href="17280328175326.html">【前端工程化】篇六 规矩方圆-ESLint</a></li>
+<li><a href="17280328680249.html">【前端工程化】篇七 沧海遗珠-其他工具</a></li>
 </ul>
 <h2><a id="%E7%BC%98%E8%B5%B7" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>缘起</h2>
 <p>在很久很久以前，前端叫做“切图仔”，那时前端的工作非常简单，只需将设计图还原成代码，最多再加上一些交互和特效，前端的工作非常简单，甚至很多公司没有专门的前端工程师，而这部分工作由后端老哥们兼职。而且那时缺少代码共享平台，项目中造的很多轮子无法分享或者较难分享，代码的复用也只能CV，大家都是单打独斗、各自为战。即使用到了第三方的一些插件，也只能下载后手动进行管理，维护极为不方便。</p>
@@ -460,7 +465,7 @@ $ npx github:piuccio/cowsay hello
 <p>它并不是想要完全替代 npm。Yarn 仅仅是一个能够从 npm 仓库获取到包的新的 CLI 客户端，它和NPM相比，有如下优势：</p>
 <h4><a id="%E6%9B%B4%E6%B8%85%E6%99%B0%E7%9A%84%E8%BE%93%E5%87%BA" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>更清晰的输出</h4>
 <p>yarn的输出很清晰，使用了emoji，看起来也更加漂亮，颜值党必备。</p>
-<p><img src="https://gitee.com/letwrong/Picture/raw/master/20200603214049.jpg" alt="“yarn install” 命令的输出" /></p>
+<p><img src="media/17280325692997/17281444159384.webP" alt="“yarn install” 命令的输出" /></p>
 <h4><a id="%E5%B9%B6%E8%A1%8C%E5%AE%89%E8%A3%85" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>并行安装</h4>
 <p>在安装多个包时，npm会按包顺序串行执行，也就是只有当一个包全部安装完成后，才会安装下一个。Yarn 则是并行执行，更加高效。</p>
 <h3><a id="yarn%E5%92%8Cnpm%E7%9A%84%E5%91%BD%E4%BB%A4%E5%AF%B9%E6%AF%94" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>yarn和npm的命令对比</h3>
@@ -597,7 +602,7 @@ $ npx github:piuccio/cowsay hello
 <h2><a id="%E6%9C%AA%E6%9D%A5" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>未来</h2>
 <p>现在npm还是有很多无法回避的问题，最初<code>node_modules</code>下面每个依赖包的依赖放在自己的目录下面，相同的依赖无法复用，不管是安装还是删除都非常低效，在windows上经常会出现因为超过最大嵌套层级而无法删除的情况，不过好在后来官方调整了架构，改为平铺的结构，解决了这些问题。</p>
 <p>不过现阶段npm的包管理还是很混乱，相比其他包管理器，还有很多需要改进的地方。</p>
-<p><img src="https://gitee.com/letwrong/Picture/raw/master/20200513231518.jpg" alt="" /></p>
+<p><img src="media/17280325692997/17281444159406.jpg" alt="" /></p>
 <ul>
 <li>存在有很多重复的包，很多不维护的包，这给使用者选择造成了困扰。</li>
 <li>依赖过多，比如仅仅开发一个react的demo，结果发现要安装上千个包。</li>

@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
     
-    【玩转微前端0】微前端是什么 - Bwrong的博客
+    【玩转微前端0】微前端是什么 - Bwrong的拾光
     
     </title>
     <link rel="shortcut icon" href="asset/avatar.png" type="image/png" />
 
     
     
-    <link href="atom.xml" rel="alternate" title="Bwrong的博客" type="application/atom+xml">
+    <link href="atom.xml" rel="alternate" title="Bwrong的拾光" type="application/atom+xml">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="asset/css/style.min.css">
     <link rel="stylesheet" href="asset/css/doc.css">
@@ -136,7 +136,7 @@
         <article class="markdown-body single-content">
           <h2><a id="%E5%9B%B0%E5%B1%80" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>困局</h2>
 <p>在开始前，我们先来看看传统架构方式的一个发展历程：</p>
-<p><img src="https://swearer23.github.io/micro-frontends/ressources/diagrams/organisational/monolith-frontback-microservices.png" alt="Monolithic Frontends" /></p>
+<p><img src="media/17280332492564/17281446535232.png" alt="Monolithic Frontends" /></p>
 <p>可以归纳为三个阶段：</p>
 <ol>
 <li>前后端一体</li>
@@ -144,7 +144,7 @@
 <li>前后端分离，后端微服务化</li>
 </ol>
 <p>在前后端进行分离后，后端仅负责数据处理工作，前端的职责开始扩张。同时前端技术的发展也促使前端应用的复杂度不断提升。这时，传统的单体架构在大型应用中就稍显乏力了，尤其是中后台项目，时间跨度长，很容易就演变成巨石应用，越来越难以维护。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220331161639.png" alt="aba723dd5766a90fca78309da0dc980893221" /></p>
+<p><img src="media/17280332492564/17281446936538.jpg" alt="" /></p>
 <p>举例: 一个持续多年的应用，经历几年的业务的更新迭代，当项目发展到一定程度的时候就会遇到以下问题</p>
 <ol>
 <li>业务模块之间不断的堆叠，交错引用，业务耦合如何治理？</li>
@@ -156,10 +156,10 @@
 <p>你们的项目是否有上述这些情况呢？我们该如何解决这些问题呢？</p>
 <h2><a id="%E7%A0%B4%E5%B1%80" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>破局</h2>
 <p>“微前端”这个词首次出现是在2016年 <a href="https://link.juejin.cn/?target=https%3A%2F%2Fwww.thoughtworks.com%2Fradar%2Ftechniques%2Fmicro-frontends">ThoughtWorks Technology Radar</a> 中，但是直到最近几年才被频频提及，那么它是破局之法吗？</p>
-<p><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220331093221.png" alt="radar" /></p>
+<p><img src="media/17280332492564/17281447210600.jpg" alt="" /></p>
 <p>微前端源自微服务这种服务端的技术范式，微服务的核心关键在于服务的抽象，用于解决服务端高并发、高可用等问题。而微前端和微服务不尽相同，微前端是一种多个团队通过独立发布的方式来共同构建现代化 web 应用的技术手段及方法。微前端架构旨在解决单体应用在一个相对长的时间跨度下，由于参与的人员、团队的增多、变迁，从一个普通应用演变成一个巨石应用后，随之而来的工程膨胀、开发维护困难等问题。</p>
 <p>微前端背后的思想是认为：现代复杂的web应用，通常由很多 <strong>相对独立的功能模块组合而成</strong>，而对这些模块负责的可能是 <strong>相互独立的多个团队</strong>。这些独立的团队由于专业分工不同，会负责着 <strong>特定的业务领域</strong>，以及完成 <strong>特定的开发任务</strong>。这样的团队，通常在人员组成方面囊括了从前端开发到服务端开发，从UI实现到数据库设计这样 <strong>端到端</strong> 的 <strong>跨职能人员</strong> 构成。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220331163236.png" alt="End-To-End Teams with Micro Frontends" /></p>
+<p><img src="media/17280332492564/17281447443345.jpg" alt="" /></p>
 <p>然而微前端这个概念并不新鲜。它实际上与 <a href="http://scs-architecture.org/">自包含系统</a> 概念一脉相承。在过去，微前端之类的思路，会被称为 <a href="https://dev.otto.de/2014/07/29/scaling-with-microservices-and-vertical-decomposition/">面向垂直划分系统的前端集成</a>。称之为微前端，是因为这个词，对于前端开发人员来说更加易于理解。</p>
 <p><strong>定义：微前端并不是指某一具体的技术，而是一种整合了技术、策略和方法的宏观架构方案，是一种将多个可独立交付的小型前端应用聚合为一个整体的架构风格。</strong></p>
 <h2><a id="%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>使用场景</h2>

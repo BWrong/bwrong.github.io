@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
     
-    【前端工程化】篇四 席卷八荒-Webpack（进阶） - Bwrong的博客
+    【前端工程化】篇四 席卷八荒-Webpack（进阶） - Bwrong的拾光
     
     </title>
     <link rel="shortcut icon" href="asset/avatar.png" type="image/png" />
 
     
     
-    <link href="atom.xml" rel="alternate" title="Bwrong的博客" type="application/atom+xml">
+    <link href="atom.xml" rel="alternate" title="Bwrong的拾光" type="application/atom+xml">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="asset/css/style.min.css">
     <link rel="stylesheet" href="asset/css/doc.css">
@@ -137,15 +137,18 @@
         </div>
         <article class="markdown-body single-content">
           <p>字数：12197， 阅读时间：35分钟</p>
-<p><img src="https://gitee.com/letwrong/Picture/raw/master/20201028124953.jpeg" alt="" /></p>
 <blockquote>
 <p>石可破也，而不可夺坚；丹可磨也，而不可夺赤         ——《吕氏春秋·诚廉》</p>
 </blockquote>
 <p>【前端工程化】系列文章链接：</p>
 <ul>
-<li><a href="https://www.bwrong.cn/post/dev-tools01/">01 扬帆起航-开发环境</a></li>
-<li><a href="https://www.bwrong.cn/post/dev-tools02/">02 白璧微瑕-包管理器</a></li>
-<li><a href="https://www.bwrong.cn/post/dev-tools03/">03 席卷八荒-Webpack基础篇</a></li>
+<li><a href="17280324109501.html">【前端工程化】篇一 扬帆起航：开发环境</a></li>
+<li><a href="17280325692997.html">【前端工程化】篇二 白璧微瑕-包管理器</a></li>
+<li><a href="17280326211130.html">【前端工程化】篇三 席卷八荒-Webpack（基础）</a></li>
+<li><a href="17280327068074.html">【前端工程化】篇四 席卷八荒-Webpack（进阶）</a></li>
+<li><a href="17280327574437.html">【前端工程化】篇五 未来已来-Babel</a></li>
+<li><a href="17280328175326.html">【前端工程化】篇六 规矩方圆-ESLint</a></li>
+<li><a href="17280328680249.html">【前端工程化】篇七 沧海遗珠-其他工具</a></li>
 </ul>
 <p><em>示例代码仓库：<a href="https://github.com/BWrong/dev-tools">https://github.com/BWrong/dev-tools</a></em></p>
 <p><em>声明：本篇文章基于webpack v4.43.0，如按照文中代码执行报错，请检查依赖模块版本是否和示例代码仓库中一致。</em></p>
@@ -164,7 +167,7 @@
 <ol start="2">
 <li>将<code>stat.json</code>文件上传到<a href="http://webpack.github.io/analyse/">stats分析工具</a>页面中，即可得到分析结果。</li>
 </ol>
-<p><img src="https://gitee.com/letwrong/Picture/raw/master/20200601152126.png" alt="" /></p>
+<p><img src="media/17280327068074/17281443522325.png" alt="" /></p>
 <h4><a id="%E4%BD%BF%E7%94%A8webpack-bundle-analyzer" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>使用<code>webpack-bundle-analyzer</code></h4>
 <p>除了官网提供的分析工具，社区还提供了一个更加好用的分析神器<a href="https://github.com/webpack-contrib/webpack-bundle-analyzer">webpack-bundle-analyzer</a> ，不仅界面美观，而且各个依赖包及其体积大小也更加直观。</p>
 <pre class="line-numbers"><code class="language-shell">npm install webpack-bundle-analyzer -D
@@ -183,7 +186,7 @@ const baseConfig = require('./webpack.base.conf.js');
    // ...
  });
 </code></pre>
-<p><img src="https://gitee.com/letwrong/Picture/raw/master/20200601152927.png" alt="" /></p>
+<p><img src="media/17280327068074/17281443522355.png" alt="" /></p>
 <p>图里面我们可以查看Gzip和原始的打包结果，也可以看到每个chunk包含哪些包，以及它们的体积大小等信息。</p>
 <h4><a id="%E9%80%9F%E5%BA%A6%E5%88%86%E6%9E%90" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>速度分析</h4>
 <p>上面的两个工具均是侧重于打包结果的分析，重在优化打包品质。而通过 <a href="https://github.com/stephencookdev/speed-measure-webpack-plugin">speed-measure-webpack-plugin</a> 这个插件还可以实现对构建过程分析，从而优化构建效率，提升打包的体验。</p>
@@ -198,7 +201,7 @@ const webpackConfig = {
 module.exports = smp.wrap(webpackConfig) // 需要包裹原来的配置
 </code></pre>
 <p>现在就可以看到每个loader和plugin耗费的时间，以便对其进行优化。</p>
-<p><img src="https://gitee.com/letwrong/Picture/raw/master/20201009111235.png" alt="image-20201009111235625" /></p>
+<p><img src="media/17280327068074/17281443522370.png" alt="image-20201009111235625" /></p>
 <h2><a id="%E4%BC%98%E5%8C%96%E5%8C%85%E5%93%81%E8%B4%A8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>优化包品质</h2>
 <p>webpack4.0在mode设置为production时，其实已经默认做了很多优化手段来提升输出成果品质，不过了解一下还是有助于我们做一些更加深层次的优化。毕竟这些内容是直接关系到用户体验的，非常重要。</p>
 <h3><a id="tree-shaking" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tree shaking</h3>
@@ -491,8 +494,8 @@ plugins: [
   })
 ]
 </code></pre>
-<p><img src="https://gitee.com/letwrong/Picture/raw/master/20201028091448.png" alt="优化前" /></p>
-<p><img src="https://gitee.com/letwrong/Picture/raw/master/20201028091501.png" alt="优化后" /></p>
+<p><img src="media/17280327068074/17281443522384.png" alt="优化前" /></p>
+<p><img src="media/17280327068074/17281443522401.png" alt="优化后" /></p>
 <p>可以看到两次打包时间差别还是挺大的，确实比较有效，目前示例项目模块较少，在大项目效果应该更加显著。</p>
 <h3><a id="%E5%B0%8F%E5%8D%B3%E6%98%AF%E5%BF%AB" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>小即是快</h3>
 <p>使用数量更少/体积更小的 library，如将momentJS换成dayJS，减少编译结果的整体大小，以提高构建性能。尽量保持 chunk 体积小。</p>
@@ -571,7 +574,7 @@ module.exports = {
 </li>
 <li>
 <p>输出：对编译后的 Module 组合成 Chunk，把 Chunk 转换成文件，输出到文件系统。</p>
-<p><img src="https://gitee.com/letwrong/Picture/raw/master/20200705214253.png" alt="" /></p>
+<p><img src="media/17280327068074/17281443522425.png" alt="" /></p>
 </li>
 </ol>
 <p>参考资料：<a href="%5Bhttp://www.xbhub.com/wiki/webpack/5%E5%8E%9F%E7%90%86/5-1%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E6%A6%82%E6%8B%AC.html%5D(http://www.xbhub.com/wiki/webpack/5%E5%8E%9F%E7%90%86/5-1%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E6%A6%82%E6%8B%AC.html)">webpack工作原理概括</a></p>
@@ -579,7 +582,7 @@ module.exports = {
 <p>俗话说：读万卷书不如行万里路，讲再多的原理都不如敲敲代码来得实在。下面我们就一步一步实现一个简单的打包器。</p>
 <h4><a id="%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>准备工作</h4>
 <p>创建一个项目，包含如下文件及文件夹：</p>
-<p><img src="https://gitee.com/letwrong/Picture/raw/master/20200705215338.png" alt="image-20200705215338484" /></p>
+<p><img src="media/17280327068074/17281443522446.png" alt="image-20200705215338484" /></p>
 <pre class="line-numbers"><code class="language-js">// /src/index.js
 import a from './a.js';
 
@@ -635,7 +638,7 @@ const getModuleInfo = file =&gt; {
 getModuleInfo('./src/index.js')
 </code></pre>
 <p>转换结果如下，可以看到一共两个节点，<code>type</code>属性标识了节点的类型，<code>ImportDeclaration</code>即对应了<code>import</code>语句，而其<code>source.value</code>即是引入模块的相对路径。想要的数据都有，是不是很赞！</p>
-<p><img src="https://gitee.com/letwrong/Picture/raw/master/20200705223745.png" alt="image-20200705223745187" /></p>
+<p><img src="media/17280327068074/17281443522462.png" alt="image-20200705223745187" /></p>
 <h5><a id="2%E7%94%9F%E6%88%90%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB%E8%A1%A8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. 生成依赖关系表</h5>
 <p>有了上一步的数据，我们需要将它们生成一份结构化的依赖表，方便后续对代码处理。</p>
 <p>其实就是遍历<code>ast.program.body</code>，将其中的<code>ImportDeclaration</code>类型的节点提取出来，并存入依赖表。</p>
@@ -666,7 +669,7 @@ const getModuleInfo = (file) =&gt; {
 getModuleInfo('./src/index.js')
 </code></pre>
 <p>输出结果如下：</p>
-<p><img src="https://gitee.com/letwrong/Picture/raw/master/20200705230404.png" alt="image-20200705230403954" /></p>
+<p><img src="media/17280327068074/17281443522480.png" alt="image-20200705230403954" /></p>
 <p>接下来我们就可以返回一个完整的模块信息了。</p>
 <p>在这里，我们顺便通过<code>babel</code>的工具（``@babel/core<code>，</code>@babel/preset-env`）将代码转换成ES5的语法。</p>
 <pre class="line-numbers"><code class="language-shell">npm i @babel/core @babel/preset-env ## 安装@babel/core @babel/preset-env
@@ -702,7 +705,7 @@ const getModuleInfo = (file) =&gt; {
 getModuleInfo('./src/index.js');
 </code></pre>
 <p>输出如下：</p>
-<p><img src="https://gitee.com/letwrong/Picture/raw/master/20200705231115.png" alt="image-20200705231114976" /></p>
+<p><img src="media/17280327068074/17281443522498.png" alt="image-20200705231114976" /></p>
 <p>现在，模块的代码就已经转换成了一个对象，包含模块的绝对路径、依赖以及被babel转换后的代码，不过上面只处理了<code>index.js</code>的依赖，<code>a.js</code>的依赖并没有进行处理，所以并不是一份完整的依赖表，我们需要进一步处理。</p>
 <p>其实也很简单，就是从入口开始，每个模块及其依赖都调用一下<code>getModuleInfo</code>方法进行分析，最终就会返回一个完整的依赖表(也有人叫依赖图，dependency graph)。</p>
 <p>我们直接新写一个方法来处理：</p>
@@ -731,7 +734,7 @@ const generDepsGraph = (entry) =&gt; {
 	return graph;
 };
 </code></pre>
-<p><img src="https://gitee.com/letwrong/Picture/raw/master/20200705232430.png" alt="image-20200705232430595" /></p>
+<p><img src="media/17280327068074/17281443522518.png" alt="image-20200705232430595" /></p>
 <p>现在，我们就生成一份完整的依赖表了，接下来，就可以根据这份数据来生成最终的代码了。</p>
 <h5><a id="3%E7%94%9F%E6%88%90%E8%BE%93%E5%87%BA%E4%BB%A3%E7%A0%81" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>3.生成输出代码</h5>
 <p>在生成代码前，我们先观察一下上面的代码，可以发现里面包含了<code>export</code>和<code>require</code>这样的<code>commonjs</code>的语法，而我们的运行环境（这里是浏览器）是不支持这种语法的，所以还需要自己来实现一下这两个方法。先贴上代码，再慢慢道来：</p>
@@ -785,7 +788,7 @@ console.log(code);
 <li><code>graph[module].code</code>可以从上面的依赖表中获取到入口的代码。</li>
 </ul>
 <p>输出如下：</p>
-<p><img src="https://gitee.com/letwrong/Picture/raw/master/20200706091126.png" alt="image-20200706091126005" /></p>
+<p><img src="media/17280327068074/17281443522537.png" alt="image-20200706091126005" /></p>
 <p>这就是打包的成果了，不过先不要高兴过头了，这里还有一个大坑。</p>
 <p>我们现在生成的代码中引入模块的方式都是基于'index.js'的相对路径，如果在其他模块引入的模块路径和相较于<code>index.js</code>不一致的时候，对应的模块就会找不到(路径不正确)，所以我们还要处理一下模块的路径。好在前面依赖表的<code>dependencies</code>属性里面记录了模块的绝对路径，只需要拿出来使用即可。</p>
 <p>添加一个<code>localRequire</code>函数，用来从<code>dependencies</code>中获取模块绝对路径。</p>
@@ -816,7 +819,7 @@ fs.mkdirSync('./dist')
 fs.writeFileSync('./dist/bundle.js', code)
 </code></pre>
 <p>最后，在html中引入一下，测试一下是否能够正常运行。没有疑问，肯定是可以正常运行的。:smile::smile:</p>
-<p><img src="https://gitee.com/letwrong/Picture/raw/master/20200706092931.png" alt="image-20200706092931226" /></p>
+<p><img src="media/17280327068074/17281443522557.png" alt="image-20200706092931226" /></p>
 <p>最后贴一下完整的代码：     :cow::beers:</p>
 <pre class="line-numbers"><code class="language-js">// myBundle.js
 const fs = require('fs');
@@ -911,7 +914,7 @@ fs.writeFileSync('./dist/bundle.js', code);
 <h4><a id="manifest" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>Manifest</code></h4>
 <p>首先需要了解一下<code>Manifest</code>，它是webpack维护的一份用于管理构建过程中所有模块及关联关系的数据表，包含了各个模块之间的依赖关系、模块内容等详细信息，是webpack解析和加载模块的重要依据。</p>
 <h4><a id="%E6%9B%B4%E6%96%B0%E6%B5%81%E7%A8%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>更新流程</h4>
-<p><img src="https://gitee.com/letwrong/Picture/raw/master/20200705205925.jpg" alt="img" /></p>
+<p><img src="media/17280327068074/17281443522578.jpg" alt="img" /></p>
 <p>上图是webpack 配合 webpack-dev-server 进行应用开发的模块热更新流程图，记录了完整的更新流程。</p>
 <ul>
 <li>上图底部红色框内是服务端，而上面的橙色框是浏览器端。</li>
@@ -1016,7 +1019,7 @@ module.exports = {
 };
 </code></pre>
 <p>运行一下，打包命令<code>npx webpack</code>，可以看到输出文件中的webpack被替换成了world。</p>
-<p><img src="https://gitee.com/letwrong/Picture/raw/master/20200614224707.png" alt="image-20200614224707431" /></p>
+<p><img src="media/17280327068074/17281443522583.png" alt="image-20200614224707431" /></p>
 <p>一般loader都会提供配置项(options)，方便用户做个性配置，可以通过<code>this.query</code>获取配置内容，不过一般使用官方推荐的<a href="https://github.com/webpack/loader-utils">loader-utils</a> 工具更加便捷。</p>
 <pre class="line-numbers"><code class="language-js">// webpack.config.js
 const path = require('path');

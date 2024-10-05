@@ -11858,7 +11858,7 @@ label.panel-block:hover {
 
 .footer {
   background-color: #fafafa;
-  padding: 3rem 1.5rem 6rem;
+  padding: 3rem 1.5rem 3rem;
 }
 
 @media screen and (min-width: 1024px) {
@@ -11909,6 +11909,8 @@ label.panel-block:hover {
 
 .post-body .card-image {
   margin-bottom: 3rem;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 .post-body h1 {

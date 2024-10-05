@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
     
-    【前端工程化】篇三 席卷八荒-Webpack（基础） - Bwrong的博客
+    【前端工程化】篇三 席卷八荒-Webpack（基础） - Bwrong的拾光
     
     </title>
     <link rel="shortcut icon" href="asset/avatar.png" type="image/png" />
 
     
     
-    <link href="atom.xml" rel="alternate" title="Bwrong的博客" type="application/atom+xml">
+    <link href="atom.xml" rel="alternate" title="Bwrong的拾光" type="application/atom+xml">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="asset/css/style.min.css">
     <link rel="stylesheet" href="asset/css/doc.css">
@@ -137,14 +137,18 @@
         </div>
         <article class="markdown-body single-content">
           <p>字数：8960， 阅读时间：28分钟</p>
-<p><img src="https://gitee.com/letwrong/Picture/raw/master/20201019124627.jpg" alt="" /></p>
 <blockquote>
 <p>尽前行者地步窄，向后看者眼界宽。      ——《格言联璧·持躬类》</p>
 </blockquote>
 <p>【前端工程化】系列文章链接：</p>
 <ul>
-<li><a href="https://www.bwrong.cn/post/dev-tools01/">01 扬帆起航-开发环境</a></li>
-<li><a href="https://www.bwrong.cn/post/dev-tools02/">02 白璧微瑕-包管理器</a></li>
+<li><a href="17280324109501.html">【前端工程化】篇一 扬帆起航：开发环境</a></li>
+<li><a href="17280325692997.html">【前端工程化】篇二 白璧微瑕-包管理器</a></li>
+<li><a href="17280326211130.html">【前端工程化】篇三 席卷八荒-Webpack（基础）</a></li>
+<li><a href="17280327068074.html">【前端工程化】篇四 席卷八荒-Webpack（进阶）</a></li>
+<li><a href="17280327574437.html">【前端工程化】篇五 未来已来-Babel</a></li>
+<li><a href="17280328175326.html">【前端工程化】篇六 规矩方圆-ESLint</a></li>
+<li><a href="17280328680249.html">【前端工程化】篇七 沧海遗珠-其他工具</a></li>
 </ul>
 <p><em>示例代码仓库：<a href="https://github.com/BWrong/dev-tools">https://github.com/BWrong/dev-tools</a></em></p>
 <p><em>声明：本篇文章基于webpack v4.43.0，如按照文中代码执行报错，请先检查依赖版本是否和示例代码仓库中一致。</em></p>
@@ -162,14 +166,14 @@
 <li><a href="https://www.snowpack.dev/">snowpack</a>：打包速度快，无需打包工具。</li>
 </ul>
 <p>在Webpack刚刚出来的时候，那个时候Gulp和Grunt还风华正茂，在网上经常有人拿它们来做对比，其实他们是不同类型的构建工具，不是太具有可比性。</p>
-<p><img src="https://gitee.com/letwrong/Picture/raw/master/20200526124825.jpg" alt="" /></p>
+<p><img src="media/17280326211130/17281443883628.jpg" alt="" /></p>
 <p>如上图所示，虽说它们都是构建工具，但是Gulp、Grunt更加偏向任务式，所有的操作均需以任务的方式来构建；而Webpack则是模块化的编译方案，它通过依赖分析，进行模块打包，与它对比的应该是Browserify，Rollup之流。</p>
 <p>目前来说，grunt和gulp，已经功成身退了，当下webpack无疑是最热门、最强大的打包工具。这都得益于维护团队海纳百川有容乃大的态度，Rollup的tree shaking、Parcel的零配置这些亮点都被webpack吸收了。也许有的人觉得是抄袭，但是咱们读书人的世界何来抄袭呢。更何况不是这样的话，不是得学更多的工具了，又何来我这一头乌黑靓丽的秀发呢？😜😜</p>
 <p>好了，啰嗦了半天，该进入主题了，接下来，看看webpack官方的定义：</p>
 <p>At its core, <strong>webpack</strong> is a <em>static module bundler</em> for modern JavaScript applications. When webpack processes your application, it internally builds a <a href="https://webpack.js.org/concepts/dependency-graph/">dependency graph</a> which maps every module your project needs and generates one or more <em>bundles</em>.</p>
 <p>译：Webpack 是一个现代 JavaScript 应用程序的<em>静态模块打包器</em>（<em>module bundler</em>），当 webpack 处理应用程序时，它会递归地构建一个<em>依赖关系图(dependency graph)</em>，其中包含应用程序需要的每个模块，然后将所有这些模块打包成一个或多个 <em>bundle</em>。</p>
 <p>这里多次提到了模块，模块在前端开发中一般指JavaScript的模块化产物，相关的介绍网上也有很多，实在找不到也可以看看鄙人之前的文章<a href="https://www.bwrong.cn/post/javascript-module/">再谈JavaScript模块化</a>，这里我们不再赘述。但是这里Webpack所指的模块不仅仅是JavaScript中的模块，通过Loader，它可以处理任意类型的资源。广义上来说，在Webpack看来，任意资源都是模块。</p>
-<p><img src="https://gitee.com/letwrong/Picture/raw/master/20200526223715.png" alt="" /></p>
+<p><img src="media/17280326211130/17281443883653.png" alt="" /></p>
 <h1><a id="%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>安装与配置</h1>
 <p>现在Webpack最新的版本是4.43.0（注意现在5.0已发布，默认安装会是5.0），可以安装在全局，也可以安装到项目，这里推荐在项目本地安装。</p>
 <pre class="line-numbers"><code class="language-shell">npm init -y  # 初始化npm配置文件
@@ -186,9 +190,9 @@ npm install --save-dev webpack-cli # 安装命令行工具
 console.log('hello webpack');
 </code></pre>
 <p>然后执行<code>npx webpack</code>，就可以看到打包结果：</p>
-<p><img src="https://gitee.com/letwrong/Picture/raw/master/20200526231221.png" alt="image-20200526231221659" /></p>
+<p><img src="media/17280326211130/17281443883664.png" alt="image-20200526231221659" /></p>
 <p>在输出信息中，显示了本次打包的hash值、webpack版本、耗时等，还列出了打包的每个模块信息，包含资源名称、大小、chunk（后面会详解）等信息，另外在src同级目录会生成一个dist目录，下面会有一个<code>main.js</code>，即是打包成果，在<code>index.html</code>中直接引入该文件就可以了。</p>
-<p><img src="https://gitee.com/letwrong/Picture/raw/master/20200526232924.png" alt="" /></p>
+<p><img src="media/17280326211130/17281443883681.png" alt="" /></p>
 <p>上面，其实我们已经成功完成了一个文件的打包，是不是很简单。不过仔细看看命令行输出的信息中，后面是有一大段警告的，作为一个有追求的程序猿，怎么可能让这种事情发生呢！究其原因，其实在<code>webpack4.0</code>中，建议在打包的时候传入mode，来告知其打包的目标环境是开发环境还是生产环境（不设置默认为production），以便它内部来做相应的优化，可以通过<code>--mode</code>参数来指定模式，如<code>npx webpack --mode=production</code>，这样就不会有警告了。</p>
 <p>我们可以试试将mode设置为development后再打包一次，看看成果有什么不同（答案：development下代码未进行压缩）。</p>
 <p>当然，也可以在命令行中配置参数来改变Webpack的打包设置，具体的用法可以查看<a href="https://webpack.js.org/api/cli/">Command Line Interface</a>，常用的配置都可以通过命令行来配置，例如默认webpack会查找项目根目录下的<code>webpack.config.js</code>，我们可以通过<code>webpack --config ./build/webpack.config.js</code>来指定配置文件，在日常的开发中，一般都是通过配置文件来使用的，可以实现更加复杂的设置，而且更加方便。</p>
@@ -511,7 +515,7 @@ module.exports = {
 </li>
 <li>
 <p><code>devServer.overlay</code>：当出现编译器错误或警告时，在浏览器中显示覆盖层提示，默认false。</p>
-<p><img src="https://gitee.com/letwrong/Picture/raw/master/20200529105704.png" alt="image-20200529105657275" /></p>
+<p><img src="media/17280326211130/17281443883699.png" alt="image-20200529105657275" /></p>
 </li>
 <li>
 <p><code>devServer.proxy</code>：在前后端接口联调的过程中，跨域是一个非常常见的问题，要是后端大哥装大爷的话，那工作就很难做下去了。跨域究其原因是受浏览器的同源策略限制，而服务端则不会有此限制。所以我们可以通过<code>nodeServer</code>将后端的接口服务代理到本地，在请求的时候直接访问本地<code>nodeServer</code>地址，然后<code>nodeServer</code>再将请求转发到目标服务端，拿到结果后返回给本地的请求。</p>
@@ -1204,7 +1208,7 @@ module.exports = {
 </li>
 <li>
 <p>最后，在需要用到某个功能的时候，根据上一步的分类，再去查阅对应的文档。官网也提供了<a href="https://webpack.js.org/configuration">完整的配置</a>，可以很方便的查找对应的配置文档。</p>
-<p><img src="https://gitee.com/letwrong/Picture/raw/master/20200530214725.jpg" alt="" /></p>
+<p><img src="media/17280326211130/17281443883716.jpg" alt="" /></p>
 <center>早期的文档</center>
 </li>
 </ol>

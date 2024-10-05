@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Bwrong的博客]]></title>
+  <title><![CDATA[Bwrong的拾光]]></title>
   <link href="https://www.bwrong.cn/atom.xml" rel="self"/>
   <link href="https://www.bwrong.cn/"/>
-  <updated>2024-10-05T23:12:10+08:00</updated>
+  <updated>2024-10-05T23:38:37+08:00</updated>
   <id>https://www.bwrong.cn/</id>
   <author>
     <name><![CDATA[]]></name>
@@ -22,15 +22,15 @@
 <p>生活中你看到一个红色立方体，从宏观的角度来看你会描述他是红色的，或者描述RGB值为(1,0,0)的立方体，这时候你要问自己一个问题， 如果呈现到眼睛中的红色平面图像，如果颜色是均匀的，你是否还有立体的感觉。换句话说就是如果把你看到的立方体图像分割成一个个像素单位， 那么每一个像素的RGB值都是(1,0,0)的话你是否有立方体的空间感，从前面课程的实验可以知道，是没有任何空间感的。 那就说明一个问题实际上在自然界中你看到的物体图像，如果看做一个光场，它就是一个变化的光场，并不是每个像素都是(1,0,0)。 这很好理解，抛开专业的物理光学不谈，其实生活中你会发现，比如太阳光照射到一个物体上，不同的面与光的角度不同，反射的到眼睛中的结果不同， 向阳面亮，背光面暗，不同的面不同的颜色，分界位置就有棱角感，。比如一个白色LED灯，靠近表面放在表面的中心， 你会感到表面反射到眼睛中的效果是越往四周越暗。</p>
 <h2><a id="%E5%85%89%E7%85%A7%E6%A8%A1%E5%9E%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>光照模型</h2>
 <h3><a id="%E6%BC%AB%E5%8F%8D%E5%B0%84" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>漫反射</h3>
-<p><img src="http://www.yanhuangxueyuan.com/WebGL_course/icon/IncidentAngle.png" alt="WebGL光照模型入射角" /> <img src="http://www.yanhuangxueyuan.com/WebGL_course/icon/diffuseReflection.png" alt="WebGL漫反射" /></p>
+<p><img src="media/17280514986441/17281451179876.png" alt="WebGL光照模型入射角" /> <img src="media/17280514986441/17281451179895.png" alt="WebGL漫反射" /></p>
 <p>没有绝对的真理或迷信，所有的理论都是对生活现象的概括描述，上面提到一个几何体在太阳光下不同的面明暗不同，太阳离地球比较远，太阳光可以视为平行光，几何体不同的面与平行太阳光光线夹角不同， 换句话说就是相同强度的光线照射在表面上角度不同反射光线的强度也就不同，这里就对个现象建立数学模型。</p>
 <p>漫反射光的颜色 = 几何体表面基色 x 光线颜色 x 光线入射角余弦值</p>
 <p>这个数学模型没有考虑镜面反射描述的就是理想的漫反射体，并不能完整的描述物体表面的光场，既然是数学模型，自然就是可以修正的，比如添加一个系数，更改指数等等，这里不在详述。 比如普通的桌子桌面它的粗糙度是微米um级，相比人的脸它是平的，光的波长是纳米nm级，这时候桌子表面相比光线是凹凸不平的，宏观来看一束光线照射到物体的表面，对于理想的漫反射而言，因为表面无规则随机分布凹凸不平的反射面， 光线的反射是不定向的，换句话说任何角度的反射光都是一样的，这也就是说物体反射到眼睛中的光与人的观察位置无关，物体的漫反射光强度与光线的入射角有关如何解释，这个其实很简单，比如两块纸板面积相同，一个垂直太阳光线放置， 一个不垂直太阳光线也就是入射角不是90度，同样强度的光照条件下，垂直太阳光的纸板的光通量肯定比斜着放的纸板接收的光量大，这时候就有必要给数学模型引入一个入射角的因数。</p>
-<p><img src="http://www.yanhuangxueyuan.com/WebGL_course/icon/diffuseReflection1.png" alt="漫反射余弦值" /> <img src="http://www.yanhuangxueyuan.com/WebGL_course/icon/diffuseReflection0.png" alt="WebGL漫反射——0度" /></p>
+<p><img src="media/17280514986441/17281451179906.png" alt="漫反射余弦值" /> <img src="media/17280514986441/17281451179916.png" alt="WebGL漫反射——0度" /></p>
 <p>光的颜色可以使用多种模型来表示，把上面的文字公式使用RGB具体参数来表示形式如下，比如物体表面的颜色是纯红色(1,0,0),入射光是纯白色(1,1,1),光线入射角是60度，余弦值就是0.5，代入下面公式，可以得出结果是(0.5,0,0), 结果仍然是红色，这是符合实际生活的，白色太阳光照在常见的红色物体上，反射的颜色是红色，只是太阳光线照射在物体表面的角度不同，反射的光强度不同。入射光垂直物体表面，也就是入射角是0对应的余弦值是1，光线垂直表面受光量最大， 反射光自然最大，和1对应；入射光线平行物体表面，此时的入射角是90度， 物体表面自然没什么光可以反射，</p>
 <p>(R2,G2,B2) = (R1,G1,B1) x (R0,G0,B0) x cosθ</p>
 <h3><a id="%E9%95%9C%E9%9D%A2%E5%8F%8D%E5%B0%84" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>镜面反射</h3>
-<p><img src="http://www.yanhuangxueyuan.com/WebGL_course/icon/AmbientLight.png" alt="WebGL环境光模型" /> <img src="http://www.yanhuangxueyuan.com/WebGL_course/icon/SpecularReflection.png" alt="WebGL镜面反射" /></p>
+<p><img src="media/17280514986441/17281451179925.png" alt="WebGL环境光模型" /> <img src="media/17280514986441/17281451179939.png" alt="WebGL镜面反射" /></p>
 <p>上面的漫反射数学模型没有考虑镜面反射，描述的就是理想的漫反射体，并不能完整的描述物体表面的光场。漫反射是因为几何体表面粗糙度尺寸相对光波长尺寸而言是凹凸不平的，这种凹凸不平又是随机的，所以说漫反射的光线各个方向是均匀的。 镜面反射也就是说光照在物体上的反射光线具有方向性，具体点说就是光线的反射角等于入射角。生活中的镜子它的表面粗糙度很小，和光的波长是一个数量级，当光线照在上面的时候，反射光线就会表现出方向性。</p>
 <p>实际的生活中所有的物体没有绝对的漫反射或者镜面反射，往往都是同时存在，只是表现的倾向性不同，镜子的镜面反射更明显，粗糙的树皮漫反射更明显。光照射到物体上一部分会被吸收，透明的话一部分会被折射， 除去吸收和折射的光剩余的会被反射，反射的时候根据表面的粗糙度不同，镜面反射和漫反射分配的比例不同可以使用两个系数k1、k2去描述。</p>
 <p>在室外停放着一辆车，你观察车的时候，你会发现车的外表面会在某个局部出现高光，这很好理解，车的外壳是曲面的，曲面上如果某个区域的的光线反射角刚好是你的视线方向，自然会呈现出局部高亮的现象，其他的部位是漫反射为主。 镜面反射的公式仍然可以写成上面的形式，只是角度不再是光线入射角度而是眼睛视线与反射光线的夹角，n角度余弦值的指数，实际编程的时候你可以自由定义，没有绝对完美的模型，都可以进行修正。</p>
@@ -43,8 +43,8 @@
 <p>总反射光线 = 漫反射光线 + 镜面反射光线 + 环境反射光线</p>
 <h3><a id="%E6%B3%95%E5%90%91%E9%87%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>法向量</h3>
 <p>有基本的数学知识应该都有法线的概念，垂直与面的直线就是面的法线，对于平面而言面上所有位置的法线方向是相同的，对于曲面而言不同的位置法线的方向是变化的。在三维笛卡尔坐标系中，可以使用向量(x,y,z)来表示法向量，根据几何体表面的法向量和光线的方向， 就可以求解出光线入射角的余弦值，法向量的点积计算满足下面的公式，为了方便计算，着色器语言内置了一个方法dot()用来求解两个向量之间的余弦值,已知向量a1(x1,y1,z1)、a2(x2，y2，z2)执行dot(a1，a2)可以求出两个向量a1、a2的余弦值。</p>
-<p><img src="http://www.yanhuangxueyuan.com/WebGL_course/icon/normal1.jpg" alt="WebGL法向量" /></p>
-<p><img src="http://www.yanhuangxueyuan.com/WebGL_course/icon/normal2.jpg" alt="WebGL法向量计算" /></p>
+<p><img src="media/17280514986441/17281451179952.png" alt="WebGL法向量" /></p>
+<p><img src="media/17280514986441/17281451179963.png" alt="WebGL法向量计算" /></p>
 <h2><a id="%E7%AB%8B%E6%96%B9%E4%BD%93%E6%B7%BB%E5%8A%A0%E5%B9%B3%E8%A1%8C%E5%85%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>立方体添加平行光</h2>
 <p><a href="http://www.yanhuangxueyuan.com/WebGL_course/download/light.rar">源码下载</a></p>
 <p>下面的案例是通过给一个单色的立方体添加平行光进行渲染，来体会光照模型在物体渲染中的应用，在学习下面的代码之前确定你有逐顶点和颜色插值计算的概念，了解顶点位置数据、顶点颜色数据，本节课在这两种顶点数据的基础之上在引入一种新的顶点数据。</p>
@@ -100,7 +100,7 @@
 76   gl.uniform3f(u_lightDirection,x,y,-z);
 </code></pre>
 <h3><a id="%E9%A1%B6%E7%82%B9%E6%B3%95%E5%90%91%E9%87%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>顶点法向量</h3>
-<p><img src="http://www.yanhuangxueyuan.com/WebGL_course/icon/normal.png" alt="WebGL顶点法向量" /></p>
+<p><img src="media/17280514986441/17281451179973.png" alt="WebGL顶点法向量" /></p>
 <p>对于立方体而言六个平面也就是有六个不同的平面法向量，但是这里要注意思考如何表达一个面的法向量，你不能说直接告诉GPU一个平面的法向量是(x,y,z)，对于立方体而言而言这样比较简单，符合人的思维，但是如果是复杂的曲面这样并不合适，而且顶点着色器是逐顶点处理， 为了表示面的法向量，往往是通过顶点，具体点说是每个顶点对应一个法向量，三个顶点确定一个三角面，三角面的不同位置的法向量相当于通过他的三个顶点的法向量插值得出，或者换个说法就是三个顶点的法向量分别与各自颜色数据进行乘法运算，得到新的顶点颜色， 然后渲染管线利用新的顶点颜色进行插值计算，这就是通过顶点法向量表示面法向量的方法，通过这样的巧妙设计还可以实现法向量的插值计算，只不过插值是通过颜色插值完成的，对于平滑的曲面，过每一个顶点存在一个法平面，也就是有一个法向量，往往在不同三角面中同一位置的顶点法向量是相同的， 对于规则的长方体而言，每个顶点法向量往往在各自平面中有不同的值。</p>
 <pre class="line-numbers"><code class="language-plain_text">99   /**
 100   *顶点法向量数组normalData
@@ -182,7 +182,7 @@
 <li>实现简单，因为和编辑时使用的是同一环境，****可直接复用，不需要做单独适配。</li>
 <li>能力有限，因为使用Webview进行渲染，所以应用所能使用的能力取决于Webview组件提供的开发能力，目前可以使用的能力可查看<a href="https://developers.weixin.qq.com/miniprogram/dev/component/web-view.html#%E7%9B%B8%E5%85%B3%E6%8E%A5%E5%8F%A3-2">Webview组件文档</a></li>
 </ul>
-<p><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/1681960549630-bc7e7caa-c9e0-4e01-8a37-d1ca2cbe3336.jpeg" alt="" /></p>
+<p><img src="media/17280336310867/17281439430594.jpg" alt="" /></p>
 <h3><a id="%E4%BA%8C%E3%80%81%E5%8E%9F%E7%94%9F%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%96%B9%E6%A1%88%EF%BC%9A%E7%94%9F%E6%88%90%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%8E%9F%E7%94%9F%E7%BB%84%E4%BB%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>二、原生小程序方案：生成小程序原生组件</h3>
 <p>在web端进行应用设计完成后，将内容保存为和平台无关的通用语言数据，常用的为JSON Schema，不同平台需要实现各自的解析适配器，将内容解析为平台特有的代码，这里即为解析为微信小程序。</p>
 <p><strong>特点：</strong></p>
@@ -215,7 +215,7 @@
   }
 }
 </code></pre>
-<p><img src="https://cdn.nlark.com/yuque/0/2023/jpeg/159460/1681990517560-e4737370-b90d-44d7-967c-c2a97eaf28f3.jpeg" alt="" /></p>
+<p><img src="media/17280336310867/17281439430614.jpg" alt="" /></p>
 <p><strong>参考实现方案：</strong></p>
 <ul>
 <li><a href="https://github.com/silence717/taro-designer">https://github.com/silence717/taro-designer</a></li>
@@ -226,21 +226,21 @@
 </ul>
 <h2><a id="%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E7%AC%AC%E4%B8%89%E6%96%B9%E5%B9%B3%E5%8F%B0%E4%BB%A3%E5%BC%80%E5%8F%91" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>如何使用第三方平台代开发</h2>
 <p>第三方平台（简称第三方平台），由微信团队面向所有通过<a href="https://kf.qq.com/faq/170824URbmau170824r2uY7j.html">开发者资质认证</a>的第三方开发者提供提供的官方平台。在得到公众号或小程序管理员授权后，基于该平台，第三方服务商可以通过调用官方接口能力，为商家提供公众号代运营、小程序代注册、代开发等服务以及提供公众号和小程序相关的行业方案、活动营销、插件能力等全方位服务。</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2023/png/159460/1682068941157-38b4cd76-d6aa-4eda-ba30-51a0dea43a8f.png" alt="" /><img src="https://cdn.nlark.com/yuque/0/2023/png/159460/1682069054303-f88e6aa1-3793-4cb1-95f1-6ef6cd04384a.png" alt="" /></p>
+<p><img src="media/17280336310867/17281439430632.png" alt="" /><img src="media/17280336310867/17281439430647.png" alt="" /></p>
 <h3><a id="%E6%BB%A1%E8%B6%B3%E6%9D%A1%E4%BB%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>满足条件</h3>
-<p><img src="https://cdn.nlark.com/yuque/0/2023/png/159460/1682391253106-b4dc9cdf-a06f-47c3-afed-9cf54f2ddeab.png" alt="" /></p>
+<p><img src="media/17280336310867/17281439430666.png" alt="" /></p>
 <ul>
 <li>提供行业解决方案，如针对电商行业的解决方案，或针对旅游行业的解决方案等；</li>
 <li>行业：（横向）提供更加专业的运营能力，精细化运营用户公众号或小程序；</li>
 <li>功能：（纵向）对公众平台功能的优化，如专门优化图文消息视觉样式和排版的工具，或专门定制的 CRM 用户管理功能，或功能强大的小程序插件等。</li>
 </ul>
 <h3><a id="%E6%B5%81%E7%A8%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>流程</h3>
-<p><img src="https://cdn.nlark.com/yuque/0/2023/png/159460/1681980164393-0fae9953-54d7-4808-a8f4-13e46c652cf9.png" alt="" /></p>
-<p><img src="https://cdn.nlark.com/yuque/0/2023/png/159460/1682391612230-1750c702-0d9e-407e-88a8-2c13ea64c746.png" alt="" /></p>
+<p><img src="media/17280336310867/17281439430682.png" alt="" /></p>
+<p><img src="media/17280336310867/17281439430701.png" alt="" /></p>
 <h4><a id="%E4%B8%80%E3%80%81%E5%A6%82%E4%BD%95%E6%88%90%E4%B8%BA%E6%9C%8D%E5%8A%A1%E5%95%86" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、如何成为服务商</h4>
 <p>1、第三方平台帐号的审核无需缴费，但开放平台帐号的认证（即开发者资质认证）需要交300块钱认证费。一个已完成开发者资质认证的开放平台帐号，可创建5个平台型服务商第三方平台帐号。</p>
 <p>2、任何合法合规的、为小程序提供开发服务及有意愿的开发者都可以成为小程序服务商，微信不会区别对待，也无官方授权的概念。</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2023/png/159460/1681980517223-496c322a-ec16-473a-aee5-c0065909bbec.png" alt="" /></p>
+<p><img src="media/17280336310867/17281439430722.png" alt="" /></p>
 <p><a href="https://developers.weixin.qq.com/doc/oplatform/Third-party_Platforms/2.0/operation/thirdparty/prepare.html"><strong>准备材料：</strong></a></p>
 <ul>
 <li>官方网站：服务商应当有对外可用的官网，且该官网提供的服务描述与申请的第三方平台帐号名称、简介、图标均有所关联</li>
@@ -248,7 +248,7 @@
 <li>域名和ssl证书</li>
 </ul>
 <h4><a id="%E4%BA%8C%E3%80%81%E6%90%AD%E5%BB%BA%E4%B8%89%E6%96%B9%E5%90%8E%E7%AB%AF%E6%9C%8D%E5%8A%A1%EF%BC%9A%E8%87%AA%E5%BB%BA%E6%A8%A1%E5%BC%8F%E5%92%8C%E4%BA%91%E6%9C%8D%E5%8A%A1" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>二、搭建三方后端服务：自建模式和云服务</h4>
-<p><img src="https://cdn.nlark.com/yuque/0/2023/png/159460/1681984771382-05565715-fded-4766-883c-af3bb2dd0bcc.png" alt="" /></p>
+<p><img src="media/17280336310867/17281439430744.png" alt="" /></p>
 <ul>
 <li>服务商类型</li>
 </ul>
@@ -265,19 +265,19 @@
 <p>搭建好三方服务后需要和业务系统服务进行联调对接，然后进行<a href="https://developers.weixin.qq.com/doc/oplatform/Third-party_Platforms/2.0/operation/thirdparty/publish.html">全网发布</a>。</p>
 <h4><a id="%E4%B8%89%E3%80%81%E6%8E%88%E6%9D%83" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>三、授权</h4>
 <p>商家需要将其公众号或者小程序<a href="https://developers.weixin.qq.com/doc/oplatform/Third-party_Platforms/2.0/api/Before_Develop/Authorization_Process_Technical_Description.html">授权</a>给第三方平台，服务商才可以代商家进行相关操作。</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2023/png/159460/1681980296972-49144b20-919e-4d26-bc1d-03817965cd19.png" alt="" /></p>
+<p><img src="media/17280336310867/17281439430767.png" alt="" /></p>
 <h4><a id="%E5%9B%9B%E3%80%81%E4%BB%A3%E5%95%86%E5%AE%B6%E8%B0%83%E7%94%A8%E6%8E%A5%E5%8F%A3" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>四、代商家调用接口</h4>
 <p>小程序的api，服务商都可以调用，只是服务商调用的时候要使用<a href="https://developers.weixin.qq.com/doc/oplatform/Third-party_Platforms/2.0/api/ThirdParty/token/api_authorizer_token.html">authorizer_access_token</a>，而不是access_token。</p>
 <p>服务商能否代商家成功调用某个公众号或者小程序的api，取决于该公众号或者小程序管理员是否将对应的权限集授权给当前第三方平台帐号。</p>
 <h4><a id="%E4%BA%94%E3%80%81%E4%BB%A3%E5%BC%80%E5%8F%91%E5%B0%8F%E7%A8%8B%E5%BA%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>五、代开发小程序</h4>
-<p><img src="https://cdn.nlark.com/yuque/0/2023/png/159460/1681988187650-15d3e030-e517-4a41-9a7c-fc5073146d1c.png" alt="" /></p>
+<p><img src="media/17280336310867/17281439430797.png" alt="" /></p>
 <h5><a id="%E4%BB%A3%E7%A0%81%E4%B8%8A%E4%BC%A0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>代码上传</h5>
 <ul>
 <li>通过开发者工具</li>
 <li><a href="https://developers.weixin.qq.com/miniprogram/dev/devtools/ci.html">CI代码上传</a></li>
 <li><a href="https://developers.weixin.qq.com/community/develop/article/doc/0006aec26a89507900dc70f5e5b013?pass_ticket=PFmw0zP6yfVqUJz8iYlCaPgYBj0s6dm%2BoKU5cKthScDFPSrvwo9Z2cS1G9qCIrRyts29yPal4xRGPCSoPxxoeA%3D%3D">使用小程序CI自动上传代码</a></li>
 </ul>
-<p><img src="https://cdn.nlark.com/yuque/0/2023/png/159460/1681988652552-ed1314fb-a721-432a-b4e1-9146be97d1ea.png" alt="" /></p>
+<p><img src="media/17280336310867/17281439430830.png" alt="" /></p>
 <h3><a id="%E7%9B%B8%E5%85%B3%E6%96%87%E6%A1%A3" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>相关文档</h3>
 <ul>
 <li><a href="https://developers.weixin.qq.com/doc/oplatform/Third-party_Platforms/2.0/getting_started/terminology_introduce.html">官方文档</a></li>
@@ -980,18 +980,18 @@ public List&lt;User&gt; addUser(@RequestBody User userl) {
 <p><a href="%E2%80%8Bwww.babylonjs.com/">Babylon.js: Powerful, Beautiful, Simple, Open - Web-Based 3D At Its Best</a></p>
 <p>它主要特性有以下几个方面：</p>
 <p>1、强大的编辑器，这是threejs跟playcanvas无法比拟的。</p>
-<p><img src="https://pic3.zhimg.com/v2-a0d46325eecfb57ab21e6fdf02f13872_r.jpg" alt="" /></p>
+<p><img src="media/17280335013759/17281439645359.png" alt="" /></p>
 <p>编辑器中，对粒子、碰撞、脚本、GUI、精灵图等等各方面功能集成得非常完善，作为一个多年使用微软IDE从事开发的码农，个人一直认为微软的东西很人性化。</p>
 <p>2、强大的节点编辑器。在blender里面节点编辑器无处不在，它也是通过connect不同节点的input跟output来实现节点之间的数据联通，这样就把复杂的材质系统变成可视化了。</p>
 <p>Node Material Editor是一个强大而易用的材质编辑器，它以可视化的拖拽节点的方式来模拟shader编程，从而为每个从业者解锁了GPU的强大威力。从前，shaders (GPU 编程)着色器编程对于普通程序员门槛很高，因为它过于偏向底层，虽然功能强大，但是晦涩难懂，而Babylon带来的Node Material Editor可以实现与shader同样的效果，但是界面化操作，把难度降到了最低。我们相信，每个人都能使用这个编辑器来创建令人惊叹的视觉效果。</p>
-<p><img src="https://pic3.zhimg.com/80/v2-090d22ae6e18cac1fc1d18999ce5ea82_1440w.jpg" alt="" /><br />
+<p><img src="media/17280335013759/17281439645382.png" alt="" /><br />
 材质节点</p>
-<p><img src="https://pic2.zhimg.com/80/v2-e68990b0dee4ffd3b9bf0fe017d6828d_1440w.jpg" alt="" /><br />
+<p><img src="media/17280335013759/17281439645401.png" alt="" /><br />
 Babylonjs材质节点</p>
 <p>3、NATIVE 跨平台原生应用部署。程序员们写代码都有一个梦想：一次编写实现，多平台共享运行。 所以我们重磅推出了Babylon Native，它可以用原有的Babylon.js代码在任意平台构建一个原生应用，充分释放本机设备的性能优势。 已经支持DirectX on Windows、 Metal on iOS/MacOS、 OpenGL on Android，即将推出Vulkan支持。</p>
 <p>Babylonjs的原生打包部署是通过react native技术体系来实现的，这样就可以实现一份代码原生部署，同时保证原生性能。</p>
 <p>4、支持先进的WEBXR技术。毫无疑问，在web使用AR/VR技术非常有前景，Babylon最新4.1版本在WebXR上做了进一步的优化和改进：带来了一个简单易用的体检帮助器，针对更高级用户的专用会话管理器，用babylon的相机功能来承载WebXR技术，全面支持任何接受WebXR会话的设备，完整的WebXR输入源支持，关于实验性AR功能、通信、场景交互、物理效果的整套API支持等。</p>
-<p><img src="https://pic4.zhimg.com/80/v2-113fe316a7f0ac47282d629cae4c3963_1440w.jpg" alt="" /><br />
+<p><img src="media/17280335013759/17281439645428.png" alt="" /><br />
 webxr支持<br />
 总结：</p>
 <p>1、如果你要交付内部项目、而且可以是客户端、有U3D开发人员，那么用U3D去交付实现最好，通过安装exe客户端，灯光效果交互、vr支持都是非常完美，而且U3D的开发者论坛、文档、百度教程都非常丰富。</p>
@@ -1045,7 +1045,7 @@ webxr支持<br />
     <id>https://www.bwrong.cn/17280334440663.html</id>
     <content type="html"><![CDATA[
 <h2><a id="%E8%AF%A6%E7%BB%86%E6%B5%81%E7%A8%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>详细流程</h2>
-<p><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220331175532.awebp" alt="image.png" /></p>
+<p><img src="media/17280334440663/17281450820669.webP" alt="image.png" /></p>
 <p>简易流程：</p>
 <ol>
 <li>qiankun 会用 原生fetch方法，请求微应用的 entry 获取微应用资源，然后通过 response.text 把获取内容转为字符串。</li>
@@ -1061,7 +1061,7 @@ webxr支持<br />
 <li>
 <p>与路由绑定的方式渲染微应用</p>
 <p>接入这类平台的微应用，通常只需要提供自己的 entry html 地址，并为其分配一个路由规则即可，会根据当前路由自动切换微应用加载。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220331164434.jpg" alt="v2-c345f8bf9c8855176037f6b48e315caf_1440w" /></p>
+<p><img src="media/17280334440663/17281450820693.jpg" alt="v2-c345f8bf9c8855176037f6b48e315caf_1440w" /></p>
 </li>
 <li>
 <p>以组件的方式使用微应用</p>
@@ -1074,7 +1074,7 @@ webxr支持<br />
 </li>
 <li>
 <p>多应用同时渲染：同一时刻可展示多个子应用，子应用更像是一个业务组件而不是应用。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220331164435.jpg" alt="v2-cc82a2a5a6fbe5c141af9dd5b42622ee_1440w" /></p>
+<p><img src="media/17280334440663/17281450820703.jpg" alt="v2-cc82a2a5a6fbe5c141af9dd5b42622ee_1440w" /></p>
 </li>
 </ul>
 
@@ -1092,11 +1092,11 @@ webxr支持<br />
 <ul>
 <li>Monorepo：多应用管理可以使用<a href="https://lerna.js.org/">lerna</a>或者<a href="https://pnpm.io/zh/">pnpm</a>。</li>
 </ul>
-<p><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220406225207.png" alt="image-20220406225206585" /></p>
+<p><img src="media/17280334039483/17281450561380.png" alt="image-20220406225206585" /></p>
 <ul>
 <li>
 <p>Git subtree或者多仓库：在子应用较多的情况可采用此方式，缺点是每次子应用变更后，聚合库还得同步一次变更。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220407165035.jpg" alt="18091274-44952db2fd681a3d" /></p>
+<p><img src="media/17280334039483/17281450561404.jpg" alt="18091274-44952db2fd681a3d" /></p>
 </li>
 </ul>
 <h2><a id="%E5%BA%94%E7%94%A8%E6%8B%86%E5%88%86%E7%B2%92%E5%BA%A6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>应用拆分粒度</h2>
@@ -1121,18 +1121,18 @@ webxr支持<br />
 </ul>
 <h2><a id="%E6%9D%83%E9%99%90%E5%A4%84%E7%90%86" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>权限处理</h2>
 <p>主应用负责身份验证，拿到授权信息后下发到各微应用中，各应用再根据拿到的授权信息过滤各自路由信息。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220331175530.awebp" alt="img" /></p>
+<p><img src="media/17280334039483/17281450561413.webP" alt="img" /></p>
 <h2><a id="%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>资源共享</h2>
 <h3><a id="%E7%BB%9F%E4%B8%80%E7%AE%A1%E7%90%86%E7%BB%B4%E6%8A%A4" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>统一管理维护</h3>
 <p>将公共资源提取到一个地方，避免多个地方维护，但是仍然会多次打包。可以通过如下两种方式：</p>
 <ul>
 <li>file或link方式</li>
 </ul>
-<p><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220407114412.png" alt="image-20220406235834667" /></p>
+<p><img src="media/17280334039483/17281450561420.png" alt="image-20220406235834667" /></p>
 <ul>
 <li>git仓库或者私服</li>
 </ul>
-<p><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220406235948.png" alt="image-20220406235948554" /></p>
+<p><img src="media/17280334039483/17281450561439.png" alt="image-20220406235948554" /></p>
 <h3><a id="%E4%BE%9D%E8%B5%96%E6%8F%90%E5%8F%96" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>依赖提取</h3>
 <p>在一个团队中，技术栈相对固定，所以统一技术栈很多基础依赖相对是固定的，但是默认情况下每个应用都会重复打包一次，会造成重复下载，影响运行性能。例如，如果每个微应用都包括自己的 Vue 副本，那么用户就得多次下载 Vue。</p>
 <p>在进行如下改造之前，先确认是否有此必要，因为它会增加应用间的耦合性（如技术栈、依赖版本必须一致） ，而这是和微前端思想相悖的，</p>
@@ -1214,7 +1214,7 @@ webxr支持<br />
 <ul>
 <li>VueDevtools调试微应用问题，需要手动处理，但是还是会存在失效问题。</li>
 </ul>
-<p><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220407171516.png" alt="image-20220407171516398" /></p>
+<p><img src="media/17280334039483/17281450561452.png" alt="image-20220407171516398" /></p>
 <ul>
 <li>对vite构建的微应用支持还有缺陷，因为Vite暂时还不支持运行时修改资源路径和ESModule导致沙箱失效。</li>
 <li>各应用间的风格和交互逻辑应该统一，因为对用户来说我们的应用仍然是一体的，要避免应用间给用户造成撕裂感。</li>
@@ -1231,19 +1231,19 @@ webxr支持<br />
     <id>https://www.bwrong.cn/17280333553222.html</id>
     <content type="html"><![CDATA[
 <p>关于如何使用qiankun，官方文档比较完善，网上文档也较多，所以这里就不再赘述。接下来我们就来看一下目前文档中缺失的部分<a href="https://qiankun.umijs.org/zh/guide#%E5%AE%83%E6%98%AF%E5%A6%82%E4%BD%95%E5%B7%A5%E4%BD%9C%E7%9A%84">它是如何工作的</a>。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220331175520.awebp" alt="image.png" /></p>
+<p><img src="media/17280333553222/17281450088426.webP" alt="image.png" /></p>
 <h2><a id="%E8%BF%90%E8%A1%8C%E6%B5%81%E7%A8%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>运行流程</h2>
-<p><img src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/4/6/1714da36c103427a~tplv-t2oaga2asx-zoom-in-crop-mark:1304:0:0:0.awebp" alt="qiankun" /></p>
+<p><img src="media/17280333553222/17281450088452.webP" alt="qiankun" /></p>
 <h2><a id="%E6%A0%B8%E5%BF%83api" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>核心API</h2>
 <p><code>registerMicroApps</code>和<code>start</code>是qiankun两个核心的API。</p>
 <p><code>registerMicroApps</code> 函数的作用是注册子应用，并且在子应用激活时，创建运行沙箱，在不同阶段调用不同的生命周期钩子函数。<code>start</code> 函数负责初始化一些全局设置，然后启动应用。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220406165052.awebp" alt="qiankun" /></p>
+<p><img src="media/17280333553222/17281450088463.webP" alt="qiankun" /></p>
 <h2><a id="%E6%B2%99%E7%AE%B1" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>沙箱</h2>
 <p>qiankun的沙箱环境可以分为三类，主要通过运行环境是否支持Proxy和是否是单实例进行区分。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220406165518.awebp" alt="qiankun" /></p>
+<p><img src="media/17280333553222/17281450088473.webP" alt="qiankun" /></p>
 <h3><a id="legacysandbox" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>LegacySandbox</h3>
 <p>LegacySandbox用于支持Proxy的单实例环境下，沙箱隔离是通过快照模式实现，在激活沙箱时还原子应用状态，卸载时还原主应用状态（子应用挂载前的全局状态）实现的。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220406170227.awebp" alt="qiankun" /></p>
+<p><img src="media/17280333553222/17281450088483.webP" alt="qiankun" /></p>
 <ul>
 <li>当调用 <code>set</code> 向子应用 <code>proxy/window</code> 对象设置属性时，所有的属性设置和更新都会先记录在 <code>addedPropsMapInSandbox</code> 或 <code>modifiedPropsOriginalValueMapInSandbox</code> 中，然后统一记录到 <code>currentUpdatedPropsValueMap</code> 中。</li>
 <li>在激活沙箱时，沙箱会通过 <code>currentUpdatedPropsValueMap</code> 查询到子应用的独立状态池（沙箱可能会激活多次，这里是沙箱曾经激活期间被修改的全局变量），然后还原子应用状态。</li>
@@ -1252,7 +1252,7 @@ webxr支持<br />
 <p>该方案使用diff算法还原window状态快照，因为使用的是同一个window，所以不能在多实例时使用，而且父子应用之间window对象还是会存在污染。</p>
 <h3><a id="proxysandbox" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>ProxySandbox</h3>
 <p>ProxySandbox用于支持Proxy的多实例环境下，它利用Proxy实现对微应用全局对象操作的拦截，子应用对全局属性的操作就是对该 <code>proxy</code> 对象属性的操作。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220406170830.awebp" alt="qiankun" /></p>
+<p><img src="media/17280333553222/17281450088496.webP" alt="qiankun" /></p>
 <ul>
 <li>当调用 <code>set</code> 向子应用 <code>proxy/window</code> 对象设置属性时，所有的属性设置和更新都会命中 <code>updateValueMap</code>，存储在 <code>updateValueMap</code> 集合中，从而避免对 <code>window</code> 对象产生影响。</li>
 <li>当调用 <code>get</code> 从子应用 <code>proxy/window</code> 对象取值时，会优先从子应用的沙箱状态池 <code>updateValueMap</code> 中取值，如果没有命中才从主应用的 <code>window</code> 对象中取值。</li>
@@ -1260,7 +1260,7 @@ webxr支持<br />
 <p><code>ProxySandbox</code> 是最完备的沙箱模式，完全隔离了对 <code>window</code> 对象的操作，在浏览器对Proxy兼容性兼容的情况下，算是最优的方案。</p>
 <h3><a id="snapshotsandbox" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>SnapshotSandbox</h3>
 <p>在浏览器不支持Proxy时，会回退到SnapshotSandbox沙箱，作为兜底方案。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220406172205.awebp" alt="qiankun" /></p>
+<p><img src="media/17280333553222/17281450088512.webP" alt="qiankun" /></p>
 <ul>
 <li>在沙箱激活时，会先给当前 <code>window</code> 对象打一个快照，记录沙箱激活前的状态。打完快照后，函数内部将 <code>window</code> 状态通过 <code>modifyPropsMap</code> 记录还原到上次的沙箱运行环境，也就是还原沙箱激活期间（历史记录）修改过的 <code>window</code> 属性。</li>
 <li>在沙箱关闭时，调用 <code>inactive</code> 函数，在沙箱关闭前通过遍历比较每一个属性，将被改变的 <code>window</code> 对象属性值记录在 <code>modifyPropsMap</code> 集合中。在记录了 <code>modifyPropsMap</code> 后，将 <code>window</code> 对象通过快照 <code>windowSnapshot</code> 还原到被沙箱激活前的状态，相当于是将子应用运行期间对 <code>window</code> 造成的污染全部清除。</li>
@@ -1285,11 +1285,11 @@ webxr支持<br />
 <ul>
 <li>独立开发：每个微应用由不同业务团队开发，实现团队自治。</li>
 </ul>
-<p><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220331172854.png" alt="image-20220331172853831" /></p>
+<p><img src="media/17280333095797/17281449550400.png" alt="image-20220331172853831" /></p>
 <ul>
 <li>独立部署：微应用可独立部署运行，每个应用可以有自己的交付部署流程，某个微应用出现故障不影响其他应用。</li>
 </ul>
-<p><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220331173032.png" alt="image-20220331173031824" /></p>
+<p><img src="media/17280333095797/17281449550425.png" alt="image-20220331173031824" /></p>
 <ul>
 <li>独立运行：既可以组合运行，也可以单独运行，运行时环境隔离，提供JavaScript沙箱，CSS 样式隔离，避免应用间运行时污染。</li>
 </ul>
@@ -1394,7 +1394,7 @@ webxr支持<br />
 <p>**缺点：**兼容性不太好，暂时只有较新的浏览器支持，但未来可期。</p>
 <h4><a id="6-microapp" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>6. MicroApp</h4>
 <p><strong>描述：</strong> [MicroApp](<a href="https://cangdu.org/micro-app/%E6%98%AF%E4%BA%AC%E4%B8%9C%E9%9B%B6%E5%94%AE%E6%8E%A8%E5%87%BA%E7%9A%84%E4%B8%80%E6%AC%BE%E5%BE%AE%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%EF%BC%8C%E6%98%AF%E5%9F%BA%E4%BA%8EWebComponent%E5%AE%9E%E7%8E%B0%E7%9A%84%E4%B8%80%E7%A7%8D%E7%94%A8%E4%BA%8E%E6%9E%84%E5%BB%BA%E5%BE%AE%E5%89%8D%E7%AB%AF%E5%BA%94%E7%94%A8%E7%9A%84%E6%9E%81%E7%AE%80%E6%96%B9%E6%A1%88%E3%80%82">https://cangdu.org/micro-app/是京东零售推出的一款微前端框架，是基于WebComponent实现的一种用于构建微前端应用的极简方案。</a></p>
-<p><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220401104503.png" alt="d879637b4bb34253" /></p>
+<p><img src="media/17280333095797/17281449550437.png" alt="d879637b4bb34253" /></p>
 <p>**优点：**接入成本很低，只需一行代码即可实现微前端，提供了<code>js沙箱</code>、<code>样式隔离</code>、<code>元素隔离</code>、<code>预加载</code>、<code>数据通信</code>、<code>静态资源补全</code>等一系列完善的功能。</p>
 <p>**缺点：**依赖于CustomElements和Proxy两个较新的API，兼容性需要考虑。</p>
 <h4><a id="7-emp" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>7. EMP</h4>
@@ -1412,7 +1412,7 @@ webxr支持<br />
 <p>**缺点：沙箱环境需要自行处理，有一定的侵入性。</p>
 <h4><a id="8-qiankun" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>8. qiankun</h4>
 <p><strong>描述：</strong><a href="https://qiankun.umijs.org/zh/">qiankun</a>由蚂蚁团队基于single-spa构建的微前端解决方案，功能比较完善，已有多个成功应用案例验证，是目前应用最多的微前端框架。</p>
-<p><img src="https://pic2.zhimg.com/80/v2-d55549366b52cde19c93835cfa2a58c9_1440w.jpg" alt="v2-d55549366b52cde19c93835cfa2a58c9_1440w" /></p>
+<p><img src="media/17280333095797/17281449550451.jpg" alt="v2-d55549366b52cde19c93835cfa2a58c9_1440w" /></p>
 <p><strong>优点：</strong></p>
 <ul>
 <li>接入成本相对较低，框架本身已包含构建微前端系统时所需要的基本能力。</li>
@@ -1425,7 +1425,7 @@ webxr支持<br />
 <p>**缺点：**样式隔离问题目前还只能靠规范来规避，Shadow DOM方案还在实验中。</p>
 <h4><a id="10-garfish" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>10. Garfish</h4>
 <p><strong>描述：</strong><a href="https://garfish.top/">Garfish</a>是字节跳动出品，包含构建微前端系统时所需要的基本能力。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220406160138.png" alt="image.png" /></p>
+<p><img src="media/17280333095797/17281449550462.png" alt="image.png" /></p>
 <p>**优点：**api简单，接入成本低，自带依赖共享api，支持插件扩展。</p>
 <h2><a id="%E8%B7%AF%E5%9C%A8%E4%BD%95%E6%96%B9" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>路在何方</h2>
 <p>可以看到，在上述方案中，比较成熟的方案有MicroApp、EMP、qiankun、Garfish。当下微前端相应的解决方案其实挺多的，但是并不存在银弹，每一个方案都有优缺点，只有结合实际需求进行选择最合适的那个方案就行。</p>
@@ -1469,7 +1469,7 @@ webxr支持<br />
     <content type="html"><![CDATA[
 <h2><a id="%E5%9B%B0%E5%B1%80" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>困局</h2>
 <p>在开始前，我们先来看看传统架构方式的一个发展历程：</p>
-<p><img src="https://swearer23.github.io/micro-frontends/ressources/diagrams/organisational/monolith-frontback-microservices.png" alt="Monolithic Frontends" /></p>
+<p><img src="media/17280332492564/17281446535232.png" alt="Monolithic Frontends" /></p>
 <p>可以归纳为三个阶段：</p>
 <ol>
 <li>前后端一体</li>
@@ -1477,7 +1477,7 @@ webxr支持<br />
 <li>前后端分离，后端微服务化</li>
 </ol>
 <p>在前后端进行分离后，后端仅负责数据处理工作，前端的职责开始扩张。同时前端技术的发展也促使前端应用的复杂度不断提升。这时，传统的单体架构在大型应用中就稍显乏力了，尤其是中后台项目，时间跨度长，很容易就演变成巨石应用，越来越难以维护。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220331161639.png" alt="aba723dd5766a90fca78309da0dc980893221" /></p>
+<p><img src="media/17280332492564/17281446936538.jpg" alt="" /></p>
 <p>举例: 一个持续多年的应用，经历几年的业务的更新迭代，当项目发展到一定程度的时候就会遇到以下问题</p>
 <ol>
 <li>业务模块之间不断的堆叠，交错引用，业务耦合如何治理？</li>
@@ -1489,10 +1489,10 @@ webxr支持<br />
 <p>你们的项目是否有上述这些情况呢？我们该如何解决这些问题呢？</p>
 <h2><a id="%E7%A0%B4%E5%B1%80" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>破局</h2>
 <p>“微前端”这个词首次出现是在2016年 <a href="https://link.juejin.cn/?target=https%3A%2F%2Fwww.thoughtworks.com%2Fradar%2Ftechniques%2Fmicro-frontends">ThoughtWorks Technology Radar</a> 中，但是直到最近几年才被频频提及，那么它是破局之法吗？</p>
-<p><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220331093221.png" alt="radar" /></p>
+<p><img src="media/17280332492564/17281447210600.jpg" alt="" /></p>
 <p>微前端源自微服务这种服务端的技术范式，微服务的核心关键在于服务的抽象，用于解决服务端高并发、高可用等问题。而微前端和微服务不尽相同，微前端是一种多个团队通过独立发布的方式来共同构建现代化 web 应用的技术手段及方法。微前端架构旨在解决单体应用在一个相对长的时间跨度下，由于参与的人员、团队的增多、变迁，从一个普通应用演变成一个巨石应用后，随之而来的工程膨胀、开发维护困难等问题。</p>
 <p>微前端背后的思想是认为：现代复杂的web应用，通常由很多 <strong>相对独立的功能模块组合而成</strong>，而对这些模块负责的可能是 <strong>相互独立的多个团队</strong>。这些独立的团队由于专业分工不同，会负责着 <strong>特定的业务领域</strong>，以及完成 <strong>特定的开发任务</strong>。这样的团队，通常在人员组成方面囊括了从前端开发到服务端开发，从UI实现到数据库设计这样 <strong>端到端</strong> 的 <strong>跨职能人员</strong> 构成。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220331163236.png" alt="End-To-End Teams with Micro Frontends" /></p>
+<p><img src="media/17280332492564/17281447443345.jpg" alt="" /></p>
 <p>然而微前端这个概念并不新鲜。它实际上与 <a href="http://scs-architecture.org/">自包含系统</a> 概念一脉相承。在过去，微前端之类的思路，会被称为 <a href="https://dev.otto.de/2014/07/29/scaling-with-microservices-and-vertical-decomposition/">面向垂直划分系统的前端集成</a>。称之为微前端，是因为这个词，对于前端开发人员来说更加易于理解。</p>
 <p><strong>定义：微前端并不是指某一具体的技术，而是一种整合了技术、策略和方法的宏观架构方案，是一种将多个可独立交付的小型前端应用聚合为一个整体的架构风格。</strong></p>
 <h2><a id="%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>使用场景</h2>
@@ -1552,22 +1552,14 @@ webxr支持<br />
     <id>https://www.bwrong.cn/17280331672522.html</id>
     <content type="html"><![CDATA[
 <p>记得小时候农忙时节，农村农活非常多，放学回家自己弄好饭吃，和兄弟姐妹们自觉的就背着背篓上山了，扎进山里，整块地都被爸妈给收拾了一半了。但是剩下的还很多，一不注意天就暗下来，踏着月光和星辰，走在回家的路上。小时候总喜欢抬头望着星空，然后问爸爸，为什么天上会有这么多的星星？爸爸总是意味深长的说，星星是为了照亮你回家的路，低头看好你脚下的路。</p>
-<p><img src="https:////upload-images.jianshu.io/upload_images/15440860-587c2f1664c6d980.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/874/format/webp" alt="img" /></p>
 <p>长大后，脚下的路，越走越长，一路奋进，不停地奔走，忘了拐过多少弯，越过多少坎，停下来，才发现如迷失的登山者一样，面对茫茫的大山，却不知何去何从。</p>
-<p><img src="https:////upload-images.jianshu.io/upload_images/15440860-672a2d00a1f6feff.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/874/format/webp" alt="img" /></p>
 <p>低头走路，已经有多久，没再抬头仰望星空了。</p>
-<p><img src="https:////upload-images.jianshu.io/upload_images/15440860-c58f858482120588.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/874/format/webp" alt="img" /></p>
 <p>​    为了更好的生活，我们努力的前行，低头苦干，为生活疲于奔命。逐渐的迷失自我，有人活成了蚂蚁，终日埋头，低头苦干，忙碌奔波，不知明天在何处，也不问明天去何方；有人活得像老鼠，整天偷偷摸摸的，不务正业，只知道上蹿下跳，四处钻山打洞，，而他们心中可能都驻着一个遥不可及的梦。只有在夜晚，梦中才能和梦想对话。</p>
-<p><img src="https:////upload-images.jianshu.io/upload_images/15440860-4ce049c50fe02fbc.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/874/format/webp" alt="img" /></p>
 <p>三毛在《梦里花落知多少》一书中提到老师布置了一个作业题目，叫做《我的志愿》，三毛写道：</p>
 <p>我有一天长大了，希望做一个拾破烂的人，因为这种职业，不但可以呼吸新鲜的空气，同时又可以大街小巷的游走玩耍，一面工作一面游戏，自由快乐得如同天上的飞鸟。更重要的是，人们常常不知不觉的将许多还可以利用的好东西当作垃圾丢掉，拾破烂的人最愉快的时刻就是将这些蒙尘的好东西再度发掘出来，这……</p>
-<p><img src="https:////upload-images.jianshu.io/upload_images/15440860-114af483225924d3.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/874/format/webp" alt="img" /></p>
 <p>这个梦想近似荒唐，惹得老师大怒，结果重写了很多遍都不满意。但是当我们将时光轴拉长，纵观三毛的一生，何尝不是一个追梦的过程呢。求学西班牙，流浪撒哈拉，环游全世界，自由快乐得如同天上的飞鸟；而所到之处，都是拾荒之旅，比如荷西给三毛的定情信物是沙漠里捡来的骆驼骨。沙漠之家的家具是别人拉棺材丢弃的木料。而更多的物件和宝贝都是在地摊及自然中寻到的。</p>
-<p><img src="https:////upload-images.jianshu.io/upload_images/15440860-b9a9897f860d968f.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/874/format/webp" alt="img" /></p>
 <p>曾今我也有和三毛一样的想法，不想被一栋楼，一间办公室，一个方格子困住自己的人生，也想呼吸新鲜的空气，自由快乐得如天上的飞鸟。只是走在路上时，满以为已经找到了自己的路，不曾想又进入了另一个围城。困守于一地如笼中之鸟，勾心斗角如上演宫廷剧，一片混乱自己又无权解决。低头苦干却看不到价值和意义。</p>
-<p><img src="https:////upload-images.jianshu.io/upload_images/15440860-76a884570f4715ec.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/874/format/webp" alt="img" /></p>
 <p>​    在夜深人静时，抬头仰望星空，才再一次认识自己，回想起爸爸说过的话，星星是为了照亮你回家的路。灵魂深处，找到最初的自我，才不会迷路。</p>
-<p><img src="https:////upload-images.jianshu.io/upload_images/15440860-59989d9c74fd0482.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/874/format/webp" alt="img" /></p>
 <p>原文链接：<a href="https://www.jianshu.com/p/a32251b42b86">https://www.jianshu.com/p/a32251b42b86</a></p>
 
 ]]></content>
@@ -1668,7 +1660,9 @@ registerMicroApps(apps,
     <updated>2024-10-04T17:08:34+08:00</updated>
     <id>https://www.bwrong.cn/17280329145839.html</id>
     <content type="html"><![CDATA[
-<p>字数：7887， 阅读时间：40分钟，点击<a href="https://www.bwrong.cn/post/vue3-01/">阅读原文</a></p>
+<blockquote>
+<p>字数：7887， 阅读时间：40分钟</p>
+</blockquote>
 <p>从2013年12月8日发布第一个版本至今已，Vue已走过了快八个年头，你了解每个版本名字的意义吗？</p>
 <table>
 <thead>
@@ -1779,13 +1773,13 @@ registerMicroApps(apps,
 <p>那么接下来我们就来看看2.0的问题，以及Vue3是如何来解决的。</p>
 <h2><a id="option%E5%BC%8F%E7%BB%84%E7%BB%87%E4%BB%A3%E7%A0%81%E7%9A%84%E7%BC%BA%E9%99%B7" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Option式组织代码的缺陷</h2>
 <p>options式组织代码，同一个功能分散在各个option中，导致在开发时需要在data、methods、computed等option横跳。</p>
-<p><img src="https://gitee.com/letwrong/Picture/raw/master/20210821095807.awebp" alt="option" /></p>
+<p><img src="media/17280329145839/17281430923760.webP" alt="option" /></p>
 <p>Vue3推出了CompositionApi，目的就是为了解决这个问题，它将分散在各个option中的逻辑组合到一起，下面我们对比看下：</p>
-<p><img src="https://gitee.com/letwrong/Picture/raw/master/20210821095754.awebp" alt="" /></p>
+<p><img src="media/17280329145839/17281430923793.webP" alt="" /></p>
 <h2><a id="mixin%E7%9A%84%E9%97%AE%E9%A2%98" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Mixin的问题</h2>
 <p>对于复杂的功能，我们可能会想到使用Mixin来抽离到单独的文件。但是Mixin会有一些使用上的问题，比如命名冲突、属性来源不明确。</p>
 <p>Vue3提出了Hooks的方式，可以将每个功能提取到hooks，一个hooks即是一个独立的函数，所以不会再有上述问题。</p>
-<p><img src="https://gitee.com/letwrong/Picture/raw/master/20210821095749.awebp" alt="" /></p>
+<p><img src="media/17280329145839/17281430923818.webP" alt="" /></p>
 <h2><a id="typescript%E6%94%AF%E6%8C%81%E7%9A%84%E4%B8%8D%E5%81%A5%E5%85%A8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>TypeScript支持的不健全</h2>
 <p>现在大型项目都会标配 TypeScript ，Vue 当前的 API 在集成 TypeScript 时遇到了不小的麻烦，其主要原因是 Vue 依靠一个简单的 <code>this</code> 上下文来暴露 property，我们现在使用 <code>this</code> 的方式是比较微妙的。（比如 <code>methods</code> 选项下的函数的 <code>this</code> 是指向组件实例的，而不是这个 <code>methods</code> 对象）。</p>
 <p>换句话说，Vue 现有的 API 在设计之初没有照顾到类型推导，这使适配 TypeScript 变得复杂。</p>
@@ -2328,7 +2322,7 @@ export default {
 </li>
 </ul>
 <p>当然，上面的只是开胃菜，接下来的才是我们最值得关注的新特性。</p>
-<p><img src="https://gitee.com/letwrong/Picture/raw/master/20210823173734.jpg" alt="" /></p>
+<p><img src="media/17280329145839/17281430923852.jpg" alt="" /></p>
 <h1><a id="%E7%BB%84%E5%90%88%E5%BC%8Fapi" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>组合式Api</h1>
 <p>为了解决我们前面说的逻辑复用和代码组织的问题，vue3推出了新的代码编写方式，这个vue3最重要的特性，也是未来编写vue的主要趋势。</p>
 <p>下面是一个显示某个用户的仓库列表的视图，同时带有搜索和筛选功能，伪代码如下：</p>
@@ -2450,7 +2444,7 @@ export default {
 }
 </code></pre>
 <p>组合式API分离了组件的逻辑关注点，更具组织性，代码的可读性和可维护性也更好。而且可以将可复用的逻辑抽离成Hooks，具有更好的可复用性。</p>
-<p><img src="https://gitee.com/letwrong/Picture/raw/master/20210824102437.png" alt="" /></p>
+<p><img src="media/17280329145839/17281430923861.png" alt="" /></p>
 <p>由于组合式API的特殊性，需要使用新的API，接下来我们就来看看这些API。</p>
 <h2><a id="setup" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>setup</h2>
 <p>setup是组合式API的入口，所有的内容都需要包含在其中，它仅在组件创建<strong>之前</strong>执行<strong>一次</strong>，所以此时this并不是指向当前组件实例。</p>
@@ -2641,7 +2635,7 @@ counter.value++
 console.log(counter.value) // 1
 </code></pre>
 <p>因为在 JavaScript 中，<code>Number</code> 或 <code>String</code> 等基本类型是通过值而非引用传递的，在任何值周围都有一个封装对象，这样我们就可以在整个应用中安全地传递它，而不必担心在某个地方失去它的响应性。</p>
-<p><img src="https://gitee.com/letwrong/Picture/raw/master/20210824224551.gif" alt="pass-by-reference-vs-pass-by-value-animation" /></p>
+<p><img src="media/17280329145839/17281430923869.gif" alt="pass-by-reference-vs-pass-by-value-animation" /></p>
 <p><em>注意：ref嵌套在响应式对象（如reactive、readonly）或者用在模板中，将自动解包</em>。</p>
 <h3><a id="reactive" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>reactive</h3>
 <pre class="line-numbers"><code class="language-ts">function reactive&lt;T extends object&gt;(target: T): UnwrapNestedRefs&lt;T&gt;
@@ -3146,7 +3140,7 @@ p {
     <updated>2024-10-04T17:09:35+08:00</updated>
     <id>https://www.bwrong.cn/17280329757438.html</id>
     <content type="html"><![CDATA[
-<p>通过上一篇文章<a href="https://juejin.cn/post/7003240214147629070">Vue3基础与入门</a>，我们知道了Vue3的一些基础用法，接下来就看看相关的生态和使用技巧。</p>
+<p>通过上一篇文章<a href="17280329145839.html">【Vue3】基础与入门</a>，我们知道了Vue3的一些基础用法，接下来就看看相关的生态和使用技巧。</p>
 <h1><a id="%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>如何创建项目</h1>
 <ul>
 <li>VueCli4.5+</li>
@@ -3159,7 +3153,7 @@ yarn global add @vue/cli
 <p>使用：</p>
 <pre class="line-numbers"><code class="language-bash">vue create &lt;项目名称&gt;
 </code></pre>
-<p><img src="https://cli.vuejs.org/cli-select-features.png" alt="cli-select-features" /></p>
+<p><img src="media/17280329757438/17281432106477.png" alt="cli-select-features" /></p>
 <p>或者直接使用<code>vue ui</code>命令，通过图形化界面方式创建。</p>
 <p>关于VueCli更多使用方法请查看<a href="https://cli.vuejs.org/zh/">官方文档</a>。</p>
 <ul>
@@ -3326,7 +3320,7 @@ export default {
 <li><a href="https://github.com/johnsoncodehk/volar">Volar</a>：Volar 是一个专为 Vue 3 构建的语言支持插件。它基于<a href="https://www.npmjs.com/package/@vue/reactivity"><code>@vue/reactivity</code></a>按需计算一切，实现原生 TypeScript 语言服务级别性能。在Vue3的项目中强烈建议使用该插件，并禁用掉Vuter，它提供了很多好用的东西。</li>
 <li><a href="https://devtools.vuejs.org/">VueDevTools</a>：新版插件可以同时兼容Vue2和3，建议安装。</li>
 </ul>
-<p><img src="https://gitee.com/letwrong/Picture/raw/master/20210909112704.png" alt="image-20210909112702791" /></p>
+<p><img src="media/17280329757438/17281432106500.png" alt="image-20210909112702791" /></p>
 <h3><a id="hooks" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Hooks</h3>
 <p>Vue3带来的组合式API，让我们在复用代码逻辑的时候可以使用hooks，所以社区出现了一些比较好用的hooks库。</p>
 <ul>
@@ -3436,12 +3430,13 @@ const handleClick = () =&gt; {
     <content type="html"><![CDATA[
 <p>【前端工程化】系列文章链接：</p>
 <ul>
-<li><a href="https://www.bwrong.cn/post/dev-tools01/">01 扬帆起航-开发环境</a></li>
-<li><a href="https://www.bwrong.cn/post/dev-tools02/">02 白璧微瑕-包管理器</a></li>
-<li><a href="https://www.bwrong.cn/post/dev-tools03/">03 席卷八荒-Webpack基础篇</a></li>
-<li><a href="https://www.bwrong.cn/post/dev-tools04/">04 席卷八荒-Webpack进阶篇</a></li>
-<li><a href="https://www.bwrong.cn/post/dev-tools05/">05 未来已来-Babel</a></li>
-<li><a href="https://www.bwrong.cn/post/dev-tools06/">06 规矩方圆-ESLint</a></li>
+<li><a href="17280324109501.html">【前端工程化】篇一 扬帆起航：开发环境</a></li>
+<li><a href="17280325692997.html">【前端工程化】篇二 白璧微瑕-包管理器</a></li>
+<li><a href="17280326211130.html">【前端工程化】篇三 席卷八荒-Webpack（基础）</a></li>
+<li><a href="17280327068074.html">【前端工程化】篇四 席卷八荒-Webpack（进阶）</a></li>
+<li><a href="17280327574437.html">【前端工程化】篇五 未来已来-Babel</a></li>
+<li><a href="17280328175326.html">【前端工程化】篇六 规矩方圆-ESLint</a></li>
+<li><a href="17280328680249.html">【前端工程化】篇七 沧海遗珠-其他工具</a></li>
 </ul>
 <p><em>示例代码仓库：<a href="https://github.com/BWrong/dev-tools">https://github.com/BWrong/dev-tools</a></em></p>
 <p><em>声明：如按照文中代码执行报错，请检查依赖版本是否和示例代码仓库中一致。</em></p>
@@ -3712,17 +3707,19 @@ root           表示是最顶层的配置文件，发现设为true时，才会�
     <updated>2024-10-04T17:06:57+08:00</updated>
     <id>https://www.bwrong.cn/17280328175326.html</id>
     <content type="html"><![CDATA[
-<p>字数：7543， 阅读时间：20分钟，点击<a href="https://www.bwrong.cn/post/dev-tools06/">阅读原文</a></p>
+<p>字数：7543， 阅读时间：20分钟</p>
 <blockquote>
-<p>天下从事者，不可以无法仪。无法仪而其事能成者，无有也。        -------墨子《法仪》</p>
+<p>天下从事者，不可以无法仪。无法仪而其事能成者，无有也。   -------墨子《法仪》</p>
 </blockquote>
 <p>【前端工程化】系列文章链接：</p>
 <ul>
-<li><a href="https://www.bwrong.cn/post/dev-tools01/">01 扬帆起航-开发环境</a></li>
-<li><a href="https://www.bwrong.cn/post/dev-tools02/">02 白璧微瑕-包管理器</a></li>
-<li><a href="https://www.bwrong.cn/post/dev-tools03/">03 席卷八荒-Webpack基础篇</a></li>
-<li><a href="https://www.bwrong.cn/post/dev-tools04/">04 席卷八荒-Webpack进阶篇</a></li>
-<li><a href="https://www.bwrong.cn/post/dev-tools05/">05 未来已来-Babel</a></li>
+<li><a href="17280324109501.html">【前端工程化】篇一 扬帆起航：开发环境</a></li>
+<li><a href="17280325692997.html">【前端工程化】篇二 白璧微瑕-包管理器</a></li>
+<li><a href="17280326211130.html">【前端工程化】篇三 席卷八荒-Webpack（基础）</a></li>
+<li><a href="17280327068074.html">【前端工程化】篇四 席卷八荒-Webpack（进阶）</a></li>
+<li><a href="17280327574437.html">【前端工程化】篇五 未来已来-Babel</a></li>
+<li><a href="17280328175326.html">【前端工程化】篇六 规矩方圆-ESLint</a></li>
+<li><a href="17280328680249.html">【前端工程化】篇七 沧海遗珠-其他工具</a></li>
 </ul>
 <p><em>示例代码仓库：<a href="https://github.com/BWrong/dev-tools">https://github.com/BWrong/dev-tools</a></em></p>
 <p><em>声明：如按照文中代码执行报错，请检查依赖版本是否和示例代码仓库中一致。</em></p>
@@ -3779,7 +3776,7 @@ npm install -D eslint
 <p>安装成功后，在项目根目录执行如下命令，完成一系列设置来创建配置文件。</p>
 <pre class="line-numbers"><code class="language-shell">npx eslint --init
 </code></pre>
-<p><img src="https://gitee.com/letwrong/Picture/raw/master/20200918112423.png" alt="image-20200918112422980" /></p>
+<p><img src="media/17280328175326/17281442524425.png" alt="image-20200918112422980" /></p>
 <p>执行如上命令，会在项目根目录创建一个<code>.eslintrc.js</code>文件，内容如下：</p>
 <pre class="line-numbers"><code class="language-js">module.exports = {
     'env': { // 环境设置
@@ -3823,7 +3820,7 @@ let test = 1
 <p>然后在命令行输入命令：</p>
 <pre class="line-numbers"><code class="language-shell">npx eslint ./src/index.js
 </code></pre>
-<p><img src="https://gitee.com/letwrong/Picture/raw/master/20200918171659.png" alt="image-20200918171659654" /></p>
+<p><img src="media/17280328175326/17281442524450.png" alt="image-20200918171659654" /></p>
 <p>可以看到，ESLint给我们提示了两个错误：</p>
 <ul>
 <li><code>test</code>变量定义了，但是未使用</li>
@@ -3834,7 +3831,7 @@ let test = 1
 <p>执行命令，加上<code>--fix</code>参数：</p>
 <pre class="line-numbers"><code class="language-shell">npx eslint --fix ./src/index.js
 </code></pre>
-<p><img src="https://gitee.com/letwrong/Picture/raw/master/20200918172959.png" alt="image-20200918172959131" /></p>
+<p><img src="media/17280328175326/17281442524460.png" alt="image-20200918172959131" /></p>
 <p>我们可以看到，只有一个错误了，另外再看下<code>./src/index.js</code>：</p>
 <pre class="line-numbers"><code class="language-js">// ./src/index.js
 let test = 1;
@@ -3884,7 +3881,7 @@ module.exports = {
 <li><code>eslint-loader</code>的配置推荐放在eslint的配置文件中，而不放在loader的options中。</li>
 </ol>
 <p>如上配置以后，在执行构建命令的时候，就会先执行检查并在终端输出检查结果（仅做检查，不会影响构建结果）。</p>
-<p><img src="https://gitee.com/letwrong/Picture/raw/master/20200922160134.png" alt="image-20200922160134442" /></p>
+<p><img src="media/17280328175326/17281442524471.png" alt="image-20200922160134442" /></p>
 <p>不过，我们一般编码的时候，终端都运行在后台的，查看这些信息就必须要来回切换，甚是不便。作为一个懒癌患者，肯定是不愿意的。用过vue-cli的同学都知道，如果有错误提示，是会在浏览器弹出浮层提示的。</p>
 <p>其实配置相当简单，不明白的自己回去看看前面webpack那部分吧。</p>
 <pre class="line-numbers"><code class="language-js">// webpack.config.js
@@ -3896,7 +3893,7 @@ module.exports = {
     // ...
 }
 </code></pre>
-<p><img src="https://gitee.com/letwrong/Picture/raw/master/20200922161111.png" alt="image-20200922161111872" /></p>
+<p><img src="media/17280328175326/17281442524481.png" alt="image-20200922161111872" /></p>
 <h3><a id="%E5%9C%A8%E7%BC%96%E8%BE%91%E5%99%A8%E4%B8%AD%E4%BD%BF%E7%94%A8%EF%BC%88vscode%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>在编辑器中使用（VSCode）</h3>
 <p>前面介绍的使用方式已经非常方便了，但是作为一个懒癌重度患者，在使用中我还是发现了一些问题：</p>
 <ul>
@@ -3909,9 +3906,9 @@ module.exports = {
 <p>首先安装<a href="https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint">ESLint</a>插件，在VSCode中<code>ctrl+p</code>然后输入以下命令：</p>
 <pre class="line-numbers"><code class="language-shell">ext install dbaeumer.vscode-eslint
 </code></pre>
-<p><img src="https://gitee.com/letwrong/Picture/raw/master/20200922163527.png" alt="image-20200922163527375" /></p>
+<p><img src="media/17280328175326/17281442524491.png" alt="image-20200922163527375" /></p>
 <p>现在用VSCode打开前面的代码，可以看到有的代码下面会有黄色（警告）或者红色（错误）的波浪线提示，把鼠标移上去，还可以看到错误详情以及修复方案。</p>
-<p><img src="https://gitee.com/letwrong/Picture/raw/master/20200922163709.png" alt="image-20200922163709515" /></p>
+<p><img src="media/17280328175326/17281442524510.png" alt="image-20200922163709515" /></p>
 <p>现在，我们书写代码的时候，就会立即给与提示，不用再去终端或者浏览器查看错误信息，然后再去文件中查找问题代码了。</p>
 <p>那么，第二问题呢，一些简单的格式能不能自动修复呢？</p>
 <p>只需要在VSCode的配置中加上如下配置，当保存文件的时候，一些简单的格式问题就会被自动修复，是不是又可以多撸几把王者农药了呢。</p>
@@ -3919,7 +3916,7 @@ module.exports = {
     &quot;source.fixAll.eslint&quot;: true
  }
 </code></pre>
-<p><img src="https://gitee.com/letwrong/Picture/raw/master/20200922170339.gif" alt="img" /></p>
+<p><img src="media/17280328175326/17281442524527.gif" alt="img" /></p>
 <p><em>提示：vscode-eslint是支持<a href="https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint">配置</a>的，提供了<code>eslint.options</code>来设置全局配置，如果项目中没有配置，会以这里的配置兜底。</em></p>
 <pre class="line-numbers"><code class="language-json">&quot;eslint.options&quot;: {
   &quot;root&quot;: true,
@@ -4411,7 +4408,7 @@ module.exports = {
 </ol>
 <pre class="line-numbers"><code class="language-plain_text">ext install esbenp.prettier-vscode
 </code></pre>
-<p><img src="https://gitee.com/letwrong/Picture/raw/master/20200925171823.png" alt="image-20200925171718606" /></p>
+<p><img src="media/17280328175326/17281442524536.png" alt="image-20200925171718606" /></p>
 <ol start="2">
 <li>安装Prettier</li>
 </ol>

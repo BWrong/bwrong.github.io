@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
     
-    【玩转微前端3】需要关注的问题 - Bwrong的博客
+    【玩转微前端3】需要关注的问题 - Bwrong的拾光
     
     </title>
     <link rel="shortcut icon" href="asset/avatar.png" type="image/png" />
 
     
     
-    <link href="atom.xml" rel="alternate" title="Bwrong的博客" type="application/atom+xml">
+    <link href="atom.xml" rel="alternate" title="Bwrong的拾光" type="application/atom+xml">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="asset/css/style.min.css">
     <link rel="stylesheet" href="asset/css/doc.css">
@@ -139,11 +139,11 @@
 <ul>
 <li>Monorepo：多应用管理可以使用<a href="https://lerna.js.org/">lerna</a>或者<a href="https://pnpm.io/zh/">pnpm</a>。</li>
 </ul>
-<p><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220406225207.png" alt="image-20220406225206585" /></p>
+<p><img src="media/17280334039483/17281450561380.png" alt="image-20220406225206585" /></p>
 <ul>
 <li>
 <p>Git subtree或者多仓库：在子应用较多的情况可采用此方式，缺点是每次子应用变更后，聚合库还得同步一次变更。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220407165035.jpg" alt="18091274-44952db2fd681a3d" /></p>
+<p><img src="media/17280334039483/17281450561404.jpg" alt="18091274-44952db2fd681a3d" /></p>
 </li>
 </ul>
 <h2><a id="%E5%BA%94%E7%94%A8%E6%8B%86%E5%88%86%E7%B2%92%E5%BA%A6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>应用拆分粒度</h2>
@@ -168,18 +168,18 @@
 </ul>
 <h2><a id="%E6%9D%83%E9%99%90%E5%A4%84%E7%90%86" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>权限处理</h2>
 <p>主应用负责身份验证，拿到授权信息后下发到各微应用中，各应用再根据拿到的授权信息过滤各自路由信息。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220331175530.awebp" alt="img" /></p>
+<p><img src="media/17280334039483/17281450561413.webP" alt="img" /></p>
 <h2><a id="%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>资源共享</h2>
 <h3><a id="%E7%BB%9F%E4%B8%80%E7%AE%A1%E7%90%86%E7%BB%B4%E6%8A%A4" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>统一管理维护</h3>
 <p>将公共资源提取到一个地方，避免多个地方维护，但是仍然会多次打包。可以通过如下两种方式：</p>
 <ul>
 <li>file或link方式</li>
 </ul>
-<p><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220407114412.png" alt="image-20220406235834667" /></p>
+<p><img src="media/17280334039483/17281450561420.png" alt="image-20220406235834667" /></p>
 <ul>
 <li>git仓库或者私服</li>
 </ul>
-<p><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220406235948.png" alt="image-20220406235948554" /></p>
+<p><img src="media/17280334039483/17281450561439.png" alt="image-20220406235948554" /></p>
 <h3><a id="%E4%BE%9D%E8%B5%96%E6%8F%90%E5%8F%96" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>依赖提取</h3>
 <p>在一个团队中，技术栈相对固定，所以统一技术栈很多基础依赖相对是固定的，但是默认情况下每个应用都会重复打包一次，会造成重复下载，影响运行性能。例如，如果每个微应用都包括自己的 Vue 副本，那么用户就得多次下载 Vue。</p>
 <p>在进行如下改造之前，先确认是否有此必要，因为它会增加应用间的耦合性（如技术栈、依赖版本必须一致） ，而这是和微前端思想相悖的，</p>
@@ -261,7 +261,7 @@
 <ul>
 <li>VueDevtools调试微应用问题，需要手动处理，但是还是会存在失效问题。</li>
 </ul>
-<p><img src="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20220407171516.png" alt="image-20220407171516398" /></p>
+<p><img src="media/17280334039483/17281450561452.png" alt="image-20220407171516398" /></p>
 <ul>
 <li>对vite构建的微应用支持还有缺陷，因为Vite暂时还不支持运行时修改资源路径和ESModule导致沙箱失效。</li>
 <li>各应用间的风格和交互逻辑应该统一，因为对用户来说我们的应用仍然是一体的，要避免应用间给用户造成撕裂感。</li>
