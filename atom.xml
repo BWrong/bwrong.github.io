@@ -4,13 +4,363 @@
   <title><![CDATA[Bwrong的拾光]]></title>
   <link href="https://www.bwrong.cn/atom.xml" rel="self"/>
   <link href="https://www.bwrong.cn/"/>
-  <updated>2024-10-06T22:34:39+08:00</updated>
+  <updated>2024-10-15T14:43:02+08:00</updated>
   <id>https://www.bwrong.cn/</id>
   <author>
     <name><![CDATA[]]></name>
     
   </author>
   <generator uri="http://www.mweb.im/">MWeb</generator>
+  
+  <entry>
+    <title type="html"><![CDATA[傻傻分不清之 Cookie、Session、Token、JWT]]></title>
+    <link href="https://www.bwrong.cn/17289745203360.html"/>
+    <updated>2024-10-15T14:42:00+08:00</updated>
+    <id>https://www.bwrong.cn/17289745203360.html</id>
+    <content type="html"><![CDATA[
+<blockquote>
+<p>本文由 <a href="http://ksria.com/simpread/">简悦 SimpRead</a> 转码， 原文地址 <a href="https://juejin.cn/post/6844904034181070861?searchId=20241015143446C1B857F324CEF98D5DDE#heading-22">juejin.cn</a></p>
+</blockquote>
+<h2><a id="%E4%BB%80%E4%B9%88%E6%98%AF%E8%AE%A4%E8%AF%81%EF%BC%88authentication%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>什么是认证（Authentication）</h2>
+<ul>
+<li>通俗地讲就是<strong>验证当前用户的身份</strong>，证明 “你是你自己”（比如：你每天上下班打卡，都需要通过指纹打卡，当你的指纹和系统里录入的指纹相匹配时，就打卡成功）</li>
+<li>互联网中的认证：
+<ul>
+<li>用户名密码登录</li>
+<li>邮箱发送登录链接</li>
+<li>手机号接收验证码</li>
+<li>只要你能收到邮箱 / 验证码，就默认你是账号的主人</li>
+</ul>
+</li>
+</ul>
+<h2><a id="%E4%BB%80%E4%B9%88%E6%98%AF%E6%8E%88%E6%9D%83%EF%BC%88authorization%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>什么是授权（Authorization）</h2>
+<ul>
+<li><strong>用户授予第三方应用访问该用户某些资源的权限</strong>
+<ul>
+<li>你在安装手机应用的时候，APP 会询问是否允许授予权限（访问相册、地理位置等权限）</li>
+<li>你在访问微信小程序时，当登录时，小程序会询问是否允许授予权限（获取昵称、头像、地区、性别等个人信息）</li>
+</ul>
+</li>
+<li>实现授权的方式有：cookie、session、token、OAuth</li>
+</ul>
+<h2><a id="%E4%BB%80%E4%B9%88%E6%98%AF%E5%87%AD%E8%AF%81%EF%BC%88credentials%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>什么是凭证（Credentials）</h2>
+<ul>
+<li><strong>实现认证和授权的前提</strong>是需要一种<strong>媒介（证书）</strong> 来标记访问者的身份
+<ul>
+<li>在战国时期，商鞅变法，发明了照身帖。照身帖由官府发放，是一块打磨光滑细密的竹板，上面刻有持有人的头像和籍贯信息。国人必须持有，如若没有就被认为是黑户，或者间谍之类的。</li>
+<li>在现实生活中，每个人都会有一张专属的<a href="https://link.juejin.cn?target=https%3A%2F%2Fbaike.baidu.com%2Fitem%2F%25E5%25B1%2585%25E6%25B0%2591%25E8%25BA%25AB%25E4%25BB%25BD%25E8%25AF%2581%2F2080960" title="https://baike.baidu.com/item/%E5%B1%85%E6%B0%91%E8%BA%AB%E4%BB%BD%E8%AF%81/2080960">居民身份证</a>，是用于证明持有人身份的一种法定<a href="https://link.juejin.cn?target=https%3A%2F%2Fbaike.baidu.com%2Fitem%2F%25E8%25AF%2581%25E4%25BB%25B6%2F5804999" title="https://baike.baidu.com/item/%E8%AF%81%E4%BB%B6/5804999">证件</a>。通过身份证，我们可以办理手机卡 / 银行卡 / 个人贷款 / 交通出行等等，这就是<strong>认证的凭证。</strong></li>
+<li>在互联网应用中，一般网站（如掘金）会有两种模式，游客模式和登录模式。游客模式下，可以正常浏览网站上面的文章，一旦想要点赞 / 收藏 / 分享文章，就需要登录或者注册账号。当用户登录成功后，服务器会给该用户使用的浏览器颁发一个令牌（token），这个令牌用来表明你的身份，每次浏览器发送请求时会带上这个令牌，就可以使用游客模式下无法使用的功能。</li>
+</ul>
+</li>
+</ul>
+<h2><a id="%E4%BB%80%E4%B9%88%E6%98%AFcookie" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>什么是 Cookie</h2>
+<ul>
+<li><strong>HTTP 是无状态的协议（对于事务处理没有记忆能力，每次客户端和服务端会话完成时，服务端不会保存任何会话信息</strong>）：每个请求都是完全独立的，服务端无法确认当前访问者的身份信息，无法分辨上一次的请求发送者和这一次的发送者是不是同一个人。所以服务器与浏览器为了进行会话跟踪（知道是谁在访问我），就必须主动的去维护一个状态，这个状态用于告知服务端前后两个请求是否来自同一浏览器。而这个状态需要通过 cookie 或者 session 去实现。</li>
+<li><strong>cookie 存储在客户端：</strong> cookie 是服务器发送到用户浏览器并保存在本地的一小块数据，它会在浏览器下次向同一服务器再发起请求时被携带并发送到服务器上。</li>
+<li><strong>cookie 是不可跨域的：</strong> 每个 cookie 都会绑定单一的域名，无法在别的域名下获取使用，<strong>一级域名和二级域名之间是允许共享使用的</strong>（<strong>靠的是 domain）</strong>。</li>
+</ul>
+<p><strong>cookie 重要的属性</strong></p>
+<table><thead><tr><th>属性</th><th>说明</th></tr></thead><tbody><tr><td><strong>name=value</strong></td><td>键值对，设置 Cookie 的名称及相对应的值，都必须是<strong>字符串类型</strong><br>- 如果值为 Unicode 字符，需要为字符编码。<br>- 如果值为二进制数据，则需要使用 BASE64 编码。<br></td></tr><tr><td><strong>domain</strong></td><td>指定 cookie 所属域名，默认是当前域名</td></tr><tr><td><strong>path</strong></td><td><strong>指定 cookie 在哪个路径（路由）下生效，默认是 '/'</strong>。<br>如果设置为 <code>/abc</code>，则只有 <code>/abc</code> 下的路由可以访问到该 cookie，如：<code>/abc/read</code>。</td></tr><tr><td><strong>maxAge</strong></td><td>cookie 失效的时间，单位秒。如果为整数，则该 cookie 在 maxAge 秒后失效。如果为负数，该 cookie 为临时 cookie ，关闭浏览器即失效，浏览器也不会以任何形式保存该 cookie 。如果为 0，表示删除该 cookie 。默认为 -1。<br>- <strong>比 expires 好用</strong>。<br></td></tr><tr><td><strong>expires</strong></td><td>过期时间，在设置的某个时间点后该 cookie 就会失效。<br>一般浏览器的 cookie 都是默认储存的，当关闭浏览器结束这个会话的时候，这个 cookie 也就会被删除</td></tr><tr><td><strong>secure</strong></td><td>该 cookie 是否仅被使用安全协议传输。安全协议有 HTTPS，SSL 等，在网络上传输数据之前先将数据加密。默认为 false。<br>当 secure 值为 true 时，cookie 在 HTTP 中是无效，在 HTTPS 中才有效。</td></tr><tr><td><strong>httpOnly</strong></td><td><strong>如果给某个 cookie 设置了 httpOnly 属性，则无法通过 JS 脚本 读取到该 cookie 的信息，但还是能通过 Application 中手动修改 cookie，所以只是在一定程度上可以防止 XSS 攻击，不是绝对的安全</strong></td></tr><tr><td></td><td></td></tr></tbody></table>
+<h2><a id="%E4%BB%80%E4%B9%88%E6%98%AFsession" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>什么是 Session</h2>
+<ul>
+<li><strong>session 是另一种记录服务器和客户端会话状态的机制</strong></li>
+<li><strong>session 是基于 cookie 实现的，session 存储在服务器端，sessionId 会被存储到客户端的 cookie 中</strong></li>
+</ul>
+<p><figure><img src="media/17289745203360/17289745622104.png" alt="" /></figure></p>
+<ul>
+<li><strong>session 认证流程：</strong>
+<ul>
+<li>用户第一次请求服务器的时候，服务器根据用户提交的相关信息，创建对应的 Session</li>
+<li>请求返回时将此 Session 的唯一标识信息 SessionID 返回给浏览器</li>
+<li>浏览器接收到服务器返回的 SessionID 信息后，会将此信息存入到 Cookie 中，同时 Cookie 记录此 SessionID 属于哪个域名</li>
+<li>当用户第二次访问服务器的时候，请求会自动判断此域名下是否存在 Cookie 信息，如果存在自动将 Cookie 信息也发送给服务端，服务端会从 Cookie 中获取 SessionID，再根据 SessionID 查找对应的 Session 信息，如果没有找到说明用户没有登录或者登录失效，如果找到 Session 证明用户已经登录可执行后面操作。</li>
+</ul>
+</li>
+</ul>
+<p>根据以上流程可知，<strong>SessionID 是连接 Cookie 和 Session 的一道桥梁</strong>，大部分系统也是根据此原理来验证用户登录状态。</p>
+<h2><a id="cookie%E5%92%8C-session%E7%9A%84%E5%8C%BA%E5%88%AB" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Cookie 和 Session 的区别</h2>
+<ul>
+<li><strong>安全性：</strong> Session 比 Cookie 安全，Session 是存储在服务器端的，Cookie 是存储在客户端的。</li>
+<li><strong>存取值的类型不同</strong>：Cookie 只支持存字符串数据，想要设置其他类型的数据，需要将其转换成字符串，Session 可以存任意数据类型。</li>
+<li><strong>有效期不同：</strong> Cookie 可设置为长时间保持，比如我们经常使用的默认登录功能，Session 一般失效时间较短，客户端关闭（默认情况下）或者 Session 超时都会失效。</li>
+<li><strong>存储大小不同：</strong> 单个 Cookie 保存的数据不能超过 4K，Session 可存储数据远高于 Cookie，但是当访问量过多，会占用过多的服务器资源。</li>
+</ul>
+<h2><a id="%E4%BB%80%E4%B9%88%E6%98%AFtoken%EF%BC%88%E4%BB%A4%E7%89%8C%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>什么是 Token（令牌）</h2>
+<h3><a id="acesss-token" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Acesss Token</h3>
+<ul>
+<li><strong>访问资源接口（API）时所需要的资源凭证</strong></li>
+<li><strong>简单 token 的组成：</strong> uid(用户唯一的身份标识)、time(当前时间的时间戳)、sign（签名，token 的前几位以哈希算法压缩成的一定长度的十六进制字符串）</li>
+<li><strong>特点：</strong>
+<ul>
+<li><strong>服务端无状态化、可扩展性好</strong></li>
+<li><strong>支持移动端设备</strong></li>
+<li>安全</li>
+<li>支持跨程序调用</li>
+</ul>
+</li>
+<li><strong>token 的身份验证流程：</strong></li>
+</ul>
+<p><figure><img src="media/17289745203360/17289745622140.png" alt="" /></figure></p>
+<ol>
+<li>客户端使用用户名跟密码请求登录</li>
+<li>服务端收到请求，去验证用户名与密码</li>
+<li>验证成功后，服务端会签发一个 token 并把这个 token 发送给客户端</li>
+<li>客户端收到 token 以后，会把它存储起来，比如放在 cookie 里或者 localStorage 里</li>
+<li>客户端每次向服务端请求资源的时候需要带着服务端签发的 token</li>
+<li>服务端收到请求，然后去验证客户端请求里面带着的 token ，如果验证成功，就向客户端返回请求的数据</li>
+</ol>
+<ul>
+<li><strong>每一次请求都需要携带 token，需要把 token 放到 HTTP 的 Header 里</strong></li>
+<li><strong>基于 token 的用户认证是一种服务端无状态的认证方式，服务端不用存放 token 数据。用解析 token 的计算时间换取 session 的存储空间，从而减轻服务器的压力，减少频繁的查询数据库</strong></li>
+<li><strong>token 完全由应用管理，所以它可以避开同源策略</strong></li>
+</ul>
+<h3><a id="refresh-token" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Refresh Token</h3>
+<ul>
+<li>
+<p>另外一种 token——refresh token</p>
+</li>
+<li>
+<p>refresh token 是专用于刷新 access token 的 token。如果没有 refresh token，也可以刷新 access token，但每次刷新都要用户输入登录用户名与密码，会很麻烦。有了 refresh token，可以减少这个麻烦，客户端直接用 refresh token 去更新 access token，无需用户进行额外的操作。</p>
+</li>
+</ul>
+<p><figure><img src="media/17289745203360/17289745622163.png" alt="" /></figure></p>
+<ul>
+<li>Access Token 的有效期比较短，当 Acesss Token 由于过期而失效时，使用 Refresh Token 就可以获取到新的 Token，如果 Refresh Token 也失效了，用户就只能重新登录了。</li>
+<li>Refresh Token 及过期时间是存储在服务器的数据库中，只有在申请新的 Acesss Token 时才会验证，不会对业务接口响应时间造成影响，也不需要向 Session 一样一直保持在内存中以应对大量的请求。</li>
+</ul>
+<h2><a id="token%E5%92%8C-session%E7%9A%84%E5%8C%BA%E5%88%AB" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Token 和 Session 的区别</h2>
+<ul>
+<li>Session 是一种<strong>记录服务器和客户端会话状态的机制，使服务端有状态化，可以记录会话信息</strong>。而 Token 是<strong>令牌</strong>，<strong>访问资源接口（API）时所需要的资源凭证</strong>。Token <strong>使服务端无状态化，不会存储会话信息。</strong></li>
+<li>Session 和 Token 并不矛盾，作为身份认证 Token 安全性比 Session 好，因为每一个请求都有签名还能防止监听以及重放攻击，而 Session 就必须依赖链路层来保障通讯安全了。<strong>如果你需要实现有状态的会话，仍然可以增加 Session 来在服务器端保存一些状态。</strong></li>
+<li>所谓 Session 认证只是简单的把 User 信息存储到 Session 里，因为 SessionID 的不可预测性，暂且认为是安全的。而 Token ，如果指的是 OAuth Token 或类似的机制的话，提供的是 认证 和 授权 ，认证是针对用户，授权是针对 App 。其目的是让某 App 有权利访问某用户的信息。这里的 Token 是唯一的。不可以转移到其它 App 上，也不可以转到其它用户上。Session 只提供一种简单的认证，即只要有此 SessionID ，即认为有此 User 的全部权利。是需要严格保密的，这个数据应该只保存在站方，不应该共享给其它网站或者第三方 App。所以简单来说：<strong>如果你的用户数据可能需要和第三方共享，或者允许第三方调用 API 接口，用 Token 。如果永远只是自己的网站，自己的 App，用什么就无所谓了。</strong></li>
+</ul>
+<h2><a id="%E4%BB%80%E4%B9%88%E6%98%AFjwt" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>什么是 JWT</h2>
+<ul>
+<li>JSON Web Token（简称 JWT）是目前最流行的<strong>跨域认证</strong>解决方案。</li>
+<li>是一种<strong>认证授权机制</strong>。</li>
+<li>JWT 是为了在网络应用环境间<strong>传递声明</strong>而执行的一种基于 JSON 的开放标准（<a href="https://link.juejin.cn?target=https%3A%2F%2Ftools.ietf.org%2Fhtml%2Frfc7519" title="https://tools.ietf.org/html/rfc7519">RFC 7519</a>）。JWT 的声明一般被用来在身份提供者和服务提供者间传递被认证的用户身份信息，以便于从资源服务器获取资源。比如用在用户登录上。</li>
+<li>可以使用 HMAC 算法或者是 RSA 的公 / 私秘钥对 JWT 进行签名。因为数字签名的存在，这些传递的信息是可信的。</li>
+<li><strong>阮一峰老师的 <a href="https://link.juejin.cn?target=http%3A%2F%2Fwww.ruanyifeng.com%2Fblog%2F2018%2F07%2Fjson_web_token-tutorial.html" title="http://www.ruanyifeng.com/blog/2018/07/json_web_token-tutorial.html">JSON Web Token 入门教程</a> 讲的非常通俗易懂，这里就不再班门弄斧了</strong></li>
+</ul>
+<h3><a id="%E7%94%9F%E6%88%90jwt" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>生成 JWT</h3>
+<p><a href="https://link.juejin.cn?target=https%3A%2F%2Fjwt.io%2F" title="https://jwt.io/">jwt.io/</a><br />
+<a href="https://link.juejin.cn?target=https%3A%2F%2Fwww.jsonwebtoken.io%2F" title="https://www.jsonwebtoken.io/">www.jsonwebtoken.io/</a></p>
+<h3><a id="jwt%E7%9A%84%E5%8E%9F%E7%90%86" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>JWT 的原理</h3>
+<p><figure><img src="media/17289745203360/17289745622175.png" alt="" /></figure></p>
+<ul>
+<li><strong>JWT 认证流程：</strong>
+<ul>
+<li>用户输入用户名 / 密码登录，服务端认证成功后，会返回给客户端一个 JWT</li>
+<li>客户端将 token 保存到本地（通常使用 localstorage，也可以使用 cookie）</li>
+<li>当用户希望访问一个受保护的路由或者资源的时候，需要请求头的 Authorization 字段中使用 Bearer 模式添加 JWT，其内容看起来是下面这样</li>
+</ul>
+</li>
+</ul>
+<pre class="line-numbers"><code class="language-plain_text">Authorization: Bearer &lt;token&gt;
+
+
+</code></pre>
+<ul>
+<li>服务端的保护路由将会检查请求头 Authorization 中的 JWT 信息，如果合法，则允许用户的行为</li>
+<li>因为 JWT 是自包含的（内部包含了一些会话信息），因此减少了需要查询数据库的需要</li>
+<li>因为 JWT 并不使用 Cookie 的，所以你可以使用任何域名提供你的 API 服务而不需要担心跨域资源共享问题（CORS）</li>
+<li>因为用户的状态不再存储在服务端的内存中，所以这是一种无状态的认证机制</li>
+</ul>
+<h3><a id="jwt%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>JWT 的使用方式</h3>
+<ul>
+<li>客户端收到服务器返回的 JWT，可以储存在 Cookie 里面，也可以储存在 localStorage。</li>
+</ul>
+<h4><a id="%E6%96%B9%E5%BC%8F%E4%B8%80" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>方式一</h4>
+<ul>
+<li>
+<p>当用户希望访问一个受保护的路由或者资源的时候，可以把它放在 Cookie 里面自动发送，但是这样不能跨域，所以更好的做法是放在 HTTP 请求头信息的 Authorization 字段里，使用 Bearer 模式添加 JWT。</p>
+<pre class="line-numbers"><code class="language-plain_text">GET /calendar/v1/events
+Host: api.example.com
+Authorization: Bearer &lt;token&gt;
+
+
+</code></pre>
+<ul>
+<li>用户的状态不会存储在服务端的内存中，这是一种 <strong>无状态的认证机制</strong></li>
+<li>服务端的保护路由将会检查请求头 Authorization 中的 JWT 信息，如果合法，则允许用户的行为。</li>
+<li>由于 JWT 是自包含的，因此减少了需要查询数据库的需要</li>
+<li>JWT 的这些特性使得我们可以完全依赖其无状态的特性提供数据 API 服务，甚至是创建一个下载流服务。</li>
+<li>因为 JWT 并不使用 Cookie ，所以你可以使用任何域名提供你的 API 服务而<strong>不需要担心跨域资源共享问题</strong>（CORS）</li>
+</ul>
+</li>
+</ul>
+<h4><a id="%E6%96%B9%E5%BC%8F%E4%BA%8C" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>方式二</h4>
+<ul>
+<li>跨域的时候，可以把 JWT 放在 POST 请求的数据体里。</li>
+</ul>
+<h4><a id="%E6%96%B9%E5%BC%8F%E4%B8%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>方式三</h4>
+<ul>
+<li>通过 URL 传输</li>
+</ul>
+<pre class="line-numbers"><code class="language-plain_text">http://www.example.com/user?token=xxx
+
+
+</code></pre>
+<h3><a id="%E9%A1%B9%E7%9B%AE%E4%B8%AD%E4%BD%BF%E7%94%A8jwt" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>项目中使用 JWT</h3>
+<p><a href="https://link.juejin.cn?target=https%3A%2F%2Fgithub.com%2Fyjdjiayou%2Fjwt-demo" title="https://github.com/yjdjiayou/jwt-demo"><strong>项目地址</strong></a></p>
+<p>Token 和 JWT 的区别</p>
+<hr />
+<p><strong>相同：</strong></p>
+<ul>
+<li>都是访问资源的令牌</li>
+<li>都可以记录用户的信息</li>
+<li>都是使服务端无状态化</li>
+<li>都是只有验证成功后，客户端才能访问服务端上受保护的资源</li>
+</ul>
+<p><strong>区别：</strong></p>
+<ul>
+<li>Token：服务端验证客户端发送过来的 Token 时，还需要查询数据库获取用户信息，然后验证 Token 是否有效。</li>
+<li>JWT： 将 Token 和 Payload 加密后存储于客户端，服务端只需要使用密钥解密进行校验（校验也是 JWT 自己实现的）即可，不需要查询或者减少查询数据库，因为 JWT 自包含了用户信息和加密的数据。</li>
+</ul>
+<p>常见的前后端鉴权方式</p>
+<hr />
+<ol>
+<li>Session-Cookie</li>
+<li>Token 验证（包括 JWT，SSO）</li>
+<li>OAuth2.0（开放授权）</li>
+</ol>
+<h2><a id="%E5%B8%B8%E8%A7%81%E7%9A%84%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>常见的加密算法</h2>
+<p><figure><img src="media/17289745203360/17289745622186.png" alt="" /></figure></p>
+<ul>
+<li>哈希算法 (Hash Algorithm) 又称散列算法、散列函数、哈希函数，是一种从任何一种数据中创建小的数字 “指纹” 的方法。哈希算法将数据重新打乱混合，重新创建一个哈希值。</li>
+<li>哈希算法主要用来保障数据真实性 (即完整性)，即发信人将原始消息和哈希值一起发送，收信人通过相同的哈希函数来校验原始数据是否真实。</li>
+<li>哈希算法通常有以下几个特点：
+<ul>
+<li>正像快速：原始数据可以快速计算出哈希值</li>
+<li>逆向困难：通过哈希值基本不可能推导出原始数据</li>
+<li>输入敏感：原始数据只要有一点变动，得到的哈希值差别很大</li>
+<li>冲突避免：很难找到不同的原始数据得到相同的哈希值，宇宙中原子数大约在 10 的 60 次方到 80 次方之间，所以 2 的 256 次方有足够的空间容纳所有的可能，算法好的情况下冲突碰撞的概率很低：
+<ul>
+<li>2 的 128 次方为 340282366920938463463374607431768211456，也就是 10 的 39 次方级别</li>
+<li>2 的 160 次方为 1.4615016373309029182036848327163e+48，也就是 10 的 48 次方级别</li>
+<li>2 的 256 次方为 1.1579208923731619542357098500869 × 10 的 77 次方，也就是 10 的 77 次方</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>注意：</strong></p>
+<ol>
+<li>以上不能保证数据被恶意篡改，原始数据和哈希值都可能被恶意篡改，要保证不被篡改，可以使用 RSA 公钥私钥方案，再配合哈希值。</li>
+<li>哈希算法主要用来防止计算机传输过程中的错误，早期计算机通过前 7 位数据第 8 位奇偶校验码来保障（12.5% 的浪费效率低），对于一段数据或文件，通过哈希算法生成 128bit 或者 256bit 的哈希值，如果校验有问题就要求重传。</li>
+</ol>
+<h2><a id="%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>常见问题</h2>
+<h3><a id="%E4%BD%BF%E7%94%A8cookie%E6%97%B6%E9%9C%80%E8%A6%81%E8%80%83%E8%99%91%E7%9A%84%E9%97%AE%E9%A2%98" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>使用 cookie 时需要考虑的问题</h3>
+<ul>
+<li>因为存储在客户端，容易被客户端篡改，使用前需要验证合法性</li>
+<li>不要存储敏感数据，比如用户密码，账户余额</li>
+<li>使用 httpOnly 在一定程度上提高安全性</li>
+<li>尽量减少 cookie 的体积，能存储的数据量不能超过 4kb</li>
+<li>设置正确的 domain 和 path，减少数据传输</li>
+<li><strong>cookie 无法跨域</strong></li>
+<li>一个浏览器针对一个网站最多存 20 个 Cookie，浏览器一般只允许存放 300 个 Cookie</li>
+<li><strong>移动端对 cookie 的支持不是很好，而 session 需要基于 cookie 实现，所以移动端常用的是 token</strong></li>
+</ul>
+<h3><a id="%E4%BD%BF%E7%94%A8session%E6%97%B6%E9%9C%80%E8%A6%81%E8%80%83%E8%99%91%E7%9A%84%E9%97%AE%E9%A2%98" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>使用 session 时需要考虑的问题</h3>
+<ul>
+<li>将 session 存储在服务器里面，当用户同时在线量比较多时，这些 session 会占据较多的内存，需要在服务端定期的去清理过期的 session</li>
+<li>当网站采用<strong>集群部署</strong>的时候，会遇到多台 web 服务器之间如何做 session 共享的问题。因为 session 是由单个服务器创建的，但是处理用户请求的服务器不一定是那个创建 session 的服务器，那么该服务器就无法拿到之前已经放入到 session 中的登录凭证之类的信息了。</li>
+<li>当多个应用要共享 session 时，除了以上问题，还会遇到跨域问题，因为不同的应用可能部署的主机不一样，需要在各个应用做好 cookie 跨域的处理。</li>
+<li><strong>sessionId 是存储在 cookie 中的，假如浏览器禁止 cookie 或不支持 cookie 怎么办？</strong> 一般会把 sessionId 跟在 url 参数后面即重写 url，所以 session 不一定非得需要靠 cookie 实现</li>
+<li><strong>移动端对 cookie 的支持不是很好，而 session 需要基于 cookie 实现，所以移动端常用的是 token</strong></li>
+</ul>
+<h3><a id="%E4%BD%BF%E7%94%A8token%E6%97%B6%E9%9C%80%E8%A6%81%E8%80%83%E8%99%91%E7%9A%84%E9%97%AE%E9%A2%98" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>使用 token 时需要考虑的问题</h3>
+<ul>
+<li>如果你认为用数据库来存储 token 会导致查询时间太长，可以选择放在内存当中。比如 redis 很适合你对 token 查询的需求。</li>
+<li><strong>token 完全由应用管理，所以它可以避开同源策略</strong></li>
+<li><strong>token 可以避免 CSRF 攻击 (因为不需要 cookie 了)</strong></li>
+<li><strong>移动端对 cookie 的支持不是很好，而 session 需要基于 cookie 实现，所以移动端常用的是 token</strong></li>
+</ul>
+<h3><a id="%E4%BD%BF%E7%94%A8jwt%E6%97%B6%E9%9C%80%E8%A6%81%E8%80%83%E8%99%91%E7%9A%84%E9%97%AE%E9%A2%98" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>使用 JWT 时需要考虑的问题</h3>
+<ul>
+<li>因为 JWT 并不依赖 Cookie 的，所以你可以使用任何域名提供你的 API 服务而不需要担心跨域资源共享问题（CORS）</li>
+<li>JWT 默认是不加密，但也是可以加密的。生成原始 Token 以后，可以用密钥再加密一次。</li>
+<li>JWT 不加密的情况下，不能将秘密数据写入 JWT。</li>
+<li>JWT 不仅可以用于认证，也可以用于交换信息。有效使用 JWT，可以降低服务器查询数据库的次数。</li>
+<li>JWT 最大的优势是服务器不再需要存储 Session，使得服务器认证鉴权业务可以方便扩展。但这也是 JWT 最大的缺点：由于服务器不需要存储 Session 状态，因此使用过程中无法废弃某个 Token 或者更改 Token 的权限。也就是说一旦 JWT 签发了，到期之前就会始终有效，除非服务器部署额外的逻辑。</li>
+<li>JWT 本身包含了认证信息，一旦泄露，任何人都可以获得该令牌的所有权限。为了减少盗用，JWT 的有效期应该设置得比较短。对于一些比较重要的权限，使用时应该再次对用户进行认证。</li>
+<li>JWT 适合一次性的命令认证，颁发一个有效期极短的 JWT，即使暴露了危险也很小，由于每次操作都会生成新的 JWT，因此也没必要保存 JWT，真正实现无状态。</li>
+<li>为了减少盗用，JWT 不应该使用 HTTP 协议明码传输，要使用 HTTPS 协议传输。</li>
+</ul>
+<h3><a id="%E4%BD%BF%E7%94%A8%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E6%97%B6%E9%9C%80%E8%A6%81%E8%80%83%E8%99%91%E7%9A%84%E9%97%AE%E9%A2%98" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>使用加密算法时需要考虑的问题</h3>
+<ul>
+<li>绝不要以<strong>明文存储</strong>密码</li>
+<li><strong>永远使用 哈希算法 来处理密码，绝不要使用 Base64 或其他编码方式来存储密码，这和以明文存储密码是一样的，使用哈希，而不要使用编码</strong>。编码以及加密，都是双向的过程，而密码是保密的，应该只被它的所有者知道， 这个过程必须是单向的。哈希正是用于做这个的，从来没有解哈希这种说法， 但是编码就存在解码，加密就存在解密。</li>
+<li>绝不要使用弱哈希或已被破解的哈希算法，像 MD5 或 SHA1 ，只使用强密码哈希算法。</li>
+<li>绝不要以明文形式显示或发送密码，即使是对密码的所有者也应该这样。如果你需要 “忘记密码” 的功能，可以随机生成一个新的 <strong>一次性的</strong>（这点很重要）密码，然后把这个密码发送给用户。</li>
+</ul>
+<h3><a id="%E5%88%86%E5%B8%83%E5%BC%8F%E6%9E%B6%E6%9E%84%E4%B8%8Bsession%E5%85%B1%E4%BA%AB%E6%96%B9%E6%A1%88" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>分布式架构下 session 共享方案</h3>
+<h4><a id="1-session%E5%A4%8D%E5%88%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. session 复制</h4>
+<ul>
+<li>任何一个服务器上的 session 发生改变（增删改），该节点会把这个 session 的所有内容序列化，然后广播给所有其它节点，不管其他服务器需不需要 session ，以此来保证 session 同步</li>
+</ul>
+<p><strong>优点：</strong> 可容错，各个服务器间 session 能够实时响应。<br />
+<strong>缺点：</strong> 会对网络负荷造成一定压力，如果 session 量大的话可能会造成网络堵塞，拖慢服务器性能。</p>
+<h4><a id="2%E7%B2%98%E6%80%A7-session-ip%E7%BB%91%E5%AE%9A%E7%AD%96%E7%95%A5" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. 粘性 session /IP 绑定策略</h4>
+<ul>
+<li><strong>采用 Ngnix 中的 ip_hash 机制，将某个 ip 的所有请求都定向到同一台服务器上，即将用户与服务器绑定。</strong> 用户第一次请求时，负载均衡器将用户的请求转发到了 A 服务器上，如果负载均衡器设置了粘性 session 的话，那么用户以后的每次请求都会转发到 A 服务器上，相当于把用户和 A 服务器粘到了一块，这就是粘性 session 机制。</li>
+</ul>
+<p><strong>优点：</strong> 简单，不需要对 session 做任何处理。<br />
+<strong>缺点：</strong> 缺乏容错性，如果当前访问的服务器发生故障，用户被转移到第二个服务器上时，他的 session 信息都将失效。<br />
+<strong>适用场景：</strong> 发生故障对客户产生的影响较小；服务器发生故障是低概率事件 。<br />
+<strong>实现方式：</strong> 以 Nginx 为例，在 upstream 模块配置 ip_hash 属性即可实现粘性 session。</p>
+<h4><a id="3-session%E5%85%B1%E4%BA%AB%EF%BC%88%E5%B8%B8%E7%94%A8%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>3. session 共享（常用）</h4>
+<ul>
+<li>使用分布式缓存方案比如 Memcached 、Redis 来缓存 session，但是要求 Memcached 或 Redis 必须是集群</li>
+<li>把 session 放到 Redis 中存储，虽然架构上变得复杂，并且需要多访问一次 Redis ，但是这种方案带来的好处也是很大的：
+<ul>
+<li>实现了 session 共享；</li>
+<li>可以水平扩展（增加 Redis 服务器）；</li>
+<li>服务器重启 session 不丢失（不过也要注意 session 在 Redis 中的刷新 / 失效机制）；</li>
+<li>不仅可以跨服务器 session 共享，甚至可以跨平台（例如网页端和 APP 端）</li>
+</ul>
+</li>
+</ul>
+<p><figure><img src="media/17289745203360/17289745622205.png" alt="" /></figure></p>
+<h4><a id="4-session%E6%8C%81%E4%B9%85%E5%8C%96" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>4. session 持久化</h4>
+<ul>
+<li>将 session 存储到数据库中，保证 session 的持久化</li>
+</ul>
+<p><strong>优点：</strong> 服务器出现问题，session 不会丢失<br />
+<strong>缺点：</strong> 如果网站的访问量很大，把 session 存储到数据库中，会对数据库造成很大压力，还需要增加额外的开销维护数据库。</p>
+<h3><a id="%E5%8F%AA%E8%A6%81%E5%85%B3%E9%97%AD%E6%B5%8F%E8%A7%88%E5%99%A8%EF%BC%8Csession%E7%9C%9F%E7%9A%84%E5%B0%B1%E6%B6%88%E5%A4%B1%E4%BA%86%EF%BC%9F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>只要关闭浏览器 ，session 真的就消失了？</strong></h3>
+<p>不对。对 session 来说，除非程序通知服务器删除一个 session，否则服务器会一直保留，程序一般都是在用户做 log off 的时候发个指令去删除 session。<br />
+然而浏览器从来不会主动在关闭之前通知服务器它将要关闭，因此服务器根本不会有机会知道浏览器已经关闭，之所以会有这种错觉，是大部分 session 机制都使用会话 cookie 来保存 session id，而关闭浏览器后这个 session id 就消失了，再次连接服务器时也就无法找到原来的 session。如果服务器设置的 cookie 被保存在硬盘上，或者使用某种手段改写浏览器发出的 HTTP 请求头，把原来的 session id 发送给服务器，则再次打开浏览器仍然能够打开原来的 session。<br />
+恰恰是<strong>由于关闭浏览器不会导致 session 被删除，迫使服务器为 session 设置了一个失效时间，当距离客户端上一次使用 session 的时间超过这个失效时间时，服务器就认为客户端已经停止了活动，才会把 session 删除以节省存储空间。</strong></p>
+<h2><a id="%E9%A1%B9%E7%9B%AE%E5%9C%B0%E5%9D%80" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>项目地址</h2>
+<p><a href="https://link.juejin.cn?target=https%3A%2F%2Fgithub.com%2Fyjdjiayou%2Fjwt-demo" title="https://github.com/yjdjiayou/jwt-demo"><strong>在项目中使用 JWT</strong></a></p>
+<h2><a id="%E5%90%8E%E8%AF%AD" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>后语</h2>
+<ul>
+<li>本文只是基于自己的理解讲了理论知识，因为对后端 / 算法知识不是很熟，如有谬误，还请告知，万分感谢</li>
+<li>如果本文对你有所帮助，还请点个赞~~</li>
+</ul>
+<h2><a id="%E5%8F%82%E8%80%83" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>参考</h2>
+<p><a href="https://link.juejin.cn?target=https%3A%2F%2Fbaike.baidu.com%2Fitem%2Fcookie%2F1119%3Ffr%3Daladdin" title="https://baike.baidu.com/item/cookie/1119?fr=aladdin"><strong>百度百科 - cookie</strong></a></p>
+<p><a href="https://link.juejin.cn?target=https%3A%2F%2Fbaike.baidu.com%2Fitem%2Fsession%2F479100%3Ffr%3Daladdin%233" title="https://baike.baidu.com/item/session/479100?fr=aladdin#3"><strong>百度百科 - session</strong></a></p>
+<p><a href="https://juejin.cn/post/6844903864810864647" title="https://juejin.cn/post/6844903864810864647"><strong>详解 Cookie，Session，Token</strong></a></p>
+<p><a href="https://juejin.cn/post/6844904009061367821#heading-0" title="https://juejin.cn/post/6844904009061367821#heading-0"><strong>一文彻底搞懂 Cookie、Session、Token 到底是什么</strong></a></p>
+<p><strong><a href="https://link.juejin.cn?target=https%3A%2F%2Fwww.cnblogs.com%2Flyzg%2Fp%2F6067766.html" title="https://www.cnblogs.com/lyzg/p/6067766.html">3 种 web 会话管理的方式</a>！！！</strong></p>
+<p><strong><a href="https://link.juejin.cn?target=https%3A%2F%2Fwww.cnblogs.com%2FJamesWang1993%2Fp%2F8593494.html" title="https://www.cnblogs.com/JamesWang1993/p/8593494.html">Token ，Cookie 和 Session 的区别</a>！！！</strong></p>
+<p><strong><a href="https://link.juejin.cn?target=https%3A%2F%2Fwww.cnblogs.com%2Fmoyand%2Fp%2F9047978.html" title="https://www.cnblogs.com/moyand/p/9047978.html">彻底理解 cookie、session、token</a>！！！</strong></p>
+<p><a href="https://juejin.cn/post/6844903781704941576" title="https://juejin.cn/post/6844903781704941576"><strong>前端鉴权</strong></a></p>
+<p><a href="https://link.juejin.cn?target=https%3A%2F%2Fzh.wikipedia.org%2Fwiki%2FSHA-1" title="https://zh.wikipedia.org/wiki/SHA-1"><strong>SHA-1</strong></a></p>
+<p><a href="https://link.juejin.cn?target=https%3A%2F%2Fzh.wikipedia.org%2Fwiki%2FSHA-2" title="https://zh.wikipedia.org/wiki/SHA-2"><strong>SHA-2</strong></a></p>
+<p><a href="https://link.juejin.cn?target=https%3A%2F%2Fzh.wikipedia.org%2Fwiki%2FSHA-3" title="https://zh.wikipedia.org/wiki/SHA-3"><strong>SHA-3</strong></a></p>
+<p><a href="https://link.juejin.cn?target=https%3A%2F%2Fblog.csdn.net%2Fzhezhebie%2Farticle%2Fdetails%2F71631077" title="https://blog.csdn.net/zhezhebie/article/details/71631077"><strong>不要再使用 MD5 和 SHA1 加密密码了！</strong></a></p>
+<p><a href="https://link.juejin.cn?target=https%3A%2F%2Fwww.liaoxuefeng.com%2Fwiki%2F1022910821149312%2F1023025778520640" title="https://www.liaoxuefeng.com/wiki/1022910821149312/1023025778520640"><strong>廖雪峰 Node 教程之 crypto</strong></a><a href="https://link.juejin.cn?target=https%3A%2F%2Fwww.liaoxuefeng.com%2Fwiki%2F1022910821149312%2F1023025778520640" title="https://www.liaoxuefeng.com/wiki/1022910821149312/1023025778520640"></a></p>
+<h2><a id="%E6%8E%A8%E8%8D%90%E9%98%85%E8%AF%BB" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>推荐阅读</h2>
+<p><a href="https://juejin.cn/post/6844904021233238024" title="https://juejin.cn/post/6844904021233238024"><strong>你真的了解 React 生命周期吗</strong></a></p>
+<p><strong><a href="https://juejin.cn/post/6844903985338400782" title="https://juejin.cn/post/6844903985338400782">React Hooks 详解 【近 1W 字】+ 项目实战</a></strong></p>
+<p><strong><a href="https://juejin.cn/post/6844904017487724557" title="https://juejin.cn/post/6844904017487724557">React SSR 详解【近 1W 字】+ 2 个项目实战</a></strong></p>
+<p><strong><a href="https://juejin.cn/post/6844903966849892359" title="https://juejin.cn/post/6844903966849892359">从 0 到 1 实现一款简易版 Webpack</a></strong></p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[《JavaScript框架设计（第2版)》_司徒正美]]></title>
@@ -20,7 +370,7 @@
     <content type="html"><![CDATA[
 <blockquote>
 <ul>
-<li><img src="https://res.weread.qq.com/wrepub/CB_EVOAi2AgV6Ep6db6cNE4q5U8_parsecover" alt=" 《JavaScript框架设计（第2版)》_司徒正美|200" /></li>
+<li><figure><img src="https://res.weread.qq.com/wrepub/CB_EVOAi2AgV6Ep6db6cNE4q5U8_parsecover" alt=" 《JavaScript框架设计（第2版)》_司徒正美|200" /><figcaption> 《JavaScript框架设计（第2版)》_司徒正美|200<figcaption></figure></li>
 <li>书名： 《JavaScript框架设计（第2版)》_司徒正美</li>
 <li>作者： 司徒正美</li>
 <li>简介：</li>
@@ -74,7 +424,7 @@
     <content type="html"><![CDATA[
 <blockquote>
 <ul>
-<li><img src="https://cdn.weread.qq.com/weread/cover/96/cpPlatform_kmqPY1boCDVyMxq2AvPdCY/t7_cpPlatform_kmqPY1boCDVyMxq2AvPdCY.jpg" alt=" Vue.js设计与实现|200" /></li>
+<li><figure><img src="https://cdn.weread.qq.com/weread/cover/96/cpPlatform_kmqPY1boCDVyMxq2AvPdCY/t7_cpPlatform_kmqPY1boCDVyMxq2AvPdCY.jpg" alt=" Vue.js设计与实现|200" /><figcaption> Vue.js设计与实现|200<figcaption></figure></li>
 <li>书名： Vue.js设计与实现</li>
 <li>作者： 霍春阳　著</li>
 <li>简介： 本书基于Vue.js 3，从规范出发，以源码为基础，并结合大量直观的配图，循序渐进地讲解Vue.js中各个功能模块的实现，细致剖析框架设计原理。全书共18章，分为六篇，主要内容包括：框架设计概览、响应系统、渲染器、组件化、编译器和服务端渲染等。通过阅读本书，对Vue.js 2/3具有上手经验的开发人员能够进一步理解Vue.js框架的实现细节，没有Vue.js使用经验但对框架设计感兴趣的前端开发人员，能够快速掌握Vue.js的设计原理。</li>
@@ -209,65 +559,7 @@
     <content type="html"><![CDATA[
 <blockquote>
 <ul>
-<li><img src="https://res.weread.qq.com/wrepub/CB_CL46DC6DNCYz6dV6cc_parsecover" alt=" 前端架构：从入门到微前端|200" /></li>
-<li>书名： 前端架构：从入门到微前端</li>
-<li>作者： 黄峰达</li>
-<li>简介：</li>
-<li>出版时间</li>
-<li>ISBN：</li>
-<li>分类：</li>
-<li>出版社： 电子工业出版社</li>
-</ul>
-</blockquote>
-<h1><a id="%E9%AB%98%E4%BA%AE%E5%88%92%E7%BA%BF" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>高亮划线</h1>
-<h2><a id="%E7%AC%AC10%E7%AB%A0%E5%BE%AE%E5%89%8D%E7%AB%AF%E5%AE%9E%E6%88%98" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>第10章 微前端实战</h2>
-<ul>
-<li>
-<p>📌 而不是/。在独立运行时，它的基准URL则是/。因此，需要在对应的app.module.ts中进行APP_BASE_HREF的配置： ^CB-CKP0PJ0QMEBa6f06gXDc4Bl6-13-22865-22930</p>
-<ul>
-<li>⏱ 2023-03-09 12:02:25</li>
-</ul>
-</li>
-<li>
-<p>📌 使用Zone作为变化检测机制，因此每个应用都会在polyfill.ts中 ^CB-CKP0PJ0QMEBa6f06gXDc4Bl6-13-23187-23223</p>
-<ul>
-<li>⏱ 2023-03-09 12:01:53</li>
-</ul>
-</li>
-<li>
-<p>📌 [插图] ^CB-CKP0PJ0QMEBa6f06gXDc4Bl6-13-32385-32386</p>
-<ul>
-<li>⏱ 2023-03-10 08:34:03</li>
-</ul>
-</li>
-<li>
-<p>📌 10.7　小结在本章中，我们主要关注于如何通过六种不同的方式来实现微前端架构。每一种微前端架构方案都有各自的优缺点及适应场景，在选型的时候，需要按照自己的真实需要来选择。当出现一些不可抗力（如领导、KPI）影响的时候，也应该从中选择合适的方案。最后，让我们来对比一下不同的微前端架构方案。如表10-1所示是本章中不同方案的简要对比。表10-1[插图]更详细的比较可以参考下面的方式，如表10-2所示。表10-2 ^CB-CKP0PJ0QMEBa6f06gXDc4Bl6-13-36768</p>
-<ul>
-<li>⏱ 2023-03-13 08:30:33</li>
-</ul>
-</li>
-</ul>
-<h2><a id="%E7%AC%AC11%E7%AB%A0%E6%9E%B6%E6%9E%84%E6%BC%94%E8%BF%9B%EF%BC%9A%E6%BC%94%E8%BF%9B%E5%BC%8F%E6%9E%B6%E6%9E%84" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>第11章 架构演进：演进式架构</h2>
-<ul>
-<li>
-<p>📌 只有当重写应用的花费+维护应用的花费&lt;维护现有系统的花费时，我们才应该考虑重写。 ^CB-CKP0PJ0QMEBa6f06gXDc4Bl6-14-14717-14757</p>
-<ul>
-<li>⏱ 2023-03-17 08:21:16</li>
-</ul>
-</li>
-<li>
-<p>📌 绞杀者模式 ^CB-CKP0PJ0QMEBa6f06gXDc4Bl6-14-17769-17774</p>
-<ul>
-<li>⏱ 2023-03-17 08:29:58</li>
-</ul>
-</li>
-</ul>
-<h1><a id="%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>读书笔记</h1>
-<h1><a id="%E6%9C%AC%E4%B9%A6%E8%AF%84%E8%AE%BA" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>本书评论</h1>
-<h2><a id="%E4%B9%A6%E8%AF%84no-1" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>书评 No.1</h2>
-<p>^30631064-7GLXYMTVA<br />
-⏱ 2023-03-17 08:31:53</p>
-
+<li><figure><img src="https://res.weread.qq.com/wrepub/CB_CL46DC6DNCYz6dV6cc_parsecover" alt=" 前端架构：从入门到微前端|200" /><figcaption>
 ]]></content>
   </entry>
   
@@ -279,190 +571,7 @@
     <content type="html"><![CDATA[
 <blockquote>
 <ul>
-<li><img src="https://res.weread.qq.com/wrepub/CB_FT7C0PC2PGOx6Xr6YD_parsecover" alt=" 深入浅出Node.js (图灵原创)|200" /></li>
-<li>书名： 深入浅出Node.js (图灵原创)</li>
-<li>作者： 朴灵</li>
-<li>简介：</li>
-<li>出版时间</li>
-<li>ISBN：</li>
-<li>分类：</li>
-<li>出版社：</li>
-</ul>
-</blockquote>
-<h1><a id="%E9%AB%98%E4%BA%AE%E5%88%92%E7%BA%BF" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>高亮划线</h1>
-<h2><a id="1-4%E3%80%80node%E7%9A%84%E7%89%B9%E7%82%B9" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>1.4　Node的特点</h2>
-<ul>
-<li>📌 兼容Windows和*nix平台主要得益于Node在架构层面的改动，它在操作系统与Node上层模块系统之间构建了一层平台层架构，即libuv。 ^CB-E4RGfTGgo6VO6lu6keCOJ2G5-12-9290-9361
-<ul>
-<li>⏱ 2024-02-21 08:06:30</li>
-</ul>
-</li>
-</ul>
-<h2><a id="2-2%E3%80%80node%E7%9A%84%E6%A8%A1%E5%9D%97%E5%AE%9E%E7%8E%B0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>2.2　Node的模块实现</h2>
-<ul>
-<li>
-<p>📌 路径分析、文件定位、编译执行 ^CB-E4RGfTGgo6VO6lu6keCOJ2G5-18-1406-1420</p>
-<ul>
-<li>⏱ 2024-02-21 08:26:31</li>
-</ul>
-</li>
-<li>
-<p>📌 require()方法对相同模块的二次加载都一律采用缓存优先的方式， ^CB-E4RGfTGgo6VO6lu6keCOJ2G5-18-1919-1953</p>
-<ul>
-<li>⏱ 2024-02-21 08:27:26</li>
-</ul>
-</li>
-<li>
-<p>📌 这是第一优先级的 ^CB-E4RGfTGgo6VO6lu6keCOJ2G5-18-1953-1961</p>
-<ul>
-<li>⏱ 2024-02-21 08:28:08</li>
-</ul>
-</li>
-<li>
-<p>📌 Node会按.js、.json、.node的次序补足扩展名，依次尝试。 ^CB-E4RGfTGgo6VO6lu6keCOJ2G5-18-6800-6916</p>
-<ul>
-<li>⏱ 2024-02-21 08:34:39</li>
-</ul>
-</li>
-</ul>
-<h2><a id="3-3%E3%80%80node%E7%9A%84%E5%BC%82%E6%AD%A5io" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>3.3　Node的异步I/O</h2>
-<ul>
-<li>📌 在Node中，除了JavaScript是单线程外，Node自身其实是多线程的，只是I/O线程使用的CPU较少 ^CB-E4RGfTGgo6VO6lu6keCOJ2G5-29-8038-8092
-<ul>
-<li>⏱ 2024-02-25 20:59:11</li>
-</ul>
-</li>
-</ul>
-<h2><a id="3-5%E3%80%80%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8%E4%B8%8E%E9%AB%98%E6%80%A7%E8%83%BD%E6%9C%8D%E5%8A%A1%E5%99%A8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>3.5　事件驱动与高性能服务器</h2>
-<ul>
-<li>
-<p>📌 通过主循环加事件触发的方式来运行程序 ^CB-E4RGfTGgo6VO6lu6keCOJ2G5-31-526-544</p>
-<ul>
-<li>⏱ 2024-02-25 20:59:12</li>
-</ul>
-</li>
-<li>
-<p>📌 同步式。 ^CB-E4RGfTGgo6VO6lu6keCOJ2G5-31-1355-1359</p>
-<ul>
-<li>⏱ 2024-02-25 20:59:10</li>
-</ul>
-</li>
-<li>
-<p>📌 每进程/每请求 ^CB-E4RGfTGgo6VO6lu6keCOJ2G5-31-1474-1481</p>
-<ul>
-<li>⏱ 2024-02-25 20:59:09</li>
-</ul>
-</li>
-<li>
-<p>📌 每线程/每请求 ^CB-E4RGfTGgo6VO6lu6keCOJ2G5-31-1608-1615</p>
-<ul>
-<li>⏱ 2024-02-25 20:59:08</li>
-</ul>
-</li>
-</ul>
-<h2><a id="3-6%E3%80%80%E6%80%BB%E7%BB%93" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>3.6　总结</h2>
-<ul>
-<li>📌 事件循环是异步实现的核心 ^CB-E4RGfTGgo6VO6lu6keCOJ2G5-32-506-518
-<ul>
-<li>⏱ 2024-02-25 20:59:10</li>
-</ul>
-</li>
-</ul>
-<h2><a id="5-1%E3%80%80v8%E7%9A%84%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6%E4%B8%8E%E5%86%85%E5%AD%98%E9%99%90%E5%88%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>5.1　V8的垃圾回收机制与内存限制</h2>
-<ul>
-<li>
-<p>📌 在V8中，主要将内存分为新生代和老生代两代。新生代中的对象为存活时间较短的对象，老生代中的对象为存活时间较长或常驻内存的对象 ^CB-E4RGfTGgo6VO6lu6keCOJ2G5-42-5872-5934</p>
-<ul>
-<li>⏱ 2024-03-28 08:01:50</li>
-</ul>
-</li>
-<li>
-<p>📌 J. Cheney于1970年首次发表在ACM论文上。<br />
-Cheney算法是一种采用复制的方式实现的垃圾回收算法。它将堆内存一分为二，每一部分空间称为semispace。在这两个semispace空间中，只有一个处于使用中，另一个处于闲置状态。处于使用状态的semispace空间称为From空间，处于闲置状态的空间称为To空间。当我们分配对象时，先是在From空间中进行分配。当开始进行垃圾回收时，会检查From空间中的存活对象，这些存活对象将被复制到To空间中，而非存活对象占用的空间将会被释放。完成复制后，From空间和To空间的角色发生对换。简而言之，在垃圾回收的过程中，就是通过将存活对象在两个semispace空间之间进行复制。<br />
-Scavenge的缺点是只能使用堆内存中的一半，这是由划分空间和复制机制所决定的。但Scavenge由于只复制存活的对象，并且对于生命周期短的场景存活对象只占少部分，所以它在时间效率上有优异的表现。<br />
-由于Scavenge是典型的牺牲空间换取时间的算法，所以无法大规模地应用到所有的垃圾回收中。 ^CB-E4RGfTGgo6VO6lu6keCOJ2G5-42-8524</p>
-<ul>
-<li>⏱ 2024-03-21 08:41:13</li>
-</ul>
-</li>
-<li>
-<p>📌 Cheney算法是一种采用复制的方式实现的垃圾回收算法。它将堆内存一分为二，每一部分空间称为semispace。在这两个semispace空间中，只有一个处于使用中，另一个处于闲置状态。处于使用状态的semispace空间称为From空间，处于闲置状态的空间称为To空间。当我们分配对象时，先是在From空间中进行分配。当开始进行垃圾回收时，会检查From空间中的存活对象，这些存活对象将被复制到To空间中，而非存活对象占用的空间将会被释放。完成复制后，From空间和To空间的角色发生对换 ^CB-E4RGfTGgo6VO6lu6keCOJ2G5-42-8632-8877</p>
-<ul>
-<li>⏱ 2024-03-21 08:42:48</li>
-</ul>
-</li>
-<li>
-<p>📌 当一个对象经过多次复制依然存活时，它将会被认为是生命周期较长的对象。这种较长生命周期的对象随后会被移动到老生代中，采用新的算法进行管理。对象从新生代中移动到老生代中的过程称为晋升 ^CB-E4RGfTGgo6VO6lu6keCOJ2G5-42-9877-9966</p>
-<ul>
-<li>⏱ 2024-03-21 08:42:22</li>
-</ul>
-</li>
-<li>
-<p>📌 对象晋升的条件主要有两个，一个是对象是否经历过Scavenge回收，一个是To空间的内存占用比超过限制 ^CB-E4RGfTGgo6VO6lu6keCOJ2G5-42-10275-10326</p>
-<ul>
-<li>⏱ 2024-03-21 08:43:50</li>
-</ul>
-</li>
-<li>
-<p>📌 V8在老生代中主要采用了Mark-Sweep和Mark-Compact相结合的方式进行垃圾回收。 ^CB-E4RGfTGgo6VO6lu6keCOJ2G5-42-11896-11944</p>
-<ul>
-<li>⏱ 2024-03-21 08:45:09</li>
-</ul>
-</li>
-<li>
-<p>📌 Mark-Sweep最大的问题是在进行一次标记清除回收后，内存空间会出现不连续的状态。 ^CB-E4RGfTGgo6VO6lu6keCOJ2G5-42-12725-12768</p>
-<ul>
-<li>⏱ 2024-03-28 08:07:59</li>
-</ul>
-</li>
-<li>
-<p>📌 垃圾回收的3种基本算法都需要将应用逻辑暂停下来，待执行完垃圾回收后再恢复执行应用逻辑，这种行为被称为“全停顿” ^CB-E4RGfTGgo6VO6lu6keCOJ2G5-42-14488-14543</p>
-<ul>
-<li>⏱ 2024-03-28 08:10:36</li>
-</ul>
-</li>
-<li>
-<p>📌 增量标记 ^CB-E4RGfTGgo6VO6lu6keCOJ2G5-42-14825-14829</p>
-<ul>
-<li>⏱ 2024-03-28 08:11:02</li>
-</ul>
-</li>
-</ul>
-<h2><a id="5-2%E3%80%80%E9%AB%98%E6%95%88%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>5.2　高效使用内存</h2>
-<ul>
-<li>
-<p>📌 在JavaScript中，实现外部作用域访问内部作用域中变量的方法叫做闭包（closure）。这得益于高阶函数的特性：函数可以作为参数或者返回值。 ^CB-E4RGfTGgo6VO6lu6keCOJ2G5-43-4105-4178</p>
-<ul>
-<li>⏱ 2024-03-28 08:21:00</li>
-</ul>
-</li>
-<li>
-<p>📌 无法立即回收的内存有闭包和全局变量引用这两种情况 ^CB-E4RGfTGgo6VO6lu6keCOJ2G5-43-5037-5061</p>
-<ul>
-<li>⏱ 2024-03-28 08:23:17</li>
-</ul>
-</li>
-</ul>
-<h2><a id="5-3%E3%80%80%E5%86%85%E5%AD%98%E6%8C%87%E6%A0%87" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>5.3　内存指标</h2>
-<ul>
-<li>📌 Buffer对象不同于其他对象，它不经过V8的内存分配机制，所以也不会有堆内存的大小限制。<br />
-这意味着利用堆外内存可以突破内存限制的问题。 ^CB-E4RGfTGgo6VO6lu6keCOJ2G5-44-3752-3900
-<ul>
-<li>⏱ 2024-03-28 08:26:05</li>
-</ul>
-</li>
-</ul>
-<h2><a id="6-1%E3%80%80buffer%E7%BB%93%E6%9E%84" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>6.1　Buffer结构</h2>
-<ul>
-<li>📌 Buffer是一个典型的JavaScript与C++结合的模块，它将性能相关部分用C++实现，将非性能相关的部分用JavaScript实 ^CB-E4RGfTGgo6VO6lu6keCOJ2G5-51-708-776
-<ul>
-<li>⏱ 2024-03-28 08:39:27</li>
-</ul>
-</li>
-</ul>
-<h1><a id="%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>读书笔记</h1>
-<h1><a id="%E6%9C%AC%E4%B9%A6%E8%AF%84%E8%AE%BA" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>本书评论</h1>
-
+<li><figure><img src="https://res.weread.qq.com/wrepub/CB_FT7C0PC2PGOx6Xr6YD_parsecover" alt=" 深入浅出Node.js (图灵原创)|200" /><figcaption>
 ]]></content>
   </entry>
   
@@ -474,36 +583,7 @@ Scavenge的缺点是只能使用堆内存中的一半，这是由划分空间和
     <content type="html"><![CDATA[
 <blockquote>
 <ul>
-<li><img src="https://res.weread.qq.com/wrepub/CB_BCR3Xb3YY2RR6dZ6cN_parsecover" alt=" Vue.js设计与实现 (霍春阳) |200" /></li>
-<li>书名： Vue.js设计与实现 (霍春阳)</li>
-<li>作者： 霍春阳（HcySunYang）</li>
-<li>简介：</li>
-<li>出版时间</li>
-<li>ISBN：</li>
-<li>分类：</li>
-<li>出版社：</li>
-</ul>
-</blockquote>
-<h1><a id="%E9%AB%98%E4%BA%AE%E5%88%92%E7%BA%BF" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>高亮划线</h1>
-<h2><a id="1-2%E6%80%A7%E8%83%BD%E4%B8%8E%E5%8F%AF%E7%BB%B4%E6%8A%A4%E6%80%A7%E7%9A%84%E6%9D%83%E8%A1%A1" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>1.2 性能与可维护性的权衡</h2>
-<ul>
-<li>📌 声明式代码的性能不优于命令式代码的性能。 ^CB-7zDF71F5KGBs6jY6keEqq19k-9-2559-2579
-<ul>
-<li>⏱ 2023-10-07 12:49:17</li>
-</ul>
-</li>
-</ul>
-<h2><a id="1-3%E8%99%9A%E6%8B%9F-dom%E7%9A%84%E6%80%A7%E8%83%BD%E5%88%B0%E5%BA%95%E5%A6%82%E4%BD%95" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>1.3 虚拟 DOM 的性能到底如何</h2>
-<ul>
-<li>📌 声明式代码的更新性能消耗 = 找出差异的性能消耗+ 直接修改的性能消耗， ^CB-7zDF71F5KGBs6jY6keEqq19k-10-1276-1312
-<ul>
-<li>⏱ 2023-10-07 12:50:10</li>
-</ul>
-</li>
-</ul>
-<h1><a id="%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>读书笔记</h1>
-<h1><a id="%E6%9C%AC%E4%B9%A6%E8%AF%84%E8%AE%BA" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>本书评论</h1>
-
+<li><figure><img src="https://res.weread.qq.com/wrepub/CB_BCR3Xb3YY2RR6dZ6cN_parsecover" alt=" Vue.js设计与实现 (霍春阳) |200" /><figcaption>
 ]]></content>
   </entry>
   
@@ -515,7 +595,7 @@ Scavenge的缺点是只能使用堆内存中的一半，这是由划分空间和
     <content type="html"><![CDATA[
 <blockquote>
 <ul>
-<li><img src="https://res.weread.qq.com/wrepub/CB_DhX9RH9PUFUv6VV6UG_parsecover" alt=" Three.js开发指南：基于WebGL和HTML5在网页上渲染3D图形和动画(原书第3版)|200" /></li>
+<li><figure><img src="https://res.weread.qq.com/wrepub/CB_DhX9RH9PUFUv6VV6UG_parsecover" alt=" Three.js开发指南：基于WebGL和HTML5在网页上渲染3D图形和动画(原书第3版)|200" /><figcaption> Three.js开发指南：基于WebGL和HTML5在网页上渲染3D图形和动画(原书第3版)|200<figcaption></figure></li>
 <li>书名： Three.js开发指南：基于WebGL和HTML5在网页上渲染3D图形和动画(原书第3版)</li>
 <li>作者： （美）乔斯·德克森（Jos Dirksen）</li>
 <li>简介：</li>
@@ -704,7 +784,7 @@ Scavenge的缺点是只能使用堆内存中的一半，这是由划分空间和
     <content type="html"><![CDATA[
 <blockquote>
 <ul>
-<li><img src="https://cdn.weread.qq.com/weread/cover/55/YueWen_31418150/t7_YueWen_31418150.jpg" alt=" 眼界决定你的高度：任正非给创业者的人生智慧课|200" /></li>
+<li><figure><img src="https://cdn.weread.qq.com/weread/cover/55/YueWen_31418150/t7_YueWen_31418150.jpg" alt=" 眼界决定你的高度：任正非给创业者的人生智慧课|200" /><figcaption> 眼界决定你的高度：任正非给创业者的人生智慧课|200<figcaption></figure></li>
 <li>书名： 眼界决定你的高度：任正非给创业者的人生智慧课</li>
 <li>作者： 戚风</li>
 <li>简介： 　　《眼界决定你的高度：任正非给创业者的人生智慧课》任正非先生是华为公司的创始人，他凭借独特的眼界和智慧，在三十余年间，将华为从一家名不见经传的民营企业，发展成全球最大的通信设备商。本书分别从眼界、战略定力、创业纲领、企业价值观、奋斗精神等角度，剖析了任正非的管理思想和人生智慧，为您讲述任正非的创业哲学。</li>
@@ -790,15 +870,15 @@ Scavenge的缺点是只能使用堆内存中的一半，这是由划分空间和
 <p>生活中你看到一个红色立方体，从宏观的角度来看你会描述他是红色的，或者描述RGB值为(1,0,0)的立方体，这时候你要问自己一个问题， 如果呈现到眼睛中的红色平面图像，如果颜色是均匀的，你是否还有立体的感觉。换句话说就是如果把你看到的立方体图像分割成一个个像素单位， 那么每一个像素的RGB值都是(1,0,0)的话你是否有立方体的空间感，从前面课程的实验可以知道，是没有任何空间感的。 那就说明一个问题实际上在自然界中你看到的物体图像，如果看做一个光场，它就是一个变化的光场，并不是每个像素都是(1,0,0)。 这很好理解，抛开专业的物理光学不谈，其实生活中你会发现，比如太阳光照射到一个物体上，不同的面与光的角度不同，反射的到眼睛中的结果不同， 向阳面亮，背光面暗，不同的面不同的颜色，分界位置就有棱角感，。比如一个白色LED灯，靠近表面放在表面的中心， 你会感到表面反射到眼睛中的效果是越往四周越暗。</p>
 <h2><a id="%E5%85%89%E7%85%A7%E6%A8%A1%E5%9E%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>光照模型</h2>
 <h3><a id="%E6%BC%AB%E5%8F%8D%E5%B0%84" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>漫反射</h3>
-<p><img src="media/17280514986441/17281451179876.png" alt="WebGL光照模型入射角" /> <img src="media/17280514986441/17281451179895.png" alt="WebGL漫反射" /></p>
+<p><figure><img src="media/17280514986441/17281451179876.png" alt="WebGL光照模型入射角" /><figcaption>WebGL光照模型入射角<figcaption></figure> <figure><img src="media/17280514986441/17281451179895.png" alt="WebGL漫反射" /><figcaption>WebGL漫反射<figcaption></figure></p>
 <p>没有绝对的真理或迷信，所有的理论都是对生活现象的概括描述，上面提到一个几何体在太阳光下不同的面明暗不同，太阳离地球比较远，太阳光可以视为平行光，几何体不同的面与平行太阳光光线夹角不同， 换句话说就是相同强度的光线照射在表面上角度不同反射光线的强度也就不同，这里就对个现象建立数学模型。</p>
 <p>漫反射光的颜色 = 几何体表面基色 x 光线颜色 x 光线入射角余弦值</p>
 <p>这个数学模型没有考虑镜面反射描述的就是理想的漫反射体，并不能完整的描述物体表面的光场，既然是数学模型，自然就是可以修正的，比如添加一个系数，更改指数等等，这里不在详述。 比如普通的桌子桌面它的粗糙度是微米um级，相比人的脸它是平的，光的波长是纳米nm级，这时候桌子表面相比光线是凹凸不平的，宏观来看一束光线照射到物体的表面，对于理想的漫反射而言，因为表面无规则随机分布凹凸不平的反射面， 光线的反射是不定向的，换句话说任何角度的反射光都是一样的，这也就是说物体反射到眼睛中的光与人的观察位置无关，物体的漫反射光强度与光线的入射角有关如何解释，这个其实很简单，比如两块纸板面积相同，一个垂直太阳光线放置， 一个不垂直太阳光线也就是入射角不是90度，同样强度的光照条件下，垂直太阳光的纸板的光通量肯定比斜着放的纸板接收的光量大，这时候就有必要给数学模型引入一个入射角的因数。</p>
-<p><img src="media/17280514986441/17281451179906.png" alt="漫反射余弦值" /> <img src="media/17280514986441/17281451179916.png" alt="WebGL漫反射——0度" /></p>
+<p><figure><img src="media/17280514986441/17281451179906.png" alt="漫反射余弦值" /><figcaption>漫反射余弦值<figcaption></figure> <figure><img src="media/17280514986441/17281451179916.png" alt="WebGL漫反射——0度" /><figcaption>WebGL漫反射——0度<figcaption></figure></p>
 <p>光的颜色可以使用多种模型来表示，把上面的文字公式使用RGB具体参数来表示形式如下，比如物体表面的颜色是纯红色(1,0,0),入射光是纯白色(1,1,1),光线入射角是60度，余弦值就是0.5，代入下面公式，可以得出结果是(0.5,0,0), 结果仍然是红色，这是符合实际生活的，白色太阳光照在常见的红色物体上，反射的颜色是红色，只是太阳光线照射在物体表面的角度不同，反射的光强度不同。入射光垂直物体表面，也就是入射角是0对应的余弦值是1，光线垂直表面受光量最大， 反射光自然最大，和1对应；入射光线平行物体表面，此时的入射角是90度， 物体表面自然没什么光可以反射，</p>
 <p>(R2,G2,B2) = (R1,G1,B1) x (R0,G0,B0) x cosθ</p>
 <h3><a id="%E9%95%9C%E9%9D%A2%E5%8F%8D%E5%B0%84" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>镜面反射</h3>
-<p><img src="media/17280514986441/17281451179925.png" alt="WebGL环境光模型" /> <img src="media/17280514986441/17281451179939.png" alt="WebGL镜面反射" /></p>
+<p><figure><img src="media/17280514986441/17281451179925.png" alt="WebGL环境光模型" /><figcaption>WebGL环境光模型<figcaption></figure> <figure><img src="media/17280514986441/17281451179939.png" alt="WebGL镜面反射" /><figcaption>WebGL镜面反射<figcaption></figure></p>
 <p>上面的漫反射数学模型没有考虑镜面反射，描述的就是理想的漫反射体，并不能完整的描述物体表面的光场。漫反射是因为几何体表面粗糙度尺寸相对光波长尺寸而言是凹凸不平的，这种凹凸不平又是随机的，所以说漫反射的光线各个方向是均匀的。 镜面反射也就是说光照在物体上的反射光线具有方向性，具体点说就是光线的反射角等于入射角。生活中的镜子它的表面粗糙度很小，和光的波长是一个数量级，当光线照在上面的时候，反射光线就会表现出方向性。</p>
 <p>实际的生活中所有的物体没有绝对的漫反射或者镜面反射，往往都是同时存在，只是表现的倾向性不同，镜子的镜面反射更明显，粗糙的树皮漫反射更明显。光照射到物体上一部分会被吸收，透明的话一部分会被折射， 除去吸收和折射的光剩余的会被反射，反射的时候根据表面的粗糙度不同，镜面反射和漫反射分配的比例不同可以使用两个系数k1、k2去描述。</p>
 <p>在室外停放着一辆车，你观察车的时候，你会发现车的外表面会在某个局部出现高光，这很好理解，车的外壳是曲面的，曲面上如果某个区域的的光线反射角刚好是你的视线方向，自然会呈现出局部高亮的现象，其他的部位是漫反射为主。 镜面反射的公式仍然可以写成上面的形式，只是角度不再是光线入射角度而是眼睛视线与反射光线的夹角，n角度余弦值的指数，实际编程的时候你可以自由定义，没有绝对完美的模型，都可以进行修正。</p>
@@ -811,8 +891,8 @@ Scavenge的缺点是只能使用堆内存中的一半，这是由划分空间和
 <p>总反射光线 = 漫反射光线 + 镜面反射光线 + 环境反射光线</p>
 <h3><a id="%E6%B3%95%E5%90%91%E9%87%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>法向量</h3>
 <p>有基本的数学知识应该都有法线的概念，垂直与面的直线就是面的法线，对于平面而言面上所有位置的法线方向是相同的，对于曲面而言不同的位置法线的方向是变化的。在三维笛卡尔坐标系中，可以使用向量(x,y,z)来表示法向量，根据几何体表面的法向量和光线的方向， 就可以求解出光线入射角的余弦值，法向量的点积计算满足下面的公式，为了方便计算，着色器语言内置了一个方法dot()用来求解两个向量之间的余弦值,已知向量a1(x1,y1,z1)、a2(x2，y2，z2)执行dot(a1，a2)可以求出两个向量a1、a2的余弦值。</p>
-<p><img src="media/17280514986441/17281451179952.png" alt="WebGL法向量" /></p>
-<p><img src="media/17280514986441/17281451179963.png" alt="WebGL法向量计算" /></p>
+<p><figure><img src="media/17280514986441/17281451179952.png" alt="WebGL法向量" /><figcaption>WebGL法向量<figcaption></figure></p>
+<p><figure><img src="media/17280514986441/17281451179963.png" alt="WebGL法向量计算" /><figcaption>WebGL法向量计算<figcaption></figure></p>
 <h2><a id="%E7%AB%8B%E6%96%B9%E4%BD%93%E6%B7%BB%E5%8A%A0%E5%B9%B3%E8%A1%8C%E5%85%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>立方体添加平行光</h2>
 <p><a href="http://www.yanhuangxueyuan.com/WebGL_course/download/light.rar">源码下载</a></p>
 <p>下面的案例是通过给一个单色的立方体添加平行光进行渲染，来体会光照模型在物体渲染中的应用，在学习下面的代码之前确定你有逐顶点和颜色插值计算的概念，了解顶点位置数据、顶点颜色数据，本节课在这两种顶点数据的基础之上在引入一种新的顶点数据。</p>
@@ -868,7 +948,7 @@ Scavenge的缺点是只能使用堆内存中的一半，这是由划分空间和
 76   gl.uniform3f(u_lightDirection,x,y,-z);
 </code></pre>
 <h3><a id="%E9%A1%B6%E7%82%B9%E6%B3%95%E5%90%91%E9%87%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>顶点法向量</h3>
-<p><img src="media/17280514986441/17281451179973.png" alt="WebGL顶点法向量" /></p>
+<p><figure><img src="media/17280514986441/17281451179973.png" alt="WebGL顶点法向量" /><figcaption>WebGL顶点法向量<figcaption></figure></p>
 <p>对于立方体而言六个平面也就是有六个不同的平面法向量，但是这里要注意思考如何表达一个面的法向量，你不能说直接告诉GPU一个平面的法向量是(x,y,z)，对于立方体而言而言这样比较简单，符合人的思维，但是如果是复杂的曲面这样并不合适，而且顶点着色器是逐顶点处理， 为了表示面的法向量，往往是通过顶点，具体点说是每个顶点对应一个法向量，三个顶点确定一个三角面，三角面的不同位置的法向量相当于通过他的三个顶点的法向量插值得出，或者换个说法就是三个顶点的法向量分别与各自颜色数据进行乘法运算，得到新的顶点颜色， 然后渲染管线利用新的顶点颜色进行插值计算，这就是通过顶点法向量表示面法向量的方法，通过这样的巧妙设计还可以实现法向量的插值计算，只不过插值是通过颜色插值完成的，对于平滑的曲面，过每一个顶点存在一个法平面，也就是有一个法向量，往往在不同三角面中同一位置的顶点法向量是相同的， 对于规则的长方体而言，每个顶点法向量往往在各自平面中有不同的值。</p>
 <pre class="line-numbers"><code class="language-plain_text">99   /**
 100   *顶点法向量数组normalData
@@ -950,7 +1030,7 @@ Scavenge的缺点是只能使用堆内存中的一半，这是由划分空间和
 <li>实现简单，因为和编辑时使用的是同一环境，****可直接复用，不需要做单独适配。</li>
 <li>能力有限，因为使用Webview进行渲染，所以应用所能使用的能力取决于Webview组件提供的开发能力，目前可以使用的能力可查看<a href="https://developers.weixin.qq.com/miniprogram/dev/component/web-view.html#%E7%9B%B8%E5%85%B3%E6%8E%A5%E5%8F%A3-2">Webview组件文档</a></li>
 </ul>
-<p><img src="media/17280336310867/17281439430594.jpg" alt="" /></p>
+<p><figure><img src="media/17280336310867/17281439430594.jpg" alt="" /></figure></p>
 <h3><a id="%E4%BA%8C%E3%80%81%E5%8E%9F%E7%94%9F%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%96%B9%E6%A1%88%EF%BC%9A%E7%94%9F%E6%88%90%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%8E%9F%E7%94%9F%E7%BB%84%E4%BB%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>二、原生小程序方案：生成小程序原生组件</h3>
 <p>在web端进行应用设计完成后，将内容保存为和平台无关的通用语言数据，常用的为JSON Schema，不同平台需要实现各自的解析适配器，将内容解析为平台特有的代码，这里即为解析为微信小程序。</p>
 <p><strong>特点：</strong></p>
@@ -983,7 +1063,7 @@ Scavenge的缺点是只能使用堆内存中的一半，这是由划分空间和
   }
 }
 </code></pre>
-<p><img src="media/17280336310867/17281439430614.jpg" alt="" /></p>
+<p><figure><img src="media/17280336310867/17281439430614.jpg" alt="" /></figure></p>
 <p><strong>参考实现方案：</strong></p>
 <ul>
 <li><a href="https://github.com/silence717/taro-designer">https://github.com/silence717/taro-designer</a></li>
@@ -994,21 +1074,21 @@ Scavenge的缺点是只能使用堆内存中的一半，这是由划分空间和
 </ul>
 <h2><a id="%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E7%AC%AC%E4%B8%89%E6%96%B9%E5%B9%B3%E5%8F%B0%E4%BB%A3%E5%BC%80%E5%8F%91" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>如何使用第三方平台代开发</h2>
 <p>第三方平台（简称第三方平台），由微信团队面向所有通过<a href="https://kf.qq.com/faq/170824URbmau170824r2uY7j.html">开发者资质认证</a>的第三方开发者提供提供的官方平台。在得到公众号或小程序管理员授权后，基于该平台，第三方服务商可以通过调用官方接口能力，为商家提供公众号代运营、小程序代注册、代开发等服务以及提供公众号和小程序相关的行业方案、活动营销、插件能力等全方位服务。</p>
-<p><img src="media/17280336310867/17281439430632.png" alt="" /><img src="media/17280336310867/17281439430647.png" alt="" /></p>
+<p><figure><img src="media/17280336310867/17281439430632.png" alt="" /></figure><figure><img src="media/17280336310867/17281439430647.png" alt="" /></figure></p>
 <h3><a id="%E6%BB%A1%E8%B6%B3%E6%9D%A1%E4%BB%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>满足条件</h3>
-<p><img src="media/17280336310867/17281439430666.png" alt="" /></p>
+<p><figure><img src="media/17280336310867/17281439430666.png" alt="" /></figure></p>
 <ul>
 <li>提供行业解决方案，如针对电商行业的解决方案，或针对旅游行业的解决方案等；</li>
 <li>行业：（横向）提供更加专业的运营能力，精细化运营用户公众号或小程序；</li>
 <li>功能：（纵向）对公众平台功能的优化，如专门优化图文消息视觉样式和排版的工具，或专门定制的 CRM 用户管理功能，或功能强大的小程序插件等。</li>
 </ul>
 <h3><a id="%E6%B5%81%E7%A8%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>流程</h3>
-<p><img src="media/17280336310867/17281439430682.png" alt="" /></p>
-<p><img src="media/17280336310867/17281439430701.png" alt="" /></p>
+<p><figure><img src="media/17280336310867/17281439430682.png" alt="" /></figure></p>
+<p><figure><img src="media/17280336310867/17281439430701.png" alt="" /></figure></p>
 <h4><a id="%E4%B8%80%E3%80%81%E5%A6%82%E4%BD%95%E6%88%90%E4%B8%BA%E6%9C%8D%E5%8A%A1%E5%95%86" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、如何成为服务商</h4>
 <p>1、第三方平台帐号的审核无需缴费，但开放平台帐号的认证（即开发者资质认证）需要交300块钱认证费。一个已完成开发者资质认证的开放平台帐号，可创建5个平台型服务商第三方平台帐号。</p>
 <p>2、任何合法合规的、为小程序提供开发服务及有意愿的开发者都可以成为小程序服务商，微信不会区别对待，也无官方授权的概念。</p>
-<p><img src="media/17280336310867/17281439430722.png" alt="" /></p>
+<p><figure><img src="media/17280336310867/17281439430722.png" alt="" /></figure></p>
 <p><a href="https://developers.weixin.qq.com/doc/oplatform/Third-party_Platforms/2.0/operation/thirdparty/prepare.html"><strong>准备材料：</strong></a></p>
 <ul>
 <li>官方网站：服务商应当有对外可用的官网，且该官网提供的服务描述与申请的第三方平台帐号名称、简介、图标均有所关联</li>
@@ -1016,7 +1096,7 @@ Scavenge的缺点是只能使用堆内存中的一半，这是由划分空间和
 <li>域名和ssl证书</li>
 </ul>
 <h4><a id="%E4%BA%8C%E3%80%81%E6%90%AD%E5%BB%BA%E4%B8%89%E6%96%B9%E5%90%8E%E7%AB%AF%E6%9C%8D%E5%8A%A1%EF%BC%9A%E8%87%AA%E5%BB%BA%E6%A8%A1%E5%BC%8F%E5%92%8C%E4%BA%91%E6%9C%8D%E5%8A%A1" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>二、搭建三方后端服务：自建模式和云服务</h4>
-<p><img src="media/17280336310867/17281439430744.png" alt="" /></p>
+<p><figure><img src="media/17280336310867/17281439430744.png" alt="" /></figure></p>
 <ul>
 <li>服务商类型</li>
 </ul>
@@ -1033,19 +1113,19 @@ Scavenge的缺点是只能使用堆内存中的一半，这是由划分空间和
 <p>搭建好三方服务后需要和业务系统服务进行联调对接，然后进行<a href="https://developers.weixin.qq.com/doc/oplatform/Third-party_Platforms/2.0/operation/thirdparty/publish.html">全网发布</a>。</p>
 <h4><a id="%E4%B8%89%E3%80%81%E6%8E%88%E6%9D%83" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>三、授权</h4>
 <p>商家需要将其公众号或者小程序<a href="https://developers.weixin.qq.com/doc/oplatform/Third-party_Platforms/2.0/api/Before_Develop/Authorization_Process_Technical_Description.html">授权</a>给第三方平台，服务商才可以代商家进行相关操作。</p>
-<p><img src="media/17280336310867/17281439430767.png" alt="" /></p>
+<p><figure><img src="media/17280336310867/17281439430767.png" alt="" /></figure></p>
 <h4><a id="%E5%9B%9B%E3%80%81%E4%BB%A3%E5%95%86%E5%AE%B6%E8%B0%83%E7%94%A8%E6%8E%A5%E5%8F%A3" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>四、代商家调用接口</h4>
 <p>小程序的api，服务商都可以调用，只是服务商调用的时候要使用<a href="https://developers.weixin.qq.com/doc/oplatform/Third-party_Platforms/2.0/api/ThirdParty/token/api_authorizer_token.html">authorizer_access_token</a>，而不是access_token。</p>
 <p>服务商能否代商家成功调用某个公众号或者小程序的api，取决于该公众号或者小程序管理员是否将对应的权限集授权给当前第三方平台帐号。</p>
 <h4><a id="%E4%BA%94%E3%80%81%E4%BB%A3%E5%BC%80%E5%8F%91%E5%B0%8F%E7%A8%8B%E5%BA%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>五、代开发小程序</h4>
-<p><img src="media/17280336310867/17281439430797.png" alt="" /></p>
+<p><figure><img src="media/17280336310867/17281439430797.png" alt="" /></figure></p>
 <h5><a id="%E4%BB%A3%E7%A0%81%E4%B8%8A%E4%BC%A0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>代码上传</h5>
 <ul>
 <li>通过开发者工具</li>
 <li><a href="https://developers.weixin.qq.com/miniprogram/dev/devtools/ci.html">CI代码上传</a></li>
 <li><a href="https://developers.weixin.qq.com/community/develop/article/doc/0006aec26a89507900dc70f5e5b013?pass_ticket=PFmw0zP6yfVqUJz8iYlCaPgYBj0s6dm%2BoKU5cKthScDFPSrvwo9Z2cS1G9qCIrRyts29yPal4xRGPCSoPxxoeA%3D%3D">使用小程序CI自动上传代码</a></li>
 </ul>
-<p><img src="media/17280336310867/17281439430830.png" alt="" /></p>
+<p><figure><img src="media/17280336310867/17281439430830.png" alt="" /></figure></p>
 <h3><a id="%E7%9B%B8%E5%85%B3%E6%96%87%E6%A1%A3" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>相关文档</h3>
 <ul>
 <li><a href="https://developers.weixin.qq.com/doc/oplatform/Third-party_Platforms/2.0/getting_started/terminology_introduce.html">官方文档</a></li>
@@ -1067,553 +1147,7 @@ Scavenge的缺点是只能使用堆内存中的一半，这是由划分空间和
     <updated>2024-10-06T00:51:33+08:00</updated>
     <id>https://www.bwrong.cn/17281470932731.html</id>
     <content type="html"><![CDATA[
-<p><img src="media/17281470932731/17281471168320.png" alt="image-20221128214533562" /></p>
-<p>前端框架搭建是每一个前端工程师都会遇到，特别是在一些小型团队内，没有专门的架构师，所以这项工作就落到一些普通的前端开发工程师手中，这时很多人可能会从网上去查找一些成熟的框架，虽然能够完成项目，但是有可能会存在一些问题：</p>
-<ul>
-<li>对这些框架不够了解，导致出现问题排查困难，后续升级维护困难。</li>
-<li>这类框架一般具有通用属性，并不是根据项目按需搭建，导致功能冗余或者改造成本高。</li>
-<li>多个项目多人负责，可能会选择不同的框架，导致标准不统一，协作困难，也难以形成团队技术沉淀。</li>
-</ul>
-<p>所以，框架搭建是晋升高级前端工程师的必经之路，固有必要探探其究竟。本文不会带大家从编码层面教大家如何写代码，毕竟相关的文章网上比比皆是，本文会带你搞清整个流程和其中的一些关键环节。</p>
-<h2><a id="%E4%BD%95%E4%B8%BA%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>何为软件架构</h2>
-<p>在开始整个流程前，我们先开了解一些何为软件架构。</p>
-<blockquote>
-<p><strong>软件架构</strong>是有关软件整体结构与组件的抽象描述，用于指导大型软件系统各个方面的设计。软件架构会包括软件组件、组件之间的关系，组件特性以及组件间关系的特性。软件架构可以和建筑物的<a href="https://www.tw.3822808.com/baike-%E5%BB%BA%E7%AD%91">架构</a>相比拟。软件架构是构建计算机软件，开发系统以及计划进行的基础，可以列出开发团队需要完成的任务。</p>
-<p>----wiki百科</p>
-</blockquote>
-<p>简言之，软件架构这项工作的实质就是：如何将系统切分成组件，并安排好组件之间的排列关系，以及组件之间的相互通信的方式。目的是更好的对这些组件进行研发维护，可以让系统更容易理解、易于修改、方便维护、并能轻松部署。终极目标是最大化程序员的生产力，同时最小化系统的总运维成本。</p>
-<p>当然，很多人可能会说：团队就我一个前端，老夫都是CV一把梭，去TM的架构，项目照样不是完成了。</p>
-<p>其实，现在一些成熟的框架比如我们用的Vue，在用脚手架初始化项目后，整个项目架构已初具雏形了。所以开发一些简单的项目是没有什么问题；而且由于前段历史原因，架构这个词在前端领域可能关注度并不高。但是一些大型项目，或者你去看一些著名的开源库内部实现，就会发现，还是能看到软件架构设计的身影，比如MVC、MVVM等其实就是分层架构，重要性不言而喻。</p>
-<p>由于本文主题不是讨论架构，就不再赘述，只需要明确一件事，我们搭建的框架目的是为了提升开发效率，保证开发质量。需要遵循一下几点：</p>
-<ul>
-<li>易用性：框架封装基础核心功能，开发功能需求时，无需关注复杂的技术架构，只需要关注业务编码工作。</li>
-<li>扩展性：各系统部分间保持高内聚低耦合，提供扩展接口，在扩展新功能时，不需要对架构进行改动，新功能不对旧功能产生影响。</li>
-<li>可维护性：系统划分清晰合理，代码可读性强，文档健全完善；做好规范约束手段，防止架构腐坏。</li>
-</ul>
-<h2><a id="%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>技术选型</h2>
-<p>所谓兵马未动粮草先行，技术栈作为我们项目框架的基石，首先我们需要确定选择什么样的技术栈，这关系到后续的一系列事情。</p>
-<p>前端框架搭建过程中，可以从如下几个维度做技术选型：</p>
-<ul>
-<li>核心：如<a href="https://cn.vuejs.org/">Vue</a>、<a href="https://reactjs.org/">React</a>等，他是我们整个技术栈的核心，一旦确定，后续其他维度都是围绕其进行选择。</li>
-<li>路由：现在大部分前端应用都是单页应用，需要前端进行路由控制，所以路由一般是必不可少的。只需要在核心层生态中选择一个合适的即可。比如<a href="https://router.vuejs.org/">VueRouter</a>，<a href="https://reactrouter.com/">ReactRouter</a>。</li>
-<li>视觉：主要是组件库和风格的选择，PC和移动端可能会使用不同的组件库。当然如果是做的偏前端的应用，可能现有组件库很难满足要求，目前大部分都是偏中后台的，这时可以选择自建。</li>
-<li>数据：这一层不是必须的，一般只有数据交互较复杂的应用才可能会用到，而且目前Hooks也能实现一部分数据管理，只是采用专业的状态管理工具，可以保证大家在认知和实施层面的统一。当然并不绝对，在下就曾经在一个项目中使用hooks管理状态，也没有什么问题。</li>
-</ul>
-<pre class="line-numbers"><code class="language-typescript">/******* state *******/
-const state = reactive({
-});
-/******* getter *******/
-const getter = reactive({
-});
-/******* actions *******/
-const actions = {
-};
-
-export const useAppStore = () =&gt; ({ state, getter, ...actions });
-</code></pre>
-<ul>
-<li>构建工具：当下前端开发是离不开工程化的，这一领域目前正处于发展阶段，虽然各种工具层出不穷，但是各有优缺点、不统一也为开发者带来了一些困扰，但是好在，VRA都提供了自己的脚手架，大部分情况我们是可以放行使用的。当然一般成熟的团队都会在其基础上做更多的配置扩展，形成自己内部成熟的框架模板。</li>
-<li>插件：现在前端的轮子是比较多的，开发的时候一般建议优先去npm看看是否有现成的轮子，不要做重复的事情。</li>
-</ul>
-<p><img src="media/17281470932731/17281471168345.png" alt="image-20221127182555242" /></p>
-<p>但是需要注意，npm上的包虽然多，但是质量参差不齐，可以从几个方面去筛选。</p>
-<p><img src="media/17281470932731/17281471168356.png" alt="image-20221127183017318" /></p>
-<p>以上是需要进行技术选型的维度，接下来我们就看看通过哪些指标去帮我们做出抉择。</p>
-<ul>
-<li>选择团队掌握的技术</li>
-</ul>
-<p>如果选择不熟悉的技术，那么在使用过程中出现风险是不可控的。每种技术都是有它特定的适用场景，开发者经常犯的错误就是盲目追新，当一个新语言、框架、工具出现后，特别是开发者自己学会了这种新技术后，就会有种“拿着锤子找钉子”的感觉，将新技术滥用于各种项目。即使选择较新的技术，也要考虑到学习曲线和开发难度问题，主要结合当前团队的技术特点，熟练程度来考虑。</p>
-<ul>
-<li>保证统一性</li>
-</ul>
-<p>对内保持团队技术栈统一，减少因为技术不统一带来的协作维护难度；对外符合行业标准，降低招聘难度，缩短新人进入开发的时间。</p>
-<ul>
-<li>选择拥有强大生态和社区支撑的开源技术</li>
-</ul>
-<p>有强大的生态和社区意味着，很多东西你不需要重复去造轮子，或者遇到问题可以很快解决，有更多的选择。从公司层面、使用活跃的技术也比较好招人。另外在选择技术栈时要尽量避免一些公司的KPI成果，有烂尾的风险。</p>
-<ul>
-<li>选择成长期的技术</li>
-</ul>
-<p>选择一个技术的最低标准是，技术的生命周期必须显著长于项目的生命周期，好的技术栈永远跑在用户需求前面，是面向未来的。主要考量该技术今后几年是否有人维护，是否在我们项目可预见到的生命期内还能继续开发。如果它不开发了，那么遇到平台升级，遇到第三方组件升级，产生的兼容性问题就很致命。如果当前已经进入开发欠活跃阶段，就要考虑是否不予采用。</p>
-<ul>
-<li>学会从业务端开始思考</li>
-</ul>
-<p>选型需要充分地理解业务，理解用户需求，当下需要解决的首要问题，以及可能的风险有哪些，再将目标进行分解，进行具体的技术选型、模型设计、架构设计。处于初创期的业务，选型的基准是灵活。只要一个技术够用并且开发效率足够高，那么就可以选择它。初创的业务往往带有风险性和不确定性，朝令夕改、反复试错是常态，技术必须适应业务的节奏，然后才是其他方面。等业务进入稳定期，选型的基准是可靠。技术始终是业务的基石，当业务稳定了技术不稳，那就会成为业务的一块短板，就必须要修正。当业务进入维护期，选型的基准是妥协。代码永远有变乱的趋势，一般经过一两年就有必要对代码来一次大一点的重构。在这种时候，必须得正视各种遗留代码的迁移成本，如果改变技术选型会带来遗留代码重写，这背后带来的代价业务无法承受，那么我们就不得不考虑在现有技术选型之上做一些小修小补或者螺旋式上升的重构。</p>
-<ul>
-<li>选择API稳定的技术</li>
-</ul>
-<p>比较典型的例子就是Angular和Python，API不稳定会导致社区的割裂，也会导致项目升级成本变高、或者无法升级, 最终成为技术债。</p>
-<p>当然，对于团队而言也要鼓励学习新的技术、淘汰旧的技术栈。因为一般而言新的技术或解决方案，是为了更高的生产力而诞生的。</p>
-<ul>
-<li>先验证，后使用</li>
-</ul>
-<p>对于未经验证的新技术、新理念的引入一定要慎重，一定要在全方位的验证过后，再大规模的使用。新技术、新理念的出现，自然有它的诱惑，慎重并不代表保守，技术总是在不断前进，拥抱变化本身没有问题，但是引入不成熟的技术看似能带来短期的收益，但是它的风险或者是后期的成本可能远远大于收益。记住，技术选型是稳定压倒一切。</p>
-<ul>
-<li>重视经验</li>
-</ul>
-<p>技术选型是个很需要经验的活，得有大量的信息积累和输入，再根据具体现实情况输出一个结果。我们在选型的时候最忌讳的是临时抱佛脚、用网上收集一些碎片知识来决策，这是非常危险的，我们得确保自己所有思考都是基于以前的事实，还要弄清楚这些事实背后的假设，这都需要让知识内化形成经验。</p>
-<ul>
-<li>避免法律纠纷问题</li>
-</ul>
-<p>选择技术时，要考虑license问题，不要陷入法律纠纷，特别是你参与的产品对外有机会做大做强、面向国际时。</p>
-<p>毕竟技术只是实现业务的手段而已，我们也只是实现领导实现目标的工具而已，技术选型有时可能会受业务需求和领导个人偏好影响，不能一概而论，所以这里只是列出技术选型的注意事项，以作参考，具体选型考量还请结合实际情况而定。</p>
-<p>做好了技术选型，接下来就只需要把合适的东西扔到合适的地方就行了。所以接下来我们就来看看框架设计。</p>
-<h2><a id="%E6%A1%86%E6%9E%B6%E8%AE%BE%E8%AE%A1" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>框架设计</h2>
-<p>框架设计我们可以从两个层面来入手：</p>
-<p>基础层：主要是从架构层面出发，包含一些基础设施，与业务相关性较低。</p>
-<p>应用层：贴近业务，用于解决某一类/个业务，不同的业务可能并不能通用。</p>
-<h3><a id="%E5%9F%BA%E7%A1%80%E5%B1%82%E8%AE%BE%E8%AE%A1" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>基础层设计</h3>
-<p>首先我们要选择一种架构风格，不同人的喜好、不同的项目会倾向不同架构风格。这里仅列出其中两种风格。</p>
-<h4><a id="%E5%B7%A5%E4%BB%B6%E6%A8%A1%E5%9E%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>工件模型</h4>
-<ul>
-<li>描述：即按照技术工件（如components、store）职责来进行划分。</li>
-<li>特点：该方式对开发人员来说易于理解，因为对他们来说技术工件比功能更有亲和力，但是相反不利于对业务功能的理解，且各功能模块间划分不太清晰，开发和维护一个功能可能要在多个目录下操作。</li>
-<li>适用场景：该方式比较通用，一般的项目都会采用此方式。不过在大型项目可能会存在每个工件目录存在很多文件，且存在各个模块的文件。</li>
-</ul>
-<p><img src="media/17281470932731/17281471168366.png" alt="image-20221127195615915" /></p>
-<p><img src="media/17281470932731/17281471168376.png" alt="image-20221127200629453" /></p>
-<h4><a id="%E9%A2%86%E5%9F%9F%E6%A8%A1%E5%9E%8Bhttps-medium-com-nate-wangfeature-oriented-architecture-for-web-applications-2b48e358afb0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="https://medium.com/@nate_wang/feature-oriented-architecture-for-web-applications-2b48e358afb0">领域模型</a></h4>
-<ul>
-<li>描述：按照系统功能进行划分，每个功能即为一个文件夹，其下包含自己的component、store、router。</li>
-<li>特点：面向业务功能，每个功能包含自身需要的技术工件，仅对外提供一个出口服务即可，由应用整合这些服务，构成整个应用。设计偏向微服务化，开发和维护一个功能仅需关注自身的目录即可；有助于开发人员对业务的理解。</li>
-<li>适用场景：特别适合大型项目、且各模块耦合度较低的场景，具有高扩展性。</li>
-</ul>
-<p><img src="media/17281470932731/17281471168388.png" alt="image-20221127195630260" /></p>
-<p><img src="media/17281470932731/17281471168407.png" alt="图片(1)" /></p>
-<p>因为当前团队，基本是使用第一种风格，后续我就以此为例，在vite+vue3的基础上做叙述。首先展示一下我目前使用的项目结构设计。</p>
-<pre class="line-numbers"><code class="language-js">|- docs // 文档
-|- dist // 构建成果
-|- mock // 数据mock
-|- public  // 静态资源，会直接拷贝到dist
-|- src
-  |- api // api接口管理
-  |- assets  // 静态资源，这里的资源会被构建工具编译
-  |- components // 全局组件
-  |- config // 全局配置
-  |- directives // 全局指令
-  |- enums // 枚举及一些常量管理
-  |- hooks // 全局hooks，用于抽离公用逻辑
-  |- layouts // 布局组件
-  |- plugins // 第三方插件
-  |- router  // 路由
-  |- store   // 状态
-  |- utils   // 工具函数
-  |- views   // 页面
-  |- App.vue  // 根组件
-  |- main.ts  // 应用入口
-|- types   // 类型声明
-|- .browserslistrc // 浏览器兼容性配置，可以供多个工具使用
-|- .editorconfig // 编辑器配置，统一不同编辑器格式
-|- .env.* // 环境变量配置，建议多个环境分别使用不同的文件
-|- .npmrc // 统一项目npm镜像源
-|- ... // 各工具配置
-|- README.md  // 说明，包含项目信息及注意事项
-|- index.html // 入口页面
-|- vite.config.ts // vite配置
-</code></pre>
-<p>这里我们可以采用在官方脚手架的基础上来完善，以后可以直接使用，或者开源到社区，供别人使用。</p>
-<p>在创建Vue项目，现在推荐使用 <a href="https://github.com/vuejs/create-vue">create-vue</a>。</p>
-<pre class="line-numbers"><code class="language-bash">&gt; npm init vue@latest
-</code></pre>
-<pre class="line-numbers"><code class="language-bash">✔ Project name: … &lt;your-project-name&gt;
-✔ Add TypeScript? … No / Yes
-✔ Add JSX Support? … No / Yes
-✔ Add Vue Router for Single Page Application development? … No / Yes
-✔ Add Pinia for state management? … No / Yes
-✔ Add Vitest for Unit testing? … No / Yes
-✔ Add Cypress for both Unit and End-to-End testing? … No / Yes
-✔ Add ESLint for code quality? … No / Yes
-✔ Add Prettier for code formatting? … No / Yes
-
-Scaffolding project in ./&lt;your-project-name&gt;...
-Done.
-</code></pre>
-<p>由于脚手架创建的工程已包含基础层需要的大部分功能，在此基础上可根据需求引入如下功能即可：</p>
-<ul>
-<li>UI组件库：建议尽量采用按需加载方式，目前大部分组件库都支持使用<a href="https://github.com/antfu/unplugin-vue-components">unplugin-vue-components</a>做自动按需引入，比较舒服。</li>
-<li>各编译语言：由于html+css+js自身能力局限，我们可以使用一些编译语言来提升开发效率，如less、typescript等等。</li>
-</ul>
-<p>因为类似的文章网上也比较多写的也比较好，这里就不再赘述。</p>
-<p><a href="https://juejin.cn/post/7079785777692934174">手把手教你用 vite + vue3 + ts + pinia + vueuse 打造企业级前端项目</a></p>
-<h3><a id="%E5%BA%94%E7%94%A8%E5%B1%82%E8%AE%BE%E8%AE%A1" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>应用层设计</h3>
-<p>由于应用层需要结合具体业务情况，这里我就仅谈谈在我开发过程中两个比较常用的功能：</p>
-<h4><a id="%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>权限控制</h4>
-<p>一般中后台项目都有权限控制这部分功能，这里前端需要关心的主要是两方面：</p>
-<h5><a id="%E7%99%BB%E5%BD%95%E8%AE%A4%E8%AF%81" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>登录认证</h5>
-<p>这个好理解，只有你登录了，系统才知道你是谁，我们要做的也很简单，只需要登录成功后把后端返回的令牌存储到本地，然后后续每次请求带上该信息，后端去做验证，如果验证通过返回200，不通过返回401，直接踢回登录页或者给出提示，另外在路由全局前置守卫也可以做判断。</p>
-<p>实现方案我这里就不献丑了，贴上两篇写的很好的文章：</p>
-<p><a href="https://juejin.cn/post/6898630134530752520">前端鉴权的兄弟们：cookie、session、token、jwt、单点登录</a></p>
-<p><a href="https://juejin.cn/post/7129298214959710244">一文教你搞定所有前端鉴权与后端鉴权方案，让你不再迷惘</a></p>
-<p>下面贴下代码：</p>
-<ul>
-<li>登录保存认证信息，我这里是token、refreshToken、tokenExpires，需要保存到本地缓存。</li>
-</ul>
-<p><img src="media/17281470932731/17281471168422.png" alt="image-20221128114406893" /></p>
-<ul>
-<li>
-<p>请求拦截器注入认证信息，需要根据后端要求去注入，一般都是在header中。</p>
-<p><img src="media/17281470932731/17281471168435.png" alt="image-20221128114724023" /></p>
-</li>
-</ul>
-<p>​		这里有个handleCheckAuth，是做了静默token刷新功能，在token要到期前，使用refreshToken去后台换去新的token，代码如下：</p>
-<pre class="line-numbers"><code class="language-ts">/**
- * 刷新token
- * @param {string} refreshToken
- */
-export const handleRefreshToken: {
-  (token: string | undefined): void;
-  refreshDoing?: boolean;
-} = (refreshToken) =&gt; {
-  if (handleRefreshToken.refreshDoing) return;
-  handleRefreshToken.refreshDoing = true; // 加锁，防止重复刷新
-  auth
-    .refreshToken({ refresh_token: refreshToken })
-    .then((res) =&gt; saveAuthData(res))
-    .finally(() =&gt; {
-      handleRefreshToken.refreshDoing = false;
-    });
-};
-/**
- * 检查更新token
- * @param config
- */
-export function handleCheckAuth(config: AxiosRequestConfig) {
-  const tokenExpires = Cookie.get(tokenExpiresKey);
-  if (Number(tokenExpires) &lt;= Date.now() &amp;&amp; !config.skipCheckAuth) {
-    handleRefreshToken(Cookie.get(refreshTokenKey));
-  }
-}
-</code></pre>
-<ul>
-<li>路由拦截，看注释吧</li>
-</ul>
-<p><img src="media/17281470932731/17281471168448.png" alt="image-20221128115106273" /></p>
-<h5><a id="%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>权限控制</h5>
-<p>所谓权限控制，就是针对不同的用户赋予不同的权限，对应到前端就是根据不同权限的人动态控制呈现不同的资源，这里资源是一个统称，包含页面、按钮、数据等等，比如超管和管理员进入系统看到的菜单和页面中的按钮不一致。</p>
-<p>关于系统权限控制如何设计，主要和业务需求有关系，这里我们不去深究，只是了解一下目前比较流行的一种权限模型。</p>
-<p>RBAC（基于角色的权限控制）模型的核心是在用户和权限之间引入了角色的概念。取消了用户和权限的直接关联，改为<strong>通过用户关联角色、角色关联权限的方法来间接地赋予用户权限</strong>（如下图），从而达到用户和权限解耦的目的。比如在创建多个权限相同的用户，我们不需要给每个人单独设置权限，只需要将他们赋予相同的角色即可。</p>
-<p><img src="media/17281470932731/17281471168461.png" alt="img" /></p>
-<p>目前我们大部分系统都是使用该模型，下面我们也就基于该模型来看看前端如何进行权限控制。</p>
-<p>其实现在网上讲前端权限控制的文章有很多，总结起来大体思路是，登录成功后获取用户当前的权限数据，然后动态添加路由，生成菜单，页内元素可以通过指令或者vif实现控制。实现方案上有如下两个流派：</p>
-<h6><a id="%E5%89%8D%E7%AB%AF%E6%8E%A7%E5%88%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>前端控制</h6>
-<p>整个动态路由表是放在前端，每个路由通过meta.role设置允许访问的角色，登录后后台返回当前用户的role标识信息，前端根据这个role去和路由的meta.role做匹配，清洗出匹配的路由，然后动态注册仅路由。由于只是返回了role信息，所以菜单是需要后端另外提供的。</p>
-<pre class="line-numbers"><code class="language-js">// asyncRoutes 动态路由表
-export const asyncRoutes = [
-  {
-    path: '/permission',
-    component: Layout,
-    redirect: '/permission/page',
-    alwaysShow: true, 
-    name: 'Permission',
-    meta: {
-      title: 'Permission',
-      icon: 'lock',
-      // admin、editor可以查看该路由
-      roles: ['admin', 'editor']
-    },
-    children: [
-      {
-        path: 'page',
-        component: () =&gt; import('@/views/permission/page'),
-        name: 'PagePermission',
-        meta: {
-          title: 'Page Permission',
-          // admin可以查看该路由
-          roles: ['admin']
-        }
-      }
-     ]
-    }
-]
-</code></pre>
-<pre class="line-numbers"><code class="language-js">// 这个方法是用来把角色和route.meta.role来进行匹配
-function hasPermission(roles, route) {
-  if (route.meta &amp;&amp; route.meta.roles) {
-    return roles.some(role =&gt; route.meta.roles.includes(role))
-  } else {
-    return true
-  }
-}
-
-
-// 这个方法是通过递归来遍历路由，把有权限的路由给遍历出来
-export function filterAsyncRoutes(routes, roles) {
-  const res = []
-  routes.forEach(route =&gt; {
-    const tmp = { ...route }
-    if (hasPermission(roles, tmp)) {
-      if (tmp.children) {
-        tmp.children = filterAsyncRoutes(tmp.children, roles)
-      }
-      res.push(tmp)
-    }
-  })
-  return res
-}
-</code></pre>
-<p>除了上述说的后端返回role标识，还有一种变种大家可以查看该文章<a href="https://refined-x.com/2017/11/28/Vue2.0%E7%94%A8%E6%88%B7%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/#%E8%B7%AF%E7%94%B1%E6%8E%A7%E5%88%B6">Vue2.0用户权限控制解决方案/#路由控制</a>。</p>
-<p>前端控制的特点如下：</p>
-<ul>
-<li>路由表在前端维护，变动比较方便，对前端比较友好。</li>
-<li>实现逻辑比较简单，上手难度低。</li>
-<li>后期修改角色权限难度较大，需要修改前端代码，不支持在后台系统中动态配置角色权限。</li>
-</ul>
-<h6><a id="%E5%90%8E%E7%AB%AF%E6%8E%A7%E5%88%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>后端控制</h6>
-<p>接下来看看后端控制，主要区别就是把路由表挪到了后端，前端可以直接或简单转换使用后端返回的路由表数据注册路由，一般这份数据是可以直接生成菜单数据的，固不需要再单独返回菜单信息。</p>
-<p><img src="media/17281470932731/17281471168473.png" alt="image-20221128160927872" /></p>
-<p>该方案的特点如下：</p>
-<ul>
-<li>可以在后台动态配置，可以实现角色权限灵活配置。下图是之前做过的系统，整个菜单树都可以在后台灵活组装，灵活度很高。</li>
-</ul>
-<p><img src="media/17281470932731/17281471168487.png" alt="image-20221128163522794" /></p>
-<ul>
-<li>前端实现比较简单，不用自己维护路由表。</li>
-<li>由于前端不自己维护路由表，那么要调整路由必须就得去后台，比如每开发一个新页面就需要去后台配置对应的菜单路由信息，而且还必须和前端对应起来。</li>
-<li>前后端划分的方式可能有差异，比如某个列表页每条数据的查看详情是新开页面，在后端看来详情亦属于查看，如果能够查看列表肯定就能查看详情，不需要单独配置菜单，但是因为是新开页面，前端就需要一个新的路由，即使能够单独创建一个详情的权限，在后端的划分中，详情应该是属于这个列表页的下级，但是在前端可能需要的是同级，而不是嵌套在列表页路由的children中。</li>
-</ul>
-<h6><a id="%E6%94%B9%E8%89%AF%E4%B8%80%E4%B8%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>改良一下</h6>
-<p>我们可以看到如上两种方案都不是完美的，所以我在项目中采用了另外的方式，基于后端控制做了改良。思路如下：</p>
-<ol>
-<li>
-<p>后台菜单配置时，不再配置url和组件相关信息，毕竟这部分内容是前端路由使用的，前端控制更加合适，也方便前端做调整。然后仅需要填写一个权限表示码就行，降低了前后端数据的耦合性，也就不存在划分不一致带来的问题了。</p>
-<p><img src="media/17281470932731/17281471168502.png" alt="image-20221128171252175" /></p>
-</li>
-<li>
-<p>后台给角色设置拥有的菜单、按钮等资源的权限。</p>
-<p><img src="media/17281470932731/17281471168517.png" alt="image-20221128171444752" /></p>
-</li>
-<li>
-<p>前端维护路由表，和正常路由差不多，但是不用默认注册，而且需要控制的路由要有meta.permission，和前面后台设置的权限标识码对应就行。如果没有permission标识，可以保留或者舍弃，这个根据需求来决定使用哪种方式，我采用的是保留。比如上面我们说的查看详情那里，我就可以不设置permission，这样只要用户有当前菜单的权限（即列表页），那么就不用再设置查看详情的权限了。</p>
-<pre class="line-numbers"><code class="language-json"> {
-    path: '/system',
-    name: 'system',
-    redirect: '/system/department',
-    meta: {
-      permission: 'system' // 权限标识码
-    },
-    children: [
-      {
-        path: '/system/role',
-        name: 'role',
-        component: () =&gt; import('@/views/system/Role.vue'),
-        meta: {
-          permission: 'system/role'
-        }
-      }
-   ]
-}
-</code></pre>
-</li>
-<li>
-<p>前端登录成功以后，后端提供如下菜单数据。</p>
-</li>
-</ol>
-<pre class="line-numbers"><code class="language-json">[
-  {
-    &quot;id&quot;: 1,
-    &quot;permission&quot;: &quot;system&quot;, // 前面填写的权限标识码
-    &quot;name&quot;: &quot;系统管理&quot;,
-    &quot;type&quot;: 0,
-    &quot;parentId&quot;: 0
-  },
-  {
-    &quot;id&quot;: 2,
-    &quot;permission&quot;: &quot;system/role&quot;,
-    &quot;name&quot;: &quot;角色管理&quot;,
-    &quot;type&quot;: 0,
-    &quot;parentId&quot;: 1
-  },
-
-  {
-    &quot;id&quot;: 3,
-    &quot;permission&quot;: &quot;system/menu&quot;,
-    &quot;name&quot;: &quot;菜单管理&quot;,
-    &quot;type&quot;: 0,
-    &quot;parentId&quot;: 1
-  },
-  {
-    &quot;id&quot;: 4,
-    &quot;permission&quot;: &quot;user&quot;,
-    &quot;name&quot;: &quot;用户管理&quot;,
-    &quot;type&quot;: 0,
-    &quot;parentId&quot;: 0
-  },
-  // ....
-]
-</code></pre>
-<ol start="5">
-<li>
-<p>通过将菜单表和路由表通过permission权限标识码进行匹配，做数据处理。这里数据处理可能比较复杂一点，需要输出两份数据</p>
-<ul>
-<li>
-<p>路由：根据菜单的permission，将路由表中的数据做清洗，去掉permission在菜单中没有的路由。另外一点就是把菜单数据添加到路由的meta中，主要为了方便通过当前路由获取当前的菜单信息。这个数据用于注册动态路由。</p>
-<pre class="line-numbers"><code class="language-json">{
-    &quot;path&quot;: &quot;/system&quot;,
-    &quot;name&quot;: &quot;system&quot;,
-    &quot;redirect&quot;: &quot;/system/config&quot;,
-    &quot;meta&quot;: {
-        &quot;permission&quot;: &quot;system&quot;,
-        &quot;id&quot;: 1,
-        &quot;title&quot;: &quot;系统管理&quot;,
-        &quot;type&quot;: 0,
-        &quot;priority&quot;: 0,
-        &quot;icon&quot;: &quot;icon-setting&quot;,
-        &quot;parentId&quot;: 0
-    },
-    &quot;children&quot;: [
-        {
-            &quot;path&quot;: &quot;/system/config&quot;,
-            &quot;name&quot;: &quot;config&quot;,
-            &quot;meta&quot;: {
-                &quot;permission&quot;: &quot;system/config&quot;,
-                &quot;id&quot;: 2,
-                &quot;title&quot;: &quot;系统配置&quot;,
-                &quot;type&quot;: 0,
-                &quot;priority&quot;: 0,
-                &quot;icon&quot;: &quot;icon-setting&quot;,
-                &quot;parentId&quot;: 1
-            }
-        },
-        ...
-    ]
-}
-</code></pre>
-</li>
-<li>
-<p>菜单：因为现在菜单设置没有设置url了，所以我们要通过permission去找到对应的路由，然后将其path作为url。该数据用于显示导航菜单。</p>
-<pre class="line-numbers"><code class="language-json">[{
-    &quot;id&quot;: 1,
-    &quot;permission&quot;: &quot;system&quot;,
-    &quot;title&quot;: &quot;系统管理&quot;,
-    &quot;type&quot;: 0,
-    &quot;priority&quot;: 0,
-    &quot;icon&quot;: &quot;icon-setting&quot;,
-    &quot;parentId&quot;: 0,
-    &quot;url&quot;: &quot;/system&quot;
-},{
-    &quot;id&quot;: 2,
-    &quot;permission&quot;: &quot;system/config&quot;,
-    &quot;title&quot;: &quot;系统配置&quot;,
-    &quot;type&quot;: 0,
-    &quot;priority&quot;: 0,
-    &quot;icon&quot;: &quot;icon-setting&quot;,
-    &quot;parentId&quot;: 1,
-    &quot;url&quot;: &quot;/system/config&quot;
-}]
-</code></pre>
-</li>
-</ul>
-</li>
-</ol>
-<p><img src="media/17281470932731/17281471168530.png" alt="image-20221128172904940" /></p>
-<p>该方案的特点是：</p>
-<ul>
-<li>前后端解耦，上帝的归上帝,凯撒的归凯撒，而且仅需保证permission对应就行。</li>
-<li>菜单表和路由表进行匹配处理的时候，算法复杂一点。</li>
-</ul>
-<p>基于该套方案，我这边进行了封装，可以直接进行使用<a href="https://github.com/BWrong/auth-tool.git">auth-tool</a>。</p>
-<p><strong>注意：</strong></p>
-<ul>
-<li>路由控制这一步不能少，否则即使菜单没有入口了，但是用户通过输入url地址还是能访问无权限的页面。路由控制除了动态路由还有一种方案就是全量注册路由，然后在前置守卫每次跳转去做验证判断，没权限重定向到403页面。</li>
-<li>前端做权限控制只是锦上添花，不是绝对安全，一定需要后端做验证来兜底，后端需要对每一个涉及请求的操作做验证。</li>
-</ul>
-<p>另外简单说一说页内元素的控制吧，其实比较简单，后端同样返回有权限的数据，前端通过自定义指令或者Vif做下判断就行。<a href="https://github.com/BWrong/auth-tool.git">auth-tool</a>也做了封装，需要的自己查看源码吧。</p>
-<pre class="line-numbers"><code class="language-typescript">Vue.directive(directiveName, {
-  mounted(el:Element, binding) {
-    !hasAuth(binding.value) &amp;&amp; el.parentNode?.removeChild(el);
-  }
-});
-</code></pre>
-<h4><a id="%E6%95%B0%E6%8D%AE%E8%AF%B7%E6%B1%82" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>数据请求</h4>
-<p>另外一个比较重要的功能就是请求的封装了，其实axios本身还是比较成熟了，之所以要把这个单独拿出来说，主要是之前在项目上遇到过一些问题。</p>
-<ul>
-<li>
-<p>请求建议集中管理，可以按照业务进行模块划分，页面中只需要调用这里提供的方法就行。不建议直接写在页面上，不方便维护，万一接口url做了调整，你都不知道那些页面使用了，只有全局去替换。</p>
-<p><img src="media/17281470932731/17281471168544.png" alt="image-20221128180115019" /></p>
-</li>
-</ul>
-<pre class="line-numbers"><code class="language-typescript">import { get } from '../../utils/request';
-import type { RequestConfig } from '@/utils/request/Request';
-const prefix = '/system/config';
-export default { list: &lt;T = any&gt;(params: object, config?: RequestConfig) =&gt; get&lt;T&gt;(`${prefix}`, params, config) };
-</code></pre>
-<ul>
-<li>如果存在多个服务器，而且配置可能有差异的时候，建议对axios进行类封装，不同的服务器使用不同的实例。同样贴上两篇优秀的文章
-<ul>
-<li><a href="https://juejin.cn/post/7124573626161954823">前端架构带你 封装axios，一次封装终身受益</a></li>
-<li><a href="https://juejin.cn/post/7071518211392405541">在项目中用ts封装axios，一次封装整个团队受益</a></li>
-</ul>
-</li>
-</ul>
-<p>我在项目中也封装了一个，展示还没有单独提取出来，有兴趣的可以看看<a href="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20221128181306.ts">这里</a></p>
-<pre class="line-numbers"><code class="language-plain_text">   * 1. 多实例，在存在多个请求服务时使用
-   * 2. 拦截器增强，支持全局拦截器和实例拦截器，执行顺序采用洋葱模型
-   * 3. 支持重复请求取消功能，重复请求：url、method、参数均一致为重复，也可以自己传入判断函数
-   * 4. 支持直接请求绝对地址
-   * 5. ts类型推断增强，更好的类型提示
-</code></pre>
-<h2><a id="%E5%85%B6%E4%BB%96" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>其他</h2>
-<h4><a id="%E8%A7%84%E8%8C%83%E7%BA%A6%E5%AE%9A" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>规范约定</h4>
-<p>如果项目中存在多人开发，那么规范和约定就必不可少，除了我们要形成团队的一些规范文档外，在框架上我们也可以通过工程化去约束：</p>
-<ul>
-<li>使用eslint，如果团队有统一的规范，建议直接发布为rule插件。</li>
-<li>使用githooks做提交前的验证，当然最保险的还是在流水线去做这个事情，毕竟本地是可以绕过的。</li>
-</ul>
-<pre class="line-numbers"><code class="language-json">&quot;gitHooks&quot;: {
-    &quot;pre-commit&quot;: &quot;lint-staged --allow-empty&quot;
-  },
-  &quot;lint-staged&quot;: {
-    &quot;*.{vue,js,jsx,cjs,mjs,ts,tsx}&quot;: [
-      &quot;npm run lint&quot;,
-      &quot;prettier --write&quot;
-    ],
-    &quot;*.{css,less}&quot;: [
-      &quot;npm run lint:style&quot;,
-      &quot;prettier --write&quot;
-    ]
-  }
-</code></pre>
-<h4><a id="%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>版本管理</h4>
-<p>关于版本管理这块，我之前遇到过得问题就是给多个用户部署不同的版本，但是当某个用户出问题时，不能第一时间知道该用户部署的代码是什么时候的。所以后来在构建时注入了相关信息。</p>
-<pre class="line-numbers"><code class="language-ts">import { GitRevisionPlugin } from 'git-revision-webpack-plugin';
-import pkg from './package.json';
-let appVersion = `app-version=${pkg.version},build-time=${new Date().toLocaleString()}`;
-  if (IS_PRODUCTION) {
-    try {
-      const GitRevision = new GitRevisionPlugin();
-      appVersion += `,git-hash=${GitRevision.version()},git-branch=${GitRevision.branch()}`;
-    } catch (error) {
-      console.warn('无法获取git信息,无法注入相关内容!');
-    }
-  }
-  
-  ...
-   createHtmlPlugin({
-        minify: true,
-        entry: '/src/main.ts',
-        // template: 'index.html',
-        inject: {
-          data: {
-            BASE_URL: VITE_BASE_URL,
-            title: VITE_TITLE,
-            appVersion
-          }
-        }
-      }),
-</code></pre>
-<p><img src="media/17281470932731/17281471168559.png" alt="image-20221128182524845" /></p>
-<p>然后关于更新日志和版本发布，可以使用<a href="https://github.com/release-it/release-it">release-it</a>或<a href="https://github.com/conventional-changelog/standard-version#readme">standard-version</a>去做。</p>
-<h4><a id="%E6%9E%84%E5%BB%BA%E4%BC%98%E5%8C%96" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>构建优化</h4>
-<p>优化主要是两个方向：</p>
-<ul>
-<li>运行时：提升程序运行效率，就是常规的性能优化手段都可以用上，比如gzip、分包、按需加载等等。</li>
-<li>开发时：主要是加快构建速度，提升开发效率，有几个思路可以考虑，减少构建的范围、利用缓存、使用多进程。</li>
-</ul>
-<h4><a id="%E8%84%9A%E6%89%8B%E6%9E%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>脚手架</h4>
-<p>当你的框架成熟后，可以自己封装一个脚手架，可以做一些定制化的配置，这个比较简单，感兴趣的查看<a href="https://juejin.cn/post/6924205809349951501">用vue3+ts+electron撸了一个好用的脚手架工具</a>，这样团队成员使用起来就比较方便，也比较好管理。</p>
-<h2><a id="%E7%BB%93%E8%AF%AD" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>结语</h2>
-<p>算了，下班了，没时间写了。</p>
-
+<p><figure><img src="media/17281470932731/17281471168320.png" alt="image-20221128214533562" /><figcaption>
 ]]></content>
   </entry>
   
@@ -5022,18 +4556,18 @@ public List&lt;User&gt; addUser(@RequestBody User userl) {
 <p><a href="%E2%80%8Bwww.babylonjs.com/">Babylon.js: Powerful, Beautiful, Simple, Open - Web-Based 3D At Its Best</a></p>
 <p>它主要特性有以下几个方面：</p>
 <p>1、强大的编辑器，这是threejs跟playcanvas无法比拟的。</p>
-<p><img src="media/17280335013759/17281439645359.png" alt="" /></p>
+<p><figure><img src="media/17280335013759/17281439645359.png" alt="" /></figure></p>
 <p>编辑器中，对粒子、碰撞、脚本、GUI、精灵图等等各方面功能集成得非常完善，作为一个多年使用微软IDE从事开发的码农，个人一直认为微软的东西很人性化。</p>
 <p>2、强大的节点编辑器。在blender里面节点编辑器无处不在，它也是通过connect不同节点的input跟output来实现节点之间的数据联通，这样就把复杂的材质系统变成可视化了。</p>
 <p>Node Material Editor是一个强大而易用的材质编辑器，它以可视化的拖拽节点的方式来模拟shader编程，从而为每个从业者解锁了GPU的强大威力。从前，shaders (GPU 编程)着色器编程对于普通程序员门槛很高，因为它过于偏向底层，虽然功能强大，但是晦涩难懂，而Babylon带来的Node Material Editor可以实现与shader同样的效果，但是界面化操作，把难度降到了最低。我们相信，每个人都能使用这个编辑器来创建令人惊叹的视觉效果。</p>
-<p><img src="media/17280335013759/17281439645382.png" alt="" /><br />
+<p><figure><img src="media/17280335013759/17281439645382.png" alt="" /></figure><br />
 材质节点</p>
-<p><img src="media/17280335013759/17281439645401.png" alt="" /><br />
+<p><figure><img src="media/17280335013759/17281439645401.png" alt="" /></figure><br />
 Babylonjs材质节点</p>
 <p>3、NATIVE 跨平台原生应用部署。程序员们写代码都有一个梦想：一次编写实现，多平台共享运行。 所以我们重磅推出了Babylon Native，它可以用原有的Babylon.js代码在任意平台构建一个原生应用，充分释放本机设备的性能优势。 已经支持DirectX on Windows、 Metal on iOS/MacOS、 OpenGL on Android，即将推出Vulkan支持。</p>
 <p>Babylonjs的原生打包部署是通过react native技术体系来实现的，这样就可以实现一份代码原生部署，同时保证原生性能。</p>
 <p>4、支持先进的WEBXR技术。毫无疑问，在web使用AR/VR技术非常有前景，Babylon最新4.1版本在WebXR上做了进一步的优化和改进：带来了一个简单易用的体检帮助器，针对更高级用户的专用会话管理器，用babylon的相机功能来承载WebXR技术，全面支持任何接受WebXR会话的设备，完整的WebXR输入源支持，关于实验性AR功能、通信、场景交互、物理效果的整套API支持等。</p>
-<p><img src="media/17280335013759/17281439645428.png" alt="" /><br />
+<p><figure><img src="media/17280335013759/17281439645428.png" alt="" /></figure><br />
 webxr支持<br />
 总结：</p>
 <p>1、如果你要交付内部项目、而且可以是客户端、有U3D开发人员，那么用U3D去交付实现最好，通过安装exe客户端，灯光效果交互、vr支持都是非常完美，而且U3D的开发者论坛、文档、百度教程都非常丰富。</p>
@@ -5087,7 +4621,7 @@ webxr支持<br />
     <id>https://www.bwrong.cn/17280334440663.html</id>
     <content type="html"><![CDATA[
 <h2><a id="%E8%AF%A6%E7%BB%86%E6%B5%81%E7%A8%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>详细流程</h2>
-<p><img src="media/17280334440663/17281450820669.webP" alt="image.png" /></p>
+<p><figure><img src="media/17280334440663/17281450820669.webP" alt="image.png" /><figcaption>image.png<figcaption></figure></p>
 <p>简易流程：</p>
 <ol>
 <li>qiankun 会用 原生fetch方法，请求微应用的 entry 获取微应用资源，然后通过 response.text 把获取内容转为字符串。</li>
@@ -5103,7 +4637,7 @@ webxr支持<br />
 <li>
 <p>与路由绑定的方式渲染微应用</p>
 <p>接入这类平台的微应用，通常只需要提供自己的 entry html 地址，并为其分配一个路由规则即可，会根据当前路由自动切换微应用加载。</p>
-<p><img src="media/17280334440663/17281450820693.jpg" alt="v2-c345f8bf9c8855176037f6b48e315caf_1440w" /></p>
+<p><figure><img src="media/17280334440663/17281450820693.jpg" alt="v2-c345f8bf9c8855176037f6b48e315caf_1440w" /><figcaption>v2-c345f8bf9c8855176037f6b48e315caf_1440w<figcaption></figure></p>
 </li>
 <li>
 <p>以组件的方式使用微应用</p>
@@ -5116,7 +4650,7 @@ webxr支持<br />
 </li>
 <li>
 <p>多应用同时渲染：同一时刻可展示多个子应用，子应用更像是一个业务组件而不是应用。</p>
-<p><img src="media/17280334440663/17281450820703.jpg" alt="v2-cc82a2a5a6fbe5c141af9dd5b42622ee_1440w" /></p>
+<p><figure><img src="media/17280334440663/17281450820703.jpg" alt="v2-cc82a2a5a6fbe5c141af9dd5b42622ee_1440w" /><figcaption>v2-cc82a2a5a6fbe5c141af9dd5b42622ee_1440w<figcaption></figure></p>
 </li>
 </ul>
 
@@ -5134,11 +4668,11 @@ webxr支持<br />
 <ul>
 <li>Monorepo：多应用管理可以使用<a href="https://lerna.js.org/">lerna</a>或者<a href="https://pnpm.io/zh/">pnpm</a>。</li>
 </ul>
-<p><img src="media/17280334039483/17281450561380.png" alt="image-20220406225206585" /></p>
+<p><figure><img src="media/17280334039483/17281450561380.png" alt="image-20220406225206585" /><figcaption>image-20220406225206585<figcaption></figure></p>
 <ul>
 <li>
 <p>Git subtree或者多仓库：在子应用较多的情况可采用此方式，缺点是每次子应用变更后，聚合库还得同步一次变更。</p>
-<p><img src="media/17280334039483/17281450561404.jpg" alt="18091274-44952db2fd681a3d" /></p>
+<p><figure><img src="media/17280334039483/17281450561404.jpg" alt="18091274-44952db2fd681a3d" /><figcaption>18091274-44952db2fd681a3d<figcaption></figure></p>
 </li>
 </ul>
 <h2><a id="%E5%BA%94%E7%94%A8%E6%8B%86%E5%88%86%E7%B2%92%E5%BA%A6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>应用拆分粒度</h2>
@@ -5163,18 +4697,18 @@ webxr支持<br />
 </ul>
 <h2><a id="%E6%9D%83%E9%99%90%E5%A4%84%E7%90%86" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>权限处理</h2>
 <p>主应用负责身份验证，拿到授权信息后下发到各微应用中，各应用再根据拿到的授权信息过滤各自路由信息。</p>
-<p><img src="media/17280334039483/17281450561413.webP" alt="img" /></p>
+<p><figure><img src="media/17280334039483/17281450561413.webP" alt="img" /><figcaption>img<figcaption></figure></p>
 <h2><a id="%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>资源共享</h2>
 <h3><a id="%E7%BB%9F%E4%B8%80%E7%AE%A1%E7%90%86%E7%BB%B4%E6%8A%A4" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>统一管理维护</h3>
 <p>将公共资源提取到一个地方，避免多个地方维护，但是仍然会多次打包。可以通过如下两种方式：</p>
 <ul>
 <li>file或link方式</li>
 </ul>
-<p><img src="media/17280334039483/17281450561420.png" alt="image-20220406235834667" /></p>
+<p><figure><img src="media/17280334039483/17281450561420.png" alt="image-20220406235834667" /><figcaption>image-20220406235834667<figcaption></figure></p>
 <ul>
 <li>git仓库或者私服</li>
 </ul>
-<p><img src="media/17280334039483/17281450561439.png" alt="image-20220406235948554" /></p>
+<p><figure><img src="media/17280334039483/17281450561439.png" alt="image-20220406235948554" /><figcaption>image-20220406235948554<figcaption></figure></p>
 <h3><a id="%E4%BE%9D%E8%B5%96%E6%8F%90%E5%8F%96" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>依赖提取</h3>
 <p>在一个团队中，技术栈相对固定，所以统一技术栈很多基础依赖相对是固定的，但是默认情况下每个应用都会重复打包一次，会造成重复下载，影响运行性能。例如，如果每个微应用都包括自己的 Vue 副本，那么用户就得多次下载 Vue。</p>
 <p>在进行如下改造之前，先确认是否有此必要，因为它会增加应用间的耦合性（如技术栈、依赖版本必须一致） ，而这是和微前端思想相悖的，</p>
@@ -5256,7 +4790,7 @@ webxr支持<br />
 <ul>
 <li>VueDevtools调试微应用问题，需要手动处理，但是还是会存在失效问题。</li>
 </ul>
-<p><img src="media/17280334039483/17281450561452.png" alt="image-20220407171516398" /></p>
+<p><figure><img src="media/17280334039483/17281450561452.png" alt="image-20220407171516398" /><figcaption>image-20220407171516398<figcaption></figure></p>
 <ul>
 <li>对vite构建的微应用支持还有缺陷，因为Vite暂时还不支持运行时修改资源路径和ESModule导致沙箱失效。</li>
 <li>各应用间的风格和交互逻辑应该统一，因为对用户来说我们的应用仍然是一体的，要避免应用间给用户造成撕裂感。</li>
@@ -5273,19 +4807,19 @@ webxr支持<br />
     <id>https://www.bwrong.cn/17280333553222.html</id>
     <content type="html"><![CDATA[
 <p>关于如何使用qiankun，官方文档比较完善，网上文档也较多，所以这里就不再赘述。接下来我们就来看一下目前文档中缺失的部分<a href="https://qiankun.umijs.org/zh/guide#%E5%AE%83%E6%98%AF%E5%A6%82%E4%BD%95%E5%B7%A5%E4%BD%9C%E7%9A%84">它是如何工作的</a>。</p>
-<p><img src="media/17280333553222/17281450088426.webP" alt="image.png" /></p>
+<p><figure><img src="media/17280333553222/17281450088426.webP" alt="image.png" /><figcaption>image.png<figcaption></figure></p>
 <h2><a id="%E8%BF%90%E8%A1%8C%E6%B5%81%E7%A8%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>运行流程</h2>
-<p><img src="media/17280333553222/17281450088452.webP" alt="qiankun" /></p>
+<p><figure><img src="media/17280333553222/17281450088452.webP" alt="qiankun" /><figcaption>qiankun<figcaption></figure></p>
 <h2><a id="%E6%A0%B8%E5%BF%83api" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>核心API</h2>
 <p><code>registerMicroApps</code>和<code>start</code>是qiankun两个核心的API。</p>
 <p><code>registerMicroApps</code> 函数的作用是注册子应用，并且在子应用激活时，创建运行沙箱，在不同阶段调用不同的生命周期钩子函数。<code>start</code> 函数负责初始化一些全局设置，然后启动应用。</p>
-<p><img src="media/17280333553222/17281450088463.webP" alt="qiankun" /></p>
+<p><figure><img src="media/17280333553222/17281450088463.webP" alt="qiankun" /><figcaption>qiankun<figcaption></figure></p>
 <h2><a id="%E6%B2%99%E7%AE%B1" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>沙箱</h2>
 <p>qiankun的沙箱环境可以分为三类，主要通过运行环境是否支持Proxy和是否是单实例进行区分。</p>
-<p><img src="media/17280333553222/17281450088473.webP" alt="qiankun" /></p>
+<p><figure><img src="media/17280333553222/17281450088473.webP" alt="qiankun" /><figcaption>qiankun<figcaption></figure></p>
 <h3><a id="legacysandbox" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>LegacySandbox</h3>
 <p>LegacySandbox用于支持Proxy的单实例环境下，沙箱隔离是通过快照模式实现，在激活沙箱时还原子应用状态，卸载时还原主应用状态（子应用挂载前的全局状态）实现的。</p>
-<p><img src="media/17280333553222/17281450088483.webP" alt="qiankun" /></p>
+<p><figure><img src="media/17280333553222/17281450088483.webP" alt="qiankun" /><figcaption>qiankun<figcaption></figure></p>
 <ul>
 <li>当调用 <code>set</code> 向子应用 <code>proxy/window</code> 对象设置属性时，所有的属性设置和更新都会先记录在 <code>addedPropsMapInSandbox</code> 或 <code>modifiedPropsOriginalValueMapInSandbox</code> 中，然后统一记录到 <code>currentUpdatedPropsValueMap</code> 中。</li>
 <li>在激活沙箱时，沙箱会通过 <code>currentUpdatedPropsValueMap</code> 查询到子应用的独立状态池（沙箱可能会激活多次，这里是沙箱曾经激活期间被修改的全局变量），然后还原子应用状态。</li>
@@ -5294,7 +4828,7 @@ webxr支持<br />
 <p>该方案使用diff算法还原window状态快照，因为使用的是同一个window，所以不能在多实例时使用，而且父子应用之间window对象还是会存在污染。</p>
 <h3><a id="proxysandbox" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>ProxySandbox</h3>
 <p>ProxySandbox用于支持Proxy的多实例环境下，它利用Proxy实现对微应用全局对象操作的拦截，子应用对全局属性的操作就是对该 <code>proxy</code> 对象属性的操作。</p>
-<p><img src="media/17280333553222/17281450088496.webP" alt="qiankun" /></p>
+<p><figure><img src="media/17280333553222/17281450088496.webP" alt="qiankun" /><figcaption>qiankun<figcaption></figure></p>
 <ul>
 <li>当调用 <code>set</code> 向子应用 <code>proxy/window</code> 对象设置属性时，所有的属性设置和更新都会命中 <code>updateValueMap</code>，存储在 <code>updateValueMap</code> 集合中，从而避免对 <code>window</code> 对象产生影响。</li>
 <li>当调用 <code>get</code> 从子应用 <code>proxy/window</code> 对象取值时，会优先从子应用的沙箱状态池 <code>updateValueMap</code> 中取值，如果没有命中才从主应用的 <code>window</code> 对象中取值。</li>
@@ -5302,203 +4836,13 @@ webxr支持<br />
 <p><code>ProxySandbox</code> 是最完备的沙箱模式，完全隔离了对 <code>window</code> 对象的操作，在浏览器对Proxy兼容性兼容的情况下，算是最优的方案。</p>
 <h3><a id="snapshotsandbox" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>SnapshotSandbox</h3>
 <p>在浏览器不支持Proxy时，会回退到SnapshotSandbox沙箱，作为兜底方案。</p>
-<p><img src="media/17280333553222/17281450088512.webP" alt="qiankun" /></p>
+<p><figure><img src="media/17280333553222/17281450088512.webP" alt="qiankun" /><figcaption>qiankun<figcaption></figure></p>
 <ul>
 <li>在沙箱激活时，会先给当前 <code>window</code> 对象打一个快照，记录沙箱激活前的状态。打完快照后，函数内部将 <code>window</code> 状态通过 <code>modifyPropsMap</code> 记录还原到上次的沙箱运行环境，也就是还原沙箱激活期间（历史记录）修改过的 <code>window</code> 属性。</li>
 <li>在沙箱关闭时，调用 <code>inactive</code> 函数，在沙箱关闭前通过遍历比较每一个属性，将被改变的 <code>window</code> 对象属性值记录在 <code>modifyPropsMap</code> 集合中。在记录了 <code>modifyPropsMap</code> 后，将 <code>window</code> 对象通过快照 <code>windowSnapshot</code> 还原到被沙箱激活前的状态，相当于是将子应用运行期间对 <code>window</code> 造成的污染全部清除。</li>
 </ul>
 <p>作为兜底方案，相比较 <code>ProxySandbox</code> 而言，在子应用激活期间，<code>SnapshotSandbox</code> 将会对 <code>window</code> 对象造成污染。</p>
 <p>以上就是qiankun一些比较关键的东西，接下来就分享一下在使用的过程中需要关注的一些问题。</p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[【玩转微前端1】如何做技术选型]]></title>
-    <link href="https://www.bwrong.cn/17280333095797.html"/>
-    <updated>2024-10-04T17:15:09+08:00</updated>
-    <id>https://www.bwrong.cn/17280333095797.html</id>
-    <content type="html"><![CDATA[
-<p>当前市面上已出现了很多微前端方案，如何做出正确的选择是一件不容易的事情。</p>
-<p>在开始介绍这些方案之前，我们有必要先了解一下微前端架构的核心原则，从而更好的去衡量微前端方案是否成熟。</p>
-<h2><a id="%E6%A0%B8%E5%BF%83%E5%8E%9F%E5%88%99" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>核心原则</h2>
-<h3><a id="%E5%BA%94%E7%94%A8%E7%8B%AC%E7%AB%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>应用独立</h3>
-<p>这里说的独立包含三个方面：</p>
-<ul>
-<li>独立开发：每个微应用由不同业务团队开发，实现团队自治。</li>
-</ul>
-<p><img src="media/17280333095797/17281449550400.png" alt="image-20220331172853831" /></p>
-<ul>
-<li>独立部署：微应用可独立部署运行，每个应用可以有自己的交付部署流程，某个微应用出现故障不影响其他应用。</li>
-</ul>
-<p><img src="media/17280333095797/17281449550425.png" alt="image-20220331173031824" /></p>
-<ul>
-<li>独立运行：既可以组合运行，也可以单独运行，运行时环境隔离，提供JavaScript沙箱，CSS 样式隔离，避免应用间运行时污染。</li>
-</ul>
-<h3><a id="%E6%B6%88%E6%81%AF%E9%80%9A%E4%BF%A1" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>消息通信</h3>
-<p>完善的通信机制，可以降低主应用和微应用、微应用和微应用之间的数据共享难度，是否有完善的通信机制是选型考量的一个关键因素。</p>
-<h3><a id="%E6%8A%80%E6%9C%AF%E6%A0%88%E6%97%A0%E5%85%B3" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>技术栈无关</h3>
-<p>主应用不限制子应用接入的技术栈。不限制技术栈有如下好处：</p>
-<ul>
-<li>每个应用可以结合团队情况选择不同的技术栈，也可以集成一些采用了不同技术栈的老旧项目。</li>
-<li>应用技术栈切换升级不影响其他应用，可以实现增量升级。通常我们很难对一个已有的系统做全量的技术栈升级或重构，而微前端是一种非常好的实施渐进式重构的手段和策略。</li>
-</ul>
-<h3><a id="%E4%BE%9D%E8%B5%96%E5%A4%8D%E7%94%A8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>依赖复用</h3>
-<p>解决各应用间依赖、公共逻辑需要重复维护的问题。应用间相同的依赖需要重复下载。</p>
-<h2><a id="%E6%96%B9%E6%A1%88%E5%AF%B9%E6%AF%94" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>方案对比</h2>
-<p>接下来，我们从四大流派来看一下当下有哪些方案可以选择，并简单做个对比：</p>
-<h3><a id="%E4%BC%A0%E7%BB%9F%E5%BC%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>传统式</h3>
-<h4><a id="1%E8%B7%AF%E7%94%B1%E5%88%86%E5%8F%91%EF%BC%88%E6%9C%8D%E5%8A%A1%E7%AB%AF%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. 路由分发（服务端）</h4>
-<p><strong>描述：</strong> 在HTTP服务器通过反向代理将不同的路由分发到对应的应用上。</p>
-<pre class="line-numbers"><code class="language-nginx">http {
-  server {
-    listen       80;
-    server_name  www.phodal.com;
-    location /api/ {
-      proxy_pass http://http://172.31.25.15:8000/api;
-    }
-    location /web/admin {
-      proxy_pass http://172.31.25.29/web/admin;
-    }
-    location /web/notifications {
-      proxy_pass http://172.31.25.27/web/notifications;
-    }
-    location / {
-      proxy_pass /;
-    }
-  }
-}
-</code></pre>
-<p><strong>优点：</strong> 简单、快速、易配置。</p>
-<p><strong>缺点：</strong></p>
-<ul>
-<li>应用是完全分开的，通信和数据资源共享很困难；</li>
-<li>切换应用需要刷新页面，体验不好；</li>
-<li>完全是基于路由的，无法同时加载多个应用。</li>
-</ul>
-<h4><a id="2-iframe" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. IFrame</h4>
-<p><strong>描述：</strong> 将微应用通过iframe载入。</p>
-<p>**优点：**接入简单，兼容性好，原生支持沙箱隔离。</p>
-<p><strong>缺点：</strong></p>
-<ul>
-<li>隔离性无法突破，应用间上下文无法共享，比如在子应用弹窗问题（只能基于子应用可视区定位，不能基于整个页面定位）。</li>
-<li>应用间通信需要自行实现一套基于postMessage的通信机制。</li>
-<li>刷新会导致iframe Url状态丢失，iframe 和主页面共用一个浏览历史，后退前进按钮无法使用。</li>
-</ul>
-<h3><a id="%E8%87%AA%E7%BB%84%E7%BB%87%E5%BC%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>自组织式</h3>
-<h4><a id="3-npm%E9%9B%86%E6%88%90" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>3. Npm集成</h4>
-<p><strong>描述：</strong> 将微应用抽离成包的方式，发布到Npm中，再在主应用中将这些微应用作为依赖项，构建时候集成进项目中。</p>
-<p><strong>优点：</strong> 开发与接入成本低，容易理解。</p>
-<p><strong>缺点：</strong></p>
-<ul>
-<li>影响主应用编译速度和打包后的体积。</li>
-<li>不支持动态更新，npm包更新后，需要重新更新包，主应用需要重新发布部署。</li>
-<li>因为业务应用不能发布到公开库，需要自己搭建npm私有库，提高了工程难度。</li>
-</ul>
-<h4><a id="4-js%E9%9B%86%E6%88%90" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>4. JS集成</h4>
-<p>**描述：**每个微应用提供一个入口js，会导出一个全局变量，主应用引入该js，安装应用时调用相关函数，挂载渲染微应用。</p>
-<p>**优点：**相比Npm集成方案，优化的地方是微应用不用构建到主应用中，而是独立构建的。</p>
-<p><strong>缺点：</strong> 规范、通信、沙箱都需要自己实现，依赖开发人员设计能力。</p>
-<pre class="line-numbers"><code class="language-html">&lt;html&gt;
-  &lt;head&gt;
-    &lt;title&gt;Feed me!&lt;/title&gt;
-  &lt;/head&gt;
-  &lt;body&gt;
-    &lt;h1&gt;Welcome to Feed me!&lt;/h1&gt;
-
-    &lt;!-- 这些脚本不会马上渲染应用 --&gt;
-    &lt;!-- 而是分别暴露全局变量 --&gt;
-    &lt;script src=&quot;https://browse.example.com/bundle.js&quot;&gt;&lt;/script&gt;
-    &lt;script src=&quot;https://order.example.com/bundle.js&quot;&gt;&lt;/script&gt;
-    &lt;script src=&quot;https://profile.example.com/bundle.js&quot;&gt;&lt;/script&gt;
-
-    &lt;div id=&quot;micro-frontend-root&quot;&gt;&lt;/div&gt;
-
-    &lt;script type=&quot;text/javascript&quot;&gt;
-      // 这些全局函数是上面脚本暴露的
-      const microFrontendsByRoute = {
-        '/': window.renderBrowseRestaurants,
-        '/order-food': window.renderOrderFood,
-        '/user-profile': window.renderUserProfile,
-      };
-      const renderFunction = microFrontendsByRoute[window.location.pathname];
-
-      // 渲染第一个微应用
-      renderFunction('micro-frontend-root');
-    &lt;/script&gt;
-  &lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
-<h3><a id="%E5%BE%AE%E4%BB%B6%E5%BC%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>微件式</h3>
-<h4><a id="5-web-component" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>5. Web Component</h4>
-<p>**描述：**微应用导出的是一个自定义元素（Web Component），加载微应用时渲染对应的元素即可。</p>
-<p>**优点：**浏览器自带能力，接入简单，自带Shadow DOM沙箱。</p>
-<p>**缺点：**兼容性不太好，暂时只有较新的浏览器支持，但未来可期。</p>
-<h4><a id="6-microapp" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>6. MicroApp</h4>
-<p><strong>描述：</strong> [MicroApp](<a href="https://cangdu.org/micro-app/%E6%98%AF%E4%BA%AC%E4%B8%9C%E9%9B%B6%E5%94%AE%E6%8E%A8%E5%87%BA%E7%9A%84%E4%B8%80%E6%AC%BE%E5%BE%AE%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%EF%BC%8C%E6%98%AF%E5%9F%BA%E4%BA%8EWebComponent%E5%AE%9E%E7%8E%B0%E7%9A%84%E4%B8%80%E7%A7%8D%E7%94%A8%E4%BA%8E%E6%9E%84%E5%BB%BA%E5%BE%AE%E5%89%8D%E7%AB%AF%E5%BA%94%E7%94%A8%E7%9A%84%E6%9E%81%E7%AE%80%E6%96%B9%E6%A1%88%E3%80%82">https://cangdu.org/micro-app/是京东零售推出的一款微前端框架，是基于WebComponent实现的一种用于构建微前端应用的极简方案。</a></p>
-<p><img src="media/17280333095797/17281449550437.png" alt="d879637b4bb34253" /></p>
-<p>**优点：**接入成本很低，只需一行代码即可实现微前端，提供了<code>js沙箱</code>、<code>样式隔离</code>、<code>元素隔离</code>、<code>预加载</code>、<code>数据通信</code>、<code>静态资源补全</code>等一系列完善的功能。</p>
-<p>**缺点：**依赖于CustomElements和Proxy两个较新的API，兼容性需要考虑。</p>
-<h4><a id="7-emp" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>7. EMP</h4>
-<p><strong>描述：</strong> <a href="https://emp2.netlify.app/">EMP</a>由欢聚时代（YY）自主研发的单页微前端解决方案，主要基于Webpack5的新特性Module Federation实现。</p>
-<p>**优点：**强调去中心化，每个微应用都可以引入其他的微应用，无中心应用（容器/主应用）的概念。</p>
-<p><strong>缺点：</strong></p>
-<ul>
-<li>接入有一定成本，不同技术栈接入有一定难度；</li>
-<li>因为使用了Module Federation，所以仅支持webpack5+构建的应用。</li>
-</ul>
-<h3><a id="%E5%9F%BA%E5%BA%A7%E5%BC%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>基座式</h3>
-<h4><a id="7-single-spa" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>7. Single-spa</h4>
-<p><strong>描述：</strong><a href="https://zh-hans.single-spa.js.org/">Single-spa</a>在上面的js集成方案，加入了生命周期，算是比较老牌的微前端框架了。</p>
-<p>**优点：**支持生命周期和代码延迟加载。</p>
-<p>**缺点：沙箱环境需要自行处理，有一定的侵入性。</p>
-<h4><a id="8-qiankun" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>8. qiankun</h4>
-<p><strong>描述：</strong><a href="https://qiankun.umijs.org/zh/">qiankun</a>由蚂蚁团队基于single-spa构建的微前端解决方案，功能比较完善，已有多个成功应用案例验证，是目前应用最多的微前端框架。</p>
-<p><img src="media/17280333095797/17281449550451.jpg" alt="v2-d55549366b52cde19c93835cfa2a58c9_1440w" /></p>
-<p><strong>优点：</strong></p>
-<ul>
-<li>接入成本相对较低，框架本身已包含构建微前端系统时所需要的基本能力。</li>
-<li>微应用入口支持多种方式。</li>
-</ul>
-<p>**缺点：**没有提供依赖复用，需要自行解决。</p>
-<h4><a id="9-icestark" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>9.  icestark</h4>
-<p><strong>描述：</strong> <a href="https://micro-frontends.ice.work/">icestark</a>是阿里飞冰出品的面向大型系统的微前端解决方案。</p>
-<p>**优点：**相比qiankun，支持微模块，一种粒度更小的挂件，可以随处挂载。</p>
-<p>**缺点：**样式隔离问题目前还只能靠规范来规避，Shadow DOM方案还在实验中。</p>
-<h4><a id="10-garfish" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>10. Garfish</h4>
-<p><strong>描述：</strong><a href="https://garfish.top/">Garfish</a>是字节跳动出品，包含构建微前端系统时所需要的基本能力。</p>
-<p><img src="media/17280333095797/17281449550462.png" alt="image.png" /></p>
-<p>**优点：**api简单，接入成本低，自带依赖共享api，支持插件扩展。</p>
-<h2><a id="%E8%B7%AF%E5%9C%A8%E4%BD%95%E6%96%B9" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>路在何方</h2>
-<p>可以看到，在上述方案中，比较成熟的方案有MicroApp、EMP、qiankun、Garfish。当下微前端相应的解决方案其实挺多的，但是并不存在银弹，每一个方案都有优缺点，只有结合实际需求进行选择最合适的那个方案就行。</p>
-<p>当然除了前面说的几个微前端的核心原则，一般在选型时，我们还注意如下几个纬度：</p>
-<table>
-<thead>
-<tr>
-<th>纬度</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>稳定性</td>
-<td>该方案是否经历了社区的考验，有较多的成熟案例，同时保持较高的活跃性，有完善的文档。</td>
-</tr>
-<tr>
-<td>可拓展性</td>
-<td>支持定制化开发，提供较高的可拓展能力，同时成本可以在接受范围内</td>
-</tr>
-<tr>
-<td>可控性</td>
-<td>发生问题后，能够在第一时间内进行问题排查，以最快的响应速度来处理问题，修复的方案是否会依赖于外部环境</td>
-</tr>
-<tr>
-<td>低成本</td>
-<td>学习成本和项目接入改造成本是一个很重要的考量因素，成本太高会适得其反。</td>
-</tr>
-</tbody>
-</table>
-<p>所以，结合上述和项目的一些因素，当时我们最终选择了qiankun。接下来我们就聊一聊qiankun。</p>
 
 ]]></content>
   </entry>

@@ -247,13 +247,13 @@
 <p>那么接下来我们就来看看2.0的问题，以及Vue3是如何来解决的。</p>
 <h2><a id="option%E5%BC%8F%E7%BB%84%E7%BB%87%E4%BB%A3%E7%A0%81%E7%9A%84%E7%BC%BA%E9%99%B7" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Option式组织代码的缺陷</h2>
 <p>options式组织代码，同一个功能分散在各个option中，导致在开发时需要在data、methods、computed等option横跳。</p>
-<p><img src="media/17280329145839/17281430923760.webP" alt="option" /></p>
+<p><figure><img src="media/17280329145839/17281430923760.webP" alt="option" /><figcaption>option<figcaption></figure></p>
 <p>Vue3推出了CompositionApi，目的就是为了解决这个问题，它将分散在各个option中的逻辑组合到一起，下面我们对比看下：</p>
-<p><img src="media/17280329145839/17281430923793.webP" alt="" /></p>
+<p><figure><img src="media/17280329145839/17281430923793.webP" alt="" /></figure></p>
 <h2><a id="mixin%E7%9A%84%E9%97%AE%E9%A2%98" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Mixin的问题</h2>
 <p>对于复杂的功能，我们可能会想到使用Mixin来抽离到单独的文件。但是Mixin会有一些使用上的问题，比如命名冲突、属性来源不明确。</p>
 <p>Vue3提出了Hooks的方式，可以将每个功能提取到hooks，一个hooks即是一个独立的函数，所以不会再有上述问题。</p>
-<p><img src="media/17280329145839/17281430923818.webP" alt="" /></p>
+<p><figure><img src="media/17280329145839/17281430923818.webP" alt="" /></figure></p>
 <h2><a id="typescript%E6%94%AF%E6%8C%81%E7%9A%84%E4%B8%8D%E5%81%A5%E5%85%A8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>TypeScript支持的不健全</h2>
 <p>现在大型项目都会标配 TypeScript ，Vue 当前的 API 在集成 TypeScript 时遇到了不小的麻烦，其主要原因是 Vue 依靠一个简单的 <code>this</code> 上下文来暴露 property，我们现在使用 <code>this</code> 的方式是比较微妙的。（比如 <code>methods</code> 选项下的函数的 <code>this</code> 是指向组件实例的，而不是这个 <code>methods</code> 对象）。</p>
 <p>换句话说，Vue 现有的 API 在设计之初没有照顾到类型推导，这使适配 TypeScript 变得复杂。</p>
@@ -796,7 +796,7 @@ export default {
 </li>
 </ul>
 <p>当然，上面的只是开胃菜，接下来的才是我们最值得关注的新特性。</p>
-<p><img src="media/17280329145839/17281430923852.jpg" alt="" /></p>
+<p><figure><img src="media/17280329145839/17281430923852.jpg" alt="" /></figure></p>
 <h1><a id="%E7%BB%84%E5%90%88%E5%BC%8Fapi" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>组合式Api</h1>
 <p>为了解决我们前面说的逻辑复用和代码组织的问题，vue3推出了新的代码编写方式，这个vue3最重要的特性，也是未来编写vue的主要趋势。</p>
 <p>下面是一个显示某个用户的仓库列表的视图，同时带有搜索和筛选功能，伪代码如下：</p>
@@ -918,7 +918,7 @@ export default {
 }
 </code></pre>
 <p>组合式API分离了组件的逻辑关注点，更具组织性，代码的可读性和可维护性也更好。而且可以将可复用的逻辑抽离成Hooks，具有更好的可复用性。</p>
-<p><img src="media/17280329145839/17281430923861.png" alt="" /></p>
+<p><figure><img src="media/17280329145839/17281430923861.png" alt="" /></figure></p>
 <p>由于组合式API的特殊性，需要使用新的API，接下来我们就来看看这些API。</p>
 <h2><a id="setup" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>setup</h2>
 <p>setup是组合式API的入口，所有的内容都需要包含在其中，它仅在组件创建<strong>之前</strong>执行<strong>一次</strong>，所以此时this并不是指向当前组件实例。</p>
@@ -1109,7 +1109,7 @@ counter.value++
 console.log(counter.value) // 1
 </code></pre>
 <p>因为在 JavaScript 中，<code>Number</code> 或 <code>String</code> 等基本类型是通过值而非引用传递的，在任何值周围都有一个封装对象，这样我们就可以在整个应用中安全地传递它，而不必担心在某个地方失去它的响应性。</p>
-<p><img src="media/17280329145839/17281430923869.gif" alt="pass-by-reference-vs-pass-by-value-animation" /></p>
+<p><figure><img src="media/17280329145839/17281430923869.gif" alt="pass-by-reference-vs-pass-by-value-animation" /><figcaption>pass-by-reference-vs-pass-by-value-animation<figcaption></figure></p>
 <p><em>注意：ref嵌套在响应式对象（如reactive、readonly）或者用在模板中，将自动解包</em>。</p>
 <h3><a id="reactive" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>reactive</h3>
 <pre class="line-numbers"><code class="language-ts">function reactive&lt;T extends object&gt;(target: T): UnwrapNestedRefs&lt;T&gt;

@@ -205,7 +205,7 @@ npm install -D eslint
 <p>安装成功后，在项目根目录执行如下命令，完成一系列设置来创建配置文件。</p>
 <pre class="line-numbers"><code class="language-shell">npx eslint --init
 </code></pre>
-<p><img src="media/17280328175326/17281442524425.png" alt="image-20200918112422980" /></p>
+<p><figure><img src="media/17280328175326/17281442524425.png" alt="image-20200918112422980" /><figcaption>image-20200918112422980<figcaption></figure></p>
 <p>执行如上命令，会在项目根目录创建一个<code>.eslintrc.js</code>文件，内容如下：</p>
 <pre class="line-numbers"><code class="language-js">module.exports = {
     'env': { // 环境设置
@@ -249,7 +249,7 @@ let test = 1
 <p>然后在命令行输入命令：</p>
 <pre class="line-numbers"><code class="language-shell">npx eslint ./src/index.js
 </code></pre>
-<p><img src="media/17280328175326/17281442524450.png" alt="image-20200918171659654" /></p>
+<p><figure><img src="media/17280328175326/17281442524450.png" alt="image-20200918171659654" /><figcaption>image-20200918171659654<figcaption></figure></p>
 <p>可以看到，ESLint给我们提示了两个错误：</p>
 <ul>
 <li><code>test</code>变量定义了，但是未使用</li>
@@ -260,7 +260,7 @@ let test = 1
 <p>执行命令，加上<code>--fix</code>参数：</p>
 <pre class="line-numbers"><code class="language-shell">npx eslint --fix ./src/index.js
 </code></pre>
-<p><img src="media/17280328175326/17281442524460.png" alt="image-20200918172959131" /></p>
+<p><figure><img src="media/17280328175326/17281442524460.png" alt="image-20200918172959131" /><figcaption>image-20200918172959131<figcaption></figure></p>
 <p>我们可以看到，只有一个错误了，另外再看下<code>./src/index.js</code>：</p>
 <pre class="line-numbers"><code class="language-js">// ./src/index.js
 let test = 1;
@@ -310,7 +310,7 @@ module.exports = {
 <li><code>eslint-loader</code>的配置推荐放在eslint的配置文件中，而不放在loader的options中。</li>
 </ol>
 <p>如上配置以后，在执行构建命令的时候，就会先执行检查并在终端输出检查结果（仅做检查，不会影响构建结果）。</p>
-<p><img src="media/17280328175326/17281442524471.png" alt="image-20200922160134442" /></p>
+<p><figure><img src="media/17280328175326/17281442524471.png" alt="image-20200922160134442" /><figcaption>image-20200922160134442<figcaption></figure></p>
 <p>不过，我们一般编码的时候，终端都运行在后台的，查看这些信息就必须要来回切换，甚是不便。作为一个懒癌患者，肯定是不愿意的。用过vue-cli的同学都知道，如果有错误提示，是会在浏览器弹出浮层提示的。</p>
 <p>其实配置相当简单，不明白的自己回去看看前面webpack那部分吧。</p>
 <pre class="line-numbers"><code class="language-js">// webpack.config.js
@@ -322,7 +322,7 @@ module.exports = {
     // ...
 }
 </code></pre>
-<p><img src="media/17280328175326/17281442524481.png" alt="image-20200922161111872" /></p>
+<p><figure><img src="media/17280328175326/17281442524481.png" alt="image-20200922161111872" /><figcaption>image-20200922161111872<figcaption></figure></p>
 <h3><a id="%E5%9C%A8%E7%BC%96%E8%BE%91%E5%99%A8%E4%B8%AD%E4%BD%BF%E7%94%A8%EF%BC%88vscode%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>在编辑器中使用（VSCode）</h3>
 <p>前面介绍的使用方式已经非常方便了，但是作为一个懒癌重度患者，在使用中我还是发现了一些问题：</p>
 <ul>
@@ -335,9 +335,9 @@ module.exports = {
 <p>首先安装<a href="https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint">ESLint</a>插件，在VSCode中<code>ctrl+p</code>然后输入以下命令：</p>
 <pre class="line-numbers"><code class="language-shell">ext install dbaeumer.vscode-eslint
 </code></pre>
-<p><img src="media/17280328175326/17281442524491.png" alt="image-20200922163527375" /></p>
+<p><figure><img src="media/17280328175326/17281442524491.png" alt="image-20200922163527375" /><figcaption>image-20200922163527375<figcaption></figure></p>
 <p>现在用VSCode打开前面的代码，可以看到有的代码下面会有黄色（警告）或者红色（错误）的波浪线提示，把鼠标移上去，还可以看到错误详情以及修复方案。</p>
-<p><img src="media/17280328175326/17281442524510.png" alt="image-20200922163709515" /></p>
+<p><figure><img src="media/17280328175326/17281442524510.png" alt="image-20200922163709515" /><figcaption>image-20200922163709515<figcaption></figure></p>
 <p>现在，我们书写代码的时候，就会立即给与提示，不用再去终端或者浏览器查看错误信息，然后再去文件中查找问题代码了。</p>
 <p>那么，第二问题呢，一些简单的格式能不能自动修复呢？</p>
 <p>只需要在VSCode的配置中加上如下配置，当保存文件的时候，一些简单的格式问题就会被自动修复，是不是又可以多撸几把王者农药了呢。</p>
@@ -345,7 +345,7 @@ module.exports = {
     &quot;source.fixAll.eslint&quot;: true
  }
 </code></pre>
-<p><img src="media/17280328175326/17281442524527.gif" alt="img" /></p>
+<p><figure><img src="media/17280328175326/17281442524527.gif" alt="img" /><figcaption>img<figcaption></figure></p>
 <p><em>提示：vscode-eslint是支持<a href="https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint">配置</a>的，提供了<code>eslint.options</code>来设置全局配置，如果项目中没有配置，会以这里的配置兜底。</em></p>
 <pre class="line-numbers"><code class="language-json">&quot;eslint.options&quot;: {
   &quot;root&quot;: true,
@@ -837,7 +837,7 @@ module.exports = {
 </ol>
 <pre class="line-numbers"><code class="language-plain_text">ext install esbenp.prettier-vscode
 </code></pre>
-<p><img src="media/17280328175326/17281442524536.png" alt="image-20200925171718606" /></p>
+<p><figure><img src="media/17280328175326/17281442524536.png" alt="image-20200925171718606" /><figcaption>image-20200925171718606<figcaption></figure></p>
 <ol start="2">
 <li>安装Prettier</li>
 </ol>

@@ -204,12 +204,12 @@ hello cli
 <li><code>name</code>为发布的包名，不能和npm已有的包重复</li>
 <li><code>version</code>为版本信息，每次发布都必须要比线上的版本高</li>
 <li><code>homepage</code>、<code>bugs</code>、<code>repository</code>也可以添加上，对应如下页面<br />
-<img src="media/17280321453973/17280321822699.jpg" alt="" /></li>
+<figure><img src="media/17280321453973/17280321822699.jpg" alt="" /></figure></li>
 </ul>
 </li>
 <li>
 <p>在readme.md加入脚手架介绍及使用方法，方便他人使用。如果需要在文档中加入徽标，展示脚手架的下载次数之类的，可以在<a href="https://shields.io/">这里</a>生成。<br />
-<img src="media/17280321453973/17280322084270.jpg" alt="" /></p>
+<figure><img src="media/17280321453973/17280322084270.jpg" alt="" /></figure></p>
 </li>
 </ul>
 <p>发布成功后，需要等待一会儿才可以在<a href="https://www.npmjs.com/">npm仓库</a>搜索到。</p>
@@ -275,7 +275,7 @@ true
 <ul>
 <li>实现<code>init</code>命令具体执行的操作，下面会有单独部分来说。</li>
 <li>为了方便维护，将命令<code>action</code>拆分到<code>commands</code>文件夹中<br />
-<img src="media/17280321453973/17280322393931.jpg" alt="" /></li>
+<figure><img src="media/17280321453973/17280322393931.jpg" alt="" /></figure></li>
 </ul>
 <h3><a id="%E6%8B%89%E5%8F%96%E9%A1%B9%E7%9B%AE" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>拉取项目</h3>
 <p>上面，我们定义了<code>init</code>命令，但是并没有达到初始化项目的目的，接下来我们就实现一下。</p>
@@ -337,7 +337,7 @@ const initAction = async (name, option) =&gt; {
 module.exports = initAction;
 </code></pre>
 <p>测试一下，不出意外就可以成功拉取项目了。<br />
-<img src="media/17280321453973/17280322526988.jpg" alt="" /></p>
+<figure><img src="media/17280321453973/17280322526988.jpg" alt="" /></figure></p>
 <p>这里拉取的项目是和远程仓库关联的，我们需要将其删掉（由于我们项目是svn管理，所以直接把<code>.git</code>文件夹删掉，如果使用git的话，可以<code>git init</code>初始化即可），清理掉一些多余文件：</p>
 <pre class="line-numbers"><code class="language-js">// commands/init.js
 // 5. 清理文件
@@ -416,7 +416,7 @@ let confirm = await inquirer.prompt([
 ]);
 if (!confirm.isConfirm) return false;
 </code></pre>
-<p><img src="media/17280321453973/17280322736911.jpg" alt="" /></p>
+<p><figure><img src="media/17280321453973/17280322736911.jpg" alt="" /></figure></p>
 <p>获取到用户输入的配置以后，就可以写入配置文件或者做个性化的处理了，这个太简单，我这里就不赘述了。</p>
 <h2><a id="%E9%94%A6%E4%B8%8A%E6%B7%BB%E8%8A%B1" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>锦上添花</h2>
 <p>到这里，一个完全满足需求的脚手架就完成了，但是作为一个有追求的程序员，我们可以在界面和易用性上面再做点什么：</p>
@@ -434,11 +434,11 @@ installSpinner.succeed(chalk.green('依赖安装成功！'));
 <ul>
 <li>
 <p>在操作成功或者失败给出图标提示，使用<a href="https://www.npmjs.com/package/log-symbols">log-symbols</a><br />
-<img src="media/17280321453973/17280322824011.jpg" alt="" /></p>
+<figure><img src="media/17280321453973/17280322824011.jpg" alt="" /></figure></p>
 </li>
 <li>
 <p>可以给文字加点颜色，同理用现成的轮子<a href="https://www.npmjs.com/package/chalk">Chalk</a><br />
-<img src="media/17280321453973/17280322882996.jpg" alt="" /></p>
+<figure><img src="media/17280321453973/17280322882996.jpg" alt="" /></figure></p>
 </li>
 <li>
 <p>在安装依赖或者其他耗时比较长的时候，用户可能会把终端切到后台，这时我们的操作完成后可以使用<a href="https://www.npmjs.com/package/node-notifier">node-notifier</a>发出系统通知给予用户提示。</p>

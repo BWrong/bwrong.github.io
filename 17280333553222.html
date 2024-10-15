@@ -137,19 +137,19 @@
         </div>
         <article class="markdown-body single-content">
           <p>关于如何使用qiankun，官方文档比较完善，网上文档也较多，所以这里就不再赘述。接下来我们就来看一下目前文档中缺失的部分<a href="https://qiankun.umijs.org/zh/guide#%E5%AE%83%E6%98%AF%E5%A6%82%E4%BD%95%E5%B7%A5%E4%BD%9C%E7%9A%84">它是如何工作的</a>。</p>
-<p><img src="media/17280333553222/17281450088426.webP" alt="image.png" /></p>
+<p><figure><img src="media/17280333553222/17281450088426.webP" alt="image.png" /><figcaption>image.png<figcaption></figure></p>
 <h2><a id="%E8%BF%90%E8%A1%8C%E6%B5%81%E7%A8%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>运行流程</h2>
-<p><img src="media/17280333553222/17281450088452.webP" alt="qiankun" /></p>
+<p><figure><img src="media/17280333553222/17281450088452.webP" alt="qiankun" /><figcaption>qiankun<figcaption></figure></p>
 <h2><a id="%E6%A0%B8%E5%BF%83api" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>核心API</h2>
 <p><code>registerMicroApps</code>和<code>start</code>是qiankun两个核心的API。</p>
 <p><code>registerMicroApps</code> 函数的作用是注册子应用，并且在子应用激活时，创建运行沙箱，在不同阶段调用不同的生命周期钩子函数。<code>start</code> 函数负责初始化一些全局设置，然后启动应用。</p>
-<p><img src="media/17280333553222/17281450088463.webP" alt="qiankun" /></p>
+<p><figure><img src="media/17280333553222/17281450088463.webP" alt="qiankun" /><figcaption>qiankun<figcaption></figure></p>
 <h2><a id="%E6%B2%99%E7%AE%B1" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>沙箱</h2>
 <p>qiankun的沙箱环境可以分为三类，主要通过运行环境是否支持Proxy和是否是单实例进行区分。</p>
-<p><img src="media/17280333553222/17281450088473.webP" alt="qiankun" /></p>
+<p><figure><img src="media/17280333553222/17281450088473.webP" alt="qiankun" /><figcaption>qiankun<figcaption></figure></p>
 <h3><a id="legacysandbox" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>LegacySandbox</h3>
 <p>LegacySandbox用于支持Proxy的单实例环境下，沙箱隔离是通过快照模式实现，在激活沙箱时还原子应用状态，卸载时还原主应用状态（子应用挂载前的全局状态）实现的。</p>
-<p><img src="media/17280333553222/17281450088483.webP" alt="qiankun" /></p>
+<p><figure><img src="media/17280333553222/17281450088483.webP" alt="qiankun" /><figcaption>qiankun<figcaption></figure></p>
 <ul>
 <li>当调用 <code>set</code> 向子应用 <code>proxy/window</code> 对象设置属性时，所有的属性设置和更新都会先记录在 <code>addedPropsMapInSandbox</code> 或 <code>modifiedPropsOriginalValueMapInSandbox</code> 中，然后统一记录到 <code>currentUpdatedPropsValueMap</code> 中。</li>
 <li>在激活沙箱时，沙箱会通过 <code>currentUpdatedPropsValueMap</code> 查询到子应用的独立状态池（沙箱可能会激活多次，这里是沙箱曾经激活期间被修改的全局变量），然后还原子应用状态。</li>
@@ -158,7 +158,7 @@
 <p>该方案使用diff算法还原window状态快照，因为使用的是同一个window，所以不能在多实例时使用，而且父子应用之间window对象还是会存在污染。</p>
 <h3><a id="proxysandbox" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>ProxySandbox</h3>
 <p>ProxySandbox用于支持Proxy的多实例环境下，它利用Proxy实现对微应用全局对象操作的拦截，子应用对全局属性的操作就是对该 <code>proxy</code> 对象属性的操作。</p>
-<p><img src="media/17280333553222/17281450088496.webP" alt="qiankun" /></p>
+<p><figure><img src="media/17280333553222/17281450088496.webP" alt="qiankun" /><figcaption>qiankun<figcaption></figure></p>
 <ul>
 <li>当调用 <code>set</code> 向子应用 <code>proxy/window</code> 对象设置属性时，所有的属性设置和更新都会命中 <code>updateValueMap</code>，存储在 <code>updateValueMap</code> 集合中，从而避免对 <code>window</code> 对象产生影响。</li>
 <li>当调用 <code>get</code> 从子应用 <code>proxy/window</code> 对象取值时，会优先从子应用的沙箱状态池 <code>updateValueMap</code> 中取值，如果没有命中才从主应用的 <code>window</code> 对象中取值。</li>
@@ -166,7 +166,7 @@
 <p><code>ProxySandbox</code> 是最完备的沙箱模式，完全隔离了对 <code>window</code> 对象的操作，在浏览器对Proxy兼容性兼容的情况下，算是最优的方案。</p>
 <h3><a id="snapshotsandbox" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>SnapshotSandbox</h3>
 <p>在浏览器不支持Proxy时，会回退到SnapshotSandbox沙箱，作为兜底方案。</p>
-<p><img src="media/17280333553222/17281450088512.webP" alt="qiankun" /></p>
+<p><figure><img src="media/17280333553222/17281450088512.webP" alt="qiankun" /><figcaption>qiankun<figcaption></figure></p>
 <ul>
 <li>在沙箱激活时，会先给当前 <code>window</code> 对象打一个快照，记录沙箱激活前的状态。打完快照后，函数内部将 <code>window</code> 状态通过 <code>modifyPropsMap</code> 记录还原到上次的沙箱运行环境，也就是还原沙箱激活期间（历史记录）修改过的 <code>window</code> 属性。</li>
 <li>在沙箱关闭时，调用 <code>inactive</code> 函数，在沙箱关闭前通过遍历比较每一个属性，将被改变的 <code>window</code> 对象属性值记录在 <code>modifyPropsMap</code> 集合中。在记录了 <code>modifyPropsMap</code> 后，将 <code>window</code> 对象通过快照 <code>windowSnapshot</code> 还原到被沙箱激活前的状态，相当于是将子应用运行期间对 <code>window</code> 造成的污染全部清除。</li>
