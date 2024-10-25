@@ -175,14 +175,26 @@
         </p>
       </div>
     </div><!-- end columns -->
+    <!-- 畅言 -->
+    
+    <div id="SOHUCS" sid="17280332063046.html"></div>
+    <script charset="utf-8" type="text/javascript" src="https://cy-cdn.kuaizhan.com/upload/changyan.js"></script>
+    <script type="text/javascript">
+      window.changyan.api.config({
+        appid: 'cyxz7DBK8',
+        conf: 'prod_2d48d74138f0721c0a127f9657572a89'
+      });
+    </script>
+    
   </div><!-- end container -->
 
   <div class="toc-widget animate__animated animate__fadeInRight">
     <div id="toc-content"></div>
   </div>
+
 </section>
 <style>
-  .post-nav{
+  .post-nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -190,6 +202,7 @@
     border-top: 1px dashed #eee;
     padding: 14px 0;
   }
+
   .toc-widget {
     overflow-y: auto;
     position: fixed;
@@ -306,16 +319,16 @@
       tocWidget.classList.remove('toc-fixed');
     }
   });
-</script>    <footer class="footer">
-        <div class="content has-text-centered">
-          <p>
-            Powered by <a href="https://zh.mweb.im/" target="_blank" title="Gridea"><span>MWeb</span></a>
-            
-            . 版权所有：<a href="https://beian.miit.gov.cn/" target="_blank"><span>蜀ICP备2023018303号-1</span></a> .
-            
-          </p>
-        </div>
-      </footer>
+</script>  <footer class="footer">
+  <div class="content has-text-centered">
+    <p>
+      Powered by <a href="https://zh.mweb.im/" target="_blank" title="Gridea"><span>MWeb</span></a>
+      
+      . 版权所有：<a href="https://beian.miit.gov.cn/" target="_blank"><span>蜀ICP备2023018303号-1</span></a> .
+      
+    </p>
+  </div>
+</footer>
 
 <style>.mweb-charts{background:#fff;}
 body{ box-sizing: border-box;
@@ -404,60 +417,7 @@ div.code-toolbar > .toolbar > .toolbar-item > span:focus {
 
 
 
+<script src="https://fastly.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script>
+</body>
 
-
-
-<!-- 宠物 -->
-<canvas id="live2dcanvas" width="200" height="400" class="live2d"></canvas>
-<style>
-  #live2dcanvas {
-    position: fixed;
-    right: 0px;
-    z-index: 999;
-    pointer-events: none;
-    bottom: -40px;
-    width: 200px;
-    height: 400px;
-  }
-
-  @media (max-width: 768px) {
-    #live2dcanvas {
-      width: 150px;
-      height: 300px;
-    }
-  }
-
-  @media (max-width: 639px) {
-    #live2dcanvas {
-      display: none !important;
-    }
-  }
-</style>
-<script src="asset/L2Dwidget.min.js"></script>
-<script>
-  //初始化小人物 需设置属性pluginRootPath: "live2dw/"指明资源跟路径
-  L2Dwidget.init({
-    pluginRootPath: "media/",//资源root路径
-    pluginJsPath: "scripts/",//js相对root的路径
-    pluginModelPath: "model/",//模型相对root的路径
-    tagMode: !1,
-    debug: !1,
-    model: {
-      scale: 2,
-      jsonPath: "asset/live2d-widget-model-epsilon/Epsilon2.1.model.json"
-    },
-    display: {//大小位置什么的自己慢慢调就是了
-      position: "right",//定位
-      width: 130,//宽度
-      height: 210,//高度
-      hOffset: -40,//左右
-      vOffset: 0//上下
-    },
-    mobile: {
-      show: !1
-    },
-    log: !1
-  });
-</script>
-  </body>
 </html>
