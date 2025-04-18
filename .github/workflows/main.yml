@@ -8,15 +8,29 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
-    - name: Install coscmd
-      run: sudo pip install coscmd
-    - name: Configure coscmd
-      env:
-        SECRET_ID: ${{ secrets.SecretId }}
-        SECRET_KEY: ${{ secrets.SecretKey }}
-        BUCKET: blog-1303450388
-        REGION: ap-shanghai
-      run: coscmd config -a $SECRET_ID -s $SECRET_KEY -b $BUCKET -r $REGION
-    - name: Upload
-      run: coscmd upload -rs --delete -f ./ / --ignore "./.git/*"
+      # 检出代码
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 设置 Python 版本
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.8'
+
+      # 安装 COS 工具
+      - name: Install COS tools
+        run: |
+          pip install cos-python-sdk-v5
+          pip install coscmd
+
+      # 上传文件到 COS
+      - name: Upload Files to COS
+        env:
+          TENCENTCLOUD_SECRET_ID: ${{ secrets.SecretId }}
+          TENCENTCLOUD_SECRET_KEY: ${{ secrets.SecretKey }}
+          COS_REGION: ap-shanghai  # 替换为实际地域
+          COS_BUCKET: blog-1303450388  # 替换为存储桶名称
+        run: |
+          coscmd config -a $TENCENTCLOUD_SECRET_ID -s $TENCENTCLOUD_SECRET_KEY -b $COS_BUCKET -r $COS_REGION
+          coscmd upload -rs --delete -f ./ / --ignore "./.git/*"
