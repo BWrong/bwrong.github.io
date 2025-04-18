@@ -4,7 +4,7 @@
   <title><![CDATA[Bwrong的拾光]]></title>
   <link href="https://www.bwrong.cn/atom.xml" rel="self"/>
   <link href="https://www.bwrong.cn/"/>
-  <updated>2025-03-11T10:38:47+08:00</updated>
+  <updated>2025-04-18T13:05:28+08:00</updated>
   <id>https://www.bwrong.cn/</id>
   <author>
     <name><![CDATA[]]></name>
@@ -20,7 +20,7 @@
     <content type="html"><![CDATA[
 <h2><a id="%E4%B8%80%E3%80%81mcp%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、MCP 基础概念</h2>
 <h3><a id="1-1%E4%BB%80%E4%B9%88%E6%98%AF-mcp%EF%BC%9F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>1.1 什么是 MCP？</h3>
-<p><strong>定义</strong>：MCP（Model Context Protocol，模型上下文协议）是由Anthropic公司于2024年底提出的一种<strong>开放标准协议</strong>，它标准化了应用程序如何为 LLM 提供上下文，旨在解决大型语言模型（LLM）与外部数据、工具之间的连接交互问题。它为AI应用提供了一种统一、标准化的方式来访问和处理实时数据、本地私域数据，解决了AI模型的数据孤岛问题，为 AI 应用提供了连接万物的接口，被誉为 &quot;AI 领域的 USB-C&quot;。<br />
+<p><strong>定义</strong>：MCP（Model Context Protocol，模型上下文协议）是由Anthropic公司于2024年底提出的一种<strong>开放标准协议</strong>，它标准化了应用程序如何为 LLM 提供上下文，旨在解决大型语言模型（LLM）与外部数据、工具之间的连接交互问题。它为AI应用提供了一种统一的、标准化的方式来访问和处理数据（实时数据、本地数据），解决了AI模型的数据孤岛问题，为 AI 应用提供了连接万物的接口，被誉为 &quot;AI 领域的 USB-C&quot;。<br />
 <figure><img src="media/17448568756381/17449444076713.jpg" alt="" /></figure></p>
 <p><strong>核心价值</strong>：</p>
 <p>传统的AI模型面临几个关键挑战：</p>
@@ -34,31 +34,19 @@
 <ul>
 <li>生态：MCP 提供很多现成的插件，你的 AI 可以直接使用。</li>
 <li>统一性：不限制于特定的 AI 模型，任何支持 MCP 的模型都可以灵活切换。</li>
-<li>数据安全：你的敏感数据留在自己的电脑上，不必全部上传（因为我们可以自行设计接口确定传输哪些数据）。</li>
+<li>数据安全：你的敏感数据留在自己的电脑上，自行决定上传那些数据。</li>
 </ul>
-<p>MCP 可以直接在 AI 与数据（包括本地数据和互联网数据）之间架起一座桥梁，通过 MCP 服务器和 MCP 客户端，大家只要都遵循这套协议，就能实现“万物互联”。有了MCP，可以和数据和文件系统、开发工具、Web 和浏览器自动化、生产力和通信、各种社区生态能力全部集成，实现强大的协作工作能力。<br />
+<p>MCP 是 AI大模型 与数据（包括本地数据和互联网数据）之间的一座桥梁，通过 MCP 服务器和 MCP 客户端，大家只要都遵循这套协议，就能实现“万物互联”。比如，可以和数据和文件系统、开发工具、Web 和浏览器自动化、生产力和通信、各种社区生态能力全部集成，实现强大的协作工作能力。<br />
 <figure><img src="media/17448568756381/17448608579279.jpg" alt="" /></figure></p>
-<p>目前，MCP 已经积累了足够的临界规模和动能，因此它被视为 2023-2025 年“代理开放标准”之争的潜在赢家。有人预计，按照当前的速度，MCP 将在 7 月超OpenAPI：<br />
-<figure><img src="media/17448568756381/17449406872634.jpg" alt="" /></figure></p>
 <h3><a id="1-2%E6%A0%B8%E5%BF%83%E6%9E%B6%E6%9E%84" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>1.2 核心架构</h3>
 <p><figure><img src="media/17448568756381/17449452410979.gif" alt="" /></figure></p>
 <p>MCP 遵循客户端-服务器架构（client-server），其中包含以下几个核心概念：</p>
 <ul>
-<li>
-<p>MCP 主机（MCP Hosts）：发起请求的 LLM 应用程序（例如 Claude Desktop、IDE 或 AI 工具）。</p>
-</li>
-<li>
-<p>MCP 客户端（MCP Clients）：在主机程序内部，与 MCP server 保持 1:1 的连接。</p>
-</li>
-<li>
-<p>MCP 服务器（MCP Servers）：为 MCP client 提供上下文、工具和 prompt 信息。</p>
-</li>
-<li>
-<p>本地资源（Local Resources）：本地计算机中可供 MCP server 安全访问的资源（例如文件、数据库）。</p>
-</li>
-<li>
-<p>远程资源（Remote Resources）：MCP server 可以连接到的远程资源（例如通过 API）。</p>
-</li>
+<li><strong>MCP 主机（MCP Hosts）</strong>：发起请求的 LLM 应用程序（例如 Claude Desktop、IDE 或 AI 工具）。</li>
+<li><strong>MCP 客户端（MCP Clients）</strong>：在主机程序内部，与 MCP server 保持 1:1 的连接。</li>
+<li><strong>MCP 服务器（MCP Servers）</strong>：为 MCP client 提供上下文、工具和 prompt 信息。</li>
+<li>本地资源（Local Resources）：本地计算机中可供 MCP server 安全访问的资源（例如文件、数据库）。</li>
+<li>远程资源（Remote Resources）：MCP server 可以连接到的远程资源（例如通过 API）。</li>
 </ul>
 <p>其中，重点关注MCP Client和MCP Server。</p>
 <p><strong>MCP Client</strong>：<br />
@@ -81,12 +69,25 @@
 ○ <a href="https://modelcontextprotocol.io/docs/concepts/prompts">提示（Prompts）</a>：预先编写的可复用的提示词模板和工作流程。<br />
 <figure><img src="media/17448568756381/17449526186282.jpg" alt="" /></figure></p>
 <p>这些功能使 MCP server 能够为 AI 应用提供丰富的上下文信息和操作能力，从而增强 LLM 的实用性和灵活性。</p>
+<h3><a id="%E4%B8%80%E4%B8%AA%E5%BD%A2%E8%B1%A1%E7%9A%84%E6%AF%94%E5%96%BB" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一个形象的比喻</h3>
+<p>我在网上看到了一个比较形象的比喻，感觉还不错，摘录到这里，如果需要查看原文请点<a href="https://baijiahao.baidu.com/s?id=1829100651768604009&amp;wfr=spider&amp;for=pc">这里</a><br />
+首先，用户让 LLM 调用工具，就好比我（特工少女，即 User）让男朋友（LLM）去小店（软件服务提供商）买东西（Data &amp; Tool）并使用。如果模型接到的任务则可能需要多个工具调用（Tool Use），这就好比我跟男朋友讲的需求比较复杂，比如做从零做一道番茄炒蛋。<br />
+<figure><img src="media/17448568756381/17449608021782.jpg" alt="" /></figure></p>
+<p>然后男朋友通过规划（Planning）决定去苏泊尔买个锅和铲，去菜场买个西红柿和鸡蛋，再去便利店买个糖和盐，以此来完成番茄炒蛋这道菜。但是在传统的 AI 应用开发过程中，男朋友（LLM）能去的小店（能使用的工具）都需要开发者预先定义线路（编写代码）。</p>
+<p>但是，男朋友（LLM）每去一个新地方，都要造一条新路（编写代码），似乎不太方便。于是后来字节扣子、百度千帆、阿里云百炼等平台出现了，他们就好比是开了一个商超。商超跟各种小店说，我这里人气旺，你们直接按我们的要求来货架上架你们的商品就行，再跟我（User）说我这现成的商品多，以后让男朋友（LLM）来这买就行。<br />
+<figure><img src="media/17448568756381/17449608153690.jpg" alt="" /></figure></p>
+<p>小店们觉得这事不错，便遵守平台一定的上架规范，开始把他们的商品（Tool）变成了插件（Plugin），我（User）提的好多需求，男朋友（LLM）在这些平台上就能一站式满足了，选几个插件直接用就行，方便了挺多。</p>
+<p>但是，Anthropic 干了一个什么事情呢？他想搞电商！</p>
+<p>他跟小店们说，不同平台的插件规范不太一样，你们去各个平台上架插件也挺累的。咱们搞个新玩法，能让天下的男朋友（LLM）都很容易的用到更多商品（调用更多工具）。你们呢按照我这个标准，把你们的商品都做一个数字化的标准信息处理（即变成了 MCP Server），我们再定义一个叫电商组件的东西（即 MCP Client），你们的 MCP Server 要跟电商组件有互动，只要遵守一个开放的规则，这部分就是 MCP 协议，即 Server 和 Client 的通信协议。</p>
+<p>此外，Anthropic 基于这个电商平台（Client）的理念做了一个淘宝的外壳，这个淘宝就好比没有包含 LLM 的 Claude Desktop。在这基础上，如果再加上 Claude 的模型，就相当于让“男朋友刷淘宝”，这一整体就构成了 MCP Host。<br />
+<figure><img src="media/17448568756381/17449608349448.jpg" alt="" /></figure></p>
+<p>MCP Server 只管提供各种工具，MCP Host 只管通过 MCP Client 获取并使用这些工具。然后淘宝上玲琅满目的商品很多，就形成了 MCP Market。</p>
 <h3><a id="1-3%E9%80%9A%E4%BF%A1%E6%9C%BA%E5%88%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>1.3 通信机制</h3>
-<p>MCP 协议支持两种主要的通信机制：基于Stdio（标准输入输出）的本地通信和基于SSE（Server-Sent Events）的远程通信。</p>
+<p>关于Client和Server之间的通信方式，MCP 协议支持两种主要的通信机制：基于Stdio（标准输入输出）的本地通信和基于SSE（Server-Sent Events）的远程通信。</p>
 <p>这两种机制都使用 <a href="https://modelcontextprotocol.io/docs/concepts/transports">JSON-RPC 2.0</a> 格式进行消息传输，确保了通信的标准化和可扩展性。</p>
-<p>本地通信：通过 stdio 传输数据，适用于在同一台机器上运行的客户端和服务器之间的通信。<br />
-远程通信：利用 SSE 与 HTTP 结合，实现跨网络的实时数据传输，适用于需要访问远程资源或分布式部署的场景。</p>
-<p><strong>连接初始化过程</strong>：<br />
+<p>**本地通信：**通过 stdio 传输数据，适用于在同一台机器上运行的客户端和服务器之间的通信。<br />
+**远程通信：**利用 SSE 与 HTTP 结合，实现跨网络的实时数据传输，适用于需要访问远程资源或分布式部署的场景。</p>
+<p><strong>连接过程</strong>：<br />
 <figure><img src="media/17448568756381/17449459358047.jpg" alt="" /></figure></p>
 <ol>
 <li>客户端发送包含协议版本和功能的请求initialize</li>
@@ -96,19 +97,76 @@
 </ol>
 <h2><a id="%E4%BA%8C%E3%80%81mcp%E4%B8%8E%E5%85%B6%E4%BB%96%E6%8A%80%E6%9C%AF%E7%9A%84%E6%AF%94%E8%BE%83" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>二、MCP与其他技术的比较</h2>
 <h3><a id="2-1%E4%B8%8E-function-calling%E5%AF%B9%E6%AF%94" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>2.1 与Function Calling对比</h3>
-<p>｜｜MCP｜Function Calling｜<br />
-|---|---|---|<br />
-|定义｜模型和其它设备集成的标准接口，包含：工具 Tools、资源 Resources、提示词 Prompts｜将模型连接到外部数据和系统，平铺式的罗列 Tools 工具。和 MCP Tool 不同的在于：MCP Tool 的函数约定了输入输出的协议规范。｜<br />
-｜性质｜协议｜功能｜<br />
-｜协议｜JSON-RPC，支持双向通信、可发现性、更新通知能力。｜JSON-Schema，静态函数调用。｜<br />
-｜调用方式｜Stdio / SSE / 同进程调用｜同进程调用 / 编程语言对应的函数｜<br />
-｜范围｜通用（多数据源、多功能）｜特定场景（单一数据源或功能）｜<br />
-｜目标｜统一接口，实现互操作｜扩展模型能力｜<br />
-｜实现｜基于标准协议｜没有统一的标准，各个大模型提供厂商都有自己的接入方式｜<br />
-｜开发复杂度｜低：通过统一协议实现多源兼容｜高：需要为每个任务单独开发函数｜<br />
-｜复用性｜高：一次开发，可多场景使用｜低：函数通常为特定任务设计｜<br />
-｜灵活性｜高：支持动态适配和扩展｜低：功能扩展需要额外开发｜<br />
-｜适用场景｜动态、复杂场景，如跨平台数据访问和整合｜简单任务。如天气查询、翻译等｜</p>
+<p>Function Calling，最初是由OpenAI在2023年6月作为其API的一部分提出的，是一种函数调用机制，允许LLM通在生成内容的过程中调用外部函数或服务，从而获取更多能力。现在，很多其他大模型也借鉴了这种概念，纷纷推出了自己的function calling 。借助这个功能，可以调用外网检索引擎、天气查询、图片生成服务、音乐生成服务调用等。</p>
+<table>
+<thead>
+<tr>
+<th>对比项目</th>
+<th>MCP</th>
+<th>Function Calling</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>定义</td>
+<td>模型和其它设备集成的标准接口，包含：工具 Tools、资源 Resources、提示词 Prompts</td>
+<td>将模型连接到外部数据和系统，平铺式的罗列 Tools 工具。和 MCP Tool 不同的在于：MCP Tool 的函数约定了输入输出的协议规范。</td>
+</tr>
+<tr>
+<td>性质</td>
+<td>协议</td>
+<td>功能</td>
+</tr>
+<tr>
+<td>协议</td>
+<td>JSON-RPC，支持双向通信、可发现性、更新通知能力。</td>
+<td>JSON-Schema，静态函数调用。</td>
+</tr>
+<tr>
+<td>调用方式</td>
+<td>Stdio / SSE / 同进程调用</td>
+<td>同进程调用 / 编程语言对应的函数</td>
+</tr>
+<tr>
+<td>范围</td>
+<td>通用（多数据源、多功能）</td>
+<td>特定场景（单一数据源或功能）</td>
+</tr>
+<tr>
+<td>目标</td>
+<td>统一接口，实现互操作</td>
+<td>扩展模型能力</td>
+</tr>
+<tr>
+<td>实现</td>
+<td>基于标准协议</td>
+<td>没有统一的标准，各个大模型提供厂商都有自己的接入方式</td>
+</tr>
+<tr>
+<td>开发复杂度</td>
+<td>低：通过统一协议实现多源兼容</td>
+<td>高：需要为每个任务单独开发函数</td>
+</tr>
+<tr>
+<td>复用性</td>
+<td>高：一次开发，可多场景使用</td>
+<td>低：函数通常为特定任务设计</td>
+</tr>
+<tr>
+<td>灵活性</td>
+<td>高：支持动态适配和扩展</td>
+<td>低：功能扩展需要额外开发</td>
+</tr>
+<tr>
+<td>适用场景</td>
+<td>动态、复杂场景，如跨平台数据访问和整合</td>
+<td>简单任务。如天气查询、翻译等</td>
+</tr>
+</tbody>
+</table>
+<p><figure><img src="media/17448568756381/1adfb43d17054bdfe566865c141baf35.png" alt="1adfb43d17054bdfe566865c141baf35" /><figcaption>1adfb43d17054bdfe566865c141baf35<figcaption></figure></p>
+<p>Function calling 功能单一，不具备上下文管理能力，一次只执行一个任务，一般是同步进行调用。没有特定的标准，需要厂商或者我们自己去开发实现。生态相对封闭，没有多少开源项目，定制化比较多。<br />
+MCP 功能复杂，可以支持多轮对话，一次能调用多个任务，也可以异步执行。有统一的标准，只要是适配了 MCP 的 Server 都可以用统一的代码去调用，而且除了工具调用，还提供了提示词和上下文资源。</p>
 <h3><a id="2-2%E4%B8%BE%E4%BE%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>2.2 举例</h3>
 <ul>
 <li>
@@ -144,9 +202,12 @@
 <p>这样，Client 就能使用更新后的新功能（例如在其请求中包含 unit 参数），实时调整行为，而无需重写或重新部署代码。</p>
 </li>
 </ul>
-<p>当然，mcp协议和function call两者并不直接对立的，反而是进行相互补充：<br />
-mcp协议工作在应用与外部工具对接的阶段，标准化这些工具的开发，以及在应用层接入、执行等过程。<br />
-function call 则工作在应用与大模型交互之间，标准化如何让大模型理解、调用外部工具。</p>
+<p>当然，mcp协议和function call两者并不直接对立的，反而是进行相互补充：</p>
+<ul>
+<li>mcp协议工作在应用与外部工具对接的阶段，标准化这些工具的开发，以及在应用层接入、执行等过程，更多指的是整个让模型调用工具的整体手段。</li>
+<li>function call 则工作在应用与大模型交互之间，标准化如何让大模型理解、调用外部工具。如Host 里的 LLM 向 Client 调用工具时，大多仍然使用 Function Calling。<br />
+<figure><img src="media/17448568756381/17449604160957.jpg" alt="" /></figure></li>
+</ul>
 <h2><a id="%E4%B8%89%E3%80%81%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B%EF%BC%9A%E4%BA%A4%E9%80%9A%E6%80%81%E5%8A%BF%E5%AE%9E%E6%97%B6%E6%9F%A5%E8%AF%A2" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>三、实战案例：交通态势实时查询</h2>
 <h3><a id="3-1%E9%9C%80%E6%B1%82" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>3.1 需求</h3>
 <p>开发一个支持自然语言查询的某市某条道路的实时交通态势，通过 MCP 调用高德 API。</p>
@@ -376,11 +437,20 @@ console.log(result);
 </code></pre>
 <p>更多代码亲查看<a href="https://github.com/BWrong/mcp-demo">这里</a></p>
 <h2><a id="%E5%9B%9B%E3%80%81%E4%BD%BF%E7%94%A8%E7%A4%BE%E5%8C%BA%E7%8E%B0%E6%9C%89%E7%9A%84mcp%E6%9C%8D%E5%8A%A1" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>四、使用社区现有的MCP服务</h2>
+<p>MCP的出现，极大降低了大模型调用外部海量工具、软件、接口的门槛，越来越多的软件及工具厂商参与到 MCP 服务（MCP Server）生态的建设中，将其产品能力包装为 MCP 服务开放给 AI 模型使用。以下是一些MCP托管平台：</p>
 <ul>
 <li><a href="https://www.modelscope.cn/mcp?page=1">魔搭</a></li>
 <li><a href="https://glama.ai/mcp/servers">Glama</a></li>
 <li><a href="https://smithery.ai/">Smithery</a></li>
 <li><a href="https://mcp.composio.dev/">Composio</a></li>
+</ul>
+<p>一些有意思的MCP Server:</p>
+<ul>
+<li><a href="https://www.modelscope.cn/mcp/servers/@modelcontextprotocol/fetch">Fetch网页内容抓取</a></li>
+<li><a href="https://www.modelscope.cn/mcp/servers/@modelcontextprotocol/github">GitHub</a></li>
+<li><a href="https://www.modelscope.cn/mcp/servers/@GLips/Figma-Context-MCP">Figma</a></li>
+<li><a href="https://www.modelscope.cn/mcp/servers/@21st-dev/magic-mcp">magic</a></li>
+<li><a href="https://www.modelscope.cn/mcp/servers/@ahujasid/blender-mcp">Blender</a></li>
 </ul>
 <p>参考文档：</p>
 <ul>
