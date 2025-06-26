@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
     
-    MCP（Model Context Protocol）入门与实践 - Bwrong的拾光
+    MacOS安装软件及运行时，提示“已损坏无法打开”的解决方案 - Bwrong的拾光
     
     </title>
     <link rel="shortcut icon" href="asset/avatar.png" type="image/png" />
 
-    <meta name="keywords" content="mcp，ai" />
+    
     
     <link href="atom.xml" rel="alternate" title="Bwrong的拾光" type="application/atom+xml">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet" />
@@ -82,7 +82,7 @@
  <div class="hero-body ct-body">
   <div class="container">
     <h1 class="title-only animate__animated animate__fadeInUp">
-      <span clsss="tran-archives">MCP（Model Context Protocol）入门与实践</span>
+      <span clsss="tran-archives">MacOS安装软件及运行时，提示“已损坏无法打开”的解决方案</span>
     </h1>
   </div>
 </div>
@@ -95,7 +95,7 @@
         <div class="post-body single-content">
           
           <!-- <h1 class="title">
-            MCP（Model Context Protocol）入门与实践
+            MacOS安装软件及运行时，提示“已损坏无法打开”的解决方案
           </h1> -->
 
 
@@ -112,10 +112,10 @@
             <div class="media-content">
               <div class="content">
                 <p>
-                  <span class="date">2025/04/17</span>
+                  <span class="date">2025/06/26</span>
                   <span class="tran-posted-in">posted in</span>&nbsp; 
                   
-                  <span class="posted-in"><a href='AI.html'>AI</a></span>
+                  <span class="posted-in"><a href='%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7.html'>开发工具</a></span>
                   
                   
 
@@ -123,10 +123,6 @@
 
                   <br />
                   <span class="tran-tags">Tags:</span>&nbsp;
-                  
-                  <a class="tag is-link is-light" href='tag_mcp.html'>#mcp</a>
-                  
-                  <a class="tag is-link is-light" href='tag_ai.html'>#ai</a>
                   
 
                 </p>
@@ -136,446 +132,19 @@
           </div>
         </div>
         <article class="markdown-body single-content">
-          <h2><a id="%E4%B8%80%E3%80%81mcp%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、MCP 基础概念</h2>
-<h3><a id="1-1%E4%BB%80%E4%B9%88%E6%98%AF-mcp%EF%BC%9F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>1.1 什么是 MCP？</h3>
-<p><strong>定义</strong>：MCP（Model Context Protocol，模型上下文协议）是由Anthropic公司于2024年底提出的一种<strong>开放标准协议</strong>，它标准化了应用程序如何为 LLM 提供上下文，旨在解决大型语言模型（LLM）与外部数据、工具之间的连接交互问题。它为AI应用提供了一种统一的、标准化的方式来访问和处理数据（实时数据、本地数据），解决了AI模型的数据孤岛问题，为 AI 应用提供了连接万物的接口，被誉为 &quot;AI 领域的 USB-C&quot;。<br />
-<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449444076713.jpg" alt="" /></figure></p>
-<p><strong>核心价值</strong>：</p>
-<p>传统的AI模型面临几个关键挑战：</p>
-<ul>
-<li>知识时效性限制：模型只了解训练截止日期前的信息</li>
-<li>专有数据访问困难：无法直接访问企业内部系统的数据</li>
-<li>集成成本高昂：每接入一种新数据源，都需要定制专门的集成方案。传统上，将 AI 系统连接到外部工具涉及集成多个 API。每个 API 集成都意味着单独的代码、文档、身份验证方法、错误处理和维护。<br />
-<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449445095592.jpg" alt="" /></figure></li>
-</ul>
-<p>MCP的核心优势：</p>
-<ul>
-<li>生态：MCP 提供很多现成的插件，你的 AI 可以直接使用。</li>
-<li>统一性：不限制于特定的 AI 模型，任何支持 MCP 的模型都可以灵活切换。</li>
-<li>数据安全：你的敏感数据留在自己的电脑上，自行决定上传那些数据。</li>
-</ul>
-<p>MCP 是 AI大模型 与数据（包括本地数据和互联网数据）之间的一座桥梁，通过 MCP 服务器和 MCP 客户端，大家只要都遵循这套协议，就能实现“万物互联”。比如，可以和数据和文件系统、开发工具、Web 和浏览器自动化、生产力和通信、各种社区生态能力全部集成，实现强大的协作工作能力。<br />
-<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17448608579279.jpg" alt="" /></figure></p>
-<h3><a id="1-2%E6%A0%B8%E5%BF%83%E6%9E%B6%E6%9E%84" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>1.2 核心架构</h3>
-<p><figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449452410979.gif" alt="" /></figure></p>
-<p>MCP 遵循客户端-服务器架构（client-server），其中包含以下几个核心概念：</p>
-<ul>
-<li><strong>MCP 主机（MCP Hosts）</strong>：发起请求的 LLM 应用程序（例如 Claude Desktop、IDE 或 AI 工具）。</li>
-<li><strong>MCP 客户端（MCP Clients）</strong>：在主机程序内部，与 MCP server 保持 1:1 的连接。</li>
-<li><strong>MCP 服务器（MCP Servers）</strong>：为 MCP client 提供上下文、工具和 prompt 信息。</li>
-<li>本地资源（Local Resources）：本地计算机中可供 MCP server 安全访问的资源（例如文件、数据库）。</li>
-<li>远程资源（Remote Resources）：MCP server 可以连接到的远程资源（例如通过 API）。</li>
-</ul>
-<p>其中，重点关注MCP Client和MCP Server。</p>
-<p><strong>MCP Client</strong>：<br />
-<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449452837237.jpg" alt="" /></figure></p>
-<p>MCP client 充当 LLM 和 MCP server 之间的桥梁，MCP client 的工作流程如下：</p>
-<p>❶ MCP client 首先从 MCP server 获取可用的工具列表。<br />
-❷ 将用户的查询连同工具描述通过 function calling 一起发送给 LLM。<br />
-❸ LLM 决定是否需要使用工具以及使用哪些工具。<br />
-❹ 如果需要使用工具，大模型向MCP client发出请求，MCP client 会通过 MCP server 执行相应的工具调用。<br />
-❺ MCP server处理请求，处理结果返回给MCP client<br />
-❺ MCP client将结果发送回 LLM。<br />
-❻ LLM 基于所有信息生成自然语言响应。<br />
-❼ MCP Hosts将响应展示给用户。</p>
-<p>Claude Desktop 和Cursor都支持了MCP Server接入能力，它们就是作为 MCP client来连接某个MCP Server感知和实现调用。</p>
-<p><strong>MCP Server</strong>：<br />
-<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449453163079.jpg" alt="" /></figure></p>
-<p>MCP server 是 MCP 架构中的关键组件，它可以提供 3 种主要类型的功能：</p>
-<p>○ <a href="https://modelcontextprotocol.io/docs/concepts/resources">资源（Resources）</a>：将 Server 上的数据和内容开放给大语言模型，可以是文本或二进制数据。如 API 响应、文件内容、图像等。<br />
-○ <a href="https://modelcontextprotocol.io/docs/concepts/tools">工具（Tools）</a>：可以被调用的函数，这些函数可由客户端调用，并由 LLM 使用来执行操作。<br />
-○ <a href="https://modelcontextprotocol.io/docs/concepts/prompts">提示（Prompts）</a>：预先编写的可复用的提示词模板和工作流程。<br />
-<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449526186282.jpg" alt="" /></figure></p>
-<p>这些功能使 MCP server 能够为 AI 应用提供丰富的上下文信息和操作能力，从而增强 LLM 的实用性和灵活性。</p>
-<h3><a id="%E4%B8%80%E4%B8%AA%E5%BD%A2%E8%B1%A1%E7%9A%84%E6%AF%94%E5%96%BB" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一个形象的比喻</h3>
-<p>我在网上看到了一个比较形象的比喻，感觉还不错，摘录到这里，如果需要查看原文请点<a href="https://baijiahao.baidu.com/s?id=1829100651768604009&amp;wfr=spider&amp;for=pc">这里</a><br />
-首先，用户让 LLM 调用工具，就好比我（特工少女，即 User）让男朋友（LLM）去小店（软件服务提供商）买东西（Data &amp; Tool）并使用。如果模型接到的任务则可能需要多个工具调用（Tool Use），这就好比我跟男朋友讲的需求比较复杂，比如做从零做一道番茄炒蛋。<br />
-<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449608021782.jpg" alt="" /></figure></p>
-<p>然后男朋友通过规划（Planning）决定去苏泊尔买个锅和铲，去菜场买个西红柿和鸡蛋，再去便利店买个糖和盐，以此来完成番茄炒蛋这道菜。但是在传统的 AI 应用开发过程中，男朋友（LLM）能去的小店（能使用的工具）都需要开发者预先定义线路（编写代码）。</p>
-<p>但是，男朋友（LLM）每去一个新地方，都要造一条新路（编写代码），似乎不太方便。于是后来字节扣子、百度千帆、阿里云百炼等平台出现了，他们就好比是开了一个商超。商超跟各种小店说，我这里人气旺，你们直接按我们的要求来货架上架你们的商品就行，再跟我（User）说我这现成的商品多，以后让男朋友（LLM）来这买就行。<br />
-<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449608153690.jpg" alt="" /></figure></p>
-<p>小店们觉得这事不错，便遵守平台一定的上架规范，开始把他们的商品（Tool）变成了插件（Plugin），我（User）提的好多需求，男朋友（LLM）在这些平台上就能一站式满足了，选几个插件直接用就行，方便了挺多。</p>
-<p>但是，Anthropic 干了一个什么事情呢？他想搞电商！</p>
-<p>他跟小店们说，不同平台的插件规范不太一样，你们去各个平台上架插件也挺累的。咱们搞个新玩法，能让天下的男朋友（LLM）都很容易的用到更多商品（调用更多工具）。你们呢按照我这个标准，把你们的商品都做一个数字化的标准信息处理（即变成了 MCP Server），我们再定义一个叫电商组件的东西（即 MCP Client），你们的 MCP Server 要跟电商组件有互动，只要遵守一个开放的规则，这部分就是 MCP 协议，即 Server 和 Client 的通信协议。</p>
-<p>此外，Anthropic 基于这个电商平台（Client）的理念做了一个淘宝的外壳，这个淘宝就好比没有包含 LLM 的 Claude Desktop。在这基础上，如果再加上 Claude 的模型，就相当于让“男朋友刷淘宝”，这一整体就构成了 MCP Host。<br />
-<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449608349448.jpg" alt="" /></figure></p>
-<p>MCP Server 只管提供各种工具，MCP Host 只管通过 MCP Client 获取并使用这些工具。然后淘宝上玲琅满目的商品很多，就形成了 MCP Market。</p>
-<h3><a id="1-3%E9%80%9A%E4%BF%A1%E6%9C%BA%E5%88%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>1.3 通信机制</h3>
-<p>关于Client和Server之间的通信方式，MCP 协议支持两种主要的通信机制：基于Stdio（标准输入输出）的本地通信和基于SSE（Server-Sent Events）的远程通信。</p>
-<p>这两种机制都使用 <a href="https://modelcontextprotocol.io/docs/concepts/transports">JSON-RPC 2.0</a> 格式进行消息传输，确保了通信的标准化和可扩展性。</p>
-<p>**本地通信：**通过 stdio 传输数据，适用于在同一台机器上运行的客户端和服务器之间的通信。<br />
-**远程通信：**利用 SSE 与 HTTP 结合，实现跨网络的实时数据传输，适用于需要访问远程资源或分布式部署的场景。</p>
-<p><strong>连接过程</strong>：<br />
-<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449459358047.jpg" alt="" /></figure></p>
-<ol>
-<li>客户端发送包含协议版本和功能的请求initialize</li>
-<li>Server 使用其协议版本和功能进行响应</li>
-<li>客户端发送通知作为确认initialized</li>
-<li>正常消息交换开始</li>
-</ol>
-<h2><a id="%E4%BA%8C%E3%80%81mcp%E4%B8%8E%E5%85%B6%E4%BB%96%E6%8A%80%E6%9C%AF%E7%9A%84%E6%AF%94%E8%BE%83" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>二、MCP与其他技术的比较</h2>
-<h3><a id="2-1%E4%B8%8E-function-calling%E5%AF%B9%E6%AF%94" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>2.1 与Function Calling对比</h3>
-<p>Function Calling，最初是由OpenAI在2023年6月作为其API的一部分提出的，是一种函数调用机制，允许LLM通在生成内容的过程中调用外部函数或服务，从而获取更多能力。现在，很多其他大模型也借鉴了这种概念，纷纷推出了自己的function calling 。借助这个功能，可以调用外网检索引擎、天气查询、图片生成服务、音乐生成服务调用等。</p>
-<table>
-<thead>
-<tr>
-<th>对比项目</th>
-<th>MCP</th>
-<th>Function Calling</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>定义</td>
-<td>模型和其它设备集成的标准接口，包含：工具 Tools、资源 Resources、提示词 Prompts</td>
-<td>将模型连接到外部数据和系统，平铺式的罗列 Tools 工具。和 MCP Tool 不同的在于：MCP Tool 的函数约定了输入输出的协议规范。</td>
-</tr>
-<tr>
-<td>性质</td>
-<td>协议</td>
-<td>功能</td>
-</tr>
-<tr>
-<td>协议</td>
-<td>JSON-RPC，支持双向通信、可发现性、更新通知能力。</td>
-<td>JSON-Schema，静态函数调用。</td>
-</tr>
-<tr>
-<td>调用方式</td>
-<td>Stdio / SSE / 同进程调用</td>
-<td>同进程调用 / 编程语言对应的函数</td>
-</tr>
-<tr>
-<td>范围</td>
-<td>通用（多数据源、多功能）</td>
-<td>特定场景（单一数据源或功能）</td>
-</tr>
-<tr>
-<td>目标</td>
-<td>统一接口，实现互操作</td>
-<td>扩展模型能力</td>
-</tr>
-<tr>
-<td>实现</td>
-<td>基于标准协议</td>
-<td>没有统一的标准，各个大模型提供厂商都有自己的接入方式</td>
-</tr>
-<tr>
-<td>开发复杂度</td>
-<td>低：通过统一协议实现多源兼容</td>
-<td>高：需要为每个任务单独开发函数</td>
-</tr>
-<tr>
-<td>复用性</td>
-<td>高：一次开发，可多场景使用</td>
-<td>低：函数通常为特定任务设计</td>
-</tr>
-<tr>
-<td>灵活性</td>
-<td>高：支持动态适配和扩展</td>
-<td>低：功能扩展需要额外开发</td>
-</tr>
-<tr>
-<td>适用场景</td>
-<td>动态、复杂场景，如跨平台数据访问和整合</td>
-<td>简单任务。如天气查询、翻译等</td>
-</tr>
-</tbody>
-</table>
-<p><figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/1adfb43d17054bdfe566865c141baf35.png" alt="1adfb43d17054bdfe566865c141baf35" /><figcaption>1adfb43d17054bdfe566865c141baf35<figcaption></figure></p>
-<p>Function calling 功能单一，不具备上下文管理能力，一次只执行一个任务，一般是同步进行调用。没有特定的标准，需要厂商或者我们自己去开发实现。生态相对封闭，没有多少开源项目，定制化比较多。<br />
-MCP 功能复杂，可以支持多轮对话，一次能调用多个任务，也可以异步执行。有统一的标准，只要是适配了 MCP 的 Server 都可以用统一的代码去调用，而且除了工具调用，还提供了提示词和上下文资源。</p>
-<h3><a id="2-2%E4%B8%BE%E4%BE%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>2.2 举例</h3>
-<ul>
-<li>
-<p>如果你的 function 最初需要两个参数（例如，天气服务的 location 参数和 date 参数，用户需严格按此参数结构构建应用。<br />
-<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449453826664.jpg" alt="" /></figure></p>
-</li>
-<li>
-<p>之后，如果你决定为该 function 添加第三个必选参数（例如，unit参数（温度单位）），将“契约”进行变更。<br />
-<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449454190209.jpg" alt="" /></figure></p>
-</li>
-<li>
-<p>这意味着该 function 的所有用户都必须更新代码，增加对新参数的支持，如果未及时更新，他们的请求可能会失败、报错或提供不完整的结果。<br />
-<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449454519373.jpg" alt="" /></figure></p>
-</li>
-</ul>
-<p>MCP 的设计解决了这个问题，具体方法如下：</p>
-<ul>
-<li>
-<p>MCP 引入了一种动态、灵活的方法。</p>
-</li>
-<li>
-<p>当 Client（例如 Claude Desktop 这类 AI 应用）连接 MCP Server（例如天气服务）时，会发送初始请求，以便了解 Server 的能力。</p>
-</li>
-<li>
-<p>Server 的响应包含可用的 tools、resources、prompts 以及相关参数的详细信息。例如，若天气 API 最初仅支持 location 和 date 参数，服务器会通过能力交换告知这些信息。<br />
-<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449455836821.jpg" alt="" /></figure></p>
-</li>
-<li>
-<p>当新增 unit 参数时，MCP Server 可在下次进行能力交换时动态更新能力描述。Client 无需硬编码或预定义参数，只需查询 Server 的最新能力并自动适配。<br />
-<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449456074053.jpg" alt="" /></figure></p>
-</li>
-<li>
-<p>这样，Client 就能使用更新后的新功能（例如在其请求中包含 unit 参数），实时调整行为，而无需重写或重新部署代码。</p>
-</li>
-</ul>
-<p>当然，mcp协议和function call两者并不直接对立的，反而是进行相互补充：</p>
-<ul>
-<li>mcp协议工作在应用与外部工具对接的阶段，标准化这些工具的开发，以及在应用层接入、执行等过程，更多指的是整个让模型调用工具的整体手段。</li>
-<li>function call 则工作在应用与大模型交互之间，标准化如何让大模型理解、调用外部工具。如Host 里的 LLM 向 Client 调用工具时，大多仍然使用 Function Calling。<br />
-<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449604160957.jpg" alt="" /></figure></li>
-</ul>
-<h2><a id="%E4%B8%89%E3%80%81%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B%EF%BC%9A%E4%BA%A4%E9%80%9A%E6%80%81%E5%8A%BF%E5%AE%9E%E6%97%B6%E6%9F%A5%E8%AF%A2" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>三、实战案例：交通态势实时查询</h2>
-<h3><a id="3-1%E9%9C%80%E6%B1%82" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>3.1 需求</h3>
-<p>开发一个支持自然语言查询的某市某条道路的实时交通态势，通过 MCP 调用高德 API。</p>
-<h3><a id="3-2%E5%AE%9E%E7%8E%B0-mcp-server" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>3.2 实现MCP Server</h3>
-<p>准备：高德ApiKey、安装<a href="https://github.com/modelcontextprotocol/typescript-sdk"><code>@modelcontextprotocol/sdk</code></a></p>
-<p>代码如下：</p>
-<pre class="line-numbers"><code class="language-ts">import { McpServer } from &quot;@modelcontextprotocol/sdk/server/mcp.js&quot;;
-import { StdioServerTransport } from &quot;@modelcontextprotocol/sdk/server/stdio.js&quot;;
-import { z } from &quot;zod&quot;;
-// 通过命令行获取key
-const API_KEY = process.argv[2];
-
-/**
- * @description 创建服务器实例
- */
-const server = new McpServer(
-  {
-    name: &quot;amap-traffic-mcp-server&quot;,
-    version: &quot;1.0.0&quot;,
-  },
-  {
-    capabilities: {
-      resources: {},
-      tools: {},
-      prompts: {},
-    },
-    instructions: &quot;交通态势查询服务，使用高德API&quot;,
-  }
-);
-
-// 注册交通态势查询工具
-server.tool(
-  &quot;get_traffic&quot;,
-  &quot;线路交通态势查询&quot;,
-  {
-    city: z.string().describe(&quot;城市名称&quot;),
-    name: z.string().describe(&quot;道路名，街道名字&quot;),
-  },
-  async ({ city, name }) =&gt; {
-    try {
-      // URL 编码参数
-      const encodedCity = encodeURIComponent(city);
-      const encodedName = encodeURIComponent(name);
-      // https://lbs.amap.com/api/webservice/guide/api-advanced/traffic-situation-inquiry
-      // 调用高德地图 API
-      const response = await fetch(
-        `https://restapi.amap.com/v3/traffic/status/road?key=${API_KEY}&amp;level=5&amp;name=${encodedName}&amp;city=${encodedCity}`
-      );
-
-      if (!response.ok) {
-        throw new Error(`API请求失败: ${response.status}`);
-      }
-
-      const data = await response.json();
-
-      // 检查 API 响应状态
-      if (data.status !== &quot;1&quot;) {
-        throw new Error(`高德地图API错误: ${JSON.stringify(data)}`);
-      }
-
-      // 检查是否有交通信息
-      if (!data.trafficinfo) {
-        return {
-          content: [
-            {
-              type: &quot;text&quot;,
-              text: `未找到 ${city} 的 ${name} 的交通信息`,
-            },
-          ],
-        };
-      }
-
-      const { description, evaluation } = data.trafficinfo;
-
-      // 计算道路通畅程度
-      const status = evaluation?.status || &quot;未知&quot;;
-      let statusText = &quot;&quot;;
-      switch (status) {
-        case &quot;1&quot;:
-          statusText = &quot;通畅&quot;;
-          break;
-        case &quot;2&quot;:
-          statusText = &quot;基本通畅&quot;;
-          break;
-        case &quot;3&quot;:
-          statusText = &quot;轻度拥堵&quot;;
-          break;
-        case &quot;4&quot;:
-          statusText = &quot;中度拥堵&quot;;
-          break;
-        case &quot;5&quot;:
-          statusText = &quot;重度拥堵&quot;;
-          break;
-        default:
-          statusText = &quot;未知&quot;;
-      }
-
-      return {
-        content: [
-          {
-            type: &quot;text&quot;,
-            text: `${city}${name}当前路况：${statusText}\n\n${
-              description || &quot;暂无详细描述&quot;
-            }`,
-          },
-          {
-            type: &quot;text&quot;,
-            text: evaluation
-              ? `\n\n道路状况统计：\n- 畅通路段：${evaluation.expedite}\n- 缓行路段：${evaluation.congested}\n- 拥堵路段：${evaluation.blocked}\n- 未知路段：${evaluation.unknown}`
-              : &quot;&quot;,
-          },
-        ],
-      };
-    } catch (error) {
-      console.error(&quot;交通信息查询失败:&quot;, error);
-      throw new Error(
-        error instanceof Error ? error.message : &quot;服务调用失败，请稍后重试&quot;
-      );
-    }
-  }
-);
-
-/**
- * @description 启动服务器
- */
-async function main() {
-  try {
-    const transport = new StdioServerTransport();
-    await server.connect(transport);
-    console.error(&quot;交通态势查询服务已启动&quot;);
-  } catch (error) {
-    console.error(&quot;服务启动失败:&quot;, error);
-    process.exit(1);
-  }
-}
-main();
+          <p>安装软件时出现...已损坏，无法打开...解决办法<br />
+<figure><img src="media/17509210538857/17509211119862.jpg" alt="" /></figure></p>
+<p>在终端或控制台输入如下命令，然后回车，就会弹出提示输入密码，输入开机密码回车。</p>
+<pre class="line-numbers"><code class="language-plain_text">sudo spctl --master-disable
 </code></pre>
-<p>在开发的时候，可以使用<a href="https://modelcontextprotocol.io/docs/tools/inspector">@modelcontextprotocol/inspector</a>进行调试。</p>
-<h3><a id="3-3%E5%AE%9E%E7%8E%B0-mcp-client" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>3.3 实现MCP Client</h3>
-<pre class="line-numbers"><code class="language-js">import { Client } from &quot;@modelcontextprotocol/sdk/client/index.js&quot;;
-import { StdioClientTransport } from &quot;@modelcontextprotocol/sdk/client/stdio.js&quot;;
-
-const transport = new StdioClientTransport({
-  command: &quot;node&quot;,
-  args: [&quot;/Users/bwrong/0WorkSpace/00.MyStudy/mcp-demo/server/build/index.js&quot;,'API-KEY']
-});
-
-const client = new Client(
-  {
-    name: &quot;traffic-client&quot;,
-    version: &quot;1.0.0&quot;
-  }
-);
-
-await client.connect(transport);
-console.log(&quot;connect success&quot;);
-// List prompts
-// const prompts = await client.listPrompts();
-
-// Get a prompt
-// const prompt = await client.getPrompt({
-//   name: &quot;example-prompt&quot;,
-//   arguments: {
-//     arg1: &quot;value&quot;
-//   }
-// });
-
-// List resources
-// const resources = await client.listResources();
-
-// Read a resource
-// const resource = await client.readResource({
-//   uri: &quot;file:///example.txt&quot;
-// });
-const tools = await client.listTools();
-console.log(tools);
-// Call a tool
-const result = await client.callTool({
-  name: &quot;get_traffic&quot;,
-  arguments: {
-    city: &quot;成都市&quot;,
-    name: &quot;天府大道北段&quot;
-  }
-});
-
-console.log(result);
-</code></pre>
-<p>在Client中可以连接Server，然后获取它提供的resource、prompt、tools，并可以执行调用。</p>
-<p>当然我们也可以使用现有的一些支持MCP集成的应用来调用，不同的应用支持的功能可能有差异，具体可查看<a href="https://modelcontextprotocol.io/clients">这里</a>。下面我们使用cursor来演示。</p>
-<ol>
-<li>打开cursor的MCP配置文件。</li>
-<li>添加配置</li>
-</ol>
-<pre class="line-numbers"><code class="language-js">{
-  &quot;mcpServers&quot;: {
-    &quot;amap-traffic-mcp-server&quot;: {
-      &quot;type&quot;: &quot;stdio&quot;,
-      &quot;command&quot;: &quot;node&quot;,
-      &quot;args&quot;: [
-        &quot;/Users/bwrong/0WorkSpace/00.MyStudy/mcp-demo/server/build/index.js&quot;,
-        &quot;111111111111111111&quot; // 你的高德API-key
-      ]
-    }
-  }
-}
-</code></pre>
-<ol start="3">
-<li>正常情况可以看到mcp列表中已出现添加的MCP及它提供的tools<br />
-<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449489596763.jpg" alt="" /></figure></li>
-<li>在chart面板中输入“帮我查询成都市天府大道北段道路交通情况&quot;。可以看到它调用了MCP，并返回了结果<br />
-<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449490810948.jpg" alt="" /></figure><br />
-当然，如果你的MCP想共享给别人使用，那么可以发布到npm上，在<code>package.json</code>中添加如下内容,支持使用npx运行。</li>
-</ol>
-<pre class="line-numbers"><code class="language-plain_text">&quot;bin&quot;: {
-    &quot;amap-traffic-mcp-server&quot;: &quot;./build/index.js&quot;
-}
-</code></pre>
-<p>然后进行发布，发布后，别人就可以使用如下方式进行集成了。</p>
-<pre class="line-numbers"><code class="language-plain_text">&quot;amap-traffic-mcp-server&quot;: {
-  &quot;type&quot;: &quot;stdio&quot;,
-  &quot;command&quot;: &quot;npx&quot;,
-  &quot;args&quot;: [
-    &quot;amap-traffic-mcp-server&quot;,
-    &quot;cc2b744799eaa97ade23c468e272c731&quot;
-  ]
-}
-</code></pre>
-<p>更多代码亲查看<a href="https://github.com/BWrong/mcp-demo">这里</a></p>
-<h2><a id="%E5%9B%9B%E3%80%81%E4%BD%BF%E7%94%A8%E7%A4%BE%E5%8C%BA%E7%8E%B0%E6%9C%89%E7%9A%84mcp%E6%9C%8D%E5%8A%A1" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>四、使用社区现有的MCP服务</h2>
-<p>MCP的出现，极大降低了大模型调用外部海量工具、软件、接口的门槛，越来越多的软件及工具厂商参与到 MCP 服务（MCP Server）生态的建设中，将其产品能力包装为 MCP 服务开放给 AI 模型使用。以下是一些MCP托管平台：</p>
-<ul>
-<li><a href="https://www.modelscope.cn/mcp?page=1">魔搭</a></li>
-<li><a href="https://glama.ai/mcp/servers">Glama</a></li>
-<li><a href="https://smithery.ai/">Smithery</a></li>
-<li><a href="https://mcp.composio.dev/">Composio</a></li>
-</ul>
-<p>一些有意思的MCP Server:</p>
-<ul>
-<li><a href="https://www.modelscope.cn/mcp/servers/@modelcontextprotocol/fetch">Fetch网页内容抓取</a></li>
-<li><a href="https://www.modelscope.cn/mcp/servers/@modelcontextprotocol/github">GitHub</a></li>
-<li><a href="https://www.modelscope.cn/mcp/servers/@GLips/Figma-Context-MCP">Figma</a></li>
-<li><a href="https://www.modelscope.cn/mcp/servers/@21st-dev/magic-mcp">magic</a></li>
-<li><a href="https://www.modelscope.cn/mcp/servers/@ahujasid/blender-mcp">Blender</a></li>
-</ul>
-<p>参考文档：</p>
-<ul>
-<li><a href="https://zhuanlan.zhihu.com/p/27327515233">一文看懂：MCP(大模型上下文协议)</a></li>
-<li><a href="https://blog.csdn.net/qq_45066628/article/details/146225428">一文带你入门 MCP（模型上下文协议）</a></li>
-<li><a href="https://blog.dailydoseofds.com/p/visual-guide-to-model-context-protocol">Visual Guide to Model Context Protocol (MCP)</a></li>
-</ul>
+<p>以上操作是为了打开：系统偏好设置 – 安全性与隐私 – 通用 ，中的“任何来源”选项。<br />
+<figure><img src="media/17509210538857/17509211231877.jpg" alt="" /></figure></p>
+<p>打开已安装软件时出现...已损坏，无法打开...解决办法<br />
+<figure><img src="media/17509210538857/17509211552801.jpg" alt="" /></figure></p>
+<p>在终端中输入<code>sudo xattr -cr </code>,(这里要注意后面有个空格)。将提示已损坏，无法打开的程序图标拖到命令栏中<br />
+<figure><img src="media/17509210538857/17509211765908.jpg" alt="" /></figure></p>
+<p>拖入命令行后， 拖入程序图标后类似显示<code>sudo xattr -cr /Applications/XXX.app</code>，然后回车，再去打开程序即可正常运行。</p>
+<p>提示：在macOS Ventura 13系统上操作之后如果还是提示损坏，就右键软件，选择打开，再点击打开。</p>
 
         </article>
         <div class="comments-wrap">
@@ -589,11 +158,8 @@ console.log(result);
         </div><!-- end comments wrap -->
         <p class="meta post-nav">
           
-          <a class="basic-alignment left" href="17509210538857.html"
-            title="Previous Post: MacOS安装软件及运行时，提示“已损坏无法打开”的解决方案">&laquo; MacOS安装软件及运行时，提示“已损坏无法打开”的解决方案</a>
           
-          
-          <a class="basic-alignment right" href="17289745203360.html" title="Next Post: 傻傻分不清之 Cookie、Session、Token、JWT">傻傻分不清之 Cookie、Session、Token、JWT &raquo;</a>
+          <a class="basic-alignment right" href="17448568756381.html" title="Next Post: MCP（Model Context Protocol）入门与实践">MCP（Model Context Protocol）入门与实践 &raquo;</a>
           
         </p>
       </div>

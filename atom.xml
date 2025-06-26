@@ -4,13 +4,36 @@
   <title><![CDATA[Bwrong的拾光]]></title>
   <link href="https://www.bwrong.cn/atom.xml" rel="self"/>
   <link href="https://www.bwrong.cn/"/>
-  <updated>2025-04-18T15:39:20+08:00</updated>
+  <updated>2025-04-18T16:52:26+08:00</updated>
   <id>https://www.bwrong.cn/</id>
   <author>
     <name><![CDATA[]]></name>
     
   </author>
   <generator uri="http://www.mweb.im/">MWeb</generator>
+  
+  <entry>
+    <title type="html"><![CDATA[MacOS安装软件及运行时，提示“已损坏无法打开”的解决方案]]></title>
+    <link href="https://www.bwrong.cn/17509210538857.html"/>
+    <updated>2025-06-26T14:57:33+08:00</updated>
+    <id>https://www.bwrong.cn/17509210538857.html</id>
+    <content type="html"><![CDATA[
+<p>安装软件时出现...已损坏，无法打开...解决办法<br />
+<figure><img src="media/17509210538857/17509211119862.jpg" alt="" /></figure></p>
+<p>在终端或控制台输入如下命令，然后回车，就会弹出提示输入密码，输入开机密码回车。</p>
+<pre class="line-numbers"><code class="language-plain_text">sudo spctl --master-disable
+</code></pre>
+<p>以上操作是为了打开：系统偏好设置 – 安全性与隐私 – 通用 ，中的“任何来源”选项。<br />
+<figure><img src="media/17509210538857/17509211231877.jpg" alt="" /></figure></p>
+<p>打开已安装软件时出现...已损坏，无法打开...解决办法<br />
+<figure><img src="media/17509210538857/17509211552801.jpg" alt="" /></figure></p>
+<p>在终端中输入<code>sudo xattr -cr </code>,(这里要注意后面有个空格)。将提示已损坏，无法打开的程序图标拖到命令栏中<br />
+<figure><img src="media/17509210538857/17509211765908.jpg" alt="" /></figure></p>
+<p>拖入命令行后， 拖入程序图标后类似显示<code>sudo xattr -cr /Applications/XXX.app</code>，然后回车，再去打开程序即可正常运行。</p>
+<p>提示：在macOS Ventura 13系统上操作之后如果还是提示损坏，就右键软件，选择打开，再点击打开。</p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[MCP（Model Context Protocol）入门与实践]]></title>
@@ -21,14 +44,14 @@
 <h2><a id="%E4%B8%80%E3%80%81mcp%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、MCP 基础概念</h2>
 <h3><a id="1-1%E4%BB%80%E4%B9%88%E6%98%AF-mcp%EF%BC%9F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>1.1 什么是 MCP？</h3>
 <p><strong>定义</strong>：MCP（Model Context Protocol，模型上下文协议）是由Anthropic公司于2024年底提出的一种<strong>开放标准协议</strong>，它标准化了应用程序如何为 LLM 提供上下文，旨在解决大型语言模型（LLM）与外部数据、工具之间的连接交互问题。它为AI应用提供了一种统一的、标准化的方式来访问和处理数据（实时数据、本地数据），解决了AI模型的数据孤岛问题，为 AI 应用提供了连接万物的接口，被誉为 &quot;AI 领域的 USB-C&quot;。<br />
-<figure><img src="media/17448568756381/17449444076713.jpg" alt="" /></figure></p>
+<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449444076713.jpg" alt="" /></figure></p>
 <p><strong>核心价值</strong>：</p>
 <p>传统的AI模型面临几个关键挑战：</p>
 <ul>
 <li>知识时效性限制：模型只了解训练截止日期前的信息</li>
 <li>专有数据访问困难：无法直接访问企业内部系统的数据</li>
 <li>集成成本高昂：每接入一种新数据源，都需要定制专门的集成方案。传统上，将 AI 系统连接到外部工具涉及集成多个 API。每个 API 集成都意味着单独的代码、文档、身份验证方法、错误处理和维护。<br />
-<figure><img src="media/17448568756381/17449445095592.jpg" alt="" /></figure></li>
+<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449445095592.jpg" alt="" /></figure></li>
 </ul>
 <p>MCP的核心优势：</p>
 <ul>
@@ -37,9 +60,9 @@
 <li>数据安全：你的敏感数据留在自己的电脑上，自行决定上传那些数据。</li>
 </ul>
 <p>MCP 是 AI大模型 与数据（包括本地数据和互联网数据）之间的一座桥梁，通过 MCP 服务器和 MCP 客户端，大家只要都遵循这套协议，就能实现“万物互联”。比如，可以和数据和文件系统、开发工具、Web 和浏览器自动化、生产力和通信、各种社区生态能力全部集成，实现强大的协作工作能力。<br />
-<figure><img src="media/17448568756381/17448608579279.jpg" alt="" /></figure></p>
+<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17448608579279.jpg" alt="" /></figure></p>
 <h3><a id="1-2%E6%A0%B8%E5%BF%83%E6%9E%B6%E6%9E%84" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>1.2 核心架构</h3>
-<p><figure><img src="media/17448568756381/17449452410979.gif" alt="" /></figure></p>
+<p><figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449452410979.gif" alt="" /></figure></p>
 <p>MCP 遵循客户端-服务器架构（client-server），其中包含以下几个核心概念：</p>
 <ul>
 <li><strong>MCP 主机（MCP Hosts）</strong>：发起请求的 LLM 应用程序（例如 Claude Desktop、IDE 或 AI 工具）。</li>
@@ -50,7 +73,7 @@
 </ul>
 <p>其中，重点关注MCP Client和MCP Server。</p>
 <p><strong>MCP Client</strong>：<br />
-<figure><img src="media/17448568756381/17449452837237.jpg" alt="" /></figure></p>
+<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449452837237.jpg" alt="" /></figure></p>
 <p>MCP client 充当 LLM 和 MCP server 之间的桥梁，MCP client 的工作流程如下：</p>
 <p>❶ MCP client 首先从 MCP server 获取可用的工具列表。<br />
 ❷ 将用户的查询连同工具描述通过 function calling 一起发送给 LLM。<br />
@@ -62,25 +85,25 @@
 ❼ MCP Hosts将响应展示给用户。</p>
 <p>Claude Desktop 和Cursor都支持了MCP Server接入能力，它们就是作为 MCP client来连接某个MCP Server感知和实现调用。</p>
 <p><strong>MCP Server</strong>：<br />
-<figure><img src="media/17448568756381/17449453163079.jpg" alt="" /></figure></p>
+<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449453163079.jpg" alt="" /></figure></p>
 <p>MCP server 是 MCP 架构中的关键组件，它可以提供 3 种主要类型的功能：</p>
 <p>○ <a href="https://modelcontextprotocol.io/docs/concepts/resources">资源（Resources）</a>：将 Server 上的数据和内容开放给大语言模型，可以是文本或二进制数据。如 API 响应、文件内容、图像等。<br />
 ○ <a href="https://modelcontextprotocol.io/docs/concepts/tools">工具（Tools）</a>：可以被调用的函数，这些函数可由客户端调用，并由 LLM 使用来执行操作。<br />
 ○ <a href="https://modelcontextprotocol.io/docs/concepts/prompts">提示（Prompts）</a>：预先编写的可复用的提示词模板和工作流程。<br />
-<figure><img src="media/17448568756381/17449526186282.jpg" alt="" /></figure></p>
+<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449526186282.jpg" alt="" /></figure></p>
 <p>这些功能使 MCP server 能够为 AI 应用提供丰富的上下文信息和操作能力，从而增强 LLM 的实用性和灵活性。</p>
 <h3><a id="%E4%B8%80%E4%B8%AA%E5%BD%A2%E8%B1%A1%E7%9A%84%E6%AF%94%E5%96%BB" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一个形象的比喻</h3>
 <p>我在网上看到了一个比较形象的比喻，感觉还不错，摘录到这里，如果需要查看原文请点<a href="https://baijiahao.baidu.com/s?id=1829100651768604009&amp;wfr=spider&amp;for=pc">这里</a><br />
 首先，用户让 LLM 调用工具，就好比我（特工少女，即 User）让男朋友（LLM）去小店（软件服务提供商）买东西（Data &amp; Tool）并使用。如果模型接到的任务则可能需要多个工具调用（Tool Use），这就好比我跟男朋友讲的需求比较复杂，比如做从零做一道番茄炒蛋。<br />
-<figure><img src="media/17448568756381/17449608021782.jpg" alt="" /></figure></p>
+<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449608021782.jpg" alt="" /></figure></p>
 <p>然后男朋友通过规划（Planning）决定去苏泊尔买个锅和铲，去菜场买个西红柿和鸡蛋，再去便利店买个糖和盐，以此来完成番茄炒蛋这道菜。但是在传统的 AI 应用开发过程中，男朋友（LLM）能去的小店（能使用的工具）都需要开发者预先定义线路（编写代码）。</p>
 <p>但是，男朋友（LLM）每去一个新地方，都要造一条新路（编写代码），似乎不太方便。于是后来字节扣子、百度千帆、阿里云百炼等平台出现了，他们就好比是开了一个商超。商超跟各种小店说，我这里人气旺，你们直接按我们的要求来货架上架你们的商品就行，再跟我（User）说我这现成的商品多，以后让男朋友（LLM）来这买就行。<br />
-<figure><img src="media/17448568756381/17449608153690.jpg" alt="" /></figure></p>
+<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449608153690.jpg" alt="" /></figure></p>
 <p>小店们觉得这事不错，便遵守平台一定的上架规范，开始把他们的商品（Tool）变成了插件（Plugin），我（User）提的好多需求，男朋友（LLM）在这些平台上就能一站式满足了，选几个插件直接用就行，方便了挺多。</p>
 <p>但是，Anthropic 干了一个什么事情呢？他想搞电商！</p>
 <p>他跟小店们说，不同平台的插件规范不太一样，你们去各个平台上架插件也挺累的。咱们搞个新玩法，能让天下的男朋友（LLM）都很容易的用到更多商品（调用更多工具）。你们呢按照我这个标准，把你们的商品都做一个数字化的标准信息处理（即变成了 MCP Server），我们再定义一个叫电商组件的东西（即 MCP Client），你们的 MCP Server 要跟电商组件有互动，只要遵守一个开放的规则，这部分就是 MCP 协议，即 Server 和 Client 的通信协议。</p>
 <p>此外，Anthropic 基于这个电商平台（Client）的理念做了一个淘宝的外壳，这个淘宝就好比没有包含 LLM 的 Claude Desktop。在这基础上，如果再加上 Claude 的模型，就相当于让“男朋友刷淘宝”，这一整体就构成了 MCP Host。<br />
-<figure><img src="media/17448568756381/17449608349448.jpg" alt="" /></figure></p>
+<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449608349448.jpg" alt="" /></figure></p>
 <p>MCP Server 只管提供各种工具，MCP Host 只管通过 MCP Client 获取并使用这些工具。然后淘宝上玲琅满目的商品很多，就形成了 MCP Market。</p>
 <h3><a id="1-3%E9%80%9A%E4%BF%A1%E6%9C%BA%E5%88%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>1.3 通信机制</h3>
 <p>关于Client和Server之间的通信方式，MCP 协议支持两种主要的通信机制：基于Stdio（标准输入输出）的本地通信和基于SSE（Server-Sent Events）的远程通信。</p>
@@ -88,7 +111,7 @@
 <p>**本地通信：**通过 stdio 传输数据，适用于在同一台机器上运行的客户端和服务器之间的通信。<br />
 **远程通信：**利用 SSE 与 HTTP 结合，实现跨网络的实时数据传输，适用于需要访问远程资源或分布式部署的场景。</p>
 <p><strong>连接过程</strong>：<br />
-<figure><img src="media/17448568756381/17449459358047.jpg" alt="" /></figure></p>
+<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449459358047.jpg" alt="" /></figure></p>
 <ol>
 <li>客户端发送包含协议版本和功能的请求initialize</li>
 <li>Server 使用其协议版本和功能进行响应</li>
@@ -164,22 +187,22 @@
 </tr>
 </tbody>
 </table>
-<p><figure><img src="media/17448568756381/1adfb43d17054bdfe566865c141baf35.png" alt="1adfb43d17054bdfe566865c141baf35" /><figcaption>1adfb43d17054bdfe566865c141baf35<figcaption></figure></p>
+<p><figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/1adfb43d17054bdfe566865c141baf35.png" alt="1adfb43d17054bdfe566865c141baf35" /><figcaption>1adfb43d17054bdfe566865c141baf35<figcaption></figure></p>
 <p>Function calling 功能单一，不具备上下文管理能力，一次只执行一个任务，一般是同步进行调用。没有特定的标准，需要厂商或者我们自己去开发实现。生态相对封闭，没有多少开源项目，定制化比较多。<br />
 MCP 功能复杂，可以支持多轮对话，一次能调用多个任务，也可以异步执行。有统一的标准，只要是适配了 MCP 的 Server 都可以用统一的代码去调用，而且除了工具调用，还提供了提示词和上下文资源。</p>
 <h3><a id="2-2%E4%B8%BE%E4%BE%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>2.2 举例</h3>
 <ul>
 <li>
 <p>如果你的 function 最初需要两个参数（例如，天气服务的 location 参数和 date 参数，用户需严格按此参数结构构建应用。<br />
-<figure><img src="media/17448568756381/17449453826664.jpg" alt="" /></figure></p>
+<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449453826664.jpg" alt="" /></figure></p>
 </li>
 <li>
 <p>之后，如果你决定为该 function 添加第三个必选参数（例如，unit参数（温度单位）），将“契约”进行变更。<br />
-<figure><img src="media/17448568756381/17449454190209.jpg" alt="" /></figure></p>
+<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449454190209.jpg" alt="" /></figure></p>
 </li>
 <li>
 <p>这意味着该 function 的所有用户都必须更新代码，增加对新参数的支持，如果未及时更新，他们的请求可能会失败、报错或提供不完整的结果。<br />
-<figure><img src="media/17448568756381/17449454519373.jpg" alt="" /></figure></p>
+<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449454519373.jpg" alt="" /></figure></p>
 </li>
 </ul>
 <p>MCP 的设计解决了这个问题，具体方法如下：</p>
@@ -192,11 +215,11 @@ MCP 功能复杂，可以支持多轮对话，一次能调用多个任务，也�
 </li>
 <li>
 <p>Server 的响应包含可用的 tools、resources、prompts 以及相关参数的详细信息。例如，若天气 API 最初仅支持 location 和 date 参数，服务器会通过能力交换告知这些信息。<br />
-<figure><img src="media/17448568756381/17449455836821.jpg" alt="" /></figure></p>
+<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449455836821.jpg" alt="" /></figure></p>
 </li>
 <li>
 <p>当新增 unit 参数时，MCP Server 可在下次进行能力交换时动态更新能力描述。Client 无需硬编码或预定义参数，只需查询 Server 的最新能力并自动适配。<br />
-<figure><img src="media/17448568756381/17449456074053.jpg" alt="" /></figure></p>
+<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449456074053.jpg" alt="" /></figure></p>
 </li>
 <li>
 <p>这样，Client 就能使用更新后的新功能（例如在其请求中包含 unit 参数），实时调整行为，而无需重写或重新部署代码。</p>
@@ -206,7 +229,7 @@ MCP 功能复杂，可以支持多轮对话，一次能调用多个任务，也�
 <ul>
 <li>mcp协议工作在应用与外部工具对接的阶段，标准化这些工具的开发，以及在应用层接入、执行等过程，更多指的是整个让模型调用工具的整体手段。</li>
 <li>function call 则工作在应用与大模型交互之间，标准化如何让大模型理解、调用外部工具。如Host 里的 LLM 向 Client 调用工具时，大多仍然使用 Function Calling。<br />
-<figure><img src="media/17448568756381/17449604160957.jpg" alt="" /></figure></li>
+<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449604160957.jpg" alt="" /></figure></li>
 </ul>
 <h2><a id="%E4%B8%89%E3%80%81%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B%EF%BC%9A%E4%BA%A4%E9%80%9A%E6%80%81%E5%8A%BF%E5%AE%9E%E6%97%B6%E6%9F%A5%E8%AF%A2" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>三、实战案例：交通态势实时查询</h2>
 <h3><a id="3-1%E9%9C%80%E6%B1%82" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>3.1 需求</h3>
@@ -416,9 +439,9 @@ console.log(result);
 </code></pre>
 <ol start="3">
 <li>正常情况可以看到mcp列表中已出现添加的MCP及它提供的tools<br />
-<figure><img src="media/17448568756381/17449489596763.jpg" alt="" /></figure></li>
+<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449489596763.jpg" alt="" /></figure></li>
 <li>在chart面板中输入“帮我查询成都市天府大道北段道路交通情况&quot;。可以看到它调用了MCP，并返回了结果<br />
-<figure><img src="media/17448568756381/17449490810948.jpg" alt="" /></figure><br />
+<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449490810948.jpg" alt="" /></figure><br />
 当然，如果你的MCP想共享给别人使用，那么可以发布到npm上，在<code>package.json</code>中添加如下内容,支持使用npx运行。</li>
 </ol>
 <pre class="line-numbers"><code class="language-plain_text">&quot;bin&quot;: {
@@ -1045,7 +1068,184 @@ Authorization: Bearer &lt;token&gt;
     <content type="html"><![CDATA[
 <blockquote>
 <ul>
-<li><figure><img src="https://res.weread.qq.com/wrepub/CB_DhX9RH9PUFUv6VV6UG_parsecover" alt=" Three.js开发指南：基于WebGL和HTML5在网页上渲染3D图形和动画(原书第3版)|200" /><figcaption>
+<li><figure><img src="https://res.weread.qq.com/wrepub/CB_DhX9RH9PUFUv6VV6UG_parsecover" alt=" Three.js开发指南：基于WebGL和HTML5在网页上渲染3D图形和动画(原书第3版)|200" /><figcaption> Three.js开发指南：基于WebGL和HTML5在网页上渲染3D图形和动画(原书第3版)|200<figcaption></figure></li>
+<li>书名： Three.js开发指南：基于WebGL和HTML5在网页上渲染3D图形和动画(原书第3版)</li>
+<li>作者： （美）乔斯·德克森（Jos Dirksen）</li>
+<li>简介：</li>
+<li>出版时间</li>
+<li>ISBN：</li>
+<li>分类：</li>
+<li>出版社： 机械工业出版社</li>
+</ul>
+</blockquote>
+<h1><a id="%E9%AB%98%E4%BA%AE%E5%88%92%E7%BA%BF" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>高亮划线</h1>
+<h2><a id="%E5%89%8D%E8%A8%80" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>前言</h2>
+<ul>
+<li>📌 使用Three.js的基本步骤。阅读完本章就能立刻创建你的第一个Three.js场景，也能直接在浏 ^CB-4qe6mO6j3G3e6bK6cM-4-908-957
+<ul>
+<li>⏱ 2022-09-15 07:39:06</li>
+</ul>
+</li>
+</ul>
+<h2><a id="%E7%AC%AC1%E7%AB%A0%E4%BD%BF%E7%94%A8-three-js%E5%88%9B%E5%BB%BA%E4%BD%A0%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E4%B8%89%E7%BB%B4%E5%9C%BA%E6%99%AF" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>第1章 使用Three.js创建你的第一个三维场景</h2>
+<ul>
+<li>
+<p>📌 不同的材质对光源的反应是不一样的 ^CB-4qe6mO6j3G3e6bK6cM-5-18613-18629</p>
+<ul>
+<li>⏱ 2023-03-17 18:55:59</li>
+</ul>
+</li>
+<li>
+<p>📌 基本材质（THREE.MeshBasicMaterial）不会对光源有任何反应，基本材质只会使用指定的颜色来渲染物体 ^CB-4qe6mO6j3G3e6bK6cM-5-18635-18693</p>
+<ul>
+<li>⏱ 2023-03-17 18:56:23</li>
+</ul>
+</li>
+</ul>
+<h2><a id="%E7%AC%AC2%E7%AB%A0%E6%9E%84%E5%BB%BA-three-js%E5%BA%94%E7%94%A8%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%84%E4%BB%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>第2章 构建Three.js应用的基本组件</h2>
+<ul>
+<li>
+<p>📌 在Three.js中几何体基本上是三维空间中的点集（也被称作顶点）和将这些点连接起来的面 ^CB-4qe6mO6j3G3e6bK6cM-6-11380-11424</p>
+<ul>
+<li>⏱ 2023-03-20 08:44:36</li>
+</ul>
+</li>
+<li>
+<p>📌 顶点顺序决定了某个面是面向摄像机还是背向摄像机的 ^CB-4qe6mO6j3G3e6bK6cM-6-12220-12244</p>
+<ul>
+<li>⏱ 2023-03-20 08:45:51</li>
+</ul>
+</li>
+<li>
+<p>📌 如果你想创建面向摄像机的面，那么顶点的顺序是顺时针的，反之顶点的顺序是逆时针的。 ^CB-4qe6mO6j3G3e6bK6cM-6-12245-12285</p>
+<ul>
+<li>⏱ 2023-03-20 08:47:35</li>
+</ul>
+</li>
+<li>
+<p>📌 computeFaceNormals()方法，当该方法执行时，Three.js会决定每个面的法向量，法向量用于决定不同光源下的颜色 ^CB-4qe6mO6j3G3e6bK6cM-6-12785-12850</p>
+<ul>
+<li>⏱ 2023-03-20 08:54:09</li>
+</ul>
+</li>
+<li>
+<p>📌 verticesNeedUpdate ^CB-4qe6mO6j3G3e6bK6cM-6-13847-13865</p>
+<ul>
+<li>⏱ 2023-03-23 08:33:39</li>
+</ul>
+</li>
+<li>
+<p>📌 computeFaceNormals ^CB-4qe6mO6j3G3e6bK6cM-6-13888-13906</p>
+<ul>
+<li>⏱ 2023-03-23 08:34:09</li>
+</ul>
+</li>
+<li>
+<p>📌 SceneUtils.createMulti-MaterialObject() ^CB-4qe6mO6j3G3e6bK6cM-6-14954-14993</p>
+<ul>
+<li>⏱ 2023-03-23 08:36:01</li>
+</ul>
+</li>
+<li>
+<p>📌 这里我们复制立方体的第一个子对象。请记住，mesh变量包含两个THREE.Mesh子对象：基于两个不同材质创建的。通过这个复制的几何体我们创建了一个新的网格，并命名为mesh2。使用translate()方法移动这个新创建的网格，删除之前的副本（如果存在）并把这个副本添加到场景中。[插图]在前面的章节中，我们使用THREE.SceneUtils对象的createMultiMaterialObject()方法为几何体添加了线框。在Three.js中还可以使用THREE.WireframeGeometry来添加线框。假设有一个几何体对象名为geom，可以通过下面代码基于geom创建一个线框对象：[插图]然后，基于新建的线框对象创建一个Three.LineSegments对象并将它添加到场景中： ^CB-4qe6mO6j3G3e6bK6cM-6-16019</p>
+<ul>
+<li>⏱ 2023-03-23 08:41:44</li>
+</ul>
+</li>
+<li>
+<p>📌 对象的位置是相对于它的父对象来说的 ^CB-4qe6mO6j3G3e6bK6cM-6-18372-18389</p>
+<ul>
+<li>⏱ 2023-03-23 08:43:03</li>
+</ul>
+</li>
+<li>
+<p>📌 摄像机的fov属性决定了横向视场。基于aspect属性，纵向视场也就相应地确定了。near属性决定了近面距离，far属性决定了远面距离。近面距离和远面距离之间的区域将会被渲染。 ^CB-4qe6mO6j3G3e6bK6cM-6-25338-25426</p>
+<ul>
+<li>⏱ 2023-03-27 08:08:41</li>
+</ul>
+</li>
+</ul>
+<h2><a id="%E7%AC%AC3%E7%AB%A0%E5%AD%A6%E4%B9%A0%E4%BD%BF%E7%94%A8-three-js%E4%B8%AD%E7%9A%84%E5%85%89%E6%BA%90" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>第3章 学习使用Three.js中的光源</h2>
+<ul>
+<li>
+<p>📌 WebGL本身并不支持光源 ^CB-4qe6mO6j3G3e6bK6cM-7-802-815</p>
+<ul>
+<li>⏱ 2023-03-27 08:13:13</li>
+</ul>
+</li>
+<li>
+<p>📌 3.1　Three.js中不同种类的光源Three.js中有许多不同种类的光源，每种光源都有特别的行为和用法。在本章中，将讨论表3.1中所列光源。表　3.1[插图]本章主要分为两部分内容。首先，我们先看一下基础光源：THREE.AmbientLight、THREE.PointLight、THREE.SpotLight和THREE.DirectionalLight。所有这些光源都是基于THREE.Light对象扩展的，这个对象提供公用的功能。以上提到的光源都是简单光源，只需一些简单的配置即可，而且可用于创建大多数场景的光源。 ^CB-4qe6mO6j3G3e6bK6cM-7-1350</p>
+<ul>
+<li>⏱ 2023-03-27 08:13:34</li>
+</ul>
+</li>
+<li>
+<p>📌 THREE.AmbientLight不会生成阴影 ^CB-4qe6mO6j3G3e6bK6cM-7-2261-2285</p>
+<ul>
+<li>⏱ 2023-03-27 08:17:27</li>
+</ul>
+</li>
+</ul>
+<h2><a id="%E7%AC%AC4%E7%AB%A0%E4%BD%BF%E7%94%A8-three-js%E7%9A%84%E6%9D%90%E8%B4%A8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>第4章 使用Three.js的材质</h2>
+<ul>
+<li>
+<p>📌 本章将深入探讨Three.js库提供的所有材质，你也将会从中学到如何运用这些材质创建漂亮的三维对象。本章将要探讨的材质如表4.1所示。表　4.1[插图][插图]如果浏览Three.js库的源代码，你可能看到过THREE.RawShaderMaterial。这是一种特殊的材质，只能和THREE.BufferedGeometry一起使用。 ^CB-4qe6mO6j3G3e6bK6cM-8-595</p>
+<ul>
+<li>⏱ 2023-03-29 08:32:58</li>
+</ul>
+</li>
+<li>
+<p>📌 THREE.MeshDepthMaterial ^CB-4qe6mO6j3G3e6bK6cM-8-7507-7530</p>
+<ul>
+<li>⏱ 2023-03-30 08:29:19</li>
+</ul>
+</li>
+<li>
+<p>📌 由物体到摄像机的距离决定的 ^CB-4qe6mO6j3G3e6bK6cM-8-7562-7575</p>
+<ul>
+<li>⏱ 2023-03-30 08:29:31</li>
+</ul>
+</li>
+<li>
+<p>📌 gl_Position变量是一个特殊变量，用来返回最终的位置 ^CB-4qe6mO6j3G3e6bK6cM-8-25196-25226</p>
+<ul>
+<li>⏱ 2023-03-31 08:40:32</li>
+</ul>
+</li>
+</ul>
+<h2><a id="%E7%AC%AC5%E7%AB%A0%E5%AD%A6%E4%B9%A0%E4%BD%BF%E7%94%A8%E5%87%A0%E4%BD%95%E4%BD%93" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>第5章 学习使用几何体</h2>
+<ul>
+<li>
+<p>📌 fromBufferGeometry方法，可以接收基于THREE.BufferGeometry的对象，并将其数据导入到THREE.Geometry对象中 ^CB-4qe6mO6j3G3e6bK6cM-9-3099-3175</p>
+<ul>
+<li>⏱ 2023-04-03 08:10:53</li>
+</ul>
+</li>
+<li>
+<p>📌 fromGeometry ^CB-4qe6mO6j3G3e6bK6cM-9-3204-3216</p>
+<ul>
+<li>⏱ 2023-04-03 08:11:02</li>
+</ul>
+</li>
+</ul>
+<h2><a id="%E7%AC%AC6%E7%AB%A0%E9%AB%98%E7%BA%A7%E5%87%A0%E4%BD%95%E4%BD%93%E5%92%8C%E4%BA%8C%E5%85%83%E6%93%8D%E4%BD%9C" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>第6章 高级几何体和二元操作</h2>
+<ul>
+<li>
+<p>📌 通过THREE.ConvexGeometry，我们可以围绕一组点创建一个凸包。所谓凸包就是包围这组点的最小图形 ^CB-4qe6mO6j3G3e6bK6cM-10-1138-1193</p>
+<ul>
+<li>⏱ 2023-04-25 14:19:13</li>
+</ul>
+</li>
+<li>
+<p>📌 通过THREE.ExtrudeGeometry，你可以从一个二维图形创建出一个三维图形。 ^CB-4qe6mO6j3G3e6bK6cM-10-5169-5213</p>
+<ul>
+<li>⏱ 2023-05-04 08:31:01</li>
+</ul>
+</li>
+</ul>
+<h1><a id="%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>读书笔记</h1>
+<h1><a id="%E6%9C%AC%E4%B9%A6%E8%AF%84%E8%AE%BA" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>本书评论</h1>
+
 ]]></content>
   </entry>
   
@@ -5471,149 +5671,6 @@ webxr支持<br />
 <p>多应用同时渲染：同一时刻可展示多个子应用，子应用更像是一个业务组件而不是应用。</p>
 <p><figure><img src="media/17280334440663/17281450820703.jpg" alt="v2-cc82a2a5a6fbe5c141af9dd5b42622ee_1440w" /><figcaption>v2-cc82a2a5a6fbe5c141af9dd5b42622ee_1440w<figcaption></figure></p>
 </li>
-</ul>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[【玩转微前端3】需要关注的问题]]></title>
-    <link href="https://www.bwrong.cn/17280334039483.html"/>
-    <updated>2024-10-04T17:16:43+08:00</updated>
-    <id>https://www.bwrong.cn/17280334039483.html</id>
-    <content type="html"><![CDATA[
-<p>虽然qiankun已经提供了微前端的一些基本能力，但是在使用过程中还是有很多问题需要关注。</p>
-<h2><a id="%E9%A1%B9%E7%9B%AE%E6%9E%B6%E6%9E%84%E8%A7%84%E5%88%92" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>项目架构规划</h2>
-<ul>
-<li>Monorepo：多应用管理可以使用<a href="https://lerna.js.org/">lerna</a>或者<a href="https://pnpm.io/zh/">pnpm</a>。</li>
-</ul>
-<p><figure><img src="media/17280334039483/17281450561380.png" alt="image-20220406225206585" /><figcaption>image-20220406225206585<figcaption></figure></p>
-<ul>
-<li>
-<p>Git subtree或者多仓库：在子应用较多的情况可采用此方式，缺点是每次子应用变更后，聚合库还得同步一次变更。</p>
-<p><figure><img src="media/17280334039483/17281450561404.jpg" alt="18091274-44952db2fd681a3d" /><figcaption>18091274-44952db2fd681a3d<figcaption></figure></p>
-</li>
-</ul>
-<h2><a id="%E5%BA%94%E7%94%A8%E6%8B%86%E5%88%86%E7%B2%92%E5%BA%A6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>应用拆分粒度</h2>
-<p>微应用的拆与合思考：拆的是系统复杂度，合的是系统复用度。</p>
-<p>拆分的时候可以从平台差异、页面结构、产品业务方面考虑。并不是越细越好，业务关联紧密的功能单元应该做成一个微应用，反之关联不紧密的可以考虑拆分成多个微应用。</p>
-<h2><a id="%E6%A0%B7%E5%BC%8F%E9%9A%94%E7%A6%BB" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>样式隔离</h2>
-<p>使用qiankun默认的沙箱，仅能确保单实例场景子应用之间的样式隔离，但是无法确保主应用跟子应用、或者多实例场景的子应用样式隔离。目前还没有完美的解决方案，如果遇到样式污染问题，可以考虑如下方案：</p>
-<ul>
-<li>命名规范+命名空间，可以尝试开启experimentalStyleIsolation（实验阶段）。</li>
-<li>ShadowDom：可以开启strictStyleIsolation严格模式，启用ShadowDom，但是这并不是一个可以无脑使用的方案，可能还会有一些其他问题，如子应用的弹窗挂载到body上时样式丢失。</li>
-<li>CSS In JS</li>
-<li>CSSModule</li>
-</ul>
-<h2><a id="%E6%95%B0%E6%8D%AE%E9%80%9A%E4%BF%A1" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>数据通信</h2>
-<p>应用间尽量避免通信，减少耦合性，如果两个应用间有频繁的通信需求，说明这两个微应用本身就是服务于同一个业务场景，合并成一个微应用可能会更合适。</p>
-<p><strong>微前端通信方式：</strong></p>
-<ul>
-<li><strong>基于 URL</strong>：使用简单、通用性强，但能力较弱，不适用复杂的业务场景。</li>
-<li><strong>基于 Props</strong>：最核心的通信能力，能够满足一些简单的场景。适用于主子应用共享组件、公共方法调用等。</li>
-<li><strong>GlobalState</strong>：基于发布订阅模式实现，能够满足比较复杂的场景。</li>
-<li><strong>本地Storage</strong>：仅适合静态通信场景，且 JSON.stringify()可能会造成数据丢失。</li>
-</ul>
-<h2><a id="%E6%9D%83%E9%99%90%E5%A4%84%E7%90%86" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>权限处理</h2>
-<p>主应用负责身份验证，拿到授权信息后下发到各微应用中，各应用再根据拿到的授权信息过滤各自路由信息。</p>
-<p><figure><img src="media/17280334039483/17281450561413.webP" alt="img" /><figcaption>img<figcaption></figure></p>
-<h2><a id="%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>资源共享</h2>
-<h3><a id="%E7%BB%9F%E4%B8%80%E7%AE%A1%E7%90%86%E7%BB%B4%E6%8A%A4" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>统一管理维护</h3>
-<p>将公共资源提取到一个地方，避免多个地方维护，但是仍然会多次打包。可以通过如下两种方式：</p>
-<ul>
-<li>file或link方式</li>
-</ul>
-<p><figure><img src="media/17280334039483/17281450561420.png" alt="image-20220406235834667" /><figcaption>image-20220406235834667<figcaption></figure></p>
-<ul>
-<li>git仓库或者私服</li>
-</ul>
-<p><figure><img src="media/17280334039483/17281450561439.png" alt="image-20220406235948554" /><figcaption>image-20220406235948554<figcaption></figure></p>
-<h3><a id="%E4%BE%9D%E8%B5%96%E6%8F%90%E5%8F%96" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>依赖提取</h3>
-<p>在一个团队中，技术栈相对固定，所以统一技术栈很多基础依赖相对是固定的，但是默认情况下每个应用都会重复打包一次，会造成重复下载，影响运行性能。例如，如果每个微应用都包括自己的 Vue 副本，那么用户就得多次下载 Vue。</p>
-<p>在进行如下改造之前，先确认是否有此必要，因为它会增加应用间的耦合性（如技术栈、依赖版本必须一致） ，而这是和微前端思想相悖的，</p>
-<ul>
-<li>cdn或者将公共依赖抽离成单独的应用或者文件引用。</li>
-<li>由主应用下发（props或者window），需要处理子应用单独运行时依赖的来源问题。</li>
-</ul>
-<h2><a id="%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%B5%84%E6%BA%90%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>部署与资源路径问题</h2>
-<h3><a id="%E9%83%A8%E7%BD%B2%E6%96%B9%E6%A1%88" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>部署方案</h3>
-<ul>
-<li>主应用和微应用部署到同一个服务器（同一个 IP 和端口）。</li>
-</ul>
-<pre class="line-numbers"><code class="language-plain_text">└── html/                     # 根文件夹
-    ├── child/                # 存放所有微应用的文件夹
-    |   ├── app1/         
-    |   ├── app2/      
-    ├── index.html            # 主应用的index.html
-    ├── css/                  # 主应用的css文件夹
-    ├── js/                   # 主应用的js文件夹
-</code></pre>
-<pre class="line-numbers"><code class="language-js">registerMicroApps([
-  {
-    name: 'app1',
-    entry: '/child/app1/', // http://localhost:8080/child/app1/
-    container: '#container',
-    activeRule: '/child-app1',
-  },
-  {
-    name: 'app2',
-    entry: '/child/app2/', // http://localhost:8080/child/app2/
-    container: '#container',
-    activeRule: '/child-app2',
-  }
-],
-</code></pre>
-<ul>
-<li>主应用和微应用部署在不同的服务器，使用 Nginx 代理访问。</li>
-</ul>
-<pre class="line-numbers"><code class="language-nginx">/app1/ {
-  proxy_pass http://www.b.com/app1/;
-  proxy_set_header Host $host:$server_port;
-}
-</code></pre>
-<pre class="line-numbers"><code class="language-js">registerMicroApps([
-  {
-    name: 'app1',
-    entry: '/app1/', // http://localhost:8080/app1/
-    container: '#container',
-    activeRule: '/child-app1',
-  },
-],
-</code></pre>
-<h3><a id="%E8%B5%84%E6%BA%90%E8%B7%AF%E5%BE%84%E9%94%99%E8%AF%AF" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>资源路径错误</h3>
-<p>在src代码中引用public资源会有问题，资源尽量放到src中，让webpack处理，注入publicPath。</p>
-<pre class="line-numbers"><code class="language-vue">&lt;template&gt;
-  &lt;img src=&quot;../../assets/images/logo.png&quot; alt=&quot;&quot;&gt;
-  &lt;div class=&quot;img-test&quot;&gt;&lt;/div&gt;
-  &lt;div class=&quot;img-test2 test&quot; :style=&quot;`background:url(${require('../../assets/images/logo.png')})`&quot;&gt;&lt;/div&gt;
-	&lt;!-- 路径错误 --&gt;
-  &lt;img src=&quot;/logo.png&quot; class=&quot;test&quot; alt=&quot;&quot;&gt;
-&lt;/template&gt;
-&lt;style scoped&gt;
-  .img-test{
-    background: url('../../assets/images/logo.png') no-repeat;
-    background-size: 100% 100%;
-    width: 100px;
-    height: 100px;
-  }
-&lt;/style&gt;
-</code></pre>
-<h2><a id="%E5%BA%94%E7%94%A8%E4%B9%8B%E9%97%B4%E8%B7%B3%E8%BD%AC" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>应用之间跳转</h2>
-<p>在微应用中如果要进行应用间跳转，不能直接使用微应用的router，可以有如下几种方式：</p>
-<ul>
-<li>将跳转动作上抛给主应用，由主应用进行切换。</li>
-<li>将主应用router下发到微应用，微应用使用该router进行跳转动作。</li>
-<li>使用原生方法改变url（不建议，会造成页面刷新）。</li>
-</ul>
-<h2><a id="%E5%85%B6%E4%BB%96%E9%97%AE%E9%A2%98" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>其他问题</h2>
-<ul>
-<li>VueDevtools调试微应用问题，需要手动处理，但是还是会存在失效问题。</li>
-</ul>
-<p><figure><img src="media/17280334039483/17281450561452.png" alt="image-20220407171516398" /><figcaption>image-20220407171516398<figcaption></figure></p>
-<ul>
-<li>对vite构建的微应用支持还有缺陷，因为Vite暂时还不支持运行时修改资源路径和ESModule导致沙箱失效。</li>
-<li>各应用间的风格和交互逻辑应该统一，因为对用户来说我们的应用仍然是一体的，要避免应用间给用户造成撕裂感。</li>
-<li>运行差异性处理：如果微应用需要单独运行，需要考虑集成运行和单独运行的差异性，做一些hack兼容处理。</li>
 </ul>
 
 ]]></content>
