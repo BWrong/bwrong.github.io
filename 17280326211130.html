@@ -166,33 +166,33 @@
 <li><a href="https://www.snowpack.dev/">snowpack</a>：打包速度快，无需打包工具。</li>
 </ul>
 <p>在Webpack刚刚出来的时候，那个时候Gulp和Grunt还风华正茂，在网上经常有人拿它们来做对比，其实他们是不同类型的构建工具，不是太具有可比性。</p>
-<p><figure><img src="media/17280326211130/17281443883628.jpg" alt="" /></figure></p>
+<p><img src="media/17280326211130/17281443883628.jpg" alt="" /></p>
 <p>如上图所示，虽说它们都是构建工具，但是Gulp、Grunt更加偏向任务式，所有的操作均需以任务的方式来构建；而Webpack则是模块化的编译方案，它通过依赖分析，进行模块打包，与它对比的应该是Browserify，Rollup之流。</p>
 <p>目前来说，grunt和gulp，已经功成身退了，当下webpack无疑是最热门、最强大的打包工具。这都得益于维护团队海纳百川有容乃大的态度，Rollup的tree shaking、Parcel的零配置这些亮点都被webpack吸收了。也许有的人觉得是抄袭，但是咱们读书人的世界何来抄袭呢。更何况不是这样的话，不是得学更多的工具了，又何来我这一头乌黑靓丽的秀发呢？😜😜</p>
 <p>好了，啰嗦了半天，该进入主题了，接下来，看看webpack官方的定义：</p>
 <p>At its core, <strong>webpack</strong> is a <em>static module bundler</em> for modern JavaScript applications. When webpack processes your application, it internally builds a <a href="https://webpack.js.org/concepts/dependency-graph/">dependency graph</a> which maps every module your project needs and generates one or more <em>bundles</em>.</p>
 <p>译：Webpack 是一个现代 JavaScript 应用程序的<em>静态模块打包器</em>（<em>module bundler</em>），当 webpack 处理应用程序时，它会递归地构建一个<em>依赖关系图(dependency graph)</em>，其中包含应用程序需要的每个模块，然后将所有这些模块打包成一个或多个 <em>bundle</em>。</p>
 <p>这里多次提到了模块，模块在前端开发中一般指JavaScript的模块化产物，相关的介绍网上也有很多，实在找不到也可以看看鄙人之前的文章<a href="https://www.bwrong.cn/post/javascript-module/">再谈JavaScript模块化</a>，这里我们不再赘述。但是这里Webpack所指的模块不仅仅是JavaScript中的模块，通过Loader，它可以处理任意类型的资源。广义上来说，在Webpack看来，任意资源都是模块。</p>
-<p><figure><img src="media/17280326211130/17281443883653.png" alt="" /></figure></p>
+<p><img src="media/17280326211130/17281443883653.png" alt="" /></p>
 <h1><a id="%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>安装与配置</h1>
 <p>现在Webpack最新的版本是4.43.0（注意现在5.0已发布，默认安装会是5.0），可以安装在全局，也可以安装到项目，这里推荐在项目本地安装。</p>
-<pre class="line-numbers"><code class="language-shell">npm init -y  # 初始化npm配置文件
+<pre><code class="language-shell">npm init -y  # 初始化npm配置文件
 npm install --save-dev webpack # 安装核心库
 npm install --save-dev webpack-cli # 安装命令行工具
 </code></pre>
 <p><strong>备注：</strong> webpack4.0后，将核心和cli部分拆分开了，所以两个都需要安装，拆分开的好处就是核心部分可以在nodejs的项目中使用，不再受限于命令行环境，更加符合职责单一原则。</p>
 <p>受Parcel的“刺激”，Webpack从4.0开始支持零配置，开箱即用，默认会使用<code>/src/index.js</code>作为entry，<code>/dist/main.js</code>作为输出成果。</p>
 <p>建立如下文件：</p>
-<pre class="line-numbers"><code class="language-plain_text">- src
+<pre><code class="language-plain_text">- src
   |- index.js
 </code></pre>
-<pre class="line-numbers"><code class="language-js">// index.js
+<pre><code class="language-js">// index.js
 console.log('hello webpack');
 </code></pre>
 <p>然后执行<code>npx webpack</code>，就可以看到打包结果：</p>
-<p><figure><img src="media/17280326211130/17281443883664.png" alt="image-20200526231221659" /><figcaption>image-20200526231221659<figcaption></figure></p>
+<p><img src="media/17280326211130/17281443883664.png" alt="image-20200526231221659" /></p>
 <p>在输出信息中，显示了本次打包的hash值、webpack版本、耗时等，还列出了打包的每个模块信息，包含资源名称、大小、chunk（后面会详解）等信息，另外在src同级目录会生成一个dist目录，下面会有一个<code>main.js</code>，即是打包成果，在<code>index.html</code>中直接引入该文件就可以了。</p>
-<p><figure><img src="media/17280326211130/17281443883681.png" alt="" /></figure></p>
+<p><img src="media/17280326211130/17281443883681.png" alt="" /></p>
 <p>上面，其实我们已经成功完成了一个文件的打包，是不是很简单。不过仔细看看命令行输出的信息中，后面是有一大段警告的，作为一个有追求的程序猿，怎么可能让这种事情发生呢！究其原因，其实在<code>webpack4.0</code>中，建议在打包的时候传入mode，来告知其打包的目标环境是开发环境还是生产环境（不设置默认为production），以便它内部来做相应的优化，可以通过<code>--mode</code>参数来指定模式，如<code>npx webpack --mode=production</code>，这样就不会有警告了。</p>
 <p>我们可以试试将mode设置为development后再打包一次，看看成果有什么不同（答案：development下代码未进行压缩）。</p>
 <p>当然，也可以在命令行中配置参数来改变Webpack的打包设置，具体的用法可以查看<a href="https://webpack.js.org/api/cli/">Command Line Interface</a>，常用的配置都可以通过命令行来配置，例如默认webpack会查找项目根目录下的<code>webpack.config.js</code>，我们可以通过<code>webpack --config ./build/webpack.config.js</code>来指定配置文件，在日常的开发中，一般都是通过配置文件来使用的，可以实现更加复杂的设置，而且更加方便。</p>
@@ -212,12 +212,12 @@ console.log('hello webpack');
 <h1><a id="%E6%A0%B8%E5%BF%83%E9%85%8D%E7%BD%AE" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>核心配置</h1>
 <h2><a id="mode" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>mode</h2>
 <p>指定打包的模式和环境，取值为<code>development</code>, <code>production</code> 或 <code>none</code> 之中的一个，可以启用 webpack 内置在相应环境下的优化。其默认值为 <code>production</code>。</p>
-<pre class="line-numbers"><code class="language-js">module.exports = {
+<pre><code class="language-js">module.exports = {
   mode: 'production'
 };
 </code></pre>
 <p>或者通过命令行配置：</p>
-<pre class="line-numbers"><code class="language-shell">webpack --mode=production
+<pre><code class="language-shell">webpack --mode=production
 </code></pre>
 <table>
 <thead>
@@ -244,13 +244,13 @@ console.log('hello webpack');
 <p>**提示：**关于各选项webpack内部默认的具体配置，可以查看<a href="https://webpack.js.org/configuration/mode/#mode-development">该文档</a>。</p>
 <h2><a id="context" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>context</h2>
 <p>用于指定基础目录，用于从配置中解析入口起点和loader，须为绝对路径，默认为启动webpack的工作目录。</p>
-<pre class="line-numbers"><code class="language-js">module.exports = {
+<pre><code class="language-js">module.exports = {
   context: path.resolve(__dirname, 'app')
 };
 </code></pre>
 <h2><a id="entry" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>entry</h2>
 <p>打包的入口文件，一般为应用的入口，方便webpack查找并构建依赖图。</p>
-<pre class="line-numbers"><code class="language-json">module.exports = {
+<pre><code class="language-json">module.exports = {
     entry: &quot;./app/entry&quot;, // 如果仅有一个入口，可以简写为此方式，为entry:{main:&quot;./app/entry&quot;}的简写
     entry: [&quot;./app/entry1&quot;, &quot;./app/entry2&quot;], // 为entry:{main:[&quot;./app/entry1&quot;, &quot;./app/entry2&quot;]}的简写
     entry: { // 多入口的方式，每项即为一个chunk，key为chunkName
@@ -261,7 +261,7 @@ console.log('hello webpack');
 </code></pre>
 <h2><a id="output" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>output</h2>
 <p>描述了webpack如何输出，值为一组选项，包含了输出文件名字、位置等信息。</p>
-<pre class="line-numbers"><code class="language-js">module.exports = {
+<pre><code class="language-js">module.exports = {
   output: {
     filename: '[name]_[chunkhash:8].bundle.js',
    	path: path.resolve(__dirname, 'dist')
@@ -313,7 +313,7 @@ console.log('hello webpack');
 <p>如果打包一个类库或者sdk，可能还需要设置<code>library</code>、<code>libraryExport</code>、<code>libraryTarget</code>、<code>umdNamedDefine</code>等选项来配置类库暴露的名字及兼容的模块规范等，可查看<a href="https://webpack.js.org/guides/author-libraries/">官方指南</a>。</p>
 <h2><a id="loader" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>loader</h2>
 <p>loader 用于对模块的源代码进行转换，在 <code>import</code> 或&quot;加载&quot;模块时解析文件，通过添加loader可以让webpack处理多种类型的文件。</p>
-<pre class="line-numbers"><code class="language-js">module.exports = {
+<pre><code class="language-js">module.exports = {
   module: {
     rules: [
       {
@@ -352,7 +352,7 @@ console.log('hello webpack');
 <h2><a id="plugin" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>plugin</h2>
 <p>插件的目的在于解决 <a href="https://webpack.docschina.org/concepts/loaders">loader</a> 无法实现的其他事。插件的本质其实是一个具有<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/apply"><code>apply</code></a> 方法的 JavaScript 对象，该方法会被<code>webpack compiler</code> 调用，并且 compiler 对象可在<strong>整个</strong>编译生命周期访问，用于自定义构建过程。</p>
 <p>在配置文件的plugins属性中传入插件实例来使用插件：</p>
-<pre class="line-numbers"><code class="language-js">plugins: [
+<pre><code class="language-js">plugins: [
     new webpack.DefinePlugin({ // 内置的插件(DefinePlugin 允许创建可在编译时配置的全局常量)
       // Definitions...
     })
@@ -384,7 +384,7 @@ console.log('hello webpack');
 <ul>
 <li><code>resolve.alias</code>：用于定义一些路径简写占位符，也有人称之为路径别名映射，目的是简化模块导入时的路径。</li>
 </ul>
-<pre class="line-numbers"><code class="language-js">module.exports = {
+<pre><code class="language-js">module.exports = {
   resolve: {
     alias: {
       @: path.resolve(__dirname, 'src/') //这里就将@映射到了/src/目录了，在使用时用@就行
@@ -395,7 +395,7 @@ console.log('hello webpack');
 <ul>
 <li><code>resolve.extensions</code>：解析文件时，缺省文件扩展名时，尝试自动补全的扩展名集，尝试的顺序从前到后，一般将高频使用的扩展名放在前面，优先匹配。</li>
 </ul>
-<pre class="line-numbers"><code class="language-js">module.exports = {
+<pre><code class="language-js">module.exports = {
   resolve: {
     extensions: ['.wasm', '.mjs', '.js', '.json']
   }
@@ -405,7 +405,7 @@ console.log('hello webpack');
 <li><code>resolve.enforceExtension</code>：如果是 <code>true</code>，将不允许加载无扩展名(extension-less)文件，也即是不会自动进行扩展名补全。</li>
 <li><code>resolve.modules</code>：webpack 解析模块时应该搜索的目录，默认为<code>node_modules</code>，如果项目中某个文件夹频繁使用，就可以添加进此配置，引入文件时路径就可以省略该目录。</li>
 </ul>
-<pre class="line-numbers"><code class="language-js">module.exports = {
+<pre><code class="language-js">module.exports = {
   resolve: {
     modules: ['node_modules']
   }
@@ -416,7 +416,7 @@ console.log('hello webpack');
 <ul>
 <li><code>optimization.minimize</code>：是否使用 <a href="https://webpack.docschina.org/plugins/terser-webpack-plugin/">TerserPlugin</a> 压缩代码，<code>production</code> 模式下，默认是 <code>true</code>。</li>
 </ul>
-<pre class="line-numbers"><code class="language-js">module.exports = {
+<pre><code class="language-js">module.exports = {
   optimization: {
     minimize: false
   }
@@ -425,7 +425,7 @@ console.log('hello webpack');
 <ul>
 <li><code>optimization.minimizer</code>：允许通过提供一个或多个定制过的 <a href="https://webpack.docschina.org/plugins/terser-webpack-plugin/">TerserPlugin</a> 实例，覆盖默认压缩工具(minimizer)。</li>
 </ul>
-<pre class="line-numbers"><code class="language-js">module.exports = {
+<pre><code class="language-js">module.exports = {
   optimization: {
     minimizer: [
       new TerserPlugin({
@@ -461,7 +461,7 @@ console.log('hello webpack');
 <p>例如，可以在before中我们可以来启动一个server用来做数据mock。</p>
 </li>
 </ul>
-<pre class="line-numbers"><code class="language-javascript">// webpack.config.js
+<pre><code class="language-javascript">// webpack.config.js
 module.exports = {
   devServer: {
     before: function(app, server) {
@@ -475,7 +475,7 @@ module.exports = {
 <ul>
 <li><code>devServer.host</code>，<code>devServer.port</code>：分别用来配置启动server的主机地址和端口。</li>
 </ul>
-<pre class="line-numbers"><code class="language-javascript">module.exports = {
+<pre><code class="language-javascript">module.exports = {
   //...
   devServer: {
     host: '0.0.0.0',
@@ -487,7 +487,7 @@ module.exports = {
 <li><code>devServer.hot</code>：开启模块热替换HMR（Hot Module Replacement）功能，开启后它会尽量采取不刷新整个页面的方式来局部热更新页面。</li>
 </ul>
 <p>**注意：**必须有 <a href="https://webpack.docschina.org/plugins/hot-module-replacement-plugin/"><code>webpack.HotModuleReplacementPlugin</code></a> 才能完全启用 HMR。如果<code>webpack-dev-server</code> 是通过 <code>webpack-dev-server --hot</code>选项启动的，那么这个插件会被自动添加，否则需要把它手动添加到 <code>webpack.config.js</code>的plugins 中。</p>
-<pre class="line-numbers"><code class="language-js">module.exports = {
+<pre><code class="language-js">module.exports = {
     //...
     devServer: {
         hot: true, // 开启模块热替换
@@ -499,7 +499,7 @@ module.exports = {
 }
 </code></pre>
 <p>开启热替换后，需要编写控制代码来响应更新时的操作：</p>
-<pre class="line-numbers"><code class="language-js">if (module.hot) { // 先判断是否开启热替换
+<pre><code class="language-js">if (module.hot) { // 先判断是否开启热替换
   module.hot.accept('./library.js', function() { // library.js更新将会触发此处的回调函数
     // 使用更新过的 library 模块执行某些操作...
   });
@@ -515,14 +515,14 @@ module.exports = {
 </li>
 <li>
 <p><code>devServer.overlay</code>：当出现编译器错误或警告时，在浏览器中显示覆盖层提示，默认false。</p>
-<p><figure><img src="media/17280326211130/17281443883699.png" alt="image-20200529105657275" /><figcaption>image-20200529105657275<figcaption></figure></p>
+<p><img src="media/17280326211130/17281443883699.png" alt="image-20200529105657275" /></p>
 </li>
 <li>
 <p><code>devServer.proxy</code>：在前后端接口联调的过程中，跨域是一个非常常见的问题，要是后端大哥装大爷的话，那工作就很难做下去了。跨域究其原因是受浏览器的同源策略限制，而服务端则不会有此限制。所以我们可以通过<code>nodeServer</code>将后端的接口服务代理到本地，在请求的时候直接访问本地<code>nodeServer</code>地址，然后<code>nodeServer</code>再将请求转发到目标服务端，拿到结果后返回给本地的请求。</p>
 </li>
 </ul>
 <p>proxy就是用来做这个事情的，它是基于强大的<a href="https://github.com/chimurai/http-proxy-middleware">http-proxy-middleware</a>来实现的，配置也是相同的。</p>
-<pre class="line-numbers"><code class="language-js">module.exports = {
+<pre><code class="language-js">module.exports = {
   //...
   devServer: {
     proxy: {
@@ -547,7 +547,7 @@ module.exports = {
 <ul>
 <li><code>devServer.publicPath</code>：资源的访问路径。</li>
 </ul>
-<pre class="line-numbers"><code class="language-js">module.exports = {
+<pre><code class="language-js">module.exports = {
   //...
   devServer: {
     publicPath: '/assets/' // 可以通过http://localhost:8080/assets/*访问到assets目录下的资源
@@ -669,14 +669,14 @@ module.exports = {
 <p>用来排除特定的依赖，排除的依赖将不会打包进成果中，而是在程序运行时再去外部获取。</p>
 <p>例如，在开发一个<strong>library</strong> 的时候，如果有依赖其他的库，在打包库的时候就需要排除依赖的库，而不应该把依赖的库打包到我们的<strong>library</strong>里面。</p>
 <p>另外，在日常的开发中，也可以利用此配置来实现资源以CDN方式引入：</p>
-<pre class="line-numbers"><code class="language-html">&lt;!-- index.html --&gt;
+<pre><code class="language-html">&lt;!-- index.html --&gt;
 &lt;script
   src=&quot;https://code.jquery.com/jquery-3.1.0.js&quot;
   integrity=&quot;sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk=&quot;
   crossorigin=&quot;anonymous&quot;&gt;
 &lt;/script&gt;
 </code></pre>
-<pre class="line-numbers"><code class="language-javascript">// webpack.config.js
+<pre><code class="language-javascript">// webpack.config.js
 module.exports = {
   //...
   externals: {
@@ -684,7 +684,7 @@ module.exports = {
   }
 };
 </code></pre>
-<pre class="line-numbers"><code class="language-javascript">// src/index.js
+<pre><code class="language-javascript">// src/index.js
 import $ from 'jquery'; // 此处的导入可以正常运行，但是打包的时候不会包含，运行的时候会去检索jquery全局变量
 $('.my-element').animate(/* ... */);
 </code></pre>
@@ -694,7 +694,7 @@ $('.my-element').animate(/* ... */);
 <h1><a id="%E5%AE%9E%E8%B7%B5%E4%B8%80%E4%B8%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>实践一下</h1>
 <h2><a id="1%E7%9B%AE%E5%BD%95%E8%A7%84%E5%88%92" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. 目录规划</h2>
 <p>整个项目的目录结构，我们做如下规划：</p>
-<pre class="line-numbers"><code class="language-js">- build                           // webpack配置文件目录
+<pre><code class="language-js">- build                           // webpack配置文件目录
    |- webpack.base.conf.js
    |- webpack.dev.conf.js
    |- webpack.prod.conf.js
@@ -758,7 +758,7 @@ $('.my-element').animate(/* ... */);
 <ul>
 <li><code>webpack.base.conf.js</code>：开发环境和生产环境公用的配置，最终使用 <a href="https://github.com/survivejs/webpack-merge"><code>webpack-merge</code></a>合并到dev和prod两个配置中。</li>
 </ul>
-<pre class="line-numbers"><code class="language-js">// build/webpack.base.conf.js
+<pre><code class="language-js">// build/webpack.base.conf.js
 const path = require('path');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -782,7 +782,7 @@ module.exports = {
 <ul>
 <li><code>webpack.dev.conf.js</code>：开发环境特有的配置，一些辅助开发的配置都放到此文件。</li>
 </ul>
-<pre class="line-numbers"><code class="language-js">// build/webpack.dev.conf.js
+<pre><code class="language-js">// build/webpack.dev.conf.js
 const {merge} = require('webpack-merge');
 const baseConfig = require('./webpack.base.conf.js');
 
@@ -800,7 +800,7 @@ module.exports = merge(baseConfig, {
 <ul>
 <li><code>webpack.prod.conf.js</code>：生产环境特有的配置，一些针对输出文件体积质量优化的都放到此文件。</li>
 </ul>
-<pre class="line-numbers"><code class="language-js">// build/webpack.prod.conf.js
+<pre><code class="language-js">// build/webpack.prod.conf.js
 const {merge} = require('webpack-merge');
 const baseConfig = require('./webpack.base.conf.js');
 
@@ -810,7 +810,7 @@ const baseConfig = require('./webpack.base.conf.js');
  });
 </code></pre>
 <p>然后在<code>npm script</code>中配置对应的命令，来指定不同的配置文件：</p>
-<pre class="line-numbers"><code class="language-json">// package.json
+<pre><code class="language-json">// package.json
 &quot;scripts&quot;: {
     &quot;start&quot;: &quot;webpack-dev-server --config ./build/webpack.dev.conf.js&quot;,
     &quot;build&quot;: &quot;webpack --config ./build/webpack.prod.conf.js&quot;
@@ -819,9 +819,9 @@ const baseConfig = require('./webpack.base.conf.js');
 <h2><a id="3%E5%8A%9F%E8%83%BD%E5%AE%8C%E5%96%84" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>3. 功能完善</h2>
 <h3><a id="%E4%BD%BF%E7%94%A8html%E6%A8%A1%E6%9D%BF" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>使用HTML模板</h3>
 <p>前端项目一般都会有一个入口（index.html），需要在此文件中引入打包后的资源，但是每次打包后手动将资源引入太费事，特别是输出文件的名字使用了占位符时（每次打包输出文件的名称都会不一样），简直就是搞事情嘛。此时，我们就可以通过 <a href="https://doc.webpack-china.org/plugins/html-webpack-plugin/">html-webpack-plugin</a>来自动引入打包后的资源。</p>
-<pre class="line-numbers"><code class="language-shell">npm install html-webpack-plugin -D
+<pre><code class="language-shell">npm install html-webpack-plugin -D
 </code></pre>
-<pre class="line-numbers"><code class="language-js">// build/webpack.base.conf.js
+<pre><code class="language-js">// build/webpack.base.conf.js
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
   // ...
@@ -835,7 +835,7 @@ module.exports = {
 }
 </code></pre>
 <p>**注意：**如果需要打包多页应用，仅需实例化多个<code>html-webpack-plugin</code>，在每个实例中配置相应的chunk即可。</p>
-<pre class="line-numbers"><code class="language-js">// build/webpack.base.conf.js
+<pre><code class="language-js">// build/webpack.base.conf.js
 module.exports = {
     entry:{
       app1:'../src/app1.js',
@@ -857,9 +857,9 @@ module.exports = {
 </code></pre>
 <h3><a id="%E8%87%AA%E5%8A%A8%E6%B8%85%E7%90%86%E8%BE%93%E5%87%BA%E6%96%87%E4%BB%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>自动清理输出文件</h3>
 <p>由于使用了占位符，每次输出的文件可能不一样，那么就需要在每次打包前清除一下上次输出的文件，<a href="https://github.com/johnagan/clean-webpack-plugin">clean-webpack-plugin</a>就可以帮我们自动完成这件事。</p>
-<pre class="line-numbers"><code class="language-shell">npm install clean-webpack-plugin -D
+<pre><code class="language-shell">npm install clean-webpack-plugin -D
 </code></pre>
-<pre class="line-numbers"><code class="language-js">// build/webpack.base.conf.js
+<pre><code class="language-js">// build/webpack.base.conf.js
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 module.exports = {
     plugins: [
@@ -869,9 +869,9 @@ module.exports = {
 </code></pre>
 <h3><a id="%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E6%8B%B7%E8%B4%9D" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>静态资源拷贝</h3>
 <p>有些资源是不需要webpack来进行编译的，如VueCli4.0中public中的资源文件，只需要将其拷贝到目标文件就可以了。<a href="https://webpack.js.org/plugins/copy-webpack-plugin/">CopyWebpackPlugin</a>可以把指定文件或目录拷贝到构建的输出目录中。</p>
-<pre class="line-numbers"><code class="language-shell">npm install copy-webpack-plugin -D
+<pre><code class="language-shell">npm install copy-webpack-plugin -D
 </code></pre>
-<pre class="line-numbers"><code class="language-js">// build/webpack.base.conf.js
+<pre><code class="language-js">// build/webpack.base.conf.js
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
@@ -892,11 +892,11 @@ module.exports = {
 </code></pre>
 <h3><a id="%E4%BD%BF%E7%94%A8es-next%E8%AF%AD%E6%B3%95" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>使用ES Next语法</h3>
 <p>ES规范越来越完善，ES6给我们带来了很多实用的新特性，能够大大提升开发体验，但浏览器的支持总是那么不尽人意。而Babel的出现，让我们可以在开发环境使用更时髦的语法（jsx也是可以的），然后生产环境将代码转换成浏览器支持的语法。关于Babel的具体介绍会放在后续内容中，这里不再赘述。</p>
-<pre class="line-numbers"><code class="language-shell">npm install babel-loader -D
+<pre><code class="language-shell">npm install babel-loader -D
 npm install @babel/core @babel/preset-env @babel/plugin-transform-runtime -D
 npm install @babel/runtime @babel/runtime-corejs3
 </code></pre>
-<pre class="line-numbers"><code class="language-js">// build/webpack.base.conf.js
+<pre><code class="language-js">// build/webpack.base.conf.js
 module.exports = {
     module: {
         rules: [
@@ -910,7 +910,7 @@ module.exports = {
 }
 </code></pre>
 <p>在根目录创建一个babel配置文件<code>babel.config.js</code>。</p>
-<pre class="line-numbers"><code class="language-json"> // babel.config.js
+<pre><code class="language-json"> // babel.config.js
 module.exports = {
     &quot;presets&quot;: [&quot;@babel/preset-env&quot;],
     &quot;plugins&quot;: [
@@ -925,7 +925,7 @@ module.exports = {
 </code></pre>
 <h3><a id="%E6%B3%A8%E5%85%A5%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>注入全局变量</h3>
 <p>在使用一些框架的时候，需要在很多文件都引入一下，比如在使用React的时候，需要在每个文件都引入一下，否则会报错。这时，如果想偷个懒，利用ProvidePlugin来自动注入也是可以的。</p>
-<pre class="line-numbers"><code class="language-js">// build/webpack.base.conf.js
+<pre><code class="language-js">// build/webpack.base.conf.js
 const webpack = require('webpack');
 
 module.exports = {
@@ -949,9 +949,9 @@ module.exports = {
 <p>样式类文件处理主要包含样式文件引入、浏览器兼容性语法的自动补全及预处理器编译三部分内容。</p>
 <h4><a id="css%E8%A7%A3%E6%9E%90%E5%92%8C%E5%BC%95%E5%85%A5" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>css解析和引入</h4>
 <p>如果仅使用css来做为样式文件的话，配置相对比较简单，只需要借助<code>css-loader</code>让webpack可以解析css文件即可。</p>
-<pre class="line-numbers"><code class="language-shell">npm install css-loader -D
+<pre><code class="language-shell">npm install css-loader -D
 </code></pre>
-<pre class="line-numbers"><code class="language-js">// build/webpack.base.conf.js
+<pre><code class="language-js">// build/webpack.base.conf.js
 module.exports = {
     //...
     module: {
@@ -966,9 +966,9 @@ module.exports = {
 }
 </code></pre>
 <p>现在，webpack可以打包css文件了，但是样式并不会生效，因为它们根本没有插入到页面中，需要借助<code>style-loader</code>来做样式引入，它会在head中动态创建 <code>style</code> 标签，并将 <code>css</code> 插入到其中。</p>
-<pre class="line-numbers"><code class="language-shell">npm install style-loader -D
+<pre><code class="language-shell">npm install style-loader -D
 </code></pre>
-<pre class="line-numbers"><code class="language-js">// build/webpack.base.conf.js
+<pre><code class="language-js">// build/webpack.base.conf.js
 module.exports = {
     //...
     module: {
@@ -984,9 +984,9 @@ module.exports = {
 </code></pre>
 <h4><a id="%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8%E5%85%BC%E5%AE%B9%E6%80%A7%E5%89%8D%E7%BC%80" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>自动补全兼容性前缀</h4>
 <p>由于现在浏览器对某些css特性支持还不够完善，在使用这些新特性的时候，往往需要加上一些浏览器特定的前缀，也是一个比较麻烦的事情，这时候就轮到postcss上场了。</p>
-<pre class="line-numbers"><code class="language-shell">npm install postcss-loader postcss autoprefixer -D
+<pre><code class="language-shell">npm install postcss-loader postcss autoprefixer -D
 </code></pre>
-<pre class="line-numbers"><code class="language-js">// build/webpack.base.conf.js
+<pre><code class="language-js">// build/webpack.base.conf.js
 module.exports = {
     //...
     module: {
@@ -1016,7 +1016,7 @@ module.exports = {
 </code></pre>
 <p>看到这个丑陋冗长的配置，总感觉怪怪的，一般会将它们抽离到<code>postcss</code>和<code>browserslist</code>的配置文件中。</p>
 <p>在项目根目录创建postcss配置文件<code>postcss.config.js</code>。</p>
-<pre class="line-numbers"><code class="language-js">// postcss.config.js
+<pre><code class="language-js">// postcss.config.js
 module.exports = {
   plugins: {
     'autoprefixer': {}
@@ -1024,12 +1024,12 @@ module.exports = {
 };
 </code></pre>
 <p>另外再创建一个<code>browserslist</code>配置文件<code>.browserslistrc</code>，用来指定要兼容的浏览器。</p>
-<pre class="line-numbers"><code class="language-js">&gt; 1%
+<pre><code class="language-js">&gt; 1%
 last 2 versions
 not ie &lt;= 8
 </code></pre>
 <p>现在配置文件看起就要舒服多了。</p>
-<pre class="line-numbers"><code class="language-js">// build/webpack.base.conf.js
+<pre><code class="language-js">// build/webpack.base.conf.js
 module.exports = {
     //...
     module: {
@@ -1072,9 +1072,9 @@ module.exports = {
 </tbody>
 </table>
 <p>以less为例：</p>
-<pre class="line-numbers"><code class="language-shell">npm install less-loader less -D
+<pre><code class="language-shell">npm install less-loader less -D
 </code></pre>
-<pre class="line-numbers"><code class="language-js">// build/webpack.base.conf.js
+<pre><code class="language-js">// build/webpack.base.conf.js
 module.exports = {
     //...
     module: {
@@ -1090,9 +1090,9 @@ module.exports = {
 </code></pre>
 <h4><a id="%E6%A0%B7%E5%BC%8F%E6%96%87%E4%BB%B6%E5%88%86%E7%A6%BB" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>样式文件分离</h4>
 <p>经过如上几个loader处理，css最终是打包在js中的，运行时会动态插入head中，但是我们一般在生产环境会把css文件分离出来（有利于用户端缓存、并行加载及减小js包的大小），这时候就用到 <a href="https://github.com/webpack-contrib/mini-css-extract-plugin">mini-css-extract-plugin</a> 插件。</p>
-<pre class="line-numbers"><code class="language-shell">npm i -D mini-css-extract-plugin
+<pre><code class="language-shell">npm i -D mini-css-extract-plugin
 </code></pre>
-<pre class="line-numbers"><code class="language-js">// build/webpack.base.conf.js
+<pre><code class="language-js">// build/webpack.base.conf.js
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
@@ -1127,9 +1127,9 @@ module.exports = {
 </code></pre>
 <h3><a id="%E5%9B%BE%E7%89%87%E5%AD%97%E4%BD%93%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>图片/字体文件处理</h3>
 <p><code>url-loader</code> 和 <code>file-loader</code> 都可以用来处理本地的资源文件，如图片、字体、音视频等。功能也是类似的， 不过<code>url-loader</code> 可以指定在文件大小小于指定的限制时，返回 <code>DataURL</code>，不会输出真实的文件，可以减少昂贵的网络请求。</p>
-<pre class="line-numbers"><code class="language-shell">npm install url-loader file-loader -D
+<pre><code class="language-shell">npm install url-loader file-loader -D
 </code></pre>
-<pre class="line-numbers"><code class="language-js">// build/webpack.base.conf.js
+<pre><code class="language-js">// build/webpack.base.conf.js
 module.exports = {
     modules: {
         rules: [
@@ -1159,9 +1159,9 @@ module.exports = {
 </blockquote>
 <h3><a id="%E5%AE%9E%E6%97%B6%E9%A2%84%E8%A7%88%E5%8F%8A%E6%A8%A1%E5%9D%97%E7%83%AD%E6%9B%BF%E6%8D%A2" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>实时预览及模块热替换</h3>
 <p>在开发环境，可以借助<code>webpack-dev-server</code>启动一个server来实时预览应用程序。由于<code>webpack-dev-server</code>并不包含在核心库中，所以需要额外安装。</p>
-<pre class="line-numbers"><code class="language-shell">npm install webpack-dev-server -D
+<pre><code class="language-shell">npm install webpack-dev-server -D
 </code></pre>
-<pre class="line-numbers"><code class="language-js">// build/webpack.dev.conf.js
+<pre><code class="language-js">// build/webpack.dev.conf.js
 module.exports = {
     //...
     devServer: {
@@ -1185,12 +1185,12 @@ module.exports = {
 </code></pre>
 <h3><a id="%E4%BC%98%E5%8C%96%E8%B0%83%E8%AF%95%E5%8A%9F%E8%83%BD" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>优化调试功能</h3>
 <p>为代码生成source-map有助于调试排错，一般在开发环境，由于是本地加载，我们优先考虑map文件的生成速度，可以不用额外单独生成map文件，而在生产环境，则需要不生成或者单独生成文件，优先考虑加载速度。</p>
-<pre class="line-numbers"><code class="language-js">// build/webpack.dev.conf.js
+<pre><code class="language-js">// build/webpack.dev.conf.js
 module.exports = {
     devtool: 'cheap-module-eval-source-map' // 开发环境下使用内联方式，忽略列信息
 }
 </code></pre>
-<pre class="line-numbers"><code class="language-js">// build/webpack.prod.conf.js
+<pre><code class="language-js">// build/webpack.prod.conf.js
 module.exports = {
     devtool: 'none' // 也可以使用'source-map'
 }
@@ -1208,7 +1208,7 @@ module.exports = {
 </li>
 <li>
 <p>最后，在需要用到某个功能的时候，根据上一步的分类，再去查阅对应的文档。官网也提供了<a href="https://webpack.js.org/configuration">完整的配置</a>，可以很方便的查找对应的配置文档。</p>
-<p><figure><img src="media/17280326211130/17281443883716.jpg" alt="" /></figure></p>
+<p><img src="media/17280326211130/17281443883716.jpg" alt="" /></p>
 <center>早期的文档</center>
 </li>
 </ol>
@@ -1397,6 +1397,7 @@ body{ box-sizing: border-box;
      word-wrap: break-word !important;       /* Internet Explorer 5.5+ */
     }
     html,body{margin:0;padding:4px;}
+    .mweb-yaml{display:none;}
 }
 
 

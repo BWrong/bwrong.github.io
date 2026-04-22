@@ -138,7 +138,7 @@
 <ol>
 <li>子应用：</li>
 </ol>
-<pre class="line-numbers"><code class="language-js">new Vue({ 
+<pre><code class="language-js">new Vue({ 
   el: '#app',
   mounted() {
     if (window.__POWERED_BY_QIANKUN__ &amp;&amp; process.env.NODE_ENV === 'development') {
@@ -151,7 +151,7 @@
 <ol start="2">
 <li>主应用</li>
 </ol>
-<pre class="line-numbers"><code class="language-js">let rootInstance = new Vue({ 
+<pre><code class="language-js">let rootInstance = new Vue({ 
     // ...
  })
 registerMicroApps(apps, 
@@ -346,6 +346,7 @@ body{ box-sizing: border-box;
      word-wrap: break-word !important;       /* Internet Explorer 5.5+ */
     }
     html,body{margin:0;padding:4px;}
+    .mweb-yaml{display:none;}
 }
 
 

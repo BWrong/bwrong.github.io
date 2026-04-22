@@ -137,7 +137,7 @@
           <h2><a id="schema" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Schema</h2>
 <p>Schema主要用于定义MongoDB中集合Collection里文档document的结构,可以理解为mongoose对表结构的定义(不仅仅可以定义文档的结构和属性，还可以定义文档的实例方法、静态模型方法、复合索引等)，每个schema会映射到mongodb中的一个collection，schema不具备操作数据库的能力<br />
 定义Schema非常简单，指定字段名和类型即可，支持的类型包括以下8种</p>
-<pre class="line-numbers"><code class="language-plain_text">String      字符串
+<pre><code class="language-plain_text">String      字符串
 Number      数字    
 Date        日期
 Buffer      二进制
@@ -147,7 +147,7 @@ ObjectId    对象ID
 Array       数组
 </code></pre>
 <p>　通过mongoose.Schema来调用Schema，然后使用new方法来创建schema</p>
-<pre class="line-numbers"><code class="language-plain_text">var mongoose = require('mongoose');
+<pre><code class="language-plain_text">var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
  
 var mySchema = new Schema({
@@ -164,27 +164,27 @@ var mySchema = new Schema({
 });
 </code></pre>
 <p><strong>注意</strong> 创建Schema对象时，声明字段类型有两种方法，一种是首字母大写的字段类型，另一种是引号包含的小写字段类型</p>
-<pre class="line-numbers"><code class="language-plain_text">var mySchema = new Schema({title:String, author:String});
+<pre><code class="language-plain_text">var mySchema = new Schema({title:String, author:String});
 //或者 
 var mySchema = new Schema({title:'string', author:'string'});
 </code></pre>
 <p>　如果需要在Schema定义后添加其他字段，可以使用add()方法</p>
-<pre class="line-numbers"><code class="language-plain_text">var MySchema = new Schema;
+<pre><code class="language-plain_text">var MySchema = new Schema;
 MySchema.add({ name: 'string', color: 'string', price: 'number' });
 </code></pre>
 <h2><a id="model" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Model</h2>
 <p>Model是由Schema编译而成的假想（fancy）构造器，具有抽象属性和行为。Model的每一个实例（instance）就是一个document，document可以保存到数据库和对数据库进行操作。简单说就是model是由schema生成的模型，可以对数据库的操作。<br />
 使用model()方法，将Schema编译为Model。model()方法的第一个参数是模型名称</p>
-<pre class="line-numbers"><code class="language-plain_text">mongoose.model(`文档名称`, Schema)
+<pre><code class="language-plain_text">mongoose.model(`文档名称`, Schema)
 </code></pre>
 <p><strong>注意</strong>一定要将model()方法的第一个参数和其返回值设置为相同的值，否则会出现不可预知的结果</p>
 <p>　　Mongoose会将集合名称设置为模型名称的小写版。如果名称的最后一个字符是字母，则会变成复数；如果名称的最后一个字符是数字，则不变；如果模型名称为&quot;MyModel&quot;，则集合名称为&quot;mymodels&quot;；如果模型名称为&quot;Model1&quot;，则集合名称为&quot;model1&quot;</p>
-<pre class="line-numbers"><code class="language-plain_text">var schema = new mongoose.Schema({ num:Number, name: String, size: String});
+<pre><code class="language-plain_text">var schema = new mongoose.Schema({ num:Number, name: String, size: String});
 var MyModel = mongoose.model('MyModel', schema);
 </code></pre>
 <p><strong>【实例化文档document】</strong></p>
 <p>　　通过对原型Model1使用new方法，实例化出文档document对象</p>
-<pre class="line-numbers"><code class="language-plain_text">var mongoose = require('mongoose');
+<pre><code class="language-plain_text">var mongoose = require('mongoose');
 mongoose.connect(&quot;mongodb://u1:123456@localhost/db1&quot;, function(err) {
     if(err){
         console.log('连接失败');
@@ -200,7 +200,7 @@ mongoose.connect(&quot;mongodb://u1:123456@localhost/db1&quot;, function(err) {
 <p><strong>【文档保存】</strong></p>
 <p>　　通过<code>new Model1()</code>创建的文档doc1，必须通过save()方法，才能将创建的文档保存到数据库的集合中，集合名称为模型名称的小写复数版</p>
 <p>　　回调函数是可选项，第一个参数为err，第二个参数为保存的文档对象</p>
-<pre class="line-numbers"><code class="language-plain_text">save(function (err, doc) {})
+<pre><code class="language-plain_text">save(function (err, doc) {})
 var mongoose = require('mongoose');
 mongoose.connect(&quot;mongodb://u1:123456@localhost/db1&quot;, function(err) {
     if(!err){
@@ -218,7 +218,7 @@ mongoose.connect(&quot;mongodb://u1:123456@localhost/db1&quot;, function(err) {
 <h3><a id="%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E6%B3%95" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>自定义方法</h3>
 <p><strong>【实例方法】</strong></p>
 <p>　　Model的实例是document，内置实例方法有很多，如 save，可以通过Schema对象的methods属性给实例自定义扩展方法</p>
-<pre class="line-numbers"><code class="language-plain_text">var mongoose = require('mongoose');
+<pre><code class="language-plain_text">var mongoose = require('mongoose');
 mongoose.connect(&quot;mongodb://u1:123456@localhost/db1&quot;, function(err) {
     if(!err){
         var schema = new mongoose.Schema({ num:Number, name: String, size: String });        
@@ -246,7 +246,7 @@ mongoose.connect(&quot;mongodb://u1:123456@localhost/db1&quot;, function(err) {
 </code></pre>
 <p><strong>【静态方法】</strong></p>
 <p>　　通过Schema对象的statics属性给 Model 添加静态方法</p>
-<pre class="line-numbers"><code class="language-plain_text">var mongoose = require('mongoose');
+<pre><code class="language-plain_text">var mongoose = require('mongoose');
 mongoose.connect(&quot;mongodb://u1:123456@localhost/db1&quot;, function(err) {
     if(!err){
         var schema = new mongoose.Schema({ num:Number, name: String, size: String });        
@@ -272,7 +272,7 @@ mongoose.connect(&quot;mongodb://u1:123456@localhost/db1&quot;, function(err) {
 <p>　　由上所示，实例方法和静态方法的区别在于，静态方法是通过Schema对象的statics属性给model添加方法，实例方法是通过Schema对象的methods是给document添加方法</p>
 <p><strong>【Methods 和 Statics 的区别】</strong></p>
 <p>statics是给model添加方法，methods是给实例（instance）添加方法。methods和statics的区别</p>
-<pre class="line-numbers"><code class="language-plain_text">//module.exports = mongoose.model(`Article`, ArticleSchema )
+<pre><code class="language-plain_text">//module.exports = mongoose.model(`Article`, ArticleSchema )
 //将article的model保存为文件 article.js
  
 const Article = require('../models/article')
@@ -286,7 +286,7 @@ article.methodFunc()
 </code></pre>
 <p><strong>【查询方法】</strong></p>
 <p>　　通过schema对象的query属性，给model添加查询方法</p>
-<pre class="line-numbers"><code class="language-plain_text">var mongoose = require('mongoose');
+<pre><code class="language-plain_text">var mongoose = require('mongoose');
 mongoose.connect(&quot;mongodb://u1:123456@localhost/db1&quot;, function(err) {
     if(!err){
         var schema = new mongoose.Schema({ age:Number, name: String});        
@@ -485,6 +485,7 @@ body{ box-sizing: border-box;
      word-wrap: break-word !important;       /* Internet Explorer 5.5+ */
     }
     html,body{margin:0;padding:4px;}
+    .mweb-yaml{display:none;}
 }
 
 

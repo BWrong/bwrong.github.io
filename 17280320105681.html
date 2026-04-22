@@ -143,7 +143,7 @@
 <ul>
 <li>方法一：watch监听路由是否变化</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text"> watch: {
+<pre><code class="language-plain_text"> watch: {
  // 方法1
   '$route' (to, from) { //监听路由是否变化
     if(this.$route.params.articleId){// 判断条件1  判断传递值的变化
@@ -162,7 +162,7 @@
 <ul>
 <li>方法二：使用beforeRouteUpdate 守卫：</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">const User = {
+<pre><code class="language-plain_text">const User = {
   template: '...',
   beforeRouteUpdate (to, from, next) {
     // react to route changes...
@@ -171,7 +171,7 @@
 }
 </code></pre>
 <h2><a id="%E8%B7%AF%E7%94%B1%E7%BB%84%E4%BB%B6%E6%87%92%E5%8A%A0%E8%BD%BD" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>路由组件懒加载</h2>
-<pre class="line-numbers"><code class="language-plain_text">// 方式一
+<pre><code class="language-plain_text">// 方式一
 component: () =&gt; import(&quot;@/views/Login.vue&quot;)
 // 方式二
 component: resolve =&gt; require([&quot;@/views/Register.vue&quot;], resolve)
@@ -358,6 +358,7 @@ body{ box-sizing: border-box;
      word-wrap: break-word !important;       /* Internet Explorer 5.5+ */
     }
     html,body{margin:0;padding:4px;}
+    .mweb-yaml{display:none;}
 }
 
 

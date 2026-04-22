@@ -138,22 +138,22 @@
         <article class="markdown-body single-content">
           <h2><a id="%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F%E7%9A%84%E8%AE%BE%E7%BD%AE" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>全局变量的设置</h2>
 <p>在项目根目录 创建二个文件</p>
-<pre class="line-numbers"><code class="language-plain_text">.env.development
+<pre><code class="language-plain_text">.env.development
 .env.production
 </code></pre>
 <p>里面配置键值对就行了</p>
 <p>但要注意 这里必须以VUE_APP开头<br />
 这样我们就可以自定义个全局变量在某个模式下</p>
-<pre class="line-numbers"><code class="language-plain_text">VUE_APP_MOCK_URL = 'http://xxxx.xxx.xx.xx/mockjs/'
+<pre><code class="language-plain_text">VUE_APP_MOCK_URL = 'http://xxxx.xxx.xx.xx/mockjs/'
 </code></pre>
 <p>比如这样在axios中就可以配置根路径了</p>
-<pre class="line-numbers"><code class="language-plain_text">const service = axios.create({
+<pre><code class="language-plain_text">const service = axios.create({
   baseURL: process.env.VUE_APP_MOCK_URL
 })
 </code></pre>
 <h2><a id="%E5%85%BC%E5%AE%B9%E6%80%A7" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>兼容性</h2>
 <p>为以下工具配置目标浏览器</p>
-<pre class="line-numbers"><code class="language-plain_text">Autoprefixer
+<pre><code class="language-plain_text">Autoprefixer
 Babel (external config in package.json or browserslist will be supported in 7.0)
 postcss-preset-env
 eslint-plugin-compat
@@ -164,7 +164,7 @@ postcss-normalize
 <ul>
 <li>在package.json增加</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">{
+<pre><code class="language-plain_text">{
   &quot;browserslist&quot;: [
     &quot;last 1 version&quot;,
     &quot;&gt; 1%&quot;,
@@ -176,7 +176,7 @@ postcss-normalize
 <ul>
 <li>添加配置文件.browserslistrc</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text"># Browsers that we support
+<pre><code class="language-plain_text"># Browsers that we support
 
 last 1 version
 &gt; 1%
@@ -194,7 +194,7 @@ not dead
 </li>
 </ul>
 <h2><a id="vue-config-js%E7%9A%84%E9%85%8D%E7%BD%AE%E9%A1%B9" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>vue.config.js的配置项</h2>
-<pre class="line-numbers"><code class="language-plain_text">module.exports = {
+<pre><code class="language-plain_text">module.exports = {
     // 部署应用时的基本 URL
     baseUrl: process.env.NODE_ENV === 'production' ? '192.168.60.110:8080' : '192.168.60.110:8080',
 
@@ -488,6 +488,7 @@ body{ box-sizing: border-box;
      word-wrap: break-word !important;       /* Internet Explorer 5.5+ */
     }
     html,body{margin:0;padding:4px;}
+    .mweb-yaml{display:none;}
 }
 
 

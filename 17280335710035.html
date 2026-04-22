@@ -138,7 +138,7 @@
 <li><strong>Content-Type</strong></li>
 </ol>
 <p>MediaType，即是Internet Media Type，互联网媒体类型；也叫做MIME类型，在Http协议消息头中，使用Content-Type来表示具体请求中的媒体类型信息。</p>
-<pre class="line-numbers"><code class="language-plain_text">1. 类型格式：type/subtype(;parameter)? type 
+<pre><code class="language-plain_text">1. 类型格式：type/subtype(;parameter)? type 
 2. 主类型，任意的字符串，如text，如果是*号代表所有；  
 3. subtype 子类型，任意的字符串，如html，如果是*号代表所有；  
 4. parameter 可选，一些参数，如Accept请求头的q参数， Content-Type的 charset参数。  
@@ -173,7 +173,7 @@
 <li><strong>Spring MVC中关于关于Content-Type类型信息的使用</strong></li>
 </ol>
 <p>首先我们来看看RequestMapping中的Class定义：</p>
-<pre class="line-numbers"><code class="language-java">@Target({ElementType.METHOD, ElementType.TYPE}) 
+<pre><code class="language-java">@Target({ElementType.METHOD, ElementType.TYPE}) 
 @Retention(RetentionPolicy.RUNTIME) 
 @Documented 
 @Mapping 
@@ -197,14 +197,14 @@ headers： 指定request中必须包含某些指定的header值，才能让该�
 <li><strong>使用示例</strong></li>
 </ol>
 <p>3.1 headers</p>
-<pre class="line-numbers"><code class="language-java">@RequestMapping(value = &quot;/test&quot;, method = RequestMethod.GET, headers=&quot;Referer=http://www.ifeng.com/&quot;)  
+<pre><code class="language-java">@RequestMapping(value = &quot;/test&quot;, method = RequestMethod.GET, headers=&quot;Referer=http://www.ifeng.com/&quot;)  
 public void testHeaders(@PathVariable String ownerId, @PathVariable String petId) {    
 	// implementation omitted  
 }  
 </code></pre>
 <p>这里的Headers里面可以匹配所有Header里面可以出现的信息，不局限在Referer信息。</p>
 <p>示例2</p>
-<pre class="line-numbers"><code class="language-java">@RequestMapping(value = &quot;/response/ContentType&quot;, headers = &quot;Accept=application/json&quot;)    
+<pre><code class="language-java">@RequestMapping(value = &quot;/response/ContentType&quot;, headers = &quot;Accept=application/json&quot;)    
 public void response2(HttpServletResponse response) throws IOException {    
     //表示响应的内容区数据的媒体类型为json格式，且编码为utf-8(客户端应该以utf-8解码)    
     response.setContentType(&quot;application/json;charset=utf-8&quot;);    
@@ -538,14 +538,14 @@ public void response2(HttpServletResponse response) throws IOException {
 </tbody>
 </table>
 <p>3.2 params的示例</p>
-<pre class="line-numbers"><code class="language-java">@RequestMapping(value = &quot;/test/{userId}&quot;, method = RequestMethod.GET, params=&quot;myParam=myValue&quot;)    
+<pre><code class="language-java">@RequestMapping(value = &quot;/test/{userId}&quot;, method = RequestMethod.GET, params=&quot;myParam=myValue&quot;)    
 public void findUser(@PathVariable String userId) {        
   // implementation omitted    
 } 
 </code></pre>
 <p>仅处理请求中包含了名为“myParam”，值为“myValue”的请求，起到了一个过滤的作用。</p>
 <p>3.3 consumes/produces</p>
-<pre class="line-numbers"><code class="language-java">@Controller    
+<pre><code class="language-java">@Controller    
 @RequestMapping(value = &quot;/users&quot;, method = RequestMethod.POST, consumes=&quot;application/json&quot;, produces=&quot;application/json&quot;)    
 @ResponseBody  
 public List&lt;User&gt; addUser(@RequestBody User userl) {        
@@ -745,6 +745,7 @@ body{ box-sizing: border-box;
      word-wrap: break-word !important;       /* Internet Explorer 5.5+ */
     }
     html,body{margin:0;padding:4px;}
+    .mweb-yaml{display:none;}
 }
 
 

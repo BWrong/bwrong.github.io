@@ -139,7 +139,7 @@
           <p>函数防抖（debounce）和函数节流（throttle）都是为了缓解函数频繁调用，它们相似，但有区别</p>
 <p>如上图，一条竖线代表一次函数调用，函数防抖是间隔超过一定时间后才会执行，函数节流是一定时间段内只执行一次。</p>
 <h2><a id="%E5%87%BD%E6%95%B0%E9%98%B2%E6%8A%96%E5%AE%9E%E7%8E%B0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>函数防抖实现</h2>
-<pre class="line-numbers"><code class="language-plain_text">function debounce(fn, delay) {
+<pre><code class="language-plain_text">function debounce(fn, delay) {
   let timer = null;
   return function () {
     if (timer) clearTimeout(timer);
@@ -150,7 +150,7 @@
 }
 </code></pre>
 <h2><a id="%E5%87%BD%E6%95%B0%E8%8A%82%E6%B5%81%E5%AE%9E%E7%8E%B0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>函数节流实现</h2>
-<pre class="line-numbers"><code class="language-plain_text">function throttle(fn, cycle) {
+<pre><code class="language-plain_text">function throttle(fn, cycle) {
   let start = Date.now();
   let now;
   let timer;
@@ -351,6 +351,7 @@ body{ box-sizing: border-box;
      word-wrap: break-word !important;       /* Internet Explorer 5.5+ */
     }
     html,body{margin:0;padding:4px;}
+    .mweb-yaml{display:none;}
 }
 
 

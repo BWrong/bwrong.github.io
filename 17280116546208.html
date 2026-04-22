@@ -144,7 +144,7 @@
 <ol>
 <li>发送一个GET请求</li>
 </ol>
-<pre class="line-numbers"><code class="language-plain_text">//通过给定的ID来发送请求
+<pre><code class="language-plain_text">//通过给定的ID来发送请求
 axios.get('/user?ID=12345')
   .then(function(response){
     console.log(response);
@@ -168,7 +168,7 @@ axios.get('/user',{
 <ol start="2">
 <li>发送一个POST请求</li>
 </ol>
-<pre class="line-numbers"><code class="language-plain_text">axios.post('/user',{
+<pre><code class="language-plain_text">axios.post('/user',{
   firstName:'Fred',
   lastName:'Flintstone'
 })
@@ -182,7 +182,7 @@ axios.get('/user',{
 <ol start="3">
 <li>一次性并发多个请求</li>
 </ol>
-<pre class="line-numbers"><code class="language-plain_text">function getUserAccount(){
+<pre><code class="language-plain_text">function getUserAccount(){
   return axios.get('/user/12345');
 }
 function getUserPermissions(){
@@ -198,7 +198,7 @@ axios.all([getUserAccount(),getUserPermissions()])
 <ol>
 <li>axios(config)</li>
 </ol>
-<pre class="line-numbers"><code class="language-js">//发送一个`POST`请求
+<pre><code class="language-js">//发送一个`POST`请求
 axios({
     method:&quot;POST&quot;,
     url:'/user/12345',
@@ -211,11 +211,11 @@ axios({
 <ol start="2">
 <li>axios(url[,config])</li>
 </ol>
-<pre class="line-numbers"><code class="language-plain_text">//发送一个`GET`请求（默认的请求方式）
+<pre><code class="language-plain_text">//发送一个`GET`请求（默认的请求方式）
 axios('/user/12345');
 </code></pre>
 <h4><a id="%EF%BC%88%E4%BA%8C%EF%BC%89%E3%80%81%E8%AF%B7%E6%B1%82%E6%96%B9%E5%BC%8F%E7%9A%84%E5%88%AB%E5%90%8D%EF%BC%8C%E8%BF%99%E9%87%8C%E5%AF%B9%E6%89%80%E6%9C%89%E5%B7%B2%E7%BB%8F%E6%94%AF%E6%8C%81%E7%9A%84%E8%AF%B7%E6%B1%82%E6%96%B9%E5%BC%8F%E9%83%BD%E6%8F%90%E4%BE%9B%E4%BA%86%E6%96%B9%E4%BE%BF%E7%9A%84%E5%88%AB%E5%90%8D" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>（二）、  请求方式的别名，这里对所有已经支持的请求方式都提供了方便的别名</h4>
-<pre class="line-numbers"><code class="language-plain_text">axios.request(config);
+<pre><code class="language-plain_text">axios.request(config);
 
 axios.get(url[,config]);
 
@@ -231,7 +231,7 @@ axios.patch(url[,data[,config]])
 </code></pre>
 <p>注意：当我们在使用别名方法的时候，url,method,data这几个参数不需要在配置中声明</p>
 <h4><a id="%EF%BC%88%E4%B8%89%EF%BC%89%E3%80%81%E5%B9%B6%E5%8F%91%E8%AF%B7%E6%B1%82%EF%BC%88concurrency%EF%BC%89%E5%8D%B3%E6%98%AF%E5%B8%AE%E5%8A%A9%E5%A4%84%E7%90%86%E5%B9%B6%E5%8F%91%E8%AF%B7%E6%B1%82%E7%9A%84%E8%BE%85%E5%8A%A9%E5%87%BD%E6%95%B0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>（三）、 并发请求（concurrency）,即是帮助处理并发请求的辅助函数</h4>
-<pre class="line-numbers"><code class="language-plain_text">//iterable是一个可以迭代的参数如数组等
+<pre><code class="language-plain_text">//iterable是一个可以迭代的参数如数组等
 axios.all(iterable)
 //callback要等到所有请求都完成才会执行
 axios.spread(callback)
@@ -240,7 +240,7 @@ axios.spread(callback)
 <ol>
 <li><code>axios.create([config])</code></li>
 </ol>
-<pre class="line-numbers"><code class="language-plain_text">var instance = axios.create({
+<pre><code class="language-plain_text">var instance = axios.create({
   baseURL:&quot;https://some-domain.com/api/&quot;,
   timeout:1000,
   headers: {'X-Custom-Header':'foobar'}
@@ -250,7 +250,7 @@ axios.spread(callback)
 <li>实例的方法</li>
 </ol>
 <p>以下是实例方法，注意已经定义的配置将和利用create创建的实例的配置合并</p>
-<pre class="line-numbers"><code class="language-plain_text">axios#request(config)
+<pre><code class="language-plain_text">axios#request(config)
 
 axios#get(url[,config])
 
@@ -266,7 +266,7 @@ axios#patch(url[,data[,config]])
 </code></pre>
 <h2><a id="%E5%9B%9B%E3%80%81%E8%AF%B7%E6%B1%82%E7%9A%84%E9%85%8D%E7%BD%AE%EF%BC%88request-config%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>四、请求的配置（request config）</h2>
 <p>以下就是请求的配置选项，只有url选项是必须的，如果method选项未定义，那么它默认是以GET的方式发出请求</p>
-<pre class="line-numbers"><code class="language-plain_text">{
+<pre><code class="language-plain_text">{
   //`url`是请求的服务器地址
   url:'/user',
   //`method`是请求资源的方式
@@ -369,7 +369,7 @@ onDownloadProgress:function(progressEvent){
 }
 </code></pre>
 <h2><a id="%E4%BA%94%E3%80%81%E8%AF%B7%E6%B1%82%E8%BF%94%E5%9B%9E%E7%9A%84%E5%86%85%E5%AE%B9" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>五、请求返回的内容</h2>
-<pre class="line-numbers"><code class="language-plain_text">{
+<pre><code class="language-plain_text">{
 
   data:{},
   status:200,
@@ -383,7 +383,7 @@ onDownloadProgress:function(progressEvent){
 
 </code></pre>
 <p>你可以这样来获取响应信息</p>
-<pre class="line-numbers"><code class="language-plain_text">axios.get('/user/12345')
+<pre><code class="language-plain_text">axios.get('/user/12345')
   .then(function(res){
     console.log(res.data);
     console.log(res.status);
@@ -397,14 +397,14 @@ onDownloadProgress:function(progressEvent){
 <ol>
 <li>全局默认配置</li>
 </ol>
-<pre class="line-numbers"><code class="language-plain_text">axios.defaults.baseURL = 'http://api.exmple.com';
+<pre><code class="language-plain_text">axios.defaults.baseURL = 'http://api.exmple.com';
 axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
 axios.defaults.headers.post['content-Type'] = 'appliction/x-www-form-urlencoded';
 </code></pre>
 <ol start="2">
 <li>自定义的实例默认设置</li>
 </ol>
-<pre class="line-numbers"><code class="language-js">//当创建实例的时候配置默认配置
+<pre><code class="language-js">//当创建实例的时候配置默认配置
 var instance = axios.create({
     baseURL: 'https://api.example.com'
 });
@@ -416,7 +416,7 @@ instance.defaults.headers.common[&quot;Authorization&quot;] = AUTH_TOKEN;
 <li>配置中的有优先级</li>
 </ol>
 <p>config配置将会以优先级别来合并，顺序是lib/defauts.js中的默认配置，然后是实例中的默认配置，最后是请求中的config参数的配置，越往后等级越高，后面的会覆盖前面的例子。</p>
-<pre class="line-numbers"><code class="language-js">//创建一个实例的时候会使用libray目录中的默认配置
+<pre><code class="language-js">//创建一个实例的时候会使用libray目录中的默认配置
 //在这里timeout配置的值为0，来自于libray的默认值
 var instance = axios.create();
 //回覆盖掉library的默认值
@@ -429,7 +429,7 @@ instance.get('/longRequest',{
 </code></pre>
 <h2><a id="%E4%B8%83%E3%80%81%E6%8B%A6%E6%88%AA%E5%99%A8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>七、拦截器</h2>
 <p>你可以在请求、响应在到达then/catch之前拦截他们</p>
-<pre class="line-numbers"><code class="language-plain_text">//添加一个请求拦截器
+<pre><code class="language-plain_text">//添加一个请求拦截器
 axios.interceptors.request.use(function(config){
   //在请求发出之前进行一些操作
   return config;
@@ -449,17 +449,17 @@ axios.interceptors.response.use(function(res){
 <ol start="2">
 <li>取消拦截器</li>
 </ol>
-<pre class="line-numbers"><code class="language-plain_text">var myInterceptor = axios.interceptor.request.use(function(){/*....*/});
+<pre><code class="language-plain_text">var myInterceptor = axios.interceptor.request.use(function(){/*....*/});
 axios.interceptors.request.eject(myInterceptor);
 </code></pre>
 <ol start="3">
 <li>给自定义的axios实例添加拦截器</li>
 </ol>
-<pre class="line-numbers"><code class="language-plain_text">var instance = axios.create();
+<pre><code class="language-plain_text">var instance = axios.create();
 instance.interceptors.request.use(function(){})
 </code></pre>
 <h2><a id="%E5%85%AB%E3%80%81%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>八、错误处理</h2>
-<pre class="line-numbers"><code class="language-js">axios.get('/user/12345')
+<pre><code class="language-js">axios.get('/user/12345')
   .catch(function(error){
     if(error.response){
       //请求已经发出，但是服务器响应返回的状态吗不在2xx的范围内
@@ -476,7 +476,7 @@ instance.interceptors.request.use(function(){})
 <h2><a id="%E4%B9%9D%E3%80%81%E5%8F%96%E6%B6%88" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>九、取消</h2>
 <p>你可以通过一个cancel token来取消一个请求；</p>
 <p>你可以通过CancelToken.source工厂函数来创建一个cancel token；</p>
-<pre class="line-numbers"><code class="language-plain_text">var CancelToken = axios.CancelToken;
+<pre><code class="language-plain_text">var CancelToken = axios.CancelToken;
 var source = CancelToken.source();
 
 axios.get('/user/12345',{
@@ -493,7 +493,7 @@ axios.get('/user/12345',{
 source.cance(&quot;操作被用户取消&quot;);
 </code></pre>
 <p>你可以给cancelToken构造函数传递一个executor function来创建一个cancel token:</p>
-<pre class="line-numbers"><code class="language-plain_text">var cancelToken = axios.CancelToken;
+<pre><code class="language-plain_text">var cancelToken = axios.CancelToken;
 var cance;
 axios.get('/user/12345',{
   cancelToken: new CancelToken(function(c){
@@ -506,7 +506,7 @@ cancel();
 </code></pre>
 <h1><a id="axios%E5%B0%81%E8%A3%85" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Axios封装</h1>
 <p>在发送请求之前和操作服务器响应数据之前进行一些操作</p>
-<pre class="line-numbers"><code class="language-js">// request.js
+<pre><code class="language-js">// request.js
 const request = axios.create({
   baseURL: base,
   withCredentials: true
@@ -535,7 +535,7 @@ import request from '../request';
 getLocal: params =&gt; request.get('/app/installed', { params })
 </code></pre>
 <h1><a id="formdata%E6%8F%90%E4%BA%A4%E6%96%87%E4%BB%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>FormData提交文件</h1>
-<pre class="line-numbers"><code class="language-js">var formData = new FormData();
+<pre><code class="language-js">var formData = new FormData();
  formData.append(&quot;username&quot;, &quot;Groucho&quot;);
 // HTML 文件类型input，由用户选择
 formData.append(&quot;userfile&quot;, fileInputElement.files[0]);
@@ -545,7 +545,7 @@ request.send(formData);
 </code></pre>
 <h1><a id="%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E8%B7%A8%E5%9F%9F%E5%A4%84%E7%90%86" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>开发环境跨域处理</h1>
 <p>在webpack配置一下proxyTable</p>
-<pre class="line-numbers"><code class="language-plain_text">//js
+<pre><code class="language-plain_text">//js
 dev: {
 proxyTable: {
   '/api': {
@@ -739,6 +739,7 @@ body{ box-sizing: border-box;
      word-wrap: break-word !important;       /* Internet Explorer 5.5+ */
     }
     html,body{margin:0;padding:4px;}
+    .mweb-yaml{display:none;}
 }
 
 

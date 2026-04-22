@@ -167,7 +167,7 @@
 <li>特性垫片：通过<code>Polyfill</code> 实现目标环境中缺少的特性，将环境的特性差异垫平，说白了还是做兼容。</li>
 <li>more...</li>
 </ul>
-<pre class="line-numbers"><code class="language-js">// Babel Input: ES2015 arrow function
+<pre><code class="language-js">// Babel Input: ES2015 arrow function
 [1, 2, 3].map((n) =&gt; n + 1);
 
 // Babel Output: ES5 equivalent
@@ -177,7 +177,7 @@
 </code></pre>
 <h2><a id="%E8%BF%90%E8%A1%8C%E6%96%B9%E5%BC%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>运行方式</h2>
 <p>Babel的运行过程分为三个阶段：解析 --- 转换 ---  生成</p>
-<p><figure><img src="media/17280327574437/17281443148218.png" alt="" /></figure></p>
+<p><img src="media/17280327574437/17281443148218.png" alt="" /></p>
 <ol>
 <li>解析：解析代码，并生成AST抽象语法树</li>
 <li>转换：将上一步的AST转换成目标环境支持的AST</li>
@@ -211,13 +211,13 @@
 </ul>
 <p>babel为命令行提供了<code>@babel/cli</code>工具，支持在命令行直接执行babel命令。</p>
 <p>首先，安装必要的包：</p>
-<pre class="line-numbers"><code class="language-shell">npm install --save-dev @babel/core @babel/cli
+<pre><code class="language-shell">npm install --save-dev @babel/core @babel/cli
 </code></pre>
 <blockquote>
 <p>这里必须要安装<code>@babel/core</code>，它是babel的<strong>核心</strong>，它是后续一切的基石，无论哪种方式都必不可少。</p>
 </blockquote>
 <p>安装好在项目中执行<code>babel</code>命令就可以进行转换了。</p>
-<pre class="line-numbers"><code class="language-shell">babel src --out-dir lib # 将src下的文件处理后输出到lib
+<pre><code class="language-shell">babel src --out-dir lib # 将src下的文件处理后输出到lib
 </code></pre>
 <ul>
 <li>
@@ -226,7 +226,7 @@
 <p>babel提供了一个loader：<code>babel-loader</code>，使用这个loader我们就能很轻松实现代码转换。</p>
 </li>
 </ul>
-<pre class="line-numbers"><code class="language-js">module: {
+<pre><code class="language-js">module: {
   rules: [
     {
       test: /\.js$/,
@@ -260,7 +260,7 @@
 <p><code>package.json</code>中添加babel字段</p>
 </li>
 </ul>
-<pre class="line-numbers"><code class="language-json">{
+<pre><code class="language-json">{
   &quot;name&quot;: &quot;my-package&quot;,
   &quot;version&quot;: &quot;1.0.0&quot;,
   &quot;babel&quot;: {
@@ -270,7 +270,7 @@
 }
 </code></pre>
 <p>前面两种配置文件都使用了json格式，其实babel还支持其他格式，如 <code>.js</code>，<code>.cjs</code>（Commonjs）和<code>.mjs</code>（ESModule），它们相对于json格式更加灵活，可以在配置中进行编程处理，但是会使配置无法静态分析，失去可缓存性。</p>
-<pre class="line-numbers"><code class="language-js">// babel.config.js
+<pre><code class="language-js">// babel.config.js
 module.exports = {
   presets: [],
   plugins: []
@@ -285,7 +285,7 @@ module.exports = {
 <p><em>这里填写的plugins和presets，babel会自动检查是否已被安装在<code>node_modules</code>下面，当然，也可以使用相对路径来使用本地文件。</em></p>
 </li>
 </ul>
-<pre class="line-numbers"><code class="language-json">&quot;plugins&quot;: [
+<pre><code class="language-json">&quot;plugins&quot;: [
     [
       &quot;component&quot;,
       {
@@ -305,7 +305,7 @@ module.exports = {
 <p>短名称：在配置plugin和preset名字的时候，可以省略名字中的<code>babel-plugin-</code>和<code>preset-</code>字样，仅使用插件的名字就可以了。</p>
 </li>
 </ul>
-<pre class="line-numbers"><code class="language-json">{
+<pre><code class="language-json">{
   &quot;plugins&quot;: [
     &quot;myPlugin&quot;, // 完整名字：&quot;babel-plugin-myPlugin&quot;
     &quot;@org/myPlugin&quot; // 完整名字：&quot;@org/babel-plugin-myPlugin&quot;
@@ -331,7 +331,7 @@ module.exports = {
 <p>比如将箭头函数 <code>(x) =&gt; x</code> 转换成 <code>function (x) {return x}</code>，只需要配置箭头函数转译插件即可。</p>
 </li>
 </ul>
-<pre class="line-numbers"><code class="language-json">{
+<pre><code class="language-json">{
   &quot;plugins&quot;: [
     &quot;@babel/plugin-transform-arrow-functions&quot;
   ]
@@ -348,7 +348,7 @@ module.exports = {
 <p>每个插件的功能是单一的，所以一般转换需求要使用的插件数量比较多，这时候可以考虑presets。常用的插件和用法可以查看<a href="https://babeljs.io/docs/en/plugins">babel-plugins</a></p>
 <h3><a id="%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8F%92%E4%BB%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>自定义插件</h3>
 <p>除了使用社区提供的插件，我们也可以自己开发。</p>
-<pre class="line-numbers"><code class="language-js">module.exports = function() {
+<pre><code class="language-js">module.exports = function() {
   return {
     visitor: {
       Identifier(path) {
@@ -386,7 +386,7 @@ module.exports = {
 <p>自定义：在有特殊需求的时候，可以自己创建preset。</p>
 </li>
 </ul>
-<pre class="line-numbers"><code class="language-js">module.exports = () =&gt; ({
+<pre><code class="language-js">module.exports = () =&gt; ({
   presets: [ // 引用其他preset
     require(&quot;@babel/preset-env&quot;),
   ],
@@ -398,7 +398,7 @@ module.exports = {
 </code></pre>
 <p><strong>注意：</strong><a href="%5Bhttps://babel.docschina.org/docs/en/presets#stage-x-%E8%AF%95%E9%AA%8C%E6%80%A7-presets%5D(https://babel.docschina.org/docs/en/presets#stage-x-%E8%AF%95%E9%AA%8C%E6%80%A7-presets)">Stage-x</a> presets 中的任何转换都是针对未发布的 Javascript 特性（如 ES6 / ES2015）的更改，都是不稳定的，将来这些提案可能会发生变化，请谨慎使用，特别是第三阶段前的提案。从v7开始，所有针对标准提案阶段的功能所编写的预设(stage preset)都已被弃用，官方已经移除了 <code>@babel/preset-stage-x</code>。</p>
 <h4><a id="babelpreset-env" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>@babel/preset-env</h4>
-<pre class="line-numbers"><code class="language-json">{
+<pre><code class="language-json">{
     &quot;presets&quot;: [&quot;@babel/preset-env&quot;]
 }
 </code></pre>
@@ -409,7 +409,7 @@ module.exports = {
 <ul>
 <li>配置文件：通过配置文件的targets属性指定目标环境</li>
 </ul>
-<pre class="line-numbers"><code class="language-json">{
+<pre><code class="language-json">{
   &quot;presets&quot;: [
     [&quot;env&quot;, {
       &quot;targets&quot;: {
@@ -426,7 +426,7 @@ module.exports = {
 <p>不过如果在配置文件中设置了 <code>targets</code> 或 <code>ignoreBrowserslistConfig</code>，<code>.browserslistrc</code>中配置的内容将不会生效。</p>
 </li>
 </ul>
-<pre class="line-numbers"><code class="language-shell"># .browserslistrc
+<pre><code class="language-shell"># .browserslistrc
 last 2 Chrome versions
 </code></pre>
 <p>具体用法请查看<a href="https://github.com/browserslist/browserslist"><code>browserslist</code> 的更多配置</a>。</p>
@@ -453,7 +453,7 @@ last 2 Chrome versions
 <blockquote>
 <p>比如<code>Array.prototype.includes</code>是ES6的API，就会在<code>Array.prototype</code>上面添加一个自己实现的includes方法来模拟原生的includes。</p>
 </blockquote>
-<pre class="line-numbers"><code class="language-js">import '@babel/polyfill';
+<pre><code class="language-js">import '@babel/polyfill';
 let include = [1,2,3].includes(1);
 new Promise((resolve, reject) =&gt; {
     resolve();
@@ -465,7 +465,7 @@ new Promise((resolve, reject) =&gt; {
 <li>污染全局变量：<code>@babel/polyfill</code>会在全局创建对象或者修改全局对象的原型链，所以会对全局变量进行污染。</li>
 </ul>
 <p>对于第一个缺点，我们可以使用前面<code>@babel/preset-env</code>提供的<code>useBuiltIns</code>配置，当设置为<code>usage</code>时（须要制定corejs版本），babel会检查我们的代码，只引入我们代码中需要的<code>polyfill</code>，这样打包出来的文件就会小很多。</p>
-<pre class="line-numbers"><code class="language-json">// babel.config.json
+<pre><code class="language-json">// babel.config.json
 {
   &quot;presets&quot;: [
     [
@@ -480,14 +480,14 @@ new Promise((resolve, reject) =&gt; {
 
 </code></pre>
 <p>例如前面的代码：</p>
-<pre class="line-numbers"><code class="language-js">// import '@babel/polyfill';  使用useBuiltIns: 'usage'时，会自动导入需要的垫片，所以不用再手动引入
+<pre><code class="language-js">// import '@babel/polyfill';  使用useBuiltIns: 'usage'时，会自动导入需要的垫片，所以不用再手动引入
 let include = [1,2,3].includes(1);
 new Promise((resolve, reject) =&gt; {
     resolve();
 });
 </code></pre>
 <p>编译后的代码：</p>
-<pre class="line-numbers"><code class="language-js">&quot;use strict&quot;;
+<pre><code class="language-js">&quot;use strict&quot;;
 require(&quot;core-js/modules/es.array.includes&quot;);
 require(&quot;core-js/modules/es.object.to-string&quot;);
 require(&quot;core-js/modules/es.promise&quot;);
@@ -502,10 +502,10 @@ new Promise((resolve, reject) =&gt; {
 <p>不过这并没有完，试想如果很多文件都使用了这些特性，岂不是每个文件都会引入一次，有没有办法改善一下呢？</p>
 <h3><a id="babelplugin-transform-runtime" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>@babel/plugin-transform-runtime</code></h3>
 <p><code>@babel/plugin-transform-runtime</code> 是一个可重复使用Babel注入的帮助程序的插件，避免重复注入，以节省代码大小。通常还要搭配<code>@babel/runtime</code>一起使用。</p>
-<pre class="line-numbers"><code class="language-shell">npm install --save-dev @babel/plugin-transform-runtime
+<pre><code class="language-shell">npm install --save-dev @babel/plugin-transform-runtime
 npm install --save @babel/runtime # 提供缺失的特性，须要在生产环境中安装
 </code></pre>
-<pre class="line-numbers"><code class="language-json">// babel.config.json
+<pre><code class="language-json">// babel.config.json
 {
   &quot;presets&quot;: [
     [
@@ -521,12 +521,12 @@ npm install --save @babel/runtime # 提供缺失的特性，须要在生产环�
 
 </code></pre>
 <p>如上配置后，一个class转换如下：</p>
-<pre class="line-numbers"><code class="language-js">// 源码
+<pre><code class="language-js">// 源码
 class Foo {
   method() {}
 }
 </code></pre>
-<pre class="line-numbers"><code class="language-js">// 转换后
+<pre><code class="language-js">// 转换后
 import _classCallCheck from &quot;babel-runtime/helpers/classCallCheck&quot;;
 import _createClass from &quot;babel-runtime/helpers/createClass&quot;;
 
@@ -738,6 +738,7 @@ body{ box-sizing: border-box;
      word-wrap: break-word !important;       /* Internet Explorer 5.5+ */
     }
     html,body{margin:0;padding:4px;}
+    .mweb-yaml{display:none;}
 }
 
 

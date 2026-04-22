@@ -139,7 +139,7 @@
 <p>我记得在我学习 JavaScript 的课程中有类似的这么一句话。毫无疑问，这完全正确！<br />
 在 MDN 文档中，对 <code>Array.indexOf</code> 的描述是：返回在数组中可以找到一个给定元素的第一个索引，如果不存在，则返回-1。因此，如果在之后的代码中需要用到（给给定元素的）索引，那么 <code>Array.indexOf</code> 是不二之选。</p>
 <p>然而，如果我们仅需要知道数组中是否包含给定元素呢？这意味着只是是与否的区别，这是一个布尔问题（boolean question）。针对这种情况，我建议使用直接返回布尔值的 <code>Array.includes</code>。</p>
-<pre class="line-numbers"><code class="language-plain_text">'use strict';
+<pre><code class="language-plain_text">'use strict';
 
 const characters = [
   'ironman',
@@ -165,7 +165,7 @@ console.log(characters.includes('batman'));
 <p>然而，如果知道经回调函数过滤后，只会剩余唯一的一项，那么我不建议使用 <code>Array.filter</code>。比如：使用等于某个唯一 ID 为过滤条件去过滤一个数组。在这个例子中，<code>Array.filter</code> 返回一个仅有一项的新数组。然而，我们仅仅是为了获取 ID 为特定 ID 的那一项，这个新数组显得毫无用处。</p>
 <p>让我们讨论一下性能。为了获取所有符合回调函数过滤条件的项，<code>Array.filter</code> 必须遍历整个数组。如果原数组中有成千上万项，回调函数需要执行的次数是相当多的。</p>
 <p>为避免这些情况，我建议使用 <code>Array.find</code>。它与 <code>Array.filter</code> 一样需要一个回调函数，（但只是返回）符合条件的第一项。当找到符合回调函数过滤条件的第一个元素时，它会立即停止往下的搜寻。不再遍历整个数组。</p>
-<pre class="line-numbers"><code class="language-plain_text">'use strict';
+<pre><code class="language-plain_text">'use strict';
 
 const characters = [
   { id: 1, name: 'ironman' },
@@ -191,7 +191,7 @@ console.log(characters.find(getCharacter('captain_america')));
 <p>我承认我经常犯这个错误。之后，一位朋友建议我去查看 MDN 文档 以寻找更好的方法。事实上（这错误）与上面 <code>Array.indexOf/Array.includes</code> 的例子十分相像。</p>
 <p>在上面的例子中，我们知道 <code>Array.find</code> 需要一个回调函数作为参数，并返回（符合条件的）第一个元素。然而，当我们需要知道数组中是否存在一个元素时，<code>Array.find</code> 是最好的选择吗？不一定是，因为它返回一个元素，而不是一个布尔值。</p>
 <p>在下面的例子中，我建议使用 <code>Array.some</code>，它返回你需要的布尔值。</p>
-<pre class="line-numbers"><code class="language-plain_text">'use strict';
+<pre><code class="language-plain_text">'use strict';
 
 const characters = [
   { id: 1, name: 'ironman', env: 'marvel' },
@@ -217,7 +217,7 @@ console.log(characters.some(hasCharacterFrom('marvel')));
 <p>这样做的问题是：我们遍历了两次数组。第一次是过滤原数组以获取一个长度稍短的新数组，第二次遍历（译者注：指 <code>Array.map</code>）是对 <code>Array.filter</code> 的返回的新数组进行加工，再次创造了一个新数组！为得到最终的结果，我们结合使用了两个数组方法。每个方法都有它自己的回调函数，而且供 <code>Array.map</code> 使用的临时数组是由 <code>Array.filter</code> 提供的，（一般而言）该数组无法复用。</p>
 <p>为避免如此低效场景的出现，我的建议是使用 <code>Array.reduce</code> 。一样的结果，更好的代码！<code>Array.reduce</code> 允许你将过滤后切加工过的项放进累加器中。累加器可以是需要待递增的数字、待填充的对象、 待拼接的字符串或数组等。</p>
 <p>在上面的例子中，我们使用了 <code>Array.map</code>，（但更）建议使用累加器为待拼接数组的 <code>Array.reduce</code> 。在下面的例子中，根据变量 env 的值，我们会将它加进累加器中或保持累加器不变（即不作任何处理）。</p>
-<pre class="line-numbers"><code class="language-plain_text">'use strict';
+<pre><code class="language-plain_text">'use strict';
 
 const characters = [
   { name: 'ironman', env: 'marvel' },
@@ -430,6 +430,7 @@ body{ box-sizing: border-box;
      word-wrap: break-word !important;       /* Internet Explorer 5.5+ */
     }
     html,body{margin:0;padding:4px;}
+    .mweb-yaml{display:none;}
 }
 
 

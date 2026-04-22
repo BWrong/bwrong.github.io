@@ -137,22 +137,22 @@
           <h3><a id="1-git-clone" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>1.git clone</h3>
 <p>git clone顾名思义就是将其他仓库克隆到本地，包括被clone仓库的版本变化。clone操作是一个从无到有的克隆操作，不需要git init初始化。</p>
 <h5><a id="git-clone%E7%9A%84%E7%94%A8%E6%B3%95%EF%BC%9A" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>git clone的用法：</h5>
-<pre class="line-numbers"><code class="language-plain_text">$ git clone 版本库的url
+<pre><code class="language-plain_text">$ git clone 版本库的url
 </code></pre>
 <p>这样就会在本地生成一个目录，该目录与远程仓库同名。<br />
 However，如果本地目录不想与远程仓库同名怎么办？？也有办法，将目录名作为git clone命令的第二个参数:</p>
-<pre class="line-numbers"><code class="language-plain_text">$ git clone 版本库的网址 本地目录名
+<pre><code class="language-plain_text">$ git clone 版本库的网址 本地目录名
 </code></pre>
 <h3><a id="2-git-pull" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>2.git pull</h3>
 <p><code>git pull</code>是拉取远程分支更新到本地仓库的操作。比如远程仓库里的学习资料有了新内容，需要把新内容下载下来的时候，就可以使用<code>git pull</code>命令。事实上，<code>git pull</code>是相当于从远程仓库获取最新版本，然后再与本地分支merge（合并）。<br />
 　　即：<code>git pull = git fetch + git merge</code></p>
 <p><strong>注</strong>：git fetch不会进行合并，执行后需要手动执行<code>git merge</code>合并，而git pull拉取远程分之后直接与本地分支进行合并。更准确地说，git pull是使用给定的参数运行git fetch，并调用git merge将检索到的分支头合并到当前分支中。</p>
 <h5><a id="git-pull%E7%9A%84%E7%94%A8%E6%B3%95%EF%BC%9A" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>git pull的用法：</h5>
-<pre class="line-numbers"><code class="language-plain_text">$ git pull 远程主机名 远程分支名:本地分支名
+<pre><code class="language-plain_text">$ git pull 远程主机名 远程分支名:本地分支名
 </code></pre>
 <p>如果将冒号和后面的branchtest去掉，则表示将远程origin仓库的master分支拉取下来与本地当前分支合并。<br />
 以上的git pull操作如果用git fetch来表示：</p>
-<pre class="line-numbers"><code class="language-plain_text">$ git fetch origin master:brantest
+<pre><code class="language-plain_text">$ git fetch origin master:brantest
 $ git merge brantest
 </code></pre>
 <p>相比起来，git fetch更安全也更符合实际要求，因为可以在merge前，我们可以查看更新情况，根据实际情况再决定是否合并。</p>
@@ -167,14 +167,14 @@ $ git merge brantest
 <ul>
 <li>方法一</li>
 </ul>
-<pre class="line-numbers"><code class="language-bash">$ git fetch origin master                #从远程的origin仓库的master分支下载代码到本地的origin maste
+<pre><code class="language-bash">$ git fetch origin master                #从远程的origin仓库的master分支下载代码到本地的origin maste
 $ git log -p master.. origin/master      #比较本地的仓库和远程参考的区别
 $ git merge origin/master                #把远程下载下来的代码合并到本地仓库，远程的和本地的合并
 </code></pre>
 <ul>
 <li>方法二</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">$ git fetch origin master:temp           #从远程的origin仓库的master分支下载到本地并新建一个分支temp
+<pre><code class="language-plain_text">$ git fetch origin master:temp           #从远程的origin仓库的master分支下载到本地并新建一个分支temp
 $ git diff temp                          #比较master分支和temp分支的不同
 $ git merge temp                         #合并temp分支到master分支
 $ git branch -d temp                     #删除temp
@@ -361,6 +361,7 @@ body{ box-sizing: border-box;
      word-wrap: break-word !important;       /* Internet Explorer 5.5+ */
     }
     html,body{margin:0;padding:4px;}
+    .mweb-yaml{display:none;}
 }
 
 

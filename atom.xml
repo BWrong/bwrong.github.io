@@ -4,7 +4,7 @@
   <title><![CDATA[Bwrong的拾光]]></title>
   <link href="https://www.bwrong.cn/atom.xml" rel="self"/>
   <link href="https://www.bwrong.cn/"/>
-  <updated>2025-07-23T10:50:24+08:00</updated>
+  <updated>2026-04-22T16:28:39+08:00</updated>
   <id>https://www.bwrong.cn/</id>
   <author>
     <name><![CDATA[]]></name>
@@ -13,22 +13,33 @@
   <generator uri="http://www.mweb.im/">MWeb</generator>
   
   <entry>
+    <title type="html"><![CDATA[人生若只如初见]]></title>
+    <link href="https://www.bwrong.cn/17579088353267.html"/>
+    <updated>2025-09-15T12:00:35+08:00</updated>
+    <id>https://www.bwrong.cn/17579088353267.html</id>
+    <content type="html"><![CDATA[
+<p>人还是刚认识的时候最好啊，热情又虚伪，新鲜又浪漫，发不完的信息，聊不完的话题，可以从早晨的阳光聊到深夜的晚餐，从黎明的微风聊到黄昏的炊烟，可是谁又能接受时间的考验呢？最终都是从无话不说到无话可说。聊不完的天其实只仅限于初识，天在将黑不黑是最美。人在不远不近时最迷人。我们的故事不长也不难讲。到头来也只不过相识一场。</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[MacOS安装软件及运行时，提示“已损坏无法打开”的解决方案]]></title>
     <link href="https://www.bwrong.cn/17509210538857.html"/>
     <updated>2025-06-26T14:57:33+08:00</updated>
     <id>https://www.bwrong.cn/17509210538857.html</id>
     <content type="html"><![CDATA[
 <p>安装软件时出现...已损坏，无法打开...解决办法<br />
-<figure><img src="media/17509210538857/17509211119862.jpg" alt="" /></figure></p>
+<img src="media/17509210538857/17509211119862.jpg" alt="" /></p>
 <p>在终端或控制台输入如下命令，然后回车，就会弹出提示输入密码，输入开机密码回车。</p>
-<pre class="line-numbers"><code class="language-plain_text">sudo spctl --master-disable
+<pre><code class="language-plain_text">sudo spctl --master-disable
 </code></pre>
 <p>以上操作是为了打开：系统偏好设置 – 安全性与隐私 – 通用 ，中的“任何来源”选项。<br />
-<figure><img src="media/17509210538857/17509211231877.jpg" alt="" /></figure></p>
+<img src="media/17509210538857/17509211231877.jpg" alt="" /></p>
 <p>打开已安装软件时出现...已损坏，无法打开...解决办法<br />
-<figure><img src="media/17509210538857/17509211552801.jpg" alt="" /></figure></p>
+<img src="media/17509210538857/17509211552801.jpg" alt="" /></p>
 <p>在终端中输入<code>sudo xattr -cr </code>,(这里要注意后面有个空格)。将提示已损坏，无法打开的程序图标拖到命令栏中<br />
-<figure><img src="media/17509210538857/17509211765908.jpg" alt="" /></figure></p>
+<img src="media/17509210538857/17509211765908.jpg" alt="" /></p>
 <p>拖入命令行后， 拖入程序图标后类似显示<code>sudo xattr -cr /Applications/XXX.app</code>，然后回车，再去打开程序即可正常运行。</p>
 <p>提示：在macOS Ventura 13系统上操作之后如果还是提示损坏，就右键软件，选择打开，再点击打开。</p>
 
@@ -44,14 +55,14 @@
 <h2><a id="%E4%B8%80%E3%80%81mcp%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、MCP 基础概念</h2>
 <h3><a id="1-1%E4%BB%80%E4%B9%88%E6%98%AF-mcp%EF%BC%9F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>1.1 什么是 MCP？</h3>
 <p><strong>定义</strong>：MCP（Model Context Protocol，模型上下文协议）是由Anthropic公司于2024年底提出的一种<strong>开放标准协议</strong>，它标准化了应用程序如何为 LLM 提供上下文，旨在解决大型语言模型（LLM）与外部数据、工具之间的连接交互问题。它为AI应用提供了一种统一的、标准化的方式来访问和处理数据（实时数据、本地数据），解决了AI模型的数据孤岛问题，为 AI 应用提供了连接万物的接口，被誉为 &quot;AI 领域的 USB-C&quot;。<br />
-<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449444076713.jpg" alt="" /></figure></p>
+<img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449444076713.jpg" alt="" /></p>
 <p><strong>核心价值</strong>：</p>
 <p>传统的AI模型面临几个关键挑战：</p>
 <ul>
 <li>知识时效性限制：模型只了解训练截止日期前的信息</li>
 <li>专有数据访问困难：无法直接访问企业内部系统的数据</li>
 <li>集成成本高昂：每接入一种新数据源，都需要定制专门的集成方案。传统上，将 AI 系统连接到外部工具涉及集成多个 API。每个 API 集成都意味着单独的代码、文档、身份验证方法、错误处理和维护。<br />
-<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449445095592.jpg" alt="" /></figure></li>
+<img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449445095592.jpg" alt="" /></li>
 </ul>
 <p>MCP的核心优势：</p>
 <ul>
@@ -60,9 +71,9 @@
 <li>数据安全：你的敏感数据留在自己的电脑上，自行决定上传那些数据。</li>
 </ul>
 <p>MCP 是 AI大模型 与数据（包括本地数据和互联网数据）之间的一座桥梁，通过 MCP 服务器和 MCP 客户端，大家只要都遵循这套协议，就能实现“万物互联”。比如，可以和数据和文件系统、开发工具、Web 和浏览器自动化、生产力和通信、各种社区生态能力全部集成，实现强大的协作工作能力。<br />
-<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17448608579279.jpg" alt="" /></figure></p>
+<img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17448608579279.jpg" alt="" /></p>
 <h3><a id="1-2%E6%A0%B8%E5%BF%83%E6%9E%B6%E6%9E%84" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>1.2 核心架构</h3>
-<p><figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449452410979.gif" alt="" /></figure></p>
+<p><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449452410979.gif" alt="" /></p>
 <p>MCP 遵循客户端-服务器架构（client-server），其中包含以下几个核心概念：</p>
 <ul>
 <li><strong>MCP 主机（MCP Hosts）</strong>：发起请求的 LLM 应用程序（例如 Claude Desktop、IDE 或 AI 工具）。</li>
@@ -73,7 +84,7 @@
 </ul>
 <p>其中，重点关注MCP Client和MCP Server。</p>
 <p><strong>MCP Client</strong>：<br />
-<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449452837237.jpg" alt="" /></figure></p>
+<img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449452837237.jpg" alt="" /></p>
 <p>MCP client 充当 LLM 和 MCP server 之间的桥梁，MCP client 的工作流程如下：</p>
 <p>❶ MCP client 首先从 MCP server 获取可用的工具列表。<br />
 ❷ 将用户的查询连同工具描述通过 function calling 一起发送给 LLM。<br />
@@ -85,25 +96,25 @@
 ❼ MCP Hosts将响应展示给用户。</p>
 <p>Claude Desktop 和Cursor都支持了MCP Server接入能力，它们就是作为 MCP client来连接某个MCP Server感知和实现调用。</p>
 <p><strong>MCP Server</strong>：<br />
-<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449453163079.jpg" alt="" /></figure></p>
+<img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449453163079.jpg" alt="" /></p>
 <p>MCP server 是 MCP 架构中的关键组件，它可以提供 3 种主要类型的功能：</p>
 <p>○ <a href="https://modelcontextprotocol.io/docs/concepts/resources">资源（Resources）</a>：将 Server 上的数据和内容开放给大语言模型，可以是文本或二进制数据。如 API 响应、文件内容、图像等。<br />
 ○ <a href="https://modelcontextprotocol.io/docs/concepts/tools">工具（Tools）</a>：可以被调用的函数，这些函数可由客户端调用，并由 LLM 使用来执行操作。<br />
 ○ <a href="https://modelcontextprotocol.io/docs/concepts/prompts">提示（Prompts）</a>：预先编写的可复用的提示词模板和工作流程。<br />
-<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449526186282.jpg" alt="" /></figure></p>
+<img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449526186282.jpg" alt="" /></p>
 <p>这些功能使 MCP server 能够为 AI 应用提供丰富的上下文信息和操作能力，从而增强 LLM 的实用性和灵活性。</p>
 <h3><a id="%E4%B8%80%E4%B8%AA%E5%BD%A2%E8%B1%A1%E7%9A%84%E6%AF%94%E5%96%BB" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一个形象的比喻</h3>
 <p>我在网上看到了一个比较形象的比喻，感觉还不错，摘录到这里，如果需要查看原文请点<a href="https://baijiahao.baidu.com/s?id=1829100651768604009&amp;wfr=spider&amp;for=pc">这里</a><br />
 首先，用户让 LLM 调用工具，就好比我（特工少女，即 User）让男朋友（LLM）去小店（软件服务提供商）买东西（Data &amp; Tool）并使用。如果模型接到的任务则可能需要多个工具调用（Tool Use），这就好比我跟男朋友讲的需求比较复杂，比如做从零做一道番茄炒蛋。<br />
-<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449608021782.jpg" alt="" /></figure></p>
+<img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449608021782.jpg" alt="" /></p>
 <p>然后男朋友通过规划（Planning）决定去苏泊尔买个锅和铲，去菜场买个西红柿和鸡蛋，再去便利店买个糖和盐，以此来完成番茄炒蛋这道菜。但是在传统的 AI 应用开发过程中，男朋友（LLM）能去的小店（能使用的工具）都需要开发者预先定义线路（编写代码）。</p>
 <p>但是，男朋友（LLM）每去一个新地方，都要造一条新路（编写代码），似乎不太方便。于是后来字节扣子、百度千帆、阿里云百炼等平台出现了，他们就好比是开了一个商超。商超跟各种小店说，我这里人气旺，你们直接按我们的要求来货架上架你们的商品就行，再跟我（User）说我这现成的商品多，以后让男朋友（LLM）来这买就行。<br />
-<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449608153690.jpg" alt="" /></figure></p>
+<img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449608153690.jpg" alt="" /></p>
 <p>小店们觉得这事不错，便遵守平台一定的上架规范，开始把他们的商品（Tool）变成了插件（Plugin），我（User）提的好多需求，男朋友（LLM）在这些平台上就能一站式满足了，选几个插件直接用就行，方便了挺多。</p>
 <p>但是，Anthropic 干了一个什么事情呢？他想搞电商！</p>
 <p>他跟小店们说，不同平台的插件规范不太一样，你们去各个平台上架插件也挺累的。咱们搞个新玩法，能让天下的男朋友（LLM）都很容易的用到更多商品（调用更多工具）。你们呢按照我这个标准，把你们的商品都做一个数字化的标准信息处理（即变成了 MCP Server），我们再定义一个叫电商组件的东西（即 MCP Client），你们的 MCP Server 要跟电商组件有互动，只要遵守一个开放的规则，这部分就是 MCP 协议，即 Server 和 Client 的通信协议。</p>
 <p>此外，Anthropic 基于这个电商平台（Client）的理念做了一个淘宝的外壳，这个淘宝就好比没有包含 LLM 的 Claude Desktop。在这基础上，如果再加上 Claude 的模型，就相当于让“男朋友刷淘宝”，这一整体就构成了 MCP Host。<br />
-<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449608349448.jpg" alt="" /></figure></p>
+<img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449608349448.jpg" alt="" /></p>
 <p>MCP Server 只管提供各种工具，MCP Host 只管通过 MCP Client 获取并使用这些工具。然后淘宝上玲琅满目的商品很多，就形成了 MCP Market。</p>
 <h3><a id="1-3%E9%80%9A%E4%BF%A1%E6%9C%BA%E5%88%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>1.3 通信机制</h3>
 <p>关于Client和Server之间的通信方式，MCP 协议支持两种主要的通信机制：基于Stdio（标准输入输出）的本地通信和基于SSE（Server-Sent Events）的远程通信。</p>
@@ -111,7 +122,7 @@
 <p>**本地通信：**通过 stdio 传输数据，适用于在同一台机器上运行的客户端和服务器之间的通信。<br />
 **远程通信：**利用 SSE 与 HTTP 结合，实现跨网络的实时数据传输，适用于需要访问远程资源或分布式部署的场景。</p>
 <p><strong>连接过程</strong>：<br />
-<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449459358047.jpg" alt="" /></figure></p>
+<img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449459358047.jpg" alt="" /></p>
 <ol>
 <li>客户端发送包含协议版本和功能的请求initialize</li>
 <li>Server 使用其协议版本和功能进行响应</li>
@@ -187,22 +198,22 @@
 </tr>
 </tbody>
 </table>
-<p><figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/1adfb43d17054bdfe566865c141baf35.png" alt="1adfb43d17054bdfe566865c141baf35" /><figcaption>1adfb43d17054bdfe566865c141baf35<figcaption></figure></p>
+<p><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/1adfb43d17054bdfe566865c141baf35.png" alt="1adfb43d17054bdfe566865c141baf35" /></p>
 <p>Function calling 功能单一，不具备上下文管理能力，一次只执行一个任务，一般是同步进行调用。没有特定的标准，需要厂商或者我们自己去开发实现。生态相对封闭，没有多少开源项目，定制化比较多。<br />
 MCP 功能复杂，可以支持多轮对话，一次能调用多个任务，也可以异步执行。有统一的标准，只要是适配了 MCP 的 Server 都可以用统一的代码去调用，而且除了工具调用，还提供了提示词和上下文资源。</p>
 <h3><a id="2-2%E4%B8%BE%E4%BE%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>2.2 举例</h3>
 <ul>
 <li>
 <p>如果你的 function 最初需要两个参数（例如，天气服务的 location 参数和 date 参数，用户需严格按此参数结构构建应用。<br />
-<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449453826664.jpg" alt="" /></figure></p>
+<img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449453826664.jpg" alt="" /></p>
 </li>
 <li>
 <p>之后，如果你决定为该 function 添加第三个必选参数（例如，unit参数（温度单位）），将“契约”进行变更。<br />
-<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449454190209.jpg" alt="" /></figure></p>
+<img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449454190209.jpg" alt="" /></p>
 </li>
 <li>
 <p>这意味着该 function 的所有用户都必须更新代码，增加对新参数的支持，如果未及时更新，他们的请求可能会失败、报错或提供不完整的结果。<br />
-<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449454519373.jpg" alt="" /></figure></p>
+<img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449454519373.jpg" alt="" /></p>
 </li>
 </ul>
 <p>MCP 的设计解决了这个问题，具体方法如下：</p>
@@ -215,11 +226,11 @@ MCP 功能复杂，可以支持多轮对话，一次能调用多个任务，也�
 </li>
 <li>
 <p>Server 的响应包含可用的 tools、resources、prompts 以及相关参数的详细信息。例如，若天气 API 最初仅支持 location 和 date 参数，服务器会通过能力交换告知这些信息。<br />
-<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449455836821.jpg" alt="" /></figure></p>
+<img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449455836821.jpg" alt="" /></p>
 </li>
 <li>
 <p>当新增 unit 参数时，MCP Server 可在下次进行能力交换时动态更新能力描述。Client 无需硬编码或预定义参数，只需查询 Server 的最新能力并自动适配。<br />
-<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449456074053.jpg" alt="" /></figure></p>
+<img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449456074053.jpg" alt="" /></p>
 </li>
 <li>
 <p>这样，Client 就能使用更新后的新功能（例如在其请求中包含 unit 参数），实时调整行为，而无需重写或重新部署代码。</p>
@@ -229,7 +240,7 @@ MCP 功能复杂，可以支持多轮对话，一次能调用多个任务，也�
 <ul>
 <li>mcp协议工作在应用与外部工具对接的阶段，标准化这些工具的开发，以及在应用层接入、执行等过程，更多指的是整个让模型调用工具的整体手段。</li>
 <li>function call 则工作在应用与大模型交互之间，标准化如何让大模型理解、调用外部工具。如Host 里的 LLM 向 Client 调用工具时，大多仍然使用 Function Calling。<br />
-<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449604160957.jpg" alt="" /></figure></li>
+<img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449604160957.jpg" alt="" /></li>
 </ul>
 <h2><a id="%E4%B8%89%E3%80%81%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B%EF%BC%9A%E4%BA%A4%E9%80%9A%E6%80%81%E5%8A%BF%E5%AE%9E%E6%97%B6%E6%9F%A5%E8%AF%A2" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>三、实战案例：交通态势实时查询</h2>
 <h3><a id="3-1%E9%9C%80%E6%B1%82" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>3.1 需求</h3>
@@ -237,7 +248,7 @@ MCP 功能复杂，可以支持多轮对话，一次能调用多个任务，也�
 <h3><a id="3-2%E5%AE%9E%E7%8E%B0-mcp-server" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>3.2 实现MCP Server</h3>
 <p>准备：高德ApiKey、安装<a href="https://github.com/modelcontextprotocol/typescript-sdk"><code>@modelcontextprotocol/sdk</code></a></p>
 <p>代码如下：</p>
-<pre class="line-numbers"><code class="language-ts">import { McpServer } from &quot;@modelcontextprotocol/sdk/server/mcp.js&quot;;
+<pre><code class="language-ts">import { McpServer } from &quot;@modelcontextprotocol/sdk/server/mcp.js&quot;;
 import { StdioServerTransport } from &quot;@modelcontextprotocol/sdk/server/stdio.js&quot;;
 import { z } from &quot;zod&quot;;
 // 通过命令行获取key
@@ -370,7 +381,7 @@ main();
 </code></pre>
 <p>在开发的时候，可以使用<a href="https://modelcontextprotocol.io/docs/tools/inspector">@modelcontextprotocol/inspector</a>进行调试。</p>
 <h3><a id="3-3%E5%AE%9E%E7%8E%B0-mcp-client" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>3.3 实现MCP Client</h3>
-<pre class="line-numbers"><code class="language-js">import { Client } from &quot;@modelcontextprotocol/sdk/client/index.js&quot;;
+<pre><code class="language-js">import { Client } from &quot;@modelcontextprotocol/sdk/client/index.js&quot;;
 import { StdioClientTransport } from &quot;@modelcontextprotocol/sdk/client/stdio.js&quot;;
 
 const transport = new StdioClientTransport({
@@ -424,7 +435,7 @@ console.log(result);
 <li>打开cursor的MCP配置文件。</li>
 <li>添加配置</li>
 </ol>
-<pre class="line-numbers"><code class="language-js">{
+<pre><code class="language-js">{
   &quot;mcpServers&quot;: {
     &quot;amap-traffic-mcp-server&quot;: {
       &quot;type&quot;: &quot;stdio&quot;,
@@ -439,17 +450,17 @@ console.log(result);
 </code></pre>
 <ol start="3">
 <li>正常情况可以看到mcp列表中已出现添加的MCP及它提供的tools<br />
-<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449489596763.jpg" alt="" /></figure></li>
+<img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449489596763.jpg" alt="" /></li>
 <li>在chart面板中输入“帮我查询成都市天府大道北段道路交通情况&quot;。可以看到它调用了MCP，并返回了结果<br />
-<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449490810948.jpg" alt="" /></figure><br />
+<img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449490810948.jpg" alt="" /><br />
 当然，如果你的MCP想共享给别人使用，那么可以发布到npm上，在<code>package.json</code>中添加如下内容,支持使用npx运行。</li>
 </ol>
-<pre class="line-numbers"><code class="language-plain_text">&quot;bin&quot;: {
+<pre><code class="language-plain_text">&quot;bin&quot;: {
     &quot;amap-traffic-mcp-server&quot;: &quot;./build/index.js&quot;
 }
 </code></pre>
 <p>然后进行发布，发布后，别人就可以使用如下方式进行集成了。</p>
-<pre class="line-numbers"><code class="language-plain_text">&quot;amap-traffic-mcp-server&quot;: {
+<pre><code class="language-plain_text">&quot;amap-traffic-mcp-server&quot;: {
   &quot;type&quot;: &quot;stdio&quot;,
   &quot;command&quot;: &quot;npx&quot;,
   &quot;args&quot;: [
@@ -539,7 +550,7 @@ console.log(result);
 <li><strong>session 是另一种记录服务器和客户端会话状态的机制</strong></li>
 <li><strong>session 是基于 cookie 实现的，session 存储在服务器端，sessionId 会被存储到客户端的 cookie 中</strong></li>
 </ul>
-<p><figure><img src="media/17289745203360/17289745622104.png" alt="" /></figure></p>
+<p><img src="media/17289745203360/17289745622104.png" alt="" /></p>
 <ul>
 <li><strong>session 认证流程：</strong>
 <ul>
@@ -573,7 +584,7 @@ console.log(result);
 </li>
 <li><strong>token 的身份验证流程：</strong></li>
 </ul>
-<p><figure><img src="media/17289745203360/17289745622140.png" alt="" /></figure></p>
+<p><img src="media/17289745203360/17289745622140.png" alt="" /></p>
 <ol>
 <li>客户端使用用户名跟密码请求登录</li>
 <li>服务端收到请求，去验证用户名与密码</li>
@@ -596,7 +607,7 @@ console.log(result);
 <p>refresh token 是专用于刷新 access token 的 token。如果没有 refresh token，也可以刷新 access token，但每次刷新都要用户输入登录用户名与密码，会很麻烦。有了 refresh token，可以减少这个麻烦，客户端直接用 refresh token 去更新 access token，无需用户进行额外的操作。</p>
 </li>
 </ul>
-<p><figure><img src="media/17289745203360/17289745622163.png" alt="" /></figure></p>
+<p><img src="media/17289745203360/17289745622163.png" alt="" /></p>
 <ul>
 <li>Access Token 的有效期比较短，当 Acesss Token 由于过期而失效时，使用 Refresh Token 就可以获取到新的 Token，如果 Refresh Token 也失效了，用户就只能重新登录了。</li>
 <li>Refresh Token 及过期时间是存储在服务器的数据库中，只有在申请新的 Acesss Token 时才会验证，不会对业务接口响应时间造成影响，也不需要向 Session 一样一直保持在内存中以应对大量的请求。</li>
@@ -619,7 +630,7 @@ console.log(result);
 <p><a href="https://link.juejin.cn?target=https%3A%2F%2Fjwt.io%2F" title="https://jwt.io/">jwt.io/</a><br />
 <a href="https://link.juejin.cn?target=https%3A%2F%2Fwww.jsonwebtoken.io%2F" title="https://www.jsonwebtoken.io/">www.jsonwebtoken.io/</a></p>
 <h3><a id="jwt%E7%9A%84%E5%8E%9F%E7%90%86" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>JWT 的原理</h3>
-<p><figure><img src="media/17289745203360/17289745622175.png" alt="" /></figure></p>
+<p><img src="media/17289745203360/17289745622175.png" alt="" /></p>
 <ul>
 <li><strong>JWT 认证流程：</strong>
 <ul>
@@ -629,7 +640,7 @@ console.log(result);
 </ul>
 </li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">Authorization: Bearer &lt;token&gt;
+<pre><code class="language-plain_text">Authorization: Bearer &lt;token&gt;
 
 
 </code></pre>
@@ -647,7 +658,7 @@ console.log(result);
 <ul>
 <li>
 <p>当用户希望访问一个受保护的路由或者资源的时候，可以把它放在 Cookie 里面自动发送，但是这样不能跨域，所以更好的做法是放在 HTTP 请求头信息的 Authorization 字段里，使用 Bearer 模式添加 JWT。</p>
-<pre class="line-numbers"><code class="language-plain_text">GET /calendar/v1/events
+<pre><code class="language-plain_text">GET /calendar/v1/events
 Host: api.example.com
 Authorization: Bearer &lt;token&gt;
 
@@ -670,7 +681,7 @@ Authorization: Bearer &lt;token&gt;
 <ul>
 <li>通过 URL 传输</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">http://www.example.com/user?token=xxx
+<pre><code class="language-plain_text">http://www.example.com/user?token=xxx
 
 
 </code></pre>
@@ -698,7 +709,7 @@ Authorization: Bearer &lt;token&gt;
 <li>OAuth2.0（开放授权）</li>
 </ol>
 <h2><a id="%E5%B8%B8%E8%A7%81%E7%9A%84%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>常见的加密算法</h2>
-<p><figure><img src="media/17289745203360/17289745622186.png" alt="" /></figure></p>
+<p><img src="media/17289745203360/17289745622186.png" alt="" /></p>
 <ul>
 <li>哈希算法 (Hash Algorithm) 又称散列算法、散列函数、哈希函数，是一种从任何一种数据中创建小的数字 “指纹” 的方法。哈希算法将数据重新打乱混合，重新创建一个哈希值。</li>
 <li>哈希算法主要用来保障数据真实性 (即完整性)，即发信人将原始消息和哈希值一起发送，收信人通过相同的哈希函数来校验原始数据是否真实。</li>
@@ -794,7 +805,7 @@ Authorization: Bearer &lt;token&gt;
 </ul>
 </li>
 </ul>
-<p><figure><img src="media/17289745203360/17289745622205.png" alt="" /></figure></p>
+<p><img src="media/17289745203360/17289745622205.png" alt="" /></p>
 <h4><a id="4-session%E6%8C%81%E4%B9%85%E5%8C%96" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>4. session 持久化</h4>
 <ul>
 <li>将 session 存储到数据库中，保证 session 的持久化</li>
@@ -843,7 +854,7 @@ Authorization: Bearer &lt;token&gt;
     <content type="html"><![CDATA[
 <blockquote>
 <ul>
-<li><figure><img src="https://res.weread.qq.com/wrepub/CB_EVOAi2AgV6Ep6db6cNE4q5U8_parsecover" alt=" 《JavaScript框架设计（第2版)》_司徒正美|200" /><figcaption> 《JavaScript框架设计（第2版)》_司徒正美|200<figcaption></figure></li>
+<li><img src="https://res.weread.qq.com/wrepub/CB_EVOAi2AgV6Ep6db6cNE4q5U8_parsecover" alt=" 《JavaScript框架设计（第2版)》_司徒正美|200" /></li>
 <li>书名： 《JavaScript框架设计（第2版)》_司徒正美</li>
 <li>作者： 司徒正美</li>
 <li>简介：</li>
@@ -897,7 +908,7 @@ Authorization: Bearer &lt;token&gt;
     <content type="html"><![CDATA[
 <blockquote>
 <ul>
-<li><figure><img src="https://cdn.weread.qq.com/weread/cover/96/cpPlatform_kmqPY1boCDVyMxq2AvPdCY/t7_cpPlatform_kmqPY1boCDVyMxq2AvPdCY.jpg" alt=" Vue.js设计与实现|200" /><figcaption> Vue.js设计与实现|200<figcaption></figure></li>
+<li><img src="https://cdn.weread.qq.com/weread/cover/96/cpPlatform_kmqPY1boCDVyMxq2AvPdCY/t7_cpPlatform_kmqPY1boCDVyMxq2AvPdCY.jpg" alt=" Vue.js设计与实现|200" /></li>
 <li>书名： Vue.js设计与实现</li>
 <li>作者： 霍春阳　著</li>
 <li>简介： 本书基于Vue.js 3，从规范出发，以源码为基础，并结合大量直观的配图，循序渐进地讲解Vue.js中各个功能模块的实现，细致剖析框架设计原理。全书共18章，分为六篇，主要内容包括：框架设计概览、响应系统、渲染器、组件化、编译器和服务端渲染等。通过阅读本书，对Vue.js 2/3具有上手经验的开发人员能够进一步理解Vue.js框架的实现细节，没有Vue.js使用经验但对框架设计感兴趣的前端开发人员，能够快速掌握Vue.js的设计原理。</li>
@@ -1032,7 +1043,65 @@ Authorization: Bearer &lt;token&gt;
     <content type="html"><![CDATA[
 <blockquote>
 <ul>
-<li><figure><img src="https://res.weread.qq.com/wrepub/CB_CL46DC6DNCYz6dV6cc_parsecover" alt=" 前端架构：从入门到微前端|200" /><figcaption>
+<li><img src="https://res.weread.qq.com/wrepub/CB_CL46DC6DNCYz6dV6cc_parsecover" alt=" 前端架构：从入门到微前端|200" /></li>
+<li>书名： 前端架构：从入门到微前端</li>
+<li>作者： 黄峰达</li>
+<li>简介：</li>
+<li>出版时间</li>
+<li>ISBN：</li>
+<li>分类：</li>
+<li>出版社： 电子工业出版社</li>
+</ul>
+</blockquote>
+<h1><a id="%E9%AB%98%E4%BA%AE%E5%88%92%E7%BA%BF" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>高亮划线</h1>
+<h2><a id="%E7%AC%AC10%E7%AB%A0%E5%BE%AE%E5%89%8D%E7%AB%AF%E5%AE%9E%E6%88%98" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>第10章 微前端实战</h2>
+<ul>
+<li>
+<p>📌 而不是/。在独立运行时，它的基准URL则是/。因此，需要在对应的app.module.ts中进行APP_BASE_HREF的配置： ^CB-CKP0PJ0QMEBa6f06gXDc4Bl6-13-22865-22930</p>
+<ul>
+<li>⏱ 2023-03-09 12:02:25</li>
+</ul>
+</li>
+<li>
+<p>📌 使用Zone作为变化检测机制，因此每个应用都会在polyfill.ts中 ^CB-CKP0PJ0QMEBa6f06gXDc4Bl6-13-23187-23223</p>
+<ul>
+<li>⏱ 2023-03-09 12:01:53</li>
+</ul>
+</li>
+<li>
+<p>📌 [插图] ^CB-CKP0PJ0QMEBa6f06gXDc4Bl6-13-32385-32386</p>
+<ul>
+<li>⏱ 2023-03-10 08:34:03</li>
+</ul>
+</li>
+<li>
+<p>📌 10.7　小结在本章中，我们主要关注于如何通过六种不同的方式来实现微前端架构。每一种微前端架构方案都有各自的优缺点及适应场景，在选型的时候，需要按照自己的真实需要来选择。当出现一些不可抗力（如领导、KPI）影响的时候，也应该从中选择合适的方案。最后，让我们来对比一下不同的微前端架构方案。如表10-1所示是本章中不同方案的简要对比。表10-1[插图]更详细的比较可以参考下面的方式，如表10-2所示。表10-2 ^CB-CKP0PJ0QMEBa6f06gXDc4Bl6-13-36768</p>
+<ul>
+<li>⏱ 2023-03-13 08:30:33</li>
+</ul>
+</li>
+</ul>
+<h2><a id="%E7%AC%AC11%E7%AB%A0%E6%9E%B6%E6%9E%84%E6%BC%94%E8%BF%9B%EF%BC%9A%E6%BC%94%E8%BF%9B%E5%BC%8F%E6%9E%B6%E6%9E%84" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>第11章 架构演进：演进式架构</h2>
+<ul>
+<li>
+<p>📌 只有当重写应用的花费+维护应用的花费&lt;维护现有系统的花费时，我们才应该考虑重写。 ^CB-CKP0PJ0QMEBa6f06gXDc4Bl6-14-14717-14757</p>
+<ul>
+<li>⏱ 2023-03-17 08:21:16</li>
+</ul>
+</li>
+<li>
+<p>📌 绞杀者模式 ^CB-CKP0PJ0QMEBa6f06gXDc4Bl6-14-17769-17774</p>
+<ul>
+<li>⏱ 2023-03-17 08:29:58</li>
+</ul>
+</li>
+</ul>
+<h1><a id="%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>读书笔记</h1>
+<h1><a id="%E6%9C%AC%E4%B9%A6%E8%AF%84%E8%AE%BA" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>本书评论</h1>
+<h2><a id="%E4%B9%A6%E8%AF%84no-1" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>书评 No.1</h2>
+<p>^30631064-7GLXYMTVA<br />
+⏱ 2023-03-17 08:31:53</p>
+
 ]]></content>
   </entry>
   
@@ -1044,7 +1113,190 @@ Authorization: Bearer &lt;token&gt;
     <content type="html"><![CDATA[
 <blockquote>
 <ul>
-<li><figure><img src="https://res.weread.qq.com/wrepub/CB_FT7C0PC2PGOx6Xr6YD_parsecover" alt=" 深入浅出Node.js (图灵原创)|200" /><figcaption>
+<li><img src="https://res.weread.qq.com/wrepub/CB_FT7C0PC2PGOx6Xr6YD_parsecover" alt=" 深入浅出Node.js (图灵原创)|200" /></li>
+<li>书名： 深入浅出Node.js (图灵原创)</li>
+<li>作者： 朴灵</li>
+<li>简介：</li>
+<li>出版时间</li>
+<li>ISBN：</li>
+<li>分类：</li>
+<li>出版社：</li>
+</ul>
+</blockquote>
+<h1><a id="%E9%AB%98%E4%BA%AE%E5%88%92%E7%BA%BF" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>高亮划线</h1>
+<h2><a id="1-4%E3%80%80node%E7%9A%84%E7%89%B9%E7%82%B9" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>1.4　Node的特点</h2>
+<ul>
+<li>📌 兼容Windows和*nix平台主要得益于Node在架构层面的改动，它在操作系统与Node上层模块系统之间构建了一层平台层架构，即libuv。 ^CB-E4RGfTGgo6VO6lu6keCOJ2G5-12-9290-9361
+<ul>
+<li>⏱ 2024-02-21 08:06:30</li>
+</ul>
+</li>
+</ul>
+<h2><a id="2-2%E3%80%80node%E7%9A%84%E6%A8%A1%E5%9D%97%E5%AE%9E%E7%8E%B0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>2.2　Node的模块实现</h2>
+<ul>
+<li>
+<p>📌 路径分析、文件定位、编译执行 ^CB-E4RGfTGgo6VO6lu6keCOJ2G5-18-1406-1420</p>
+<ul>
+<li>⏱ 2024-02-21 08:26:31</li>
+</ul>
+</li>
+<li>
+<p>📌 require()方法对相同模块的二次加载都一律采用缓存优先的方式， ^CB-E4RGfTGgo6VO6lu6keCOJ2G5-18-1919-1953</p>
+<ul>
+<li>⏱ 2024-02-21 08:27:26</li>
+</ul>
+</li>
+<li>
+<p>📌 这是第一优先级的 ^CB-E4RGfTGgo6VO6lu6keCOJ2G5-18-1953-1961</p>
+<ul>
+<li>⏱ 2024-02-21 08:28:08</li>
+</ul>
+</li>
+<li>
+<p>📌 Node会按.js、.json、.node的次序补足扩展名，依次尝试。 ^CB-E4RGfTGgo6VO6lu6keCOJ2G5-18-6800-6916</p>
+<ul>
+<li>⏱ 2024-02-21 08:34:39</li>
+</ul>
+</li>
+</ul>
+<h2><a id="3-3%E3%80%80node%E7%9A%84%E5%BC%82%E6%AD%A5io" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>3.3　Node的异步I/O</h2>
+<ul>
+<li>📌 在Node中，除了JavaScript是单线程外，Node自身其实是多线程的，只是I/O线程使用的CPU较少 ^CB-E4RGfTGgo6VO6lu6keCOJ2G5-29-8038-8092
+<ul>
+<li>⏱ 2024-02-25 20:59:11</li>
+</ul>
+</li>
+</ul>
+<h2><a id="3-5%E3%80%80%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8%E4%B8%8E%E9%AB%98%E6%80%A7%E8%83%BD%E6%9C%8D%E5%8A%A1%E5%99%A8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>3.5　事件驱动与高性能服务器</h2>
+<ul>
+<li>
+<p>📌 通过主循环加事件触发的方式来运行程序 ^CB-E4RGfTGgo6VO6lu6keCOJ2G5-31-526-544</p>
+<ul>
+<li>⏱ 2024-02-25 20:59:12</li>
+</ul>
+</li>
+<li>
+<p>📌 同步式。 ^CB-E4RGfTGgo6VO6lu6keCOJ2G5-31-1355-1359</p>
+<ul>
+<li>⏱ 2024-02-25 20:59:10</li>
+</ul>
+</li>
+<li>
+<p>📌 每进程/每请求 ^CB-E4RGfTGgo6VO6lu6keCOJ2G5-31-1474-1481</p>
+<ul>
+<li>⏱ 2024-02-25 20:59:09</li>
+</ul>
+</li>
+<li>
+<p>📌 每线程/每请求 ^CB-E4RGfTGgo6VO6lu6keCOJ2G5-31-1608-1615</p>
+<ul>
+<li>⏱ 2024-02-25 20:59:08</li>
+</ul>
+</li>
+</ul>
+<h2><a id="3-6%E3%80%80%E6%80%BB%E7%BB%93" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>3.6　总结</h2>
+<ul>
+<li>📌 事件循环是异步实现的核心 ^CB-E4RGfTGgo6VO6lu6keCOJ2G5-32-506-518
+<ul>
+<li>⏱ 2024-02-25 20:59:10</li>
+</ul>
+</li>
+</ul>
+<h2><a id="5-1%E3%80%80v8%E7%9A%84%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6%E4%B8%8E%E5%86%85%E5%AD%98%E9%99%90%E5%88%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>5.1　V8的垃圾回收机制与内存限制</h2>
+<ul>
+<li>
+<p>📌 在V8中，主要将内存分为新生代和老生代两代。新生代中的对象为存活时间较短的对象，老生代中的对象为存活时间较长或常驻内存的对象 ^CB-E4RGfTGgo6VO6lu6keCOJ2G5-42-5872-5934</p>
+<ul>
+<li>⏱ 2024-03-28 08:01:50</li>
+</ul>
+</li>
+<li>
+<p>📌 J. Cheney于1970年首次发表在ACM论文上。<br />
+Cheney算法是一种采用复制的方式实现的垃圾回收算法。它将堆内存一分为二，每一部分空间称为semispace。在这两个semispace空间中，只有一个处于使用中，另一个处于闲置状态。处于使用状态的semispace空间称为From空间，处于闲置状态的空间称为To空间。当我们分配对象时，先是在From空间中进行分配。当开始进行垃圾回收时，会检查From空间中的存活对象，这些存活对象将被复制到To空间中，而非存活对象占用的空间将会被释放。完成复制后，From空间和To空间的角色发生对换。简而言之，在垃圾回收的过程中，就是通过将存活对象在两个semispace空间之间进行复制。<br />
+Scavenge的缺点是只能使用堆内存中的一半，这是由划分空间和复制机制所决定的。但Scavenge由于只复制存活的对象，并且对于生命周期短的场景存活对象只占少部分，所以它在时间效率上有优异的表现。<br />
+由于Scavenge是典型的牺牲空间换取时间的算法，所以无法大规模地应用到所有的垃圾回收中。 ^CB-E4RGfTGgo6VO6lu6keCOJ2G5-42-8524</p>
+<ul>
+<li>⏱ 2024-03-21 08:41:13</li>
+</ul>
+</li>
+<li>
+<p>📌 Cheney算法是一种采用复制的方式实现的垃圾回收算法。它将堆内存一分为二，每一部分空间称为semispace。在这两个semispace空间中，只有一个处于使用中，另一个处于闲置状态。处于使用状态的semispace空间称为From空间，处于闲置状态的空间称为To空间。当我们分配对象时，先是在From空间中进行分配。当开始进行垃圾回收时，会检查From空间中的存活对象，这些存活对象将被复制到To空间中，而非存活对象占用的空间将会被释放。完成复制后，From空间和To空间的角色发生对换 ^CB-E4RGfTGgo6VO6lu6keCOJ2G5-42-8632-8877</p>
+<ul>
+<li>⏱ 2024-03-21 08:42:48</li>
+</ul>
+</li>
+<li>
+<p>📌 当一个对象经过多次复制依然存活时，它将会被认为是生命周期较长的对象。这种较长生命周期的对象随后会被移动到老生代中，采用新的算法进行管理。对象从新生代中移动到老生代中的过程称为晋升 ^CB-E4RGfTGgo6VO6lu6keCOJ2G5-42-9877-9966</p>
+<ul>
+<li>⏱ 2024-03-21 08:42:22</li>
+</ul>
+</li>
+<li>
+<p>📌 对象晋升的条件主要有两个，一个是对象是否经历过Scavenge回收，一个是To空间的内存占用比超过限制 ^CB-E4RGfTGgo6VO6lu6keCOJ2G5-42-10275-10326</p>
+<ul>
+<li>⏱ 2024-03-21 08:43:50</li>
+</ul>
+</li>
+<li>
+<p>📌 V8在老生代中主要采用了Mark-Sweep和Mark-Compact相结合的方式进行垃圾回收。 ^CB-E4RGfTGgo6VO6lu6keCOJ2G5-42-11896-11944</p>
+<ul>
+<li>⏱ 2024-03-21 08:45:09</li>
+</ul>
+</li>
+<li>
+<p>📌 Mark-Sweep最大的问题是在进行一次标记清除回收后，内存空间会出现不连续的状态。 ^CB-E4RGfTGgo6VO6lu6keCOJ2G5-42-12725-12768</p>
+<ul>
+<li>⏱ 2024-03-28 08:07:59</li>
+</ul>
+</li>
+<li>
+<p>📌 垃圾回收的3种基本算法都需要将应用逻辑暂停下来，待执行完垃圾回收后再恢复执行应用逻辑，这种行为被称为“全停顿” ^CB-E4RGfTGgo6VO6lu6keCOJ2G5-42-14488-14543</p>
+<ul>
+<li>⏱ 2024-03-28 08:10:36</li>
+</ul>
+</li>
+<li>
+<p>📌 增量标记 ^CB-E4RGfTGgo6VO6lu6keCOJ2G5-42-14825-14829</p>
+<ul>
+<li>⏱ 2024-03-28 08:11:02</li>
+</ul>
+</li>
+</ul>
+<h2><a id="5-2%E3%80%80%E9%AB%98%E6%95%88%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>5.2　高效使用内存</h2>
+<ul>
+<li>
+<p>📌 在JavaScript中，实现外部作用域访问内部作用域中变量的方法叫做闭包（closure）。这得益于高阶函数的特性：函数可以作为参数或者返回值。 ^CB-E4RGfTGgo6VO6lu6keCOJ2G5-43-4105-4178</p>
+<ul>
+<li>⏱ 2024-03-28 08:21:00</li>
+</ul>
+</li>
+<li>
+<p>📌 无法立即回收的内存有闭包和全局变量引用这两种情况 ^CB-E4RGfTGgo6VO6lu6keCOJ2G5-43-5037-5061</p>
+<ul>
+<li>⏱ 2024-03-28 08:23:17</li>
+</ul>
+</li>
+</ul>
+<h2><a id="5-3%E3%80%80%E5%86%85%E5%AD%98%E6%8C%87%E6%A0%87" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>5.3　内存指标</h2>
+<ul>
+<li>📌 Buffer对象不同于其他对象，它不经过V8的内存分配机制，所以也不会有堆内存的大小限制。<br />
+这意味着利用堆外内存可以突破内存限制的问题。 ^CB-E4RGfTGgo6VO6lu6keCOJ2G5-44-3752-3900
+<ul>
+<li>⏱ 2024-03-28 08:26:05</li>
+</ul>
+</li>
+</ul>
+<h2><a id="6-1%E3%80%80buffer%E7%BB%93%E6%9E%84" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>6.1　Buffer结构</h2>
+<ul>
+<li>📌 Buffer是一个典型的JavaScript与C++结合的模块，它将性能相关部分用C++实现，将非性能相关的部分用JavaScript实 ^CB-E4RGfTGgo6VO6lu6keCOJ2G5-51-708-776
+<ul>
+<li>⏱ 2024-03-28 08:39:27</li>
+</ul>
+</li>
+</ul>
+<h1><a id="%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>读书笔记</h1>
+<h1><a id="%E6%9C%AC%E4%B9%A6%E8%AF%84%E8%AE%BA" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>本书评论</h1>
+
 ]]></content>
   </entry>
   
@@ -1056,7 +1308,36 @@ Authorization: Bearer &lt;token&gt;
     <content type="html"><![CDATA[
 <blockquote>
 <ul>
-<li><figure><img src="https://res.weread.qq.com/wrepub/CB_BCR3Xb3YY2RR6dZ6cN_parsecover" alt=" Vue.js设计与实现 (霍春阳) |200" /><figcaption>
+<li><img src="https://res.weread.qq.com/wrepub/CB_BCR3Xb3YY2RR6dZ6cN_parsecover" alt=" Vue.js设计与实现 (霍春阳) |200" /></li>
+<li>书名： Vue.js设计与实现 (霍春阳)</li>
+<li>作者： 霍春阳（HcySunYang）</li>
+<li>简介：</li>
+<li>出版时间</li>
+<li>ISBN：</li>
+<li>分类：</li>
+<li>出版社：</li>
+</ul>
+</blockquote>
+<h1><a id="%E9%AB%98%E4%BA%AE%E5%88%92%E7%BA%BF" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>高亮划线</h1>
+<h2><a id="1-2%E6%80%A7%E8%83%BD%E4%B8%8E%E5%8F%AF%E7%BB%B4%E6%8A%A4%E6%80%A7%E7%9A%84%E6%9D%83%E8%A1%A1" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>1.2 性能与可维护性的权衡</h2>
+<ul>
+<li>📌 声明式代码的性能不优于命令式代码的性能。 ^CB-7zDF71F5KGBs6jY6keEqq19k-9-2559-2579
+<ul>
+<li>⏱ 2023-10-07 12:49:17</li>
+</ul>
+</li>
+</ul>
+<h2><a id="1-3%E8%99%9A%E6%8B%9F-dom%E7%9A%84%E6%80%A7%E8%83%BD%E5%88%B0%E5%BA%95%E5%A6%82%E4%BD%95" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>1.3 虚拟 DOM 的性能到底如何</h2>
+<ul>
+<li>📌 声明式代码的更新性能消耗 = 找出差异的性能消耗+ 直接修改的性能消耗， ^CB-7zDF71F5KGBs6jY6keEqq19k-10-1276-1312
+<ul>
+<li>⏱ 2023-10-07 12:50:10</li>
+</ul>
+</li>
+</ul>
+<h1><a id="%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>读书笔记</h1>
+<h1><a id="%E6%9C%AC%E4%B9%A6%E8%AF%84%E8%AE%BA" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>本书评论</h1>
+
 ]]></content>
   </entry>
   
@@ -1068,7 +1349,7 @@ Authorization: Bearer &lt;token&gt;
     <content type="html"><![CDATA[
 <blockquote>
 <ul>
-<li><figure><img src="https://res.weread.qq.com/wrepub/CB_DhX9RH9PUFUv6VV6UG_parsecover" alt=" Three.js开发指南：基于WebGL和HTML5在网页上渲染3D图形和动画(原书第3版)|200" /><figcaption> Three.js开发指南：基于WebGL和HTML5在网页上渲染3D图形和动画(原书第3版)|200<figcaption></figure></li>
+<li><img src="https://res.weread.qq.com/wrepub/CB_DhX9RH9PUFUv6VV6UG_parsecover" alt=" Three.js开发指南：基于WebGL和HTML5在网页上渲染3D图形和动画(原书第3版)|200" /></li>
 <li>书名： Three.js开发指南：基于WebGL和HTML5在网页上渲染3D图形和动画(原书第3版)</li>
 <li>作者： （美）乔斯·德克森（Jos Dirksen）</li>
 <li>简介：</li>
@@ -1257,7 +1538,7 @@ Authorization: Bearer &lt;token&gt;
     <content type="html"><![CDATA[
 <blockquote>
 <ul>
-<li><figure><img src="https://cdn.weread.qq.com/weread/cover/55/YueWen_31418150/t7_YueWen_31418150.jpg" alt=" 眼界决定你的高度：任正非给创业者的人生智慧课|200" /><figcaption> 眼界决定你的高度：任正非给创业者的人生智慧课|200<figcaption></figure></li>
+<li><img src="https://cdn.weread.qq.com/weread/cover/55/YueWen_31418150/t7_YueWen_31418150.jpg" alt=" 眼界决定你的高度：任正非给创业者的人生智慧课|200" /></li>
 <li>书名： 眼界决定你的高度：任正非给创业者的人生智慧课</li>
 <li>作者： 戚风</li>
 <li>简介： 　　《眼界决定你的高度：任正非给创业者的人生智慧课》任正非先生是华为公司的创始人，他凭借独特的眼界和智慧，在三十余年间，将华为从一家名不见经传的民营企业，发展成全球最大的通信设备商。本书分别从眼界、战略定力、创业纲领、企业价值观、奋斗精神等角度，剖析了任正非的管理思想和人生智慧，为您讲述任正非的创业哲学。</li>
@@ -1343,15 +1624,15 @@ Authorization: Bearer &lt;token&gt;
 <p>生活中你看到一个红色立方体，从宏观的角度来看你会描述他是红色的，或者描述RGB值为(1,0,0)的立方体，这时候你要问自己一个问题， 如果呈现到眼睛中的红色平面图像，如果颜色是均匀的，你是否还有立体的感觉。换句话说就是如果把你看到的立方体图像分割成一个个像素单位， 那么每一个像素的RGB值都是(1,0,0)的话你是否有立方体的空间感，从前面课程的实验可以知道，是没有任何空间感的。 那就说明一个问题实际上在自然界中你看到的物体图像，如果看做一个光场，它就是一个变化的光场，并不是每个像素都是(1,0,0)。 这很好理解，抛开专业的物理光学不谈，其实生活中你会发现，比如太阳光照射到一个物体上，不同的面与光的角度不同，反射的到眼睛中的结果不同， 向阳面亮，背光面暗，不同的面不同的颜色，分界位置就有棱角感，。比如一个白色LED灯，靠近表面放在表面的中心， 你会感到表面反射到眼睛中的效果是越往四周越暗。</p>
 <h2><a id="%E5%85%89%E7%85%A7%E6%A8%A1%E5%9E%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>光照模型</h2>
 <h3><a id="%E6%BC%AB%E5%8F%8D%E5%B0%84" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>漫反射</h3>
-<p><figure><img src="media/17280514986441/17281451179876.png" alt="WebGL光照模型入射角" /><figcaption>WebGL光照模型入射角<figcaption></figure> <figure><img src="media/17280514986441/17281451179895.png" alt="WebGL漫反射" /><figcaption>WebGL漫反射<figcaption></figure></p>
+<p><img src="media/17280514986441/17281451179876.png" alt="WebGL光照模型入射角" /> <img src="media/17280514986441/17281451179895.png" alt="WebGL漫反射" /></p>
 <p>没有绝对的真理或迷信，所有的理论都是对生活现象的概括描述，上面提到一个几何体在太阳光下不同的面明暗不同，太阳离地球比较远，太阳光可以视为平行光，几何体不同的面与平行太阳光光线夹角不同， 换句话说就是相同强度的光线照射在表面上角度不同反射光线的强度也就不同，这里就对个现象建立数学模型。</p>
 <p>漫反射光的颜色 = 几何体表面基色 x 光线颜色 x 光线入射角余弦值</p>
 <p>这个数学模型没有考虑镜面反射描述的就是理想的漫反射体，并不能完整的描述物体表面的光场，既然是数学模型，自然就是可以修正的，比如添加一个系数，更改指数等等，这里不在详述。 比如普通的桌子桌面它的粗糙度是微米um级，相比人的脸它是平的，光的波长是纳米nm级，这时候桌子表面相比光线是凹凸不平的，宏观来看一束光线照射到物体的表面，对于理想的漫反射而言，因为表面无规则随机分布凹凸不平的反射面， 光线的反射是不定向的，换句话说任何角度的反射光都是一样的，这也就是说物体反射到眼睛中的光与人的观察位置无关，物体的漫反射光强度与光线的入射角有关如何解释，这个其实很简单，比如两块纸板面积相同，一个垂直太阳光线放置， 一个不垂直太阳光线也就是入射角不是90度，同样强度的光照条件下，垂直太阳光的纸板的光通量肯定比斜着放的纸板接收的光量大，这时候就有必要给数学模型引入一个入射角的因数。</p>
-<p><figure><img src="media/17280514986441/17281451179906.png" alt="漫反射余弦值" /><figcaption>漫反射余弦值<figcaption></figure> <figure><img src="media/17280514986441/17281451179916.png" alt="WebGL漫反射——0度" /><figcaption>WebGL漫反射——0度<figcaption></figure></p>
+<p><img src="media/17280514986441/17281451179906.png" alt="漫反射余弦值" /> <img src="media/17280514986441/17281451179916.png" alt="WebGL漫反射——0度" /></p>
 <p>光的颜色可以使用多种模型来表示，把上面的文字公式使用RGB具体参数来表示形式如下，比如物体表面的颜色是纯红色(1,0,0),入射光是纯白色(1,1,1),光线入射角是60度，余弦值就是0.5，代入下面公式，可以得出结果是(0.5,0,0), 结果仍然是红色，这是符合实际生活的，白色太阳光照在常见的红色物体上，反射的颜色是红色，只是太阳光线照射在物体表面的角度不同，反射的光强度不同。入射光垂直物体表面，也就是入射角是0对应的余弦值是1，光线垂直表面受光量最大， 反射光自然最大，和1对应；入射光线平行物体表面，此时的入射角是90度， 物体表面自然没什么光可以反射，</p>
 <p>(R2,G2,B2) = (R1,G1,B1) x (R0,G0,B0) x cosθ</p>
 <h3><a id="%E9%95%9C%E9%9D%A2%E5%8F%8D%E5%B0%84" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>镜面反射</h3>
-<p><figure><img src="media/17280514986441/17281451179925.png" alt="WebGL环境光模型" /><figcaption>WebGL环境光模型<figcaption></figure> <figure><img src="media/17280514986441/17281451179939.png" alt="WebGL镜面反射" /><figcaption>WebGL镜面反射<figcaption></figure></p>
+<p><img src="media/17280514986441/17281451179925.png" alt="WebGL环境光模型" /> <img src="media/17280514986441/17281451179939.png" alt="WebGL镜面反射" /></p>
 <p>上面的漫反射数学模型没有考虑镜面反射，描述的就是理想的漫反射体，并不能完整的描述物体表面的光场。漫反射是因为几何体表面粗糙度尺寸相对光波长尺寸而言是凹凸不平的，这种凹凸不平又是随机的，所以说漫反射的光线各个方向是均匀的。 镜面反射也就是说光照在物体上的反射光线具有方向性，具体点说就是光线的反射角等于入射角。生活中的镜子它的表面粗糙度很小，和光的波长是一个数量级，当光线照在上面的时候，反射光线就会表现出方向性。</p>
 <p>实际的生活中所有的物体没有绝对的漫反射或者镜面反射，往往都是同时存在，只是表现的倾向性不同，镜子的镜面反射更明显，粗糙的树皮漫反射更明显。光照射到物体上一部分会被吸收，透明的话一部分会被折射， 除去吸收和折射的光剩余的会被反射，反射的时候根据表面的粗糙度不同，镜面反射和漫反射分配的比例不同可以使用两个系数k1、k2去描述。</p>
 <p>在室外停放着一辆车，你观察车的时候，你会发现车的外表面会在某个局部出现高光，这很好理解，车的外壳是曲面的，曲面上如果某个区域的的光线反射角刚好是你的视线方向，自然会呈现出局部高亮的现象，其他的部位是漫反射为主。 镜面反射的公式仍然可以写成上面的形式，只是角度不再是光线入射角度而是眼睛视线与反射光线的夹角，n角度余弦值的指数，实际编程的时候你可以自由定义，没有绝对完美的模型，都可以进行修正。</p>
@@ -1364,14 +1645,14 @@ Authorization: Bearer &lt;token&gt;
 <p>总反射光线 = 漫反射光线 + 镜面反射光线 + 环境反射光线</p>
 <h3><a id="%E6%B3%95%E5%90%91%E9%87%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>法向量</h3>
 <p>有基本的数学知识应该都有法线的概念，垂直与面的直线就是面的法线，对于平面而言面上所有位置的法线方向是相同的，对于曲面而言不同的位置法线的方向是变化的。在三维笛卡尔坐标系中，可以使用向量(x,y,z)来表示法向量，根据几何体表面的法向量和光线的方向， 就可以求解出光线入射角的余弦值，法向量的点积计算满足下面的公式，为了方便计算，着色器语言内置了一个方法dot()用来求解两个向量之间的余弦值,已知向量a1(x1,y1,z1)、a2(x2，y2，z2)执行dot(a1，a2)可以求出两个向量a1、a2的余弦值。</p>
-<p><figure><img src="media/17280514986441/17281451179952.png" alt="WebGL法向量" /><figcaption>WebGL法向量<figcaption></figure></p>
-<p><figure><img src="media/17280514986441/17281451179963.png" alt="WebGL法向量计算" /><figcaption>WebGL法向量计算<figcaption></figure></p>
+<p><img src="media/17280514986441/17281451179952.png" alt="WebGL法向量" /></p>
+<p><img src="media/17280514986441/17281451179963.png" alt="WebGL法向量计算" /></p>
 <h2><a id="%E7%AB%8B%E6%96%B9%E4%BD%93%E6%B7%BB%E5%8A%A0%E5%B9%B3%E8%A1%8C%E5%85%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>立方体添加平行光</h2>
 <p><a href="http://www.yanhuangxueyuan.com/WebGL_course/download/light.rar">源码下载</a></p>
 <p>下面的案例是通过给一个单色的立方体添加平行光进行渲染，来体会光照模型在物体渲染中的应用，在学习下面的代码之前确定你有逐顶点和颜色插值计算的概念，了解顶点位置数据、顶点颜色数据，本节课在这两种顶点数据的基础之上在引入一种新的顶点数据。</p>
 <p>平行光照射在立方体上，与不同的平面夹角不同，自然反射的颜色RGB值强弱不同，实际绘图的时候你不可能手动计算去定义每一个像素的值，前面课程中讲解颜色插值计算的知识，应该对你有一定的启发，你只需要计算出每一个顶点在光照下的颜色， 然后利用插值计算就可以得到三个顶点之间区域的像素值，这时候顶点法向量数据就派上了用场，每一个顶点都有位置数据、颜色数据、法向量数据，法向量和颜色数据先进行计算得出新的顶点颜色数据，然后渲染管线对顶点进行装配光栅化的过程中，新的顶点颜色数据进行插值计算。 这时候提示一下大家，不要去从宏观思考法向量问题，要从逐顶点、插值计算的角度理解问题，下面的问题可能大家会有一个疑问，为什么立方体的一个顶点会有三个方向，从实际的物体来看，立方体的一个顶点就是一个顶点，但是从绘图的角度来看， 每一次是通过三个顶点绘制一个三角形面，只不过恰好三个三角形面共顶点，会有顶点位置重复而已，但是每一组的三个顶点是一个装配光栅化和插值计算的独立单元，两组的三个顶点位置有重复也不会影响他们各自的渲染得到的像素结果。</p>
 <h3><a id="%E9%A1%B6%E7%82%B9%E7%9D%80%E8%89%B2%E5%99%A8%EF%BC%9A%E6%B7%BB%E5%8A%A0%E5%8F%98%E9%87%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>顶点着色器：添加变量</h3>
-<pre class="line-numbers"><code class="language-plain_text">16   /**用于光照计算的变量a_normal、u_lightColor、u_lightDirection**/
+<pre><code class="language-plain_text">16   /**用于光照计算的变量a_normal、u_lightColor、u_lightDirection**/
 17   'attribute vec4 a_normal;' +//法向量变量
 18   'uniform vec3 u_lightColor;' + //uniform声明平行光颜色变量
 19   'uniform vec3 u_lightDirection;' + //平行光方向
@@ -1387,7 +1668,7 @@ Authorization: Bearer &lt;token&gt;
 <p>第45行代码在dot代码的外面嵌套了一个函数max()，dot()的计算结果作为max()的第一个参数，dot的计算结果可能是[-1,1]之间，颜色不存在负值要舍去[-1,0),这时候就是max()方法派上用场的时候，第45行代码中max()函数的第二个参数是0， dot()方法的计算结果会和0进行比较运算，返回一个较大的值，着色器语言内置提供了max()函数，自然也有对应的求较小值的函数min()。余弦值是负值的物理意义就是光线无法照的地方，临界点是余弦值0，入射角是90度，也就是说入射光线平行平面， 平行平面相当于光线没有照射到平面上，平面没有收到光自然无法反射光，你可以尝试改变立方体顶点的旋转矩阵可以看到一些面的颜色是黑色，就是因为没有光线照射，这一点是复合实际生活和物理规律的，不管是提本身是什么颜色，没有外界光源，那就表现为黑色。</p>
 <p>第47行代码是套用理想漫反射光照模型的一个公式进行计算，a_color变量是vec4类型包含透明度，计算式中没有计算透明度A，所以使用a_color.rgb语句返回a_color数据的RGB三个分量，也就是返回一个vec3类型数据。</p>
 <p>第49行代码是通过把经顶点法线乘过的顶点颜色赋值给varying声明的一个变量实现颜色的插值计算，关于插值计算不在多谈，这里说一下着色器语言数据类型的相关转化、构造、访问相关问题，vec4、vec3等都是和float、int一样是数据类型的标识关键字，float、int在C语言中都是常见的类型， 着色器语言为了实现大规模的顶点运算增加了很多数据类型，vec4()、vec3()这时候的表达相当于一个vec4、vec3数据的构造函数，第49行代码中把一个vec3类型数据和一个vec4类型数据的一个分量a作为构造函数vec4的两个参数，来实现创建一个vec4类型数据。访问多元素数据的分量可使用点符号，从面对象的角度来看， 一个数据家是一个对象，数据的一个元素就是数据的一个分量，比如 a_color.a表示vec4类型数据 a_color的透明度分量a。</p>
-<pre class="line-numbers"><code class="language-plain_text">42   // 顶点法向量归一化
+<pre><code class="language-plain_text">42   // 顶点法向量归一化
 43   '  vec3 normal = normalize(a_normal.xyz);' +
 44   // 计算平行光方向向量和顶点法向量的点积
 45   '  float dot = max(dot(u_lightDirection, normal), 0.0);' +
@@ -1398,7 +1679,7 @@ Authorization: Bearer &lt;token&gt;
 </code></pre>
 <h3><a id="%E8%8E%B7%E5%8F%96%E7%9D%80%E8%89%B2%E5%99%A8%E5%8F%98%E9%87%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>获取着色器变量</h3>
 <p>要想给着色器程序中声明的变量传递数据，首先要获取数据的地址，然后通过指针地址传递给变量。要想获取变量地址，不可能像普通CPU变成一样，要考虑GPU的特殊性，首先要通过59行代码调用初始化着色器函数，把着色器程序通过CPU与GPU的通信传递给GPU配置渲染管线， 执行执行初始化着色器函数的同时会返回一个program对象，通过对象program可以获取着色器程序中的变量，getAttribLocation()方法用来获取attribute关键字声明的定点变量地址，getAttribLocation()方法获取uniform关键字声明的统一变量地址。</p>
-<pre class="line-numbers"><code class="language-plain_text">60   /**
+<pre><code class="language-plain_text">60   /**
 61    * 从program对象获取相关的变量
 62    * attribute变量声明的方法使用getAttribLocation()方法
 63    * uniform变量声明的方法使用getAttribLocation()方法
@@ -1412,7 +1693,7 @@ Authorization: Bearer &lt;token&gt;
 <h3><a id="%E4%BC%A0%E9%80%92%E6%95%B0%E6%8D%AE" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>传递数据</h3>
 <p>对于简单的数据，不像顶点有大批量数据，不需要在显存上开辟缓冲区上传数据，可以直接使用uniform3f()方法使用把数据传递给GPU，uniform3f(变量地址,x,y,z)表示传递三个浮点数，接收这个数据的变量是vec3类型,uniform2f(变量地址,x,y)表示传递2个浮点数,接收数据的变量是vec2数据类型， 以此类推还有方法uniform4f()、uniform1f()，命名的特点是数字表示传递的数据有多少分量，f是关键字float的缩写表示浮点数。</p>
 <p>u_lightDirection变量在程序中要保证是单位向量，所以第15行的代码的书写方式保证了灯光方向向量的方向是(1,2,-3),(1,2,-3)的模长是15的平方根，所以要除以Math.sqrt(15)，实际的开发中一般不是这样手动计算写出来，而是写一个通用的归一化函数可以随时调用， 这里为了简化教学代码，直接手动计算好在输入数据。</p>
-<pre class="line-numbers"><code class="language-plain_text">70   /**
+<pre><code class="language-plain_text">70   /**
 71    * 给平行光传入颜色和方向数据，RGB(1,1,1),单位向量(x,y,z)
 72    **/
 73   gl.uniform3f(u_lightColor, 1.0, 1.0, 1.0);
@@ -1421,9 +1702,9 @@ Authorization: Bearer &lt;token&gt;
 76   gl.uniform3f(u_lightDirection,x,y,-z);
 </code></pre>
 <h3><a id="%E9%A1%B6%E7%82%B9%E6%B3%95%E5%90%91%E9%87%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>顶点法向量</h3>
-<p><figure><img src="media/17280514986441/17281451179973.png" alt="WebGL顶点法向量" /><figcaption>WebGL顶点法向量<figcaption></figure></p>
+<p><img src="media/17280514986441/17281451179973.png" alt="WebGL顶点法向量" /></p>
 <p>对于立方体而言六个平面也就是有六个不同的平面法向量，但是这里要注意思考如何表达一个面的法向量，你不能说直接告诉GPU一个平面的法向量是(x,y,z)，对于立方体而言而言这样比较简单，符合人的思维，但是如果是复杂的曲面这样并不合适，而且顶点着色器是逐顶点处理， 为了表示面的法向量，往往是通过顶点，具体点说是每个顶点对应一个法向量，三个顶点确定一个三角面，三角面的不同位置的法向量相当于通过他的三个顶点的法向量插值得出，或者换个说法就是三个顶点的法向量分别与各自颜色数据进行乘法运算，得到新的顶点颜色， 然后渲染管线利用新的顶点颜色进行插值计算，这就是通过顶点法向量表示面法向量的方法，通过这样的巧妙设计还可以实现法向量的插值计算，只不过插值是通过颜色插值完成的，对于平滑的曲面，过每一个顶点存在一个法平面，也就是有一个法向量，往往在不同三角面中同一位置的顶点法向量是相同的， 对于规则的长方体而言，每个顶点法向量往往在各自平面中有不同的值。</p>
-<pre class="line-numbers"><code class="language-plain_text">99   /**
+<pre><code class="language-plain_text">99   /**
 100   *顶点法向量数组normalData
 101   **/
 102  var normalData = new Float32Array([
@@ -1440,11 +1721,11 @@ Authorization: Bearer &lt;token&gt;
 <h3><a id="%E6%97%8B%E8%BD%AC%E3%80%81%E5%B9%B3%E7%A7%BB%E5%8F%98%E6%8D%A2" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>旋转、平移变换</h3>
 <p>三维模型的几何变换有平移、缩放、旋转、剪切、镜像等多种，这里就简单分析下旋转变换和平移变换对顶点法向量的影响，几何体平移变换后，几何体表面相对坐标系原点整体偏移，物体的表面相对坐标轴并没有发生旋转， 几何体表面的法平面法线没有变化，也就是说平移矩阵左乘顶点坐标后，顶点的法向量数据不变化不会影响光照计算。几何体旋转变换后，它的表面相对坐标轴发生了旋转，表面的法线自然发生变化， 一个几何体在计算机图形中的描述是一个个顶点，在几何体旋转的过程中，顶点的法向量和顶点的位置坐标是同步旋转变换的，顶点位置变换是通过旋转矩阵乘法运算实现， 也就是说顶点的法向量也乘同样的旋转矩阵就可以保证几何体表面的法线随着几何体旋转而旋转。</p>
 <p>在上节课的代码中直接修改顶点着色器代码即可。</p>
-<pre class="line-numbers"><code class="language-plain_text">42   // 顶点法向量归一化
+<pre><code class="language-plain_text">42   // 顶点法向量归一化
 43   '  vec3 normal = normalize(a_normal.xyz);' 
 </code></pre>
 <p>旋转矩阵mx、my连乘后，再乘以顶点法向量a_normal,这时候你可以随意更改旋转角度，通过观察颜色可以知道立方体顶点的法向量对着立方体旋转而旋转。</p>
-<pre class="line-numbers"><code class="language-plain_text">42   // 顶点法向量归一化
+<pre><code class="language-plain_text">42   // 顶点法向量归一化
 43   '  vec3 normal = normalize((mx*my*a_normal).xyz);' 
 </code></pre>
 <h3><a id="%E5%A4%8D%E5%90%88%E5%8F%98%E6%8D%A2" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>复合变换</h3>
@@ -1452,11 +1733,11 @@ Authorization: Bearer &lt;token&gt;
 <p>如果几何体先后进行旋转、平移变换，假设旋转矩阵为A，平移矩阵为B，矩阵AB连乘后得到复合矩阵C，C再乘以顶点位置齐次坐标，就可以得到复合变换后的顶点坐标，对于顶点法向量而言直接右乘旋转矩阵A即可， 不需要关注平移矩阵A，实际的编程中几何体可能发生非常多次平移矩阵、旋转矩阵，没有必要再计算一遍旋转矩阵连乘，可以利用复合矩阵C来求解几何变换后的顶点法向量，但是要矩阵C进行一定变换，才能再乘以顶点法向量。 这很好理解，你可以使用平移矩阵乘以一个顶点法向量，可以看得到顶点法向量的值发生变化，前面说过几何体平移不影响顶点法向量，因为复合矩阵C是包含平移矩阵的成分的，如果使用复合矩阵C直接乘以顶点法向量， 结果是不准确的。这时候线性代数的逆矩阵和转置矩阵知识就派上了用场，你可以把任意一个平移矩阵先利用初等变换的方法求解逆矩阵，再进行转置变换，也就是说求解出一个平移矩阵的逆转置矩阵，把逆转置矩阵与顶点法向量相乘， 你会发现得到的结果，顶点法向量前三个参数的值并没有发生变化，第四个参数发生了变化，不过这无所谓，进行光照计算的时候只会选择前三个参数，第四个参数只是用来辅助计算。这也就说明如果对复合矩阵C进行逆转置变换， 就可以消除平移矩阵对顶点法向量的影响，这时候会带来一个问题，复合矩阵C逆转置变化的过程中，它包含的旋转矩阵相当于也被执行了相同的变换，不过这不影响光照计算，因为旋转矩阵是正交矩阵，它的逆转置矩阵就是它本身， 正交矩阵的乘积仍然是正交矩阵，也就是说多个旋转矩阵相乘后，它的逆转置矩阵仍然是自身。</p>
 <h3><a id="%E8%A7%86%E7%BA%BF" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>视线</h3>
 <p>课程在<a href="http://www.yanhuangxueyuan.com/WebGL_course/coordinate.html">《WebGL坐标系》</a>中讲解过WebGL图形系统默认的投影方向，或者说人的眼睛观察几何体的方向，或者说照相机拍照的方向。 代码中的灯光方向的向量数据，第三个参数是负数，也就是说从z轴的角度看，平行光照射物体的方向，就是人眼睛看物体的方向，如果把灯光方向的向量数据z参数更改为正数，刷新浏览器看到的是一个漆黑的立方体投影， 这时候相当于黑暗的环境中，人站在物体的背光面，而不是向光面，对于WebGL图形系统，你可以形象的理解为把光源从屏幕前面放到了屏幕的后面，人的观察方向是沿着z轴负方向，从屏幕外向里观察，光线自然被立方体遮挡住了。</p>
-<pre class="line-numbers"><code class="language-plain_text">75       var x = 1/Math.sqrt(15), y = 2/Math.sqrt(15), z = 3/Math.sqrt(15);
+<pre><code class="language-plain_text">75       var x = 1/Math.sqrt(15), y = 2/Math.sqrt(15), z = 3/Math.sqrt(15);
 76       gl.uniform3f(u_lightDirection,x,y,-z);
 </code></pre>
 <p>灯光方向向量数据第三个参数，也就是z轴方向的数值更改为正数。</p>
-<pre class="line-numbers"><code class="language-plain_text">75       var x = 1/Math.sqrt(15), y = 2/Math.sqrt(15), z = 3/Math.sqrt(15);
+<pre><code class="language-plain_text">75       var x = 1/Math.sqrt(15), y = 2/Math.sqrt(15), z = 3/Math.sqrt(15);
 76       gl.uniform3f(u_lightDirection,x,y,z);
 </code></pre>
 <h2><a id="%E7%AB%8B%E6%96%B9%E4%BD%93%E6%B7%BB%E5%8A%A0%E7%82%B9%E5%85%89%E6%BA%90" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>立方体添加点光源</h2>
@@ -1464,7 +1745,7 @@ Authorization: Bearer &lt;token&gt;
 <p>添加平行光是直接定义光线照射物体的方向，点光源的光线是发散的，无法直接定义它的光线方向，不过只要定义好点光源的位置坐标，然后与某个顶点的位置坐标进行减法运算，计算结果就是光源射到该顶点的方向。 这很好理解，在三维空间中两个点确定一条直线，几何体顶点代表一个点，点光源的位置代表一个点，直线所在的方向就是光线的方向，在三维笛卡尔坐标系中，把两个顶点的xyz三个分量相减就可以得到一个表示直线方向的向量， 把该向量和顶点法向量作为dot()点积函数的参数，可以计算出光线入射角余弦值然后代入漫反射光照模型公式可以得到新的顶点颜色，渲染管线利用新的顶点颜色进行插值计算可以得到立方体表面每一个像素的值。</p>
 <h3><a id="%E6%B7%BB%E5%8A%A0%E7%82%B9%E5%85%89%E6%BA%90%E4%BD%8D%E7%BD%AE%E3%80%81%E9%A2%9C%E8%89%B2%E6%95%B0%E6%8D%AE" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>添加点光源位置、颜色数据</h3>
 <p>点光源的颜色数据是使用WebGL接口uniform3f()方法传入着色器中，点光源的位置数据是使用着色器语言GLSL ES直接定义在顶点着色器程序中，这两种方式实现的结果都是一样的，通过这个对比你可以进一步着色器语言和Javascript语言可以操控的可以实现CPU和GPU通信的WebGL API。</p>
-<pre class="line-numbers"><code class="language-plain_text">40   /**设置点光源位置数据**/
+<pre><code class="language-plain_text">40   /**设置点光源位置数据**/
 41   'vec3 lightPosition = vec3(2,3,4);'
 76   /**
 77    * 传入点光源颜色数据
@@ -1474,7 +1755,7 @@ Authorization: Bearer &lt;token&gt;
 <h3><a id="%E8%AE%A1%E7%AE%97%E5%85%89%E7%BA%BF%E6%96%B9%E5%90%91" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>计算光线方向</h3>
 <p>点光源的光线是发散的，点光源与每一顶点连线的方向都需要单独计算。第47行代码的功能是计算经过旋转变换后的顶点坐标，这样可以保证光线方向随着立方体旋转动态变化，尤其是制作旋转动画。</p>
 <p>第49行代码用来计算光线方向，然后利用内置函数 normalize()归一化向量数据，vec3(vertexPosition)和vertexPosition.xyz的写法是等效的，都是为了提取vec4类型顶点数据前三个分量，返回的数据类型是vec3，比如vec2(vec4)就是提取vec4的前两个分量。</p>
-<pre class="line-numbers"><code class="language-plain_text">46   // 计算顶点位置
+<pre><code class="language-plain_text">46   // 计算顶点位置
 47   '  vec4 vertexPosition = mx*my*apos;' +
 48   // 计算点光源照射顶点的方向并归一化
 49   '  vec3 lightDirection = normalize(vec3(vertexPosition) - lightPosition);' 
@@ -1503,7 +1784,7 @@ Authorization: Bearer &lt;token&gt;
 <li>实现简单，因为和编辑时使用的是同一环境，****可直接复用，不需要做单独适配。</li>
 <li>能力有限，因为使用Webview进行渲染，所以应用所能使用的能力取决于Webview组件提供的开发能力，目前可以使用的能力可查看<a href="https://developers.weixin.qq.com/miniprogram/dev/component/web-view.html#%E7%9B%B8%E5%85%B3%E6%8E%A5%E5%8F%A3-2">Webview组件文档</a></li>
 </ul>
-<p><figure><img src="media/17280336310867/17281439430594.jpg" alt="" /></figure></p>
+<p><img src="media/17280336310867/17281439430594.jpg" alt="" /></p>
 <h3><a id="%E4%BA%8C%E3%80%81%E5%8E%9F%E7%94%9F%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%96%B9%E6%A1%88%EF%BC%9A%E7%94%9F%E6%88%90%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%8E%9F%E7%94%9F%E7%BB%84%E4%BB%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>二、原生小程序方案：生成小程序原生组件</h3>
 <p>在web端进行应用设计完成后，将内容保存为和平台无关的通用语言数据，常用的为JSON Schema，不同平台需要实现各自的解析适配器，将内容解析为平台特有的代码，这里即为解析为微信小程序。</p>
 <p><strong>特点：</strong></p>
@@ -1511,7 +1792,7 @@ Authorization: Bearer &lt;token&gt;
 <li>实现复杂，两个平台差异性太大，需要实现多套解析器和组件。不过可以通过使用多端开发框架（<a href="https://uniapp.dcloud.net.cn/">uniapp</a>、<a href="https://taro.jd.com/">taro</a>）来降低差异性。</li>
 <li>能力受限小，因为是生成原生组件，基本上可以使用所有原生组件能力。</li>
 </ul>
-<pre class="line-numbers"><code class="language-json">{
+<pre><code class="language-json">{
   &quot;label&quot;: &quot;新增组件&quot;,
   &quot;icon&quot;: &quot;icon-zujian&quot;,
   &quot;fields&quot;: {
@@ -1536,7 +1817,7 @@ Authorization: Bearer &lt;token&gt;
   }
 }
 </code></pre>
-<p><figure><img src="media/17280336310867/17281439430614.jpg" alt="" /></figure></p>
+<p><img src="media/17280336310867/17281439430614.jpg" alt="" /></p>
 <p><strong>参考实现方案：</strong></p>
 <ul>
 <li><a href="https://github.com/silence717/taro-designer">https://github.com/silence717/taro-designer</a></li>
@@ -1547,21 +1828,21 @@ Authorization: Bearer &lt;token&gt;
 </ul>
 <h2><a id="%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E7%AC%AC%E4%B8%89%E6%96%B9%E5%B9%B3%E5%8F%B0%E4%BB%A3%E5%BC%80%E5%8F%91" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>如何使用第三方平台代开发</h2>
 <p>第三方平台（简称第三方平台），由微信团队面向所有通过<a href="https://kf.qq.com/faq/170824URbmau170824r2uY7j.html">开发者资质认证</a>的第三方开发者提供提供的官方平台。在得到公众号或小程序管理员授权后，基于该平台，第三方服务商可以通过调用官方接口能力，为商家提供公众号代运营、小程序代注册、代开发等服务以及提供公众号和小程序相关的行业方案、活动营销、插件能力等全方位服务。</p>
-<p><figure><img src="media/17280336310867/17281439430632.png" alt="" /></figure><figure><img src="media/17280336310867/17281439430647.png" alt="" /></figure></p>
+<p><img src="media/17280336310867/17281439430632.png" alt="" /><img src="media/17280336310867/17281439430647.png" alt="" /></p>
 <h3><a id="%E6%BB%A1%E8%B6%B3%E6%9D%A1%E4%BB%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>满足条件</h3>
-<p><figure><img src="media/17280336310867/17281439430666.png" alt="" /></figure></p>
+<p><img src="media/17280336310867/17281439430666.png" alt="" /></p>
 <ul>
 <li>提供行业解决方案，如针对电商行业的解决方案，或针对旅游行业的解决方案等；</li>
 <li>行业：（横向）提供更加专业的运营能力，精细化运营用户公众号或小程序；</li>
 <li>功能：（纵向）对公众平台功能的优化，如专门优化图文消息视觉样式和排版的工具，或专门定制的 CRM 用户管理功能，或功能强大的小程序插件等。</li>
 </ul>
 <h3><a id="%E6%B5%81%E7%A8%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>流程</h3>
-<p><figure><img src="media/17280336310867/17281439430682.png" alt="" /></figure></p>
-<p><figure><img src="media/17280336310867/17281439430701.png" alt="" /></figure></p>
+<p><img src="media/17280336310867/17281439430682.png" alt="" /></p>
+<p><img src="media/17280336310867/17281439430701.png" alt="" /></p>
 <h4><a id="%E4%B8%80%E3%80%81%E5%A6%82%E4%BD%95%E6%88%90%E4%B8%BA%E6%9C%8D%E5%8A%A1%E5%95%86" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、如何成为服务商</h4>
 <p>1、第三方平台帐号的审核无需缴费，但开放平台帐号的认证（即开发者资质认证）需要交300块钱认证费。一个已完成开发者资质认证的开放平台帐号，可创建5个平台型服务商第三方平台帐号。</p>
 <p>2、任何合法合规的、为小程序提供开发服务及有意愿的开发者都可以成为小程序服务商，微信不会区别对待，也无官方授权的概念。</p>
-<p><figure><img src="media/17280336310867/17281439430722.png" alt="" /></figure></p>
+<p><img src="media/17280336310867/17281439430722.png" alt="" /></p>
 <p><a href="https://developers.weixin.qq.com/doc/oplatform/Third-party_Platforms/2.0/operation/thirdparty/prepare.html"><strong>准备材料：</strong></a></p>
 <ul>
 <li>官方网站：服务商应当有对外可用的官网，且该官网提供的服务描述与申请的第三方平台帐号名称、简介、图标均有所关联</li>
@@ -1569,7 +1850,7 @@ Authorization: Bearer &lt;token&gt;
 <li>域名和ssl证书</li>
 </ul>
 <h4><a id="%E4%BA%8C%E3%80%81%E6%90%AD%E5%BB%BA%E4%B8%89%E6%96%B9%E5%90%8E%E7%AB%AF%E6%9C%8D%E5%8A%A1%EF%BC%9A%E8%87%AA%E5%BB%BA%E6%A8%A1%E5%BC%8F%E5%92%8C%E4%BA%91%E6%9C%8D%E5%8A%A1" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>二、搭建三方后端服务：自建模式和云服务</h4>
-<p><figure><img src="media/17280336310867/17281439430744.png" alt="" /></figure></p>
+<p><img src="media/17280336310867/17281439430744.png" alt="" /></p>
 <ul>
 <li>服务商类型</li>
 </ul>
@@ -1586,19 +1867,19 @@ Authorization: Bearer &lt;token&gt;
 <p>搭建好三方服务后需要和业务系统服务进行联调对接，然后进行<a href="https://developers.weixin.qq.com/doc/oplatform/Third-party_Platforms/2.0/operation/thirdparty/publish.html">全网发布</a>。</p>
 <h4><a id="%E4%B8%89%E3%80%81%E6%8E%88%E6%9D%83" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>三、授权</h4>
 <p>商家需要将其公众号或者小程序<a href="https://developers.weixin.qq.com/doc/oplatform/Third-party_Platforms/2.0/api/Before_Develop/Authorization_Process_Technical_Description.html">授权</a>给第三方平台，服务商才可以代商家进行相关操作。</p>
-<p><figure><img src="media/17280336310867/17281439430767.png" alt="" /></figure></p>
+<p><img src="media/17280336310867/17281439430767.png" alt="" /></p>
 <h4><a id="%E5%9B%9B%E3%80%81%E4%BB%A3%E5%95%86%E5%AE%B6%E8%B0%83%E7%94%A8%E6%8E%A5%E5%8F%A3" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>四、代商家调用接口</h4>
 <p>小程序的api，服务商都可以调用，只是服务商调用的时候要使用<a href="https://developers.weixin.qq.com/doc/oplatform/Third-party_Platforms/2.0/api/ThirdParty/token/api_authorizer_token.html">authorizer_access_token</a>，而不是access_token。</p>
 <p>服务商能否代商家成功调用某个公众号或者小程序的api，取决于该公众号或者小程序管理员是否将对应的权限集授权给当前第三方平台帐号。</p>
 <h4><a id="%E4%BA%94%E3%80%81%E4%BB%A3%E5%BC%80%E5%8F%91%E5%B0%8F%E7%A8%8B%E5%BA%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>五、代开发小程序</h4>
-<p><figure><img src="media/17280336310867/17281439430797.png" alt="" /></figure></p>
+<p><img src="media/17280336310867/17281439430797.png" alt="" /></p>
 <h5><a id="%E4%BB%A3%E7%A0%81%E4%B8%8A%E4%BC%A0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>代码上传</h5>
 <ul>
 <li>通过开发者工具</li>
 <li><a href="https://developers.weixin.qq.com/miniprogram/dev/devtools/ci.html">CI代码上传</a></li>
 <li><a href="https://developers.weixin.qq.com/community/develop/article/doc/0006aec26a89507900dc70f5e5b013?pass_ticket=PFmw0zP6yfVqUJz8iYlCaPgYBj0s6dm%2BoKU5cKthScDFPSrvwo9Z2cS1G9qCIrRyts29yPal4xRGPCSoPxxoeA%3D%3D">使用小程序CI自动上传代码</a></li>
 </ul>
-<p><figure><img src="media/17280336310867/17281439430830.png" alt="" /></figure></p>
+<p><img src="media/17280336310867/17281439430830.png" alt="" /></p>
 <h3><a id="%E7%9B%B8%E5%85%B3%E6%96%87%E6%A1%A3" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>相关文档</h3>
 <ul>
 <li><a href="https://developers.weixin.qq.com/doc/oplatform/Third-party_Platforms/2.0/getting_started/terminology_introduce.html">官方文档</a></li>
@@ -1627,7 +1908,7 @@ Authorization: Bearer &lt;token&gt;
 <li>多个项目多人负责，可能会选择不同的框架，导致标准不统一，协作困难，也难以形成团队技术沉淀。</li>
 </ul>
 <p>所以，框架搭建是晋升高级前端工程师的必经之路，固有必要探探其究竟。本文不会带大家从编码层面教大家如何写代码，毕竟相关的文章网上比比皆是，本文会带你搞清整个流程和其中的一些关键环节。</p>
-<p><figure><img src="media/17281470932731/17281471168320.png" alt="" /></figure></p>
+<p><img src="media/17281470932731/17281471168320.png" alt="" /></p>
 <h2><a id="%E4%BD%95%E4%B8%BA%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>何为软件架构</h2>
 <p>在开始整个流程前，我们先开了解一些何为软件架构。</p>
 <blockquote>
@@ -1652,7 +1933,7 @@ Authorization: Bearer &lt;token&gt;
 <li>视觉：主要是组件库和风格的选择，PC和移动端可能会使用不同的组件库。当然如果是做的偏前端的应用，可能现有组件库很难满足要求，目前大部分都是偏中后台的，这时可以选择自建。</li>
 <li>数据：这一层不是必须的，一般只有数据交互较复杂的应用才可能会用到，而且目前Hooks也能实现一部分数据管理，只是采用专业的状态管理工具，可以保证大家在认知和实施层面的统一。当然并不绝对，在下就曾经在一个项目中使用hooks管理状态，也没有什么问题。</li>
 </ul>
-<pre class="line-numbers"><code class="language-typescript">/******* state *******/
+<pre><code class="language-typescript">/******* state *******/
 const state = reactive({
 });
 /******* getter *******/
@@ -1668,9 +1949,9 @@ export const useAppStore = () =&gt; ({ state, getter, ...actions });
 <li>构建工具：当下前端开发是离不开工程化的，这一领域目前正处于发展阶段，虽然各种工具层出不穷，但是各有优缺点、不统一也为开发者带来了一些困扰，但是好在，VRA都提供了自己的脚手架，大部分情况我们是可以放行使用的。当然一般成熟的团队都会在其基础上做更多的配置扩展，形成自己内部成熟的框架模板。</li>
 <li>插件：现在前端的轮子是比较多的，开发的时候一般建议优先去npm看看是否有现成的轮子，不要做重复的事情。</li>
 </ul>
-<p><figure><img src="media/17281470932731/17281471168345.png" alt="image-20221127182555242" /><figcaption>image-20221127182555242<figcaption></figure></p>
+<p><img src="media/17281470932731/17281471168345.png" alt="image-20221127182555242" /></p>
 <p>但是需要注意，npm上的包虽然多，但是质量参差不齐，可以从几个方面去筛选。</p>
-<p><figure><img src="media/17281470932731/17281471168356.png" alt="image-20221127183017318" /><figcaption>image-20221127183017318<figcaption></figure></p>
+<p><img src="media/17281470932731/17281471168356.png" alt="image-20221127183017318" /></p>
 <p>以上是需要进行技术选型的维度，接下来我们就看看通过哪些指标去帮我们做出抉择。</p>
 <ul>
 <li>选择团队掌握的技术</li>
@@ -1723,18 +2004,18 @@ export const useAppStore = () =&gt; ({ state, getter, ...actions });
 <li>特点：该方式对开发人员来说易于理解，因为对他们来说技术工件比功能更有亲和力，但是相反不利于对业务功能的理解，且各功能模块间划分不太清晰，开发和维护一个功能可能要在多个目录下操作。</li>
 <li>适用场景：该方式比较通用，一般的项目都会采用此方式。不过在大型项目可能会存在每个工件目录存在很多文件，且存在各个模块的文件。</li>
 </ul>
-<p><figure><img src="media/17281470932731/17281471168366.png" alt="image-20221127195615915" /><figcaption>image-20221127195615915<figcaption></figure></p>
-<p><figure><img src="media/17281470932731/17281471168376.png" alt="image-20221127200629453" /><figcaption>image-20221127200629453<figcaption></figure></p>
+<p><img src="media/17281470932731/17281471168366.png" alt="image-20221127195615915" /></p>
+<p><img src="media/17281470932731/17281471168376.png" alt="image-20221127200629453" /></p>
 <h4><a id="%E9%A2%86%E5%9F%9F%E6%A8%A1%E5%9E%8Bhttps-medium-com-nate-wangfeature-oriented-architecture-for-web-applications-2b48e358afb0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="https://medium.com/@nate_wang/feature-oriented-architecture-for-web-applications-2b48e358afb0">领域模型</a></h4>
 <ul>
 <li>描述：按照系统功能进行划分，每个功能即为一个文件夹，其下包含自己的component、store、router。</li>
 <li>特点：面向业务功能，每个功能包含自身需要的技术工件，仅对外提供一个出口服务即可，由应用整合这些服务，构成整个应用。设计偏向微服务化，开发和维护一个功能仅需关注自身的目录即可；有助于开发人员对业务的理解。</li>
 <li>适用场景：特别适合大型项目、且各模块耦合度较低的场景，具有高扩展性。</li>
 </ul>
-<p><figure><img src="media/17281470932731/17281471168388.png" alt="image-20221127195630260" /><figcaption>image-20221127195630260<figcaption></figure></p>
-<p><figure><img src="media/17281470932731/17281471168407.png" alt="图片(1)" /><figcaption>图片(1)<figcaption></figure></p>
+<p><img src="media/17281470932731/17281471168388.png" alt="image-20221127195630260" /></p>
+<p><img src="media/17281470932731/17281471168407.png" alt="图片(1)" /></p>
 <p>因为当前团队，基本是使用第一种风格，后续我就以此为例，在vite+vue3的基础上做叙述。首先展示一下我目前使用的项目结构设计。</p>
-<pre class="line-numbers"><code class="language-js">|- docs // 文档
+<pre><code class="language-js">|- docs // 文档
 |- dist // 构建成果
 |- mock // 数据mock
 |- public  // 静态资源，会直接拷贝到dist
@@ -1766,9 +2047,9 @@ export const useAppStore = () =&gt; ({ state, getter, ...actions });
 </code></pre>
 <p>这里我们可以采用在官方脚手架的基础上来完善，以后可以直接使用，或者开源到社区，供别人使用。</p>
 <p>在创建Vue项目，现在推荐使用 <a href="https://github.com/vuejs/create-vue">create-vue</a>。</p>
-<pre class="line-numbers"><code class="language-bash">&gt; npm init vue@latest
+<pre><code class="language-bash">&gt; npm init vue@latest
 </code></pre>
-<pre class="line-numbers"><code class="language-bash">✔ Project name: … &lt;your-project-name&gt;
+<pre><code class="language-bash">✔ Project name: … &lt;your-project-name&gt;
 ✔ Add TypeScript? … No / Yes
 ✔ Add JSX Support? … No / Yes
 ✔ Add Vue Router for Single Page Application development? … No / Yes
@@ -1801,15 +2082,15 @@ Done.
 <ul>
 <li>登录保存认证信息，我这里是token、refreshToken、tokenExpires，需要保存到本地缓存。</li>
 </ul>
-<p><figure><img src="media/17281470932731/17281471168422.png" alt="image-20221128114406893" /><figcaption>image-20221128114406893<figcaption></figure></p>
+<p><img src="media/17281470932731/17281471168422.png" alt="image-20221128114406893" /></p>
 <ul>
 <li>
 <p>请求拦截器注入认证信息，需要根据后端要求去注入，一般都是在header中。</p>
-<p><figure><img src="media/17281470932731/17281471168435.png" alt="image-20221128114724023" /><figcaption>image-20221128114724023<figcaption></figure></p>
+<p><img src="media/17281470932731/17281471168435.png" alt="image-20221128114724023" /></p>
 </li>
 </ul>
 <p>​		这里有个handleCheckAuth，是做了静默token刷新功能，在token要到期前，使用refreshToken去后台换去新的token，代码如下：</p>
-<pre class="line-numbers"><code class="language-ts">/**
+<pre><code class="language-ts">/**
  * 刷新token
  * @param {string} refreshToken
  */
@@ -1840,17 +2121,17 @@ export function handleCheckAuth(config: AxiosRequestConfig) {
 <ul>
 <li>路由拦截，看注释吧</li>
 </ul>
-<p><figure><img src="media/17281470932731/17281471168448.png" alt="image-20221128115106273" /><figcaption>image-20221128115106273<figcaption></figure></p>
+<p><img src="media/17281470932731/17281471168448.png" alt="image-20221128115106273" /></p>
 <h5><a id="%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>权限控制</h5>
 <p>所谓权限控制，就是针对不同的用户赋予不同的权限，对应到前端就是根据不同权限的人动态控制呈现不同的资源，这里资源是一个统称，包含页面、按钮、数据等等，比如超管和管理员进入系统看到的菜单和页面中的按钮不一致。</p>
 <p>关于系统权限控制如何设计，主要和业务需求有关系，这里我们不去深究，只是了解一下目前比较流行的一种权限模型。</p>
 <p>RBAC（基于角色的权限控制）模型的核心是在用户和权限之间引入了角色的概念。取消了用户和权限的直接关联，改为<strong>通过用户关联角色、角色关联权限的方法来间接地赋予用户权限</strong>（如下图），从而达到用户和权限解耦的目的。比如在创建多个权限相同的用户，我们不需要给每个人单独设置权限，只需要将他们赋予相同的角色即可。</p>
-<p><figure><img src="media/17281470932731/17281471168461.png" alt="img" /><figcaption>img<figcaption></figure></p>
+<p><img src="media/17281470932731/17281471168461.png" alt="img" /></p>
 <p>目前我们大部分系统都是使用该模型，下面我们也就基于该模型来看看前端如何进行权限控制。</p>
 <p>其实现在网上讲前端权限控制的文章有很多，总结起来大体思路是，登录成功后获取用户当前的权限数据，然后动态添加路由，生成菜单，页内元素可以通过指令或者vif实现控制。实现方案上有如下两个流派：</p>
 <h6><a id="%E5%89%8D%E7%AB%AF%E6%8E%A7%E5%88%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>前端控制</h6>
 <p>整个动态路由表是放在前端，每个路由通过meta.role设置允许访问的角色，登录后后台返回当前用户的role标识信息，前端根据这个role去和路由的meta.role做匹配，清洗出匹配的路由，然后动态注册仅路由。由于只是返回了role信息，所以菜单是需要后端另外提供的。</p>
-<pre class="line-numbers"><code class="language-js">// asyncRoutes 动态路由表
+<pre><code class="language-js">// asyncRoutes 动态路由表
 export const asyncRoutes = [
   {
     path: '/permission',
@@ -1879,7 +2160,7 @@ export const asyncRoutes = [
     }
 ]
 </code></pre>
-<pre class="line-numbers"><code class="language-js">// 这个方法是用来把角色和route.meta.role来进行匹配
+<pre><code class="language-js">// 这个方法是用来把角色和route.meta.role来进行匹配
 function hasPermission(roles, route) {
   if (route.meta &amp;&amp; route.meta.roles) {
     return roles.some(role =&gt; route.meta.roles.includes(role))
@@ -1913,12 +2194,12 @@ export function filterAsyncRoutes(routes, roles) {
 </ul>
 <h6><a id="%E5%90%8E%E7%AB%AF%E6%8E%A7%E5%88%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>后端控制</h6>
 <p>接下来看看后端控制，主要区别就是把路由表挪到了后端，前端可以直接或简单转换使用后端返回的路由表数据注册路由，一般这份数据是可以直接生成菜单数据的，固不需要再单独返回菜单信息。</p>
-<p><figure><img src="media/17281470932731/17281471168473.png" alt="image-20221128160927872" /><figcaption>image-20221128160927872<figcaption></figure></p>
+<p><img src="media/17281470932731/17281471168473.png" alt="image-20221128160927872" /></p>
 <p>该方案的特点如下：</p>
 <ul>
 <li>可以在后台动态配置，可以实现角色权限灵活配置。下图是之前做过的系统，整个菜单树都可以在后台灵活组装，灵活度很高。</li>
 </ul>
-<p><figure><img src="media/17281470932731/17281471168487.png" alt="image-20221128163522794" /><figcaption>image-20221128163522794<figcaption></figure></p>
+<p><img src="media/17281470932731/17281471168487.png" alt="image-20221128163522794" /></p>
 <ul>
 <li>前端实现比较简单，不用自己维护路由表。</li>
 <li>由于前端不自己维护路由表，那么要调整路由必须就得去后台，比如每开发一个新页面就需要去后台配置对应的菜单路由信息，而且还必须和前端对应起来。</li>
@@ -1929,15 +2210,15 @@ export function filterAsyncRoutes(routes, roles) {
 <ol>
 <li>
 <p>后台菜单配置时，不再配置url和组件相关信息，毕竟这部分内容是前端路由使用的，前端控制更加合适，也方便前端做调整。然后仅需要填写一个权限表示码就行，降低了前后端数据的耦合性，也就不存在划分不一致带来的问题了。</p>
-<p><figure><img src="media/17281470932731/17281471168502.png" alt="image-20221128171252175" /><figcaption>image-20221128171252175<figcaption></figure></p>
+<p><img src="media/17281470932731/17281471168502.png" alt="image-20221128171252175" /></p>
 </li>
 <li>
 <p>后台给角色设置拥有的菜单、按钮等资源的权限。</p>
-<p><figure><img src="media/17281470932731/17281471168517.png" alt="image-20221128171444752" /><figcaption>image-20221128171444752<figcaption></figure></p>
+<p><img src="media/17281470932731/17281471168517.png" alt="image-20221128171444752" /></p>
 </li>
 <li>
 <p>前端维护路由表，和正常路由差不多，但是不用默认注册，而且需要控制的路由要有meta.permission，和前面后台设置的权限标识码对应就行。如果没有permission标识，可以保留或者舍弃，这个根据需求来决定使用哪种方式，我采用的是保留。比如上面我们说的查看详情那里，我就可以不设置permission，这样只要用户有当前菜单的权限（即列表页），那么就不用再设置查看详情的权限了。</p>
-<pre class="line-numbers"><code class="language-json"> {
+<pre><code class="language-json"> {
     path: '/system',
     name: 'system',
     redirect: '/system/department',
@@ -1961,7 +2242,7 @@ export function filterAsyncRoutes(routes, roles) {
 <p>前端登录成功以后，后端提供如下菜单数据。</p>
 </li>
 </ol>
-<pre class="line-numbers"><code class="language-json">[
+<pre><code class="language-json">[
   {
     &quot;id&quot;: 1,
     &quot;permission&quot;: &quot;system&quot;, // 前面填写的权限标识码
@@ -2000,7 +2281,7 @@ export function filterAsyncRoutes(routes, roles) {
 <ul>
 <li>
 <p>路由：根据菜单的permission，将路由表中的数据做清洗，去掉permission在菜单中没有的路由。另外一点就是把菜单数据添加到路由的meta中，主要为了方便通过当前路由获取当前的菜单信息。这个数据用于注册动态路由。</p>
-<pre class="line-numbers"><code class="language-json">{
+<pre><code class="language-json">{
     &quot;path&quot;: &quot;/system&quot;,
     &quot;name&quot;: &quot;system&quot;,
     &quot;redirect&quot;: &quot;/system/config&quot;,
@@ -2034,7 +2315,7 @@ export function filterAsyncRoutes(routes, roles) {
 </li>
 <li>
 <p>菜单：因为现在菜单设置没有设置url了，所以我们要通过permission去找到对应的路由，然后将其path作为url。该数据用于显示导航菜单。</p>
-<pre class="line-numbers"><code class="language-json">[{
+<pre><code class="language-json">[{
     &quot;id&quot;: 1,
     &quot;permission&quot;: &quot;system&quot;,
     &quot;title&quot;: &quot;系统管理&quot;,
@@ -2058,7 +2339,7 @@ export function filterAsyncRoutes(routes, roles) {
 </ul>
 </li>
 </ol>
-<p><figure><img src="media/17281470932731/17281471168530.png" alt="image-20221128172904940" /><figcaption>image-20221128172904940<figcaption></figure></p>
+<p><img src="media/17281470932731/17281471168530.png" alt="image-20221128172904940" /></p>
 <p>该方案的特点是：</p>
 <ul>
 <li>前后端解耦，上帝的归上帝,凯撒的归凯撒，而且仅需保证permission对应就行。</li>
@@ -2071,7 +2352,7 @@ export function filterAsyncRoutes(routes, roles) {
 <li>前端做权限控制只是锦上添花，不是绝对安全，一定需要后端做验证来兜底，后端需要对每一个涉及请求的操作做验证。</li>
 </ul>
 <p>另外简单说一说页内元素的控制吧，其实比较简单，后端同样返回有权限的数据，前端通过自定义指令或者Vif做下判断就行。<a href="https://github.com/BWrong/auth-tool.git">auth-tool</a>也做了封装，需要的自己查看源码吧。</p>
-<pre class="line-numbers"><code class="language-typescript">Vue.directive(directiveName, {
+<pre><code class="language-typescript">Vue.directive(directiveName, {
   mounted(el:Element, binding) {
     !hasAuth(binding.value) &amp;&amp; el.parentNode?.removeChild(el);
   }
@@ -2082,10 +2363,10 @@ export function filterAsyncRoutes(routes, roles) {
 <ul>
 <li>
 <p>请求建议集中管理，可以按照业务进行模块划分，页面中只需要调用这里提供的方法就行。不建议直接写在页面上，不方便维护，万一接口url做了调整，你都不知道那些页面使用了，只有全局去替换。</p>
-<p><figure><img src="media/17281470932731/17281471168544.png" alt="image-20221128180115019" /><figcaption>image-20221128180115019<figcaption></figure></p>
+<p><img src="media/17281470932731/17281471168544.png" alt="image-20221128180115019" /></p>
 </li>
 </ul>
-<pre class="line-numbers"><code class="language-typescript">import { get } from '../../utils/request';
+<pre><code class="language-typescript">import { get } from '../../utils/request';
 import type { RequestConfig } from '@/utils/request/Request';
 const prefix = '/system/config';
 export default { list: &lt;T = any&gt;(params: object, config?: RequestConfig) =&gt; get&lt;T&gt;(`${prefix}`, params, config) };
@@ -2099,7 +2380,7 @@ export default { list: &lt;T = any&gt;(params: object, config?: RequestConfig) =
 </li>
 </ul>
 <p>我在项目中也封装了一个，展示还没有单独提取出来，有兴趣的可以看看<a href="https://cdn.jsdelivr.net/gh/BWrong/Pictures@master/uPic/20221128181306.ts">这里</a></p>
-<pre class="line-numbers"><code class="language-plain_text">   * 1. 多实例，在存在多个请求服务时使用
+<pre><code class="language-plain_text">   * 1. 多实例，在存在多个请求服务时使用
    * 2. 拦截器增强，支持全局拦截器和实例拦截器，执行顺序采用洋葱模型
    * 3. 支持重复请求取消功能，重复请求：url、method、参数均一致为重复，也可以自己传入判断函数
    * 4. 支持直接请求绝对地址
@@ -2112,7 +2393,7 @@ export default { list: &lt;T = any&gt;(params: object, config?: RequestConfig) =
 <li>使用eslint，如果团队有统一的规范，建议直接发布为rule插件。</li>
 <li>使用githooks做提交前的验证，当然最保险的还是在流水线去做这个事情，毕竟本地是可以绕过的。</li>
 </ul>
-<pre class="line-numbers"><code class="language-json">&quot;gitHooks&quot;: {
+<pre><code class="language-json">&quot;gitHooks&quot;: {
     &quot;pre-commit&quot;: &quot;lint-staged --allow-empty&quot;
   },
   &quot;lint-staged&quot;: {
@@ -2128,7 +2409,7 @@ export default { list: &lt;T = any&gt;(params: object, config?: RequestConfig) =
 </code></pre>
 <h4><a id="%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>版本管理</h4>
 <p>关于版本管理这块，我之前遇到过得问题就是给多个用户部署不同的版本，但是当某个用户出问题时，不能第一时间知道该用户部署的代码是什么时候的。所以后来在构建时注入了相关信息。</p>
-<pre class="line-numbers"><code class="language-ts">import { GitRevisionPlugin } from 'git-revision-webpack-plugin';
+<pre><code class="language-ts">import { GitRevisionPlugin } from 'git-revision-webpack-plugin';
 import pkg from './package.json';
 let appVersion = `app-version=${pkg.version},build-time=${new Date().toLocaleString()}`;
   if (IS_PRODUCTION) {
@@ -2154,7 +2435,7 @@ let appVersion = `app-version=${pkg.version},build-time=${new Date().toLocaleStr
         }
       }),
 </code></pre>
-<p><figure><img src="media/17281470932731/17281471168559.png" alt="image-20221128182524845" /><figcaption>image-20221128182524845<figcaption></figure></p>
+<p><img src="media/17281470932731/17281471168559.png" alt="image-20221128182524845" /></p>
 <p>然后关于更新日志和版本发布，可以使用<a href="https://github.com/release-it/release-it">release-it</a>或<a href="https://github.com/conventional-changelog/standard-version#readme">standard-version</a>去做。</p>
 <h4><a id="%E6%9E%84%E5%BB%BA%E4%BC%98%E5%8C%96" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>构建优化</h4>
 <p>优化主要是两个方向：</p>
@@ -2179,7 +2460,7 @@ let appVersion = `app-version=${pkg.version},build-time=${new Date().toLocaleStr
 <h3><a id="%E7%B1%BB%E5%9E%8B%E5%88%AB%E5%90%8D" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>类型别名</h3>
 <p>简单来讲，类型别名就是给一个类型起一个新名字。</p>
 <p>简单的例子：</p>
-<pre class="line-numbers"><code class="language-plain_text">type Name = string
+<pre><code class="language-plain_text">type Name = string
 type NameResolver = () =&gt; string
 type NameOrResolver = Name | NameResolver
 function getName(n: NameOrResolver): Name {
@@ -2194,7 +2475,7 @@ function getName(n: NameOrResolver): Name {
 <p>类型别名常用于联合类型。</p>
 <h4><a id="%E7%B1%BB%E5%9E%8B%E5%88%AB%E5%90%8D%E4%B8%8E%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%8C%BA%E5%88%AB" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>类型别名与接口的区别</h4>
 <p>类型别名与接口非常相似，他们两者可以相互选择</p>
-<pre class="line-numbers"><code class="language-plain_text">interface Person {                
+<pre><code class="language-plain_text">interface Person {                
 	name: string;
 	age: number
 }
@@ -2204,7 +2485,7 @@ type Person = {
 }
 </code></pre>
 <h5><a id="%E5%90%8C%E5%90%8D%E6%8E%A5%E5%8F%A3%E5%AE%9A%E4%B9%89%E7%9A%84%E7%B1%BB%E5%9E%8B%E5%8F%AF%E4%BB%A5%E5%90%88%E5%B9%B6%EF%BC%8C%E8%80%8C%E7%B1%BB%E5%9E%8B%E5%A3%B0%E6%98%8E%E4%B8%8D%E8%A1%8C" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>同名接口定义的类型可以合并，而类型声明不行</h5>
-<pre class="line-numbers"><code class="language-plain_text">interface Person {
+<pre><code class="language-plain_text">interface Person {
 	name: string;
 }
 interface Person {
@@ -2237,7 +2518,7 @@ const person: Person = {
 <h3><a id="%E5%AD%97%E9%9D%A2%E9%87%8F%E7%B1%BB%E5%9E%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>字面量类型</h3>
 <p>字符串字面量类型用来约束取值只能是某几个字符串的一个。</p>
 <p>例子：</p>
-<pre class="line-numbers"><code class="language-plain_text">tyep EventNames = 'click' | 'scroll' | 'mouseove'
+<pre><code class="language-plain_text">tyep EventNames = 'click' | 'scroll' | 'mouseove'
 function handleEvent(ele: Element, event: EventNames) {
 	// todo
 }
@@ -2246,7 +2527,7 @@ handleEvent(document.getElementById('world'), 'dblclick'); // 报错，event 不
 </code></pre>
 <p>上例中，我们使用 <code>type</code> 定了一个字符串字面量类型 <code>EventNames</code>，它只能取三种字符串中的一种。</p>
 <p>除了字符串字面量类型之外，TypeScript 同样也提供 <code>boolean</code> 和 <code>number</code> 的字面量类型：</p>
-<pre class="line-numbers"><code class="language-plain_text">type OneToFive = 1 | 2 | 3 | 4 | 5;
+<pre><code class="language-plain_text">type OneToFive = 1 | 2 | 3 | 4 | 5;
 type Bools = true | false;
 </code></pre>
 <p>注意，<strong>类型别名与字符串字面量类型都是使用 <code>type</code> 进行定义。</strong></p>
@@ -2256,10 +2537,10 @@ type Bools = true | false;
 <p>元组起源于函数编程语言（如 F#），这些语言中会频繁使用元组。</p>
 <p>简单的例子：</p>
 <p>定义一对值分别为<code>string</code>和<code>number</code>的元组</p>
-<pre class="line-numbers"><code class="language-plain_text">let tom: [string, number] = ['Tom', 25]
+<pre><code class="language-plain_text">let tom: [string, number] = ['Tom', 25]
 </code></pre>
 <p>当赋值或访问一个已知索引的元素时，会得到正确的类型：</p>
-<pre class="line-numbers"><code class="language-plain_text">let tom:[string, number]
+<pre><code class="language-plain_text">let tom:[string, number]
 tom[0] = 'Tom'
 tom[1] = 25
 
@@ -2267,20 +2548,20 @@ tom[0].slice(1)
 tom[1].fixed(2)
 </code></pre>
 <p>也可以赋值其中一项：</p>
-<pre class="line-numbers"><code class="language-plain_text">let tom = [string, number]
+<pre><code class="language-plain_text">let tom = [string, number]
 tom[0] = 'tom'
 </code></pre>
 <p>但是当直接对元组类型的变量进行初始化或者赋值的时候，需要提供所有元素类型中指定的项。</p>
-<pre class="line-numbers"><code class="language-plain_text">let tom: [string, number]
+<pre><code class="language-plain_text">let tom: [string, number]
 tom = ['Tom', 25]
 </code></pre>
-<pre class="line-numbers"><code class="language-plain_text">let tom: [string, number]
+<pre><code class="language-plain_text">let tom: [string, number]
 tom = ['25']
 // Property '1' is missing in type '[string]' but required in type '[string, number]'
 </code></pre>
 <h4><a id="%E8%B6%8A%E7%95%8C%E7%9A%84%E5%85%83%E7%B4%A0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>越界的元素</h4>
 <p>当添加越界的元素时，它的类型会被限制为元组中每个类型的联合类型：</p>
-<pre class="line-numbers"><code class="language-plain_text">let tom: [string, number];
+<pre><code class="language-plain_text">let tom: [string, number];
 tom = ['Tom', 25];
 tom.push('male');
 tom.push(true);
@@ -2291,10 +2572,10 @@ tom.push(true);
 <p>枚举（Enum）类型用于取值被限定在一定范围内的场景，比如一周只能有七天，颜色限定为红绿蓝等。</p>
 <h4><a id="%E7%AE%80%E5%8D%95%E7%9A%84%E4%BE%8B%E5%AD%90" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>简单的例子</h4>
 <p>枚举使用 <code>enum</code> 关键字来定义：</p>
-<pre class="line-numbers"><code class="language-plain_text">enum Days {Sun, Mon, Tue, Wed, Thu, Fri, Sat}
+<pre><code class="language-plain_text">enum Days {Sun, Mon, Tue, Wed, Thu, Fri, Sat}
 </code></pre>
 <p>枚举成员会被赋值为从 <code>0</code> 开始递增的数字，同时也会对枚举值到枚举名进行反向映射：</p>
-<pre class="line-numbers"><code class="language-plain_text">enum Days {Sun, Mon, Tue, Wed, Thu, Fri, Sat};
+<pre><code class="language-plain_text">enum Days {Sun, Mon, Tue, Wed, Thu, Fri, Sat};
 
 console.log(Days[&quot;Sun&quot;] === 0); // true
 console.log(Days[&quot;Mon&quot;] === 1); // true
@@ -2308,7 +2589,7 @@ console.log(Days[6] === &quot;Sat&quot;); // true
 </code></pre>
 <h4><a id="%E6%89%8B%E5%8A%A8%E8%B5%8B%E5%80%BC" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>手动赋值</h4>
 <p>我们也可以给枚举项手动赋值：</p>
-<pre class="line-numbers"><code class="language-plain_text">enum Days {Sun = 3, Mon = 1, Tue, Wed, Thu, Fri, Sat}
+<pre><code class="language-plain_text">enum Days {Sun = 3, Mon = 1, Tue, Wed, Thu, Fri, Sat}
 console.log(Days[&quot;Sun&quot;] === 3); // true
 console.log(Days[&quot;Wed&quot;] === 3); // true
 console.log(Days[3] === &quot;Sun&quot;); // false
@@ -2316,7 +2597,7 @@ console.log(Days[3] === &quot;Wed&quot;); // true
 </code></pre>
 <p>上面的例子中，未手动赋值的枚举项会接着上一个枚举项递增。</p>
 <p>如果未手动赋值的枚举项与手动赋值的重复了，TypeScript 是不会察觉到这一点的：</p>
-<pre class="line-numbers"><code class="language-plain_text">enum Days {Sun = 3, Mon = 1, Tue, Wed, Thu, Fri, Sat};
+<pre><code class="language-plain_text">enum Days {Sun = 3, Mon = 1, Tue, Wed, Thu, Fri, Sat};
 
 console.log(Days[&quot;Sun&quot;] === 3); // true
 console.log(Days[&quot;Wed&quot;] === 3); // true
@@ -2325,18 +2606,18 @@ console.log(Days[3] === &quot;Wed&quot;); // true
 </code></pre>
 <p>所以使用的时候需要注意，最好不要出现这种覆盖的情况。</p>
 <p>手动赋值的枚举项可以不是数字，此时需要使用类型断言来让 tsc 无视类型检查 (编译出的 js 仍然是可用的)：</p>
-<pre class="line-numbers"><code class="language-plain_text">enum Days {Sun = 7, Mon, Tue, Wed, Thu, Fri, Sat = &lt;any&gt;&quot;S&quot;};
+<pre><code class="language-plain_text">enum Days {Sun = 7, Mon, Tue, Wed, Thu, Fri, Sat = &lt;any&gt;&quot;S&quot;};
 类型的断言  值 as 类型 |  或者&lt;类型&gt;值
 </code></pre>
 <p>当然，手动赋值的枚举项也可以为小数或负数，此时后续未手动赋值的项的递增步长仍为 <code>1</code>：</p>
 <h4><a id="%E5%B8%B8%E6%95%B0%E9%A1%B9%E5%92%8C%E8%AE%A1%E7%AE%97%E6%89%80%E5%BE%97%E9%A1%B9" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>常数项和计算所得项</h4>
 <p>枚举项有两种类型：常数项（constant member）和计算所得项（computed member）。</p>
 <p>前面我们所举的例子都是常数项，一个典型的计算所得项的例子：</p>
-<pre class="line-numbers"><code class="language-plain_text">enum Color {Red, Green, Blue = 'blue'.length}
+<pre><code class="language-plain_text">enum Color {Red, Green, Blue = 'blue'.length}
 </code></pre>
 <p>上面的例子中，<code>&quot;blue&quot;.length</code> 就是一个计算所得项。</p>
 <p>上面的例子不会报错，但是<strong>如果紧接在计算所得项后面的是未手动赋值的项，那么它就会因为无法获得初始值而报错</strong>：</p>
-<pre class="line-numbers"><code class="language-plain_text">enum Color {Red = &quot;red&quot;.length, Green, Blue};
+<pre><code class="language-plain_text">enum Color {Red = &quot;red&quot;.length, Green, Blue};
 
 // error TS1061: Enum member must have initializer.
 // error TS1061: Enum member must have initializer.
@@ -2358,7 +2639,7 @@ console.log(Days[3] === &quot;Wed&quot;); // true
 <p>所有其它情况的枚举成员被当作是需要计算得出的值。</p>
 <h4><a id="%E5%B8%B8%E6%95%B0%E6%9E%9A%E4%B8%BE" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>常数枚举</h4>
 <p>常数枚举是使用 <code>const enum</code> 定义的枚举类型：</p>
-<pre class="line-numbers"><code class="language-plain_text">const enum Directions {
+<pre><code class="language-plain_text">const enum Directions {
     Up,
     Down,
     Left,
@@ -2369,31 +2650,31 @@ let directions = [Directions.Up, Directions.Down, Directions.Left, Directions.Ri
 </code></pre>
 <p>常数枚举与普通枚举的区别是，它会在编译阶段被删除，并且不能包含计算成员。</p>
 <p>上例的编译结果是：</p>
-<pre class="line-numbers"><code class="language-js">var directions = [0 /* Up */, 1 /* Down */, 2 /* Left */, 3 /* Right */];
+<pre><code class="language-js">var directions = [0 /* Up */, 1 /* Down */, 2 /* Left */, 3 /* Right */];
 </code></pre>
 <p>假如包含了计算成员，则会在编译阶段报错：</p>
-<pre class="line-numbers"><code class="language-plain_text">const enum Color {Red, Green, Blue = &quot;blue&quot;.length};
+<pre><code class="language-plain_text">const enum Color {Red, Green, Blue = &quot;blue&quot;.length};
 
 // error TS2474: In 'const' enum declarations member initializer must be constant expression.
 </code></pre>
 <h4><a id="%E5%A4%96%E9%83%A8%E6%9E%9A%E4%B8%BE" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>外部枚举</h4>
 <p>外部枚举（Ambient Enums）是使用 <code>declare enum</code> 定义的枚举类型：</p>
-<pre class="line-numbers"><code class="language-plain_text">declare enum Directions {
+<pre><code class="language-plain_text">declare enum Directions {
     Up,
     Down,
     Left,
     Right
 }
 </code></pre>
-<pre class="line-numbers"><code class="language-ts">let directions = [Directions.Up, Directions.Down, Directions.Left, Directions.Right];
+<pre><code class="language-ts">let directions = [Directions.Up, Directions.Down, Directions.Left, Directions.Right];
 </code></pre>
 <p>之前提到过，<code>declare</code> 定义的类型只会用于编译时的检查，编译结果中会被删除。</p>
 <p>上例的编译结果是：</p>
-<pre class="line-numbers"><code class="language-plain_text">var directions = [Directions.Up, Directions.Down, Directions.Left, Directions.Right];
+<pre><code class="language-plain_text">var directions = [Directions.Up, Directions.Down, Directions.Left, Directions.Right];
 </code></pre>
 <p>外部枚举与声明语句一样，常出现在声明文件中。</p>
 <p>同时使用 <code>declare</code> 和 <code>const</code> 也是可以的：</p>
-<pre class="line-numbers"><code class="language-plain_text">declare const enum Directions {
+<pre><code class="language-plain_text">declare const enum Directions {
     Up,
     Down,
     Left,
@@ -2403,11 +2684,11 @@ let directions = [Directions.Up, Directions.Down, Directions.Left, Directions.Ri
 let directions = [Directions.Up, Directions.Down, Directions.Left, Directions.Right];
 </code></pre>
 <p>编译结果：</p>
-<pre class="line-numbers"><code class="language-plain_text">var directions = [0 /* Up */, 1 /* Down */, 2 /* Left */, 3 /* Right */];
+<pre><code class="language-plain_text">var directions = [0 /* Up */, 1 /* Down */, 2 /* Left */, 3 /* Right */];
 </code></pre>
 <h3><a id="%E4%BA%A4%E5%8F%89%E7%B1%BB%E5%9E%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>交叉类型</h3>
 <p>交叉类型是将多个类型合并为一个类型</p>
-<pre class="line-numbers"><code class="language-plain_text">interface A {
+<pre><code class="language-plain_text">interface A {
 	name: string;
 	age: number
 }
@@ -2416,7 +2697,7 @@ interface B {
 }
 type C = A &amp; B
 </code></pre>
-<pre class="line-numbers"><code class="language-plain_text">interface A {
+<pre><code class="language-plain_text">interface A {
 	name: string;
 	age: number
 }
@@ -2431,14 +2712,14 @@ const c : C = {
 	email: 'xxxxxx'
 }
 </code></pre>
-<pre class="line-numbers"><code class="language-plain_text">type A = string | number
+<pre><code class="language-plain_text">type A = string | number
 type B = string | boolean
 type C = A &amp; B
 </code></pre>
 <h3><a id="%E7%B1%BB%E5%9E%8B%E5%AE%88%E5%8D%AB%E7%B1%BB%E5%9E%8B%E4%BF%9D%E6%8A%A4" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>类型守卫/类型保护</h3>
 <p>联合类型让一个值可以为不同的类型，但随之带来的问题就是访问非共同方法时会报错。那么该如何区分值的具体类型，以及如何访问共有成员？</p>
 <h4><a id="typeof" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>typeof</h4>
-<pre class="line-numbers"><code class="language-plain_text">function doSome(x: number | string) {
+<pre><code class="language-plain_text">function doSome(x: number | string) {
   if (typeof x === 'string') {
     // 在这个块中，TypeScript 知道 `x` 的类型必须是 `string`
     console.log(x.substr(1)); // ok
@@ -2448,7 +2729,7 @@ type C = A &amp; B
 }
 </code></pre>
 <h4><a id="instanceof" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>instanceof</h4>
-<pre class="line-numbers"><code class="language-plain_text">class Foo {
+<pre><code class="language-plain_text">class Foo {
   foo = 123;
   common = '123';
 }
@@ -2474,7 +2755,7 @@ doStuff(new Bar());
 </code></pre>
 <h4><a id="in" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>in</h4>
 <p><code>in</code> 操作符可以安全的检查一个对象上是否存在一个属性，它通常也被作为类型保护使用：</p>
-<pre class="line-numbers"><code class="language-plain_text">interface A {
+<pre><code class="language-plain_text">interface A {
   x: number;
 }
 
@@ -2492,7 +2773,7 @@ function doStuff(q: A | B) {
 </code></pre>
 <h4><a id="%E5%AD%97%E9%9D%A2%E9%87%8F%E7%B1%BB%E5%9E%8B%E4%BF%9D%E6%8A%A4" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>字面量类型保护</h4>
 <p>当你在联合类型里使用字面量类型时，你可以检查它们是否有区别：</p>
-<pre class="line-numbers"><code class="language-plain_text">type Foo = {
+<pre><code class="language-plain_text">type Foo = {
   kind: 'foo'; // 字面量类型
   foo: number;
 };
@@ -2515,7 +2796,7 @@ function doStuff(arg: Foo | Bar) {
 </code></pre>
 <h4><a id="%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB%E5%9E%8B%E4%BF%9D%E6%8A%A4%E7%B1%BB%E5%9E%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>自定义类型保护类型</h4>
 <p>函数中使用 is 定位类型，这仅仅是一个返回值为类似于<code>someArgumentName is SomeType</code> 的函数</p>
-<pre class="line-numbers"><code class="language-plain_text">// 仅仅是一个 interface
+<pre><code class="language-plain_text">// 仅仅是一个 interface
 interface Foo {
   foo: number;
   common: string;
@@ -2567,7 +2848,7 @@ doStuff({ bar: 123, common: '123' });
 <h5><a id="%E5%B1%9E%E6%80%A7%E5%92%8C%E6%96%B9%E6%B3%95" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>属性和方法</h5>
 <p>使用<code>class</code>定义类，使用<code>constructor</code>定义构造函数</p>
 <p>通过<code>new</code>生成新实例的时候，会自动调用构造函数</p>
-<pre class="line-numbers"><code class="language-plain_text">class Animal {
+<pre><code class="language-plain_text">class Animal {
 	public name;
 	constructor(name) {
 		this.name = name
@@ -2581,7 +2862,7 @@ console.log(a.sayHi()); // My name is Jack
 </code></pre>
 <h5><a id="%E7%B1%BB%E7%9A%84%E7%BB%A7%E6%89%BF" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>类的继承</h5>
 <p>使用<code>extends</code>关键字实现继承，子类中使用super关键字来调用父类的构造函数和方法</p>
-<pre class="line-numbers"><code class="language-plain_text">class Cat extends Animal {
+<pre><code class="language-plain_text">class Cat extends Animal {
   constructor(name) {
     super(name); // 调用父类的 constructor(name)
     console.log(this.name);
@@ -2596,7 +2877,7 @@ console.log(c.sayHi()); // Meow, My name is Tom
 </code></pre>
 <h5><a id="%E5%AD%98%E5%8F%96%E5%99%A8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>存取器</h5>
 <p>使用getter和setter可以改变属性的赋值和读取行为；</p>
-<pre class="line-numbers"><code class="language-plain_text">class Animal {
+<pre><code class="language-plain_text">class Animal {
   constructor(name) {
     this.name = name;
   }
@@ -2614,7 +2895,7 @@ console.log(a.name); // Jack
 </code></pre>
 <h5><a id="%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>静态方法</h5>
 <p>使用<code>static</code>修饰符修饰的方法称为静态方法，他们不需要实例化，而是直接通过类来调用：</p>
-<pre class="line-numbers"><code class="language-plain_text">class Animal {
+<pre><code class="language-plain_text">class Animal {
   static isAnimal(a) {
     return a instanceof Animal;
   }
@@ -2632,7 +2913,7 @@ a.isAnimal(a); // TypeError: a.isAnimal is not a function
 <li><code>private</code> 修饰的属性或方法是私有的，不能在声明它的类的外部访问</li>
 <li><code>protected</code> 修饰的属性或方法是受保护的，它和 <code>private</code> 类似，区别是它在子类中也是允许被访问的</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">class Animal {
+<pre><code class="language-plain_text">class Animal {
 	public name;
 	public constructor (name) {
 		this.name = name
@@ -2645,7 +2926,7 @@ console.log(a.name) // Tom
 </code></pre>
 <p>面的例子中，<code>name</code> 被设置为了 <code>public</code>，所以直接访问实例的 <code>name</code> 属性是允许的。</p>
 <p>很多时候，我们希望有的属性是无法直接存取的，这时候就可以用 <code>private</code> 了：</p>
-<pre class="line-numbers"><code class="language-plain_text">class Animal {
+<pre><code class="language-plain_text">class Animal {
 	private name;
 	public constructor (name) {
 		this.name = name
@@ -2657,7 +2938,7 @@ a.name = 'Tom' // a是私有的，不允许在外面赋值
 // error TS2341: Property 'name' is private and only accessible within class 'Animal'.
 </code></pre>
 <p>使用 <code>private</code> 修饰的属性或方法，在子类中也是不允许访问的：</p>
-<pre class="line-numbers"><code class="language-plain_text">class Animal {
+<pre><code class="language-plain_text">class Animal {
   private name;
   public constructor(name) {
     this.name = name;
@@ -2674,7 +2955,7 @@ class Cat extends Animal {
 // index.ts(11,17): error TS2341: Property 'name' is private and only accessible within class 'Animal'.
 </code></pre>
 <p>而如果是用 <code>protected</code> 修饰，则允许在子类中访问：</p>
-<pre class="line-numbers"><code class="language-plain_text">class Animal {
+<pre><code class="language-plain_text">class Animal {
   protected name;
   public constructor(name) {
     this.name = name;
@@ -2689,7 +2970,7 @@ class Cat extends Animal {
 }
 </code></pre>
 <p>当构造函数修饰为 <code>private</code> 时，该类不允许被继承或者实例化：</p>
-<pre class="line-numbers"><code class="language-plain_text">class Animal {
+<pre><code class="language-plain_text">class Animal {
   public name;
   private constructor(name) {
     this.name = name;
@@ -2707,7 +2988,7 @@ let a = new Animal('Jack');
 // index.ts(13,9): TS2673: Constructor of class 'Animal' is private and only accessible within the class declaration.
 </code></pre>
 <p>当构造函数修饰为 <code>protected</code> 时，该类只允许被继承：</p>
-<pre class="line-numbers"><code class="language-plain_text">class Animal {
+<pre><code class="language-plain_text">class Animal {
   public name;
   protected constructor(name) {
     this.name = name;
@@ -2725,7 +3006,7 @@ let a = new Animal('Jack');
 </code></pre>
 <h5><a id="%E5%8F%82%E6%95%B0%E5%B1%9E%E6%80%A7" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>参数属性</h5>
 <p>修饰符和<code>readonly</code>还可以使用在构造函数参数中，等同于类中定义该属性同时给该属性赋值，使代码更简洁。</p>
-<pre class="line-numbers"><code class="language-plain_text">class Animal {
+<pre><code class="language-plain_text">class Animal {
   // public name: string;
   public constructor(public name) {
     // this.name = name;
@@ -2734,7 +3015,7 @@ let a = new Animal('Jack');
 </code></pre>
 <h5><a id="readonly" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>readonly</h5>
 <p>只读属性关键字，只允许出现在属性声明或者索引签名或构造函数中。</p>
-<pre class="line-numbers"><code class="language-plain_text">class Animal {
+<pre><code class="language-plain_text">class Animal {
   readonly name;
   public constructor(name) {
     this.name = name;
@@ -2748,7 +3029,7 @@ a.name = 'Tom';
 // index.ts(10,3): TS2540: Cannot assign to 'name' because it is a read-only property.
 </code></pre>
 <p>注意如果 <code>readonly</code> 和其他访问修饰符同时存在的话，需要写在其后面。</p>
-<pre class="line-numbers"><code class="language-plain_text">class Animal {
+<pre><code class="language-plain_text">class Animal {
   // public readonly name;
   public constructor(public readonly name) {
     // this.name = name;
@@ -2759,7 +3040,7 @@ a.name = 'Tom';
 <p><code>abstract</code> 用于定义抽象类和其中的抽象方法。</p>
 <p>什么是抽象类？</p>
 <p>首先，抽象类是不允许被实例化的：</p>
-<pre class="line-numbers"><code class="language-plain_text">abstract class Animal {
+<pre><code class="language-plain_text">abstract class Animal {
   public name;
   public constructor(name) {
     this.name = name;
@@ -2773,7 +3054,7 @@ let a = new Animal('Jack');
 </code></pre>
 <p>上面的例子中，我们定义了一个抽象类 <code>Animal</code>，并且定义了一个抽象方法 <code>sayHi</code>。在实例化抽象类的时候报错了。</p>
 <p>其次，抽象类中的抽象方法必须被子类实现：</p>
-<pre class="line-numbers"><code class="language-plain_text">abstract class Animal {
+<pre><code class="language-plain_text">abstract class Animal {
   public name;
   public constructor(name) {
     this.name = name;
@@ -2793,7 +3074,7 @@ let cat = new Cat('Tom');
 </code></pre>
 <p>上面的例子中，我们定义了一个类 <code>Cat</code> 继承了抽象类 <code>Animal</code>，但是没有实现抽象方法 <code>sayHi</code>，所以编译报错了。</p>
 <p>下面是一个正确使用抽象类的例子：</p>
-<pre class="line-numbers"><code class="language-plain_text">abstract class Animal {
+<pre><code class="language-plain_text">abstract class Animal {
   public name;
   public constructor(name) {
     this.name = name;
@@ -2811,7 +3092,7 @@ let cat = new Cat('Tom');
 </code></pre>
 <p>上面的例子中，我们实现了抽象方法 <code>sayHi</code>，编译通过了。</p>
 <p>需要注意的是，即使是抽象方法，TypeScript 的编译结果中，仍然会存在这个类，上面的代码的编译结果是：</p>
-<pre class="line-numbers"><code class="language-plain_text">var __extends =
+<pre><code class="language-plain_text">var __extends =
   (this &amp;&amp; this.__extends) ||
   function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -2840,7 +3121,7 @@ var cat = new Cat('Tom');
 </code></pre>
 <h5><a id="%E7%B1%BB%E7%9A%84%E7%B1%BB%E5%9E%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>类的类型</h5>
 <p>给类加上 TypeScript 的类型很简单，与接口类似</p>
-<pre class="line-numbers"><code class="language-plain_text">class Animal {
+<pre><code class="language-plain_text">class Animal {
   name: string;
   constructor(name: string) {
     this.name = name;
@@ -2857,7 +3138,7 @@ console.log(a.sayHi()); // My name is Jack
 <h5><a id="%E7%B1%BB%E5%AE%9E%E7%8E%B0%E6%8E%A5%E5%8F%A3" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>类实现接口</h5>
 <p>实现（implements）是面向对象中的一个重要概念。一般来讲，一个类只能继承自另一个类，有时候不同类之间可以有一些共有的特性，这时候就可以把特性提取成接口（interfaces），用 <code>implements</code> 关键字来实现。这个特性大大提高了面向对象的灵活性。</p>
 <p>举例来说，门是一个类，防盗门是门的子类。如果防盗门有一个报警器的功能，我们可以简单的给防盗门添加一个报警方法。这时候如果有另一个类，车，也有报警器的功能，就可以考虑把报警器提取出来，作为一个接口，防盗门和车都去实现它：</p>
-<pre class="line-numbers"><code class="language-plain_text">interface Alarm {
+<pre><code class="language-plain_text">interface Alarm {
 	alert(): void
 }
 class SecurityDoor extends Door implements Alarm {
@@ -2873,7 +3154,7 @@ class Car implements Alarm {
 }
 </code></pre>
 <p>一个类可以实现多个接口：</p>
-<pre class="line-numbers"><code class="language-plain_text">interface Alarm {
+<pre><code class="language-plain_text">interface Alarm {
     alert(): void;
 }
 
@@ -2897,7 +3178,7 @@ class Car implements Alarm, Light {
 <p>上例中，<code>Car</code> 实现了 <code>Alarm</code> 和 <code>Light</code> 接口，既能报警，也能开关车灯。</p>
 <h5><a id="%E6%8E%A5%E5%8F%A3%E7%BB%A7%E6%89%BF%E6%8E%A5%E5%8F%A3" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>接口继承接口</h5>
 <p>接口与接口直接可以是继承关系：</p>
-<pre class="line-numbers"><code class="language-plain_text">interface Alarm {
+<pre><code class="language-plain_text">interface Alarm {
 	alert(): void
 }
 interface LightableAlarm extends Alarm {
@@ -2908,7 +3189,7 @@ interface LightableAlarm extends Alarm {
 <p>这很好理解，<code>LightableAlarm</code> 继承了 <code>Alarm</code>，除了拥有 <code>alert</code> 方法之外，还拥有两个新方法 <code>lightOn</code> 和 <code>lightOff</code>。</p>
 <h5><a id="%E6%8E%A5%E5%8F%A3%E7%BB%A7%E6%89%BF%E7%B1%BB" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>接口继承类</h5>
 <p>常见的面向对象语言中，接口时不能继承类的，但是在TypeScript中却是可以的。</p>
-<pre class="line-numbers"><code class="language-plain_text">class Point {
+<pre><code class="language-plain_text">class Point {
     x: number;
     y: number;
     constructor(x: number, y: number) {
@@ -2926,7 +3207,7 @@ let point3d: Point3d = {x: 1, y: 2, z: 3};
 <p>为什么 TypeScript 会支持接口继承类呢？</p>
 <p>实际上，当我们在声明 <code>class Point</code> 时，除了会创建一个名为 <code>Point</code> 的类之外，同时也创建了一个名为 <code>Point</code> 的类型（实例的类型）。</p>
 <p>所以我们既可以将 <code>Point</code> 当做一个类来用（使用 <code>new Point</code> 创建它的实例）：</p>
-<pre class="line-numbers"><code class="language-plain_text">class Point {
+<pre><code class="language-plain_text">class Point {
     x: number;
     y: number;
     constructor(x: number, y: number) {
@@ -2938,7 +3219,7 @@ let point3d: Point3d = {x: 1, y: 2, z: 3};
 const p = new Point(1, 2);
 </code></pre>
 <p>也可以将 <code>Point</code> 当做一个类型来用（使用 <code>: Point</code> 表示参数的类型）：</p>
-<pre class="line-numbers"><code class="language-plain_text">class Point {
+<pre><code class="language-plain_text">class Point {
     x: number;
     y: number;
     constructor(x: number, y: number) {
@@ -2954,7 +3235,7 @@ function printPoint(p: Point) {
 printPoint(new Point(1, 2));
 </code></pre>
 <p>这个例子实际上可以等价于：</p>
-<pre class="line-numbers"><code class="language-plain_text">class Point {
+<pre><code class="language-plain_text">class Point {
     x: number;
     y: number;
     constructor(x: number, y: number) {
@@ -2976,7 +3257,7 @@ printPoint(new Point(1, 2));
 </code></pre>
 <p>上例中我们新声明的 <code>PointInstanceType</code> 类型，与声明 <code>class Point</code> 时创建的 <code>Point</code> 类型是等价的。</p>
 <p>所以回到 <code>Point3d</code> 的例子中，我们就能很容易的理解为什么 TypeScript 会支持接口继承类了：</p>
-<pre class="line-numbers"><code class="language-plain_text">class Point {
+<pre><code class="language-plain_text">class Point {
     x: number;
     y: number;
     constructor(x: number, y: number) {
@@ -3002,7 +3283,7 @@ let point3d: Point3d = {x: 1, y: 2, z: 3};
 <p>所以「接口继承类」和「接口继承接口」没有什么本质的区别。</p>
 <p>值得注意的是，<code>PointInstanceType</code> 相比于 <code>Point</code>，缺少了 <code>constructor</code> 方法，这是因为声明 <code>Point</code> 类时创建的 <code>Point</code> 类型是不包含构造函数的。另外，除了构造函数是不包含的，静态属性或静态方法也是不包含的（实例的类型当然不应该包括构造函数、静态属性或静态方法）。</p>
 <p>换句话说，声明 <code>Point</code> 类时创建的 <code>Point</code> 类型只包含其中的实例属性和实例方法：</p>
-<pre class="line-numbers"><code class="language-plain_text">class Point {
+<pre><code class="language-plain_text">class Point {
     /** 静态属性，坐标系原点 */
     static origin = new Point(0, 0);
     /** 静态方法，计算与原点距离 */
@@ -3039,7 +3320,7 @@ let p2: PointInstanceType;
 <p>泛型（Generics）是指在定义函数、接口或类的时候，不预先指定具体的类型，而在使用的时候再指定类型的一种特性。</p>
 <h4><a id="%E5%9C%A8%E5%87%BD%E6%95%B0%E4%B8%AD%E4%BD%BF%E7%94%A8%E6%B3%9B%E5%9E%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>在函数中使用泛型</h4>
 <p>先来看一段代码：</p>
-<pre class="line-numbers"><code class="language-plain_text">function join(a: number | string, b: number | string) {
+<pre><code class="language-plain_text">function join(a: number | string, b: number | string) {
   return `${a} ${b}`;
 }
 </code></pre>
@@ -3051,7 +3332,7 @@ let p2: PointInstanceType;
 <li>a字符串b数字</li>
 </ul>
 <p>但最终的结果依然是拼接，这个时候来了这么个需求，我们必须2个变量的类型要统一，我擦类，这怎么搞，这个时候掏出泛型，改写下代码并这么使用就可以了</p>
-<pre class="line-numbers"><code class="language-plain_text">function join&lt;T&gt; (a: T, b: T) {
+<pre><code class="language-plain_text">function join&lt;T&gt; (a: T, b: T) {
   return `${a} ${b}`;
 }
 
@@ -3063,7 +3344,7 @@ join&lt;string&gt;('1', '2');
 <p>在方法执行的括号前加上尖括号，指定类型就可以了(可以省略尖括号，ts会类型推断，但不建议这么做)，这样也约束了参数的类型，这就是最基本最基础的一个使用方式了</p>
 <h4><a id="%E5%87%BD%E6%95%B0%E4%B8%AD%E4%BD%BF%E7%94%A8%E6%B3%9B%E5%9E%8B2" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>函数中使用泛型 2</h4>
 <p>我们同样也可以约束数组每一项的类型，比如写一个最简单的函数，传入个数组，并返回这个数组</p>
-<pre class="line-numbers"><code class="language-plain_text">function getArr&lt;T&gt;(arr: T[]) {
+<pre><code class="language-plain_text">function getArr&lt;T&gt;(arr: T[]) {
   return arr;
 }
 
@@ -3072,7 +3353,7 @@ getArr&lt;string&gt;(['g', 'q', 'f']) //同理这里指定了string
 </code></pre>
 <h4><a id="%E5%87%BD%E6%95%B0%E4%B8%AD%E4%BD%BF%E7%94%A8%E6%B3%9B%E5%9E%8B3" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>函数中使用泛型3</h4>
 <p>获取对象对应key的value，那大家都知道使用<code>obj[key]</code>就可以了，但有的对象我们并不知道有没有这个key，用泛型的话可以很好的解决这个问题</p>
-<pre class="line-numbers"><code class="language-plain_text">function getVal&lt;T&gt;(obj: T, k: keyof T){
+<pre><code class="language-plain_text">function getVal&lt;T&gt;(obj: T, k: keyof T){
   return obj[k];
 }
 
@@ -3087,7 +3368,7 @@ getVal&lt;Person&gt;({
 }, 'age') // 这里的key值只能传name或者age，否则就会报错，这个就是泛型的力量
 </code></pre>
 <h4><a id="%E5%9C%A8%E5%87%BD%E6%95%B0%E4%B8%AD%E4%BD%BF%E7%94%A8%E6%B3%9B%E5%9E%8B4" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>在函数中使用泛型4</h4>
-<pre class="line-numbers"><code class="language-plain_text">function manyTest&lt;K, V&gt;(a: K, b: V) {
+<pre><code class="language-plain_text">function manyTest&lt;K, V&gt;(a: K, b: V) {
   return `${a} ${b}`
 }
 
@@ -3095,7 +3376,7 @@ manyTest&lt;number, string&gt;(1, '2') //泛型指定了第一个参数是数字
 </code></pre>
 <h4><a id="%E6%B3%9B%E5%9E%8B%E6%8E%A5%E5%8F%A3" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>泛型接口</h4>
 <p>模拟请求相应的场景，初始代码</p>
-<pre class="line-numbers"><code class="language-plain_text">interface IResponseData{
+<pre><code class="language-plain_text">interface IResponseData{
     code: number;
     message?: string;
     data: any;
@@ -3107,7 +3388,7 @@ async function getData(url: string){
 } 
 </code></pre>
 <p>上述代码很明显有个问题，我们会发现该接口的data项的具体格式不确定，不同的接口会返回的数据是不一样的，当我们想根据具体当前请求的接口返回具体data格式的时候，就比较麻烦了，因为getData并不清楚你调用的具体接口是什么，对应的数据又会是什么，这个时候我们可以对IResponseData使用泛型</p>
-<pre class="line-numbers"><code class="language-plain_text">interface IResponseData&lt;T&gt;{
+<pre><code class="language-plain_text">interface IResponseData&lt;T&gt;{
     code: number;
     message?: string;
     data: T;
@@ -3142,7 +3423,7 @@ async function getData&lt;U&gt;(url: string){
 })()
 </code></pre>
 <h4><a id="%E5%9C%A8%E7%B1%BB%E4%B8%AD%E4%BD%BF%E7%94%A8%E6%B3%9B%E5%9E%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>在类中使用泛型</h4>
-<pre class="line-numbers"><code class="language-plain_text">class AddClass&lt;T&gt; {
+<pre><code class="language-plain_text">class AddClass&lt;T&gt; {
     parmas: T;
     add: (x: T, y: T) =&gt; T;
 }
@@ -3153,7 +3434,7 @@ addNumber.add = function(x, y) { return x + y; };
 
 </code></pre>
 <h4><a id="%E5%A4%9A%E5%8F%82%E6%95%B0%E7%B1%BB%E5%9E%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>多参数类型</h4>
-<pre class="line-numbers"><code class="language-plain_text">function returnParamsArr&lt;T, U&gt;(a: T, b:U):[U, T] {
+<pre><code class="language-plain_text">function returnParamsArr&lt;T, U&gt;(a: T, b:U):[U, T] {
     return  [b, a];
 }
 
@@ -3170,7 +3451,7 @@ interface Add&lt;T, U&gt; {
 <h3><a id="%E6%B5%81%E5%8A%A8%E7%9A%84%E7%B1%BB%E5%9E%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>流动的类型</h3>
 <h4><a id="%E6%8D%95%E8%8E%B7%E5%8F%98%E9%87%8F%E7%9A%84%E7%B1%BB%E5%9E%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>捕获变量的类型</h4>
 <p>你可以通过 <code>typeof</code> 操作符在类型注解中使用变量。这允许你告诉编译器，一个变量的类型与其他类型相同，如下所示：</p>
-<pre class="line-numbers"><code class="language-plain_text">let foo = 123;
+<pre><code class="language-plain_text">let foo = 123;
 let bar: typeof foo; // 'bar' 类型与 'foo' 类型相同（在这里是： 'number'）
 
 bar = 456; // ok
@@ -3178,7 +3459,7 @@ bar = '789'; // Error: 'string' 不能分配给 'number' 类型
 </code></pre>
 <h4><a id="%E6%8D%95%E8%8E%B7%E7%B1%BB%E6%88%90%E5%91%98%E7%9A%84%E7%B1%BB%E5%9E%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>捕获类成员的类型</h4>
 <p>与捕获变量的类型相似，你仅仅是需要声明一个变量用来捕获到的类型：</p>
-<pre class="line-numbers"><code class="language-plain_text">class Foo {
+<pre><code class="language-plain_text">class Foo {
   foo: number; // 我们想要捕获的类型
 }
 
@@ -3190,7 +3471,7 @@ let bar: typeof _foo.foo;
 <h4><a id="%E6%8D%95%E8%8E%B7%E9%94%AE%E7%9A%84%E5%90%8D%E7%A7%B0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>捕获键的名称</h4>
 <p><code>keyof</code> 操作符能让你捕获一个类型的键。例如，你可以使用它来捕获变量的键名称，在通过使用 <code>typeof</code> 来获取类型之后：</p>
 <p><code>keyof</code> 与 <code>Object.keys</code> 略有相似，只不过 <code>keyof</code> 取 <code>interface</code> 的键。</p>
-<pre class="line-numbers"><code class="language-plain_text">const colors = {
+<pre><code class="language-plain_text">const colors = {
   red: 'red',
   blue: 'blue'
 };
@@ -3206,7 +3487,7 @@ color = 'anythingElse'; // Error
 <p>如果定义了两个相同名字的函数、接口或类，那么它们会合并成一个类型：</p>
 <h5><a id="%E5%87%BD%E6%95%B0%E7%9A%84%E5%90%88%E5%B9%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>函数的合并</h5>
 <p><a href="https://ts.xcatliu.com/basics/type-of-function.html#%E9%87%8D%E8%BD%BD">之前学习过</a>，我们可以使用重载定义多个函数类型：</p>
-<pre class="line-numbers"><code class="language-plain_text">function reverse(x: number): number;
+<pre><code class="language-plain_text">function reverse(x: number): number;
 function reverse(x: string): string;
 function reverse(x: number | string): number | string {
     if (typeof x === 'number') {
@@ -3218,7 +3499,7 @@ function reverse(x: number | string): number | string {
 </code></pre>
 <h5><a id="%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%90%88%E5%B9%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>接口的合并</h5>
 <p>接口中的属性在合并时会简单的合并到一个接口中：</p>
-<pre class="line-numbers"><code class="language-plain_text">interface Alarrm {
+<pre><code class="language-plain_text">interface Alarrm {
 	price: number
 }
 interface Alarm {
@@ -3226,13 +3507,13 @@ interface Alarm {
 }
 </code></pre>
 <p>相当于：</p>
-<pre class="line-numbers"><code class="language-plain_text">interface Alarm {
+<pre><code class="language-plain_text">interface Alarm {
     price: number;
     weight: number;
 }
 </code></pre>
 <p>注意，<strong>合并的属性的类型必须是唯一的</strong>：</p>
-<pre class="line-numbers"><code class="language-plain_text">interface Alarm {
+<pre><code class="language-plain_text">interface Alarm {
     price: number;
 }
 interface Alarm {
@@ -3240,7 +3521,7 @@ interface Alarm {
     weight: number;
 }
 </code></pre>
-<pre class="line-numbers"><code class="language-plain_text">interface Alarm {
+<pre><code class="language-plain_text">interface Alarm {
     price: number;
 }
 interface Alarm {
@@ -3251,7 +3532,7 @@ interface Alarm {
 // index.ts(5,3): error TS2403: Subsequent variable declarations must have the same type.  Variable 'price' must be of type 'number', but here has type 'string'.
 </code></pre>
 <p>接口中方法的合并，与函数的合并一样：</p>
-<pre class="line-numbers"><code class="language-plain_text">interface Alarm {
+<pre><code class="language-plain_text">interface Alarm {
     price: number;
     alert(s: string): string;
 }
@@ -3261,7 +3542,7 @@ interface Alarm {
 }
 </code></pre>
 <p>相当于：</p>
-<pre class="line-numbers"><code class="language-plain_text">interface Alarm {
+<pre><code class="language-plain_text">interface Alarm {
     price: number;
     weight: number;
     alert(s: string): string;
@@ -3284,11 +3565,11 @@ interface Alarm {
 <p><a href="http://www.typescriptlang.org/">TypeScript</a> 是 JavaScript 的一个超集，主要提供了<strong>类型系统</strong>和<strong>对 ES6 的支持</strong></p>
 <h3><a id="%E5%AE%89%E8%A3%85typescript" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>安装TypeScript</h3>
 <p>TypeScript 的命令行工具安装方法如下：</p>
-<pre class="line-numbers"><code class="language-plain_text">npm install -g typescript
+<pre><code class="language-plain_text">npm install -g typescript
 </code></pre>
 <p>以上命令会在全局环境下安装 <code>tsc</code> 命令，安装完成之后，我们就可以在任何地方执行 <code>tsc</code> 命令了。</p>
 <p>编译一个 TypeScript 文件很简单：</p>
-<pre class="line-numbers"><code class="language-plain_text">tsc hello.ts
+<pre><code class="language-plain_text">tsc hello.ts
 </code></pre>
 <p>我们约定使用 TypeScript 编写的文件以 <code>.ts</code> 为后缀，用 TypeScript 编写 React 时，以 <code>.tsx</code> 为后缀。</p>
 <h3><a id="typescript%E5%92%8Cjavascript%E7%9A%84%E5%8C%BA%E5%88%AB" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>TypeScript和JavaScript的区别</h3>
@@ -3331,16 +3612,16 @@ interface Alarm {
 <p>原始数据类型包括：布尔值、数值、字符串、<code>null</code>、<code>undefined</code> 以及 <a href="http://es6.ruanyifeng.com/#docs/symbol">ES6 中的新类型 <code>Symbol</code></a>。</p>
 <h4><a id="%E5%B8%83%E5%B0%94%E5%80%BC" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>布尔值</h4>
 <p>布尔值是最基础的数据类型，在 TypeScript 中，使用 <code>boolean</code> 定义布尔值类型：</p>
-<pre class="line-numbers"><code class="language-plain_text">let isDone: boolean = false
+<pre><code class="language-plain_text">let isDone: boolean = false
 </code></pre>
 <p>注意，使用构造函数 <code>Boolean</code> 创造的对象<strong>不是</strong>布尔值,返回的是一个Boolean对象</p>
-<pre class="line-numbers"><code class="language-plain_text">let createdByNewBoolean: boolean = new Boolean(1);
+<pre><code class="language-plain_text">let createdByNewBoolean: boolean = new Boolean(1);
 // Type 'Boolean' is not assignable to type 'boolean'.
 // 'boolean' is a primitive, but 'Boolean' is a wrapper object. Prefer using 'boolean' when possible.
 </code></pre>
 <h4><a id="%E6%95%B0%E5%80%BC" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>数值</h4>
 <p>使用number定义数值类型：</p>
-<pre class="line-numbers"><code class="language-plain_text">let count: number = 6
+<pre><code class="language-plain_text">let count: number = 6
 / ES6 中的二进制表示法
 let binaryLiteral: number = 0b1010;
 // ES6 中的八进制表示法
@@ -3348,7 +3629,7 @@ let octalLiteral: number = 0o744;
 </code></pre>
 <h4><a id="%E5%AD%97%E7%AC%A6%E4%B8%B2" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>字符串</h4>
 <p>使用string定义字符串类型：</p>
-<pre class="line-numbers"><code class="language-plain_text">let myName: string = 'Tom';
+<pre><code class="language-plain_text">let myName: string = 'Tom';
 let myAge: number = 25;
 
 // 模板字符串
@@ -3357,25 +3638,25 @@ I'll be ${myAge + 1} years old next month.`;
 </code></pre>
 <h4><a id="%E7%A9%BA%E5%80%BC" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>空值</h4>
 <p>JavaScript 没有空值（Void）的概念，在 TypeScript 中，可以用 <code>void</code> 表示没有任何返回值的函数：</p>
-<pre class="line-numbers"><code class="language-plain_text">function alertName: void {
+<pre><code class="language-plain_text">function alertName: void {
 	alert('My name is Tom')
 }
 </code></pre>
 <p>声明一个 <code>void</code> 类型的变量没有什么用，因为你只能将它赋值为 <code>undefined</code> 和 <code>null</code>：</p>
-<pre class="line-numbers"><code class="language-plain_text">let unusable: void = undefined;
+<pre><code class="language-plain_text">let unusable: void = undefined;
 </code></pre>
 <h4><a id="null%E5%92%8C-undefined" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Null 和 Undefined</h4>
 <p>在 TypeScript 中，可以使用 <code>null</code> 和 <code>undefined</code> 来定义这两个原始数据类型：</p>
-<pre class="line-numbers"><code class="language-plain_text">let u: undefined = undefined;
+<pre><code class="language-plain_text">let u: undefined = undefined;
 let n: null = null;
 </code></pre>
 <p>与 <code>void</code> 的区别是，<code>undefined</code> 和 <code>null</code> 是所有类型的子类型。也就是说 <code>undefined</code> 类型的变量，可以赋值给 <code>number</code> 类型的变量：</p>
-<pre class="line-numbers"><code class="language-plain_text">// 这样不会报错
+<pre><code class="language-plain_text">// 这样不会报错
 let num: number = undefined;
 </code></pre>
 <h4><a id="never" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>never</h4>
 <p><code>never</code> 类型表示的是那些永不存在的值的类型。 例如，<code>never</code> 类型是那些总是会抛出异常或根本就不会有返回值的函数表达式或箭头函数表达式的返回值类型。</p>
-<pre class="line-numbers"><code class="language-plain_text">// 返回never的函数必须存在无法达到的终点
+<pre><code class="language-plain_text">// 返回never的函数必须存在无法达到的终点
 function error(message: string): never {
   throw new Error(message);
 }
@@ -3388,23 +3669,23 @@ function infiniteLoop(): never {
 <p>任意值(Any)用来表示允许赋值任意类型</p>
 <h5><a id="%E4%BB%80%E4%B9%88%E6%98%AF%E4%BB%BB%E6%84%8F%E7%B1%BB%E5%9E%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>什么是任意类型</h5>
 <p>如果是一个普通类型，在赋值过程中改变类型是不被允许的：</p>
-<pre class="line-numbers"><code class="language-plain_text">let myFavoriteNumber: string = 'seven';
+<pre><code class="language-plain_text">let myFavoriteNumber: string = 'seven';
 myFavoriteNumber = 7;
 // error Type 'number' is not assignable to type 'string'.
 </code></pre>
 <p>但如果是any类型，则允许被赋值位任意类型</p>
-<pre class="line-numbers"><code class="language-plain_text">let myFavoriteNumber: any = 'seven';
+<pre><code class="language-plain_text">let myFavoriteNumber: any = 'seven';
 myFavoriteNumber = 7
 // it’s ok
 </code></pre>
 <h5><a id="%E4%BB%BB%E6%84%8F%E5%80%BC%E7%9A%84%E5%B1%9E%E6%80%A7%E5%92%8C%E6%96%B9%E6%B3%95" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>任意值的属性和方法</h5>
 <p>在任意值上访问的任何属性都是被允许的：</p>
-<pre class="line-numbers"><code class="language-plain_text">let anyThing: any = 'hello';
+<pre><code class="language-plain_text">let anyThing: any = 'hello';
 console.log(anyThing.myName);
 console.log(anyThing.myName.firstName);
 </code></pre>
 <p>也允许调用任何方法：</p>
-<pre class="line-numbers"><code class="language-plain_text">let anyThing: any = 'Tom';
+<pre><code class="language-plain_text">let anyThing: any = 'Tom';
 anyThing.setName('Jerry');
 anyThing.setName('Jerry').sayHello();
 anyThing.myName.setFirstName('Cat');
@@ -3412,14 +3693,14 @@ anyThing.myName.setFirstName('Cat');
 <p>可以认为，<strong>声明以一个变量为任意值之后，对它的任何操作，返回的内容的类型都是任意值</strong></p>
 <h5><a id="%E6%9C%AA%E5%A3%B0%E5%91%BD%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%8F%98%E9%87%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>未声命类型的变量</h5>
 <p><strong>变量如果在声明的时候，未指定其类型，那么它会被识别为任意值类型</strong>：</p>
-<pre class="line-numbers"><code class="language-plain_text">let something;
+<pre><code class="language-plain_text">let something;
 something = 'seven';
 something = 7;
 
 something.setName('Tom');
 </code></pre>
 <p>等价于：</p>
-<pre class="line-numbers"><code class="language-plain_text">let something: any;
+<pre><code class="language-plain_text">let something: any;
 something = 'seven';
 something = 7;
 
@@ -3429,7 +3710,7 @@ something.setName('Tom');
 <p>TypeScript 3.0 引入了新的<code>unknown</code> 类型，它是 <code>any</code> 类型对应的安全类型。</p>
 <p>当我们在写应用的时候可能会需要描述一个我们还不知道其类型的变量。这些值可以来自动态内容，例如从用户获得，或者我们想在我们的 API 中接收所有可能类型的值。在这些情况下，我们想要让编译器以及未来的用户知道这个变量可以是任意类型。这个时候我们会对它使用 <code>unknown</code> 类型。</p>
 <p>就像所有类型都可以赋值给 <code>any</code>，所有类型也都可以赋值给 <code>unknown</code>。这使得 <code>unknown</code> 成为 TypeScript 类型系统的另一种顶级类型（另一种是 <code>any</code>）。</p>
-<pre class="line-numbers"><code class="language-plain_text">let value: unknown;
+<pre><code class="language-plain_text">let value: unknown;
 
 value = true; // OK
 value = 42; // OK
@@ -3443,7 +3724,7 @@ value = new TypeError(); // OK
 value = Symbol(&quot;type&quot;); // OK
 </code></pre>
 <p>对 <code>value</code> 变量的所有赋值都被认为是类型正确的。但是，当我们尝试将类型为 <code>unknown</code> 的值赋值给其他类型的变量时会发生什么？</p>
-<pre class="line-numbers"><code class="language-plain_text">let value: unknown;
+<pre><code class="language-plain_text">let value: unknown;
 
 let value1: unknown = value; // OK
 let value2: any = value; // OK
@@ -3459,38 +3740,38 @@ let value8: Function = value; // Error
 <p>如果没有明确的指定类型，那么 TypeScript 会依照类型推论（Type Inference）的规则推断出一个类型。</p>
 <h4><a id="%E4%BB%80%E4%B9%88%E6%98%AF%E7%B1%BB%E5%9E%8B%E6%8E%A8%E6%96%AD" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>什么是类型推断</h4>
 <p>以下代码虽然没有指定类型，但是会在编译的时候报错：</p>
-<pre class="line-numbers"><code class="language-plain_text">let myFavoriteNumber = 'seven';
+<pre><code class="language-plain_text">let myFavoriteNumber = 'seven';
 myFavoriteNumber = 7;
 // error TS2322: Type 'number' is not assignable to type 'string'.
 </code></pre>
 <p>等价于：</p>
-<pre class="line-numbers"><code class="language-plain_text">let myFavoriteNumber: string = 'seven';
+<pre><code class="language-plain_text">let myFavoriteNumber: string = 'seven';
 myFavoriteNumber = 7;
 // error TS2322: Type 'number' is not assignable to type 'string'.
 </code></pre>
 <p>TypeScript 会在没有明确的指定类型的时候推测出一个类型，这就是类型推论。</p>
 <h5><a id="%E5%AE%9A%E4%B9%89%E5%8F%98%E9%87%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>定义变量</h5>
-<pre class="line-numbers"><code class="language-plain_text">let a = 1
+<pre><code class="language-plain_text">let a = 1
 let b = '2'
 </code></pre>
 <h5><a id="%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E7%B1%BB%E5%9E%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>函数返回类型</h5>
-<pre class="line-numbers"><code class="language-plain_text">function add(x: number, y: string) {
+<pre><code class="language-plain_text">function add(x: number, y: string) {
 	return a + b
 }
 </code></pre>
 <h5><a id="%E8%B5%8B%E5%80%BC" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>赋值</h5>
-<pre class="line-numbers"><code class="language-plain_text">type Adder = (a: number, b: number) =&gt; number;
+<pre><code class="language-plain_text">type Adder = (a: number, b: number) =&gt; number;
 let foo: Adder = (a, b) =&gt; a + b;
 </code></pre>
 <h5><a id="%E7%BB%93%E6%9E%84%E5%8C%96" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>结构化</h5>
-<pre class="line-numbers"><code class="language-plain_text">const foo = {
+<pre><code class="language-plain_text">const foo = {
 	a: 123,
 	b: 234
 }
 foo.a = '123' // Error：不能把 'string' 类型赋值给 'number' 类型
 </code></pre>
 <h5><a id="%E8%A7%A3%E6%9E%84" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>解构</h5>
-<pre class="line-numbers"><code class="language-plain_text">const foo = {
+<pre><code class="language-plain_text">const foo = {
   a: 123,
   b: 456
 };
@@ -3499,19 +3780,19 @@ let { a } = foo;
 a = 'hello'; // Error：不能把 'string' 类型赋值给 'number' 类型
 </code></pre>
 <p><strong>如果定义的时候没有赋值，不管之后有没有赋值，都会被推断成 <code>any</code> 类型而完全不被类型检查</strong>：</p>
-<pre class="line-numbers"><code class="language-plain_text">let myFavoriteNumber;
+<pre><code class="language-plain_text">let myFavoriteNumber;
 myFavoriteNumber = 'seven';
 myFavoriteNumber = 7;
 </code></pre>
 <h3><a id="%E8%81%94%E5%90%88%E7%B1%BB%E5%9E%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>联合类型</h3>
 <p>联合类型（Union Types）表示取值可以为多种类型中的一种。</p>
 <h4><a id="%E7%AE%80%E5%8D%95%E7%9A%84%E4%BE%8B%E5%AD%90" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>简单的例子</h4>
-<pre class="line-numbers"><code class="language-plain_text">let count : string | number
+<pre><code class="language-plain_text">let count : string | number
 count = 7
 count = '7'
 // it's ok
 </code></pre>
-<pre class="line-numbers"><code class="language-plain_text">let count : string | number
+<pre><code class="language-plain_text">let count : string | number
 count = 7
 count = true
 // error Type 'boolean' is not assignable to type 'string | number'.
@@ -3519,7 +3800,7 @@ count = true
 <p><strong>联合类型使用 <code>|</code> 分隔每个类型。</strong></p>
 <h4><a id="%E8%AE%BF%E9%97%AE%E8%81%94%E5%90%88%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%B1%9E%E6%80%A7%E6%88%96%E6%96%B9%E6%B3%95" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>访问联合类型的属性或方法</h4>
 <p>当 TypeScript 不确定一个联合类型的变量到底是哪个类型的时候，我们<strong>只能访问此联合类型的所有类型里共有的属性或方法</strong>：</p>
-<pre class="line-numbers"><code class="language-plain_text">function getLength(something: string | number): number {
+<pre><code class="language-plain_text">function getLength(something: string | number): number {
     return something.length;
 }
 
@@ -3528,12 +3809,12 @@ count = true
 </code></pre>
 <p>上例中，<code>length</code> 不是 <code>string</code> 和 <code>number</code> 的共有属性，所以会报错。</p>
 <p>访问 <code>string</code> 和 <code>number</code> 的共有属性是没问题的：</p>
-<pre class="line-numbers"><code class="language-plain_text">function getString(something: string | number): string {
+<pre><code class="language-plain_text">function getString(something: string | number): string {
     return something.toString();
 }
 </code></pre>
 <p>联合类型的变量在被赋值的时候，会根据类型推论的规则推断出一个类型：</p>
-<pre class="line-numbers"><code class="language-plain_text">let myFavoriteNumber: string | number;
+<pre><code class="language-plain_text">let myFavoriteNumber: string | number;
 myFavoriteNumber = 'seven';
 console.log(myFavoriteNumber.length); // 5
 myFavoriteNumber = 7;
@@ -3549,7 +3830,7 @@ console.log(myFavoriteNumber.length); // 编译时报错
 <p>在面向对象语言中，接口（Interfaces）是一个很重要的概念，它是对行为的抽象，而具体如何行动需要由类（classes）去实现（implement）。</p>
 <p>TypeScript 中的接口是一个非常灵活的概念，除了可用于<a href="https://ts.xcatliu.com/advanced/class-and-interfaces.html#%E7%B1%BB%E5%AE%9E%E7%8E%B0%E6%8E%A5%E5%8F%A3">对类的一部分行为进行抽象</a>以外，也常用于对「对象的形状（Shape）」进行描述。</p>
 <h4><a id="%E7%AE%80%E5%8D%95%E7%9A%84%E4%BE%8B%E5%AD%90" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>简单的例子</h4>
-<pre class="line-numbers"><code class="language-plain_text">interface Person {
+<pre><code class="language-plain_text">interface Person {
     name: string;
     age: number;
 }
@@ -3561,7 +3842,7 @@ let tom: Person = {
 </code></pre>
 <p>上面的例子中，我们定义了一个接口 <code>Person</code>，接着定义了一个变量 <code>tom</code>，它的类型是 <code>Person</code>。这样，我们就约束了 <code>tom</code> 的形状必须和接口 <code>Person</code> 一致。</p>
 <p>定义的变量比接口少了一些属性是不允许的：</p>
-<pre class="line-numbers"><code class="language-plain_text">interface Person {
+<pre><code class="language-plain_text">interface Person {
     name: string;
     age: number;
 }
@@ -3574,7 +3855,7 @@ let tom: Person = {
 //  Property 'age' is missing in type '{ name: string; }'.
 </code></pre>
 <p>多一些属性也是不允许的：</p>
-<pre class="line-numbers"><code class="language-plain_text">interface Person {
+<pre><code class="language-plain_text">interface Person {
     name: string;
     age: number;
 }
@@ -3591,7 +3872,7 @@ let tom: Person = {
 <p>可见，<strong>赋值的时候，变量的形状必须和接口的形状保持一致</strong>。</p>
 <h4><a id="%E5%8F%AF%E9%80%89%E5%B1%9E%E6%80%A7" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>可选属性</h4>
 <p>有时我们希望不要完全匹配一个形状，那么可以用可选属性：</p>
-<pre class="line-numbers"><code class="language-plain_text">interface Person {
+<pre><code class="language-plain_text">interface Person {
     name: string;
     age?: number;
 }
@@ -3600,7 +3881,7 @@ let tom: Person = {
     name: 'Tom'
 };
 </code></pre>
-<pre class="line-numbers"><code class="language-plain_text">interface Person {
+<pre><code class="language-plain_text">interface Person {
     name: string;
     age?: number;
 }
@@ -3612,7 +3893,7 @@ let tom: Person = {
 </code></pre>
 <p>可选属性的含义是该属性可以不存在。</p>
 <p>这时<strong>仍然不允许添加未定义的属性</strong>：</p>
-<pre class="line-numbers"><code class="language-plain_text">interface Person {
+<pre><code class="language-plain_text">interface Person {
     name: string;
     age?: number;
 }
@@ -3625,7 +3906,7 @@ let tom: Person = {
 </code></pre>
 <h4><a id="%E4%BB%BB%E6%84%8F%E5%B1%9E%E6%80%A7" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>任意属性</h4>
 <p>有时候我们希望一个接口有任意属性，可以使用如下方式：</p>
-<pre class="line-numbers"><code class="language-plain_text">interface Person {
+<pre><code class="language-plain_text">interface Person {
 	name: string;
 	age?: number;
 	[propName: string]: any;
@@ -3637,7 +3918,7 @@ let tom: Person = {
 }
 </code></pre>
 <p>需要注意的是，<strong>一旦定义了任意属性，那么确定属性和可选属性的类型都必须是它的类型的子集</strong>：</p>
-<pre class="line-numbers"><code class="language-plain_text">interface Person {
+<pre><code class="language-plain_text">interface Person {
 	name: string;
 	age?: number;
 	[propName: string]: string
@@ -3651,7 +3932,7 @@ let tom: Person = {
 </code></pre>
 <p>上例中，任意属性的值允许是 <code>string</code>，但是可选属性 <code>age</code> 的值却是 <code>number</code>，<code>number</code> 不是 <code>string</code> 的子属性，所以报错了。</p>
 <p>一个接口中只能定义一个任意属性。如果接口中有多个类型的属性，则可以在任意属性中使用联合类型：</p>
-<pre class="line-numbers"><code class="language-plain_text">interface Person {
+<pre><code class="language-plain_text">interface Person {
 	name: string;
 	age?: number;
 	[propName: string]: number | string
@@ -3664,7 +3945,7 @@ let tom: Person = {
 </code></pre>
 <h4><a id="%E5%8F%AA%E8%AF%BB%E5%B1%9E%E6%80%A7" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>只读属性</h4>
 <p>有时候我们希望对象中的一些字段只能在创建的时候被赋值，那么可以用 <code>readonly</code> 定义只读属性：</p>
-<pre class="line-numbers"><code class="language-plain_text">interface Person {
+<pre><code class="language-plain_text">interface Person {
 	readonly id: number;
 	name: string;
 	age?: number;
@@ -3677,7 +3958,7 @@ let tom: Person = {
 tom.id = 2 // error Cannot assign to 'id' because it is a constant or a read-only property.
 </code></pre>
 <p><strong>注意，只读的约束存在于第一次给对象赋值的时候，而不是第一次给只读属性赋值的时候</strong>：</p>
-<pre class="line-numbers"><code class="language-plain_text">interface Person = {
+<pre><code class="language-plain_text">interface Person = {
 	readonly id: number;
 	name: string;
 	age?: number;
@@ -3698,25 +3979,25 @@ Cannot assign to 'id' because it is a constant or a read-only property.
 <p>在TypeScript中，数组的类型有多种定义方式，比较灵活</p>
 <h4><a id="%E7%B1%BB%E5%9E%8B%E6%96%B9%E6%8B%AC%E5%8F%B7%E8%A1%A8%E7%A4%BA%E6%B3%95" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>类型+方括号 表示法</h4>
 <p>最简单的方法是使用【类型+方括号】来表示数组：</p>
-<pre class="line-numbers"><code class="language-plain_text">let countArray : number[] = [1,2,3,4,5]
+<pre><code class="language-plain_text">let countArray : number[] = [1,2,3,4,5]
 </code></pre>
 <p>数组的项中不允许出现其他的类型：</p>
-<pre class="line-numbers"><code class="language-plain_text">let countArray: number[] = [1,2,3,'4']
+<pre><code class="language-plain_text">let countArray: number[] = [1,2,3,'4']
 // error Type 'string' is not assignable to type 'number'.
 </code></pre>
 <p>数组的一些方法的参数也会根据数组在定义时约定的类型进行限制：</p>
-<pre class="line-numbers"><code class="language-plain_text">let countArray: number[] = [1,2,3,4]
+<pre><code class="language-plain_text">let countArray: number[] = [1,2,3,4]
 countArray.push('2')
 // error Argument of type '&quot;2&quot;' is not assignable to parameter of type 'number'.
 </code></pre>
 <h4><a id="%E6%95%B0%E7%BB%84%E6%B3%9B%E5%9E%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>数组泛型</h4>
 <p>我们也可以使用数组泛型（Array Generic） <code>Array&lt;elemType&gt;</code> 来表示数组：</p>
-<pre class="line-numbers"><code class="language-plain_text">let countArray: Array&lt;number&gt; = [1,2,3,4,5]
+<pre><code class="language-plain_text">let countArray: Array&lt;number&gt; = [1,2,3,4,5]
 </code></pre>
 <p>注：关于泛型，后续会介绍</p>
 <h4><a id="%E7%94%A8%E6%8E%A5%E5%8F%A3%E8%A1%A8%E7%A4%BA%E6%95%B0%E7%BB%84" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>用接口表示数组</h4>
 <p>接口也可以用来描述数组：</p>
-<pre class="line-numbers"><code class="language-plain_text">interface NumberArray {
+<pre><code class="language-plain_text">interface NumberArray {
 	[index: number]: number
 }
 let countArray: NumberArray = [1,2,3,4,5]
@@ -3726,14 +4007,14 @@ let countArray: NumberArray = [1,2,3,4,5]
 <p>不过有一种情况例外，那就是它常用来表示类数组。</p>
 <h4><a id="%E7%B1%BB%E6%95%B0%E7%BB%84" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>类数组</h4>
 <p>类数组（Array-like Object）不是数组类型</p>
-<pre class="line-numbers"><code class="language-plain_text">function sum() {
+<pre><code class="language-plain_text">function sum() {
     let args: number[] = arguments;
 }
 
 // Type 'IArguments' is missing the following properties from type 'number[]': pop, push, concat, join, and 24 more.
 </code></pre>
 <p>上例中，<code>arguments</code> 实际上是一个类数组，不能用普通的数组的方式来描述，而应该用接口：</p>
-<pre class="line-numbers"><code class="language-plain_text">function sum() {
+<pre><code class="language-plain_text">function sum() {
     let args: {
         [index: number]: number;
         length: number;
@@ -3743,12 +4024,12 @@ let countArray: NumberArray = [1,2,3,4,5]
 </code></pre>
 <p>在这个例子中，我们除了约束当索引的类型是数字时，值的类型必须是数字之外，也约束了它还有 <code>length</code> 和 <code>callee</code> 两个属性。</p>
 <p>事实上常用的类数组都有自己的接口定义，如 <code>IArguments</code>, <code>NodeList</code>, <code>HTMLCollection</code> 等：</p>
-<pre class="line-numbers"><code class="language-plain_text">function sum() {
+<pre><code class="language-plain_text">function sum() {
     let args: IArguments = arguments;
 }
 </code></pre>
 <p>其中 <code>IArguments</code> 是 TypeScript 中定义好了的类型，它实际上就是：</p>
-<pre class="line-numbers"><code class="language-plain_text">interface IArguments {
+<pre><code class="language-plain_text">interface IArguments {
     [index: number]: any;
     length: number;
     callee: Function;
@@ -3757,12 +4038,12 @@ let countArray: NumberArray = [1,2,3,4,5]
 <p>关于内置对象，可以参考<a href="https://ts.xcatliu.com/basics/built-in-objects.html">内置对象</a>一章。</p>
 <h4><a id="any%E5%9C%A8%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>any 在数组中的应用</h4>
 <p>一个比较常见的作法是，用<code>any</code>表示数组允许出现任何类型</p>
-<pre class="line-numbers"><code class="language-plain_text">let countArray:any[] = ['1',2,{name:'12', age: 24}]
+<pre><code class="language-plain_text">let countArray:any[] = ['1',2,{name:'12', age: 24}]
 </code></pre>
 <h3><a id="%E5%87%BD%E6%95%B0%E7%9A%84%E7%B1%BB%E5%9E%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>函数的类型</h3>
 <h4><a id="%E5%87%BD%E6%95%B0%E5%A3%B0%E6%98%8E" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>函数声明</h4>
 <p>在 JavaScript 中，有两种常见的定义函数的方式——函数声明（Function Declaration）和函数表达式（Function Expression）：</p>
-<pre class="line-numbers"><code class="language-plain_text">// 函数声命式(Function Declaration)
+<pre><code class="language-plain_text">// 函数声命式(Function Declaration)
 function sum(x,y) {
 	return x + y
 }
@@ -3772,19 +4053,19 @@ let sum = function(x,y) {
 }
 </code></pre>
 <p>一个函数有输入和输出，要在 TypeScript 中对其进行约束，需要把输入和输出都考虑到，其中函数声明的类型定义较简单：</p>
-<pre class="line-numbers"><code class="language-plain_text">function sum(x:number,y:number): number {
+<pre><code class="language-plain_text">function sum(x:number,y:number): number {
 	return x + y
 }
 </code></pre>
 <p>注意，<strong>输入多余的（或者少于要求的）参数，是不被允许的</strong></p>
 <h4><a id="%E5%87%BD%E6%95%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>函数表达式</h4>
 <p>如果要我们现在写一个对函数表达式（Function Expression）的定义，可能会写成这样：</p>
-<pre class="line-numbers"><code class="language-plain_text">let mySum = function (x: number, y: number): number {
+<pre><code class="language-plain_text">let mySum = function (x: number, y: number): number {
     return x + y;
 };
 </code></pre>
 <p>这是可以通过编译的，不过事实上，上面的代码只对等号右侧的匿名函数进行了类型定义，而等号左边的 <code>mySum</code>，是通过赋值操作进行类型推论而推断出来的。如果需要我们手动给 <code>mySum</code> 添加类型，则应该是这样：</p>
-<pre class="line-numbers"><code class="language-plain_text">let mySum: (x: number, y: number) =&gt; number = function (x: number, y: number): number {
+<pre><code class="language-plain_text">let mySum: (x: number, y: number) =&gt; number = function (x: number, y: number): number {
     return x + y;
 };
 </code></pre>
@@ -3792,7 +4073,7 @@ let sum = function(x,y) {
 <p>在 TypeScript 的类型定义中，<code>=&gt;</code> 用来表示函数的定义，左边是输入类型，需要用括号括起来，右边是输出类型。</p>
 <h4><a id="%E7%94%A8%E6%8E%A5%E5%8F%A3%E5%AE%9A%E4%B9%89%E5%87%BD%E6%95%B0%E7%9A%84%E5%BD%A2%E7%8A%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>用接口定义函数的形状</h4>
 <p>我们也可以使用接口的方式来定义一个函数需要符合的形状：</p>
-<pre class="line-numbers"><code class="language-plain_text">interface SearchFun {
+<pre><code class="language-plain_text">interface SearchFun {
 	(source: string, subString: string): boolean
 }
 let mySearch: SearchFun
@@ -3804,7 +4085,7 @@ mySearch = function(source: string, subString: string) {
 <h4><a id="%E5%8F%AF%E9%80%89%E5%8F%82%E6%95%B0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>可选参数</h4>
 <p>前面提到，输入多余的（或者少于要求的）参数，是不允许的。那么如何定义可选的参数呢？</p>
 <p>与接口中的可选属性类似，我们用 <code>?</code> 表示可选的参数：</p>
-<pre class="line-numbers"><code class="language-plain_text">function buildName(firstName: string, lastName?: string) {
+<pre><code class="language-plain_text">function buildName(firstName: string, lastName?: string) {
 	 if (lastName) {
         return firstName + ' ' + lastName;
     } else {
@@ -3815,7 +4096,7 @@ let tomcat = buildName('Tom', 'Cat');
 let tom = buildName('Tom');
 </code></pre>
 <p>需要注意的是，可选参数必须接在必需参数后面。换句话说，<strong>可选参数后面不允许再出现必需参数了</strong>：</p>
-<pre class="line-numbers"><code class="language-plain_text">function buildName(firstName?: string, lastName: string) {
+<pre><code class="language-plain_text">function buildName(firstName?: string, lastName: string) {
     if (firstName) {
         return firstName + ' ' + lastName;
     } else {
@@ -3829,14 +4110,14 @@ let tom = buildName(undefined, 'Tom');
 </code></pre>
 <h4><a id="%E5%8F%82%E6%95%B0%E9%BB%98%E8%AE%A4%E5%80%BC" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>参数默认值</h4>
 <p>在 ES6 中，我们允许给函数的参数添加默认值，<strong>TypeScript 会将添加了默认值的参数识别为可选参数</strong>：</p>
-<pre class="line-numbers"><code class="language-plain_text">function buildName(firstName: string, lastName: string = 'Cat') {
+<pre><code class="language-plain_text">function buildName(firstName: string, lastName: string = 'Cat') {
     return firstName + ' ' + lastName;
 }
 let tomcat = buildName('Tom', 'Cat');
 let tom = buildName('Tom');
 </code></pre>
 <p>此时就不受「可选参数必须接在必需参数后面」的限制了：</p>
-<pre class="line-numbers"><code class="language-plain_text">function buildName(firstName: string = 'Tom', lastName: string) {
+<pre><code class="language-plain_text">function buildName(firstName: string = 'Tom', lastName: string) {
     return firstName + ' ' + lastName;
 }
 let tomcat = buildName('Tom', 'Cat');
@@ -3844,7 +4125,7 @@ let cat = buildName(undefined, 'Cat');
 </code></pre>
 <h4><a id="%E5%89%A9%E4%BD%99%E5%8F%82%E6%95%B0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>剩余参数</h4>
 <p>ES6 中，可以使用 <code>...rest</code> 的方式获取函数中的剩余参数（rest 参数）：</p>
-<pre class="line-numbers"><code class="language-plain_text">function push(array, ...items) {
+<pre><code class="language-plain_text">function push(array, ...items) {
     items.forEach(function(item) {
         array.push(item);
     });
@@ -3854,7 +4135,7 @@ let a: any[] = [];
 push(a, 1, 2, 3);
 </code></pre>
 <p>事实上，<code>items</code> 是一个数组。所以我们可以用数组的类型来定义它：</p>
-<pre class="line-numbers"><code class="language-plain_text">function push(array: any[], ...items: any[]) {
+<pre><code class="language-plain_text">function push(array: any[], ...items: any[]) {
     items.forEach(function(item) {
         array.push(item);
     });
@@ -3868,7 +4149,7 @@ push(a, 1, 2, 3);
 <p>载允许一个函数接受不同数量或类型的参数时，作出不同的处理。</p>
 <p>比如，我们需要实现一个函数 <code>reverse</code>，输入数字 <code>123</code> 的时候，输出反转的数字 <code>321</code>，输入字符串 <code>'hello'</code> 的时候，输出反转的字符串 <code>'olleh'</code>。</p>
 <p>利用联合类型，我们可以这么实现：</p>
-<pre class="line-numbers"><code class="language-plain_text">function reverse(x: number | string): number | string {
+<pre><code class="language-plain_text">function reverse(x: number | string): number | string {
     if (typeof x === 'number') {
         return Number(x.toString().split('').reverse().join(''));
     } else if (typeof x === 'string') {
@@ -3878,7 +4159,7 @@ push(a, 1, 2, 3);
 </code></pre>
 <p><strong>然而这样有一个缺点，就是不能够精确的表达，输入为数字的时候，输出也应该为数字，输入为字符串的时候，输出也应该为字符串。</strong></p>
 <p>这时，我们可以使用重载定义多个 <code>reverse</code> 的函数类型：</p>
-<pre class="line-numbers"><code class="language-plain_text">function reverse(x: number): number;
+<pre><code class="language-plain_text">function reverse(x: number): number;
 function reverse(x: string): string;
 function reverse(x: number | string): number | string {
     if (typeof x === 'number') {
@@ -3893,17 +4174,17 @@ function reverse(x: number | string): number | string {
 <h3><a id="%E7%B1%BB%E5%9E%8B%E6%96%AD%E8%A8%80" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>类型断言</h3>
 <p>类型断言（Type Assertion）可以用来手动指定一个值的类型。</p>
 <h4><a id="%E8%AF%AD%E6%B3%95" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>语法</h4>
-<pre class="line-numbers"><code class="language-plain_text">值 as 类型
+<pre><code class="language-plain_text">值 as 类型
 </code></pre>
 <p>或</p>
-<pre class="line-numbers"><code class="language-plain_text">&lt;类型&gt;值
+<pre><code class="language-plain_text">&lt;类型&gt;值
 </code></pre>
 <p>在 tsx 语法（React 的 jsx 语法的 ts 版）中必须使用前者，即 <code>值 as 类型</code>。</p>
 <p>形如 <code>&lt;Foo&gt;</code> 的语法在 tsx 中表示的是一个 <code>ReactNode</code>，在 ts 中除了表示类型断言之外，也可能是表示一个<a href="https://ts.xcatliu.com/advanced/generics.html">泛型</a>。</p>
 <p>故建议大家在使用类型断言时，统一使用 <code>值 as 类型</code> 这样的语法。</p>
 <h4><a id="%E5%B0%86%E4%B8%80%E4%B8%AA%E8%81%94%E5%90%88%E7%B1%BB%E5%9E%8B%E6%96%AD%E8%A8%80%E4%B8%BA%E5%85%B6%E4%B8%AD%E4%B8%80%E4%B8%AA%E7%B1%BB%E5%9E%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>将一个联合类型断言为其中一个类型</h4>
 <p>当 TypeScript 不确定一个联合类型的变量到底是哪个类型的时候，我们<strong>只能访问此联合类型的所有类型中共有的属性或方法</strong>：</p>
-<pre class="line-numbers"><code class="language-plain_text">interface Cat {
+<pre><code class="language-plain_text">interface Cat {
     name: string;
     run(): void;
 }
@@ -3917,7 +4198,7 @@ function getName(animal: Cat | Fish) {
 }
 </code></pre>
 <p>而有时候，我们确实需要在还不确定类型的时候就访问其中一个类型特有的属性或方法，比如：</p>
-<pre class="line-numbers"><code class="language-plain_text">interface Cat {
+<pre><code class="language-plain_text">interface Cat {
     name: string;
     run(): void;
 }
@@ -3938,7 +4219,7 @@ function isFish(animal: Cat | Fish) {
 </code></pre>
 <p>上面的例子中，获取 <code>animal.swim</code> 的时候会报错。</p>
 <p>此时可以使用类型断言，将 <code>animal</code> 断言成 <code>Fish</code>：</p>
-<pre class="line-numbers"><code class="language-plain_text">interface Cat {
+<pre><code class="language-plain_text">interface Cat {
     name: string;
     run(): void;
 }
@@ -3955,7 +4236,7 @@ function isFish(animal: Cat | Fish) {
 }
 </code></pre>
 <p>需要注意的是，类型断言只能够「欺骗」TypeScript 编译器，无法避免运行时的错误，反而滥用类型断言可能会导致运行时错误：</p>
-<pre class="line-numbers"><code class="language-plain_text">interface Cat {
+<pre><code class="language-plain_text">interface Cat {
     name: string;
     run(): void;
 }
@@ -3981,7 +4262,7 @@ swim(tom);
 <p>总之，使用类型断言时一定要格外小心，尽量避免断言后调用方法或引用深层属性，以减少不必要的运行时错误。</p>
 <h4><a id="%E5%B0%86%E4%B8%80%E4%B8%AA%E7%88%B6%E7%B1%BB%E6%96%AD%E8%A8%80%E4%B8%BA%E6%9B%B4%E5%8A%A0%E5%85%B7%E4%BD%93%E7%9A%84%E5%AD%90%E7%B1%BB" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>将一个父类断言为更加具体的子类</h4>
 <p>当类之间有继承关系时，类型断言也是很常见的：</p>
-<pre class="line-numbers"><code class="language-plain_text">class ApiError extends Error {
+<pre><code class="language-plain_text">class ApiError extends Error {
     code: number = 0;
 }
 class HttpError extends Error {
@@ -3998,7 +4279,7 @@ function isApiError(error: Error) {
 <p>上面的例子中，我们声明了函数 <code>isApiError</code>，它用来判断传入的参数是不是 <code>ApiError</code> 类型，为了实现这样一个函数，它的参数的类型肯定得是比较抽象的父类 <code>Error</code>，这样的话这个函数就能接受 <code>Error</code> 或它的子类作为参数了。</p>
 <p>但是由于父类 <code>Error</code> 中没有 <code>code</code> 属性，故直接获取 <code>error.code</code> 会报错，需要使用类型断言获取 <code>(error as ApiError).code</code>。</p>
 <p>大家可能会注意到，在这个例子中有一个更合适的方式来判断是不是 <code>ApiError</code>，那就是使用 <code>instanceof</code>：</p>
-<pre class="line-numbers"><code class="language-plain_text">class ApiError extends Error {
+<pre><code class="language-plain_text">class ApiError extends Error {
     code: number = 0;
 }
 class HttpError extends Error {
@@ -4014,7 +4295,7 @@ function isApiError(error: Error) {
 </code></pre>
 <p>上面的例子中，确实使用 <code>instanceof</code> 更加合适，因为 <code>ApiError</code> 是一个 JavaScript 的类，能够通过 <code>instanceof</code> 来判断 <code>error</code> 是否是它的实例。</p>
 <p>但是有的情况下 <code>ApiError</code> 和 <code>HttpError</code> 不是一个真正的类，而只是一个 TypeScript 的接口（<code>interface</code>），接口是一个类型，不是一个真正的值，它在编译结果中会被删除，当然就无法使用 <code>instanceof</code> 来做运行时判断了：</p>
-<pre class="line-numbers"><code class="language-plain_text">interface ApiError extends Error {
+<pre><code class="language-plain_text">interface ApiError extends Error {
     code: number;
 }
 interface HttpError extends Error {
@@ -4031,7 +4312,7 @@ function isApiError(error: Error) {
 //error TS2693: 'ApiError' only refers to a type, but is being used as a value here.
 </code></pre>
 <p>此时就只能用类型断言，通过判断是否存在 <code>code</code> 属性，来判断传入的参数是不是 <code>ApiError</code>了：</p>
-<pre class="line-numbers"><code class="language-plain_text">interface ApiError extends Error {
+<pre><code class="language-plain_text">interface ApiError extends Error {
     code: number;
 }
 interface HttpError extends Error {
@@ -4048,19 +4329,19 @@ function isApiError(error: Error) {
 <h4><a id="%E5%B0%86%E4%BB%BB%E4%BD%95%E4%B8%80%E4%B8%AA%E7%B1%BB%E5%9E%8B%E6%96%AD%E8%A8%80%E4%B8%BAany" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>将任何一个类型断言为 <code>any</code></h4>
 <p>理想情况下，TypeScript 的类型系统运转良好，每个值的类型都具体而精确。</p>
 <p>当我们引用一个在此类型上不存在的属性或方法时，就会报错：</p>
-<pre class="line-numbers"><code class="language-plain_text">const foo:number = 1
+<pre><code class="language-plain_text">const foo:number = 1
 foo.length = 1
 //error TS2339: Property 'length' does not exist on type 'number'.
 </code></pre>
 <p>上面的例子中，数字类型的变量 <code>foo</code> 上是没有 <code>length</code> 属性的，故 TypeScript 给出了相应的错误提示。</p>
 <p>这种错误提示显然是非常有用的。</p>
 <p>但有的时候，我们非常确定这段代码不会出错，比如下面这个例子：</p>
-<pre class="line-numbers"><code class="language-plain_text">window.foo = 1
+<pre><code class="language-plain_text">window.foo = 1
 // error TS2339: Property 'foo' does not exist on type 'Window &amp; typeof globalThis'.
 </code></pre>
 <p>面的例子中，我们需要将 <code>window</code> 上添加一个属性 <code>foo</code>，但 TypeScript 编译时会报错，提示我们 <code>window</code> 上不存在 <code>foo</code> 属性。</p>
 <p>此时我们可以使用 <code>as any</code> 临时将 <code>window</code> 断言为 <code>any</code> 类型：</p>
-<pre class="line-numbers"><code class="language-plain_text">(window as any).foo =  1
+<pre><code class="language-plain_text">(window as any).foo =  1
 </code></pre>
 <p>在 <code>any</code> 类型的变量上，访问任何属性都是允许的。</p>
 <p>需要注意的是，将一个变量断言为 <code>any</code> 可以说是解决 TypeScript 中类型问题的最后一个手段。</p>
@@ -4071,12 +4352,12 @@ foo.length = 1
 <p>遇到 <code>any</code> 类型的变量时，我们可以选择无视它，任由它滋生更多的 <code>any</code>。</p>
 <p>我们也可以选择改进它，通过类型断言及时的把 <code>any</code> 断言为精确的类型，亡羊补牢，使我们的代码向着高可维护性的目标发展。</p>
 <p>举例来说，历史遗留的代码中有个 <code>getCacheData</code>，它的返回值是 <code>any</code>：</p>
-<pre class="line-numbers"><code class="language-plain_text">function getCacheData(key: string): any {
+<pre><code class="language-plain_text">function getCacheData(key: string): any {
     return (window as any).cache[key];
 }
 </code></pre>
 <p>那么我们在使用它时，最好能够将调用了它之后的返回值断言成一个精确的类型，这样就方便了后续的操作：</p>
-<pre class="line-numbers"><code class="language-plain_text">function getCacheData(key: string): any {
+<pre><code class="language-plain_text">function getCacheData(key: string): any {
     return (window as any).cache[key];
 }
 
@@ -4092,13 +4373,13 @@ tom.run();
 <h4><a id="%E9%9D%9E%E7%A9%BA%E6%96%AD%E8%A8%80" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>非空断言</h4>
 <p>在上下文中当类型检查器无法断定类型时，一个新的后缀表达式操作符 <code>!</code> 可以用于断言操作对象是非 null 和非 undefined 类型。<strong>具体而言，x! 将从 x 值域中排除 null 和 undefined 。</strong></p>
 <h5><a id="%E5%BF%BD%E7%95%A5undefined%E5%92%8Cnull" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>忽略undefined和null</h5>
-<pre class="line-numbers"><code class="language-plain_text">function myFunc(maybeString: string | undefined | null) {
+<pre><code class="language-plain_text">function myFunc(maybeString: string | undefined | null) {
   const onlyString: string = maybeString; // Error
   const ignoreUndefinedAndNull: string = maybeString!; // Ok
 }
 </code></pre>
 <h5><a id="%E8%B0%83%E7%94%A8%E5%87%BD%E6%95%B0%E6%97%B6%E5%BF%BD%E7%95%A5undefined" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>调用函数时忽略undefined</h5>
-<pre class="line-numbers"><code class="language-plain_text">type NumGenerator = () =&gt; number;
+<pre><code class="language-plain_text">type NumGenerator = () =&gt; number;
 
 function myFunc(numGenerator: NumGenerator | undefined) {
   // Object is possibly 'undefined'.(2532)
@@ -4109,7 +4390,7 @@ function myFunc(numGenerator: NumGenerator | undefined) {
 </code></pre>
 <h5><a id="%E7%A1%AE%E5%AE%9A%E8%B5%8B%E5%80%BC%E6%96%AD%E8%A8%80" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>确定赋值断言</h5>
 <p>在 TypeScript 2.7 版本中引入了确定赋值断言，即允许在实例属性和变量声明后面放置一个 <code>!</code> 号，从而告诉 TypeScript 该属性会被明确地赋值。为了更好地理解它的作用，我们来看个具体的例子：</p>
-<pre class="line-numbers"><code class="language-plain_text">let x: number;
+<pre><code class="language-plain_text">let x: number;
 initialize();
 // Variable 'x' is used before being assigned.(2454)
 console.log(2 * x); // Error
@@ -4119,7 +4400,7 @@ function initialize() {
 }
 </code></pre>
 <p>很明显该异常信息是说变量 x 在赋值前被使用了，要解决该问题，我们可以使用确定赋值断言：</p>
-<pre class="line-numbers"><code class="language-plain_text">let x!: number;
+<pre><code class="language-plain_text">let x!: number;
 initialize();
 console.log(2 * x); // Ok
 
@@ -4158,29 +4439,29 @@ function initialize() {
 <h4><a id="%E4%BB%80%E4%B9%88%E6%98%AF%E5%A3%B0%E6%98%8E%E8%AF%AD%E5%8F%A5" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>什么是声明语句</h4>
 <p>假如我们想使用第三方库 jQuery，一种常见的方式是在 html 中通过 <code>&lt;script&gt;</code> 标签引入 jQuery，然后就可以使用全局变量 <code>$</code> 或 <code>jQuery</code> 了。</p>
 <p>我们通常这样获取一个id是foo的元素：</p>
-<pre class="line-numbers"><code class="language-plain_text">$('#foo')
+<pre><code class="language-plain_text">$('#foo')
 // or
 jQuery('#foo')
 </code></pre>
 <p>但是在ts种，编译器并不知道<code>$</code>或者<code>jQuery</code>是什么东西：</p>
-<pre class="line-numbers"><code class="language-plain_text">jQuery('#foo');
+<pre><code class="language-plain_text">jQuery('#foo');
 // ERROR: Cannot find name 'jQuery'.
 </code></pre>
 <p>这时我们需要使用<code>declare var</code>来定义它的类型：</p>
-<pre class="line-numbers"><code class="language-plain_text">declare var jQuery:(selector:string) =&gt; any;
+<pre><code class="language-plain_text">declare var jQuery:(selector:string) =&gt; any;
 jQuery('#foo')
 </code></pre>
 <p>上例中，<code>declare var</code> 并没有真的定义一个变量，只是定义了全局变量 <code>jQuery</code> 的类型，仅仅会用于编译时的检查，在编译结果中会被删除。它编译结果是：</p>
-<pre class="line-numbers"><code class="language-plain_text">jQuery('#foo')
+<pre><code class="language-plain_text">jQuery('#foo')
 </code></pre>
 <p>除了 <code>declare var</code> 之外，还有其他很多种声明语句，将会在后面详细介绍。</p>
 <h4><a id="%E4%BB%80%E4%B9%88%E6%98%AF%E5%A3%B0%E6%98%8E%E6%96%87%E4%BB%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>什么是声明文件</h4>
 <p>通常我们会把声明语句放到一个单独的文件（<code>jQuery.d.ts</code>）中，这就是声明文件：</p>
-<pre class="line-numbers"><code class="language-plain_text">// src/jQuery.d.ts
+<pre><code class="language-plain_text">// src/jQuery.d.ts
 
 declare var jQuery: (selector: string) =&gt; any;
 </code></pre>
-<pre class="line-numbers"><code class="language-plain_text">// src/index.ts
+<pre><code class="language-plain_text">// src/index.ts
 
 jQuery('#foo');
 </code></pre>
@@ -4191,7 +4472,7 @@ jQuery('#foo');
 <p>当然，jQuery 的声明文件不需要我们定义了，社区已经帮我们定义好了：<a href="https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/jquery/index.d.ts">jQuery in DefinitelyTyped</a>。</p>
 <p>我们可以直接下载下来使用，但是更推荐的是使用 <code>@types</code> 统一管理第三方库的声明文件。</p>
 <p><code>@types</code> 的使用方式很简单，直接用 npm 安装对应的声明模块即可，以 jQuery 举例：</p>
-<pre class="line-numbers"><code class="language-bash">npm install @types/jquery --save-dev
+<pre><code class="language-bash">npm install @types/jquery --save-dev
 </code></pre>
 <p>可以在<a href="https://microsoft.github.io/TypeSearch/">这个页面</a>搜索你需要的声明文件。</p>
 <h4><a id="%E4%B9%A6%E5%86%99%E5%A3%B0%E6%98%8E%E6%96%87%E4%BB%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>书写声明文件</h4>
@@ -4220,7 +4501,7 @@ jQuery('#foo');
 <h5><a id="%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>全局变量</h5>
 <p>全局变量是最简单的一种场景，之前举的例子就是通过 <code>&lt;script&gt;</code> 标签引入 jQuery，注入全局变量 <code>$</code> 和 <code>jQuery</code>。</p>
 <p>使用全局变量的声明文件时，如果是以 <code>npm install @types/xxx --save-dev</code> 安装的，则不需要任何配置。如果是将声明文件直接存放于当前项目中，则建议和其他源码一起放到 <code>src</code> 目录下（或者对应的源码目录下）：</p>
-<pre class="line-numbers"><code class="language-plain_text">/path/to/project
+<pre><code class="language-plain_text">/path/to/project
 ├── src
 |  ├── index.ts
 |  └── jQuery.d.ts
@@ -4238,11 +4519,11 @@ jQuery('#foo');
 </ul>
 <h6><a id="declare-var" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>declare var</h6>
 <p>在所有的声明语句中，<code>declare var</code> 是最简单的，如之前所学，它能够用来定义一个全局变量的类型。与其类似的，还有 <code>declare let</code> 和 <code>declare const</code>，使用 <code>let</code> 与使用 <code>var</code> 没有什么区别：</p>
-<pre class="line-numbers"><code class="language-plain_text">// src/jQuery.d.ts
+<pre><code class="language-plain_text">// src/jQuery.d.ts
 
 declare let jQuery: (selector: string) =&gt; any;
 </code></pre>
-<pre class="line-numbers"><code class="language-plain_text">/ src/index.ts
+<pre><code class="language-plain_text">/ src/index.ts
 
 jQuery('#foo');
 // 使用 declare let 定义的 jQuery 类型，允许修改这个全局变量
@@ -4251,7 +4532,7 @@ jQuery = function(selector) {
 };
 </code></pre>
 <p>而当我们使用const定义时，标识此时的全局变量是一个常量，不允许再去修改它的值了</p>
-<pre class="line-numbers"><code class="language-plain_text">// src/jQuery.d.ts
+<pre><code class="language-plain_text">// src/jQuery.d.ts
 
 declare const jQuery: (selector: string) =&gt; any;
 
@@ -4265,28 +4546,28 @@ jQuery = function(selector) {
 <p>一般来说，全局变量都是禁止修改的常量，所以大部分情况都应该使用 <code>const</code> 而不是 <code>var</code> 或 <code>let</code>。</p>
 <h6><a id="declare-function" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>declare function</h6>
 <p><code>declare function</code> 用来定义全局函数的类型。jQuery 其实就是一个函数，所以也可以用 <code>function</code> 来定义：</p>
-<pre class="line-numbers"><code class="language-plain_text">定义：declare function jQuery(selector: string): any;
+<pre><code class="language-plain_text">定义：declare function jQuery(selector: string): any;
 </code></pre>
-<pre class="line-numbers"><code class="language-plain_text">使用：jQuery('#foo');
+<pre><code class="language-plain_text">使用：jQuery('#foo');
 </code></pre>
 <p>在函数类型的声明语句中，函数重载也是支持的<a href="https://github.com/xcatliu/typescript-tutorial/tree/master/examples/declaration-files/06-declare-function">6</a>：</p>
-<pre class="line-numbers"><code class="language-plain_text">declare function jQuery(selector: string): any;
+<pre><code class="language-plain_text">declare function jQuery(selector: string): any;
 declare function jQuery(domReadyCallback: () =&gt; any): any;
 </code></pre>
-<pre class="line-numbers"><code class="language-plain_text">jQuery('#foo');
+<pre><code class="language-plain_text">jQuery('#foo');
 jQuery(function() {
     alert('Dom Ready!');
 });
 </code></pre>
 <p>需要注意的是，声明语句中只能定义类型，切勿在声明语句中定义具体的实现<a href="https://github.com/xcatliu/typescript-tutorial/tree/master/examples/declaration-files/05-declare-jquery-value">5</a>：</p>
-<pre class="line-numbers"><code class="language-plain_text">declare const jQuery = function(selector) {
+<pre><code class="language-plain_text">declare const jQuery = function(selector) {
     return document.querySelector(selector);
 };
 // ERROR: An implementation cannot be declared in ambient contexts.
 </code></pre>
 <h6><a id="declare-class" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>declare class</h6>
 <p>当全局变量是一个类的时候，我们用 <code>declare class</code> 来定义它的类型</p>
-<pre class="line-numbers"><code class="language-plain_text">// src/Animal.d.ts
+<pre><code class="language-plain_text">// src/Animal.d.ts
 
 declare class Animal {
     name: string;
@@ -4297,7 +4578,7 @@ declare class Animal {
 let cat = new Animal('tom')
 </code></pre>
 <p>同样的，<code>declare class</code> 语句也只能用来定义类型，不能用来定义具体的实现，比如定义 <code>sayHi</code>方法的具体实现则会报错：</p>
-<pre class="line-numbers"><code class="language-plain_text">declare class Animal {
+<pre><code class="language-plain_text">declare class Animal {
     name: string;
     constructor(name: string);
     sayHi() {
@@ -4308,31 +4589,31 @@ let cat = new Animal('tom')
 </code></pre>
 <h6><a id="declare-enum" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>declare enum</h6>
 <p>使用 <code>declare enum</code> 定义的枚举类型也称作外部枚举（Ambient Enums）</p>
-<pre class="line-numbers"><code class="language-plain_text">declare enum Directions {
+<pre><code class="language-plain_text">declare enum Directions {
     Up,
     Down,
     Left,
     Right
 }
 </code></pre>
-<pre class="line-numbers"><code class="language-plain_text">let directions = [Directions.Up, Directions.Down, Directions.Left, Directions.Right];
+<pre><code class="language-plain_text">let directions = [Directions.Up, Directions.Down, Directions.Left, Directions.Right];
 </code></pre>
 <p>与其他全局变量的类型声明一致，<code>declare enum</code> 仅用来定义类型，而不是具体的值。</p>
 <p><code>Directions.d.ts</code> 仅仅会用于编译时的检查，声明文件里的内容在编译结果中会被删除。它编译结果是：</p>
-<pre class="line-numbers"><code class="language-plain_text">var directions = [Directions.Up, Directions.Down, Directions.Left, Directions.Right];
+<pre><code class="language-plain_text">var directions = [Directions.Up, Directions.Down, Directions.Left, Directions.Right];
 </code></pre>
 <p>其中 <code>Directions</code> 是由第三方库定义好的全局变量。</p>
 <h6><a id="declare-namespace" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>declare namespace</h6>
 <p>ES6中使用模块化，很少使用namespace</p>
 <p><code>namespace</code> 被淘汰了，但是在声明文件中，<code>declare namespace</code> 还是比较常用的，它用来表示全局变量是一个对象，包含很多子属性。</p>
 <p>比如 <code>jQuery</code> 是一个全局变量，它是一个对象，提供了一个 <code>jQuery.ajax</code> 方法可以调用，那么我们就应该使用 <code>declare namespace jQuery</code> 来声明这个拥有多个子属性的全局变量。</p>
-<pre class="line-numbers"><code class="language-plain_text">declare namespace jQuery {
+<pre><code class="language-plain_text">declare namespace jQuery {
     function ajax(url: string, settings?: any): void;
 }
 jQuery.ajax('/api/get_something');
 </code></pre>
 <p>注意，在 <code>declare namespace</code> 内部，我们直接使用 <code>function ajax</code> 来声明函数，而不是使用 <code>declare function ajax</code>。类似的，也可以使用 <code>const</code>, <code>class</code>, <code>enum</code> 等语句<a href="https://github.com/xcatliu/typescript-tutorial/tree/master/examples/declaration-files/09-declare-namespace">9</a>：</p>
-<pre class="line-numbers"><code class="language-plain_text">declare namespace jQuery {
+<pre><code class="language-plain_text">declare namespace jQuery {
     function ajax(url: string, settings?: any): void;
     const version: number;
     class Event {
@@ -4343,14 +4624,14 @@ jQuery.ajax('/api/get_something');
     }
 }
 </code></pre>
-<pre class="line-numbers"><code class="language-plain_text">jQuery.ajax('/api/get_something');
+<pre><code class="language-plain_text">jQuery.ajax('/api/get_something');
 console.log(jQuery.version);
 const e = new jQuery.Event();
 e.blur(jQuery.EventType.CustomClick);
 </code></pre>
 <h6><a id="interface%E5%92%8Ctype" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>interface和type</h6>
 <p>除了全局变量之外，可能有一些类型我们也希望能暴露出来。在类型声明文件中，我们可以直接使用 <code>interface</code> 或 <code>type</code> 来声明一个全局的接口或类型：</p>
-<pre class="line-numbers"><code class="language-plain_text">interface AjaxSettings {
+<pre><code class="language-plain_text">interface AjaxSettings {
 	meyhod?:'GET'|'POST'
 	data?: any
 }
@@ -4359,7 +4640,7 @@ declare namespace jQuery {
 }
 </code></pre>
 <p>这样的话，在其他文件中也可以使用这个接口或类型了：</p>
-<pre class="line-numbers"><code class="language-plain_text">let settings: AjaxSettings = {
+<pre><code class="language-plain_text">let settings: AjaxSettings = {
     method: 'POST',
     data: {
         name: 'foo'
@@ -4369,7 +4650,7 @@ jQuery.ajax('/api/post_something', settings);
 </code></pre>
 <h6><a id="%E9%98%B2%E6%AD%A2%E5%91%BD%E5%90%8D%E5%86%B2%E7%AA%81" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>防止命名冲突</h6>
 <p>暴露在最外层的 <code>interface</code> 或 <code>type</code> 会作为全局类型作用于整个项目中，我们应该尽可能的减少全局变量或全局类型的数量。故最好将他们放到 <code>namespace</code> 下</p>
-<pre class="line-numbers"><code class="language-plain_text">declare namespace jQuery {
+<pre><code class="language-plain_text">declare namespace jQuery {
     interface AjaxSettings {
         method?: 'GET' | 'POST'
         data?: any;
@@ -4378,7 +4659,7 @@ jQuery.ajax('/api/post_something', settings);
 }
 </code></pre>
 <p>注意，在使用这个 <code>interface</code> 的时候，也应该加上 <code>jQuery</code> 前缀：</p>
-<pre class="line-numbers"><code class="language-plain_text">let settings: jQuery.AjaxSettings = {
+<pre><code class="language-plain_text">let settings: jQuery.AjaxSettings = {
     method: 'POST',
     data: {
         name: 'foo'
@@ -4388,12 +4669,12 @@ jQuery.ajax('/api/post_something', settings);
 </code></pre>
 <h6><a id="%E5%A3%B0%E6%98%8E%E5%90%88%E5%B9%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>声明合并</h6>
 <p>假如 jQuery 既是一个函数，可以直接被调用 <code>jQuery('#foo')</code>，又是一个对象，拥有子属性 <code>jQuery.ajax()</code>（事实确实如此），那么我们可以组合多个声明语句，它们会不冲突的合并起来：</p>
-<pre class="line-numbers"><code class="language-plain_text">declare function jQuery(selector: string): any;
+<pre><code class="language-plain_text">declare function jQuery(selector: string): any;
 declare namespace jQuery {
     function ajax(url: string, settings?: any): void;
 }
 </code></pre>
-<pre class="line-numbers"><code class="language-plain_text">jQuery('#foo');
+<pre><code class="language-plain_text">jQuery('#foo');
 jQuery.ajax('/api/get_something');
 </code></pre>
 <h5><a id="npm%E5%8C%85" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>npm包</h5>
@@ -4409,7 +4690,7 @@ jQuery.ajax('/api/get_something');
 <li>创建一个 <code>types</code> 目录，专门用来管理自己写的声明文件，将 <code>foo</code> 的声明文件放到 <code>types/foo/index.d.ts</code> 中。这种方式需要配置下 <code>tsconfig.json</code> 中的 <code>paths</code> 和 <code>baseUrl</code> 字段。</li>
 </ol>
 <p>目录结构：</p>
-<pre class="line-numbers"><code class="language-plain_text">/path/to/project
+<pre><code class="language-plain_text">/path/to/project
 ├── src
 |  └── index.ts
 ├── types
@@ -4418,7 +4699,7 @@ jQuery.ajax('/api/get_something');
 └── tsconfig.json
 </code></pre>
 <p><code>tsconfig.json</code> 内容：</p>
-<pre class="line-numbers"><code class="language-plain_text">{
+<pre><code class="language-plain_text">{
     &quot;compilerOptions&quot;: {
         &quot;module&quot;: &quot;commonjs&quot;,
         &quot;baseUrl&quot;: &quot;./&quot;,
@@ -4441,7 +4722,7 @@ jQuery.ajax('/api/get_something');
 <h6><a id="export" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>export</h6>
 <p>npm 包的声明文件与全局变量的声明文件有很大区别。在 npm 包的声明文件中，使用 <code>declare</code>不再会声明一个全局变量，而只会在当前文件中声明一个局部变量。只有在声明文件中使用 <code>export</code> 导出，然后在使用方 <code>import</code> 导入后，才会应用到这些类型声明。</p>
 <p><code>export</code> 的语法与普通的 ts 中的语法类似，区别仅在于声明文件中禁止定义具体的实现：</p>
-<pre class="line-numbers"><code class="language-plain_text">export const name: string;
+<pre><code class="language-plain_text">export const name: string;
 export function getName(): string;
 export class Animal {
     constructor(name: string);
@@ -4458,7 +4739,7 @@ export interface Options {
 }
 </code></pre>
 <p>对应的导入和使用模块应该是这样：</p>
-<pre class="line-numbers"><code class="language-plain_text">import { name, getName, Animal, Directions, Options } from 'foo';
+<pre><code class="language-plain_text">import { name, getName, Animal, Directions, Options } from 'foo';
 
 console.log(name);
 let myName = getName();
@@ -4472,7 +4753,7 @@ let options: Options = {
 </code></pre>
 <h6><a id="%E6%B7%B7%E7%94%A8declare%E5%92%8Cexport" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>混用declare和export</h6>
 <p>我们也可以使用 <code>declare</code> 先声明多个变量，最后再用 <code>export</code> 一次性导出。上例的声明文件可以等价的改写为：</p>
-<pre class="line-numbers"><code class="language-plain_text">eclare const name: string;
+<pre><code class="language-plain_text">eclare const name: string;
 declare function getName(): string;
 declare class Animal {
     constructor(name: string);
@@ -4493,14 +4774,14 @@ export { name, getName, Animal, Directions, Options };
 <p>注意，与全局变量的声明文件类似，<code>interface</code> 前是不需要 <code>declare</code> 的。</p>
 <h6><a id="export-namespace" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>export namespace</h6>
 <p>与 <code>declare namespace</code> 类似，<code>export namespace</code> 用来导出一个拥有子属性的对象</p>
-<pre class="line-numbers"><code class="language-plain_text">export namespace foo {
+<pre><code class="language-plain_text">export namespace foo {
     const name: string;
     namespace bar {
         function baz(): string;
     }
 }
 </code></pre>
-<pre class="line-numbers"><code class="language-plain_text">import { foo } from 'foo';
+<pre><code class="language-plain_text">import { foo } from 'foo';
 
 console.log(foo.name);
 foo.bar.baz();
@@ -4508,14 +4789,14 @@ foo.bar.baz();
 <h6><a id="export-default" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>export default</h6>
 <p>在 ES6 模块系统中，使用 <code>export default</code> 可以导出一个默认值，使用方可以用 <code>import foo from 'foo'</code> 而不是 <code>import { foo } from 'foo'</code> 来导入这个默认值。</p>
 <p>在类型声明文件中，<code>export default</code> 用来导出默认值的类型：</p>
-<pre class="line-numbers"><code class="language-plain_text">export default function foo(): string;
+<pre><code class="language-plain_text">export default function foo(): string;
 </code></pre>
-<pre class="line-numbers"><code class="language-plain_text">import foo from 'foo';
+<pre><code class="language-plain_text">import foo from 'foo';
 
 foo();
 </code></pre>
 <p>注意，只有 <code>function</code>、<code>class</code> 和 <code>interface</code> 可以直接默认导出，其他的变量需要先定义出来，再默认导出：</p>
-<pre class="line-numbers"><code class="language-plain_text">export default enum Directions {
+<pre><code class="language-plain_text">export default enum Directions {
 // ERROR: Expression expected.
     Up,
     Down,
@@ -4525,7 +4806,7 @@ foo();
 // error
 </code></pre>
 <p>上例中 <code>export default enum</code> 是错误的语法，需要使用 <code>declare enum</code> 定义出来，然后使用 <code>export default</code> 导出</p>
-<pre class="line-numbers"><code class="language-plain_text">declare enum Directions {
+<pre><code class="language-plain_text">declare enum Directions {
     Up,
     Down,
     Left,
@@ -4535,7 +4816,7 @@ foo();
 export default Directions;
 </code></pre>
 <p>针对这种默认导出，我们一般会将导出语句放在整个声明文件的最前面：</p>
-<pre class="line-numbers"><code class="language-plain_text">export default Directions;
+<pre><code class="language-plain_text">export default Directions;
 
 declare enum Directions {
     Up,
@@ -4546,31 +4827,31 @@ declare enum Directions {
 </code></pre>
 <h6><a id="export" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>export=</h6>
 <p>在 commonjs 规范中，我们用以下方式来导出一个模块：</p>
-<pre class="line-numbers"><code class="language-plain_text">// 整体导出
+<pre><code class="language-plain_text">// 整体导出
 module.exports = foo;
 // 单个导出
 exports.bar = bar;
 </code></pre>
 <p>在 ts 中，针对这种模块导出，有多种方式可以导入，第一种方式是 <code>const ... = require</code>：</p>
-<pre class="line-numbers"><code class="language-plain_text">// 整体导入
+<pre><code class="language-plain_text">// 整体导入
 const foo = require('foo');
 // 单个导入
 const bar = require('foo').bar;
 </code></pre>
 <p>第二种方式是 <code>import ... from</code>，注意针对整体导出，需要使用 <code>import * as</code> 来导入：</p>
-<pre class="line-numbers"><code class="language-plain_text">// 整体导入
+<pre><code class="language-plain_text">// 整体导入
 import * as foo from 'foo';
 // 单个导入
 import { bar } from 'foo';
 </code></pre>
 <p>第三种方式是 <code>import ... require</code>，这也是 ts 官方推荐的方式：</p>
-<pre class="line-numbers"><code class="language-plain_text">// 整体导入
+<pre><code class="language-plain_text">// 整体导入
 import foo = require('foo');
 // 单个导入
 import bar = foo.bar;
 </code></pre>
 <p>对于这种使用 commonjs 规范的库，假如要为它写类型声明文件的话，就需要使用到 <code>export =</code> 这种语法了<a href="https://github.com/xcatliu/typescript-tutorial/tree/master/examples/declaration-files/21-export-equal">21</a>：</p>
-<pre class="line-numbers"><code class="language-plain_text">// types/foo/index.d.ts
+<pre><code class="language-plain_text">// types/foo/index.d.ts
 
 export = foo;
 
@@ -4586,7 +4867,7 @@ declare namespace foo {
 <p>既可以通过 <code>&lt;script&gt;</code> 标签引入，又可以通过 <code>import</code> 导入的库，称为 UMD 库。相比于 npm 包的类型声明文件，我们需要额外声明一个全局变量，为了实现这种方式，ts 提供了一个新语法 <code>export as namespace</code>。</p>
 <h6><a id="export-as-namespace" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>export as namespace</h6>
 <p>一般使用 <code>export as namespace</code> 时，都是先有了 npm 包的声明文件，再基于它添加一条 <code>export as namespace</code> 语句，即可将声明好的一个变量声明为全局变量，举例如下：</p>
-<pre class="line-numbers"><code class="language-plain_text">export as namespace foo;
+<pre><code class="language-plain_text">export as namespace foo;
 export = foo;
 
 declare function foo(): string;
@@ -4595,7 +4876,7 @@ declare namespace foo {
 }
 </code></pre>
 <p>当然它也可以与 <code>export default</code> 一起使用：</p>
-<pre class="line-numbers"><code class="language-plain_text">export as namespace foo;
+<pre><code class="language-plain_text">export as namespace foo;
 export default foo;
 
 declare function foo(): string;
@@ -4605,7 +4886,7 @@ declare namespace foo {
 </code></pre>
 <h5><a id="%E7%9B%B4%E6%8E%A5%E6%89%A9%E5%B1%95%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>直接扩展全局变量</h5>
 <p>有的第三方库扩展了一个全局变量，可是此全局变量的类型却没有相应的更新过来，就会导致 ts 编译错误，此时就需要扩展全局变量的类型。比如扩展 <code>String</code> 类型</p>
-<pre class="line-numbers"><code class="language-plain_text">interface String {
+<pre><code class="language-plain_text">interface String {
     prependHello(): string;
 }
 
@@ -4613,7 +4894,7 @@ declare namespace foo {
 </code></pre>
 <p>通过声明合并，使用 <code>interface String</code> 即可给 <code>String</code> 添加属性或方法。</p>
 <p>也可以使用 <code>declare namespace</code> 给已有的命名空间添加类型声明<a href="https://github.com/xcatliu/typescript-tutorial/tree/master/examples/declaration-files/24-merge-global-namespace">24</a>：</p>
-<pre class="line-numbers"><code class="language-plain_text">// types/jquery-plugin/index.d.ts
+<pre><code class="language-plain_text">// types/jquery-plugin/index.d.ts
 
 declare namespace JQuery {
     interface CustomOptions {
@@ -4626,7 +4907,7 @@ interface JQueryStatic {
 }
 
 </code></pre>
-<pre class="line-numbers"><code class="language-plain_text">// src/index.ts
+<pre><code class="language-plain_text">// src/index.ts
 
 jQuery.foo({
     bar: ''
@@ -4634,7 +4915,7 @@ jQuery.foo({
 </code></pre>
 <h5><a id="%E5%9C%A8npm%E5%8C%85%E6%88%96-umd%E5%BA%93%E4%B8%AD%E6%89%A9%E5%B1%95%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>在 npm 包或 UMD 库中扩展全局变量</h5>
 <p>如之前所说，对于一个 npm 包或者 UMD 库的声明文件，只有 <code>export</code> 导出的类型声明才能被导入。所以对于 npm 包或 UMD 库，如果导入此库之后会扩展全局变量，则需要使用另一种语法在声明文件中扩展全局变量的类型，那就是 <code>declare global</code></p>
-<pre class="line-numbers"><code class="language-plain_text">declare global {
+<pre><code class="language-plain_text">declare global {
     interface String {
         prependHello(): string;
     }
@@ -4642,26 +4923,26 @@ jQuery.foo({
 
 export {};
 </code></pre>
-<pre class="line-numbers"><code class="language-plain_text">'bar'.prependHello();
+<pre><code class="language-plain_text">'bar'.prependHello();
 </code></pre>
 <p>注意即使此声明文件不需要导出任何东西，仍然需要导出一个空对象，用来告诉编译器这是一个模块的声明文件，而不是一个全局变量的声明文件。</p>
 <h5><a id="%E6%A8%A1%E5%9D%97%E6%8F%92%E4%BB%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>模块插件</h5>
 <p>有时通过 <code>import</code> 导入一个模块插件，可以改变另一个原有模块的结构。此时如果原有模块已经有了类型声明文件，而插件模块没有类型声明文件，就会导致类型不完整，缺少插件部分的类型。ts 提供了一个语法 <code>declare module</code>，它可以用来扩展原有模块的类型。</p>
 <h6><a id="declare-module" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>declare module</h6>
 <p>如果是需要扩展原有模块的话，需要在类型声明文件中先引用原有模块，再使用 <code>declare module</code> 扩展原有模块</p>
-<pre class="line-numbers"><code class="language-plain_text">import * as moment from 'moment';
+<pre><code class="language-plain_text">import * as moment from 'moment';
 
 declare module 'moment' {
     export function foo(): moment.CalendarKey;
 }
 </code></pre>
-<pre class="line-numbers"><code class="language-plain_text">import * as moment from 'moment';
+<pre><code class="language-plain_text">import * as moment from 'moment';
 import 'moment-plugin';
 
 moment.foo();
 </code></pre>
 <p><code>declare module</code> 也可用于在一个文件中一次性声明多个模块的类型</p>
-<pre class="line-numbers"><code class="language-plain_text">declare module 'foo' {
+<pre><code class="language-plain_text">declare module 'foo' {
     export interface Foo {
         foo: string;
     }
@@ -4671,7 +4952,7 @@ declare module 'bar' {
     export function bar(): string;
 }
 </code></pre>
-<pre class="line-numbers"><code class="language-plain_text">import { Foo } from 'foo';
+<pre><code class="language-plain_text">import { Foo } from 'foo';
 import * as bar from 'bar';
 
 let f: Foo;
@@ -4679,7 +4960,7 @@ bar.bar();
 </code></pre>
 <h5><a id="%E5%A3%B0%E6%98%8E%E6%96%87%E4%BB%B6%E4%B8%AD%E7%9A%84%E4%BE%9D%E8%B5%96" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>声明文件中的依赖</h5>
 <p>一个声明文件有时会依赖另一个声明文件中的类型，比如在前面的 <code>declare module</code> 的例子中，我们就在声明文件中导入了 <code>moment</code>，并且使用了 <code>moment.CalendarKey</code> 这个类型：</p>
-<pre class="line-numbers"><code class="language-plain_text">import * as moment from 'moment';
+<pre><code class="language-plain_text">import * as moment from 'moment';
 
 declare module 'moment' {
     export function foo(): moment.CalendarKey;
@@ -4696,20 +4977,20 @@ declare module 'moment' {
 </ul>
 <h6><a id="%E4%B9%A6%E5%86%99%E4%B8%80%E4%B8%AA%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F%E7%9A%84%E5%A3%B0%E6%98%8E%E6%96%87%E4%BB%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>书写</strong>一个全局变量的声明文件</h6>
 <p>这些场景听上去很拗口，但实际上很好理解——在全局变量的声明文件中，是不允许出现 <code>import</code>, <code>export</code> 关键字的。一旦出现了，那么他就会被视为一个 npm 包或 UMD 库，就不再是全局变量的声明文件了。故当我们在书写一个全局变量的声明文件时，如果需要引用另一个库的类型，那么就必须用三斜线指令了</p>
-<pre class="line-numbers"><code class="language-plain_text">/// &lt;reference types=&quot;jquery&quot; /&gt;
+<pre><code class="language-plain_text">/// &lt;reference types=&quot;jquery&quot; /&gt;
 declare function foo(options: JQuery.AjaxSettings): string;
 </code></pre>
-<pre class="line-numbers"><code class="language-plain_text">foo({});
+<pre><code class="language-plain_text">foo({});
 </code></pre>
 <p>三斜线指令的语法如上，<code>///</code> 后面使用 xml 的格式添加了对 <code>jquery</code> 类型的依赖，这样就可以在声明文件中使用 <code>JQuery.AjaxSettings</code> 类型了。</p>
 <p>注意，三斜线指令必须放在文件的最顶端，三斜线指令的前面只允许出现单行或多行注释。</p>
 <h6><a id="%E4%BE%9D%E8%B5%96%E4%B8%80%E4%B8%AA%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F%E7%9A%84%E5%A3%B0%E6%98%8E%E6%96%87%E4%BB%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>依赖一个全局变量的声明文件</h6>
 <p>在另一个场景下，当我们需要依赖一个全局变量的声明文件时，由于全局变量不支持通过 <code>import</code> 导入，当然也就必须使用三斜线指令来引入了</p>
-<pre class="line-numbers"><code class="language-plain_text">/// &lt;reference types=&quot;node&quot; /&gt;
+<pre><code class="language-plain_text">/// &lt;reference types=&quot;node&quot; /&gt;
 
 export function foo(p: NodeJS.Process): string;
 </code></pre>
-<pre class="line-numbers"><code class="language-plain_text">import { foo } from 'node-plugin';
+<pre><code class="language-plain_text">import { foo } from 'node-plugin';
 
 foo(global.process);
 </code></pre>
@@ -4718,7 +4999,7 @@ foo(global.process);
 <p>以上两种使用场景下，都是由于需要书写或需要依赖全局变量的声明文件，所以必须使用三斜线指令。在其他的一些不是必要使用三斜线指令的情况下，就都需要使用 <code>import</code> 来导入。</p>
 <h6><a id="%E6%8B%86%E5%88%86%E5%A3%B0%E6%98%8E%E6%96%87%E4%BB%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>拆分声明文件</h6>
 <p>当我们的全局变量的声明文件太大时，可以通过拆分为多个文件，然后在一个入口文件中将它们一一引入，来提高代码的可维护性。比如 <code>jQuery</code> 的声明文件就是这样的：</p>
-<pre class="line-numbers"><code class="language-plain_text">// node_modules/@types/jquery/index.d.ts
+<pre><code class="language-plain_text">// node_modules/@types/jquery/index.d.ts
 
 /// &lt;reference types=&quot;sizzle&quot; /&gt;
 /// &lt;reference path=&quot;JQueryStatic.d.ts&quot; /&gt;
@@ -4733,7 +5014,7 @@ export = jQuery;
 <h5><a id="%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E5%A3%B0%E6%98%8E%E6%96%87%E4%BB%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>自动生成声明文件</h5>
 <p>如果库的源码本身就是由 ts 写的，那么在使用 <code>tsc</code> 脚本将 ts 编译为 js 的时候，添加 <code>declaration</code> 选项，就可以同时也生成 <code>.d.ts</code> 声明文件了。</p>
 <p>我们可以在命令行中添加 <code>--declaration</code>（简写 <code>-d</code>），或者在 <code>tsconfig.json</code> 中添加 <code>declaration</code> 选项。这里以 <code>tsconfig.json</code> 为例：</p>
-<pre class="line-numbers"><code class="language-plain_text">{
+<pre><code class="language-plain_text">{
     &quot;compilerOptions&quot;: {
         &quot;module&quot;: &quot;commonjs&quot;,
         &quot;outDir&quot;: &quot;lib&quot;,
@@ -4743,7 +5024,7 @@ export = jQuery;
 </code></pre>
 <p>上例中我们添加了 <code>outDir</code> 选项，将 ts 文件的编译结果输出到 <code>lib</code> 目录下，然后添加了 <code>declaration</code> 选项，设置为 <code>true</code>，表示将会由 ts 文件自动生成 <code>.d.ts</code> 声明文件，也会输出到 <code>lib</code> 目录下。</p>
 <p>运行 <code>tsc</code> 之后，目录结构如下:</p>
-<pre class="line-numbers"><code class="language-plain_text">├── lib
+<pre><code class="language-plain_text">├── lib
 |  ├── bar
 |  |  ├── index.d.ts
 |  |  └── index.js
@@ -4757,24 +5038,24 @@ export = jQuery;
 └── tsconfig.json
 </code></pre>
 <p>在这个例子中，<code>src</code> 目录下有两个 ts 文件，分别是 <code>src/index.ts</code> 和 <code>src/bar/index.ts</code>，它们被编译到 <code>lib</code> 目录下的同时，也会生成对应的两个声明文件 <code>lib/index.d.ts</code> 和 <code>lib/bar/index.d.ts</code>。它们的内容分别是:</p>
-<pre class="line-numbers"><code class="language-plain_text">// src/index.ts
+<pre><code class="language-plain_text">// src/index.ts
 export * from './bar';
 
 export default function foo() {
     return 'foo';
 }
 </code></pre>
-<pre class="line-numbers"><code class="language-plain_text">// src/bar/index.ts
+<pre><code class="language-plain_text">// src/bar/index.ts
 export function bar() {
     return 'bar';
 }
 </code></pre>
-<pre class="line-numbers"><code class="language-plain_text">// lib/index.d.ts
+<pre><code class="language-plain_text">// lib/index.d.ts
 
 export * from './bar';
 export default function foo(): string;
 </code></pre>
-<pre class="line-numbers"><code class="language-plain_text">// lib/bar/index.d.ts
+<pre><code class="language-plain_text">// lib/bar/index.d.ts
 
 export declare function bar(): string;
 </code></pre>
@@ -4804,7 +5085,7 @@ export declare function bar(): string;
 <li>针对入口文件（<code>package.json</code> 中的 <code>main</code> 字段指定的入口文件），编写一个同名不同后缀的 <code>.d.ts</code> 文件</li>
 </ul>
 <p>第一种方式是给 <code>package.json</code> 中的 <code>types</code> 或 <code>typings</code> 字段指定一个类型声明文件地址。比如：</p>
-<pre class="line-numbers"><code class="language-plain_text">{
+<pre><code class="language-plain_text">{
     &quot;name&quot;: &quot;foo&quot;,
     &quot;version&quot;: &quot;1.0.0&quot;,
     &quot;main&quot;: &quot;lib/index.js&quot;,
@@ -4816,7 +5097,7 @@ export declare function bar(): string;
 <p>如果没有指定 <code>types</code> 或 <code>typings</code>，那么就会在根目录下寻找 <code>index.d.ts</code> 文件，将它视为此库的类型声明文件。</p>
 <p>如果没有找到 <code>index.d.ts</code> 文件，那么就会寻找入口文件（<code>package.json</code> 中的 <code>main</code> 字段指定的入口文件）是否存在对应同名不同后缀的 <code>.d.ts</code> 文件。</p>
 <p>比如 <code>package.json</code> 是这样时：</p>
-<pre class="line-numbers"><code class="language-plain_text">{
+<pre><code class="language-plain_text">{
     &quot;name&quot;: &quot;foo&quot;,
     &quot;version&quot;: &quot;1.0.0&quot;,
     &quot;main&quot;: &quot;lib/index.js&quot;
@@ -4835,7 +5116,7 @@ export declare function bar(): string;
 <p>ECMAScript 标准提供的内置对象有：</p>
 <p><code>Boolean</code>、<code>Error</code>、<code>Date</code>、<code>RegExp</code> 等。</p>
 <p>我们可以在 TypeScript 中将变量定义为这些类型：</p>
-<pre class="line-numbers"><code class="language-plain_text">let b: Boolean = new Boolean(1);
+<pre><code class="language-plain_text">let b: Boolean = new Boolean(1);
 let e: Error = new Error('Error occurred');
 let d: Date = new Date();
 let r: RegExp = /[a-z]/;
@@ -4844,7 +5125,7 @@ let r: RegExp = /[a-z]/;
 <p>DOM 和 BOM 提供的内置对象有：</p>
 <p><code>Document</code>、<code>HTMLElement</code>、<code>Event</code>、<code>NodeList</code> 等。</p>
 <p>TypeScript 中会经常用到这些类型：</p>
-<pre class="line-numbers"><code class="language-ts">let body: HTMLElement = document.body;
+<pre><code class="language-ts">let body: HTMLElement = document.body;
 let allDiv: NodeList = document.querySelectorAll('div');
 document.addEventListener('click', function(e: MouseEvent) {
   // Do something
@@ -4853,11 +5134,11 @@ document.addEventListener('click', function(e: MouseEvent) {
 <h4><a id="typescript%E6%A0%B8%E5%BF%83%E5%BA%93%E7%9A%84%E5%AE%9A%E4%B9%89%E6%96%87%E4%BB%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>TypeScript 核心库的定义文件</h4>
 <p><a href="https://github.com/Microsoft/TypeScript/tree/master/src/lib">TypeScript 核心库的定义文件</a>中定义了所有浏览器环境需要用到的类型，并且是预置在 TypeScript 中的。</p>
 <p>当你在使用一些常用的方法的时候，TypeScript 实际上已经帮你做了很多类型判断的工作了，比如：</p>
-<pre class="line-numbers"><code class="language-plain_text">Math.pow(10, '2');
+<pre><code class="language-plain_text">Math.pow(10, '2');
 // index.ts(1,14): error TS2345: Argument of type 'string' is not assignable to parameter of type 'number'.
 </code></pre>
 <p>上面的例子中，<code>Math.pow</code> 必须接受两个 <code>number</code> 类型的参数。事实上 <code>Math.pow</code> 的类型定义如下：</p>
-<pre class="line-numbers"><code class="language-plain_text">interface Math {
+<pre><code class="language-plain_text">interface Math {
     /**
      * Returns the value of a base expression taken to a specified power.
      * @param x The base value of the expression.
@@ -4867,14 +5148,14 @@ document.addEventListener('click', function(e: MouseEvent) {
 }
 </code></pre>
 <p>再举一个 DOM 中的例子：</p>
-<pre class="line-numbers"><code class="language-ts">document.addEventListener('click', function(e) {
+<pre><code class="language-ts">document.addEventListener('click', function(e) {
     console.log(e.targetCurrent);
 });
 
 // index.ts(2,17): error TS2339: Property 'targetCurrent' does not exist on type 'MouseEvent'.
 </code></pre>
 <p>上面的例子中，<code>addEventListener</code> 方法是在 TypeScript 核心库中定义的：</p>
-<pre class="line-numbers"><code class="language-ts">interface Document extends Node, GlobalEventHandlers, NodeSelector, DocumentEvent {
+<pre><code class="language-ts">interface Document extends Node, GlobalEventHandlers, NodeSelector, DocumentEvent {
     addEventListener(type: string, listener: (ev: MouseEvent) =&gt; any, useCapture?: boolean): void;
 }
 </code></pre>
@@ -4882,7 +5163,7 @@ document.addEventListener('click', function(e: MouseEvent) {
 <p>注意，TypeScript 核心库的定义中不包含 Node.js 部分。</p>
 <h4><a id="%E7%94%A8typescript%E5%86%99-node-js" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>用 TypeScript 写 Node.js</h4>
 <p>Node.js 不是内置对象的一部分，如果想用 TypeScript 写 Node.js，则需要引入第三方声明文件：</p>
-<pre class="line-numbers"><code class="language-plain_text">npm install @types/node --save-dev
+<pre><code class="language-plain_text">npm install @types/node --save-dev
 </code></pre>
 
 ]]></content>
@@ -4898,7 +5179,7 @@ document.addEventListener('click', function(e: MouseEvent) {
 <li><strong>Content-Type</strong></li>
 </ol>
 <p>MediaType，即是Internet Media Type，互联网媒体类型；也叫做MIME类型，在Http协议消息头中，使用Content-Type来表示具体请求中的媒体类型信息。</p>
-<pre class="line-numbers"><code class="language-plain_text">1. 类型格式：type/subtype(;parameter)? type 
+<pre><code class="language-plain_text">1. 类型格式：type/subtype(;parameter)? type 
 2. 主类型，任意的字符串，如text，如果是*号代表所有；  
 3. subtype 子类型，任意的字符串，如html，如果是*号代表所有；  
 4. parameter 可选，一些参数，如Accept请求头的q参数， Content-Type的 charset参数。  
@@ -4933,7 +5214,7 @@ document.addEventListener('click', function(e: MouseEvent) {
 <li><strong>Spring MVC中关于关于Content-Type类型信息的使用</strong></li>
 </ol>
 <p>首先我们来看看RequestMapping中的Class定义：</p>
-<pre class="line-numbers"><code class="language-java">@Target({ElementType.METHOD, ElementType.TYPE}) 
+<pre><code class="language-java">@Target({ElementType.METHOD, ElementType.TYPE}) 
 @Retention(RetentionPolicy.RUNTIME) 
 @Documented 
 @Mapping 
@@ -4957,14 +5238,14 @@ headers： 指定request中必须包含某些指定的header值，才能让该�
 <li><strong>使用示例</strong></li>
 </ol>
 <p>3.1 headers</p>
-<pre class="line-numbers"><code class="language-java">@RequestMapping(value = &quot;/test&quot;, method = RequestMethod.GET, headers=&quot;Referer=http://www.ifeng.com/&quot;)  
+<pre><code class="language-java">@RequestMapping(value = &quot;/test&quot;, method = RequestMethod.GET, headers=&quot;Referer=http://www.ifeng.com/&quot;)  
 public void testHeaders(@PathVariable String ownerId, @PathVariable String petId) {    
 	// implementation omitted  
 }  
 </code></pre>
 <p>这里的Headers里面可以匹配所有Header里面可以出现的信息，不局限在Referer信息。</p>
 <p>示例2</p>
-<pre class="line-numbers"><code class="language-java">@RequestMapping(value = &quot;/response/ContentType&quot;, headers = &quot;Accept=application/json&quot;)    
+<pre><code class="language-java">@RequestMapping(value = &quot;/response/ContentType&quot;, headers = &quot;Accept=application/json&quot;)    
 public void response2(HttpServletResponse response) throws IOException {    
     //表示响应的内容区数据的媒体类型为json格式，且编码为utf-8(客户端应该以utf-8解码)    
     response.setContentType(&quot;application/json;charset=utf-8&quot;);    
@@ -5298,14 +5579,14 @@ public void response2(HttpServletResponse response) throws IOException {
 </tbody>
 </table>
 <p>3.2 params的示例</p>
-<pre class="line-numbers"><code class="language-java">@RequestMapping(value = &quot;/test/{userId}&quot;, method = RequestMethod.GET, params=&quot;myParam=myValue&quot;)    
+<pre><code class="language-java">@RequestMapping(value = &quot;/test/{userId}&quot;, method = RequestMethod.GET, params=&quot;myParam=myValue&quot;)    
 public void findUser(@PathVariable String userId) {        
   // implementation omitted    
 } 
 </code></pre>
 <p>仅处理请求中包含了名为“myParam”，值为“myValue”的请求，起到了一个过滤的作用。</p>
 <p>3.3 consumes/produces</p>
-<pre class="line-numbers"><code class="language-java">@Controller    
+<pre><code class="language-java">@Controller    
 @RequestMapping(value = &quot;/users&quot;, method = RequestMethod.POST, consumes=&quot;application/json&quot;, produces=&quot;application/json&quot;)    
 @ResponseBody  
 public List&lt;User&gt; addUser(@RequestBody User userl) {        
@@ -5575,18 +5856,18 @@ public List&lt;User&gt; addUser(@RequestBody User userl) {
 <p><a href="%E2%80%8Bwww.babylonjs.com/">Babylon.js: Powerful, Beautiful, Simple, Open - Web-Based 3D At Its Best</a></p>
 <p>它主要特性有以下几个方面：</p>
 <p>1、强大的编辑器，这是threejs跟playcanvas无法比拟的。</p>
-<p><figure><img src="media/17280335013759/17281439645359.png" alt="" /></figure></p>
+<p><img src="media/17280335013759/17281439645359.png" alt="" /></p>
 <p>编辑器中，对粒子、碰撞、脚本、GUI、精灵图等等各方面功能集成得非常完善，作为一个多年使用微软IDE从事开发的码农，个人一直认为微软的东西很人性化。</p>
 <p>2、强大的节点编辑器。在blender里面节点编辑器无处不在，它也是通过connect不同节点的input跟output来实现节点之间的数据联通，这样就把复杂的材质系统变成可视化了。</p>
 <p>Node Material Editor是一个强大而易用的材质编辑器，它以可视化的拖拽节点的方式来模拟shader编程，从而为每个从业者解锁了GPU的强大威力。从前，shaders (GPU 编程)着色器编程对于普通程序员门槛很高，因为它过于偏向底层，虽然功能强大，但是晦涩难懂，而Babylon带来的Node Material Editor可以实现与shader同样的效果，但是界面化操作，把难度降到了最低。我们相信，每个人都能使用这个编辑器来创建令人惊叹的视觉效果。</p>
-<p><figure><img src="media/17280335013759/17281439645382.png" alt="" /></figure><br />
+<p><img src="media/17280335013759/17281439645382.png" alt="" /><br />
 材质节点</p>
-<p><figure><img src="media/17280335013759/17281439645401.png" alt="" /></figure><br />
+<p><img src="media/17280335013759/17281439645401.png" alt="" /><br />
 Babylonjs材质节点</p>
 <p>3、NATIVE 跨平台原生应用部署。程序员们写代码都有一个梦想：一次编写实现，多平台共享运行。 所以我们重磅推出了Babylon Native，它可以用原有的Babylon.js代码在任意平台构建一个原生应用，充分释放本机设备的性能优势。 已经支持DirectX on Windows、 Metal on iOS/MacOS、 OpenGL on Android，即将推出Vulkan支持。</p>
 <p>Babylonjs的原生打包部署是通过react native技术体系来实现的，这样就可以实现一份代码原生部署，同时保证原生性能。</p>
 <p>4、支持先进的WEBXR技术。毫无疑问，在web使用AR/VR技术非常有前景，Babylon最新4.1版本在WebXR上做了进一步的优化和改进：带来了一个简单易用的体检帮助器，针对更高级用户的专用会话管理器，用babylon的相机功能来承载WebXR技术，全面支持任何接受WebXR会话的设备，完整的WebXR输入源支持，关于实验性AR功能、通信、场景交互、物理效果的整套API支持等。</p>
-<p><figure><img src="media/17280335013759/17281439645428.png" alt="" /></figure><br />
+<p><img src="media/17280335013759/17281439645428.png" alt="" /><br />
 webxr支持<br />
 总结：</p>
 <p>1、如果你要交付内部项目、而且可以是客户端、有U3D开发人员，那么用U3D去交付实现最好，通过安装exe客户端，灯光效果交互、vr支持都是非常完美，而且U3D的开发者论坛、文档、百度教程都非常丰富。</p>
@@ -5629,49 +5910,6 @@ webxr支持<br />
 <p>今年疫情，导致无数个云展公司成立，通过百度推广以及阿里域名查询，就可以发现一大堆公司开始从事这一行业，很多是皮包公司，接单就转包。有些是通过720云直接交付全景图，象征性加入云展厅，因为成本最低。还有很多是传统设计公司，转型卖设计。其实在云展这个行业，卖得不是技术而是设计数据本身。</p>
 <p>蝉三维，立足于免费、提供快速模型交付，高效率精简团队可以通过部分软件功能定制、平台定制养活自己，更重要的是技术的不断积累、行业解决方案日益沉淀，最后真正解决特定用户群体切身问题，盈利模式就可以非常清晰。</p>
 <p><a href="https://zhuanlan.zhihu.com/p/341414739">查看原文</a></p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[【玩转微前端4】qiankun扩展]]></title>
-    <link href="https://www.bwrong.cn/17280334440663.html"/>
-    <updated>2024-10-04T17:17:24+08:00</updated>
-    <id>https://www.bwrong.cn/17280334440663.html</id>
-    <content type="html"><![CDATA[
-<h2><a id="%E8%AF%A6%E7%BB%86%E6%B5%81%E7%A8%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>详细流程</h2>
-<p><figure><img src="media/17280334440663/17281450820669.webP" alt="image.png" /><figcaption>image.png<figcaption></figure></p>
-<p>简易流程：</p>
-<ol>
-<li>qiankun 会用 原生fetch方法，请求微应用的 entry 获取微应用资源，然后通过 response.text 把获取内容转为字符串。</li>
-<li>将 HTML 字符串传入 <a href="https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Fkuitos%2Fimport-html-entry%2Fblob%2F76df4b3737d54112f6bf2dfabcd01709079468e4%2Fsrc%2Fprocess-tpl.js%23L58">processTpl</a> 函数，进行 HTML 模板解析，通过正则匹配 HTML 中对应的 javaScript（内联、外联）、css（内联、外联）、代码注释、entry、ignore 收集并替换，去除 <code>html/head/body</code> 等标签，其他资源保持原样</li>
-<li>将收集的 <code>styles</code> 外链URL对象通过 fetch 获取 css，并将 css 内容以 <code>&lt;style&gt;</code> 的方式替换到原来 link标签的位置</li>
-<li>收集 script 外链对象，对于异步执行的 JavaScript 资源会打上 <code>async</code> 标识 ，会使用 <a href="https://link.juejin.cn?target=https%3A%2F%2Fgithub.com%2Fkuitos%2Fimport-html-entry%2Fblob%2F76df4b3737d54112f6bf2dfabcd01709079468e4%2Fsrc%2Findex.js%23L104">requestIdleCallback</a> 方法延迟执行。</li>
-<li>接下来会创建一个匿名自执行函数包裹住获取到的 js 字符串，最后通过 eval 去创建一个执行上下文执行 js 代码，通过传入 proxy 改变 window 指向，完成 JavaScript 沙箱隔离。<a href="https://link.juejin.cn?target=https%3A%2F%2Fgithub.com%2Fkuitos%2Fimport-html-entry%2Fblob%2F76df4b3737d54112f6bf2dfabcd01709079468e4%2Fsrc%2Findex.js%23L45">源码位置</a>。</li>
-<li>由于 qiankun 是自执行函数执行微应用的 JavaScript，因此在加载后的微应用中是看不到 JavaScript 资源引用的，只有一个资源被执行替换的标识。</li>
-<li>当一切准备就绪的时候，执行微应用的 JavaScript 代码，渲染出微应用</li>
-</ol>
-<h2><a id="%E6%9E%81%E9%99%90%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>极限应用场景</h2>
-<ul>
-<li>
-<p>与路由绑定的方式渲染微应用</p>
-<p>接入这类平台的微应用，通常只需要提供自己的 entry html 地址，并为其分配一个路由规则即可，会根据当前路由自动切换微应用加载。</p>
-<p><figure><img src="media/17280334440663/17281450820693.jpg" alt="v2-c345f8bf9c8855176037f6b48e315caf_1440w" /><figcaption>v2-c345f8bf9c8855176037f6b48e315caf_1440w<figcaption></figure></p>
-</li>
-<li>
-<p>以组件的方式使用微应用</p>
-<p><video controls height='100%' width='100%' src="media/17280334440663/20220331164434.mp4"></video></p>
-<p>开发者可以在脱离路由的限制下，以更自由的方式去渲染我们的微应用。</p>
-<ul>
-<li>嵌套渲染场景</li>
-</ul>
-<p><video controls height='100%' width='100%' src="media/17280334440663/20220331164435.mp4"></video></p>
-</li>
-<li>
-<p>多应用同时渲染：同一时刻可展示多个子应用，子应用更像是一个业务组件而不是应用。</p>
-<p><figure><img src="media/17280334440663/17281450820703.jpg" alt="v2-cc82a2a5a6fbe5c141af9dd5b42622ee_1440w" /><figcaption>v2-cc82a2a5a6fbe5c141af9dd5b42622ee_1440w<figcaption></figure></p>
-</li>
-</ul>
 
 ]]></content>
   </entry>

@@ -142,7 +142,7 @@
 <ul>
 <li>v-model</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">
+<pre><code class="language-plain_text">
    &lt;el-input v-model=&quot;inputValue&quot;/&gt; 
    
    //
@@ -154,7 +154,7 @@
 <ul>
 <li>v-for</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">    &lt;el-tag
+<pre><code class="language-plain_text">    &lt;el-tag
         v-for=&quot;(item, index) in content&quot;
         :key=&quot;index&quot;
         type=&quot;success&quot;
@@ -181,7 +181,7 @@
 <ul>
 <li>事件 &amp; 按键修饰符</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">
+<pre><code class="language-plain_text">
     &lt;el-input
             @keyup.native.enter=&quot;fetch()&quot;
             class=&quot;width-20&quot;
@@ -201,7 +201,7 @@
 <ul>
 <li>预置参数</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">
+<pre><code class="language-plain_text">
     &lt;el-button
                 @click=&quot;openDialog('create')&quot;                
                 type=&quot;primary&quot;
@@ -220,7 +220,7 @@
 <ul>
 <li>scopedSlots 作用域插槽敲黑板</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">
+<pre><code class="language-plain_text">
     &lt;el-table-column&gt;
         &lt;template scope-slot=&quot;props&quot;&gt;
             &lt;el-button
@@ -256,7 +256,7 @@
 <ul>
 <li>scopedSlots 值传递敲黑板</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">
+<pre><code class="language-plain_text">
     &lt;slot :isAdvancedPanelShow=&quot;isAdvancedPanelShow&quot;&gt;&lt;/slot&gt;
     
     // 
@@ -447,6 +447,7 @@ body{ box-sizing: border-box;
      word-wrap: break-word !important;       /* Internet Explorer 5.5+ */
     }
     html,body{margin:0;padding:4px;}
+    .mweb-yaml{display:none;}
 }
 
 

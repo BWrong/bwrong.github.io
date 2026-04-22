@@ -182,7 +182,7 @@
 </table>
 <h2><a id="%E5%AE%89%E8%A3%85" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>安装</h2>
 <h3><a id="ubuntu" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Ubuntu</h3>
-<pre class="line-numbers"><code class="language-plain_text">## Ubuntu
+<pre><code class="language-plain_text">## Ubuntu
 
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 9DA31620334BD75D9DCB49F368818C72E52529D4
 
@@ -197,7 +197,7 @@ sudo apt-get install -y mongodb-org=4.0.5 mongodb-org-server=4.0.5 mongodb-org-s
 <ol>
 <li>配置数据库和日志路径：配置文件在安装目录bin文件夹下mongod.cfg</li>
 </ol>
-<pre class="line-numbers"><code class="language-plain_text">systemLog:
+<pre><code class="language-plain_text">systemLog:
     destination: file
     path:  D:\development\mongodb\log\mongod.log
 storage:
@@ -206,7 +206,7 @@ storage:
 <ol start="2">
 <li>安装MongoDB服务 使用windows自带的powershell执行</li>
 </ol>
-<pre class="line-numbers"><code class="language-plain_text">## 方式一
+<pre><code class="language-plain_text">## 方式一
 D:\development\mongodb\bin\mongod.exe --config &quot;D:\development\mongodb\bin\mongod.cfg&quot; --install
 
 ## 方式二：手动创建
@@ -215,7 +215,7 @@ sc.exe create MongoDB binPath= &quot;D:\development\mongodb\bin\mongod.exe&quot;
 <ol start="3">
 <li>启动/停止</li>
 </ol>
-<pre class="line-numbers"><code class="language-plain_text">## 启动服务
+<pre><code class="language-plain_text">## 启动服务
 net start MongoDB
 
 ## 停止服务
@@ -226,7 +226,7 @@ net stop MongoDB
 <li>启动：<code>service mongod start</code>，windows添加环境变量后可以使用<code>mongod</code></li>
 </ul>
 <p>参数：</p>
-<pre class="line-numbers"><code class="language-plain_text">- 数据库（dbpath）
+<pre><code class="language-plain_text">- 数据库（dbpath）
 - 端口（－－port xxx）
 - 集群名称（－－replSet xxx）
 - 关闭日志选项（－－nojournal）
@@ -241,7 +241,7 @@ net stop MongoDB
 <li>删除当前数据库：<code>db.dropDatabase()</code></li>
 <li>基本操作</li>
 </ul>
-<pre class="line-numbers"><code class="language-bash">[root] mongo          #命令行输入mongo进入MongoDB命令交互模式
+<pre><code class="language-bash">[root] mongo          #命令行输入mongo进入MongoDB命令交互模式
 &gt; show dbs            #列出已有db
 &gt; use my_db           #如果my_db存在，则切换到my_db，如果不存在，则创建之
 &gt; db                  #显示当前db
@@ -260,7 +260,7 @@ net stop MongoDB
 <li>insertOne：<code>db.COLLECTION_NAME.insertOne({})</code>，插入一条文档数据</li>
 <li>insertMany：<code>db.COLLECTION_NAME.insertMany([{},{}])</code>，插入多条文档</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">&gt; db.my_col.insert({&quot;name&quot;:&quot;xiaoming&quot;})  #insert可以插入一条数据
+<pre><code class="language-plain_text">&gt; db.my_col.insert({&quot;name&quot;:&quot;xiaoming&quot;})  #insert可以插入一条数据
 &gt; db.my_col.insert([{&quot;name&quot;:&quot;xiaoming&quot;},{&quot;name&quot;:&quot;test_user&quot;}])  #insert也可以插入多条数据
 &gt; db.my_col.insertOne({&quot;name&quot;:&quot;xiaoming&quot;})  #insertOne只能插入一条数据
 &gt; db.my_col.insertMany([{&quot;name&quot;:&quot;xiaoming&quot;}])  #insertMany可以插入一条或多条数据，但是必须以列表(list)的形式组织数据
@@ -272,7 +272,7 @@ net stop MongoDB
 <ul>
 <li>update</li>
 </ul>
-<pre class="line-numbers"><code class="language-bash">db.collection.update(
+<pre><code class="language-bash">db.collection.update(
    &lt;query&gt;,   #update的查询条件，类似sql update语句where后面的部分
    &lt;update&gt;,  #update的对象和一些更新的操作符等，也可以理解为sql update语句set后面的
    {
@@ -286,7 +286,7 @@ net stop MongoDB
 <li>save<br />
 save 方法通过传入的文档来替换已有文档。</li>
 </ul>
-<pre class="line-numbers"><code class="language-bash">db.collection.save(
+<pre><code class="language-bash">db.collection.save(
    &lt;document&gt;,   #文档数据
    {
      writeConcern: &lt;document&gt; #可选，抛出的异常级别
@@ -299,7 +299,7 @@ save 方法通过传入的文档来替换已有文档。</li>
 <li><code>db.COLLECTION_NAME.deleteMany({&quot;name&quot;:&quot;xming&quot;})</code>:删除满足条件的所有</li>
 <li><code>db.COLLECTION_NAME.remove({})</code>：删除集合</li>
 </ul>
-<pre class="line-numbers"><code class="language-bash">db.collection.remove(
+<pre><code class="language-bash">db.collection.remove(
    &lt;query&gt;,    #可选，查询条件
    {
      justOne: &lt;boolean&gt;,  #可选，设置为true或者1，表示只删除一个文档，设置为false，表示删除所有匹配的文档，默认为false
@@ -307,7 +307,7 @@ save 方法通过传入的文档来替换已有文档。</li>
    }
 )
 </code></pre>
-<pre class="line-numbers"><code class="language-bash"># remove 现在已经过时了现在官方推荐使用 deleteOne 和 deleteMany 方法
+<pre><code class="language-bash"># remove 现在已经过时了现在官方推荐使用 deleteOne 和 deleteMany 方法
 &gt; db.col.remove({&quot;name&quot;:&quot;xming&quot;})
 &gt; db.repairDatabase()  #remove方法并不会真正释放空间，需要继续执行 db.repairDatabase() 来回收磁盘空间
 &gt; db.runCommand({ repairDatabase: 1 }) #与上一句等效，仍以执行一句即可
@@ -321,7 +321,7 @@ save 方法通过传入的文档来替换已有文档。</li>
 <p>query ：可选，使用查询操作符指定查询条件</p>
 <p>projection ：可选，使用投影操作符指定返回的键。查询时返回文档中所有键值， 只需省略该参数即可（默认省略）。</p>
 <p>使用pretty() 方法以格式化的方式来显示所有文档</p>
-<pre class="line-numbers"><code class="language-plain_text">&gt; db.COLLECTION_NAME.find().pretty()
+<pre><code class="language-plain_text">&gt; db.COLLECTION_NAME.find().pretty()
 {
 	&quot;_id&quot; : ObjectId(&quot;5a69f93598891b4abe9cc8cb&quot;),
 	&quot;title&quot; : &quot;MongoDB 教程&quot;,
@@ -378,12 +378,12 @@ save 方法通过传入的文档来替换已有文档。</li>
 </tr>
 </tbody>
 </table>
-<pre class="line-numbers"><code class="language-plain_text">(&gt;) 大于 - $gt
+<pre><code class="language-plain_text">(&gt;) 大于 - $gt
 (&lt;) 小于 - $lt
 (&gt;=) 大于等于 - $gte
 (&lt;= ) 小于等于 - $lte
 </code></pre>
-<pre class="line-numbers"><code class="language-plain_text">db.COLLECTION_NAME.find({&quot;likes&quot; : {$gt : 100}})
+<pre><code class="language-plain_text">db.COLLECTION_NAME.find({&quot;likes&quot; : {$gt : 100}})
 db.COLLECTION_NAME.find({likes : {$gte : 100}})
 db.COLLECTION_NAME.find({likes : {$lt : 150}})
 db.COLLECTION_NAME.find({likes : {$lte : 150}})
@@ -395,18 +395,18 @@ db.COLLECTION_NAME.find({likes : {$lt :200, $gt : 100}})
 <code>&gt; db.COLLECTION_NAME.find({key1:value1, key2:value2}).pretty()</code></li>
 <li>OR：使用关键字 $or</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">&gt;db.COLLECTION_NAME.find({$or: [{key1: value1}, {key2:value2}]}).pretty
+<pre><code class="language-plain_text">&gt;db.COLLECTION_NAME.find({$or: [{key1: value1}, {key2:value2}]}).pretty
 </code></pre>
 <ul>
 <li>AND和OR配合</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">&gt; db.COLLECTION_NAME.find({&quot;likes&quot;: {$gt:50}, $or: [{&quot;by&quot;:&quot;搜云库教程-专注于开发技术的研究与知识分享&quot;},{&quot;title&quot;: &quot;MongoDB 教程&quot;}]}).pretty()
+<pre><code class="language-plain_text">&gt; db.COLLECTION_NAME.find({&quot;likes&quot;: {$gt:50}, $or: [{&quot;by&quot;:&quot;搜云库教程-专注于开发技术的研究与知识分享&quot;},{&quot;title&quot;: &quot;MongoDB 教程&quot;}]}).pretty()
 </code></pre>
 <h3><a id="sort%E3%80%81limit%E3%80%81skip%E3%80%81pretty" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>sort、limit、skip、pretty</h3>
 <ul>
 <li>sort方法</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">&gt; db.COLLECTION_NAME.find().sort({KEY:1})
+<pre><code class="language-plain_text">&gt; db.COLLECTION_NAME.find().sort({KEY:1})
 </code></pre>
 <p>sort()方法可以通过参数指定排序的字段,使用 1 和 -1 来指定排序的方式，其中 1 为升序排列，而-1是用于降序排列。</p>
 <ul>
@@ -424,48 +424,48 @@ db.COLLECTION_NAME.find({likes : {$lt :200, $gt : 100}})
 <ul>
 <li>in：包含其中一项</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">db.my_col.find({&quot;name&quot;: {$in: [&quot;xiaoming&quot;,&quot;zhangsan&quot;,&quot;lisa&quot;]}}).pretty()
+<pre><code class="language-plain_text">db.my_col.find({&quot;name&quot;: {$in: [&quot;xiaoming&quot;,&quot;zhangsan&quot;,&quot;lisa&quot;]}}).pretty()
 </code></pre>
 <ul>
 <li>nin：不包含，除xxx之外</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">db.my_col.find({&quot;name&quot;: {$nin: [&quot;xiaoming&quot;,&quot;zhangsan&quot;,&quot;lisa&quot;]}}).pretty()
+<pre><code class="language-plain_text">db.my_col.find({&quot;name&quot;: {$nin: [&quot;xiaoming&quot;,&quot;zhangsan&quot;,&quot;lisa&quot;]}}).pretty()
 </code></pre>
 <ul>
 <li>all：全部，需要满足列表中的全部值</li>
 </ul>
-<pre class="line-numbers"><code class="language-bash">db.course.find({&quot;course&quot;: {$all: [&quot;c++&quot;, &quot;java&quot;]}}).pretty() # 用 all 操作符，表示需要满足 c++ 和 java 两项
+<pre><code class="language-bash">db.course.find({&quot;course&quot;: {$all: [&quot;c++&quot;, &quot;java&quot;]}}).pretty() # 用 all 操作符，表示需要满足 c++ 和 java 两项
 </code></pre>
 <h3><a id="exists%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>exists是否存在</h3>
-<pre class="line-numbers"><code class="language-plain_text"># 找出没有 tel 字段的学生
+<pre><code class="language-plain_text"># 找出没有 tel 字段的学生
 db.stu_info.find({&quot;tel&quot;: {$exists: false}}).pretty() #字段不存在就用false，存在就用true
 </code></pre>
 <h3><a id="%E7%A9%BA%E5%80%BCnull%E5%A4%84%E7%90%86" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>空值null处理</h3>
-<pre class="line-numbers"><code class="language-plain_text"># tel 字段不存在和 tel 值为 null
+<pre><code class="language-plain_text"># tel 字段不存在和 tel 值为 null
 db.stu_info.find({&quot;tel&quot;: null}).pretty()
 
 # 仅查找 tel 值为 null的记录
 db.stu_info.find({&quot;tel&quot;: {$in:[null], $exists:true}}).pretty()
 </code></pre>
 <h3><a id="mod%E5%8F%96%E6%A8%A1%E8%BF%90%E7%AE%97" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>mod取模运算</h3>
-<pre class="line-numbers"><code class="language-plain_text"># 查找学生成绩取模10 等于0 的数据
+<pre><code class="language-plain_text"># 查找学生成绩取模10 等于0 的数据
 db.my_col.find({&quot;score&quot;: {$mod: [10, 0]}}).pretty()
 </code></pre>
 <h3><a id="regex%E6%AD%A3%E5%88%99" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>regex正则</h3>
-<pre class="line-numbers"><code class="language-plain_text"># 查询学生名字以a开头的学生成绩
+<pre><code class="language-plain_text"># 查询学生名字以a开头的学生成绩
 db.my_col.find({&quot;name&quot;: {$regex: /^a.*/}})
 </code></pre>
 <h3><a id="count%E7%BB%9F%E8%AE%A1" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>count统计</h3>
 <p>当使用 limit 方法限制返回的记录数时，默认情况下 count 方法仍然返回全部记录条数。如果希望返回限制之后的记录数量，要使用 count(true) 或者 count(非0)</p>
-<pre class="line-numbers"><code class="language-plain_text">db.my_col.find().count()
+<pre><code class="language-plain_text">db.my_col.find().count()
 </code></pre>
 <h3><a id="distinct" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>distinct</h3>
-<pre class="line-numbers"><code class="language-plain_text"># 查询课程成绩表中所有学生的名单
+<pre><code class="language-plain_text"># 查询课程成绩表中所有学生的名单
 db.my_col.distinct(&quot;name&quot;)
 </code></pre>
 <h2><a id="%E7%B4%A2%E5%BC%95" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>索引</h2>
 <h4><a id="%E5%88%9B%E5%BB%BA%E7%B4%A2%E5%BC%95%EF%BC%9Aensureindex%E6%96%B9%E6%B3%95" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>创建索引：ensureIndex() 方法</h4>
-<pre class="line-numbers"><code class="language-bash">db.collection.createIndex(
+<pre><code class="language-bash">db.collection.createIndex(
     {key1: option1, key2: option2},    #key为要创建索引的字段，option为创建索引的方式：1 为升序，-1 为降序，可以对多个字段创建索引，称为复合索引
     {
         background: &lt;boolean&gt;,  #可选，建索引过程会阻塞其它数据库操作，background 设置为 true 可指定以后台方式创建索引，默认值为 false
@@ -477,7 +477,7 @@ db.my_col.distinct(&quot;name&quot;)
 
 </code></pre>
 <p>语法中 Key 值为你要创建的索引字段，1为指定按升序创建索引，如果你想按降序来创建索引指定为-1即可。也可以为多个字段创建索引（符合索引）。</p>
-<pre class="line-numbers"><code class="language-plain_text">MongoDB Enterprise &gt; db.col.ensureIndex({&quot;title&quot;:1,&quot;description&quot;:1})
+<pre><code class="language-plain_text">MongoDB Enterprise &gt; db.col.ensureIndex({&quot;title&quot;:1,&quot;description&quot;:1})
 {
 	&quot;createdCollectionAutomatically&quot; : false,
 	&quot;numIndexesBefore&quot; : 3,
@@ -486,9 +486,9 @@ db.my_col.distinct(&quot;name&quot;)
 }
 </code></pre>
 <p>接受参数列表：<br />
-<figure><img src="81EE5047654648738DFDE47F9797F9EB" alt="image" /><figcaption>image<figcaption></figure></p>
+<img src="81EE5047654648738DFDE47F9797F9EB" alt="image" /></p>
 <h4><a id="%E5%85%B6%E4%BB%96" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>其他</h4>
-<pre class="line-numbers"><code class="language-plain_text">&gt; db.my_col.getIndexes()   #查看集合索引
+<pre><code class="language-plain_text">&gt; db.my_col.getIndexes()   #查看集合索引
 &gt; db.my_col.totalIndexSize()  #查看集合索引大小
 &gt; db.my_col.dropIndex(&quot;索引名称&quot;)  #删除集合指定索引
 &gt; db.my_col.dropIndexes()  #删除集合所有索引
@@ -497,9 +497,9 @@ db.my_col.distinct(&quot;name&quot;)
 <h2><a id="%E8%81%9A%E5%90%88" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>聚合</h2>
 <p>MongoDB中聚合(aggregate)主要用于处理数据(诸如统计平均值,求和等)，并返回计算后的数据结果。</p>
 <h3><a id="aggregate%E6%96%B9%E6%B3%95" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>aggregate() 方法</h3>
-<pre class="line-numbers"><code class="language-plain_text">db.COLLECTION_NAME.aggregate(AGGREGATE_OPERATION)
+<pre><code class="language-plain_text">db.COLLECTION_NAME.aggregate(AGGREGATE_OPERATION)
 </code></pre>
-<p><figure><img src="900122C352C949DC8ED0E9FEEFCBDAD5" alt="image" /><figcaption>image<figcaption></figure></p>
+<p><img src="900122C352C949DC8ED0E9FEEFCBDAD5" alt="image" /></p>
 <p>在MongoDB中，使用聚合框架可以对集合中的文档进行变换和组合，完成一些复杂的查询操作。聚合框架通过多个构件来创建一个管道(pipeline)，用于对一连串的文档进行处理。这些构件包括但不限于：</p>
 <table>
 <thead>
@@ -572,7 +572,7 @@ db.my_col.distinct(&quot;name&quot;)
 </tbody>
 </table>
 <p>当需要使用多个操作符来完成文档的聚合时，我们可以传入一个数组条件，这也是aggregate的常见用法：</p>
-<pre class="line-numbers"><code class="language-plain_text">db.my_col.aggregate([
+<pre><code class="language-plain_text">db.my_col.aggregate([
         {$match: {&quot;name&quot;: &quot;xiaoming&quot;}},   #查找 xiaoming 同学的课程成绩
         {$project: {&quot;_id&quot;:  0}},   #不需要_id字段
         {$sort: {&quot;score&quot;:  -1, &quot;class&quot;: 1}},  #按分数降序排序；同样分数的，按课程名字升序排序
@@ -584,7 +584,7 @@ db.my_col.distinct(&quot;name&quot;)
 <ul>
 <li><code>$project</code>：可以从子文档中提取字段，可以重命名字段。例如，查找学生课程成绩，不显示 _id 字段，显示姓名、课程、成绩字段，同时将 name 字段重命名为 student_name：。</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">db.my_col.aggregate([
+<pre><code class="language-plain_text">db.my_col.aggregate([
         {$project: {&quot;_id&quot;: 0, &quot;student_name&quot;: &quot;$name&quot;, &quot;core&quot;: 1, &quot;class&quot;: 1}}
 ])
 </code></pre>
@@ -592,7 +592,7 @@ db.my_col.distinct(&quot;name&quot;)
 <li><code>$match</code>：用于对文档集合进行筛选，之后就可以在筛选得到的文档子集上做聚合。</li>
 </ul>
 <p><code>$match</code>可以使用所有常规的查询操作符(<code>$gt</code>、<code>$lt</code>、<code>$in</code>等)。通常，在实际使用中应该尽可能将<code>$match</code>放在管道的前面位置。这样做有两个好处：一是可以快速将不需要的文档过滤掉，以减少管道的工作量；二是如果在投射和分组之前执行<code>$match</code>，查询可以使用索引。</p>
-<pre class="line-numbers"><code class="language-js">//获取likes字段大于70小于等于90的记录
+<pre><code class="language-js">//获取likes字段大于70小于等于90的记录
 db.col.aggregate([
 	{ $match : { likes : { $gt : 90, $lte : 200 } } },
 	{ $group: { _id: null, count: { $sum: 1 } } }
@@ -618,7 +618,7 @@ dateToString: { format: , date: } }。
 <li><code>$skip</code>：在聚合管道中跳过指定数量的文档，并返回余下的文档。</li>
 <li><code>$unwind</code>：可以将数组中的每一个值拆分为单独的文档，比如有下面一条记录，记录了一篇博客以及下面的评论。</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">db.blog.findOne().pretty()
+<pre><code class="language-plain_text">db.blog.findOne().pretty()
 {
    &quot;_id&quot;:ObjectId(&quot;5359f6f6ec7452081a7873d7&quot;),
    &quot;title&quot;:&quot;这是一篇博客&quot;,
@@ -638,7 +638,7 @@ dateToString: { format: , date: } }。
 }
 </code></pre>
 <p>现在要找到 lisa 的评论，可以先使用 $unwind 将每条评论拆分为一个独立的文档，然后再进行 match 查询：</p>
-<pre class="line-numbers"><code class="language-plain_text">db.blog.aggregate({&quot;$unwind&quot;:&quot;$comments&quot;})
+<pre><code class="language-plain_text">db.blog.aggregate({&quot;$unwind&quot;:&quot;$comments&quot;})
 {
    &quot;results&quot;:
        {
@@ -672,7 +672,7 @@ dateToString: { format: , date: } }。
 <ul>
 <li>$group：将集合中的文档分组，可用于统计结果，类似于 sql 中的 group by，主要用于数据处理，比如，计算每个学生的总课程成绩：</li>
 </ul>
-<pre class="line-numbers"><code class="language-bash"> db.my_col.aggregate([
+<pre><code class="language-bash"> db.my_col.aggregate([
         {$group: {_id: &quot;$name&quot;,  total: {$sum: &quot;$score&quot;}}}
 ])
 # $sum 可以 替换成操作符 $avg、$min、$max，分别表示求平均成绩、最低成绩、最高成绩
@@ -681,7 +681,7 @@ dateToString: { format: , date: } }。
 <li>$sort：将输入文档排序后输出。</li>
 <li>$geoNear：输出接近某一地理位置的有序文档。</li>
 </ul>
-<p><figure><img src="5147E5B7CE1242418CC7F091FEFCDA44" alt="image" /><figcaption>image<figcaption></figure></p>
+<p><img src="5147E5B7CE1242418CC7F091FEFCDA44" alt="image" /></p>
 <hr />
 <p>参考：</p>
 <ul>
@@ -869,6 +869,7 @@ body{ box-sizing: border-box;
      word-wrap: break-word !important;       /* Internet Explorer 5.5+ */
     }
     html,body{margin:0;padding:4px;}
+    .mweb-yaml{display:none;}
 }
 
 

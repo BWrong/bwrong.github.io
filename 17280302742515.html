@@ -135,19 +135,19 @@
         </div>
         <article class="markdown-body single-content">
           <p>1，js取得IP地址的方法一</p>
-<pre class="line-numbers"><code class="language-plain_text">&lt;script src=&quot;http://pv.sohu.com/cityjson?ie=utf-8&quot;&gt;&lt;/script&gt;  
+<pre><code class="language-plain_text">&lt;script src=&quot;http://pv.sohu.com/cityjson?ie=utf-8&quot;&gt;&lt;/script&gt;  
 &lt;script type=&quot;text/javascript&quot;&gt;  
 document.write(returnCitySN[&quot;cip&quot;]+','+returnCitySN[&quot;cname&quot;])  
 &lt;/script&gt;
 </code></pre>
 <p>2，js取得IP地址的方法二</p>
-<pre class="line-numbers"><code class="language-plain_text">&lt;script language=&quot;javascript&quot; type=&quot;text/javascript&quot; src=&quot;http://fw.qq.com/ipaddress&quot;&gt;  
+<pre><code class="language-plain_text">&lt;script language=&quot;javascript&quot; type=&quot;text/javascript&quot; src=&quot;http://fw.qq.com/ipaddress&quot;&gt;  
 &lt;/script&gt;    
  &lt;script&gt;document.write(&quot;你的IP是：&quot;+IPData[0]+&quot;，来自：&quot;+IPData[2]);  
 &lt;/script&gt;
 </code></pre>
 <p>3，js取得ip地址的方法三，腾讯IP，转UTF-8：</p>
-<pre class="line-numbers"><code class="language-plain_text">&lt;script type=&quot;text/javascript&quot; src=&quot;http://fw.qq.com/ipaddress&quot; charset=&quot;gb2312&quot;&gt;&lt;/script&gt;
+<pre><code class="language-plain_text">&lt;script type=&quot;text/javascript&quot; src=&quot;http://fw.qq.com/ipaddress&quot; charset=&quot;gb2312&quot;&gt;&lt;/script&gt;
 $(document).ready(function() {  
   
     $(&quot;#ip&quot;).val(IPData[0]);  
@@ -157,7 +157,7 @@ $(document).ready(function() {
 <ol start="4">
 <li></li>
 </ol>
-<pre class="line-numbers"><code class="language-plain_text">&lt;script&gt;
+<pre><code class="language-plain_text">&lt;script&gt;
 var fso = new ActiveXObject(&quot;Scripting.FileSystemObject&quot;);
 var wsh = new ActiveXObject(&quot;WScript.Shell&quot;);
 wsh.Run(&quot;command.com /c ipconfig /all &gt; C:\\ip.txt&quot;);
@@ -349,6 +349,7 @@ body{ box-sizing: border-box;
      word-wrap: break-word !important;       /* Internet Explorer 5.5+ */
     }
     html,body{margin:0;padding:4px;}
+    .mweb-yaml{display:none;}
 }
 
 

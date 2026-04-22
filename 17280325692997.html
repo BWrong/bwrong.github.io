@@ -170,14 +170,14 @@
 <p>NPM我相信大家都是比较熟悉了，所以下面仅仅介绍一下常用的用法。</p>
 <h3><a id="%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>常用命令</h3>
 <h4><a id="%E7%94%9F%E6%88%90%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6package-json" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>生成配置文件<code>package.json</code></h4>
-<pre class="line-numbers"><code class="language-shell">npm init [配置]
+<pre><code class="language-shell">npm init [配置]
 </code></pre>
 <p>配置：</p>
 <ul>
 <li>-y（--yes） ：略过问答配置模式，所有配置项将全部使用默认值。</li>
 </ul>
 <h4><a id="%E6%90%9C%E7%B4%A2%E5%8C%85" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>搜索包</h4>
-<pre class="line-numbers"><code class="language-shell">npm search &lt;包名&gt;
+<pre><code class="language-shell">npm search &lt;包名&gt;
 </code></pre>
 <p><strong>注意：</strong> <strong>如果更改了npm的镜像源，搜索包时需要切换到npm官方源。</strong></p>
 <p>npm包的开发门槛很低，数量众多，重复的轮子也多得出奇，每次选择一个包对选择强迫症患者来说，并不是一件容易的事情，一般我们可以考虑以下几点因素：</p>
@@ -187,7 +187,7 @@
 <li>文档是否完善，没文档就是在看天书，不会想让我去啃源码吧，我头发可不多了😭  😭。</li>
 </ul>
 <h4><a id="%E5%AE%89%E8%A3%85%E5%8C%85" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>安装包</h4>
-<pre class="line-numbers"><code class="language-shell">npm install &lt;包名&gt; [配置] # install 可以简写为i
+<pre><code class="language-shell">npm install &lt;包名&gt; [配置] # install 可以简写为i
 </code></pre>
 <p>配置：</p>
 <ul>
@@ -197,29 +197,29 @@
 </ul>
 <p>可以在包名后面加上版本号以安装特定版本号，如<code>npm install vue@2.16.1</code>。</p>
 <h4><a id="%E5%8D%B8%E8%BD%BD%E5%8C%85" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>卸载包</h4>
-<pre class="line-numbers"><code class="language-shell">npm uninstall &lt;包名&gt; [配置]
+<pre><code class="language-shell">npm uninstall &lt;包名&gt; [配置]
 </code></pre>
 <p>配置和安装包配置一样，不同配置表示卸载不同地方的包。</p>
 <h4><a id="%E6%9B%B4%E6%96%B0%E5%8C%85" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>更新包</h4>
-<pre class="line-numbers"><code class="language-shell">npm update &lt;包名&gt; [配置]
+<pre><code class="language-shell">npm update &lt;包名&gt; [配置]
 </code></pre>
 <p>配置和安装包配置一样，不同配置表示更新不同地方的包。</p>
 <h4><a id="%E5%8F%91%E5%B8%83%E5%8C%85" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>发布包</h4>
-<pre class="line-numbers"><code class="language-shell">npm publish [配置]
+<pre><code class="language-shell">npm publish [配置]
 </code></pre>
 <p>配置：</p>
 <ul>
 <li>--tag beta: 指定标签，默认为版本号，如<code>npm publish --tag beta</code>。</li>
 </ul>
 <h4><a id="%E5%AE%89%E5%85%A8%E6%80%A7%E6%A3%80%E6%B5%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>安全性检测</h4>
-<pre class="line-numbers"><code class="language-shell">npm audit # 对包及其依赖进行安全检测，并生成报告
+<pre><code class="language-shell">npm audit # 对包及其依赖进行安全检测，并生成报告
 npm audit fix # 自动为易受攻击的依赖项安装兼容的更新
 npm set audit false # 关闭检测机制
 </code></pre>
 <p>由于npm包的数量众多，而且很多包早已没有维护了，难免会出现一些安全隐患，所以安全性检测可以帮助我们做一些排查，增强安全性。前面就出现了一些包会泄露用户数据的问题，所以安全性检测是很有必要的。</p>
 <p>注意：<strong>安全性检测需要切换到npm官方镜像源。</strong></p>
 <h4><a id="%E6%B8%85%E9%99%A4%E7%BC%93%E5%AD%98" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>清除缓存</h4>
-<pre class="line-numbers"><code class="language-shell">npm cache clean --force #强制清除npm缓存
+<pre><code class="language-shell">npm cache clean --force #强制清除npm缓存
 </code></pre>
 <p>为了加快安装包的速度，NPM会在安装包的时候把他们缓存到本地，再次安装这些包的时候，直接从缓存拷贝，使用该命令可以清除缓存。</p>
 <h2><a id="npx" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>NPX</h2>
@@ -228,19 +228,19 @@ npm set audit false # 关闭检测机制
 <li>调用项目中安装的包</li>
 </ul>
 <p>如果我们在项目中安装了gulp，要执行gulp相关的命令，如果在项目目录下直接执行的话，它会去全局的包查找，如果要避免这种情况，就只能将命令定义在<code>package.json</code>的scripts中，然后通过<code>npm run</code>的方式来执行。如果使用npx，就会避免这种情况，因为它会优先去项目本地中寻找。</p>
-<pre class="line-numbers"><code class="language-shell">npx gulp --version
+<pre><code class="language-shell">npx gulp --version
 </code></pre>
 <ul>
 <li>避免全局安装模块</li>
 </ul>
 <p>一般在使用一些脚手架的时候，我们需要在全局安装后才可使用，如果使用npx就不需要。</p>
-<pre class="line-numbers"><code class="language-shell">npx create-react-app my-react-app
+<pre><code class="language-shell">npx create-react-app my-react-app
 </code></pre>
 <p>npx 将<code>create-react-app</code>下载到一个临时目录，使用以后再删除，避免了安装全局模块。</p>
 <ul>
 <li>执行远程代码</li>
 </ul>
-<pre class="line-numbers"><code class="language-shell"># 执行 Gist 代码
+<pre><code class="language-shell"># 执行 Gist 代码
 $ npx https://gist.github.com/zkat/4bc19503fe9e9309e2bfaa2c58074d32
 
 # 执行仓库代码
@@ -267,7 +267,7 @@ $ npx github:piuccio/cowsay hello
 <p><code>license</code>：许可证，以便让用户了解他们是在什么授权下使用此包，以及此包还有哪些附加限制。</p>
 </li>
 </ul>
-<pre class="line-numbers"><code class="language-json">{
+<pre><code class="language-json">{
   &quot;license&quot;: &quot;MIT&quot;,
   &quot;license&quot;: &quot;(MIT or GPL-3.0)&quot;,
   &quot;license&quot;: &quot;SEE LICENSE IN LICENSE_FILENAME.txt&quot;,
@@ -287,7 +287,7 @@ $ npx github:piuccio/cowsay hello
 <p><code>repository</code>：是包代码托管的位置。</p>
 </li>
 </ul>
-<pre class="line-numbers"><code class="language-json">{
+<pre><code class="language-json">{
   &quot;repository&quot;: { &quot;type&quot;: &quot;git&quot;, &quot;url&quot;: &quot;https://github.com/user/repo.git&quot; },
   &quot;repository&quot;: &quot;github:user/repo&quot;,
   &quot;repository&quot;: &quot;gitlab:user/repo&quot;,
@@ -300,7 +300,7 @@ $ npx github:piuccio/cowsay hello
 <ul>
 <li><code>author</code>：作者信息，一个人。</li>
 </ul>
-<pre class="line-numbers"><code class="language-json">{
+<pre><code class="language-json">{
   &quot;author&quot;: { &quot;name&quot;: &quot;Your Name&quot;, &quot;email&quot;: &quot;you@example.com&quot;, &quot;url&quot;: &quot;http://your-website.com&quot; },
   &quot;author&quot;: &quot;Your Name &lt;you@example.com&gt; (http://your-website.com)&quot;
 }
@@ -308,7 +308,7 @@ $ npx github:piuccio/cowsay hello
 <ul>
 <li><code>contributors</code>：贡献者信息，可以是多个人。</li>
 </ul>
-<pre class="line-numbers"><code class="language-json">{
+<pre><code class="language-json">{
   &quot;contributors&quot;: [
     { &quot;name&quot;: &quot;Your Friend&quot;, &quot;email&quot;: &quot;friend@example.com&quot;, &quot;url&quot;: &quot;http://friends-website.com&quot; }
     { &quot;name&quot;: &quot;Other Friend&quot;, &quot;email&quot;: &quot;other@example.com&quot;, &quot;url&quot;: &quot;http://other-website.com&quot; }
@@ -324,7 +324,7 @@ $ npx github:piuccio/cowsay hello
 <ul>
 <li><code>files</code>：项目包含的文件，可以是单独的文件、整个文件夹，或者通配符匹配到的文件。</li>
 </ul>
-<pre class="line-numbers"><code class="language-json">{
+<pre><code class="language-json">{
   &quot;files&quot;: [
     &quot;filename.js&quot;,
     &quot;directory/&quot;,
@@ -335,14 +335,14 @@ $ npx github:piuccio/cowsay hello
 <ul>
 <li><code>main</code>：项目的入口文件。</li>
 </ul>
-<pre class="line-numbers"><code class="language-json">{
+<pre><code class="language-json">{
   &quot;main&quot;: &quot;filename.js&quot;
 }
 </code></pre>
 <ul>
 <li><code>bin</code>：随着项目一起被安装的可执行文件，开发命令行工具、脚手架会用到此项。</li>
 </ul>
-<pre class="line-numbers"><code class="language-json">{
+<pre><code class="language-json">{
   &quot;bin&quot;: &quot;bin.js&quot;,
   &quot;bin&quot;: {
     &quot;other-command&quot;: &quot;bin/other-command&quot;
@@ -352,7 +352,7 @@ $ npx github:piuccio/cowsay hello
 <ul>
 <li><code>directories</code>：当你的包安装时，你可以指定确切的位置来放二进制文件、man pages、文档、例子等。</li>
 </ul>
-<pre class="line-numbers"><code class="language-json">{
+<pre><code class="language-json">{
   &quot;directories&quot;: {
     &quot;lib&quot;: &quot;path/to/lib/&quot;,
     &quot;bin&quot;: &quot;path/to/bin/&quot;,
@@ -365,13 +365,13 @@ $ npx github:piuccio/cowsay hello
 <ul>
 <li><code>types</code>：指定 <a href="https://www.typescriptlang.org/docs/handbook/declaration-files/publishing.html">TypeScript</a> 中的类型声明文件</li>
 </ul>
-<pre class="line-numbers"><code class="language-json">{
+<pre><code class="language-json">{
   &quot;types&quot;: &quot;./lib/main.d.ts&quot;,
 }
 </code></pre>
 <h5><a id="%E4%BB%BB%E5%8A%A1%E7%B1%BB%E5%AD%97%E6%AE%B5" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>任务类字段</h5>
 <p>脚本是定义自动化开发相关任务的好方法，比如使用一些简单的构建过程或开发工具。 在 <code>scripts</code> 字段里定义的脚本，可以通过<code>npm run xxx</code> 命令来执行。 例如， <code>build-project</code> 脚本可以通过 <code>npm run build-project</code> 调用，并执行 <code>node build-project.js</code>。</p>
-<pre class="line-numbers"><code class="language-json">{
+<pre><code class="language-json">{
   &quot;scripts&quot;: {
     &quot;build-project&quot;: &quot;node build-project.js&quot;
   }
@@ -404,7 +404,7 @@ $ npx github:piuccio/cowsay hello
 <ul>
 <li><code>dependencies</code>：这些是开发环境和生产环境都需要的依赖包，使用<code>npm i -S</code>xxx 安装。</li>
 </ul>
-<pre class="line-numbers"><code class="language-json">{
+<pre><code class="language-json">{
   &quot;dependencies&quot;: {
     &quot;package-1&quot;: &quot;^3.1.4&quot;,
     &quot;package-2&quot;: &quot;file:./path/to/dir&quot;
@@ -430,7 +430,7 @@ $ npx github:piuccio/cowsay hello
 <ul>
 <li><code>devDependencies</code>：这些是仅开发环境需要的依赖包，一般是一些构建辅助工具之类的，使用<code>npm i -D xxx</code>安装。</li>
 </ul>
-<pre class="line-numbers"><code class="language-json">{
+<pre><code class="language-json">{
   &quot;devDependencies&quot;: {
     &quot;package-2&quot;: &quot;^0.4.2&quot;
   }
@@ -465,7 +465,7 @@ $ npx github:piuccio/cowsay hello
 <p>它并不是想要完全替代 npm。Yarn 仅仅是一个能够从 npm 仓库获取到包的新的 CLI 客户端，它和NPM相比，有如下优势：</p>
 <h4><a id="%E6%9B%B4%E6%B8%85%E6%99%B0%E7%9A%84%E8%BE%93%E5%87%BA" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>更清晰的输出</h4>
 <p>yarn的输出很清晰，使用了emoji，看起来也更加漂亮，颜值党必备。</p>
-<p><figure><img src="media/17280325692997/17281444159384.webP" alt="“yarn install” 命令的输出" /><figcaption>“yarn install” 命令的输出<figcaption></figure></p>
+<p><img src="media/17280325692997/17281444159384.webP" alt="“yarn install” 命令的输出" /></p>
 <h4><a id="%E5%B9%B6%E8%A1%8C%E5%AE%89%E8%A3%85" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>并行安装</h4>
 <p>在安装多个包时，npm会按包顺序串行执行，也就是只有当一个包全部安装完成后，才会安装下一个。Yarn 则是并行执行，更加高效。</p>
 <h3><a id="yarn%E5%92%8Cnpm%E7%9A%84%E5%91%BD%E4%BB%A4%E5%AF%B9%E6%AF%94" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>yarn和npm的命令对比</h3>
@@ -602,7 +602,7 @@ $ npx github:piuccio/cowsay hello
 <h2><a id="%E6%9C%AA%E6%9D%A5" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>未来</h2>
 <p>现在npm还是有很多无法回避的问题，最初<code>node_modules</code>下面每个依赖包的依赖放在自己的目录下面，相同的依赖无法复用，不管是安装还是删除都非常低效，在windows上经常会出现因为超过最大嵌套层级而无法删除的情况，不过好在后来官方调整了架构，改为平铺的结构，解决了这些问题。</p>
 <p>不过现阶段npm的包管理还是很混乱，相比其他包管理器，还有很多需要改进的地方。</p>
-<p><figure><img src="media/17280325692997/17281444159406.jpg" alt="" /></figure></p>
+<p><img src="media/17280325692997/17281444159406.jpg" alt="" /></p>
 <ul>
 <li>存在有很多重复的包，很多不维护的包，这给使用者选择造成了困扰。</li>
 <li>依赖过多，比如仅仅开发一个react的demo，结果发现要安装上千个包。</li>
@@ -791,6 +791,7 @@ body{ box-sizing: border-box;
      word-wrap: break-word !important;       /* Internet Explorer 5.5+ */
     }
     html,body{margin:0;padding:4px;}
+    .mweb-yaml{display:none;}
 }
 
 

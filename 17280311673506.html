@@ -137,7 +137,7 @@
           <h2><a id="1%E6%8E%92%E5%BA%8F%E6%B3%95" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>1.排序法</h2>
 <p>首先我们给数组进行排序，可以按照从小到大的顺序来排，排序之后的数组中第一个和最后一个就是我们想要获取的最小值和最大值。</p>
 <p>排序我们会用到数组的 sort 方法。</p>
-<pre class="line-numbers"><code class="language-plain_text">var arr = [12,56,25,5,82,51,22];
+<pre><code class="language-plain_text">var arr = [12,56,25,5,82,51,22];
 
 arr.sort(function (a, b) {
   return a-b;
@@ -149,7 +149,7 @@ var max = arr[arr.length - 1];  // 56
 </code></pre>
 <h2><a id="2%E5%81%87%E8%AE%BE%E6%B3%95" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>2.假设法</h2>
 <p>假设当前数组中的第一个值是最大值，然后拿这个最大值和后面的项逐一比较，如果后面的某一个值比假设的值还大，说明假设错了，我们把假设的值进行替换。最后得到的结果就是我们想要的。</p>
-<pre class="line-numbers"><code class="language-plain_text">// 获取最大值：
+<pre><code class="language-plain_text">// 获取最大值：
 
 var arr = [22,13,6,55,30];
 var max = arr[0];
@@ -174,7 +174,7 @@ console.log(min)  // 6
 </code></pre>
 <h2><a id="3%E4%BD%BF%E7%94%A8-math%E4%B8%AD%E7%9A%84-maxmin%E6%96%B9%E6%B3%95" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>3. 使用 Math 中的 max/min 方法</h2>
 <p>可以使用apply来实现。apply传入的是一个数组。</p>
-<pre class="line-numbers"><code class="language-plain_text">var arr = [22,13,6,55,30];
+<pre><code class="language-plain_text">var arr = [22,13,6,55,30];
 
 var max = Math.max.apply(null, arr);
 var min = Math.min.apply(null, arr);
@@ -182,7 +182,7 @@ var min = Math.min.apply(null, arr);
 console.log(max, min) // 55,6
 </code></pre>
 <h2><a id="4%E4%BD%BF%E7%94%A8-es6%E7%9A%84%E6%89%A9%E5%B1%95%E8%BF%90%E7%AE%97%E7%AC%A6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>4. 使用ES6的扩展运算符</h2>
-<pre class="line-numbers"><code class="language-plain_text"> var arr = [22,13,6,55,30];
+<pre><code class="language-plain_text"> var arr = [22,13,6,55,30];
  
  console.log(arr.Math.max(...arr)); // 55
  console.log(arr.Math.min(...arr)); // 6
@@ -369,6 +369,7 @@ body{ box-sizing: border-box;
      word-wrap: break-word !important;       /* Internet Explorer 5.5+ */
     }
     html,body{margin:0;padding:4px;}
+    .mweb-yaml{display:none;}
 }
 
 

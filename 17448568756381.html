@@ -139,14 +139,14 @@
           <h2><a id="%E4%B8%80%E3%80%81mcp%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、MCP 基础概念</h2>
 <h3><a id="1-1%E4%BB%80%E4%B9%88%E6%98%AF-mcp%EF%BC%9F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>1.1 什么是 MCP？</h3>
 <p><strong>定义</strong>：MCP（Model Context Protocol，模型上下文协议）是由Anthropic公司于2024年底提出的一种<strong>开放标准协议</strong>，它标准化了应用程序如何为 LLM 提供上下文，旨在解决大型语言模型（LLM）与外部数据、工具之间的连接交互问题。它为AI应用提供了一种统一的、标准化的方式来访问和处理数据（实时数据、本地数据），解决了AI模型的数据孤岛问题，为 AI 应用提供了连接万物的接口，被誉为 &quot;AI 领域的 USB-C&quot;。<br />
-<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449444076713.jpg" alt="" /></figure></p>
+<img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449444076713.jpg" alt="" /></p>
 <p><strong>核心价值</strong>：</p>
 <p>传统的AI模型面临几个关键挑战：</p>
 <ul>
 <li>知识时效性限制：模型只了解训练截止日期前的信息</li>
 <li>专有数据访问困难：无法直接访问企业内部系统的数据</li>
 <li>集成成本高昂：每接入一种新数据源，都需要定制专门的集成方案。传统上，将 AI 系统连接到外部工具涉及集成多个 API。每个 API 集成都意味着单独的代码、文档、身份验证方法、错误处理和维护。<br />
-<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449445095592.jpg" alt="" /></figure></li>
+<img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449445095592.jpg" alt="" /></li>
 </ul>
 <p>MCP的核心优势：</p>
 <ul>
@@ -155,9 +155,9 @@
 <li>数据安全：你的敏感数据留在自己的电脑上，自行决定上传那些数据。</li>
 </ul>
 <p>MCP 是 AI大模型 与数据（包括本地数据和互联网数据）之间的一座桥梁，通过 MCP 服务器和 MCP 客户端，大家只要都遵循这套协议，就能实现“万物互联”。比如，可以和数据和文件系统、开发工具、Web 和浏览器自动化、生产力和通信、各种社区生态能力全部集成，实现强大的协作工作能力。<br />
-<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17448608579279.jpg" alt="" /></figure></p>
+<img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17448608579279.jpg" alt="" /></p>
 <h3><a id="1-2%E6%A0%B8%E5%BF%83%E6%9E%B6%E6%9E%84" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>1.2 核心架构</h3>
-<p><figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449452410979.gif" alt="" /></figure></p>
+<p><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449452410979.gif" alt="" /></p>
 <p>MCP 遵循客户端-服务器架构（client-server），其中包含以下几个核心概念：</p>
 <ul>
 <li><strong>MCP 主机（MCP Hosts）</strong>：发起请求的 LLM 应用程序（例如 Claude Desktop、IDE 或 AI 工具）。</li>
@@ -168,7 +168,7 @@
 </ul>
 <p>其中，重点关注MCP Client和MCP Server。</p>
 <p><strong>MCP Client</strong>：<br />
-<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449452837237.jpg" alt="" /></figure></p>
+<img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449452837237.jpg" alt="" /></p>
 <p>MCP client 充当 LLM 和 MCP server 之间的桥梁，MCP client 的工作流程如下：</p>
 <p>❶ MCP client 首先从 MCP server 获取可用的工具列表。<br />
 ❷ 将用户的查询连同工具描述通过 function calling 一起发送给 LLM。<br />
@@ -180,25 +180,25 @@
 ❼ MCP Hosts将响应展示给用户。</p>
 <p>Claude Desktop 和Cursor都支持了MCP Server接入能力，它们就是作为 MCP client来连接某个MCP Server感知和实现调用。</p>
 <p><strong>MCP Server</strong>：<br />
-<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449453163079.jpg" alt="" /></figure></p>
+<img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449453163079.jpg" alt="" /></p>
 <p>MCP server 是 MCP 架构中的关键组件，它可以提供 3 种主要类型的功能：</p>
 <p>○ <a href="https://modelcontextprotocol.io/docs/concepts/resources">资源（Resources）</a>：将 Server 上的数据和内容开放给大语言模型，可以是文本或二进制数据。如 API 响应、文件内容、图像等。<br />
 ○ <a href="https://modelcontextprotocol.io/docs/concepts/tools">工具（Tools）</a>：可以被调用的函数，这些函数可由客户端调用，并由 LLM 使用来执行操作。<br />
 ○ <a href="https://modelcontextprotocol.io/docs/concepts/prompts">提示（Prompts）</a>：预先编写的可复用的提示词模板和工作流程。<br />
-<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449526186282.jpg" alt="" /></figure></p>
+<img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449526186282.jpg" alt="" /></p>
 <p>这些功能使 MCP server 能够为 AI 应用提供丰富的上下文信息和操作能力，从而增强 LLM 的实用性和灵活性。</p>
 <h3><a id="%E4%B8%80%E4%B8%AA%E5%BD%A2%E8%B1%A1%E7%9A%84%E6%AF%94%E5%96%BB" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一个形象的比喻</h3>
 <p>我在网上看到了一个比较形象的比喻，感觉还不错，摘录到这里，如果需要查看原文请点<a href="https://baijiahao.baidu.com/s?id=1829100651768604009&amp;wfr=spider&amp;for=pc">这里</a><br />
 首先，用户让 LLM 调用工具，就好比我（特工少女，即 User）让男朋友（LLM）去小店（软件服务提供商）买东西（Data &amp; Tool）并使用。如果模型接到的任务则可能需要多个工具调用（Tool Use），这就好比我跟男朋友讲的需求比较复杂，比如做从零做一道番茄炒蛋。<br />
-<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449608021782.jpg" alt="" /></figure></p>
+<img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449608021782.jpg" alt="" /></p>
 <p>然后男朋友通过规划（Planning）决定去苏泊尔买个锅和铲，去菜场买个西红柿和鸡蛋，再去便利店买个糖和盐，以此来完成番茄炒蛋这道菜。但是在传统的 AI 应用开发过程中，男朋友（LLM）能去的小店（能使用的工具）都需要开发者预先定义线路（编写代码）。</p>
 <p>但是，男朋友（LLM）每去一个新地方，都要造一条新路（编写代码），似乎不太方便。于是后来字节扣子、百度千帆、阿里云百炼等平台出现了，他们就好比是开了一个商超。商超跟各种小店说，我这里人气旺，你们直接按我们的要求来货架上架你们的商品就行，再跟我（User）说我这现成的商品多，以后让男朋友（LLM）来这买就行。<br />
-<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449608153690.jpg" alt="" /></figure></p>
+<img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449608153690.jpg" alt="" /></p>
 <p>小店们觉得这事不错，便遵守平台一定的上架规范，开始把他们的商品（Tool）变成了插件（Plugin），我（User）提的好多需求，男朋友（LLM）在这些平台上就能一站式满足了，选几个插件直接用就行，方便了挺多。</p>
 <p>但是，Anthropic 干了一个什么事情呢？他想搞电商！</p>
 <p>他跟小店们说，不同平台的插件规范不太一样，你们去各个平台上架插件也挺累的。咱们搞个新玩法，能让天下的男朋友（LLM）都很容易的用到更多商品（调用更多工具）。你们呢按照我这个标准，把你们的商品都做一个数字化的标准信息处理（即变成了 MCP Server），我们再定义一个叫电商组件的东西（即 MCP Client），你们的 MCP Server 要跟电商组件有互动，只要遵守一个开放的规则，这部分就是 MCP 协议，即 Server 和 Client 的通信协议。</p>
 <p>此外，Anthropic 基于这个电商平台（Client）的理念做了一个淘宝的外壳，这个淘宝就好比没有包含 LLM 的 Claude Desktop。在这基础上，如果再加上 Claude 的模型，就相当于让“男朋友刷淘宝”，这一整体就构成了 MCP Host。<br />
-<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449608349448.jpg" alt="" /></figure></p>
+<img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449608349448.jpg" alt="" /></p>
 <p>MCP Server 只管提供各种工具，MCP Host 只管通过 MCP Client 获取并使用这些工具。然后淘宝上玲琅满目的商品很多，就形成了 MCP Market。</p>
 <h3><a id="1-3%E9%80%9A%E4%BF%A1%E6%9C%BA%E5%88%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>1.3 通信机制</h3>
 <p>关于Client和Server之间的通信方式，MCP 协议支持两种主要的通信机制：基于Stdio（标准输入输出）的本地通信和基于SSE（Server-Sent Events）的远程通信。</p>
@@ -206,7 +206,7 @@
 <p>**本地通信：**通过 stdio 传输数据，适用于在同一台机器上运行的客户端和服务器之间的通信。<br />
 **远程通信：**利用 SSE 与 HTTP 结合，实现跨网络的实时数据传输，适用于需要访问远程资源或分布式部署的场景。</p>
 <p><strong>连接过程</strong>：<br />
-<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449459358047.jpg" alt="" /></figure></p>
+<img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449459358047.jpg" alt="" /></p>
 <ol>
 <li>客户端发送包含协议版本和功能的请求initialize</li>
 <li>Server 使用其协议版本和功能进行响应</li>
@@ -282,22 +282,22 @@
 </tr>
 </tbody>
 </table>
-<p><figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/1adfb43d17054bdfe566865c141baf35.png" alt="1adfb43d17054bdfe566865c141baf35" /><figcaption>1adfb43d17054bdfe566865c141baf35<figcaption></figure></p>
+<p><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/1adfb43d17054bdfe566865c141baf35.png" alt="1adfb43d17054bdfe566865c141baf35" /></p>
 <p>Function calling 功能单一，不具备上下文管理能力，一次只执行一个任务，一般是同步进行调用。没有特定的标准，需要厂商或者我们自己去开发实现。生态相对封闭，没有多少开源项目，定制化比较多。<br />
 MCP 功能复杂，可以支持多轮对话，一次能调用多个任务，也可以异步执行。有统一的标准，只要是适配了 MCP 的 Server 都可以用统一的代码去调用，而且除了工具调用，还提供了提示词和上下文资源。</p>
 <h3><a id="2-2%E4%B8%BE%E4%BE%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>2.2 举例</h3>
 <ul>
 <li>
 <p>如果你的 function 最初需要两个参数（例如，天气服务的 location 参数和 date 参数，用户需严格按此参数结构构建应用。<br />
-<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449453826664.jpg" alt="" /></figure></p>
+<img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449453826664.jpg" alt="" /></p>
 </li>
 <li>
 <p>之后，如果你决定为该 function 添加第三个必选参数（例如，unit参数（温度单位）），将“契约”进行变更。<br />
-<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449454190209.jpg" alt="" /></figure></p>
+<img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449454190209.jpg" alt="" /></p>
 </li>
 <li>
 <p>这意味着该 function 的所有用户都必须更新代码，增加对新参数的支持，如果未及时更新，他们的请求可能会失败、报错或提供不完整的结果。<br />
-<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449454519373.jpg" alt="" /></figure></p>
+<img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449454519373.jpg" alt="" /></p>
 </li>
 </ul>
 <p>MCP 的设计解决了这个问题，具体方法如下：</p>
@@ -310,11 +310,11 @@ MCP 功能复杂，可以支持多轮对话，一次能调用多个任务，也�
 </li>
 <li>
 <p>Server 的响应包含可用的 tools、resources、prompts 以及相关参数的详细信息。例如，若天气 API 最初仅支持 location 和 date 参数，服务器会通过能力交换告知这些信息。<br />
-<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449455836821.jpg" alt="" /></figure></p>
+<img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449455836821.jpg" alt="" /></p>
 </li>
 <li>
 <p>当新增 unit 参数时，MCP Server 可在下次进行能力交换时动态更新能力描述。Client 无需硬编码或预定义参数，只需查询 Server 的最新能力并自动适配。<br />
-<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449456074053.jpg" alt="" /></figure></p>
+<img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449456074053.jpg" alt="" /></p>
 </li>
 <li>
 <p>这样，Client 就能使用更新后的新功能（例如在其请求中包含 unit 参数），实时调整行为，而无需重写或重新部署代码。</p>
@@ -324,7 +324,7 @@ MCP 功能复杂，可以支持多轮对话，一次能调用多个任务，也�
 <ul>
 <li>mcp协议工作在应用与外部工具对接的阶段，标准化这些工具的开发，以及在应用层接入、执行等过程，更多指的是整个让模型调用工具的整体手段。</li>
 <li>function call 则工作在应用与大模型交互之间，标准化如何让大模型理解、调用外部工具。如Host 里的 LLM 向 Client 调用工具时，大多仍然使用 Function Calling。<br />
-<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449604160957.jpg" alt="" /></figure></li>
+<img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449604160957.jpg" alt="" /></li>
 </ul>
 <h2><a id="%E4%B8%89%E3%80%81%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B%EF%BC%9A%E4%BA%A4%E9%80%9A%E6%80%81%E5%8A%BF%E5%AE%9E%E6%97%B6%E6%9F%A5%E8%AF%A2" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>三、实战案例：交通态势实时查询</h2>
 <h3><a id="3-1%E9%9C%80%E6%B1%82" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>3.1 需求</h3>
@@ -332,7 +332,7 @@ MCP 功能复杂，可以支持多轮对话，一次能调用多个任务，也�
 <h3><a id="3-2%E5%AE%9E%E7%8E%B0-mcp-server" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>3.2 实现MCP Server</h3>
 <p>准备：高德ApiKey、安装<a href="https://github.com/modelcontextprotocol/typescript-sdk"><code>@modelcontextprotocol/sdk</code></a></p>
 <p>代码如下：</p>
-<pre class="line-numbers"><code class="language-ts">import { McpServer } from &quot;@modelcontextprotocol/sdk/server/mcp.js&quot;;
+<pre><code class="language-ts">import { McpServer } from &quot;@modelcontextprotocol/sdk/server/mcp.js&quot;;
 import { StdioServerTransport } from &quot;@modelcontextprotocol/sdk/server/stdio.js&quot;;
 import { z } from &quot;zod&quot;;
 // 通过命令行获取key
@@ -465,7 +465,7 @@ main();
 </code></pre>
 <p>在开发的时候，可以使用<a href="https://modelcontextprotocol.io/docs/tools/inspector">@modelcontextprotocol/inspector</a>进行调试。</p>
 <h3><a id="3-3%E5%AE%9E%E7%8E%B0-mcp-client" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>3.3 实现MCP Client</h3>
-<pre class="line-numbers"><code class="language-js">import { Client } from &quot;@modelcontextprotocol/sdk/client/index.js&quot;;
+<pre><code class="language-js">import { Client } from &quot;@modelcontextprotocol/sdk/client/index.js&quot;;
 import { StdioClientTransport } from &quot;@modelcontextprotocol/sdk/client/stdio.js&quot;;
 
 const transport = new StdioClientTransport({
@@ -519,7 +519,7 @@ console.log(result);
 <li>打开cursor的MCP配置文件。</li>
 <li>添加配置</li>
 </ol>
-<pre class="line-numbers"><code class="language-js">{
+<pre><code class="language-js">{
   &quot;mcpServers&quot;: {
     &quot;amap-traffic-mcp-server&quot;: {
       &quot;type&quot;: &quot;stdio&quot;,
@@ -534,17 +534,17 @@ console.log(result);
 </code></pre>
 <ol start="3">
 <li>正常情况可以看到mcp列表中已出现添加的MCP及它提供的tools<br />
-<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449489596763.jpg" alt="" /></figure></li>
+<img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449489596763.jpg" alt="" /></li>
 <li>在chart面板中输入“帮我查询成都市天府大道北段道路交通情况&quot;。可以看到它调用了MCP，并返回了结果<br />
-<figure><img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449490810948.jpg" alt="" /></figure><br />
+<img src="https://pictures-1303450388.cos.ap-chengdu.myqcloud.com/2025/04/27/17449490810948.jpg" alt="" /><br />
 当然，如果你的MCP想共享给别人使用，那么可以发布到npm上，在<code>package.json</code>中添加如下内容,支持使用npx运行。</li>
 </ol>
-<pre class="line-numbers"><code class="language-plain_text">&quot;bin&quot;: {
+<pre><code class="language-plain_text">&quot;bin&quot;: {
     &quot;amap-traffic-mcp-server&quot;: &quot;./build/index.js&quot;
 }
 </code></pre>
 <p>然后进行发布，发布后，别人就可以使用如下方式进行集成了。</p>
-<pre class="line-numbers"><code class="language-plain_text">&quot;amap-traffic-mcp-server&quot;: {
+<pre><code class="language-plain_text">&quot;amap-traffic-mcp-server&quot;: {
   &quot;type&quot;: &quot;stdio&quot;,
   &quot;command&quot;: &quot;npx&quot;,
   &quot;args&quot;: [
@@ -758,6 +758,7 @@ body{ box-sizing: border-box;
      word-wrap: break-word !important;       /* Internet Explorer 5.5+ */
     }
     html,body{margin:0;padding:4px;}
+    .mweb-yaml{display:none;}
 }
 
 

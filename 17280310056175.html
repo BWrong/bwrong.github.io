@@ -136,7 +136,7 @@
         <article class="markdown-body single-content">
           <h1><a id="%E5%BC%80%E5%A7%8B%E4%BD%BF%E7%94%A8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>开始使用</h1>
 <h2><a id="%E8%AE%BE%E7%BD%AE%E8%BA%AB%E4%BB%BD" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>设置身份</h2>
-<pre class="line-numbers"><code class="language-plain_text">$ git config --global user.name &quot;Your Name&quot;
+<pre><code class="language-plain_text">$ git config --global user.name &quot;Your Name&quot;
 $ git config --global user.email &quot;email@example.com&quot;
 </code></pre>
 <p>注意git config命令的--global参数，用了这个参数，表示你这台机器上所有的Git仓库都会使用这个配置，当然也可以对某个仓库指定不同的用户名和Email地址，不使用--global参数即可。</p>
@@ -145,13 +145,13 @@ $ git config --global user.email &quot;email@example.com&quot;
 <li>创建仓库</li>
 </ul>
 <p>通过git init命令把这个目录变成Git可以管理的仓库，会在当前目录下生成一个.git的目录。</p>
-<pre class="line-numbers"><code class="language-plain_text">$ git init
+<pre><code class="language-plain_text">$ git init
 </code></pre>
 <ul>
 <li>添加到暂存区</li>
 </ul>
 <p>用命令<code>git add &lt;file&gt;</code>告诉Git，把文件添加到仓库,可反复多次使用，添加多个文件：</p>
-<pre class="line-numbers"><code class="language-plain_text">&lt;!--指定文件--&gt;
+<pre><code class="language-plain_text">&lt;!--指定文件--&gt;
 $ git add file2.txt file3.txt
 
 &lt;!--当前目录全部文件--&gt;
@@ -161,12 +161,12 @@ $ git add .
 <li>提交到本地仓库</li>
 </ul>
 <p>用命令<code>git commit -m &lt;message&gt;</code>告诉Git，把文件提交到仓库</p>
-<pre class="line-numbers"><code class="language-plain_text">$ git commit -m &quot;wrote a readme file&quot;
+<pre><code class="language-plain_text">$ git commit -m &quot;wrote a readme file&quot;
 </code></pre>
 <ul>
 <li>推送到远程仓库</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">&lt;!-- 添加远程仓库需使用如下命令设置，已添加则不需设置 --&gt;
+<pre><code class="language-plain_text">&lt;!-- 添加远程仓库需使用如下命令设置，已添加则不需设置 --&gt;
 $ git remote add origin &lt;name&gt; &lt;url&gt;
 &lt;!-- 推送到远程仓库 --&gt;
 $ git push &lt;name&gt;
@@ -174,7 +174,7 @@ git push -u origin master
 </code></pre>
 <h1><a id="%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E9%80%9F%E6%9F%A5" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>常用命令速查</h1>
 <h2><a id="%E5%85%A8%E5%B1%80%E9%85%8D%E7%BD%AE" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>全局配置</h2>
-<pre class="line-numbers"><code class="language-plain_text">git config --global user.name &quot;robbin&quot;
+<pre><code class="language-plain_text">git config --global user.name &quot;robbin&quot;
 git config --global user.email &quot;fankai@gmail.com&quot;
 git config --global color.ui true    # 让Git显示颜色
 git config --global alias.co checkout  # 设置别名
@@ -190,7 +190,7 @@ git config --global credential.helper store   # 记住帐号密码，不用每�
 <ul>
 <li>查看、添加、提交、删除、找回，重置修改文件</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">git help &lt;command&gt;  # 显示command的help
+<pre><code class="language-plain_text">git help &lt;command&gt;  # 显示command的help
 git show            # 显示某次提交的内容
 git show $id
 
@@ -210,7 +210,7 @@ git reset --hard    #
 <ul>
 <li>恢复最近一次提交过的状态，即放弃上次提交后的所有本次修改</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">git ci &lt;file&gt;
+<pre><code class="language-plain_text">git ci &lt;file&gt;
 git ci .
 git ci -a           # 将git add, git rm和git ci等操作都合并在一起做
 git ci -am &quot;some comments&quot;
@@ -222,7 +222,7 @@ git revert HEAD     # 恢复最后一次提交的状态
 <ul>
 <li>查看文件diff</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">git diff &lt;file&gt;     # 比较当前文件和暂存区文件差异
+<pre><code class="language-plain_text">git diff &lt;file&gt;     # 比较当前文件和暂存区文件差异
 git diff
 git diff &lt;$id1&gt; &lt;$id2&gt;   # 比较两次提交之间的差异
 git diff &lt;branch1&gt;..&lt;branch2&gt; # 在两个分支之间比较
@@ -233,7 +233,7 @@ git diff --stat     # 仅仅比较统计信息
 <ul>
 <li>查看提交记录</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">git log
+<pre><code class="language-plain_text">git log
 git log --graph --pretty=oneline --abbrev-commit
 git log &lt;file&gt;      # 查看该文件每次提交记录
 git log -p &lt;file&gt;   # 查看每次详细修改内容的diff
@@ -245,7 +245,7 @@ git log --stat      # 查看提交统计信息
 <ul>
 <li>查看、切换、创建和删除分支</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">git br -r           # 查看远程分支
+<pre><code class="language-plain_text">git br -r           # 查看远程分支
 git br &lt;new_branch&gt; # 创建新的分支
 git br -v           # 查看各个分支最后提交信息
 git br --merged     # 查看已经被合并到当前分支的分支
@@ -264,7 +264,7 @@ git br -D &lt;branch&gt;  # 强制删除某个分支 (未被合并的分支被�
 <ul>
 <li>分支合并和rebase</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">git merge &lt;branch&gt;               # 将branch分支合并到当前分支
+<pre><code class="language-plain_text">git merge &lt;branch&gt;               # 将branch分支合并到当前分支
 git merge origin/master --no-ff  # 不要Fast-Foward合并，这样可以生成merge提交
 
 git rebase master &lt;branch&gt;       # 将master rebase到branch，相当于：
@@ -273,7 +273,7 @@ git checkout &lt;branch&gt; &amp;&amp; git rebase master &amp;&amp; git co maste
 <ul>
 <li>Git远程分支管理</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">git pull                         # 抓取远程仓库所有分支更新并合并到本地
+<pre><code class="language-plain_text">git pull                         # 抓取远程仓库所有分支更新并合并到本地
 git pull --no-ff                 # 抓取远程仓库所有分支更新并合并到本地，不要快进合并
 git branch --set-upstream-to=origin/dev dev   # 将本地分支与远程分支关联
 git fetch origin                 # 抓取远程仓库更新
@@ -289,14 +289,14 @@ git push origin &lt;local_branch&gt;:&lt;remote_branch&gt;  # 创建远程分支
 git push origin :&lt;remote_branch&gt;  #先删除本地分支(git br -d &lt;branch&gt;)，然后再push删除远程分支
 </code></pre>
 <h2><a id="git%E8%A1%A5%E4%B8%81%E7%AE%A1%E7%90%86%E6%96%B9%E4%BE%BF%E5%9C%A8%E5%A4%9A%E5%8F%B0%E6%9C%BA%E5%99%A8%E4%B8%8A%E5%BC%80%E5%8F%91%E5%90%8C%E6%AD%A5%E6%97%B6%E7%94%A8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Git补丁管理(方便在多台机器上开发同步时用)</h2>
-<pre class="line-numbers"><code class="language-plain_text">git diff &gt; ../sync.patch         # 生成补丁
+<pre><code class="language-plain_text">git diff &gt; ../sync.patch         # 生成补丁
 git apply ../sync.patch          # 打补丁
 git apply --check ../sync.patch  # 测试补丁能否成功
 </code></pre>
 <h2><a id="git%E6%A0%87%E7%AD%BE%E7%AE%A1%E7%90%86" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Git标签管理</h2>
 <p>一般发布版本可以采用标签形式来创建里程碑。</p>
 <p>注意：标签总是和某个commit挂钩。如果这个commit既出现在master分支，又出现在dev分支，那么在这两个分支上都可以看到这个标签。</p>
-<pre class="line-numbers"><code class="language-plain_text">git tag           # 查看所有标签
+<pre><code class="language-plain_text">git tag           # 查看所有标签
 git tag v1.0.0    # 从当前创建标签
 git tag v1.0.0 &lt;commitId&gt;  # 从某个commitId创建标签
 git tag -a v0.1 -m &quot;version 0.1 released&quot; 1094adb   # 创建带有说明的标签
@@ -309,7 +309,7 @@ git tag -d &lt;tagname&gt;   # 1.删除本地标签
 git push origin :refs/tags/&lt;tagname&gt;   # 2.删除远程标签
 </code></pre>
 <h2><a id="git%E5%82%A8%E8%97%8F%E7%AE%A1%E7%90%86" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Git储藏管理</h2>
-<pre class="line-numbers"><code class="language-plain_text">git stash                        # 暂存
+<pre><code class="language-plain_text">git stash                        # 暂存
 git stash list                   # 列所有stash
 git stash apply  [stashName]               # 恢复储藏的内容
 git stash drop                   # 删除储藏区
@@ -317,7 +317,7 @@ git stash pop                   # 恢复并删除储藏内容
 git stash clear               # 清空储藏区
 </code></pre>
 <h2><a id="git%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E7%AE%A1%E7%90%86" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Git远程仓库管理</h2>
-<pre class="line-numbers"><code class="language-plain_text">git remote -v                    # 查看远程服务器地址和仓库名称
+<pre><code class="language-plain_text">git remote -v                    # 查看远程服务器地址和仓库名称
 git remote show origin           # 查看远程服务器仓库状态
 git remote add origin git@github:robbin/robbin_site.git         # 添加远程仓库地址
 git remote set-url origin git@github.com:robbin/robbin_site.git # 设置远程仓库地址(用于修改远程仓库地址)
@@ -326,7 +326,7 @@ git remote rm &lt;repository&gt;       # 删除远程仓库
 <ul>
 <li>创建远程仓库</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">git clone --bare robbin_site robbin_site.git  # 用带版本的项目创建纯版本仓库
+<pre><code class="language-plain_text">git clone --bare robbin_site robbin_site.git  # 用带版本的项目创建纯版本仓库
 scp -r my_project.git git@git.csdn.net:~      # 将纯仓库上传到服务器上
 
 mkdir robbin_site.git &amp;&amp; cd robbin_site.git &amp;&amp; git --bare init # 在服务器创建纯仓库
@@ -340,7 +340,7 @@ git branch --set-upstream master origin/master
 git branch --set-upstream develop origin/develop
 
 </code></pre>
-<p><figure><img src="media/17280310056175/17280310477789.jpg" alt="" /></figure></p>
+<p><img src="media/17280310056175/17280310477789.jpg" alt="" /></p>
 <h1><a id="%E5%88%86%E6%94%AF%E6%A8%A1%E5%9E%8B%E7%AE%A1%E7%90%86%E7%AD%96%E7%95%A5" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>分支模型管理策略</h1>
 <h4><a id="master%E5%88%86%E6%94%AF" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>master 分支</h4>
 <ul>
@@ -373,7 +373,7 @@ git branch --set-upstream develop origin/develop
 <p>GIT提交时的粒度应该是一个小功能点或者一个bugFix，这样进行恢复操作时能够将影响范围降到最低。</p>
 <p>为了方便跟踪工程历史，编写良好的版本发布日志，我们应该编写一个良好的commit messages。建议采用当前广泛应用的 <a href="https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines">Angular Git CommitGuidelines规范</a>。</p>
 <p>每次提交，Commit message 可以包括三个部分：<code>Header</code>，<code>Body</code> 和 <code>Footer</code>。</p>
-<pre class="line-numbers"><code class="language-plain_text">&lt;type&gt;(&lt;scope&gt;): &lt;subject&gt;  // header
+<pre><code class="language-plain_text">&lt;type&gt;(&lt;scope&gt;): &lt;subject&gt;  // header
 // 空一行
 &lt;body&gt;
 // 空一行
@@ -591,6 +591,7 @@ body{ box-sizing: border-box;
      word-wrap: break-word !important;       /* Internet Explorer 5.5+ */
     }
     html,body{margin:0;padding:4px;}
+    .mweb-yaml{display:none;}
 }
 
 

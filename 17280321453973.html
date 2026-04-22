@@ -167,24 +167,24 @@
 <h2><a id="%E6%80%A5%E6%80%A5%E5%A6%82%E5%BE%8B%E4%BB%A4" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>急急如律令</h2>
 <h3><a id="%E5%AE%9E%E7%8E%B0%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%A8%A1%E5%9D%97" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>实现可执行模块</h3>
 <p>首先，我们需要创建一个项目，这里就叫<code>yncms-template-cli</code>, 项目结构如下：</p>
-<pre class="line-numbers"><code class="language-js">- commands  // 此文件夹用于放置自定义命令
+<pre><code class="language-js">- commands  // 此文件夹用于放置自定义命令
 - utils
 - index.js  // 项目入口
 - readme.md
 </code></pre>
 <p>为了测试，我们先在<code>index.js</code>放点内容：</p>
-<pre class="line-numbers"><code class="language-js">#!/usr/bin/env node
+<pre><code class="language-js">#!/usr/bin/env node
 // 必须在文件头添加如上内容指定运行环境为node
 console.log('hello cli');
 </code></pre>
 <p>对于一般的nodejs项目，我们直接使用<code>node index.js</code>就可以了，但是这里是脚手架，肯定不能这样。我们需要把项目发布到npm，用户进行全局安装，然后就可以直接使用我们自定义的命令，类似<code>yncms-template</code>这样。</p>
 <p>所以，我们需要将我们的项目做下改动，首先在<code>packge.json</code>中添加如下内容：</p>
-<pre class="line-numbers"><code class="language-json"> &quot;bin&quot;: {
+<pre><code class="language-json"> &quot;bin&quot;: {
     &quot;yncms-template&quot;: &quot;index.js&quot;
   },
 </code></pre>
 <p>这样就可以将<code>yncms-template</code>定义为一个命令了，但此时仅仅只能在项目中使用，还不能作为全局命令使用，这里我们需要使用<code>npm link</code>将其链接到全局命令，执行成功后在你的全局<code>node_modules</code>目录下可以找到相应文件。然后输入命令测试一下，如果出现如下内容说明第一步已经成功一大半了：</p>
-<pre class="line-numbers"><code class="language-shell">PS E:\WorkSpace\yncms-template-cli&gt; yncms-template
+<pre><code class="language-shell">PS E:\WorkSpace\yncms-template-cli&gt; yncms-template
 hello cli
 </code></pre>
 <p>但是，目前这个命令只有我们自己电脑可以用，要想其他人也能安装使用，需要将它发布到npm，大致流程如下：</p>
@@ -204,12 +204,12 @@ hello cli
 <li><code>name</code>为发布的包名，不能和npm已有的包重复</li>
 <li><code>version</code>为版本信息，每次发布都必须要比线上的版本高</li>
 <li><code>homepage</code>、<code>bugs</code>、<code>repository</code>也可以添加上，对应如下页面<br />
-<figure><img src="media/17280321453973/17280321822699.jpg" alt="" /></figure></li>
+<img src="media/17280321453973/17280321822699.jpg" alt="" /></li>
 </ul>
 </li>
 <li>
 <p>在readme.md加入脚手架介绍及使用方法，方便他人使用。如果需要在文档中加入徽标，展示脚手架的下载次数之类的，可以在<a href="https://shields.io/">这里</a>生成。<br />
-<figure><img src="media/17280321453973/17280322084270.jpg" alt="" /></figure></p>
+<img src="media/17280321453973/17280322084270.jpg" alt="" /></p>
 </li>
 </ul>
 <p>发布成功后，需要等待一会儿才可以在<a href="https://www.npmjs.com/">npm仓库</a>搜索到。</p>
@@ -217,13 +217,13 @@ hello cli
 <p>既然是脚手架，肯定不能只让它输出一段文字吧，我们还需要定义一些命令，用户在命令行输入这些命令和参数，脚手架会做出对应的操作。这里不需要我们自己去解析这些输入的命令和参数，有现成的轮子(<a href="https://github.com/tj/commander.js/blob/HEAD/Readme_zh-CN.md">commander</a>)可以使用，完全可以满足我们的需要。</p>
 <h4><a id="%E5%B8%AE%E5%8A%A9%EF%BC%88help%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>帮助（--help）</h4>
 <p>安装好<code>commander</code>后，我们将<code>index.js</code>中内容改为如下：</p>
-<pre class="line-numbers"><code class="language-js">#!/usr/bin/env node
+<pre><code class="language-js">#!/usr/bin/env node
 const commander = require('commander');
 // 利用commander解析命令行输入，必须写在所有内容最后面
 commander.parse(process.argv);
 </code></pre>
 <p>这时，虽然我们没有定义任何命令，但是commander内部给我们定义了一个帮助命令<code>--help</code>(简写<code>-h</code>):</p>
-<pre class="line-numbers"><code class="language-shell">PS E:\WorkSpace\yncms-template-cli&gt; yncms-template -h
+<pre><code class="language-shell">PS E:\WorkSpace\yncms-template-cli&gt; yncms-template -h
 Usage: index [options]
 
 Options:
@@ -231,22 +231,22 @@ Options:
 </code></pre>
 <h4><a id="%E7%89%88%E6%9C%AC%EF%BC%88version%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>版本（--version）</h4>
 <p>接下来，我们再创建一个查询版本的命令参数，在<code>index.js</code>增加如下内容：</p>
-<pre class="line-numbers"><code class="language-js">// 查看版本号
+<pre><code class="language-js">// 查看版本号
 commander.version(require('./package.json').version);
 </code></pre>
 <p>这样，我们在命令行就可以查看版本号了:</p>
-<pre class="line-numbers"><code class="language-shell">PS E:\WorkSpace\yncms-template-cli&gt; yncms-template -V
+<pre><code class="language-shell">PS E:\WorkSpace\yncms-template-cli&gt; yncms-template -V
 1.0.10
 PS E:\WorkSpace\yncms-template-cli&gt; yncms-template --version
 1.0.10
 </code></pre>
 <p>默认参数是大写<code>V</code>,如果需要改成小写，将上面内容做如下改动即可：</p>
-<pre class="line-numbers"><code class="language-js">// 查看版本号
+<pre><code class="language-js">// 查看版本号
 commander
     .version(require('./package.json').version)
     .option('-v,--version', '查看版本号');
 </code></pre>
-<pre class="line-numbers"><code class="language-shell">PS E:\WorkSpace\yncms-template-cli&gt; yncms-template -h
+<pre><code class="language-shell">PS E:\WorkSpace\yncms-template-cli&gt; yncms-template -h
 Usage: index [options]
 Options:
   -V, --version  output the version number
@@ -255,7 +255,7 @@ Options:
 <h4><a id="init%E5%AD%90%E5%91%BD%E4%BB%A4" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>init子命令</h4>
 <p>接下来，我们来定义一个<code>init</code>命令，如<code>yncms-template init test</code>。<br />
 在<code>index.js</code>中增加如下内容：</p>
-<pre class="line-numbers"><code class="language-js">commander
+<pre><code class="language-js">commander
     .command('init &lt;name&gt;') // 定义init子命令，&lt;name&gt;为必需参数可在action的function中接收，如需设置非必需参数，可使用中括号
     .option('-d, --dev', '获取开发版') // 配置参数，简写和全写中使用,分割
     .description('创建项目') // 命令描述说明
@@ -266,7 +266,7 @@ Options:
     });
 </code></pre>
 <p>现在测试一下：</p>
-<pre class="line-numbers"><code class="language-shell">PS E:\WorkSpace\yncms-template-cli&gt; yncms-template init test -d
+<pre><code class="language-shell">PS E:\WorkSpace\yncms-template-cli&gt; yncms-template init test -d
 test
 true
 </code></pre>
@@ -275,7 +275,7 @@ true
 <ul>
 <li>实现<code>init</code>命令具体执行的操作，下面会有单独部分来说。</li>
 <li>为了方便维护，将命令<code>action</code>拆分到<code>commands</code>文件夹中<br />
-<figure><img src="media/17280321453973/17280322393931.jpg" alt="" /></figure></li>
+<img src="media/17280321453973/17280322393931.jpg" alt="" /></li>
 </ul>
 <h3><a id="%E6%8B%89%E5%8F%96%E9%A1%B9%E7%9B%AE" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>拉取项目</h3>
 <p>上面，我们定义了<code>init</code>命令，但是并没有达到初始化项目的目的，接下来我们就实现一下。</p>
@@ -285,7 +285,7 @@ true
 <li>将项目放置到单独的GIT仓库，好处是模板更新比较简单，因为是相互独立的，只需要维护模板自己的仓库即可，另外可以控制拉取权限，因为如果是私有项目，那么没有权限的人员是无法拉取成功的；缺点就是每次初始化都要去GIT拉取，可能会慢点，不过影响不大，所以建议选择此种方式</li>
 </ul>
 <p>首先，我们利用<a href="https://www.npmjs.com/package/download-git-repo">download-git-repo</a>封装一个<code>clone</code>方法，用于从git拉取项目。</p>
-<pre class="line-numbers"><code class="language-js">// utils/clone.js
+<pre><code class="language-js">// utils/clone.js
 const download = require('download-git-repo');
 const symbols = require('log-symbols');  // 用于输出图标
 const ora = require('ora'); // 用于输出loading
@@ -306,7 +306,7 @@ module.exports = function (remote, name, option) {
     });
   };
 </code></pre>
-<pre class="line-numbers"><code class="language-js">// commands/init.js
+<pre><code class="language-js">// commands/init.js
 const shell = require('shelljs');
 const symbols = require('log-symbols');
 const clone = require('../utils/clone.js');
@@ -337,9 +337,9 @@ const initAction = async (name, option) =&gt; {
 module.exports = initAction;
 </code></pre>
 <p>测试一下，不出意外就可以成功拉取项目了。<br />
-<figure><img src="media/17280321453973/17280322526988.jpg" alt="" /></figure></p>
+<img src="media/17280321453973/17280322526988.jpg" alt="" /></p>
 <p>这里拉取的项目是和远程仓库关联的，我们需要将其删掉（由于我们项目是svn管理，所以直接把<code>.git</code>文件夹删掉，如果使用git的话，可以<code>git init</code>初始化即可），清理掉一些多余文件：</p>
-<pre class="line-numbers"><code class="language-js">// commands/init.js
+<pre><code class="language-js">// commands/init.js
 // 5. 清理文件
 const deleteDir = ['.git', '.gitignore', 'README.md', 'docs']; // 需要清理的文件
 const pwd = shell.pwd();
@@ -349,7 +349,7 @@ deleteDir.map(item =&gt; shell.rm('-rf', pwd + `/${name}/${item}`));
 <p>在上述过程中，我们实现了一个脚手架的基本功能，大致分为三个流程（拉取模板-&gt;创建项目-&gt;收尾清理），也解决了上面我项目中遇到的第一个问题。接下来，我们就来看下第二个问题如何解决。</p>
 <p>解决的思路就是在创建项目的时候，就通过命令行强制要求开发人员输入对应的配置，然后自动写入配置文件，这样就可以有效避免忘记填写的尴尬。当然通过这种方式也可以实现根据用户的输入来动态初始化项目，达到个性化的目的。</p>
 <p>这里我们直接使用现成的轮子<a href="https://www.npmjs.com/package/inquirer">inquirer</a>就可以搞定，效果和VueCli创建项目一样，支持很多类型，比较强大，也比较简单，具体用法看官方文档就可以了。这里我直接上代码，在第4步（下载模板）前面增加如下：</p>
-<pre class="line-numbers"><code class="language-js">// init.js
+<pre><code class="language-js">// init.js
 const inquirer = require('inquirer');
 // 定义需要询问的问题
 const questions = [
@@ -416,14 +416,14 @@ let confirm = await inquirer.prompt([
 ]);
 if (!confirm.isConfirm) return false;
 </code></pre>
-<p><figure><img src="media/17280321453973/17280322736911.jpg" alt="" /></figure></p>
+<p><img src="media/17280321453973/17280322736911.jpg" alt="" /></p>
 <p>获取到用户输入的配置以后，就可以写入配置文件或者做个性化的处理了，这个太简单，我这里就不赘述了。</p>
 <h2><a id="%E9%94%A6%E4%B8%8A%E6%B7%BB%E8%8A%B1" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>锦上添花</h2>
 <p>到这里，一个完全满足需求的脚手架就完成了，但是作为一个有追求的程序员，我们可以在界面和易用性上面再做点什么：</p>
 <ul>
 <li>为异步操作加上loding动画，可以直接使用<a href="https://www.npmjs.com/package/ora">ora</a></li>
 </ul>
-<pre class="line-numbers"><code class="language-js">const installSpinner = ora('正在安装依赖...').start();
+<pre><code class="language-js">const installSpinner = ora('正在安装依赖...').start();
 if (shell.exec('npm install').code !== 0) {
     console.log(symbols.warning, chalk.yellow('自动安装失败，请手动安装！'));
     installSpinner.fail(); // 安装失败
@@ -434,17 +434,17 @@ installSpinner.succeed(chalk.green('依赖安装成功！'));
 <ul>
 <li>
 <p>在操作成功或者失败给出图标提示，使用<a href="https://www.npmjs.com/package/log-symbols">log-symbols</a><br />
-<figure><img src="media/17280321453973/17280322824011.jpg" alt="" /></figure></p>
+<img src="media/17280321453973/17280322824011.jpg" alt="" /></p>
 </li>
 <li>
 <p>可以给文字加点颜色，同理用现成的轮子<a href="https://www.npmjs.com/package/chalk">Chalk</a><br />
-<figure><img src="media/17280321453973/17280322882996.jpg" alt="" /></figure></p>
+<img src="media/17280321453973/17280322882996.jpg" alt="" /></p>
 </li>
 <li>
 <p>在安装依赖或者其他耗时比较长的时候，用户可能会把终端切到后台，这时我们的操作完成后可以使用<a href="https://www.npmjs.com/package/node-notifier">node-notifier</a>发出系统通知给予用户提示。</p>
 </li>
 </ul>
-<pre class="line-numbers"><code class="language-js">notifier.notify({
+<pre><code class="language-js">notifier.notify({
     title: 'YNCMS-template-cli',
     icon: path.join(__dirname, 'coulson.png'),
     message: ' ♪(＾∀＾●)ﾉ 恭喜，项目创建成功！'
@@ -453,7 +453,7 @@ installSpinner.succeed(chalk.green('依赖安装成功！'));
 <ul>
 <li>在创建项目的时候，我们可能会需要执行一些shell命令，可以使用<a href="https://www.npmjs.com/package/shelljs">shelljs</a>来完成，例如我们要在项目创建结束后打开<code>vscode</code>并退出终端</li>
 </ul>
-<pre class="line-numbers"><code class="language-js">// 8. 打开编辑器
+<pre><code class="language-js">// 8. 打开编辑器
 if (shell.which('code')) shell.exec('code ./');
 shell.exit(1);
 </code></pre>
@@ -643,6 +643,7 @@ body{ box-sizing: border-box;
      word-wrap: break-word !important;       /* Internet Explorer 5.5+ */
     }
     html,body{margin:0;padding:4px;}
+    .mweb-yaml{display:none;}
 }
 
 

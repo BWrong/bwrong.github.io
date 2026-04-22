@@ -140,7 +140,7 @@
 <ul>
 <li>webworkify-webpack（推荐）</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">// main.js
+<pre><code class="language-plain_text">// main.js
 import work from 'webworkify-webpack';
 const wareWorker = work(require.resolve('./workers/ware.js'));
 // 发送消息
@@ -156,7 +156,7 @@ wareWorker.onerror = event =&gt; {
 // 关闭进程
 wareWorker.terminate();
 </code></pre>
-<pre class="line-numbers"><code class="language-plain_text">// ware.js
+<pre><code class="language-plain_text">// ware.js
 export default function (self) {
     // 接收消息
     self.onmessage = function(data) {
@@ -171,7 +171,7 @@ export default function (self) {
 </ul>
 <p><a href="https://webpack.docschina.org/loaders/worker-loader/">文档地址</a></p>
 <p>子进程文件以<code>.worker.js</code>结束，在配置loader时匹配此规则，指定相应loader即可。</p>
-<pre class="line-numbers"><code class="language-js">// vue.config.js
+<pre><code class="language-js">// vue.config.js
 chainWebpack: config =&gt; {
       config.module
       .rule('worker')
@@ -369,6 +369,7 @@ body{ box-sizing: border-box;
      word-wrap: break-word !important;       /* Internet Explorer 5.5+ */
     }
     html,body{margin:0;padding:4px;}
+    .mweb-yaml{display:none;}
 }
 
 

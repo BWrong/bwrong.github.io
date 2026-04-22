@@ -197,17 +197,17 @@
 <h1><a id="%E4%BD%BF%E7%94%A8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>使用</h1>
 <h2><a id="%E5%AE%89%E8%A3%85" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>安装</h2>
 <p>可以采用全局或者本地安装，推荐使用本地安装，后面我们也是采用此方式。</p>
-<pre class="line-numbers"><code class="language-shell"># 全局安装
+<pre><code class="language-shell"># 全局安装
 npm install -g eslint
 # 项目本地安装（推荐）
 npm install -D eslint
 </code></pre>
 <p>安装成功后，在项目根目录执行如下命令，完成一系列设置来创建配置文件。</p>
-<pre class="line-numbers"><code class="language-shell">npx eslint --init
+<pre><code class="language-shell">npx eslint --init
 </code></pre>
-<p><figure><img src="media/17280328175326/17281442524425.png" alt="image-20200918112422980" /><figcaption>image-20200918112422980<figcaption></figure></p>
+<p><img src="media/17280328175326/17281442524425.png" alt="image-20200918112422980" /></p>
 <p>执行如上命令，会在项目根目录创建一个<code>.eslintrc.js</code>文件，内容如下：</p>
-<pre class="line-numbers"><code class="language-js">module.exports = {
+<pre><code class="language-js">module.exports = {
     'env': { // 环境设置
         'browser': true,
         'es2021': true,
@@ -243,13 +243,13 @@ npm install -D eslint
 <p>ESLint使用非常灵活，可以在多种场景使用，下面我们就瞧瞧。</p>
 <h3><a id="%E5%91%BD%E4%BB%A4%E8%A1%8C" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>命令行</h3>
 <p>现在创建一个文件<code>./src/index.js</code>：</p>
-<pre class="line-numbers"><code class="language-js">// ./src/index.js
+<pre><code class="language-js">// ./src/index.js
 let test = 1
 </code></pre>
 <p>然后在命令行输入命令：</p>
-<pre class="line-numbers"><code class="language-shell">npx eslint ./src/index.js
+<pre><code class="language-shell">npx eslint ./src/index.js
 </code></pre>
-<p><figure><img src="media/17280328175326/17281442524450.png" alt="image-20200918171659654" /><figcaption>image-20200918171659654<figcaption></figure></p>
+<p><img src="media/17280328175326/17281442524450.png" alt="image-20200918171659654" /></p>
 <p>可以看到，ESLint给我们提示了两个错误：</p>
 <ul>
 <li><code>test</code>变量定义了，但是未使用</li>
@@ -258,11 +258,11 @@ let test = 1
 <p>这就是ESLint的第一个功能：找出并警告代码中有问题的地方。</p>
 <p>像给代码加上分号这种小事情，其实没必要我们亲力亲为的（懒果然是程序猿的共性），ESLint提供了自动修复的功能，可以帮我们自动修复一些简单的问题。</p>
 <p>执行命令，加上<code>--fix</code>参数：</p>
-<pre class="line-numbers"><code class="language-shell">npx eslint --fix ./src/index.js
+<pre><code class="language-shell">npx eslint --fix ./src/index.js
 </code></pre>
-<p><figure><img src="media/17280328175326/17281442524460.png" alt="image-20200918172959131" /><figcaption>image-20200918172959131<figcaption></figure></p>
+<p><img src="media/17280328175326/17281442524460.png" alt="image-20200918172959131" /></p>
 <p>我们可以看到，只有一个错误了，另外再看下<code>./src/index.js</code>：</p>
-<pre class="line-numbers"><code class="language-js">// ./src/index.js
+<pre><code class="language-js">// ./src/index.js
 let test = 1;
 </code></pre>
 <p>是不是自动加上分号了呢？oh~oh!，太酷了。</p>
@@ -283,10 +283,10 @@ let test = 1;
 <p>前面我们介绍了如何在命令行模式下的使用，在需要检测的时候必须要在命令行中执行相关命令才可以，有没有方法能够在我们启动项目的时候自动运行呢？</p>
 <p>答案是肯定的，webpack作为当下最流行的构建工具，ESLint也为其提供了<code>eslint-loader</code>，以在构建的时候来做代码检查和修复。</p>
 <p>首先需要安装<code>eslint-loader</code>和<code>eslint</code>：</p>
-<pre class="line-numbers"><code class="language-shell">npm install eslint-loader eslint --save-dev
+<pre><code class="language-shell">npm install eslint-loader eslint --save-dev
 </code></pre>
 <p>然后在webpack配置中添加对应配置：</p>
-<pre class="line-numbers"><code class="language-js">// webpack.config.js
+<pre><code class="language-js">// webpack.config.js
 module.exports = {
   // ...
   module: {
@@ -310,10 +310,10 @@ module.exports = {
 <li><code>eslint-loader</code>的配置推荐放在eslint的配置文件中，而不放在loader的options中。</li>
 </ol>
 <p>如上配置以后，在执行构建命令的时候，就会先执行检查并在终端输出检查结果（仅做检查，不会影响构建结果）。</p>
-<p><figure><img src="media/17280328175326/17281442524471.png" alt="image-20200922160134442" /><figcaption>image-20200922160134442<figcaption></figure></p>
+<p><img src="media/17280328175326/17281442524471.png" alt="image-20200922160134442" /></p>
 <p>不过，我们一般编码的时候，终端都运行在后台的，查看这些信息就必须要来回切换，甚是不便。作为一个懒癌患者，肯定是不愿意的。用过vue-cli的同学都知道，如果有错误提示，是会在浏览器弹出浮层提示的。</p>
 <p>其实配置相当简单，不明白的自己回去看看前面webpack那部分吧。</p>
-<pre class="line-numbers"><code class="language-js">// webpack.config.js
+<pre><code class="language-js">// webpack.config.js
 module.exports = {
     // ...
  	devServer: {
@@ -322,7 +322,7 @@ module.exports = {
     // ...
 }
 </code></pre>
-<p><figure><img src="media/17280328175326/17281442524481.png" alt="image-20200922161111872" /><figcaption>image-20200922161111872<figcaption></figure></p>
+<p><img src="media/17280328175326/17281442524481.png" alt="image-20200922161111872" /></p>
 <h3><a id="%E5%9C%A8%E7%BC%96%E8%BE%91%E5%99%A8%E4%B8%AD%E4%BD%BF%E7%94%A8%EF%BC%88vscode%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>在编辑器中使用（VSCode）</h3>
 <p>前面介绍的使用方式已经非常方便了，但是作为一个懒癌重度患者，在使用中我还是发现了一些问题：</p>
 <ul>
@@ -333,21 +333,21 @@ module.exports = {
 <p>果然懒才是生产力，一些大佬为编辑器提供了ESLint插件，完美的解决了如上的问题。</p>
 <p><em>提示：下面仅介绍VSCode中的使用，其他编辑器请自行查阅使用方法。</em></p>
 <p>首先安装<a href="https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint">ESLint</a>插件，在VSCode中<code>ctrl+p</code>然后输入以下命令：</p>
-<pre class="line-numbers"><code class="language-shell">ext install dbaeumer.vscode-eslint
+<pre><code class="language-shell">ext install dbaeumer.vscode-eslint
 </code></pre>
-<p><figure><img src="media/17280328175326/17281442524491.png" alt="image-20200922163527375" /><figcaption>image-20200922163527375<figcaption></figure></p>
+<p><img src="media/17280328175326/17281442524491.png" alt="image-20200922163527375" /></p>
 <p>现在用VSCode打开前面的代码，可以看到有的代码下面会有黄色（警告）或者红色（错误）的波浪线提示，把鼠标移上去，还可以看到错误详情以及修复方案。</p>
-<p><figure><img src="media/17280328175326/17281442524510.png" alt="image-20200922163709515" /><figcaption>image-20200922163709515<figcaption></figure></p>
+<p><img src="media/17280328175326/17281442524510.png" alt="image-20200922163709515" /></p>
 <p>现在，我们书写代码的时候，就会立即给与提示，不用再去终端或者浏览器查看错误信息，然后再去文件中查找问题代码了。</p>
 <p>那么，第二问题呢，一些简单的格式能不能自动修复呢？</p>
 <p>只需要在VSCode的配置中加上如下配置，当保存文件的时候，一些简单的格式问题就会被自动修复，是不是又可以多撸几把王者农药了呢。</p>
-<pre class="line-numbers"><code class="language-json">&quot;editor.codeActionsOnSave&quot;: {
+<pre><code class="language-json">&quot;editor.codeActionsOnSave&quot;: {
     &quot;source.fixAll.eslint&quot;: true
  }
 </code></pre>
-<p><figure><img src="media/17280328175326/17281442524527.gif" alt="img" /><figcaption>img<figcaption></figure></p>
+<p><img src="media/17280328175326/17281442524527.gif" alt="img" /></p>
 <p><em>提示：vscode-eslint是支持<a href="https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint">配置</a>的，提供了<code>eslint.options</code>来设置全局配置，如果项目中没有配置，会以这里的配置兜底。</em></p>
-<pre class="line-numbers"><code class="language-json">&quot;eslint.options&quot;: {
+<pre><code class="language-json">&quot;eslint.options&quot;: {
   &quot;root&quot;: true,
   &quot;plugins&quot;: [],
   &quot;env&quot;: {},
@@ -371,7 +371,7 @@ module.exports = {
 <ul>
 <li><a href="https://eslint.org/docs/user-guide/command-line-interface#-rule">命令行</a>：在执行eslint命令的时候，将配置信息通过cli提供的配置参数传入，使用比较繁琐，一般不使用此方式。</li>
 </ul>
-<pre class="line-numbers"><code class="language-shell"># 一些常用配置
+<pre><code class="language-shell"># 一些常用配置
 # --env：设置环境
 eslint --env browser,node file.js
 eslint --env browser --env node file.js
@@ -387,7 +387,7 @@ eslint --rule 'jquery/dollar-sign: 2'
 <ul>
 <li><a href="https://eslint.org/docs/user-guide/configuring#using-configuration-comments">内联注释</a>：将配置以注释的方式写在代码文件中（一般放在文件的最前面），由于缺乏复用性，所以也不常用，如果某个文件需要特殊配置，可以采用此方式。</li>
 </ul>
-<pre class="line-numbers"><code class="language-js">/* eslint-env browser, node */     // 设置环境
+<pre><code class="language-js">/* eslint-env browser, node */     // 设置环境
 /* global var1, var2:writable */   // 设置全局变量
 /* eslint eqeqeq: &quot;off&quot;, curly: &quot;error&quot; */    // 设置规则
 </code></pre>
@@ -415,7 +415,7 @@ eslint --rule 'jquery/dollar-sign: 2'
 <li>可以在配置中添加<code>&quot;root&quot;:true</code>将该目录强制设置为根目录，来阻止继续查找。</li>
 </ul>
 <p>举个:chestnut:：</p>
-<pre class="line-numbers"><code class="language-plain_text">your-project
+<pre><code class="language-plain_text">your-project
 ├── package.json  &lt;- { &quot;eslintConfig&quot;: {...} }
 ├── .eslintrc.js
 ├── lib
@@ -487,7 +487,7 @@ eslint --rule 'jquery/dollar-sign: 2'
 <p><em>提示：后面的配置均采用<code>.eslintrc.js</code>方式，如需其他方式请自行探索。</em></p>
 <h3><a id="%E8%A7%A3%E6%9E%90%E5%99%A8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>解析器</h3>
 <p>默认情况下，ESLint使用<a href="https://github.com/eslint/espree">Espree</a>作为其解析器，不过我们也可以指定其他解析器。</p>
-<pre class="line-numbers"><code class="language-js">// .eslintrc.js
+<pre><code class="language-js">// .eslintrc.js
 module.exports = {
 	parser: &quot;esprima&quot;
 }
@@ -499,7 +499,7 @@ module.exports = {
 <li><a href="https://www.npmjs.com/package/@typescript-eslint/parser">@ typescript-eslint/parser</a>：TSLint被弃用后，TypeScript提供了此解析器用于将其与ESTree兼容，使ESLint对TypeScript进行支持。</li>
 </ul>
 <p>除了配置解析器，还可以提供一些选项对解析器进行配置：</p>
-<pre class="line-numbers"><code class="language-js">// .eslintrc.js
+<pre><code class="language-js">// .eslintrc.js
 module.exports = {
 	&quot;parser&quot;: &quot;esprima&quot;,
 	&quot;parserOptions&quot;: {
@@ -515,7 +515,7 @@ module.exports = {
 </code></pre>
 <h3><a id="%E7%8E%AF%E5%A2%83" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>环境</h3>
 <p>环境配置主要用于预定义一些全局环境变量及相应环境的语法支持，可以指定一个或者多个环境。</p>
-<pre class="line-numbers"><code class="language-js">// .eslintrc.js
+<pre><code class="language-js">// .eslintrc.js
 module.exports = {
     &quot;env&quot;: {
         &quot;browser&quot;: true,
@@ -556,7 +556,7 @@ module.exports = {
 </table>
 <p>更多环境请查看<a href="https://eslint.org/docs/user-guide/configuring#specifying-environments">官方文档</a>。</p>
 <p>一些插件中提供了环境，可以按照如下格式使用：</p>
-<pre class="line-numbers"><code class="language-js">// .eslintrc.js
+<pre><code class="language-js">// .eslintrc.js
 module.exports = {
     &quot;plugins&quot;: [&quot;example&quot;],
     &quot;env&quot;: {
@@ -566,7 +566,7 @@ module.exports = {
 </code></pre>
 <h3><a id="%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>全局变量</h3>
 <p>在使用一些全局变量，而这些变量又没在当前文件中定义时，ESLint会抛出错误，告诉我们该变量未定义，这时我们可以手动在配置文件中将该变量添加到全局变量。</p>
-<pre class="line-numbers"><code class="language-js">// .eslintrc.js
+<pre><code class="language-js">// .eslintrc.js
 module.exports = {
     &quot;globals&quot;: {
         &quot;var1&quot;: &quot;writable&quot;,
@@ -583,7 +583,7 @@ module.exports = {
 </ul>
 <h3><a id="%E6%8F%92%E4%BB%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>插件</h3>
 <p>ESLint提供了插件机制，可以让开发者自定义校验逻辑、校验规则，或对一些特殊语法提供支持，插件可以对外提供其扩展配置、规则、环境等配置。ESLint的插件均以<code>eslint-plugin-</code>开头，在配置的时候需要省略该前缀。</p>
-<pre class="line-numbers"><code class="language-js">// .eslintrc.js
+<pre><code class="language-js">// .eslintrc.js
 module.exports = {
     // ...
     &quot;plugins&quot;: [
@@ -642,7 +642,7 @@ module.exports = {
 <h3><a id="%E8%A7%84%E5%88%99" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>规则</h3>
 <p>ESLint提供了大量的<a href="https://eslint.org/docs/rules/">规则</a> ，我们可以针对这些规则进行精细的的控制。</p>
 <p>配置的格式如下：</p>
-<pre class="line-numbers"><code class="language-js">// .eslintrc.js
+<pre><code class="language-js">// .eslintrc.js
 module.exports = {
     &quot;rules&quot;: {
         &quot;eqeqeq&quot;: &quot;off&quot;,
@@ -677,7 +677,7 @@ module.exports = {
 <p>配置的规则如果有配置项，可以把值写成数组格式，第一个元素为配置的值，第二个元素为配置项。</p>
 <h3><a id="%E6%89%A9%E5%B1%95%E9%85%8D%E7%BD%AE" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>扩展配置</h3>
 <p>ESLint提供了如此多的规则，我们不可能每次都从头一个一个去配置吧！所以ESLint提供了<code>extends</code>配置项，我们可以基于一些成熟的配置来做扩展，也可以覆写其规则：</p>
-<pre class="line-numbers"><code class="language-js">// .eslintrc.js
+<pre><code class="language-js">// .eslintrc.js
 module.exports = {
     &quot;plugins&quot;: [
         &quot;react&quot;
@@ -723,7 +723,7 @@ module.exports = {
 </tbody>
 </table>
 <p>除了使用社区提供的配置，团队也可以自己定制一套配置，然后发布到npm，以便团队<a href="https://eslint.org/docs/developer-guide/shareable-configs">共享配置</a>。发布的包须以<code>eslint-config-</code>开头来进行命名，如<code>eslint-config-myconfig</code>，并建议将关键字设为<code>eslintconfig</code>，以便其他人能够找到。包的内容和<code>.eslintrc.js</code>类似：</p>
-<pre class="line-numbers"><code class="language-js">// eslint-config-myconfig/index.js
+<pre><code class="language-js">// eslint-config-myconfig/index.js
 module.exports = {
 
     globals: {
@@ -739,7 +739,7 @@ module.exports = {
 <h2><a id="%E7%A6%81%E7%94%A8%E5%92%8C%E5%BF%BD%E7%95%A5" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>禁用和忽略</h2>
 <p>ESLint虽好，但是总有些情况我们还是想静静，不愿被这太多的“俗世凡尘”规则所羁绊。尤其是拿到一份上古时代的代码，开启ESLint校验后，可能会让你怀疑你的出现可能是个错误:broken_heart::broken_heart::broken_heart:，这时禁用或忽略一些规则和文件就是个不错的主意了。</p>
 <p>禁用规则有如下几种方式：</p>
-<pre class="line-numbers"><code class="language-js">// 1. 放在文件最前面，对该文件检测时禁止所有规则
+<pre><code class="language-js">// 1. 放在文件最前面，对该文件检测时禁止所有规则
 /* eslint-disable */
 alert('foo');
 
@@ -769,7 +769,7 @@ alert('foo');
 alert('foo');
 </code></pre>
 <p>除了上述在文件中配置的方式外，也可以通过配置来对一组文件禁用校验规则：</p>
-<pre class="line-numbers"><code class="language-js">// .eslintrc.js
+<pre><code class="language-js">// .eslintrc.js
 module.exports = {
   &quot;rules&quot;: {...},
   &quot;overrides&quot;: [
@@ -783,7 +783,7 @@ module.exports = {
 }
 </code></pre>
 <p>ESLint还提供了一个文件<code>.eslintignore</code>用来忽略对文件的校验，其中配置的目录均会被ESLint忽略。</p>
-<pre class="line-numbers"><code class="language-js">/build/
+<pre><code class="language-js">/build/
 /config/
 /dist/
 /*.js
@@ -795,12 +795,12 @@ module.exports = {
 <ol>
 <li>安装依赖包</li>
 </ol>
-<pre class="line-numbers"><code class="language-shell">npm install @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint typescript --save-dev
+<pre><code class="language-shell">npm install @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint typescript --save-dev
 </code></pre>
 <ol start="2">
 <li>配置解析器，更多的解析器配置查看[该文档 <a href="../../../../../Desktop/nginx.conf">nginx.conf</a> ](<a href="https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/parser">https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/parser</a>)</li>
 </ol>
-<pre class="line-numbers"><code class="language-js">// .eslintrc.js
+<pre><code class="language-js">// .eslintrc.js
 module.exports = {
   &quot;parser&quot;: &quot;@typescript-eslint/parser&quot;, // 配置解析器
   &quot;parserOptions&quot;: {
@@ -815,7 +815,7 @@ module.exports = {
 <ol start="3">
 <li>配置插件及规则配置</li>
 </ol>
-<pre class="line-numbers"><code class="language-js">// .eslintrc.js
+<pre><code class="language-js">// .eslintrc.js
 module.exports = {
   &quot;parser&quot;: &quot;@typescript-eslint/parser&quot;,
   &quot;plugins&quot;: [&quot;@typescript-eslint&quot;], // 配置插件
@@ -835,19 +835,19 @@ module.exports = {
 <ol>
 <li>安装VSCode插件<a href="https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode"><code>Prettier - Code formatter</code></a></li>
 </ol>
-<pre class="line-numbers"><code class="language-plain_text">ext install esbenp.prettier-vscode
+<pre><code class="language-plain_text">ext install esbenp.prettier-vscode
 </code></pre>
-<p><figure><img src="media/17280328175326/17281442524536.png" alt="image-20200925171718606" /><figcaption>image-20200925171718606<figcaption></figure></p>
+<p><img src="media/17280328175326/17281442524536.png" alt="image-20200925171718606" /></p>
 <ol start="2">
 <li>安装Prettier</li>
 </ol>
-<pre class="line-numbers"><code class="language-shell">npm install -g prettier # 全局安装
+<pre><code class="language-shell">npm install -g prettier # 全局安装
 npm install -D prettier # 推荐本地安装
 </code></pre>
 <ol start="3">
 <li>在项目中添加配置，Prettier同样支持多种格式的<a href="https://prettier.io/docs/en/configuration.html">配置文件</a>，这里我们使用<code>prettier.config.js</code></li>
 </ol>
-<pre class="line-numbers"><code class="language-js">module.exports = {
+<pre><code class="language-js">module.exports = {
   printWidth: 80, // 每行代码长度（默认80）
   tabWidth: 2, // 每个tab使用多少空格（默认2）
   useTabs: false, // 使用tab进行缩进（默认false）
@@ -873,9 +873,9 @@ npm install -D prettier # 推荐本地安装
 <p><code>eslint-config-prettier</code>：关闭ESLint中与prettier中会发生冲突的规则。</p>
 </li>
 </ul>
-<pre class="line-numbers"><code class="language-shell">npm install -D eslint-plugin-prettier eslint-config-prettier
+<pre><code class="language-shell">npm install -D eslint-plugin-prettier eslint-config-prettier
 </code></pre>
-<pre class="line-numbers"><code class="language-js">// .eslintrc.js
+<pre><code class="language-js">// .eslintrc.js
 module.exports = {
     extends: [
         'plugin:prettier/recommended' // 也可以配置extends：[&quot;prettier&quot;],plugins: [&quot;prettier&quot;]
@@ -904,10 +904,10 @@ module.exports = {
 <li><a href="https://github.com/typicode/husky">husky</a>：可以很方便的在<code>package.json</code>里面定义git钩子</li>
 <li><a href="https://github.com/okonet/lint-staged">lint-staged</a>：仅对git<strong>提交的代码</strong>（不是所有）使用一些Linter操作，</li>
 </ul>
-<pre class="line-numbers"><code class="language-shell"># 安装 husky  lint-staged
+<pre><code class="language-shell"># 安装 husky  lint-staged
 npm i -D lint-staged husky
 </code></pre>
-<pre class="line-numbers"><code class="language-json">// package.json
+<pre><code class="language-json">// package.json
 &quot;lint-staged&quot;: {
   &quot;**/**.{js,json,pcss,md,vue}&quot;: [
     &quot;prettier --write&quot;, // 先执行格式化
@@ -1110,6 +1110,7 @@ body{ box-sizing: border-box;
      word-wrap: break-word !important;       /* Internet Explorer 5.5+ */
     }
     html,body{margin:0;padding:4px;}
+    .mweb-yaml{display:none;}
 }
 
 

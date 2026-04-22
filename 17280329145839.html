@@ -247,13 +247,13 @@
 <p>那么接下来我们就来看看2.0的问题，以及Vue3是如何来解决的。</p>
 <h2><a id="option%E5%BC%8F%E7%BB%84%E7%BB%87%E4%BB%A3%E7%A0%81%E7%9A%84%E7%BC%BA%E9%99%B7" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Option式组织代码的缺陷</h2>
 <p>options式组织代码，同一个功能分散在各个option中，导致在开发时需要在data、methods、computed等option横跳。</p>
-<p><figure><img src="media/17280329145839/17281430923760.webP" alt="option" /><figcaption>option<figcaption></figure></p>
+<p><img src="media/17280329145839/17281430923760.webP" alt="option" /></p>
 <p>Vue3推出了CompositionApi，目的就是为了解决这个问题，它将分散在各个option中的逻辑组合到一起，下面我们对比看下：</p>
-<p><figure><img src="media/17280329145839/17281430923793.webP" alt="" /></figure></p>
+<p><img src="media/17280329145839/17281430923793.webP" alt="" /></p>
 <h2><a id="mixin%E7%9A%84%E9%97%AE%E9%A2%98" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Mixin的问题</h2>
 <p>对于复杂的功能，我们可能会想到使用Mixin来抽离到单独的文件。但是Mixin会有一些使用上的问题，比如命名冲突、属性来源不明确。</p>
 <p>Vue3提出了Hooks的方式，可以将每个功能提取到hooks，一个hooks即是一个独立的函数，所以不会再有上述问题。</p>
-<p><figure><img src="media/17280329145839/17281430923818.webP" alt="" /></figure></p>
+<p><img src="media/17280329145839/17281430923818.webP" alt="" /></p>
 <h2><a id="typescript%E6%94%AF%E6%8C%81%E7%9A%84%E4%B8%8D%E5%81%A5%E5%85%A8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>TypeScript支持的不健全</h2>
 <p>现在大型项目都会标配 TypeScript ，Vue 当前的 API 在集成 TypeScript 时遇到了不小的麻烦，其主要原因是 Vue 依靠一个简单的 <code>this</code> 上下文来暴露 property，我们现在使用 <code>this</code> 的方式是比较微妙的。（比如 <code>methods</code> 选项下的函数的 <code>this</code> 是指向组件实例的，而不是这个 <code>methods</code> 对象）。</p>
 <p>换句话说，Vue 现有的 API 在设计之初没有照顾到类型推导，这使适配 TypeScript 变得复杂。</p>
@@ -266,7 +266,7 @@
 <p>因为 <code>Proxy</code> 本质上是对某个对象的劫持，这样它不仅仅可以监听对象某个属性值的变化，还可以监听对象属性的新增和删除。而且在实现响应式时，采用了延时处理的方式，当嵌套较深的对象时，只有在其属性被访问的时候才会处理属性的响应式，在性能上会有一定的提升。</p>
 <h2><a id="%E6%94%AF%E6%8C%81%E5%85%A8%E5%B1%80api-treeshaking" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>支持全局API Treeshaking</h2>
 <p>Vue3重构了全局和局部的api，均采用ESModule的命名导出访问，支持tree-shaking，只打包使用到的功能，用户只为实际使用的功能买单，同时包体积的减少，也意味着性能的提升。</p>
-<pre class="line-numbers"><code class="language-js">// vue2
+<pre><code class="language-js">// vue2
 import Vue from 'vue'
 
 Vue.nextTick(() =&gt; {
@@ -274,7 +274,7 @@ Vue.nextTick(() =&gt; {
 })
 
 </code></pre>
-<pre class="line-numbers"><code class="language-js">// vue3
+<pre><code class="language-js">// vue3
 import { nextTick } from 'vue'
 
 nextTick(() =&gt; {
@@ -288,7 +288,7 @@ nextTick(() =&gt; {
 <ul>
 <li>
 <p>支持多个应用根实例，防止全局配置污染</p>
-<pre class="line-numbers"><code class="language-js">// vue2
+<pre><code class="language-js">// vue2
 // 这会影响两个根实例
 Vue.mixin({
   /* ... */
@@ -296,7 +296,7 @@ Vue.mixin({
 const app1 = new Vue({ el: '#app-1' })
 const app2 = new Vue({ el: '#app-2' })
 </code></pre>
-<pre class="line-numbers"><code class="language-js">// vue3
+<pre><code class="language-js">// vue3
 import { createApp } from 'vue'
 
 const app = createApp({})
@@ -308,7 +308,7 @@ app.mixin({
 </li>
 <li>
 <p>全局 API重构为可Treeshaking</p>
-<pre class="line-numbers"><code class="language-js">import { nextTick } from 'vue'
+<pre><code class="language-js">import { nextTick } from 'vue'
 
 nextTick(() =&gt; {
   // 一些和DOM有关的东西
@@ -328,12 +328,12 @@ nextTick(() =&gt; {
 <li>更好用的<code>v-model</code></li>
 </ul>
 <p>替代原有的<code>v-model</code>和<code>v-bind.sync</code>修饰符，通过参数形式，支持使用多个<code>v-model</code>进行双向绑定。</p>
-<pre class="line-numbers"><code class="language-html">&lt;!-- vue2 --&gt;
+<pre><code class="language-html">&lt;!-- vue2 --&gt;
 &lt;ChildComponent v-model=&quot;pageTitle&quot; :title.sync=&quot;title&quot;/&gt;
 &lt;!-- 完整 --&gt;
 &lt;ChildComponent :value=&quot;pageTitle&quot; @input=&quot;(title)=&gt; (pageTitle=title)&quot; :title=&quot;title&quot; @update:title=&quot;(title)=&gt; (title=title)&quot;/&gt;
 </code></pre>
-<pre class="line-numbers"><code class="language-html">&lt;!-- vue3 --&gt;
+<pre><code class="language-html">&lt;!-- vue3 --&gt;
 &lt;ChildComponent v-model=&quot;pageTitle&quot; v-modle:title=&quot;title&quot;/&gt;
 &lt;!-- 完整 --&gt;
 &lt;ChildComponent :model-value=&quot;pageTitle&quot; @update:modelValue=&quot;(title)=&gt; (pageTitle=title)&quot; :title=&quot;title&quot; @update:title=&quot;(title)=&gt; (title=title)&quot;/&gt;
@@ -341,13 +341,13 @@ nextTick(() =&gt; {
 <ul>
 <li><code>&lt;template v-for&gt;</code>的变化</li>
 </ul>
-<pre class="line-numbers"><code class="language-vue">&lt;!-- vue2 --&gt;
+<pre><code class="language-vue">&lt;!-- vue2 --&gt;
 &lt;template v-for=&quot;item in list&quot;&gt;
   &lt;div :key=&quot;'heading-' + item.id&quot;&gt;...&lt;/div&gt;
   &lt;span :key=&quot;'content-' + item.id&quot;&gt;...&lt;/span&gt;
 &lt;/template&gt;
 </code></pre>
-<pre class="line-numbers"><code class="language-vue">&lt;!-- vue 3 --&gt;
+<pre><code class="language-vue">&lt;!-- vue 3 --&gt;
 &lt;template v-for=&quot;item in list&quot; :key=&quot;item.id&quot;&gt;
   &lt;div&gt;...&lt;/div&gt;
   &lt;span&gt;...&lt;/span&gt;
@@ -356,12 +356,12 @@ nextTick(() =&gt; {
 <ul>
 <li><code>v-bind</code> 合并顺序变化</li>
 </ul>
-<pre class="line-numbers"><code class="language-html">&lt;!-- vue2 --&gt;
+<pre><code class="language-html">&lt;!-- vue2 --&gt;
 &lt;div id=&quot;red&quot; v-bind=&quot;{ id: 'blue' }&quot;&gt;&lt;/div&gt;
 &lt;!-- result --&gt;
 &lt;div id=&quot;red&quot;&gt;&lt;/div&gt;
 </code></pre>
-<pre class="line-numbers"><code class="language-html">&lt;!-- vue3 --&gt;
+<pre><code class="language-html">&lt;!-- vue3 --&gt;
 &lt;div id=&quot;red&quot; v-bind=&quot;{ id: 'blue' }&quot;&gt;&lt;/div&gt;
 &lt;!-- result --&gt;
 &lt;div id=&quot;blue&quot;&gt;&lt;/div&gt;
@@ -372,14 +372,14 @@ nextTick(() =&gt; {
 <p>在以前的版本中，要将原生 DOM 监听器添加到子组件的根元素中，可以使用 <code>.native</code> 修饰符。</p>
 </li>
 </ul>
-<pre class="line-numbers"><code class="language-html">&lt;!-- vue2 --&gt;
+<pre><code class="language-html">&lt;!-- vue2 --&gt;
 &lt;my-component
   v-on:close=&quot;handleComponentEvent&quot;
   v-on:click.native=&quot;handleNativeClickEvent&quot;
 /&gt;
 </code></pre>
 <p>在vue3中，组件中<em>未</em>被定义为组件触发的所有事件监听器，Vue 现在将把它们作为原生事件监听器添加到子组件的根元素中 (除非在子组件的选项中设置了 <code>inheritAttrs: false</code>)</p>
-<pre class="line-numbers"><code class="language-html">&lt;!-- vue3 --&gt;
+<pre><code class="language-html">&lt;!-- vue3 --&gt;
 &lt;my-component
   v-on:close=&quot;handleComponentEvent&quot;
   v-on:click=&quot;handleNativeClickEvent&quot;
@@ -393,7 +393,7 @@ nextTick(() =&gt; {
 <ul>
 <li>支持片段（多根节点）</li>
 </ul>
-<pre class="line-numbers"><code class="language-vue">&lt;!-- vue2 --&gt;
+<pre><code class="language-vue">&lt;!-- vue2 --&gt;
 &lt;template&gt;
   &lt;div&gt;
     &lt;header&gt;...&lt;/header&gt;
@@ -403,7 +403,7 @@ nextTick(() =&gt; {
 &lt;/template&gt;
 </code></pre>
 <p>在vue2中，组件必须包含在某个元素内部，不支持多个根节点，这有时会给我们写样式带来烦恼，所以vue3中支持了多根节点。</p>
-<pre class="line-numbers"><code class="language-vue">&lt;!-- vue3 --&gt;
+<pre><code class="language-vue">&lt;!-- vue3 --&gt;
 &lt;template&gt;
   &lt;header&gt;...&lt;/header&gt;
   &lt;main v-bind=&quot;$attrs&quot;&gt;...&lt;/main&gt;
@@ -415,7 +415,7 @@ nextTick(() =&gt; {
 </ul>
 <p>vue应用开发的核心就是组件编写，将 UI 和相关行为封装到组件中来构建 UI。但是有时组件模板的一部分逻辑上属于该组件，而从技术角度来看，最好将模板的这一部分移动到 DOM 中 Vue app 之外的其他位置。</p>
 <p>比如最常见的模态窗，我们希望模态窗的逻辑存在于组件中，但在UI上，元素最好又挂载到DOM根节点（如body）上，方便我们进行css来定位。</p>
-<pre class="line-numbers"><code class="language-html">&lt;body&gt;
+<pre><code class="language-html">&lt;body&gt;
   &lt;div style=&quot;position: relative;&quot;&gt;
     &lt;h3&gt;Tooltips with Vue 3 Teleport&lt;/h3&gt;
     &lt;div&gt;
@@ -424,7 +424,7 @@ nextTick(() =&gt; {
   &lt;/div&gt;
 &lt;/body&gt;
 </code></pre>
-<pre class="line-numbers"><code class="language-js">const app = Vue.createApp({});
+<pre><code class="language-js">const app = Vue.createApp({});
 
 app.component('modal-button', {
   template: `
@@ -450,7 +450,7 @@ app.component('modal-button', {
 </code></pre>
 <p>在上面的例子中，我们可以看到一个问题——模态框是在深度嵌套的 <code>div</code> 中渲染的，而模态框的 <code>position:absolute</code> 以父级相对定位的 <code>div</code> 作为引用，最终的效果会受父级定位的影响，这可能并不是我们期望的结果。</p>
 <p>Teleport 提供了一种干净的方法，允许我们控制在 DOM 中哪个父节点下渲染了 HTML，而不必求助于全局状态或将其拆分为两个组件。</p>
-<pre class="line-numbers"><code class="language-js">app.component('modal-button', {
+<pre><code class="language-js">app.component('modal-button', {
   template: `
     &lt;button @click=&quot;modalOpen = true&quot;&gt;
         Open full screen modal! (With teleport!)
@@ -480,7 +480,7 @@ app.component('modal-button', {
 <li>函数式组件</li>
 </ul>
 <p>在vue2中我们可能因为性能和多根节点的需求而使用函数式组件，当在vue3中，针对普通组件性能做了优化，已经和函数组件性能相差无几，而且也支持多根节点，因此函数式组件的使用场景不是很有必要了，所以针对函数式组件进行了一些调整：</p>
-<pre class="line-numbers"><code class="language-vue">&lt;!-- Vue 2 函数式组件示例 --&gt;
+<pre><code class="language-vue">&lt;!-- Vue 2 函数式组件示例 --&gt;
 &lt;script&gt;
 export default {
   functional: true,
@@ -507,7 +507,7 @@ export default {
 </code></pre>
 <p>在vue3中删除了<code>functional option</code>和<code>functional attribute</code>,上面两种方式不能在vue3中使用了。</p>
 <p>在vue3中函数式组件即是一个普通函数，接收两个参数：<code>props</code> 和 <code>context</code>。</p>
-<pre class="line-numbers"><code class="language-js">// vue3
+<pre><code class="language-js">// vue3
 import { h } from 'vue'
 
 const DynamicHeading = (props, context) =&gt; {
@@ -522,7 +522,7 @@ export default DynamicHeading
 <li>创建异步组件</li>
 </ul>
 <p>以前可以通过返回一个Promise的函数来定义异步组件：</p>
-<pre class="line-numbers"><code class="language-js">// vue2
+<pre><code class="language-js">// vue2
 const asyncModal = () =&gt; import('./Modal.vue');
 // 或者带上配置
 const asyncModal = {
@@ -534,7 +534,7 @@ const asyncModal = {
 }
 </code></pre>
 <p>在vue3中，新增呢一个api（defineAsyncComponent）来显示定义异步组件。</p>
-<pre class="line-numbers"><code class="language-js">// vue3
+<pre><code class="language-js">// vue3
 import { defineAsyncComponent } from 'vue'
 import ErrorComponent from './components/ErrorComponent.vue'
 import LoadingComponent from './components/LoadingComponent.vue'
@@ -554,7 +554,7 @@ const asyncModalWithOptions = defineAsyncComponent({
 <ul>
 <li>新增<code>emits</code>选项，定义和验证发出的自定义事件</li>
 </ul>
-<pre class="line-numbers"><code class="language-vue">&lt;!-- vue2 --&gt;
+<pre><code class="language-vue">&lt;!-- vue2 --&gt;
 &lt;template&gt;
   &lt;div&gt;
     &lt;p&gt;{{ text }}&lt;/p&gt;
@@ -568,7 +568,7 @@ const asyncModalWithOptions = defineAsyncComponent({
 &lt;/script&gt;
 </code></pre>
 <p>vue3中增加了emits选项来显示定义组件的自定义事件，未声明 <code>emits</code> 的事件监听器都会被算入组件的 <code>$attrs</code> 并绑定在组件的根节点上。</p>
-<pre class="line-numbers"><code class="language-vue">&lt;!-- vue3 --&gt;
+<pre><code class="language-vue">&lt;!-- vue3 --&gt;
 &lt;template&gt;
   &lt;div&gt;
     &lt;p&gt;{{ text }}&lt;/p&gt;
@@ -583,7 +583,7 @@ const asyncModalWithOptions = defineAsyncComponent({
 &lt;/script&gt;
 </code></pre>
 <p>emits还可以支持对自定义事件进行验证，只需要改为对象形式即可。</p>
-<pre class="line-numbers"><code class="language-js">emits: {
+<pre><code class="language-js">emits: {
     // 没有验证函数
     click: null,
 
@@ -610,7 +610,7 @@ const asyncModalWithOptions = defineAsyncComponent({
 </li>
 </ul>
 <p>在vue2时，我们可以通过如下方式访问<code>attribute</code> 和事件监听器：</p>
-<pre class="line-numbers"><code class="language-vue">&lt;!-- vue3 --&gt;
+<pre><code class="language-vue">&lt;!-- vue3 --&gt;
 &lt;template&gt;
   &lt;label&gt;
     &lt;input type=&quot;text&quot; v-bind=&quot;$attrs&quot; v-on=&quot;$listeners&quot; /&gt;
@@ -623,7 +623,7 @@ const asyncModalWithOptions = defineAsyncComponent({
 &lt;/script&gt;
 </code></pre>
 <p>在 Vue 3 的虚拟 DOM 中，事件监听器现在只是以 <code>on</code> 为前缀的 attribute，这样就成了 <code>$attrs</code> 对象的一部分，因此 <code>$listeners</code> 被移除了。</p>
-<pre class="line-numbers"><code class="language-vue">&lt;!-- vue3 --&gt;
+<pre><code class="language-vue">&lt;!-- vue3 --&gt;
 &lt;template&gt;
   &lt;label&gt;
     &lt;input type=&quot;text&quot; v-bind=&quot;$attrs&quot; /&gt;
@@ -675,12 +675,12 @@ export default {
 <ul>
 <li>
 <p>VNode 生命周期事件变更</p>
-<pre class="line-numbers"><code class="language-vue">&lt;!-- vue2 --&gt;
+<pre><code class="language-vue">&lt;!-- vue2 --&gt;
 &lt;template&gt;
   &lt;child-component @hook:updated=&quot;onUpdated&quot;&gt;
 &lt;/template&gt;
 </code></pre>
-<pre class="line-numbers"><code class="language-vue">&lt;!-- vue3 --&gt;
+<pre><code class="language-vue">&lt;!-- vue3 --&gt;
 &lt;template&gt;
   &lt;child-component @vnode-updated=&quot;onUpdated&quot;&gt;
 &lt;/template&gt;
@@ -691,7 +691,7 @@ export default {
 <ul>
 <li><code>keyCode</code>作为<code>v-on</code>的修饰符及<code>config.keyCodes</code>配置。</li>
 </ul>
-<pre class="line-numbers"><code class="language-vue">&lt;!-- 键码版本（废弃） --&gt;
+<pre><code class="language-vue">&lt;!-- 键码版本（废弃） --&gt;
 &lt;input v-on:keyup.13=&quot;submit&quot; /&gt;
 
 &lt;!-- 别名版本 --&gt;
@@ -708,11 +708,11 @@ Vue.config.keyCodes = { // 废弃
 <li><code>$on</code>，<code>$off</code> 和 <code>$once</code> 实例方法已被移除，组件实例不再实现事件触发接口</li>
 </ul>
 <p>在vue2中我们可以通过EventBus实现组件通信：</p>
-<pre class="line-numbers"><code class="language-js">// eventBus.js
+<pre><code class="language-js">// eventBus.js
 const eventBus = new Vue()
 export default eventBus
 </code></pre>
-<pre class="line-numbers"><code class="language-js">// ChildComponent.vue
+<pre><code class="language-js">// ChildComponent.vue
 import eventBus from './eventBus'
 export default {
   mounted() {
@@ -727,7 +727,7 @@ export default {
   }
 }
 </code></pre>
-<pre class="line-numbers"><code class="language-js">// ParentComponent.vue
+<pre><code class="language-js">// ParentComponent.vue
 import eventBus from './eventBus'
 export default {
   methods: {
@@ -741,7 +741,7 @@ export default {
 <ul>
 <li>不再支持过滤器</li>
 </ul>
-<pre class="line-numbers"><code class="language-vue">&lt;!-- vue2 --&gt;
+<pre><code class="language-vue">&lt;!-- vue2 --&gt;
 &lt;template&gt;
   &lt;h1&gt;Bank Account Balance&lt;/h1&gt;
   &lt;p&gt;{{ accountBalance | currencyUSD }}&lt;/p&gt;
@@ -764,7 +764,7 @@ export default {
 &lt;/script&gt;
 </code></pre>
 <p>在vue3中可以使用方法或者计算属性替代：</p>
-<pre class="line-numbers"><code class="language-vue">&lt;!-- vue3 --&gt;
+<pre><code class="language-vue">&lt;!-- vue3 --&gt;
 &lt;template&gt;
   &lt;h1&gt;Bank Account Balance&lt;/h1&gt;
   &lt;p&gt;{{ accountInUSD }}&lt;/p&gt;
@@ -796,11 +796,11 @@ export default {
 </li>
 </ul>
 <p>当然，上面的只是开胃菜，接下来的才是我们最值得关注的新特性。</p>
-<p><figure><img src="media/17280329145839/17281430923852.jpg" alt="" /></figure></p>
+<p><img src="media/17280329145839/17281430923852.jpg" alt="" /></p>
 <h1><a id="%E7%BB%84%E5%90%88%E5%BC%8Fapi" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>组合式Api</h1>
 <p>为了解决我们前面说的逻辑复用和代码组织的问题，vue3推出了新的代码编写方式，这个vue3最重要的特性，也是未来编写vue的主要趋势。</p>
 <p>下面是一个显示某个用户的仓库列表的视图，同时带有搜索和筛选功能，伪代码如下：</p>
-<pre class="line-numbers"><code class="language-js">// src/components/UserRepositories.vue
+<pre><code class="language-js">// src/components/UserRepositories.vue
 
 export default {
   components: { RepositoriesFilters, RepositoriesSortBy, RepositoriesList },
@@ -837,7 +837,7 @@ export default {
 </code></pre>
 <p>可以看到，按option组织代码，功能逻辑点是碎片化的分散在各个组件选项中，特别是遇到一些内容较多的组件，需要在各个选项中反复跳转，阅读和书写代码将是一件非常痛苦的事情，大大降低了组件的可维护性。</p>
 <p>其实，在开发和阅读组件代码的时候，我们更多是关注的功能点，而不是去关注用了那些options，这正是组合式api解决的问题。</p>
-<pre class="line-numbers"><code class="language-js">// src/composables/useUserRepositories.js
+<pre><code class="language-js">// src/composables/useUserRepositories.js
 
 import { fetchUserRepositories } from '@/api/repositories'
 import { ref, onMounted, watch } from 'vue'
@@ -857,7 +857,7 @@ export default function useUserRepositories(user) {
   }
 }
 </code></pre>
-<pre class="line-numbers"><code class="language-js">// src/composables/useRepositoryNameSearch.js
+<pre><code class="language-js">// src/composables/useRepositoryNameSearch.js
 
 import { ref, computed } from 'vue'
 
@@ -875,7 +875,7 @@ export default function useRepositoryNameSearch(repositories) {
   }
 }
 </code></pre>
-<pre class="line-numbers"><code class="language-js">// src/components/UserRepositories.vue
+<pre><code class="language-js">// src/components/UserRepositories.vue
 import { toRefs } from 'vue'
 import useUserRepositories from '@/composables/useUserRepositories'
 import useRepositoryNameSearch from '@/composables/useRepositoryNameSearch'
@@ -918,11 +918,11 @@ export default {
 }
 </code></pre>
 <p>组合式API分离了组件的逻辑关注点，更具组织性，代码的可读性和可维护性也更好。而且可以将可复用的逻辑抽离成Hooks，具有更好的可复用性。</p>
-<p><figure><img src="media/17280329145839/17281430923861.png" alt="" /></figure></p>
+<p><img src="media/17280329145839/17281430923861.png" alt="" /></p>
 <p>由于组合式API的特殊性，需要使用新的API，接下来我们就来看看这些API。</p>
 <h2><a id="setup" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>setup</h2>
 <p>setup是组合式API的入口，所有的内容都需要包含在其中，它仅在组件创建<strong>之前</strong>执行<strong>一次</strong>，所以此时this并不是指向当前组件实例。</p>
-<pre class="line-numbers"><code class="language-js">setup(props,context){
+<pre><code class="language-js">setup(props,context){
   const { attrs, slots, emit } = context;
 	// ...
 }
@@ -936,7 +936,7 @@ export default {
 <ul>
 <li>如果返回一个对象，那么该对象的 property 以及传递给 <code>setup</code> 的 <code>props</code> 参数中的 property 就都可以在模板中访问到。</li>
 </ul>
-<pre class="line-numbers"><code class="language-vue">&lt;!-- MyBook.vue --&gt;
+<pre><code class="language-vue">&lt;!-- MyBook.vue --&gt;
 &lt;template&gt;
   &lt;div&gt;{{ collectionName }}: {{ readersNumber }} {{ book.title }}&lt;/div&gt;
 &lt;/template&gt;
@@ -964,7 +964,7 @@ export default {
 <ul>
 <li>如果返回一个渲染函数，该函数可以直接使用在同一作用域中声明的响应式状态。</li>
 </ul>
-<pre class="line-numbers"><code class="language-js">// MyBook.vue
+<pre><code class="language-js">// MyBook.vue
 
 import { h, ref, reactive } from 'vue'
 
@@ -979,7 +979,7 @@ export default {
 </code></pre>
 <h2><a id="%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%92%A9%E5%AD%90" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>生命周期钩子</h2>
 <p>为了使组合式 API 的功能和选项式 API 一样完整，我们还需要一种在 <code>setup</code> 中注册生命周期钩子的方法。组合式 API 上的生命周期钩子与选项式 API 的名称相同，但前缀为 <code>on</code>：即 <code>mounted</code> 看起来会像 <code>onMounted</code>。</p>
-<pre class="line-numbers"><code class="language-js">import { onMounted, onUpdated, onUnmounted } from 'vue'
+<pre><code class="language-js">import { onMounted, onUpdated, onUnmounted } from 'vue'
 
 const MyComponent = {
   setup() {
@@ -1062,7 +1062,7 @@ const MyComponent = {
 <p>在vue3中，使用了<code>Proxy</code>代替了<code>Object.defineProperty</code>，使 Vue 3 避免了 Vue 早期版本中存在的一些响应性问题。</p>
 <p>当我们从一个组件的 <code>data</code> 函数中返回一个普通的 JavaScript 对象时，Vue 会将该对象包裹在一个带有 <code>get</code> 和 <code>set</code> 处理程序的 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy">Proxy</a> 中。</p>
 <p>举个🌰：</p>
-<pre class="line-numbers"><code class="language-js">const dinner = {
+<pre><code class="language-js">const dinner = {
   meal: 'tacos'
 }
 
@@ -1092,13 +1092,13 @@ console.log(proxy.meal)
 <p>组件的模板会被编译成一个 <a href="https://v3.cn.vuejs.org/guide/render-function.html"><code>render</code></a> 函数，它用来创建 <a href="https://v3.cn.vuejs.org/guide/render-function.html#%E8%99%9A%E6%8B%9F-dom-%E6%A0%91">VNodes</a>，描述该组件应该如何被渲染。这个render函数被包裹在一个副作用中，允许 Vue 在运行时跟踪被“触达”的 property，当property变化的时候，就会执行对应的副作用，从而执行render重新渲染。当然在渲染并不会整个重新渲染，这里有一些优化手段，网上资料很多，这里不展开讲。</p>
 <p>接下来我们看看几个常用的响应式API。</p>
 <h3><a id="ref" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>ref</h3>
-<pre class="line-numbers"><code class="language-ts">interface Ref&lt;T&gt; {
+<pre><code class="language-ts">interface Ref&lt;T&gt; {
   value: T
 }
 function ref&lt;T&gt;(value: T): Ref&lt;T&gt;
 </code></pre>
 <p>接受一个内部值并返回一个响应式且可变的 ref 对象。ref 对象具有指向内部值的单个 property <code>.value</code>。</p>
-<pre class="line-numbers"><code class="language-js">import { ref } from 'vue'
+<pre><code class="language-js">import { ref } from 'vue'
 
 const counter = ref&lt;number&gt;(0)
 
@@ -1109,13 +1109,13 @@ counter.value++
 console.log(counter.value) // 1
 </code></pre>
 <p>因为在 JavaScript 中，<code>Number</code> 或 <code>String</code> 等基本类型是通过值而非引用传递的，在任何值周围都有一个封装对象，这样我们就可以在整个应用中安全地传递它，而不必担心在某个地方失去它的响应性。</p>
-<p><figure><img src="media/17280329145839/17281430923869.gif" alt="pass-by-reference-vs-pass-by-value-animation" /><figcaption>pass-by-reference-vs-pass-by-value-animation<figcaption></figure></p>
+<p><img src="media/17280329145839/17281430923869.gif" alt="pass-by-reference-vs-pass-by-value-animation" /></p>
 <p><em>注意：ref嵌套在响应式对象（如reactive、readonly）或者用在模板中，将自动解包</em>。</p>
 <h3><a id="reactive" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>reactive</h3>
-<pre class="line-numbers"><code class="language-ts">function reactive&lt;T extends object&gt;(target: T): UnwrapNestedRefs&lt;T&gt;
+<pre><code class="language-ts">function reactive&lt;T extends object&gt;(target: T): UnwrapNestedRefs&lt;T&gt;
 </code></pre>
 <p>返回对象的响应式副本，即一个深层递归转换的proxy对象。</p>
-<pre class="line-numbers"><code class="language-js">import { reactive } from 'vue'
+<pre><code class="language-js">import { reactive } from 'vue'
 interface IState{
   count:number
 }
@@ -1131,7 +1131,7 @@ const state = reactive&lt;IState&gt;({
 </ul>
 <h3><a id="readonly" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>readonly</h3>
 <p>接受一个对象 (响应式或纯对象) 或 <a href="https://v3.cn.vuejs.org/api/refs-api.html#ref">ref</a> 并返回原始对象的只读代理。只读代理是深层的：任何被访问的嵌套 property 也是只读的。</p>
-<pre class="line-numbers"><code class="language-js">const original = reactive({ count: 0 })
+<pre><code class="language-js">const original = reactive({ count: 0 })
 
 const copy = readonly(original)
 
@@ -1148,13 +1148,13 @@ copy.count++ // 警告!
 </code></pre>
 <h3><a id="unref" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>unref</h3>
 <p>如果参数是一个 <a href="https://v3.cn.vuejs.org/api/refs-api.html#ref"><code>ref</code></a>，则返回内部值，否则返回参数本身。这是 <code>val = isRef(val) ? val.value : val</code> 的语法糖函数。</p>
-<pre class="line-numbers"><code class="language-ts">function useFoo(x: number | Ref&lt;number&gt;) {
+<pre><code class="language-ts">function useFoo(x: number | Ref&lt;number&gt;) {
   const unwrapped = unref(x) // unwrapped 现在一定是数字类型
 }
 </code></pre>
 <h3><a id="toref" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>toRef</h3>
 <p>可以用来为源响应式对象上的某个 property 新创建一个 <a href="https://v3.cn.vuejs.org/api/refs-api.html#ref"><code>ref</code></a>,它会保持对其源 property 的响应式连接。</p>
-<pre class="line-numbers"><code class="language-js">const state = reactive({
+<pre><code class="language-js">const state = reactive({
   foo: 1,
   bar: 2
 })
@@ -1169,7 +1169,7 @@ console.log(fooRef.value) // 3
 </code></pre>
 <h3><a id="torefs" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>toRefs</h3>
 <p>将响应式对象转换为普通对象，其中结果对象的每个 property 都是指向原始对象相应 property 的 <a href="https://v3.cn.vuejs.org/api/refs-api.html#ref"><code>ref</code></a>。</p>
-<pre class="line-numbers"><code class="language-js">function useFeatureX() {
+<pre><code class="language-js">function useFeatureX() {
   const state = reactive({
     foo: 1,
     bar: 2
@@ -1195,7 +1195,7 @@ export default {
 </code></pre>
 <p>要识别数据是否使用上述api处理过，可以使用这些api：isRef<code>、</code>isProxy<code>、</code>isReactive<code>、</code>isReadonly`。</p>
 <h3><a id="computed" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>computed</h3>
-<pre class="line-numbers"><code class="language-ts">// 只读的
+<pre><code class="language-ts">// 只读的
 function computed&lt;T&gt;(
   getter: () =&gt; T,
   debuggerOptions?: DebuggerOptions
@@ -1223,7 +1223,7 @@ interface DebuggerEvent {
 <ul>
 <li>接受一个 getter 函数，并根据 getter 的返回值返回一个不可变的响应式 <a href="https://v3.cn.vuejs.org/api/refs-api.html#ref">ref</a> 对象。</li>
 </ul>
-<pre class="line-numbers"><code class="language-js">const count = ref(1)
+<pre><code class="language-js">const count = ref(1)
 const plusOne = computed(() =&gt; count.value + 1)
 
 console.log(plusOne.value) // 2
@@ -1233,7 +1233,7 @@ plusOne.value++ // 错误
 <ul>
 <li>接受一个具有 <code>get</code> 和 <code>set</code> 函数的对象，用来创建可写的 ref 对象。</li>
 </ul>
-<pre class="line-numbers"><code class="language-js">const count = ref(1)
+<pre><code class="language-js">const count = ref(1)
 const plusOne = computed({
   get: () =&gt; count.value + 1,
   set: val =&gt; {
@@ -1245,7 +1245,7 @@ plusOne.value = 1
 console.log(count.value) // 0
 </code></pre>
 <h3><a id="watcheffect" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>watchEffect</h3>
-<pre class="line-numbers"><code class="language-ts">function watchEffect(
+<pre><code class="language-ts">function watchEffect(
   effect: (onInvalidate: InvalidateCbRegistrator) =&gt; void,
   options?: WatchEffectOptions
 ): StopHandle
@@ -1268,7 +1268,7 @@ type InvalidateCbRegistrator = (invalidate: () =&gt; void) =&gt; void
 type StopHandle = () =&gt; void
 </code></pre>
 <p>立即执行传入的一个函数，同时响应式追踪其依赖，并在其依赖变更时重新运行该函数。</p>
-<pre class="line-numbers"><code class="language-js">const count = ref(0)
+<pre><code class="language-js">const count = ref(0)
 
 watchEffect(() =&gt; console.log(count.value))
 // -&gt; logs 0
@@ -1282,7 +1282,7 @@ setTimeout(() =&gt; {
 <li>停止侦听</li>
 </ul>
 <p>当 <code>watchEffect</code> 在组件的 <a href="https://v3.cn.vuejs.org/guide/composition-api-setup.html">setup()</a> 函数或<a href="https://v3.cn.vuejs.org/guide/composition-api-lifecycle-hooks.html">生命周期钩子</a>被调用时，侦听器会被链接到该组件的生命周期，并在组件卸载时自动停止。当然也可以显式调用返回值以停止侦听：</p>
-<pre class="line-numbers"><code class="language-js">const stop = watchEffect(() =&gt; {
+<pre><code class="language-js">const stop = watchEffect(() =&gt; {
   /* ... */
 })
 // later
@@ -1300,7 +1300,7 @@ stop()
 <p>侦听器被停止 (如果在 <code>setup()</code> 或生命周期钩子函数中使用了 <code>watchEffect</code>，则在组件卸载时)</p>
 </li>
 </ol>
-<pre class="line-numbers"><code class="language-js">watchEffect(onInvalidate =&gt; {
+<pre><code class="language-js">watchEffect(onInvalidate =&gt; {
   const token = performAsyncOperation(id.value)
   onInvalidate(() =&gt; {
     // id has changed or watcher is stopped.
@@ -1311,7 +1311,7 @@ stop()
 </code></pre>
 <p>另外可以使用flush option或者watchPostEffect<code>和</code>watchSyncEffect来调整其刷新时机。</p>
 <h3><a id="watch" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>watch</h3>
-<pre class="line-numbers"><code class="language-ts">// 侦听单一源
+<pre><code class="language-ts">// 侦听单一源
 function watch&lt;T&gt;(
   source: WatcherSource&lt;T&gt;,
   callback: (
@@ -1355,7 +1355,7 @@ interface WatchOptions extends WatchEffectOptions {
 </ul>
 </li>
 </ul>
-<pre class="line-numbers"><code class="language-js">// 侦听一个 getter
+<pre><code class="language-js">// 侦听一个 getter
 const state = reactive({ count: 0 })
 watch(
   () =&gt; state.count,
@@ -1370,7 +1370,7 @@ watch(count, (count, prevCount) =&gt; {
   /* ... */
 })
 </code></pre>
-<pre class="line-numbers"><code class="language-js">watch([fooRef, barRef], ([foo, bar], [prevFoo, prevBar]) =&gt; {
+<pre><code class="language-js">watch([fooRef, barRef], ([foo, bar], [prevFoo, prevBar]) =&gt; {
   /* ... */
 })
 </code></pre>
@@ -1381,7 +1381,7 @@ watch(count, (count, prevCount) =&gt; {
 <li>Ref 的心智负担</li>
 </ul>
 <p>读写ref必须带上.value，语法冗余，目前还没有确定的方案来解决此问题。不过尤大给出了refSuger2提案，就看后续社区认可度怎么样了。</p>
-<pre class="line-numbers"><code class="language-js">&lt;script setup&gt;
+<pre><code class="language-js">&lt;script setup&gt;
   // declaring a variable that compiles to a ref
   let count = $ref(1)
 
@@ -1415,7 +1415,7 @@ watch(count, (count, prevCount) =&gt; {
 <li>更好的运行时性能 (其模板会被编译成与其同一作用域的渲染函数，没有任何的中间代理)。</li>
 <li>更好的 IDE 类型推断性能 (减少语言服务器从代码中抽离类型的工作)。</li>
 </ul>
-<pre class="line-numbers"><code class="language-vue">&lt;script setup&gt;
+<pre><code class="language-vue">&lt;script setup&gt;
 // 导入
 import { capitalize } from './helpers'
 // 组件
@@ -1438,7 +1438,7 @@ function log() {
 </code></pre>
 <p>上面<code>&lt;script setup&gt;</code>中的代码会被编译成组件<code>setup()</code>函数的内容，不同的是<code>&lt;script setup&gt;</code> 中的代码会在每次组件实例被创建的时候执行。而且所有<strong>顶层</strong>的绑定 (包括变量，函数声明，以及 import 引入的内容) 都会暴露给模板，可以直接使用，甚至连组件都无需手动注册。</p>
 <p>在继续下面的内容前，我们来看一个词<strong>编译器宏</strong>，他们不需要导入，且会在处理 <code>&lt;script setup&gt;</code> 的时候被编译处理掉。<code>&lt;script setup&gt;</code>提供了如下几个编译器宏：</p>
-<pre class="line-numbers"><code class="language-markdown">- defineProps
+<pre><code class="language-markdown">- defineProps
 - defineEmits
 - defineExpose
 - withDefaults
@@ -1447,7 +1447,7 @@ function log() {
 <ul>
 <li><code>defineProps</code>声明Props，接收<code>props</code>选项相同的值</li>
 </ul>
-<pre class="line-numbers"><code class="language-js">const props = defineProps({
+<pre><code class="language-js">const props = defineProps({
   foo: {
     type:String,
     default:''
@@ -1455,7 +1455,7 @@ function log() {
 })
 </code></pre>
 <p>如果使用了TypeScript，也可以使用纯类型声明来声明Props。</p>
-<pre class="line-numbers"><code class="language-ts">// 普通
+<pre><code class="language-ts">// 普通
 const props = defineProps&lt;{
   foo: string
   bar?: number
@@ -1476,7 +1476,7 @@ const props = withDefaults(defineProps&lt;Props&gt;(), {
 <ul>
 <li><code>defineEmits</code>声明emits，接收 <code>emits</code> 选项相同的值</li>
 </ul>
-<pre class="line-numbers"><code class="language-ts">// 普通
+<pre><code class="language-ts">// 普通
 const emit = defineEmits(['change', 'delete'])
 // TS类型声明
 const emit = defineEmits&lt;{
@@ -1488,7 +1488,7 @@ const emit = defineEmits&lt;{
 <li><code>defineExpose</code>声明暴露的绑定</li>
 </ul>
 <p>使用 <code>&lt;script setup&gt;</code> 的组件是<strong>默认关闭</strong>的，也即通过模板 ref 或者 <code>$parent</code> 链获取到的组件的公开实例，不会暴露任何在 <code>&lt;script setup&gt;</code> 中声明的绑定。需要开发者明确声明暴露的属性。</p>
-<pre class="line-numbers"><code class="language-js">&lt;script setup&gt;
+<pre><code class="language-js">&lt;script setup&gt;
 import { ref } from 'vue'
 
 const a = 1
@@ -1503,7 +1503,7 @@ defineExpose({
 <ul>
 <li><code>useSlots</code> 和 <code>useAttrs</code>分别对应<code>setupContext.slots</code> 和 <code>setupContext.attrs</code>，也可以在普通的组合式 API 中使用。</li>
 </ul>
-<pre class="line-numbers"><code class="language-vue">&lt;script setup&gt;
+<pre><code class="language-vue">&lt;script setup&gt;
 import { useSlots, useAttrs } from 'vue'
 
 const slots = useSlots()
@@ -1511,7 +1511,7 @@ const attrs = useAttrs()
 &lt;/script&gt;
 </code></pre>
 <p>目前还有一些事情是 <code>&lt;script setup&gt;</code>不能做到的，就需要和普通的<code>&lt;script&gt;</code>一起使用:</p>
-<pre class="line-numbers"><code class="language-vue">&lt;script&gt;
+<pre><code class="language-vue">&lt;script&gt;
 // 普通 &lt;script&gt;, 在模块范围下执行(只执行一次)
 runSideEffectOnce()
 
@@ -1534,7 +1534,7 @@ export default {
 <ul>
 <li>选择器</li>
 </ul>
-<pre class="line-numbers"><code class="language-css">/* 深度选择器 */
+<pre><code class="language-css">/* 深度选择器 */
 .a :deep(.b) {
   /* ... */
 }
@@ -1554,7 +1554,7 @@ export default {
 </ul>
 </li>
 </ul>
-<pre class="line-numbers"><code class="language-vue">&lt;template&gt;
+<pre><code class="language-vue">&lt;template&gt;
   &lt;p :class=&quot;$style.red&quot;&gt;
     This should be red
   &lt;/p&gt;
@@ -1567,7 +1567,7 @@ export default {
 &lt;/style&gt;
 </code></pre>
 <p>也可以自定义注入的名称：</p>
-<pre class="line-numbers"><code class="language-vue">&lt;template&gt;
+<pre><code class="language-vue">&lt;template&gt;
   &lt;p :class=&quot;classes.red&quot;&gt;red&lt;/p&gt;
 &lt;/template&gt;
 
@@ -1578,14 +1578,14 @@ export default {
 &lt;/style&gt;
 </code></pre>
 <p>我们可以在组合API中通过<a href="https://v3.cn.vuejs.org/api/global-api.html#usecssmodule"><code>useCssModule</code></a>来使用：</p>
-<pre class="line-numbers"><code class="language-js">// 默认, 返回 &lt;style module&gt; 中的类
+<pre><code class="language-js">// 默认, 返回 &lt;style module&gt; 中的类
 useCssModule()
 
 // 命名, 返回 &lt;style module=&quot;classes&quot;&gt; 中的类
 useCssModule('classes')
 </code></pre>
 <p>使用状态驱动的动态 CSS：</p>
-<pre class="line-numbers"><code class="language-vue">&lt;script setup&gt;
+<pre><code class="language-vue">&lt;script setup&gt;
 const theme = {
   color: 'red'
 }
@@ -1786,6 +1786,7 @@ body{ box-sizing: border-box;
      word-wrap: break-word !important;       /* Internet Explorer 5.5+ */
     }
     html,body{margin:0;padding:4px;}
+    .mweb-yaml{display:none;}
 }
 
 

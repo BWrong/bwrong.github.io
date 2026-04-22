@@ -139,24 +139,24 @@
           <h2><a id="%E5%AE%89%E8%A3%85" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>安装</h2>
 <p><a href="https://gulpjs.com/">Gulp官网</a></p>
 <p>gulp4.0分离了cli和核心部分，所以需要分别安装这两个包，另外对环境要求如下：</p>
-<pre class="line-numbers"><code class="language-plain_text">node &gt;= 8.11.1
+<pre><code class="language-plain_text">node &gt;= 8.11.1
 npm &gt;= 5.6.0
 npx &gt;= 9.7.1
 </code></pre>
 <ul>
 <li>全局安装gulp-cli</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">npm i -g gulp-cli
+<pre><code class="language-plain_text">npm i -g gulp-cli
 </code></pre>
 <ul>
 <li>本地安装gulp</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">npm i -D gulp
+<pre><code class="language-plain_text">npm i -D gulp
 </code></pre>
 <ul>
 <li>查看版本号</li>
 </ul>
-<pre class="line-numbers"><code class="language-bash">$ gulp -v
+<pre><code class="language-bash">$ gulp -v
 
 # 输出
 
@@ -172,7 +172,7 @@ Local version: 4.0.2
 <li>Private tasks：配置文件中的一个function，仅能在该文件中使用</li>
 <li>Public tasks：将Private tasks导出，可以供gulp命令执行</li>
 </ul>
-<pre class="line-numbers"><code class="language-js">const { series, parallel } = require('gulp');
+<pre><code class="language-js">const { series, parallel } = require('gulp');
 // Private tasks
 function clean(cb) {
   // body omitted
@@ -189,7 +189,7 @@ exports.default = series(clean, parallel(css, javascript)); // Public tasks, 执
 </code></pre>
 <p><strong>注意：</strong><br />
 在task中，操作完成时，我们必须要通过cb()或者return的方式来告知gulp此任务已完成。</p>
-<pre class="line-numbers"><code class="language-plain_text">// cb
+<pre><code class="language-plain_text">// cb
 function clean(cb) {
   del(['dist]);
     cb();
@@ -208,7 +208,7 @@ function promiseTask() {
 });
 </code></pre>
 <h3><a id="%E8%BF%90%E8%A1%8Ctask" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>运行task</h3>
-<pre class="line-numbers"><code class="language-plain_text">gulp &lt;export task name&gt; 
+<pre><code class="language-plain_text">gulp &lt;export task name&gt; 
 gulp // 导出为default的task可以直接运行gulp
 gulp scripts --env development // 传递环境变量
 </code></pre>
@@ -216,24 +216,24 @@ gulp scripts --env development // 传递环境变量
 <ul>
 <li><strong>series</strong>：序列（顺序执行）</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">// task1执行完再执行task2
+<pre><code class="language-plain_text">// task1执行完再执行task2
 exports.taskName = series(task1, task2)
 </code></pre>
 <ul>
 <li><strong>parallel</strong>：并行（同时执行）</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">// task1和task2同时执行
+<pre><code class="language-plain_text">// task1和task2同时执行
 exports.taskName = parallel(task1, task2)
 </code></pre>
 <ul>
 <li>混用：</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">exports.taskName = series(clean, parallel(css, javascript))
+<pre><code class="language-plain_text">exports.taskName = series(clean, parallel(css, javascript))
 </code></pre>
 <h2><a id="%E8%BE%93%E5%85%A5%E4%B8%8E%E8%BE%93%E5%87%BA" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>输入与输出</h2>
 <p>gulp借鉴了Unix的管道（pipe）思想，处理文件采用流的方式，前一步的输出作为后一步的输入，中途不会在磁盘写入文件，仅在dest时输出文件，所以非常快速高效。</p>
 <p>gulp提供了src及dest方法分别来进行文件读入、输出操作，同时提供了pipe管道方法来链式执行其他操作。</p>
-<pre class="line-numbers"><code class="language-plain_text">const { src, dest } = require('gulp');
+<pre><code class="language-plain_text">const { src, dest } = require('gulp');
 
 // 将src目录下的所有js输出到output目录
 exports.default = function() {
@@ -242,7 +242,7 @@ exports.default = function() {
 }
 </code></pre>
 <p>如果我们想在中途添加文件可以采用如下方式：</p>
-<pre class="line-numbers"><code class="language-plain_text">const { src, dest } = require('gulp');
+<pre><code class="language-plain_text">const { src, dest } = require('gulp');
 const uglify = require('gulp-uglify');
 
 exports.default = function() {
@@ -253,7 +253,7 @@ exports.default = function() {
 }
 </code></pre>
 <p>当然我们也可以进行多次输出：</p>
-<pre class="line-numbers"><code class="language-plain_text">const { src, dest } = require('gulp');
+<pre><code class="language-plain_text">const { src, dest } = require('gulp');
 const babel = require('gulp-babel');
 const uglify = require('gulp-uglify');
 
@@ -272,26 +272,26 @@ exports.default = function() {
 <li><code>[&quot;src/file1,src/file2.js&quot;]</code>：多个文件</li>
 <li><code>*</code>: 所有文件</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">src('src/*.js') // src自身目录所有的js文件，不含后代文件夹中
+<pre><code class="language-plain_text">src('src/*.js') // src自身目录所有的js文件，不含后代文件夹中
 src('src/a*c.js') 
 </code></pre>
 <ul>
 <li><code>**</code>：0或者多个文件夹</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">src('src/**/*.js') // src目录所有的js文件，含后代文件夹中的
+<pre><code class="language-plain_text">src('src/**/*.js') // src目录所有的js文件，含后代文件夹中的
 </code></pre>
 <ul>
 <li><code>{}</code>：多个属性</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">src('src/*.{jpg,png,gif}') // src自身目录下的所有jpg、png和gif文件
+<pre><code class="language-plain_text">src('src/*.{jpg,png,gif}') // src自身目录下的所有jpg、png和gif文件
 </code></pre>
 <ul>
 <li><code>!</code>：排除</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">src(['**/*.js', '!node_modules/**']) // 所有的js文件，但是node_modules下的除外
+<pre><code class="language-plain_text">src(['**/*.js', '!node_modules/**']) // 所有的js文件，但是node_modules下的除外
 </code></pre>
 <p>注意：src 接收的文件匹配字符串会顺序解释，所以你可以写成这样 <code>gulp.src(['.js', '!b.js', 'bad.js'])</code>（排除所有以 b 开头的 JS 文件但是除了 <code>bad.js</code>）</p>
-<pre class="line-numbers"><code class="language-plain_text">匹配符                             说明
+<pre><code class="language-plain_text">匹配符                             说明
 *                               匹配文件路径中的0个或多个字符，但不会匹配路径分割符，
                               除非分隔符出现在末尾
 
@@ -312,7 +312,7 @@ src('src/a*c.js')
 </code></pre>
 <h2><a id="%E4%BD%BF%E7%94%A8%E6%8F%92%E4%BB%B6%E5%92%8C%E5%85%B6%E4%BB%96%E5%BA%93" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>使用插件和其他库</h2>
 <p>gulp推荐每个插件应该只专注的做一小部分工作，然后通过pipe将它们连接起来，就可以完成我们需要做的事情。</p>
-<pre class="line-numbers"><code class="language-plain_text">const { src, dest } = require('gulp');
+<pre><code class="language-plain_text">const { src, dest } = require('gulp');
 const uglify = require('gulp-uglify');
 const rename = require('gulp-rename');
 
@@ -326,7 +326,7 @@ exports.default = function() {
 }
 </code></pre>
 <p>当然，除了插件，我们也可以使用其他库：</p>
-<pre class="line-numbers"><code class="language-plain_text">const del = require('delete');
+<pre><code class="language-plain_text">const del = require('delete');
 
 exports.default = function(cb) {
   // Use the `delete` module directly, instead of using gulp-rimraf
@@ -334,7 +334,7 @@ exports.default = function(cb) {
 }
 </code></pre>
 <p>最后也可以借助through2插件使用内联方式自行处理，也可以利用次through2进行gulp插件开发:</p>
-<pre class="line-numbers"><code class="language-plain_text">const { src, dest } = require('gulp');
+<pre><code class="language-plain_text">const { src, dest } = require('gulp');
 const uglify = require('uglify-js');
 const through2 = require('through2');
 
@@ -353,7 +353,7 @@ exports.default = function() {
 </code></pre>
 <h2><a id="%E7%9B%91%E5%90%AC%E6%96%87%E4%BB%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>监听文件</h2>
 <p>我们可以使用watch方法来监听文件的改动，以便在改动时执行相应的处理任务。</p>
-<pre class="line-numbers"><code class="language-plain_text">const { watch, series } = require('gulp');
+<pre><code class="language-plain_text">const { watch, series } = require('gulp');
 
 function clean(cb) {
   // body omitted
@@ -381,7 +381,7 @@ exports.default = function() {
 <li><code>globs[string|array]</code>: 要处理文件的路径匹配规则</li>
 <li><code>options</code>：配置项，<a href="https://gulpjs.com/docs/en/api/src#options">点击查看详情</a></li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">const { src, dest } = require('gulp');
+<pre><code class="language-plain_text">const { src, dest } = require('gulp');
 
 function copy() {
   return src('input/*.js', { sourcemaps: true })
@@ -393,7 +393,7 @@ function copy() {
 <li><code>directory[string|function]</code>: 输出的路径</li>
 <li><code>options</code>：配置项，<a href="https://gulpjs.com/docs/en/api/dest#options">点击查看详情</a></li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">const { src, dest } = require('gulp');
+<pre><code class="language-plain_text">const { src, dest } = require('gulp');
 const uglify = require('gulp-uglify');
 
 src('input/**/*.js', { sourcemaps: true })
@@ -401,7 +401,7 @@ src('input/**/*.js', { sourcemaps: true })
   .pipe(dest('output/', { sourcemaps: '.' }));
 </code></pre>
 <p><strong>注意：</strong> dest的路径默认是基于当前路径，并不是输入文件的路径，如果需要输出到输入文件的相对路径，可以使用<code>gulp-rename</code>插件来实现。如我要将所有目录下的scss目录中的scss文件输出到scss同目录的css文件中:</p>
-<pre class="line-numbers"><code class="language-plain_text">src('./SCOs/**/scss/*.scss')
+<pre><code class="language-plain_text">src('./SCOs/**/scss/*.scss')
 .pipe(sass())
 .pipe(rename(path=&gt; path.dirname += '../../css'))
 .pipe(dest('./SCOs'));
@@ -410,7 +410,7 @@ src('input/**/*.js', { sourcemaps: true })
 <ul>
 <li><code>tasks[function|string]</code>：任务名或者function</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">const { series } = require('gulp');
+<pre><code class="language-plain_text">const { series } = require('gulp');
 
 function javascript(cb) {
   // body omitted
@@ -428,7 +428,7 @@ exports.build = series(javascript, css);
 <ul>
 <li><code>tasks[function|string]</code>：任务名或者function</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">const { parallel } = require('gulp');
+<pre><code class="language-plain_text">const { parallel } = require('gulp');
 
 function javascript(cb) {
   // body omitted
@@ -448,7 +448,7 @@ exports.build = parallel(javascript, css);
 <li><code>options</code>：配置项，<a href="https://gulpjs.com/docs/en/api/watch#options">点击查看详情</a></li>
 <li><code>task[function|string]</code>：要执行的任务或操作</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">const { watch } = require('gulp');
+<pre><code class="language-plain_text">const { watch } = require('gulp');
 
 watch(['input/*.js', '!input/something.js'], function(cb) {
   // body omitted
@@ -461,7 +461,7 @@ watch(['input/*.js', '!input/something.js'], function(cb) {
 <li><code>eventName[string]</code>：事件名称，可以是<code>add</code>, <code>addDir</code>, <code>change</code>, <code>unlink</code>, <code>unlinkDir</code>, <code>ready</code>, <code>error</code>, or <code>all</code></li>
 <li><code>eventHandler[function]</code>：事件处理函数，该函数接收path和stats两个参数。</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">const { watch } = require('gulp');
+<pre><code class="language-plain_text">const { watch } = require('gulp');
 
 const watcher = watch(['input/*.js']);
 
@@ -493,7 +493,7 @@ watcher.close();
 <li><code>taskName[string]</code>：任务名称</li>
 <li><code>taskFunction[function]</code>：处理函数</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">const { task } = require('gulp');
+<pre><code class="language-plain_text">const { task } = require('gulp');
 
 task('build', function(cb) {
   // body omitted
@@ -508,7 +508,7 @@ const build = task('build');
 <li><code>precision[number]</code>：精度，默认1000<br />
 可使用此方法进行增量编译。</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">const { src, dest, lastRun, watch } = require('gulp');
+<pre><code class="language-plain_text">const { src, dest, lastRun, watch } = require('gulp');
 const imagemin = require('gulp-imagemin');
 
 function images() {
@@ -525,7 +525,7 @@ exports.default = function() {
 <ul>
 <li><code>options[object]</code>：deep默认为false，只会返回顶级任务，如果为true，则会返回整个任务树。</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">gulp.tree({ deep: true })
+<pre><code class="language-plain_text">gulp.tree({ deep: true })
 </code></pre>
 <h3><a id="vinyl%EF%BC%9A%E4%B8%80%E4%B8%AA%E6%96%87%E4%BB%B6%E6%8F%8F%E8%BF%B0%E5%99%A8%EF%BC%8C%E8%87%AA%E5%B7%B1%E5%BC%80%E5%8F%91%E6%8F%92%E4%BB%B6%E5%8F%AF%E8%83%BD%E4%BC%9A%E7%94%A8%E5%88%B0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>Vinyl</code>：一个文件描述器，自己开发插件可能会用到</h3>
 <p>具体的用法见<a href="https://www.cnblogs.com/vajoy/p/6357476.html">gulp源码解析（二）—— vinyl-fs</a></p>
@@ -756,6 +756,7 @@ body{ box-sizing: border-box;
      word-wrap: break-word !important;       /* Internet Explorer 5.5+ */
     }
     html,body{margin:0;padding:4px;}
+    .mweb-yaml{display:none;}
 }
 
 

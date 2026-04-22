@@ -158,11 +158,11 @@
 </ol>
 <h2><a id="%E8%AE%A9%E6%88%91%E4%BB%AC%E6%9D%A5%E7%9C%8B%E7%9C%8B%E5%AE%9E%E9%99%85%E4%BB%A3%E7%A0%81" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>让我们来看看实际代码</h2>
 <p>首先需要引入crypto这个模块。你不需要单独去下载它，因为他是Node.js的内置模块，只需引入即可。</p>
-<pre class="line-numbers"><code class="language-plain_text">'use strict'
+<pre><code class="language-plain_text">'use strict'
 var crypto = require('crypto')
 </code></pre>
 <p>创建一个function用来生成盐</p>
-<pre class="line-numbers"><code class="language-plain_text">/**
+<pre><code class="language-plain_text">/**
  * generates random string of characters i.e salt
  * @function
  * @param {number} length - Length of the random string.
@@ -176,7 +176,7 @@ var crypto = require('crypto')
 </code></pre>
 <h4><a id="%E5%B0%86%E5%AF%86%E7%A0%81%E5%92%8C%E7%9B%90%E4%B8%80%E8%B5%B7%E8%BF%9B%E8%A1%8Chash%E5%8A%A0%E5%AF%86" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>将密码和盐一起进行hash加密</h4>
 <p>使用一种你在读这篇文章时代的一种合适的加密hash算法，因为伴随着计算能力的发展，加密hash技术也会发展。所以如果你使用就得hash加密算法是存在很大风险的。这里我们使用sha512</p>
-<pre class="line-numbers"><code class="language-plain_text">/**
+<pre><code class="language-plain_text">/**
  * hash password with sha512.
  * @function
  * @param {string} password - List of required fields.
@@ -193,7 +193,7 @@ var crypto = require('crypto')
   }
 </code></pre>
 <p>下面我们将创建一个函数使用让面的的函数生成一个hash值，作为用户密码存储在数据库中。</p>
-<pre class="line-numbers"><code class="language-plain_text">function saltHashPassword(userpassword){
+<pre><code class="language-plain_text">function saltHashPassword(userpassword){
   var salt = genRandowString(16) /**生成一个长度为16个字符的盐*/
   var passwordData = sha512(userpassword, salt);
   console.log( console.log('UserPassword = '+userpassword);
@@ -205,7 +205,7 @@ saltHashPassword('MYPASSWORD');
 </code></pre>
 <p>注意，我们当用saltHashPassword两次使用相同的参数，只是想要展示使用相同密码的两次hash加密的结果是不同的。</p>
 <p>下面让我们来看看完整的代码展示</p>
-<pre class="line-numbers"><code class="language-plain_text">'use strict';
+<pre><code class="language-plain_text">'use strict';
 var crypto = require('crypto');
 /**
  * generates random string of characters i.e salt
@@ -428,6 +428,7 @@ body{ box-sizing: border-box;
      word-wrap: break-word !important;       /* Internet Explorer 5.5+ */
     }
     html,body{margin:0;padding:4px;}
+    .mweb-yaml{display:none;}
 }
 
 

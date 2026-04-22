@@ -211,7 +211,7 @@
 </tbody>
 </table>
 <h3><a id="%E8%AF%AD%E6%B3%95%E6%8F%90%E6%A1%88%E6%89%B9%E5%87%86%E6%B5%81%E7%A8%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>语法提案批准流程</h3>
-<pre class="line-numbers"><code class="language-plain_text">Stage 0 - Strawman（展示阶段）
+<pre><code class="language-plain_text">Stage 0 - Strawman（展示阶段）
 Stage 1 - Proposal（征求意见阶段）
 Stage 2 - Draft（草案阶段）
 Stage 3 - Candidate（候选人阶段）
@@ -235,7 +235,7 @@ Stage 4 - Finished（定案阶段）
 <h1><a id="%E8%A7%A3%E6%9E%84%E8%B5%8B%E5%80%BC" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>解构赋值</h1>
 <p>ES6 允许按照一定模式，从数组和对象中提取值，对变量进行赋值，这被称为解构（Destructuring）。<br />
 适用于数组（这里泛指具有Iterator接口的数据结构）、对象、字符串、数值和布尔值，可设置默认值。</p>
-<pre class="line-numbers"><code class="language-js">//数组
+<pre><code class="language-js">//数组
 let [x, y = 'b', z='c'] = ['a', undefined, null];// x='a', y='b' z=null
 //对象
 let { bar, foo } = { foo: &quot;aaa&quot;, bar: &quot;bbb&quot; };//foo = &quot;aaa&quot;; bar = &quot;bbb&quot;
@@ -261,7 +261,7 @@ let {toString: s} = true;//s = Boolean.prototype.toString
 <li><code>startsWith(String)</code>：是否以参数字符串开头。</li>
 <li><code>endsWith(String)</code>：是否以参数字符串结尾。</li>
 </ul>
-<pre class="line-numbers"><code class="language-js">let s = 'Hello world!';
+<pre><code class="language-js">let s = 'Hello world!';
 s.includes('o') // true
 //均可接受第二个位置参数
 </code></pre>
@@ -269,7 +269,7 @@ s.includes('o') // true
 <ul>
 <li><code>repeat(Number)</code></li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">'x'.repeat(3) // &quot;xxx&quot;
+<pre><code class="language-plain_text">'x'.repeat(3) // &quot;xxx&quot;
 </code></pre>
 <h3><a id="%E6%A8%A1%E6%9D%BF%E5%AD%97%E7%AC%A6%E4%B8%B2" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>模板字符串</h3>
 <ul>
@@ -277,7 +277,7 @@ s.includes('o') // true
 <li>反引号需使用反斜杠转义</li>
 <li>trim消除空格和换行</li>
 </ul>
-<pre class="line-numbers"><code class="language-js">$('#result').append(`
+<pre><code class="language-js">$('#result').append(`
   There are &lt;b&gt;${basket.count}&lt;/b&gt; items
    in your basket, &lt;em&gt;${basket.onSale}&lt;/em&gt;
   are on sale!
@@ -299,7 +299,7 @@ $('#list').html(`
 <li><code>Number.isSafeInteger()</code>-只对安全整数（-2^53到2^53，不含端点）返回true</li>
 <li><code>Number.MAX_SAFE_INTEGER</code>,<code>Number.MIN_SAFE_INTEGER</code>安全整数的上下限常量</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">Number.isInteger(25) // true
+<pre><code class="language-plain_text">Number.isInteger(25) // true
 Number.isInteger(25.0) // true
 Number.isInteger(25.1) // false
 </code></pre>
@@ -309,23 +309,23 @@ Number.isInteger(25.1) // false
 <ul>
 <li>参数默认值，建议用于尾参数，不可在函数内再次声明</li>
 </ul>
-<pre class="line-numbers"><code class="language-js">function log(x, y = 'World') {}
+<pre><code class="language-js">function log(x, y = 'World') {}
 </code></pre>
 <ul>
 <li>length：从第一个参数到首个指定默认值参数间参数的个数</li>
 </ul>
-<pre class="line-numbers"><code class="language-js">(function (a, b = 1, c) {}).length // 1
+<pre><code class="language-js">(function (a, b = 1, c) {}).length // 1
 </code></pre>
 <ul>
 <li>rest：获取函数的多余参数，须用于尾参数</li>
 </ul>
-<pre class="line-numbers"><code class="language-js">function add(...values) {}
+<pre><code class="language-js">function add(...values) {}
 add(2, 5, 3)
 </code></pre>
 <ul>
 <li>name：函数的名字</li>
 </ul>
-<pre class="line-numbers"><code class="language-js">function f() {}
+<pre><code class="language-js">function f() {}
 //或者
 var f = function () {};
 f.name // &quot;f&quot;
@@ -337,12 +337,12 @@ f.name // &quot;f&quot;
 <li>如果只有一条语句且有return，可以省略大括号和return，仅有return（即return后无参数）时不可省略</li>
 <li>直接返回对象，须使用小括号包裹</li>
 </ul>
-<pre class="line-numbers"><code class="language-js">let getTempItem = id =&gt; ({ id: id, name: &quot;Temp&quot; });
+<pre><code class="language-js">let getTempItem = id =&gt; ({ id: id, name: &quot;Temp&quot; });
 </code></pre>
 <ul>
 <li>可以使用解构赋值，可以嵌套</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">const full = ({ first, last }) =&gt; first + ' ' + last;
+<pre><code class="language-plain_text">const full = ({ first, last }) =&gt; first + ' ' + last;
 const pipeline = (...funcs) =&gt;
   val =&gt; funcs.reduce((a, b) =&gt; b(a), val);
 </code></pre>
@@ -360,7 +360,7 @@ const pipeline = (...funcs) =&gt;
 <h1><a id="%E6%95%B0%E7%BB%84%E7%9A%84%E6%89%A9%E5%B1%95" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>数组的扩展</h1>
 <h3><a id="%E6%89%A9%E5%B1%95%E8%BF%90%E7%AE%97%E7%AC%A6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>扩展运算符</h3>
 <p>用于数组赋值须放在参数的最后一位。</p>
-<pre class="line-numbers"><code class="language-js">console.log(1, ...[2, 3, 4], 5) // 1 2 3 4 5
+<pre><code class="language-js">console.log(1, ...[2, 3, 4], 5) // 1 2 3 4 5
 //复制数组
 const a1 = [1, 2];
 const a2 = [...a1];// 写法一
@@ -377,7 +377,7 @@ const [first, ...rest] = [1, 2, 3, 4, 5];// first= 1;rest= [2, 3, 4, 5]
 <ul>
 <li><code>Array.from()</code>：将数组对象（有length属性）或可遍历的对象（包括 ES6 新增的数据结构 Set 和 Map）转为真正的数组，接受第二个参数（对每个元素进行处理，处理值返回数组）。</li>
 </ul>
-<pre class="line-numbers"><code class="language-js">let arrayLike = {
+<pre><code class="language-js">let arrayLike = {
     '0': 'a',
     '1': 'b',
     '2': 'c',
@@ -388,17 +388,17 @@ let arr2 = Array.from(arrayLike); // ['a', 'b', 'c']
 <ul>
 <li><code>Array.of()</code>：将一组值转换为数组。</li>
 </ul>
-<pre class="line-numbers"><code class="language-js">Array.of(3, 11, 8) // [3,11,8]
+<pre><code class="language-js">Array.of(3, 11, 8) // [3,11,8]
 </code></pre>
 <ul>
 <li><code>copyWithin（target[必需，替换开始位置，负值为倒数], start = 0[可选，读取开始位置，负值为倒数], end = this.length[可选，读取结束位置，负值为倒数]）</code>：在当前数组内部，将指定位置的成员复制到其他位置（会覆盖原有成员），然后返回当前数组。</li>
 </ul>
-<pre class="line-numbers"><code class="language-js">[1, 2, 3, 4, 5].copyWithin(0, 3) // [4, 5, 3, 4, 5]
+<pre><code class="language-js">[1, 2, 3, 4, 5].copyWithin(0, 3) // [4, 5, 3, 4, 5]
 </code></pre>
 <ul>
 <li><code>find(fn)</code> 和 <code>findIndex(fn)</code>：找出第一个符合条件的数组成员。如果无符合条件的成员，返回undefined。</li>
 </ul>
-<pre class="line-numbers"><code class="language-js">//find方法的回调函数可以接受三个参数，依次为当前的值、当前的位置和原数组
+<pre><code class="language-js">//find方法的回调函数可以接受三个参数，依次为当前的值、当前的位置和原数组
 [1, 5, 10, 15].find(function(value, index, arr) {
   return value &gt; 9;
 }) // 10
@@ -406,19 +406,19 @@ let arr2 = Array.from(arrayLike); // ['a', 'b', 'c']
 <ul>
 <li><code>fill(text[必需，填充内容],start = 0[可选，开始位置，负值为倒数], end = this.length[可选，结束位置，负值为倒数])</code>: 使用给定值，填充一个数组。</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">['a', 'b', 'c'].fill(7, 1, 2) // ['a', 7, 'c']
+<pre><code class="language-plain_text">['a', 'b', 'c'].fill(7, 1, 2) // ['a', 7, 'c']
 </code></pre>
 <ul>
 <li><code>includes(text[必需，内容],start = 0[可选，搜索开始位置，负值为倒数], end = this.length[可选，搜索结束位置，负值为倒数])</code>：搜索数组是否包含给定的值。</li>
 </ul>
-<pre class="line-numbers"><code class="language-js">[1, 2, 3].includes(3, -1); // true
+<pre><code class="language-js">[1, 2, 3].includes(3, -1); // true
 </code></pre>
 <hr />
 <h1><a id="%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%89%A9%E5%B1%95" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>对象的扩展</h1>
 <ul>
 <li>简洁表示：对象的key和value一样时，可以省略key，方法可省略function</li>
 </ul>
-<pre class="line-numbers"><code class="language-js">const foo = 'bar';
+<pre><code class="language-js">const foo = 'bar';
 const baz = {
 	foo,
    method() {
@@ -429,7 +429,7 @@ const baz = {
 <ul>
 <li>属性名表达式: 不能使用简洁表示</li>
 </ul>
-<pre class="line-numbers"><code class="language-js">let propKey = 'foo';
+<pre><code class="language-js">let propKey = 'foo';
 
 let obj = {
   [propKey]: true,
@@ -439,7 +439,7 @@ let obj = {
 <ul>
 <li><code>Object.is()</code>: 判断两值是否相等</li>
 </ul>
-<pre class="line-numbers"><code class="language-js">//和===的区别
+<pre><code class="language-js">//和===的区别
 +0 === -0 //true
 NaN === NaN // false
 Object.is(+0, -0) // false
@@ -448,7 +448,7 @@ Object.is(NaN, NaN) // true
 <ul>
 <li><code>Object.assign(target[目标对象], source1, source2，...)</code>: 将源对象所有可枚举属性复制合并到目标对象。</li>
 </ul>
-<pre class="line-numbers"><code class="language-js">const target = { a: 1, b: 1 };
+<pre><code class="language-js">const target = { a: 1, b: 1 };
 const source1 = { b: 2, c: 2 };
 const source2 = { c: 3 };
 Object.assign(target, source1, source2);
@@ -467,7 +467,7 @@ target // {a:1, b:2, c:3}
 <h4><a id="%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>基本用法</h4>
 <p>ES6 提供了新的数据结构 Set。它类似于数组，但是成员的值都是唯一的，没有重复的值。<br />
 Set 本身是一个构造函数，用来生成 Set 数据结构。</p>
-<pre class="line-numbers"><code class="language-plain_text">const s = new Set();
+<pre><code class="language-plain_text">const s = new Set();
 
 [2, 3, 5, 4, 5, 2, 2].forEach(x =&gt; s.add(x));
 
@@ -493,7 +493,7 @@ const set = new Set([1, 2, 3, 4, 4]);
 <li>has(value)：返回一个布尔值，表示该值是否为Set的成员。</li>
 <li>clear()：清除所有成员，没有返回值。</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">s.add(1).add(2).add(2);
+<pre><code class="language-plain_text">s.add(1).add(2).add(2);
 // 注意2被加入了两次
 
 s.size // 2
@@ -514,7 +514,7 @@ s.has(2) // false
 <li>forEach()：使用回调函数遍历每个成员</li>
 </ul>
 <p>需要特别指出的是，Set的遍历顺序就是插入顺序。这个特性有时非常有用，比如使用 Set 保存一个回调函数列表，调用时就能保证按照添加顺序调用。</p>
-<pre class="line-numbers"><code class="language-plain_text">let set = new Set(['red', 'green', 'blue']);
+<pre><code class="language-plain_text">let set = new Set(['red', 'green', 'blue']);
 
 for (let item of set.keys()) {
   console.log(item);
@@ -543,7 +543,7 @@ for (let item of set.entries()) {
 <p>WeakSet 中的对象都是弱引用，即垃圾回收机制不考虑 WeakSet 对该对象的引用，也就是说，如果其他对象都不再引用该对象，那么垃圾回收机制会自动回收该对象所占用的内存。</p>
 <h4><a id="%E8%AF%AD%E6%B3%95" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>语法</h4>
 <p>WeakSet 是一个构造函数，可以使用new命令，创建 WeakSet 数据结构。</p>
-<pre class="line-numbers"><code class="language-plain_text">const a = [[1, 2], [3, 4]];
+<pre><code class="language-plain_text">const a = [[1, 2], [3, 4]];
 const ws = new WeakSet(a);
 // WeakSet {[1, 2], [3, 4]}
 </code></pre>
@@ -556,7 +556,7 @@ const ws = new WeakSet(a);
 </ul>
 <h3><a id="map%EF%BC%88%E5%AD%97%E5%85%B8%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Map（字典）</h3>
 <p>类似对象，唯一的区别是key的范围不限于字符串，各种类型的值（包括对象）都可以当作键。主要用于数据存储</p>
-<pre class="line-numbers"><code class="language-plain_text">const map = new Map([
+<pre><code class="language-plain_text">const map = new Map([
   ['name', '张三'],
   ['title', 'Author']
 ]);
@@ -573,7 +573,7 @@ map.get('title') // &quot;Author&quot;
 <li>set(key, value)：<br />
 set方法设置键名key对应的键值为value，然后返回整个 Map 结构。如果key已经有值，则键值会被更新，否则就新生成该键。</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">const m = new Map();
+<pre><code class="language-plain_text">const m = new Map();
 
 m.set('edition', 6)        // 键是字符串
 m.set(262, 'standard')     // 键是数值
@@ -606,7 +606,7 @@ clear方法清除所有成员，没有返回值。</li>
 <ul>
 <li>Map 转为数组</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">const myMap = new Map()
+<pre><code class="language-plain_text">const myMap = new Map()
   .set(true, 7)
   .set({foo: 3}, ['abc']);
 [...myMap]
@@ -615,7 +615,7 @@ clear方法清除所有成员，没有返回值。</li>
 <ul>
 <li>数组 转为 Map</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">new Map([
+<pre><code class="language-plain_text">new Map([
   [true, 7],
   [{foo: 3}, ['abc']]
 ])
@@ -627,7 +627,7 @@ clear方法清除所有成员，没有返回值。</li>
 <ul>
 <li>Map 转为对象</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">function strMapToObj(strMap) {
+<pre><code class="language-plain_text">function strMapToObj(strMap) {
   let obj = Object.create(null);
   for (let [k,v] of strMap) {
     obj[k] = v;
@@ -644,7 +644,7 @@ strMapToObj(myMap)
 <ul>
 <li>对象转为 Map</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">function objToStrMap(obj) {
+<pre><code class="language-plain_text">function objToStrMap(obj) {
   let strMap = new Map();
   for (let k of Object.keys(obj)) {
     strMap.set(k, obj[k]);
@@ -659,7 +659,7 @@ objToStrMap({yes: true, no: false})
 <li>Map 转为 JSON</li>
 </ul>
 <p>Map 转为 JSON 要区分两种情况。一种情况是，Map 的键名都是字符串，这时可以选择转为对象 JSON。</p>
-<pre class="line-numbers"><code class="language-plain_text">function strMapToJson(strMap) {
+<pre><code class="language-plain_text">function strMapToJson(strMap) {
   return JSON.stringify(strMapToObj(strMap));
 }
 
@@ -668,7 +668,7 @@ strMapToJson(myMap)
 // '{&quot;yes&quot;:true,&quot;no&quot;:false}'
 </code></pre>
 <p>另一种情况是，Map 的键名有非字符串，这时可以选择转为数组 JSON。</p>
-<pre class="line-numbers"><code class="language-plain_text">function mapToArrayJson(map) {
+<pre><code class="language-plain_text">function mapToArrayJson(map) {
   return JSON.stringify([...map]);
 }
 
@@ -680,7 +680,7 @@ mapToArrayJson(myMap)
 <li>JSON 转为 Map</li>
 </ul>
 <p>JSON 转为 Map，正常情况下，所有键名都是字符串。</p>
-<pre class="line-numbers"><code class="language-plain_text">function jsonToStrMap(jsonStr) {
+<pre><code class="language-plain_text">function jsonToStrMap(jsonStr) {
   return objToStrMap(JSON.parse(jsonStr));
 }
 
@@ -688,7 +688,7 @@ jsonToStrMap('{&quot;yes&quot;: true, &quot;no&quot;: false}')
 // Map {'yes' =&gt; true, 'no' =&gt; false}
 </code></pre>
 <p>但是，有一种特殊情况，整个 JSON 就是一个数组，且每个数组成员本身，又是一个有两个成员的数组。这时，它可以一一对应地转为 Map。这往往是数组转为 JSON 的逆操作。</p>
-<pre class="line-numbers"><code class="language-plain_text">function jsonToMap(jsonStr) {
+<pre><code class="language-plain_text">function jsonToMap(jsonStr) {
   return new Map(JSON.parse(jsonStr));
 }
 
@@ -719,7 +719,7 @@ jsonToMap('[[true,7],[{&quot;foo&quot;:3},[&quot;abc&quot;]]]')
 </ul>
 </li>
 </ul>
-<pre class="line-numbers"><code class="language-js">const promise = new Promise(function(resolve, reject) {
+<pre><code class="language-js">const promise = new Promise(function(resolve, reject) {
   // ... some code
   if (/* 异步操作成功 */){
     resolve(value); //将Promise对象的状态从“未完成”变为“成功”,并将异步操作的结果，作为参数传递出去
@@ -745,14 +745,14 @@ promise.then(value =&gt; {
 <li><code>Promise.race([p1, p2, ...])</code>: 将多个 Promise 包装成一个新的 Promise，状态和参数均由里面第一个改变的状态的实例决定</li>
 <li><code>Promise.resolve()</code>：简写，将现有对象转为 状态为fulfilled的Promise 对象。</li>
 </ul>
-<pre class="line-numbers"><code class="language-js">Promise.resolve('foo')
+<pre><code class="language-js">Promise.resolve('foo')
 // 等价于
 new Promise(resolve =&gt; resolve('foo'))
 </code></pre>
 <ul>
 <li><code>Promise.reject()</code>：简写，将现有对象转为 状态为rejected的Promise 对象。</li>
 </ul>
-<pre class="line-numbers"><code class="language-js">const p = Promise.reject('出错了');
+<pre><code class="language-js">const p = Promise.reject('出错了');
 // 等同于
 const p = new Promise((resolve, reject) =&gt; reject('出错了'))
 </code></pre>
@@ -768,7 +768,7 @@ const p = new Promise((resolve, reject) =&gt; reject('出错了'))
 <li>三是 ES6 创造了一种新的遍历命令for...of循环，Iterator 接口主要供for...of消费。</li>
 </ul>
 <h3><a id="for-of%E5%BE%AA%E7%8E%AF" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>for...of 循环</h3>
-<pre class="line-numbers"><code class="language-plain_text">const arr = ['red', 'green', 'blue'];
+<pre><code class="language-plain_text">const arr = ['red', 'green', 'blue'];
 
 for(let v of arr) {
   console.log(v); // red green blue
@@ -778,7 +778,7 @@ for(let v of arr) {
 <ul>
 <li>for...in遍历键名，for...of遍历键值</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">var arr = ['a', 'b', 'c', 'd'];
+<pre><code class="language-plain_text">var arr = ['a', 'b', 'c', 'd'];
 
 for (let a in arr) {
   console.log(a); // 0 1 2 3
@@ -791,7 +791,7 @@ for (let a of arr) {
 <ul>
 <li>for...of可以配合break、continue和return使用</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">for (var n of fibonacci) {
+<pre><code class="language-plain_text">for (var n of fibonacci) {
   if (n &gt; 1000)
     break;
   console.log(n);
@@ -801,7 +801,7 @@ for (let a of arr) {
 <h3><a id="%E6%A6%82%E5%BF%B5" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>概念</h3>
 <p>Generator 函数是 ES6 提供的一种异步编程解决方案。<br />
 Generator 函数是一个状态机，封装了多个内部状态。</p>
-<pre class="line-numbers"><code class="language-js">function* helloWorldGenerator() {
+<pre><code class="language-js">function* helloWorldGenerator() {
   yield 'hello';
   yield 'world';
   return 'ending';
@@ -827,7 +827,7 @@ hw.next()
 <li>yield其實是兩個動作的合體：丟東西出去-&gt;等東西進來；<br />
 每次next()都會跑到yield丟東西出來的那個步驟</li>
 </ul>
-<pre class="line-numbers"><code class="language-js">//输入输出：yield右边为输出（next返回值的value，最后一次由return返回），左边为输入（接受的是next的参数，第一次由函数参数传入），
+<pre><code class="language-js">//输入输出：yield右边为输出（next返回值的value，最后一次由return返回），左边为输入（接受的是next的参数，第一次由函数参数传入），
 function * input(){
     let array = [], i = 4;
     while(i) {
@@ -846,7 +846,7 @@ console.log(gen.next(&quot;界&quot;)) // { value: [ '部', '世', '界' ], done
 <p>yield表达式本身没有返回值，或者说总是返回undefined。next方法可以带一个参数，该参数就会被当作上一个yield表达式的返回值。</p>
 <h3><a id="for-of%E5%BE%AA%E7%8E%AF" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>for...of 循环</h3>
 <p>for...of循环可以自动遍历 Generator 函数时生成的Iterator对象，且此时不再需要调用next方法。</p>
-<pre class="line-numbers"><code class="language-plain_text">function* foo() {
+<pre><code class="language-plain_text">function* foo() {
   yield 1;
   yield 2;
   yield 3;
@@ -865,7 +865,7 @@ for (let v of foo()) {
 <ul>
 <li>next()是将yield表达式替换成一个值。</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">const g = function* (x, y) {
+<pre><code class="language-plain_text">const g = function* (x, y) {
   let result = yield x + y;
   return result;
 };
@@ -880,20 +880,20 @@ gen.next(1); // Object {value: 1, done: true}
 <ul>
 <li>throw()是将yield表达式替换成一个throw语句。</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">gen.throw(new Error('出错了')); // Uncaught Error: 出错了
+<pre><code class="language-plain_text">gen.throw(new Error('出错了')); // Uncaught Error: 出错了
 // 相当于将 let result = yield x + y
 // 替换成 let result = throw(new Error('出错了'));
 </code></pre>
 <ul>
 <li>return()是将yield表达式替换成一个return语句。</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">gen.return(2); // Object {value: 2, done: true}
+<pre><code class="language-plain_text">gen.return(2); // Object {value: 2, done: true}
 // 相当于将 let result = yield x + y
 // 替换成 let result = return 2;
 </code></pre>
 <h3><a id="yield%E8%A1%A8%E8%BE%BE%E5%BC%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>yield* 表达式</h3>
 <p>在 Generator 函数内部，调用另一个 Generator 函数</p>
-<pre class="line-numbers"><code class="language-plain_text">function* bar() {
+<pre><code class="language-plain_text">function* bar() {
   yield 'x';
   yield* foo();
   yield 'y';
@@ -925,7 +925,7 @@ for (let v of bar()){
 // &quot;y&quot;
 </code></pre>
 <h3><a id="%E4%BD%9C%E4%B8%BA%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7%E7%9A%84generator%E5%87%BD%E6%95%B0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>作为对象属性的 Generator 函数</h3>
-<pre class="line-numbers"><code class="language-plain_text">let obj = {
+<pre><code class="language-plain_text">let obj = {
   * myGeneratorMethod() {
     ···
   }
@@ -941,7 +941,7 @@ let obj = {
 <ul>
 <li>ajax</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">function* main() {
+<pre><code class="language-plain_text">function* main() {
   var result = yield request(&quot;http://some.url&quot;);
   var resp = JSON.parse(result);
     console.log(resp.value);
@@ -967,7 +967,7 @@ it.next();
 <li><a href="http://blog.csdn.net/linsongbin1/article/details/55048058">生产者-消费者模式</a></li>
 </ul>
 <h4><a id="es6%E5%AE%9E%E7%8E%B0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>ES6实现</h4>
-<pre class="line-numbers"><code class="language-plain_text">// 暂停
+<pre><code class="language-plain_text">// 暂停
 function sleep(numberMillis) {
     var now = new Date();
     var exitTime = now.getTime() + numberMillis;
@@ -1007,7 +1007,7 @@ function producer(name) {
 producer('小明')
 </code></pre>
 <h4><a id="%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9E%9C" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>运行结果</h4>
-<pre class="line-numbers"><code class="language-plain_text">小明：我开始准备做包子了！
+<pre><code class="language-plain_text">小明：我开始准备做包子了！
 A准备吃包子啦！
 B准备吃包子啦！
 第1个包子来了，被分成了两份，一份被A吃了！
@@ -1033,7 +1033,7 @@ B准备吃包子啦！
 </code></pre>
 <h1><a id="class" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Class</h1>
 <h3><a id="%E5%AE%9A%E4%B9%89%E7%B1%BB" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>定义类</h3>
-<pre class="line-numbers"><code class="language-plain_text">//以前
+<pre><code class="language-plain_text">//以前
 function Point(x, y) {
   this.x = x;
   this.y = y;
@@ -1046,7 +1046,7 @@ Point.prototype.toString = function () {
 var p = new Point(1, 2);
 </code></pre>
 <p>ES6 的class可以看作只是一个语法糖，它的绝大部分功能，ES5 都可以做到，新的class写法只是让对象原型的写法更加清晰、更像面向对象编程的语法而已。</p>
-<pre class="line-numbers"><code class="language-plain_text">//es6
+<pre><code class="language-plain_text">//es6
 class Point {
 //构造方法
   constructor(x, y) {
@@ -1061,7 +1061,7 @@ class Point {
 var p = new Point(1, 2);
 </code></pre>
 <h3><a id="%E7%BB%A7%E6%89%BF%E7%B1%BB" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>继承类</h3>
-<pre class="line-numbers"><code class="language-plain_text">class Point {
+<pre><code class="language-plain_text">class Point {
 }
 
 class ColorPoint extends Point {
@@ -1094,7 +1094,7 @@ class ColorPoint extends Point {
 <p>定义模块的对外接口。<br />
 一个模块就是一个独立的文件。该文件内部的所有变量，外部无法获取。如果你希望外部能够读取模块内部的某个变量，就必须使用export关键字输出该变量。<br />
 以下是几种用法：</p>
-<pre class="line-numbers"><code class="language-plain_text">//------输出变量------
+<pre><code class="language-plain_text">//------输出变量------
 export var firstName = 'Michael';
 export var lastName = 'Jackson';
 //等价于
@@ -1118,7 +1118,7 @@ export default function () { ... }
 <h3><a id="import%E5%91%BD%E4%BB%A4" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>import 命令</h3>
 <p>使用export命令定义了模块的对外接口以后，其他 JS 文件就可以通过import命令加载这个模块。<br />
 以下是几种用法，必须和上面的export对应：</p>
-<pre class="line-numbers"><code class="language-plain_text">//------加载变量、函数或类------
+<pre><code class="language-plain_text">//------加载变量、函数或类------
 import {firstName, lastName} from './profile.js';
 //------加载并as重命名------
 import { lastName as surname } from './profile.js';
@@ -1131,7 +1131,7 @@ import  * as surname from './profile.js';
 </code></pre>
 <h3><a id="%E5%A4%8D%E5%90%88%E5%86%99%E6%B3%95" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>复合写法</h3>
 <p>如果在一个模块之中，先输入后输出同一个模块，import语句可以与export语句写在一起。</p>
-<pre class="line-numbers"><code class="language-plain_text">export { foo, bar } from 'my_module';
+<pre><code class="language-plain_text">export { foo, bar } from 'my_module';
 
 // 等同于
 import { foo, bar } from 'my_module';
@@ -1139,13 +1139,13 @@ export { foo, bar };
 </code></pre>
 <h1><a id="symbol" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Symbol</h1>
 <p>原始数据类型Symbol，表示独一无二的值。</p>
-<pre class="line-numbers"><code class="language-plain_text">let s = Symbol();
+<pre><code class="language-plain_text">let s = Symbol();
 
 typeof s
 // &quot;symbol&quot;
 </code></pre>
 <p>Symbol函数可以接受一个字符串作为参数，表示对 Symbol 实例的描述，主要是为了在控制台显示，或者转为字符串时，比较容易区分。</p>
-<pre class="line-numbers"><code class="language-plain_text">let s1 = Symbol('foo');
+<pre><code class="language-plain_text">let s1 = Symbol('foo');
 let s2 = Symbol('bar');
 
 s1 // Symbol(foo)
@@ -1156,13 +1156,13 @@ s2.toString() // &quot;Symbol(bar)&quot;
 </code></pre>
 <h1><a id="proxy" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Proxy</h1>
 <p>代理器（拦截器），Proxy 可以理解成，在目标对象之前架设一层“拦截”，外界对该对象的访问，都必须先通过这层拦截，因此提供了一种机制，可以对外界的访问进行过滤和改写。</p>
-<pre class="line-numbers"><code class="language-plain_text">var proxy = new Proxy(target, handler);
+<pre><code class="language-plain_text">var proxy = new Proxy(target, handler);
 </code></pre>
 <ul>
 <li>target参数表示所要拦截的目标对象</li>
 <li>handler参数也是一个对象，用来定制拦截行为。</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">var obj = new Proxy({}, {
+<pre><code class="language-plain_text">var obj = new Proxy({}, {
   get: function (target, key, receiver) {
     console.log(`getting ${key}!`);
     return target.key;
@@ -1355,6 +1355,7 @@ body{ box-sizing: border-box;
      word-wrap: break-word !important;       /* Internet Explorer 5.5+ */
     }
     html,body{margin:0;padding:4px;}
+    .mweb-yaml{display:none;}
 }
 
 

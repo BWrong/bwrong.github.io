@@ -132,7 +132,7 @@
           </div>
         </div>
         <article class="markdown-body single-content">
-          <pre class="line-numbers"><code class="language-plain_text">var myDate = new Date();
+          <pre><code class="language-plain_text">var myDate = new Date();
 myDate.getYear();        //获取当前年份(2位)
 myDate.getFullYear();    //获取完整的年份(4位,1970-????)
 myDate.getMonth();       //获取当前月份(0-11,0代表1月)
@@ -148,7 +148,7 @@ var mytime=myDate.toLocaleTimeString();     //获取当前时间
 myDate.toLocaleString( );        //获取日期与时间
 </code></pre>
 <p>日期时间脚本库方法列表</p>
-<pre class="line-numbers"><code class="language-plain_text">Date.prototype.isLeapYear 判断闰年
+<pre><code class="language-plain_text">Date.prototype.isLeapYear 判断闰年
 Date.prototype.Format 日期格式化
 Date.prototype.DateAdd 日期计算
 Date.prototype.DateDiff 比较日期差
@@ -163,7 +163,7 @@ CheckDateTime 完整日期时间检查
 daysBetween 日期天数差
 </code></pre>
 <p>js代码：</p>
-<pre class="line-numbers"><code class="language-plain_text">//---------------------------------------------------  
+<pre><code class="language-plain_text">//---------------------------------------------------  
 // 判断闰年  
 //---------------------------------------------------  
 Date.prototype.isLeapYear = function()   
@@ -633,6 +633,7 @@ body{ box-sizing: border-box;
      word-wrap: break-word !important;       /* Internet Explorer 5.5+ */
     }
     html,body{margin:0;padding:4px;}
+    .mweb-yaml{display:none;}
 }
 
 

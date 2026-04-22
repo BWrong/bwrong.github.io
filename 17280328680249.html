@@ -164,9 +164,9 @@
 <li>自定义header：可以全局设置header，也可以为某个mock接口设置header</li>
 <li>可以使用mockjs语法</li>
 </ul>
-<pre class="line-numbers"><code class="language-bash">npm i -D @bwrong/mock
+<pre><code class="language-bash">npm i -D @bwrong/mock
 </code></pre>
-<pre class="line-numbers"><code class="language-js">// webpack.config.js
+<pre><code class="language-js">// webpack.config.js
 const mockServer = require('@bwrong/mock');
 
 module.exports = {
@@ -187,7 +187,7 @@ module.exports = {
 </code></pre>
 <p>在mock目录中，<code>index.js</code>用来做文件自动载入，而其他文件则为模拟数据，每个功能模块可以分割为一个文件，模块化管理。</p>
 <p><em>提示：mock的这些文件是在webpack中使用的，需要遵循commonjs规范。</em></p>
-<pre class="line-numbers"><code class="language-js">const list = {
+<pre><code class="language-js">const list = {
   code: 0,
   msg: '',
   'data|10': [
@@ -262,7 +262,7 @@ module.exports = [
 <ul>
 <li>package.json中</li>
 </ul>
-<pre class="line-numbers"><code class="language-json">&quot;browserslist&quot;: [
+<pre><code class="language-json">&quot;browserslist&quot;: [
     &quot;defaults&quot;,
     &quot;not IE 11&quot;,
     &quot;not IE_Mob 11&quot;,
@@ -272,14 +272,14 @@ module.exports = [
 <ul>
 <li>.browserslistrc</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">last 1 version
+<pre><code class="language-plain_text">last 1 version
 &gt; 1%
 IE 10
 </code></pre>
 <p>更多使用方式请查看<a href="https://github.com/browserslist/browserslist">browserslist</a>。</p>
 <h1><a id="postcss" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>PostCSS</h1>
 <p>PostCSS是一个允许使用插件来进行样式转换的工具，本身相当于一个平台，通过这个平台我们可以添加相应的插件，来实现各种转换，如<code>autoprefixer</code>、<code>cssmodules</code>、<code>stylelint</code>，而且可以和很多工具结合使用。</p>
-<pre class="line-numbers"><code class="language-js">// webpack.config.js
+<pre><code class="language-js">// webpack.config.js
 module.exports = {
   module: {
     rules: [
@@ -305,7 +305,7 @@ module.exports = {
   }
 }
 </code></pre>
-<pre class="line-numbers"><code class="language-js">// postcss.config.js
+<pre><code class="language-js">// postcss.config.js
 module.exports = {
   plugins: [
     require('precss'),
@@ -325,7 +325,7 @@ module.exports = {
 <h1><a id="editorconfig" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>EditorConfig</h1>
 <p>EditorConfig有助于维护跨多个编辑器和IDE从事同一项目的多个开发人员的一致编码风格，团队必备神器。</p>
 <p><strong>.editorconfig文件</strong>:</p>
-<pre class="line-numbers"><code class="language-markdown"># EditorConfig is awesome: https://EditorConfig.org
+<pre><code class="language-markdown"># EditorConfig is awesome: https://EditorConfig.org
 
 # top-most EditorConfig file 表示是最顶层的配置文件，发现设为true时，才会停止查找.editorconfig文件
 root = true
@@ -361,7 +361,7 @@ indent_size = 2
 
 </code></pre>
 <p>配置说明：</p>
-<pre class="line-numbers"><code class="language-plain_text">
+<pre><code class="language-plain_text">
 indent_style    设置缩进风格(tab是硬缩进，space为软缩进)
 indent_size     用一个整数定义的列数来设置缩进的宽度，如果indent_style为tab，则此属性默认为tab_width
 tab_width       用一个整数来设置tab缩进的列数。默认是indent_size
@@ -585,6 +585,7 @@ body{ box-sizing: border-box;
      word-wrap: break-word !important;       /* Internet Explorer 5.5+ */
     }
     html,body{margin:0;padding:4px;}
+    .mweb-yaml{display:none;}
 }
 
 

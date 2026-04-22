@@ -151,7 +151,7 @@
 <p>不管是官方提供的插件（例如<code>vue-router</code>、<code>vuex</code>），还是第三方的插件（例如<code>ElementUI</code>、<code>ant</code>）都是采用了此方式，不外乎插件内部的功能不同而已。当然，还有其他诸多此类插件，<a href="https://github.com/vuejs/awesome-vue#components--libraries">awesome-vue</a> 就集合了大量由社区贡献的插件和库。</p>
 <p>接下来，我们就来看下这个神秘的<code>use</code>方法是如何实现的。</p>
 <p><code>Vue.js</code> 的插件应该暴露一个 <code>install</code> 方法。这个方法的第一个参数是 <code>Vue</code> 构造器，第二个参数是一个可选的选项对象，用于传入插件的配置：</p>
-<pre class="line-numbers"><code class="language-js">MyPlugin.install = function (Vue, options) {
+<pre><code class="language-js">MyPlugin.install = function (Vue, options) {
   // 1. 添加全局方法或属性
   Vue.myGlobalMethod = function () {
     // 逻辑...
@@ -180,12 +180,12 @@
   })
 }
 </code></pre>
-<pre class="line-numbers"><code class="language-js">Vue.use(MyPlugin,{
+<pre><code class="language-js">Vue.use(MyPlugin,{
   // ...options
 })
 </code></pre>
 <p>一个插件内部大概就是如上所示，其实也不外乎上述那几种东西，甚是简单😄😄。接下来我们就来看下真实的案例<code>ElementUI</code>:</p>
-<pre class="line-numbers"><code class="language-js">const components = [ Pagination, Dialog, Autocomplete/* 此处由于篇幅省略若干个组件 */];
+<pre><code class="language-js">const components = [ Pagination, Dialog, Autocomplete/* 此处由于篇幅省略若干个组件 */];
 const install = function(Vue, opts = {}) {
   locale.use(opts.locale);
   locale.i18n(opts.i18n);
@@ -228,7 +228,7 @@ export default {
 </code></pre>
 <p>我们不难发现，其实自己来实现一个插件也是超级简单，只要对外暴露一个<code>install</code>方法即可，在使用<code>Vue.use</code>的时候，会调用这个方法。所以我们只要将要实现的内容放到<code>install</code>内部即可。这样的好处就是插件需要一开始调用的方法都封装在<code>install</code>里面，更加精简和可拓展性更高。</p>
 <p>大家可能也有注意到，这里的<code>install</code>其实是将所有的组件全部引入了。作为一个庞大的插件库，这样可能会有一些性能问题。用过的<code>ElementUI</code>的同学都知道，它是支持按需引入的，其实在上面的示例中也可以发现一些蛛丝马迹。</p>
-<pre class="line-numbers"><code class="language-js">const components = [ Pagination, Dialog, Autocomplete/* 此处由于篇幅省略若干个组件 */];
+<pre><code class="language-js">const components = [ Pagination, Dialog, Autocomplete/* 此处由于篇幅省略若干个组件 */];
 // ....省去中间内容
 export default {
   version: '2.13.0',
@@ -244,7 +244,7 @@ export default {
 };
 </code></pre>
 <p>这里将每个组件都单独都导出了，而在每个组件内部，也类似的暴露了<code>install</code>来组件每个组件，这样就可以单独<code>Vue.use</code>每个组件，从而实现按需引入的目的。</p>
-<pre class="line-numbers"><code class="language-js">import Alert from './src/main';
+<pre><code class="language-js">import Alert from './src/main';
 /* istanbul ignore next */
 Alert.install = function(Vue) {
   Vue.component(Alert.name, Alert);
@@ -255,7 +255,7 @@ export default Alert;
 <ul>
 <li>插件传入的如果是一个对象，则执行其<code>install</code>方法，如果是一个函数，则执行它自身，并<code>bind</code> <code>this</code>为<code>null</code>，然后传入额外的参数。</li>
 </ul>
-<pre class="line-numbers"><code class="language-js">if (typeof plugin.install === 'function') {
+<pre><code class="language-js">if (typeof plugin.install === 'function') {
   plugin.install.apply(plugin, args);
 } else if (typeof plugin === 'function') {
   plugin.apply(null, args);
@@ -447,6 +447,7 @@ body{ box-sizing: border-box;
      word-wrap: break-word !important;       /* Internet Explorer 5.5+ */
     }
     html,body{margin:0;padding:4px;}
+    .mweb-yaml{display:none;}
 }
 
 

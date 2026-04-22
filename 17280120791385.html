@@ -172,7 +172,7 @@
 </ol>
 <h2><a id="%E5%AF%B9%E6%AF%94" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>对比</h2>
 <p>这张图很清楚的对比了几种主流的构建工具。<br />
-<figure><img src="media/17280120791385/17280171302249.jpg" alt="" /></figure></p>
+<img src="media/17280120791385/17280171302249.jpg" alt="" /></p>
 <p>（图片来自网络）</p>
 <h1><a id="gulp" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Gulp</h1>
 <h2><a id="%E7%AE%80%E4%BB%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>简介</h2>
@@ -189,7 +189,7 @@
 <li><code>globs</code>：源文件匹配路径</li>
 </ul>
 <p>可以使用的模式:</p>
-<pre class="line-numbers"><code class="language-plain_text">“src/a.js”：//指定具体文件；
+<pre><code class="language-plain_text">“src/a.js”：//指定具体文件；
 
 “*”：//匹配所有文件    例：src/*.js(包含src下的所有js文件)；
 
@@ -199,13 +199,13 @@
 
 “!”：//排除文件    例：!src/a.js(不包含src下的a.js文件)；
 </code></pre>
-<pre class="line-numbers"><code class="language-plain_text">// 例
+<pre><code class="language-plain_text">// 例
 gulp.src(['style/**/*.scss','!style/{extend,page}/*.scss'])
 </code></pre>
 <ul>
 <li><code>options[Object]</code>：有3个属性buffer、read、base</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">options.buffer：  类型：Boolean  默认：true 设置为false，将返回file.content的流并且不缓冲文件，处理大文件时非常有用；
+<pre><code class="language-plain_text">options.buffer：  类型：Boolean  默认：true 设置为false，将返回file.content的流并且不缓冲文件，处理大文件时非常有用；
 
 options.read：  类型：Boolean  默认：true 设置false，将不执行读取文件操作，返回null；
 
@@ -217,11 +217,11 @@ options.base：  类型：String  设置输出路径以某个路径的某个组�
 <li>path: 文件将被写入的路径（输出目录）,也可以传入一个函数，在函数中返回相应路径;</li>
 <li><code>options[Object]</code>: 有两个属性</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">options.cwd：  类型：String  默认：process.cwd()：输出目录的 cwd 参数，只在所给的输出目录是相对路径时候有效；
+<pre><code class="language-plain_text">options.cwd：  类型：String  默认：process.cwd()：输出目录的 cwd 参数，只在所给的输出目录是相对路径时候有效；
 
 options.mode：  类型：String  默认：0777 八进制权限字符，用以定义所有在输出目录中所创建的目录的权限；
 </code></pre>
-<pre class="line-numbers"><code class="language-plain_text">// 例
+<pre><code class="language-plain_text">// 例
 .pipe(gulp.dest('./build/minified_templates'));
 </code></pre>
 <h4><a id="gulp-task-name-deps-fn" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>gulp.task(name[, deps], fn)</code></h4>
@@ -230,7 +230,7 @@ options.mode：  类型：String  默认：0777 八进制权限字符，用以�
 <li>name：任务的名字，不能使用空格</li>
 <li>deps：前置任务，一个包含任务列表的数组，这些任务会在你当前任务运行之前完成（记得使用正确的异步执行方式：使用cb或者返回stream或promise ）。</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">//callback
+<pre><code class="language-plain_text">//callback
 // 在 shell 中执行一个命令
 var exec = require('child_process').exec;
 gulp.task('jekyll', function(cb) {
@@ -273,7 +273,7 @@ gulp.task('somename', function() {
 <li>tasks：文件改变要执行的任务的名称数组</li>
 <li>cb：文件改变要执行的回调函数</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">gulp.task('watch1', function () {
+<pre><code class="language-plain_text">gulp.task('watch1', function () {
     gulp.watch('less/**/*.less', ['testLess']);
 });
 
@@ -293,16 +293,16 @@ gulp.task('watch2', function () {
 <ul>
 <li>全局安装</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">npm install --global gulp
+<pre><code class="language-plain_text">npm install --global gulp
 </code></pre>
 <ul>
 <li>项目依赖安装</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">npm install --save-dev gulp
+<pre><code class="language-plain_text">npm install --save-dev gulp
 </code></pre>
 <h4><a id="%E4%BA%8C%E3%80%81%E5%88%9B%E5%BB%BA%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>二、创建配置文件</h4>
 <p>在文件根目录创建一个名为gulpfile.js的文件。</p>
-<pre class="line-numbers"><code class="language-js">var gulp = require('gulp');
+<pre><code class="language-js">var gulp = require('gulp');
 
 gulp.task('default', function() {
   // 将你的默认的任务代码放在这
@@ -312,14 +312,14 @@ gulp.task('default', function() {
 <p>根据自己需要，安装插件并且配置相应的任务。</p>
 <p>以下通过几个案例来学习：</p>
 <h6><a id="%E6%B8%85%E9%99%A4%E6%96%87%E4%BB%B6%EF%BC%88del%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>清除文件（del）</h6>
-<pre class="line-numbers"><code class="language-js">var gulp = require('gulp'),
+<pre><code class="language-js">var gulp = require('gulp'),
     del = require('del');
 gulp.task('clear', function (cb) {
     del(['static/css', 'static/html', 'static/js', 'static/picture', 'static/skin', 'tour.xml'], cb);
 });
 </code></pre>
 <h6><a id="less%E7%BC%96%E8%AF%91%E5%8F%8A%E5%8E%8B%E7%BC%A9%EF%BC%88gulp-less%E3%80%81gulp-clean-css%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Less编译及压缩（gulp-less、gulp-clean-css）</h6>
-<pre class="line-numbers"><code class="language-js">var gulp = require('gulp'),
+<pre><code class="language-js">var gulp = require('gulp'),
     less = require('gulp-less'),
     cleanCSS = require('gulp-clean-css');
 
@@ -334,7 +334,7 @@ gulp.task('runLess', function () {
 });
 </code></pre>
 <h6><a id="%E5%9B%BE%E7%89%87%E5%8E%8B%E7%BC%A9gulp-imagemin-gulp-changed" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>图片压缩(gulp-imagemin,gulp-changed)</h6>
-<pre class="line-numbers"><code class="language-plain_text">var gulp = require('gulp'),
+<pre><code class="language-plain_text">var gulp = require('gulp'),
     changed = require('gulp-changed'),
     imagemin = require('gulp-imagemin');
 gulp.task('picmin', function () {
@@ -349,7 +349,7 @@ gulp.task('picmin', function () {
 });
 </code></pre>
 <h6><a id="%E5%90%AF%E5%8A%A8%E6%9C%AC%E5%9C%B0%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88browsersync%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>启动本地服务器（browserSync）</h6>
-<pre class="line-numbers"><code class="language-plain_text">var gulp = require('gulp'),
+<pre><code class="language-plain_text">var gulp = require('gulp'),
     browserSync = require('browser-sync').create();
 gulp.task('server', function () {
     browserSync.init({
@@ -365,7 +365,7 @@ gulp.task('server', function () {
 插件可以在网上搜索或者在npm官网查找，一般以gulp开头，每个插件的配置有所不同，可以在插件介绍页查看，就不一一介绍了。</p>
 <h4><a id="%E5%9B%9B%E3%80%81%E8%BF%90%E8%A1%8C%E4%BB%BB%E5%8A%A1" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>四、运行任务</h4>
 <p>在命令行中运行任务</p>
-<pre class="line-numbers"><code class="language-plain_text">gulp taskName //运行指定名字的task
+<pre><code class="language-plain_text">gulp taskName //运行指定名字的task
 gulp          //运行默认任务
 </code></pre>
 <p>可以在package.json的scripts中配置常用操作，然后通过npm run 方式调用</p>
@@ -377,7 +377,7 @@ gulp          //运行默认任务
 <h2><a id="%E4%BB%80%E4%B9%88%E6%98%AFwebpack" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>什么是Webpack</h2>
 <p>现代 JavaScript 应用程序的静态模块打包器(module bundler)，它能够根据模块的依赖关系进行静态分析，然后将这些模块按照指定的规则生成对应的静态资源；本身只支持javascript，通过loader可以支持其他资源，每个资源即一个模块，在webpack中一切皆模块；通过plugins的扩展，拥有强大的功能。已经成为目前最流行，社区最活跃的打包工具。</p>
 <p>官网：<a href="https://doc.webpack-china.org">地址</a><br />
-<figure><img src="media/17280120791385/17280171502616.jpg" alt="" /></figure></p>
+<img src="media/17280120791385/17280171502616.jpg" alt="" /></p>
 <h2><a id="%E4%B8%BA%E4%BB%80%E8%A6%81%E4%BD%BF%E7%94%A8webpack" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>为什要使用Webpack</h2>
 <p>近年来 Web 应用变得更加复杂与庞大，Web 前端技术的应用范围也更加广泛，为了方便维护和管理，需要用模块化的思想来组织代码，产生了一些需求：</p>
 <ul>
@@ -411,13 +411,13 @@ gulp          //运行默认任务
 <p>缺点在于目前无法直接运行在大部分 JavaScript 运行环境下，必须通过工具转换成标准的 ES5 后才能正常运行。</p>
 <h2><a id="%E4%B8%80%E3%80%81%E5%AE%89%E8%A3%85" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、安装</h2>
 <p>全局安装：</p>
-<pre class="line-numbers"><code class="language-plain_text">npm install webpack -g
+<pre><code class="language-plain_text">npm install webpack -g
 </code></pre>
 <p>项目依赖安装：</p>
-<pre class="line-numbers"><code class="language-plain_text">npm install webpack --save-d
+<pre><code class="language-plain_text">npm install webpack --save-d
 </code></pre>
 <h2><a id="%E5%9C%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BD%BF%E7%94%A8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>在命令行使用</h2>
-<pre class="line-numbers"><code class="language-plain_text">webpack &lt;entry&gt; [&lt;entry&gt;] &lt;output&gt;
+<pre><code class="language-plain_text">webpack &lt;entry&gt; [&lt;entry&gt;] &lt;output&gt;
 </code></pre>
 <ul>
 <li>entry:入口文件，可以是多个</li>
@@ -427,7 +427,7 @@ gulp          //运行默认任务
 <p>更多命令行用法：<a href="https://doc.webpack-china.org/api/cli">地址</a></p>
 <h2><a id="%E6%8C%87%E5%AE%9A%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>指定配置文件</h2>
 <p>默认为根目录的webpack.config.js，也可以手动指定</p>
-<pre class="line-numbers"><code class="language-plain_text">webpack [--config webpack.config.js]  //在命令行中手动指定配置文件
+<pre><code class="language-plain_text">webpack [--config webpack.config.js]  //在命令行中手动指定配置文件
 </code></pre>
 <p>完整的配置文件模板：<a href="https://doc.webpack-china.org/configuration/">地址</a></p>
 <h2><a id="%E6%A0%B8%E5%BF%83%E9%85%8D%E7%BD%AE" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>核心配置</h2>
@@ -435,7 +435,7 @@ gulp          //运行默认任务
 <p><code>string</code></p>
 <p>基础目录（上下文），绝对路径，用于从配置中解析入口起点(entry point)和 loader，<br />
 默认为执行启动 Webpack 时所在的当前工作目录。可以通过以下方式改变：</p>
-<pre class="line-numbers"><code class="language-js">module.exports = {
+<pre><code class="language-js">module.exports = {
   context: path.resolve(__dirname, 'app')
 }
 </code></pre>
@@ -447,7 +447,7 @@ gulp          //运行默认任务
 <li>对象：每个键(key)生成一个chunk，名称为对应的key，入口则为对应的value</li>
 <li>函数：动态生成入口地址</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">entry: {
+<pre><code class="language-plain_text">entry: {
   home: &quot;./home.js&quot;,
   about: &quot;./about.js&quot;,
   contact: &quot;./contact.js&quot;
@@ -459,7 +459,7 @@ gulp          //运行默认任务
 <ul>
 <li>Output.filename: 输出文件名，可以使用占位符</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">id	        Chunk的唯一标识，从0开始
+<pre><code class="language-plain_text">id	        Chunk的唯一标识，从0开始
 name	    Chunk的名称
 hash	    Chunk的唯一标识的 Hash 值
 chunkhash	Chunk内容的 Hash 值
@@ -468,14 +468,14 @@ query       Chunk的query，文件名?后面的字符串
 <ul>
 <li>Output.path: 存放的本地目录，必须是 string 类型的绝对路径</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">output:{
+<pre><code class="language-plain_text">output:{
     path: path.resolve(__dirname, 'dist_[hash]')
 }
 </code></pre>
 <ul>
 <li>Output.publicPath: 远程资源的URL前缀，默认为空</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">output:{
+<pre><code class="language-plain_text">output:{
     path: path.resolve(__dirname, &quot;public/assets&quot;),
     publicPath: &quot;https://cdn.example.com/assets/&quot;
 }
@@ -485,7 +485,7 @@ query       Chunk的query，文件名?后面的字符串
 <h5><a id="module-noparse" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>module.noParse</h5>
 <p><code>RegExp | [RegExp] | function</code></p>
 <p>防止 webpack 解析那些与给定正则表达式相匹配的文件</p>
-<pre class="line-numbers"><code class="language-plain_text">noParse: function(content) {
+<pre><code class="language-plain_text">noParse: function(content) {
   return /jquery|lodash/.test(content);
 }
 </code></pre>
@@ -501,7 +501,7 @@ query       Chunk的query，文件名?后面的字符串
 <li>Rule.use：配置解析的loader，一般用于使用多个loader，数组，每一项即为一个loader，和Rule.loader、Rule.options用法一样</li>
 </ul>
 <p>常用loader：<a href="https://doc.webpack-china.org/loaders/">地址</a></p>
-<pre class="line-numbers"><code class="language-plain_text">// css
+<pre><code class="language-plain_text">// css
 {
     test: /\.css$/,
     use: [
@@ -533,7 +533,7 @@ query       Chunk的query，文件名?后面的字符串
 <h5><a id="resolve-alias" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>resolve.alias</h5>
 <p><code>object</code></p>
 <p>创建 import 或 require 的别名，来确保模块引入变得更简单。</p>
-<pre class="line-numbers"><code class="language-plain_text">alias: {
+<pre><code class="language-plain_text">alias: {
   Utilities: path.resolve(__dirname, 'src/utilities/'),
   Templates: path.resolve(__dirname, 'src/templates/')
 }
@@ -541,7 +541,7 @@ query       Chunk的query，文件名?后面的字符串
 <h5><a id="resolve-extensions" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>resolve.extensions</h5>
 <p><code>array</code></p>
 <p>自动解析的文件的扩展名，这些文件在引入时可不带扩展名</p>
-<pre class="line-numbers"><code class="language-plain_text">//file.json
+<pre><code class="language-plain_text">//file.json
 extensions: [&quot;.js&quot;, &quot;.json&quot;]
 import File from '../path/to/file'
 </code></pre>
@@ -555,7 +555,7 @@ import File from '../path/to/file'
 <p><code>array</code></p>
 <p>插件配置，接受一个数组，数组里每一项都是一个要使用的 Plugin 的实例，Plugin 需要的参数通过构造函数传入。</p>
 <p>在 Webpack 中接入 Plugin并不复杂，复杂在于每个插件自身提供的配置项。</p>
-<pre class="line-numbers"><code class="language-plain_text">var webpack = require('webpack');
+<pre><code class="language-plain_text">var webpack = require('webpack');
 // 导入非 webpack 默认自带插件
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
@@ -570,7 +570,7 @@ plugins: [
 <p>常用插件：<a href="https://doc.webpack-china.org/plugins/">地址</a></p>
 <h4><a id="devserver" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>DevServer</h4>
 <p>启动一个本地服务器，并支持实时预览，热替换，Source Map</p>
-<pre class="line-numbers"><code class="language-plain_text">devServer: {
+<pre><code class="language-plain_text">devServer: {
   contentBase: path.join(__dirname, &quot;dist&quot;),
   compress: true,
   port: 9000
@@ -610,7 +610,7 @@ plugins: [
 <p>制定构建环境。默认web</p>
 <h4><a id="watch%E5%92%8C-watchoptions" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Watch 和 WatchOptions</h4>
 <p>监听模式及配置</p>
-<pre class="line-numbers"><code class="language-js">module.export = {
+<pre><code class="language-js">module.export = {
   // 只有在开启监听模式时，watchOptions 才有意义
   // 默认为 false，也就是不开启
   watch: true,
@@ -652,7 +652,7 @@ plugins: [
 </ul>
 <h2><a id="vue-cli%E7%AE%80%E4%BB%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>vue-cli简介</h2>
 <p>由vue官方提供的一套快速生成项目模板的脚手架，内置了几套模板，可以根据自己需要进行拉取。目的是为了让开发者能够快速进行项目开发，而不用把时间花费在项目构建上。</p>
-<pre class="line-numbers"><code class="language-plain_text">├── README.md                       // 项目说明文档
+<pre><code class="language-plain_text">├── README.md                       // 项目说明文档
 ├── node_modules                    // 项目依赖包文件夹
 ├── build                           // 编译配置文件，一般不用管
 │   ├── build.js
@@ -864,6 +864,7 @@ body{ box-sizing: border-box;
      word-wrap: break-word !important;       /* Internet Explorer 5.5+ */
     }
     html,body{margin:0;padding:4px;}
+    .mweb-yaml{display:none;}
 }
 
 

@@ -158,7 +158,7 @@
 </blockquote>
 <p><em>此系列文章主要是对前端工程化方面的知识做个梳理，由于作者能力有限，所以并不能完全保证知识的完备性和正确性，如有不足之处，敬请指正。</em></p>
 <p>内容安排如下（后期可能会不定时更新）：</p>
-<p><figure><img src="media/17280324109501/17281444518747.png" alt="image-20201013125213331" /><figcaption>image-20201013125213331<figcaption></figure></p>
+<p><img src="media/17280324109501/17281444518747.png" alt="image-20201013125213331" /></p>
 <h1><a id="%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>开发环境</h1>
 <p>千里之行，始于足下，我们就以搭建开发环境作为这系列的开篇吧。当然，由于每个人的操作系统、使用习惯都不一样，内容仅做参考。</p>
 <h2><a id="nvm%EF%BC%9A%E7%BB%99nodejs%E6%89%BE%E5%88%B0%E5%BD%92%E5%B1%9E" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>NVM：给nodejs找到归属</h2>
@@ -170,11 +170,11 @@
 <li>下载nvm包。下载地址：<a href="https://github.com/coreybutler/nvm-windows/releases">nvm-windows下载</a>，选择nvm-setup.zip下载完成后进行安装，建议安装到一个特定的目录中，后续所有其他开发工具也会安装到此目录中，这里我安装到<code>D:\development\nvm</code></li>
 <li>安装成功后，可以设置一下node和npm的安装源，换成淘宝的要快一些：</li>
 </ol>
-<pre class="line-numbers"><code class="language-shell"> nvm npm_mirror https://npm.taobao.org/mirrors/npm/
+<pre><code class="language-shell"> nvm npm_mirror https://npm.taobao.org/mirrors/npm/
  nvm node_mirror http://npm.taobao.org/mirrors/node/
 </code></pre>
 <p>也可以自己在安装目录下的<code>settings.txt</code>文件中修改：</p>
-<pre class="line-numbers"><code class="language-plain_text">  root: D:\development\nvm 		
+<pre><code class="language-plain_text">  root: D:\development\nvm 		
   path: D:\development\nodejs 
   arch: 64                    
   proxy: none									
@@ -182,7 +182,7 @@
   npm_mirror: https://npm.taobao.org/mirrors/npm/  
 </code></pre>
 <p>说明：</p>
-<pre class="line-numbers"><code class="language-plain_text">root:设置nvm目录
+<pre><code class="language-plain_text">root:设置nvm目录
 path:设置nodejs安装目录
 arch:架构，64位或者32位
 proxy：代理
@@ -205,21 +205,21 @@ npm_mirror：安装npm使用的镜像源，设置成淘宝的比较快
 </ol>
 <p>如果是Mac用户的话，比较简单，直接使用<a href="https://brew.sh/index_zh-cn">Homebrew</a>进行安装就好，也可以参考<a href="https://github.com/nvm-sh/nvm">官方文档</a>进行安装。</p>
 <p>**注意：**在mac上全局安装的包是在每个node版本的文件夹下（官方的说法是为了保证全局包和node版本的兼容性），所以使用nvm安装了新的版本会导致原来的全局包不可用。如果想将原来的全局包重新在新版本中安装一次，可以使用以下命令：</p>
-<pre class="line-numbers"><code class="language-bash"># 加上 --reinstall-packages-from=current
+<pre><code class="language-bash"># 加上 --reinstall-packages-from=current
 nvm install latest --reinstall-packages-from=current
 </code></pre>
 <h4><a id="%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>常用命令</h4>
-<pre class="line-numbers"><code class="language-shell">nvm install # 安装指定版本，可模糊安装，如：安装v6.2.0，既可nvm install v6.2.0，又可nvm install 6.2
+<pre><code class="language-shell">nvm install # 安装指定版本，可模糊安装，如：安装v6.2.0，既可nvm install v6.2.0，又可nvm install 6.2
 nvm uninstall # 删除已安装的指定版本，语法与install类似
 nvm use # 切换使用指定的版本node
 nvm ls # 列出本地所有安装的版本
 </code></pre>
 <h4><a id="nvmrc" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>.nvmrc</code></h4>
-<pre class="line-numbers"><code class="language-shell"># 指定版本
+<pre><code class="language-shell"># 指定版本
 14
 </code></pre>
 <p>该配置文件放到项目根目录，并写入相应的版本，可指定该项目的node的版本号。在使用<code>zsh</code>时，加入如下内容可以自动进行切换。</p>
-<pre class="line-numbers"><code class="language-shell"># place this after nvm initialization!
+<pre><code class="language-shell"># place this after nvm initialization!
 autoload -U add-zsh-hook
 load-nvmrc() {
   local node_version=&quot;$(nvm version)&quot;
@@ -243,12 +243,12 @@ load-nvmrc
 </code></pre>
 <h4><a id="npm%E9%85%8D%E7%BD%AE" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>NPM配置</h4>
 <p>在上面，如果用nvm安装了nodejs，那么同时也会安装npm。如果希望npm安装的全局包也放在<code>D:\development</code>下，可以使用以下命令设置：</p>
-<pre class="line-numbers"><code class="language-shell">npm config set prefix &quot;D:\development\npm&quot;  ## 设置全局模块安装目录
+<pre><code class="language-shell">npm config set prefix &quot;D:\development\npm&quot;  ## 设置全局模块安装目录
 npm config set registry https://registry.npm.taobao.org  ## 设置镜像为淘宝
 npm config set cache &quot;D:\development\npm_cache&quot; ## 设置缓存目录，默认会在C盘，可以修改到其他盘
 </code></pre>
 <p>可以查看用户目录下的<code>.npmrc</code>文件是否包含如下内容，确认是否设置成功。</p>
-<pre class="line-numbers"><code class="language-plain_text">prefix=D:\development\npm
+<pre><code class="language-plain_text">prefix=D:\development\npm
 registry=https://registry.npm.taobao.org
 </code></pre>
 <p>另外，需要在系统环境变量配置<code>NPM_HOME</code>，变量值为<code>D:\development\npm</code>，然后在Path中引用该变量<code>;%NPM_HOME%;</code>,需要确保放在<code>%NVM_SYMLINK%</code>前面。</p>
@@ -263,7 +263,7 @@ registry=https://registry.npm.taobao.org
 <p>安装后就可以使用nrm的相关功能，列出可使用的资源：<code>nrm ls</code>，会显示如下内容：</p>
 </li>
 </ol>
-<pre class="line-numbers"><code class="language-shell">  npm ---- https://registry.npmjs.org/
+<pre><code class="language-shell">  npm ---- https://registry.npmjs.org/
   cnpm --- http://r.cnpmjs.org/
 * taobao - https://registry.npm.taobao.org/
   nj ----- https://registry.nodejitsu.com/
@@ -274,12 +274,12 @@ registry=https://registry.npm.taobao.org
 <ol start="3">
 <li>选择需要的源：</li>
 </ol>
-<pre class="line-numbers"><code class="language-shell">nrm use taobao   # 切到淘宝
+<pre><code class="language-shell">nrm use taobao   # 切到淘宝
 </code></pre>
 <p>nrm切换源不仅可以作用于npm，而且对yarn也是有效的。当然还有些其他方案，比如用cnpm代替npm，个人是不建议这样做的，因为有时候会出现一些诡异的问题。</p>
 <p>另外，如果在我们开发中，发现某些模块安装总是失败或者很慢，如<code>node-sass</code>、<code>electron</code>、<code>chrom</code>等，我们可以手动将安装源设置为淘宝的地址：</p>
 <p>打开用户目录的<code>.npmrc</code>或者在项目根目录创建<code>.npmrc</code>，然后配置安装源。</p>
-<pre class="line-numbers"><code class="language-shell">sass_binary_site=https://npm.taobao.org/mirrors/node-sass/
+<pre><code class="language-shell">sass_binary_site=https://npm.taobao.org/mirrors/node-sass/
 phantomjs_cdnurl=http://cnpmjs.org/downloads
 electron_mirror=https://npm.taobao.org/mirrors/electron/
 sqlite3_binary_host_mirror=https://foxgis.oss-cn-shanghai.aliyuncs.com/
@@ -302,17 +302,17 @@ chromedriver_cdnurl=https://npm.taobao.org/mirrors/chromedriver
 </ul>
 </li>
 </ol>
-<p><figure><img src="media/17280324109501/17281444518770.gif" alt="8c600cd8-4f48-11e5-8757-9387a7a21316" /><figcaption>8c600cd8-4f48-11e5-8757-9387a7a21316<figcaption></figure></p>
+<p><img src="media/17280324109501/17281444518770.gif" alt="8c600cd8-4f48-11e5-8757-9387a7a21316" /></p>
 <ol start="3">
 <li>从列出有更新的包列表中，按空格进行选择，按上下方向键进行光标移动，按回车将更新所有选择项。</li>
 </ol>
 <p><strong>其他用法：</strong></p>
-<pre class="line-numbers"><code class="language-shell">npm update &lt;name&gt; -g # 更新某个全局包
+<pre><code class="language-shell">npm update &lt;name&gt; -g # 更新某个全局包
 npm update -s # 跳过没有使用的包
 </code></pre>
 <h2><a id="zsh%EF%BC%9A%E5%81%9A%E4%B8%AA%E9%A2%9C%E5%80%BC%E6%B4%BE" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>ZSH：做个颜值派</h2>
 <p>作为一个颜控来说，一个好看的终端是非常重要的。先贴下战果：包含界面美化、git信息、自动补全和命令提示。</p>
-<p><figure><img src="media/17280324109501/17281444518794.png" alt="image-20200614175654329" /><figcaption>image-20200614175654329<figcaption></figure></p>
+<p><img src="media/17280324109501/17281444518794.png" alt="image-20200614175654329" /></p>
 <p>由于这部分内容比较简单，且网上教程较多，就偷个懒直接贴教程地址。</p>
 <ul>
 <li>
@@ -320,11 +320,11 @@ npm update -s # 跳过没有使用的包
 <p>使用了<code>WindowsTerminal</code>+<code>PowerShell</code>，可以设置毛玻璃效果和背景，同时除了界面美化外，还有命令提示及Git信息，当然也可以<a href="https://blog.csdn.net/qq_35170166/article/details/105885838">将<code>windows terminal</code>添加到右键菜单中</a>，替换掉默认的<code>powerShell</code>。</p>
 </li>
 </ul>
-<p><figure><img src="media/17280324109501/17281444518821.png" alt="Windows 终端 Powerline PowerShell" /><figcaption>Windows 终端 Powerline PowerShell<figcaption></figure></p>
+<p><img src="media/17280324109501/17281444518821.png" alt="Windows 终端 Powerline PowerShell" /></p>
 <ul>
 <li>
 <p>Mac教程：<a href="https://www.jianshu.com/p/ba08713c2b19">Mac下终端工具iTerm2安装</a>，<a href="https://blog.tlhub.cn/Custom-terminal-on-your-mac.html">iTerm2 + ohmyzsh + powerlevel9k + tmux 打造专属个性化终端</a></p>
-<p><figure><img src="media/17280324109501/17281444518856.png" alt="70f58fb6-ba03-11e4-82c9-c083bf9a6574" /><figcaption>70f58fb6-ba03-11e4-82c9-c083bf9a6574<figcaption></figure></p>
+<p><img src="media/17280324109501/17281444518856.png" alt="70f58fb6-ba03-11e4-82c9-c083bf9a6574" /></p>
 <p>其实上面这些都使用了<a href="https://ohmyz.sh/">ohmyz</a>这个东西，它支持很多平台，所以其他的系统也是可以的。</p>
 </li>
 </ul>
@@ -512,6 +512,7 @@ body{ box-sizing: border-box;
      word-wrap: break-word !important;       /* Internet Explorer 5.5+ */
     }
     html,body{margin:0;padding:4px;}
+    .mweb-yaml{display:none;}
 }
 
 

@@ -142,7 +142,7 @@
 <li><code>hook</code></li>
 </ul>
 <p>除了emit还可以在父组件使用hook钩子监听子组件对应的生命周期</p>
-<pre class="line-numbers"><code class="language-plain_text">&lt;!-- parent --&gt;
+<pre><code class="language-plain_text">&lt;!-- parent --&gt;
 &lt;template&gt;
     &lt;child @hook.created=&quot;handle&quot;&gt;&lt;/child&gt;
 &lt;/template&gt;
@@ -329,6 +329,7 @@ body{ box-sizing: border-box;
      word-wrap: break-word !important;       /* Internet Explorer 5.5+ */
     }
     html,body{margin:0;padding:4px;}
+    .mweb-yaml{display:none;}
 }
 
 

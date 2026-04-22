@@ -138,7 +138,7 @@
 <ol>
 <li>初始化3个Schema和3个model</li>
 </ol>
-<pre class="line-numbers"><code class="language-plain_text">var studentSchema = new Schema({
+<pre><code class="language-plain_text">var studentSchema = new Schema({
     name  : String,
     age   : String,
     school: {
@@ -175,7 +175,7 @@ var City = mongoose.model(&quot;city&quot;, citySchema);
 <ol start="2">
 <li>初始化数据</li>
 </ol>
-<pre class="line-numbers"><code class="language-plain_text">var city = new City({
+<pre><code class="language-plain_text">var city = new City({
     name  : '北京'，
     school: []
 });
@@ -199,7 +199,7 @@ city.save(function (err, city) {
 <ol start="3">
 <li>进行关联查询，进行查询的时候要把初始化的数据注释掉</li>
 </ol>
-<pre class="line-numbers"><code class="language-plain_text">Student.findOne({name: 'Tom'})
+<pre><code class="language-plain_text">Student.findOne({name: 'Tom'})
        .populate({
            path: 'school',
            populate: {path: 'city'}
@@ -212,7 +212,7 @@ city.save(function (err, city) {
 <ol start="4">
 <li>结果</li>
 </ol>
-<pre class="line-numbers"><code class="language-plain_text">Tom 所在学校为：Test，所在城市为：北京
+<pre><code class="language-plain_text">Tom 所在学校为：Test，所在城市为：北京
 </code></pre>
 
         </article>
@@ -396,6 +396,7 @@ body{ box-sizing: border-box;
      word-wrap: break-word !important;       /* Internet Explorer 5.5+ */
     }
     html,body{margin:0;padding:4px;}
+    .mweb-yaml{display:none;}
 }
 
 

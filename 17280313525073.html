@@ -133,33 +133,33 @@
         </div>
         <article class="markdown-body single-content">
           <p>句式一、</p>
-<pre class="line-numbers"><code class="language-plain_text">if(a) do_a
+<pre><code class="language-plain_text">if(a) do_a
 
 elseif(b) do_b
 
 else do_c
 </code></pre>
 <p>转化为：</p>
-<pre class="line-numbers"><code class="language-plain_text">=&gt;a ? do_a
+<pre><code class="language-plain_text">=&gt;a ? do_a
 
 : b ?do_b
 
 : do_c
 </code></pre>
 <p>句式二、</p>
-<pre class="line-numbers"><code class="language-plain_text">if(a) do_a
+<pre><code class="language-plain_text">if(a) do_a
 </code></pre>
 <p>转化为：</p>
-<pre class="line-numbers"><code class="language-plain_text">=&gt; a &amp;&amp;do_a
+<pre><code class="language-plain_text">=&gt; a &amp;&amp;do_a
 </code></pre>
 <p>句式三、</p>
-<pre class="line-numbers"><code class="language-plain_text">if(!a) do_a
+<pre><code class="language-plain_text">if(!a) do_a
 </code></pre>
 <p>转化为：</p>
-<pre class="line-numbers"><code class="language-plain_text">=&gt; a || do_a
+<pre><code class="language-plain_text">=&gt; a || do_a
 </code></pre>
 <p>三元:</p>
-<pre class="line-numbers"><code class="language-js">//if else 实现
+<pre><code class="language-js">//if else 实现
 var add_level = 0; 
 if(add_step == 5){ 
   add_level = 1; 
@@ -380,6 +380,7 @@ body{ box-sizing: border-box;
      word-wrap: break-word !important;       /* Internet Explorer 5.5+ */
     }
     html,body{margin:0;padding:4px;}
+    .mweb-yaml{display:none;}
 }
 
 

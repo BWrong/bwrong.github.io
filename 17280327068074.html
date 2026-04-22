@@ -162,17 +162,17 @@
 <ol>
 <li>生成<code>stat.json</code>文件。</li>
 </ol>
-<pre class="line-numbers"><code class="language-shell">webpack --profile --json &gt; stats.json
+<pre><code class="language-shell">webpack --profile --json &gt; stats.json
 </code></pre>
 <ol start="2">
 <li>将<code>stat.json</code>文件上传到<a href="http://webpack.github.io/analyse/">stats分析工具</a>页面中，即可得到分析结果。</li>
 </ol>
-<p><figure><img src="media/17280327068074/17281443522325.png" alt="" /></figure></p>
+<p><img src="media/17280327068074/17281443522325.png" alt="" /></p>
 <h4><a id="%E4%BD%BF%E7%94%A8webpack-bundle-analyzer" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>使用<code>webpack-bundle-analyzer</code></h4>
 <p>除了官网提供的分析工具，社区还提供了一个更加好用的分析神器<a href="https://github.com/webpack-contrib/webpack-bundle-analyzer">webpack-bundle-analyzer</a> ，不仅界面美观，而且各个依赖包及其体积大小也更加直观。</p>
-<pre class="line-numbers"><code class="language-shell">npm install webpack-bundle-analyzer -D
+<pre><code class="language-shell">npm install webpack-bundle-analyzer -D
 </code></pre>
-<pre class="line-numbers"><code class="language-js">// build/webpack.prod.conf.js
+<pre><code class="language-js">// build/webpack.prod.conf.js
 const merge = require('webpack-merge');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const baseConfig = require('./webpack.base.conf.js');
@@ -186,13 +186,13 @@ const baseConfig = require('./webpack.base.conf.js');
    // ...
  });
 </code></pre>
-<p><figure><img src="media/17280327068074/17281443522355.png" alt="" /></figure></p>
+<p><img src="media/17280327068074/17281443522355.png" alt="" /></p>
 <p>图里面我们可以查看Gzip和原始的打包结果，也可以看到每个chunk包含哪些包，以及它们的体积大小等信息。</p>
 <h4><a id="%E9%80%9F%E5%BA%A6%E5%88%86%E6%9E%90" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>速度分析</h4>
 <p>上面的两个工具均是侧重于打包结果的分析，重在优化打包品质。而通过 <a href="https://github.com/stephencookdev/speed-measure-webpack-plugin">speed-measure-webpack-plugin</a> 这个插件还可以实现对构建过程分析，从而优化构建效率，提升打包的体验。</p>
-<pre class="line-numbers"><code class="language-shell">npm i -D speed-measure-webpack-plugin
+<pre><code class="language-shell">npm i -D speed-measure-webpack-plugin
 </code></pre>
-<pre class="line-numbers"><code class="language-js">// build/webpack.prod.conf.js
+<pre><code class="language-js">// build/webpack.prod.conf.js
 const SpeedMeasurePlugin = require(&quot;speed-measure-webpack-plugin&quot;);
 const smp = new SpeedMeasurePlugin();
 const webpackConfig = {
@@ -201,7 +201,7 @@ const webpackConfig = {
 module.exports = smp.wrap(webpackConfig) // 需要包裹原来的配置
 </code></pre>
 <p>现在就可以看到每个loader和plugin耗费的时间，以便对其进行优化。</p>
-<p><figure><img src="media/17280327068074/17281443522370.png" alt="image-20201009111235625" /><figcaption>image-20201009111235625<figcaption></figure></p>
+<p><img src="media/17280327068074/17281443522370.png" alt="image-20201009111235625" /></p>
 <h2><a id="%E4%BC%98%E5%8C%96%E5%8C%85%E5%93%81%E8%B4%A8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>优化包品质</h2>
 <p>webpack4.0在mode设置为production时，其实已经默认做了很多优化手段来提升输出成果品质，不过了解一下还是有助于我们做一些更加深层次的优化。毕竟这些内容是直接关系到用户体验的，非常重要。</p>
 <h3><a id="tree-shaking" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tree shaking</h3>
@@ -209,7 +209,7 @@ module.exports = smp.wrap(webpackConfig) // 需要包裹原来的配置
 <blockquote>
 <p>Tree shaking这个名字非常形象，摇树-摇掉树上多余的东西。</p>
 </blockquote>
-<pre class="line-numbers"><code class="language-js">// src/math.js
+<pre><code class="language-js">// src/math.js
 export function square(x) {
   return x * x;
 }
@@ -225,7 +225,7 @@ console.log(cube(3))
 </code></pre>
 <p>上面的代码其实只是使用了cube，一般我们会希望未使用的代码（dead code）最好能够不包含到成果中。在新版的webpack中，在production的mode下，它会自动帮我们移除没有用到的代码，减少输出成果的体积。</p>
 <p>在development的mode下，我们可以添加如下配置：</p>
-<pre class="line-numbers"><code class="language-js">// build/webpack.dev.conf.js
+<pre><code class="language-js">// build/webpack.dev.conf.js
 module.exports = {
   mode: 'development',
   optimization: {
@@ -238,7 +238,7 @@ module.exports = {
 <ul>
 <li>如果所有代码都不包含有side effect的代码，直接将该属性标记为false，来告知 webpack，它可以安全地删除未用到的 export。</li>
 </ul>
-<pre class="line-numbers"><code class="language-json">//package.json
+<pre><code class="language-json">//package.json
 {
   &quot;name&quot;: &quot;your-project&quot;,
   &quot;sideEffects&quot;: false
@@ -247,7 +247,7 @@ module.exports = {
 <ul>
 <li>如果代码中有部分文件有副作用，需标记</li>
 </ul>
-<pre class="line-numbers"><code class="language-json">//package.json
+<pre><code class="language-json">//package.json
 {
   &quot;name&quot;: &quot;your-project&quot;,
   &quot;sideEffects&quot;: [
@@ -271,7 +271,7 @@ module.exports = {
 </ul>
 <h4><a id="%E5%85%A5%E5%8F%A3chunk%E5%88%86%E5%89%B2" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>入口chunk分割</h4>
 <p>最简单的分离方式就是在入口手动将代码分成不同的chunk。</p>
-<pre class="line-numbers"><code class="language-js">// build/webpack.base.conf.js
+<pre><code class="language-js">// build/webpack.base.conf.js
 module.exports = {
   entry: {
     app: '../src/index.js',
@@ -284,7 +284,7 @@ module.exports = {
 };
 </code></pre>
 <p>构建结果：</p>
-<pre class="line-numbers"><code class="language-bash">...
+<pre><code class="language-bash">...
             Asset     Size   Chunks             Chunk Names
 another.bundle.js  550 KiB  another  [emitted]  another
   index.bundle.js  550 KiB    index  [emitted]  index
@@ -299,7 +299,7 @@ Entrypoint another = another.bundle.js
 </ul>
 <h4><a id="%E6%A8%A1%E5%9D%97%E5%8E%BB%E9%87%8D" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>模块去重</h4>
 <p>webpack内置了<a href="https://webpack.docschina.org/plugins/split-chunks-plugin/"><code>SplitChunksPlugin</code></a>，可以很方便的把重复模块的提取成公共依赖，减少文件体积。而且将一些第三方依赖（一般不需要频繁变动）提取成公共依赖，也便于客户端做缓存，每次更新代码的时候，用户不需要重新下载这些没发生变化的模块。</p>
-<pre class="line-numbers"><code class="language-js">// build/webpack.base.conf.js
+<pre><code class="language-js">// build/webpack.base.conf.js
 module.exports = {
   // ...
   entry: {
@@ -318,7 +318,7 @@ module.exports = {
 };
 </code></pre>
 <p>现在重新打包，app和another中共用的模块将会抽离到vender中，避免了产生重复的模块。</p>
-<pre class="line-numbers"><code class="language-bash">...
+<pre><code class="language-bash">...
                           Asset      Size                 Chunks             Chunk Names
               another.bundle.js  5.95 KiB                another  [emitted]  another
                 index.bundle.js  5.89 KiB                  index  [emitted]  index
@@ -335,7 +335,7 @@ Entrypoint another = vendors~another~index.bundle.js another.bundle.js
 <li>页面初始加载时的并发请求数量小于等于 3 个。</li>
 </ul>
 <p><code>splitChunks</code> 官方默认配置如下，可以根据需要进行修改：</p>
-<pre class="line-numbers"><code class="language-js">{
+<pre><code class="language-js">{
   optimization: {
 
     splitChunks: {
@@ -371,21 +371,21 @@ Entrypoint another = vendors~another~index.bundle.js another.bundle.js
 <p>按需加载也称为“懒加载”，是一种非常好的优化方式，可以大大提升应用的初始加载速度，也可以大大缩小用户加载文件的体积。</p>
 <p>比如一个应用，有9个页面是管理员可以访问的，而普通用户只能访问其中的两个页面，如果不采用按需加载，那普通用户虽然只能访问两个页面，但是还是会加载所有页面依赖的文件，这是不合理的。</p>
 <p>类似，下面这个页面不需要一开始就加载<code>module.js</code>，而只需在按钮被点击时才加载并执行其中的代码，可在浏览器开发者工具的network选项卡观察加载情况。</p>
-<pre class="line-numbers"><code class="language-js">document.getElementById('my-button').onclick = function() {
+<pre><code class="language-js">document.getElementById('my-button').onclick = function() {
     import('./module.js').then(fn =&gt; {
         fn.default &amp;&amp; fn.default();
     });
 }
 </code></pre>
 <p><code>module.js</code>和它内部依赖的文件就会单独生成一个bundle，并且是按需加载的。如果我们想控制输出bundle的名字，也可以指定chunk的名字，需要使用到webpack的魔法注释。</p>
-<pre class="line-numbers"><code class="language-js">document.getElementById('my-button').onclick = function() {
+<pre><code class="language-js">document.getElementById('my-button').onclick = function() {
     import(/* webpackChunkName: &quot;moduleA&quot; */ './module.js').then(fn =&gt; { // 指定chunkName为moduleA
         fn.default &amp;&amp; fn.default();
     });
 }
 </code></pre>
 <p><strong>提示：</strong><code>import()</code>会返回一个promise，所以也可以使用<code>async function</code>优化链式写法。</p>
-<pre class="line-numbers"><code class="language-js">document.getElementById('my-button').onclick = async function() {
+<pre><code class="language-js">document.getElementById('my-button').onclick = async function() {
     const fn = await import(/* webpackChunkName: &quot;moduleA&quot; */ './module.js')
     fn.default &amp;&amp; fn.default();
 }
@@ -399,9 +399,9 @@ Entrypoint another = vendors~another~index.bundle.js another.bundle.js
 </ul>
 <h3><a id="%E5%BC%80%E5%90%AFgzip" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>开启Gzip</h3>
 <p>如果部署服务器开启了gzip，那么可利用<a href="https://github.com/webpack-contrib/compression-webpack-plugin"><code>compression-webpack-plugin</code></a>生成gzip包，来减少加载时间。</p>
-<pre class="line-numbers"><code class="language-shell">npm i compression-webpack-plugin -D
+<pre><code class="language-shell">npm i compression-webpack-plugin -D
 </code></pre>
-<pre class="line-numbers"><code class="language-js">// build/webpack.prod.conf.js
+<pre><code class="language-js">// build/webpack.prod.conf.js
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
 const productionGzipExtensions = ['js', 'css', 'json', 'txt', 'html','ico','svg'];
 module.exports = {
@@ -419,7 +419,7 @@ module.exports = {
 </code></pre>
 <h3><a id="%E4%BD%BF%E7%94%A8cdn" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>使用CDN</h3>
 <p>将一些第三方依赖改用CDN引入，也是常用的优化手段，因为一般第三方模块不会像业务代码一般频繁更新，使用CDN后，客户端会缓存这些资源，提升应用加载速度。不仅如此，这些依赖也不会参与构建过程（不会被打包进输出文件中），也可以提升构建速度。</p>
-<pre class="line-numbers"><code class="language-js">// build/webpack.base.conf.js
+<pre><code class="language-js">// build/webpack.base.conf.js
 module.exports = {
     externals: {
         'vue': 'Vue', // 配置需要排除的包名称
@@ -428,7 +428,7 @@ module.exports = {
 }
 </code></pre>
 <p>在js中还是使用<code>import Vue from 'vue'</code>即可，不过别忘了在html做引入。</p>
-<pre class="line-numbers"><code class="language-html">&lt;!-- public/index.html --&gt;
+<pre><code class="language-html">&lt;!-- public/index.html --&gt;
 &lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;en&quot;&gt;
 &lt;head&gt;
@@ -446,7 +446,7 @@ module.exports = {
 <p>提升webpack的构建效率本质就是让它少干点活，应该尽量避免让它去做一些不必要的事情。围绕这个方向，我们就可以动手搞事情了。</p>
 <h3><a id="%E4%BC%98%E5%8C%96resolve%E8%A7%A3%E6%9E%90%E8%A7%84%E5%88%99" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>优化<code>resolve</code>解析规则</h3>
 <p>可以通过优化resolve下的解析规则来让webpack更加快速的定位到指定的模块，而不用做更多的匹配查询工作。</p>
-<pre class="line-numbers"><code class="language-js">// build/webpack.base.conf.js
+<pre><code class="language-js">// build/webpack.base.conf.js
 resolve: {
   modules: [
     path.resolve(__dirname, 'node_modules'), // 使用绝对路径明确指定 node_modules
@@ -459,7 +459,7 @@ resolve: {
 </code></pre>
 <h3><a id="%E7%BC%A9%E5%B0%8F%E6%90%9C%E7%B4%A2%E8%8C%83%E5%9B%B4" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>缩小搜索范围</h3>
 <p>如，在loader规则配置时，使用一些规则（include，exclude等）来缩小模块的搜索范围，搜索和处理的文件少了，速度自然也就提升了。</p>
-<pre class="line-numbers"><code class="language-js">// build/webpack.base.conf.js
+<pre><code class="language-js">// build/webpack.base.conf.js
 module.exports = {
   module: {
     rules: [
@@ -478,9 +478,9 @@ module.exports = {
 <p><a href="https://doc.webpack-china.org/plugins/dll-plugin">DLLPlugin</a> 是 webpack 官方提供的一个插件，使用 <code>DllPlugin</code> 为更改不频繁的代码(如vue、react等第三方模块)生成单独编译结果缓存下来，后续构建直接使用这些文件，避免重复构建。这样可以显著提高应用程序的编译速度。</p>
 <p>需要先利用webpack内置插件<a href="https://doc.webpack-china.org/plugins/dll-plugin">DLLPlugin</a>生成资源动态链接库，然后再使用<a href="https://webpack.docschina.org/plugins/dll-plugin/#dllreferenceplugin">DLLReferencePlugin</a>将对应资源映射到这些动态链接库就可以了，不过这样配置还是比较复杂的。</p>
 <p>我们可以选择 <a href="https://github.com/asfktz/autodll-webpack-plugin">AutoDllPlugin</a>，它整合了上述两个插件的功能，而配置比较简单。</p>
-<pre class="line-numbers"><code class="language-bash">npm install --save-dev autodll-webpack-plugin
+<pre><code class="language-bash">npm install --save-dev autodll-webpack-plugin
 </code></pre>
-<pre class="line-numbers"><code class="language-js">// build/webpack.base.conf.js
+<pre><code class="language-js">// build/webpack.base.conf.js
 plugins: [
   //...
   new AutoDllPlugin({
@@ -494,8 +494,8 @@ plugins: [
   })
 ]
 </code></pre>
-<p><figure><img src="media/17280327068074/17281443522384.png" alt="优化前" /><figcaption>优化前<figcaption></figure></p>
-<p><figure><img src="media/17280327068074/17281443522401.png" alt="优化后" /><figcaption>优化后<figcaption></figure></p>
+<p><img src="media/17280327068074/17281443522384.png" alt="优化前" /></p>
+<p><img src="media/17280327068074/17281443522401.png" alt="优化后" /></p>
 <p>可以看到两次打包时间差别还是挺大的，确实比较有效，目前示例项目模块较少，在大项目效果应该更加显著。</p>
 <h3><a id="%E5%B0%8F%E5%8D%B3%E6%98%AF%E5%BF%AB" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>小即是快</h3>
 <p>使用数量更少/体积更小的 library，如将momentJS换成dayJS，减少编译结果的整体大小，以提高构建性能。尽量保持 chunk 体积小。</p>
@@ -508,9 +508,9 @@ plugins: [
 </ul>
 <h3><a id="%E6%8C%81%E4%B9%85%E5%8C%96%E7%BC%93%E5%AD%98" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>持久化缓存</h3>
 <p>使用 <code>cache-loader</code>为某些耗费性能的loader启用持久化缓存，可以减少重新构建文件的数量，能有效提升构建速度。</p>
-<pre class="line-numbers"><code class="language-shell">npm install cache-loader -D
+<pre><code class="language-shell">npm install cache-loader -D
 </code></pre>
-<pre class="line-numbers"><code class="language-js">// build/webpack.base.conf.js
+<pre><code class="language-js">// build/webpack.base.conf.js
 module.exports = {
     module: {
         rules: [{
@@ -530,9 +530,9 @@ module.exports = {
 <p>针对不同环境选择合适的配置，如设置合适的devtool（source-map），开发环境不进行代码压缩优化等。</p>
 <h3><a id="%E5%BC%80%E5%90%AF%E5%A4%9A%E8%BF%9B%E7%A8%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>开启多进程</h3>
 <p><code>thread-loader</code> 可以管理多个进程，可将非常消耗资源的 loader 分配给一个 worker进程，从而减少主进程的性能开销。</p>
-<pre class="line-numbers"><code class="language-shell">npm install thread-loader -D
+<pre><code class="language-shell">npm install thread-loader -D
 </code></pre>
-<pre class="line-numbers"><code class="language-js">// build/webpack.base.conf.js
+<pre><code class="language-js">// build/webpack.base.conf.js
 module.exports = {
     module: {
         rules: [
@@ -574,7 +574,7 @@ module.exports = {
 </li>
 <li>
 <p>输出：对编译后的 Module 组合成 Chunk，把 Chunk 转换成文件，输出到文件系统。</p>
-<p><figure><img src="media/17280327068074/17281443522425.png" alt="" /></figure></p>
+<p><img src="media/17280327068074/17281443522425.png" alt="" /></p>
 </li>
 </ol>
 <p>参考资料：<a href="%5Bhttp://www.xbhub.com/wiki/webpack/5%E5%8E%9F%E7%90%86/5-1%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E6%A6%82%E6%8B%AC.html%5D(http://www.xbhub.com/wiki/webpack/5%E5%8E%9F%E7%90%86/5-1%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E6%A6%82%E6%8B%AC.html)">webpack工作原理概括</a></p>
@@ -582,18 +582,18 @@ module.exports = {
 <p>俗话说：读万卷书不如行万里路，讲再多的原理都不如敲敲代码来得实在。下面我们就一步一步实现一个简单的打包器。</p>
 <h4><a id="%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>准备工作</h4>
 <p>创建一个项目，包含如下文件及文件夹：</p>
-<p><figure><img src="media/17280327068074/17281443522446.png" alt="image-20200705215338484" /><figcaption>image-20200705215338484<figcaption></figure></p>
-<pre class="line-numbers"><code class="language-js">// /src/index.js
+<p><img src="media/17280327068074/17281443522446.png" alt="image-20200705215338484" /></p>
+<pre><code class="language-js">// /src/index.js
 import a from './a.js';
 
 console.log(a);
 </code></pre>
-<pre class="line-numbers"><code class="language-js">// /src/a.js
+<pre><code class="language-js">// /src/a.js
 import b from './b.js';
 const a = `b content: ${b}`;
 export default a;
 </code></pre>
-<pre class="line-numbers"><code class="language-js">// /src/b.js
+<pre><code class="language-js">// /src/b.js
 const b = 'Im B';
 export default b;
 </code></pre>
@@ -608,7 +608,7 @@ export default b;
 <p><code>/myBundle.js</code>即为我们的打包器，所有相关的代码也将写在其中，下面开始吧！</p>
 <h5><a id="1%E8%8E%B7%E5%8F%96%E6%A8%A1%E5%9D%97%E5%86%85%E5%AE%B9" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. 获取模块内容</h5>
 <p>读取入口文件的内容，这个很简单，我们创建一个方法<code>getModuleInfo</code>，使用<code>fs</code>来读取文件内容：</p>
-<pre class="line-numbers"><code class="language-js">// myBundle.js
+<pre><code class="language-js">// myBundle.js
 const fs = require('fs')
 const getModuleInfo = file =&gt; {
     const content = fs.readFileSync(file, 'utf-8')
@@ -622,9 +622,9 @@ getModuleInfo('./src/index.js')
 <li>babel：可以通过<code>@babel/parser</code>来将代码转换成AST（抽象语法树，Abstract Syntax Tree, 简称AST），再来分析AST查找依赖。看起来这种比较靠谱。</li>
 </ul>
 <p>毫无疑问，使用第二种方式。</p>
-<pre class="line-numbers"><code class="language-shell">npm i @babel/parser ## 安装 @babel/parser
+<pre><code class="language-shell">npm i @babel/parser ## 安装 @babel/parser
 </code></pre>
-<pre class="line-numbers"><code class="language-js">// myBundle.js
+<pre><code class="language-js">// myBundle.js
 const fs = require('fs')
 const parser = require('@babel/parser')
 const getModuleInfo = file =&gt; {
@@ -638,15 +638,15 @@ const getModuleInfo = file =&gt; {
 getModuleInfo('./src/index.js')
 </code></pre>
 <p>转换结果如下，可以看到一共两个节点，<code>type</code>属性标识了节点的类型，<code>ImportDeclaration</code>即对应了<code>import</code>语句，而其<code>source.value</code>即是引入模块的相对路径。想要的数据都有，是不是很赞！</p>
-<p><figure><img src="media/17280327068074/17281443522462.png" alt="image-20200705223745187" /><figcaption>image-20200705223745187<figcaption></figure></p>
+<p><img src="media/17280327068074/17281443522462.png" alt="image-20200705223745187" /></p>
 <h5><a id="2%E7%94%9F%E6%88%90%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB%E8%A1%A8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. 生成依赖关系表</h5>
 <p>有了上一步的数据，我们需要将它们生成一份结构化的依赖表，方便后续对代码处理。</p>
 <p>其实就是遍历<code>ast.program.body</code>，将其中的<code>ImportDeclaration</code>类型的节点提取出来，并存入依赖表。</p>
 <p>这里也不需要自己手动实现细节，直接使用<code>@babel/traverse</code>即可。</p>
-<pre class="line-numbers"><code class="language-shell">npm i  @babel/traverse ## 安装@babel/traverse
+<pre><code class="language-shell">npm i  @babel/traverse ## 安装@babel/traverse
 </code></pre>
 <p><code>getModuleInfo</code>方法做如下修改：</p>
-<pre class="line-numbers"><code class="language-js">// myBundle.js
+<pre><code class="language-js">// myBundle.js
 const fs = require('fs')
 const path = require('path')
 const parser = require('@babel/parser')
@@ -669,12 +669,12 @@ const getModuleInfo = (file) =&gt; {
 getModuleInfo('./src/index.js')
 </code></pre>
 <p>输出结果如下：</p>
-<p><figure><img src="media/17280327068074/17281443522480.png" alt="image-20200705230403954" /><figcaption>image-20200705230403954<figcaption></figure></p>
+<p><img src="media/17280327068074/17281443522480.png" alt="image-20200705230403954" /></p>
 <p>接下来我们就可以返回一个完整的模块信息了。</p>
 <p>在这里，我们顺便通过<code>babel</code>的工具（``@babel/core<code>，</code>@babel/preset-env`）将代码转换成ES5的语法。</p>
-<pre class="line-numbers"><code class="language-shell">npm i @babel/core @babel/preset-env ## 安装@babel/core @babel/preset-env
+<pre><code class="language-shell">npm i @babel/core @babel/preset-env ## 安装@babel/core @babel/preset-env
 </code></pre>
-<pre class="line-numbers"><code class="language-js">// myBundle.js
+<pre><code class="language-js">// myBundle.js
 const fs = require('fs');
 const path = require('path');
 const parser = require('@babel/parser');
@@ -705,11 +705,11 @@ const getModuleInfo = (file) =&gt; {
 getModuleInfo('./src/index.js');
 </code></pre>
 <p>输出如下：</p>
-<p><figure><img src="media/17280327068074/17281443522498.png" alt="image-20200705231114976" /><figcaption>image-20200705231114976<figcaption></figure></p>
+<p><img src="media/17280327068074/17281443522498.png" alt="image-20200705231114976" /></p>
 <p>现在，模块的代码就已经转换成了一个对象，包含模块的绝对路径、依赖以及被babel转换后的代码，不过上面只处理了<code>index.js</code>的依赖，<code>a.js</code>的依赖并没有进行处理，所以并不是一份完整的依赖表，我们需要进一步处理。</p>
 <p>其实也很简单，就是从入口开始，每个模块及其依赖都调用一下<code>getModuleInfo</code>方法进行分析，最终就会返回一个完整的依赖表(也有人叫依赖图，dependency graph)。</p>
 <p>我们直接新写一个方法来处理：</p>
-<pre class="line-numbers"><code class="language-js">// myBundle.js
+<pre><code class="language-js">// myBundle.js
 const generDepsGraph = (entry) =&gt; {
 	const entryModule = getModuleInfo(entry);
 	const graphArray = [ entryModule ];
@@ -734,12 +734,12 @@ const generDepsGraph = (entry) =&gt; {
 	return graph;
 };
 </code></pre>
-<p><figure><img src="media/17280327068074/17281443522518.png" alt="image-20200705232430595" /><figcaption>image-20200705232430595<figcaption></figure></p>
+<p><img src="media/17280327068074/17281443522518.png" alt="image-20200705232430595" /></p>
 <p>现在，我们就生成一份完整的依赖表了，接下来，就可以根据这份数据来生成最终的代码了。</p>
 <h5><a id="3%E7%94%9F%E6%88%90%E8%BE%93%E5%87%BA%E4%BB%A3%E7%A0%81" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>3.生成输出代码</h5>
 <p>在生成代码前，我们先观察一下上面的代码，可以发现里面包含了<code>export</code>和<code>require</code>这样的<code>commonjs</code>的语法，而我们的运行环境（这里是浏览器）是不支持这种语法的，所以还需要自己来实现一下这两个方法。先贴上代码，再慢慢道来：</p>
 <p>新建一个build方法，用来生成输出的代码。</p>
-<pre class="line-numbers"><code class="language-js">// myBundle.js
+<pre><code class="language-js">// myBundle.js
 const build = (entry) =&gt; {
 	const graph = JSON.stringify(generDepsGraph(entry));
 	return `
@@ -762,7 +762,7 @@ const code = build('./src/index.js');
 <li><code>require</code>函数需要定义在输出的内容中，而不是当前的运行环境中，因为它会在生成的代码中执行。</li>
 </ul>
 <p>接下来，我们需要拿到入口文件的code，并使用<code>eval</code>函数来执行它：</p>
-<pre class="line-numbers"><code class="language-js">// myBundle.js
+<pre><code class="language-js">// myBundle.js
 const build = (entry) =&gt; {
 	const graph = JSON.stringify(generDepsGraph(entry));
 	return `
@@ -788,11 +788,11 @@ console.log(code);
 <li><code>graph[module].code</code>可以从上面的依赖表中获取到入口的代码。</li>
 </ul>
 <p>输出如下：</p>
-<p><figure><img src="media/17280327068074/17281443522537.png" alt="image-20200706091126005" /><figcaption>image-20200706091126005<figcaption></figure></p>
+<p><img src="media/17280327068074/17281443522537.png" alt="image-20200706091126005" /></p>
 <p>这就是打包的成果了，不过先不要高兴过头了，这里还有一个大坑。</p>
 <p>我们现在生成的代码中引入模块的方式都是基于'index.js'的相对路径，如果在其他模块引入的模块路径和相较于<code>index.js</code>不一致的时候，对应的模块就会找不到(路径不正确)，所以我们还要处理一下模块的路径。好在前面依赖表的<code>dependencies</code>属性里面记录了模块的绝对路径，只需要拿出来使用即可。</p>
 <p>添加一个<code>localRequire</code>函数，用来从<code>dependencies</code>中获取模块绝对路径。</p>
-<pre class="line-numbers"><code class="language-js">// myBundle.js
+<pre><code class="language-js">// myBundle.js
 const build = (entry) =&gt; {
 	const graph = JSON.stringify(generDepsGraph(entry));
 	return `
@@ -813,15 +813,15 @@ const build = (entry) =&gt; {
 };
 </code></pre>
 <p>接下来，将输出的代码写入到文件就可以了。</p>
-<pre class="line-numbers"><code class="language-js">// myBundle.js
+<pre><code class="language-js">// myBundle.js
 const code = build('./src/index.js')
 fs.mkdirSync('./dist')
 fs.writeFileSync('./dist/bundle.js', code)
 </code></pre>
 <p>最后，在html中引入一下，测试一下是否能够正常运行。没有疑问，肯定是可以正常运行的。:smile::smile:</p>
-<p><figure><img src="media/17280327068074/17281443522557.png" alt="image-20200706092931226" /><figcaption>image-20200706092931226<figcaption></figure></p>
+<p><img src="media/17280327068074/17281443522557.png" alt="image-20200706092931226" /></p>
 <p>最后贴一下完整的代码：     :cow::beers:</p>
-<pre class="line-numbers"><code class="language-js">// myBundle.js
+<pre><code class="language-js">// myBundle.js
 const fs = require('fs');
 const path = require('path');
 const parser = require('@babel/parser');
@@ -914,7 +914,7 @@ fs.writeFileSync('./dist/bundle.js', code);
 <h4><a id="manifest" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>Manifest</code></h4>
 <p>首先需要了解一下<code>Manifest</code>，它是webpack维护的一份用于管理构建过程中所有模块及关联关系的数据表，包含了各个模块之间的依赖关系、模块内容等详细信息，是webpack解析和加载模块的重要依据。</p>
 <h4><a id="%E6%9B%B4%E6%96%B0%E6%B5%81%E7%A8%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>更新流程</h4>
-<p><figure><img src="media/17280327068074/17281443522578.jpg" alt="img" /><figcaption>img<figcaption></figure></p>
+<p><img src="media/17280327068074/17281443522578.jpg" alt="img" /></p>
 <p>上图是webpack 配合 webpack-dev-server 进行应用开发的模块热更新流程图，记录了完整的更新流程。</p>
 <ul>
 <li>上图底部红色框内是服务端，而上面的橙色框是浏览器端。</li>
@@ -932,7 +932,7 @@ fs.writeFileSync('./dist/bundle.js', code);
 <li>最后一步，当 HMR 失败后，回退到 live reload 操作，也就是进行浏览器刷新来获取最新打包代码。</li>
 </ol>
 <p>如上就是热更新的过程，当然这只是webpack所做的工作，此时业务代码中并不能知道代码是否发生变化，我们必须使用前面提到的<code>accept</code>方法来进行监听，并实现对应的变化相应操作。</p>
-<pre class="line-numbers"><code class="language-js">if(module.hot) { // 先判断是否开启HMR
+<pre><code class="language-js">if(module.hot) { // 先判断是否开启HMR
     module.hot.accept('./xxx.js', function() {
         // do something
     })
@@ -947,7 +947,7 @@ fs.writeFileSync('./dist/bundle.js', code);
 <ul>
 <li>新建<code>/loaders/replaceLoader.js</code>，</li>
 </ul>
-<pre class="line-numbers"><code class="language-js">// /loaders/replaceLoader.js
+<pre><code class="language-js">// /loaders/replaceLoader.js
 module.exports = function (source) {
   source = source.replace(/webpack/gi, 'world'); // 将源文件中的webpack替换成world
   return source;
@@ -956,7 +956,7 @@ module.exports = function (source) {
 <ul>
 <li>新建<code>/src/index.js</code></li>
 </ul>
-<pre class="line-numbers"><code class="language-js">// /src/index.js
+<pre><code class="language-js">// /src/index.js
 console.log('hello webpack');
 </code></pre>
 <ul>
@@ -966,7 +966,7 @@ console.log('hello webpack');
 <ol>
 <li>直接require对应的loader（适用于单个loader）</li>
 </ol>
-<pre class="line-numbers"><code class="language-js">// webpack.config.js
+<pre><code class="language-js">// webpack.config.js
 module: {
   rules: [
     {
@@ -980,7 +980,7 @@ module: {
 <ol start="2">
 <li>使用<code>resolveLoader</code>配置项（适用于多个loader）</li>
 </ol>
-<pre class="line-numbers"><code class="language-js">// webpack.config.js
+<pre><code class="language-js">// webpack.config.js
 module: {
   rules: [
     {
@@ -998,7 +998,7 @@ resolveLoader: {
 <li>如果准备将loader发布到npm，也可以使用 <a href="https://docs.npmjs.com/cli/link">npm-link</a>。</li>
 </ol>
 <p>这里，采用第二种方式，完整配置如下：</p>
-<pre class="line-numbers"><code class="language-js">// webpack.config.js
+<pre><code class="language-js">// webpack.config.js
 const path = require('path');
 module.exports = {
   mode:'development',
@@ -1019,9 +1019,9 @@ module.exports = {
 };
 </code></pre>
 <p>运行一下，打包命令<code>npx webpack</code>，可以看到输出文件中的webpack被替换成了world。</p>
-<p><figure><img src="media/17280327068074/17281443522583.png" alt="image-20200614224707431" /><figcaption>image-20200614224707431<figcaption></figure></p>
+<p><img src="media/17280327068074/17281443522583.png" alt="image-20200614224707431" /></p>
 <p>一般loader都会提供配置项(options)，方便用户做个性配置，可以通过<code>this.query</code>获取配置内容，不过一般使用官方推荐的<a href="https://github.com/webpack/loader-utils">loader-utils</a> 工具更加便捷。</p>
-<pre class="line-numbers"><code class="language-js">// webpack.config.js
+<pre><code class="language-js">// webpack.config.js
 const path = require('path');
 module.exports = {
   mode:'development',
@@ -1048,7 +1048,7 @@ module.exports = {
 };
 </code></pre>
 <p>修改一下<code>replaceLoader</code>：</p>
-<pre class="line-numbers"><code class="language-js">// /loaders/replaceLoader.js
+<pre><code class="language-js">// /loaders/replaceLoader.js
 const loaderUtils = require('loader-utils');
 module.exports = function (source) {
   const options = loaderUtils.getOptions(this);
@@ -1066,7 +1066,7 @@ module.exports = function (source) {
 <li>meta：一些元数据信息</li>
 </ul>
 <p>如果仅仅是返回处理结果，直接返回content即可。但如果需要生成sourcemap 对象、meta元数据或者抛出异常，需要将return换成<code>this.callback(err, content, map, meta)</code>来传递数据。</p>
-<pre class="line-numbers"><code class="language-js">this.callback(
+<pre><code class="language-js">this.callback(
     // 当无法转换原内容时，给 Webpack 返回一个 Error
     err: Error | null,
     // 原内容转换后的内容
@@ -1079,7 +1079,7 @@ module.exports = function (source) {
 );
 </code></pre>
 <p>另外，loader也是支持异步任务处理的，可以借助<code>this.async()</code>实现。</p>
-<pre class="line-numbers"><code class="language-js">// /loaders/replaceLoader.js
+<pre><code class="language-js">// /loaders/replaceLoader.js
 const loaderUtils = require('loader-utils');
 module.exports = function (source) {
   const options = loaderUtils.getOptions(this);
@@ -1101,7 +1101,7 @@ module.exports = function (source) {
 <p>**注意：**下面使用的是webpack4.0版本，相比3.0的api是不一样的。</p>
 <h3><a id="%E5%BC%80%E5%8F%91%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84plugin" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>开发一个简单的plugin</h3>
 <p>自定义plugin的引入方式相比loader来说，非常简单：</p>
-<pre class="line-numbers"><code class="language-js">// webpack.config.js
+<pre><code class="language-js">// webpack.config.js
 const path = require('path')
 const TestWebpackPlugin = require('./test-webpack-plugin')
 module.exports = {
@@ -1129,7 +1129,7 @@ module.exports = {
 <li>在回调函数中通过注入的参数，读取或操纵修改 Webpack 内部实例数据</li>
 <li>异步类型的事件钩子，插件处理完成需要调用<code>callback</code>或者返回<code>promise</code></li>
 </ul>
-<pre class="line-numbers"><code class="language-js">// test-webpack-plugin.js
+<pre><code class="language-js">// test-webpack-plugin.js
 class TestWebpackPlugin {
     constructor (options) {
         // 在这里获取插件配置
@@ -1178,7 +1178,7 @@ module.exports = TestWebpackPlugin
 </ul>
 </li>
 </ul>
-<pre class="line-numbers"><code class="language-js">// 同步
+<pre><code class="language-js">// 同步
 compiler.hooks.done.tap('MyPlugin', (stats, callback) =&gt; {
   // ...
   callback()
@@ -1215,7 +1215,7 @@ compiler.hooks.emit.tapAsync('MyPlugin', (compilation, callback) =&gt; {
 <p>compilation上也可以注册钩子, 即存在<a href="https://webpack.js.org/api/compiler-hooks/">Compiler Hooks</a>和<a href="https://webpack.js.org/api/compilation-hooks/">Compilation Hooks</a>两种。</p>
 </li>
 </ul>
-<pre class="line-numbers"><code class="language-js">compiler.hooks.compilation.tap('MyPlugin', (compilation) =&gt; {
+<pre><code class="language-js">compiler.hooks.compilation.tap('MyPlugin', (compilation) =&gt; {
   compilation.hooks.optimizeChunkAssets.tapAsync(
       'MyPlugin',
       (chunks, callback) =&gt; {
@@ -1230,7 +1230,7 @@ compiler.hooks.emit.tapAsync('MyPlugin', (compilation, callback) =&gt; {
 <p>除了上述的<code>emit</code>钩子，webpack还提供了许多其他的钩子，覆盖到打包的各个阶段。</p>
 <h4><a id="entryoption" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>entryOption</code></h4>
 <p>在<code>entry</code>配置项处理完成后执行，同步钩子。</p>
-<pre class="line-numbers"><code class="language-js">compiler.hooks.entryOption.tap('MyPlugin', (context, entry) =&gt; {
+<pre><code class="language-js">compiler.hooks.entryOption.tap('MyPlugin', (context, entry) =&gt; {
   // context保存了当前目录信息，entry保存了入口文件信息
 });
 </code></pre>
@@ -1238,7 +1238,7 @@ compiler.hooks.emit.tapAsync('MyPlugin', (compilation, callback) =&gt; {
 <p>生成资源到<code>output</code>后执行，异步钩子。</p>
 <h4><a id="done" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>done</code></h4>
 <p>编译完成执行，同步钩子。</p>
-<pre class="line-numbers"><code class="language-js">compiler.hooks.done.tap('TestWebpackPlugin', (stats) =&gt; {
+<pre><code class="language-js">compiler.hooks.done.tap('TestWebpackPlugin', (stats) =&gt; {
   // stats保存了生成文件的内容
 })
 </code></pre>
@@ -1440,6 +1440,7 @@ body{ box-sizing: border-box;
      word-wrap: break-word !important;       /* Internet Explorer 5.5+ */
     }
     html,body{margin:0;padding:4px;}
+    .mweb-yaml{display:none;}
 }
 
 

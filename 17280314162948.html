@@ -157,7 +157,7 @@
 <ul>
 <li>对象</li>
 </ul>
-<pre class="line-numbers"><code class="language-js">var module1 = new Object({
+<pre><code class="language-js">var module1 = new Object({
 		_count : 0,
 		m1 : function (){
 			//...
@@ -172,7 +172,7 @@
 <ul>
 <li>IIFE</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">var module1 = (function(){
+<pre><code class="language-plain_text">var module1 = (function(){
 　　　　var _count = 0;
 　　　　var m1 = function(){
 　　　　　　//...
@@ -196,17 +196,17 @@
 <ul>
 <li>其他</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">// app1.js
+<pre><code class="language-plain_text">// app1.js
 var app = {};
 </code></pre>
-<pre class="line-numbers"><code class="language-plain_text">// app2.js 添加属性
+<pre><code class="language-plain_text">// app2.js 添加属性
 (function(){
   app.a = function(a, b) {
     // code
   }  
 })();
 </code></pre>
-<pre class="line-numbers"><code class="language-js">// app3.js 获取属性
+<pre><code class="language-js">// app3.js 获取属性
 (function(app){
   var temp = [ 1, 2];
   var a = app.a(temp)
@@ -226,7 +226,7 @@ var app = {};
 <p>这两货都采用异步方式加载模块。</p>
 <h3><a id="amd" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>AMD</h3>
 <p>AMD(Asynchronous Module Defination)异步模块加载机制。</p>
-<pre class="line-numbers"><code class="language-js">define(
+<pre><code class="language-js">define(
     [module_id,] // 模块名字，如果缺省则为匿名模块
     [dependenciesArray,] // 模块依赖 
     definition function | object // 模块内容，可以为函数或者对象
@@ -234,7 +234,7 @@ var app = {};
 </code></pre>
 <h3><a id="cmd" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>CMD</h3>
 <p>CMD(Common Module Defination)通用模块加载机制</p>
-<pre class="line-numbers"><code class="language-plain_text">// 方式一
+<pre><code class="language-plain_text">// 方式一
 define(function(require, exports, module) { 
     // 模块代码
     var a = require('a')
@@ -263,7 +263,7 @@ define( 'module', ['module1', 'module2'], function( require, exports, module ){
 <p>AMD 与 CommonJS 虽然师出同源，但还是分道扬镳，关注于代码异步加载与最小化入口模块的开发者将目光投注于 AMD；而随着 Node.js 以及 Browserify 的流行，越来越多的开发者也接受了 CommonJS 规范。令人扼腕叹息的是，符合 AMD 规范的模块并不能直接运行于 CommonJS 模块规范的环境中，符合 CommonJS 规范的模块也不能由 AMD 进行异步加载。</p>
 <p>而且有这么多种规范，如果我们要发布一个模块供其他人用，我们不可能为每种规范发布一个版本，就算你闲得蛋疼这样做了，别人使用的时候还得下载对应版本，所以现在需要一种方案来兼容这些规范。</p>
 <p>实现的方式就是在代码前面做下判断，根据不同的规范使用对应的加载方式。</p>
-<pre class="line-numbers"><code class="language-js">// 以vue为例
+<pre><code class="language-js">// 以vue为例
 (function (global, factory) {
   typeof exports === 'object' &amp;&amp; typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' &amp;&amp; define.amd ? define(factory) :
@@ -286,11 +286,11 @@ define( 'module', ['module1', 'module2'], function( require, exports, module ){
 </ul>
 <p>相比于第一种方案，这个方案更加智能。由于是预编译的，不需要在浏览器中加载解释器。你在本地直接写JS，不管是AMD/CMD/ES6风格的模块化，它都能认识，并且编译成浏览器认识的JS。</p>
 <p>注意： browerify只支持Commonjs模块，如需兼容AMD模块，则需要plugin转换</p>
-<p><figure><img src="media/17280314162948/17281440787662.jpg" alt="" /></figure></p>
+<p><img src="media/17280314162948/17281440787662.jpg" alt="" /></p>
 <h1><a id="commonjs" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>CommonJS</h1>
 <p>前身为ServerJS。<br />
 我们可以理解为代码会被如下内建辅助函数包裹:</p>
-<pre class="line-numbers"><code class="language-plain_text">(function (exports, require, module, __filename, __dirname) {
+<pre><code class="language-plain_text">(function (exports, require, module, __filename, __dirname) {
     // ...
     // Your code
     // ...
@@ -298,21 +298,21 @@ define( 'module', ['module1', 'module2'], function( require, exports, module ){
 </code></pre>
 <h2><a id="%E5%8A%A0%E8%BD%BD" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>加载</h2>
 <p>通过require加载模块。</p>
-<pre class="line-numbers"><code class="language-plain_text">const a = require('a')
+<pre><code class="language-plain_text">const a = require('a')
 </code></pre>
 <h2><a id="%E5%AF%BC%E5%87%BA" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>导出</h2>
 <p>通过<code>exports</code>和<code>module.exports</code>进行模块导出。</p>
 <ul>
 <li><code>exports</code>：<code>exports</code>是<code>module.exports</code>的一个引用，一个模块可以使用多次，但是不能直接对<code>exports</code>重新赋值，只能通过如下方式使用</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">exports.a = function(){
+<pre><code class="language-plain_text">exports.a = function(){
     // code...
 }
 </code></pre>
 <ul>
 <li><code>module.exports</code>：一个模块只能使用一次</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">module.exports = function(){
+<pre><code class="language-plain_text">module.exports = function(){
     // code...
 }
 </code></pre>
@@ -331,10 +331,10 @@ define( 'module', ['module1', 'module2'], function( require, exports, module ){
 <h2><a id="%E5%BC%95%E5%85%A5" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>引入</h2>
 <p>在引入requirejs的script标签上添加<code>data-main</code>属性定义入口文件,该文件会在requirejs加载完后立即执行。</p>
 <p>如果baseUrl未单独配置，则默认为引入require的文件的路径。</p>
-<pre class="line-numbers"><code class="language-plain_text">&lt;script src=&quot;./assets/lib/requirejs/require.js&quot; data-main=&quot;./assets/lib/requirejs/config&quot;&gt;&lt;/script&gt;
+<pre><code class="language-plain_text">&lt;script src=&quot;./assets/lib/requirejs/require.js&quot; data-main=&quot;./assets/lib/requirejs/config&quot;&gt;&lt;/script&gt;
 </code></pre>
 <h2><a id="config" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>config</h2>
-<pre class="line-numbers"><code class="language-js">requirejs.config({
+<pre><code class="language-js">requirejs.config({
     // 为模块加上query参数，解决浏览器缓存，只在开发环境使用
     urlArgs: 'yn-course=' + (new Date()).getTime(),
     // 配置所有模块加载的初始路径，所有模块都是基于此路径加载
@@ -396,7 +396,7 @@ define( 'module', ['module1', 'module2'], function( require, exports, module ){
 </ul>
 <p>map配置对于大型项目很重要：如有两类模块需要使用不同版本的&quot;foo&quot;，但它们之间仍需要一定的协同。<br />
 在那些基于上下文的多版本实现中很难做到这一点。而且，paths配置仅用于为模块ID设置<code>root paths</code>，而不是为了将一个模块ID映射到另一个。</p>
-<pre class="line-numbers"><code class="language-plain_text">requirejs.config({
+<pre><code class="language-plain_text">requirejs.config({
     map: {
         'some/newmodule': {
             'foo': 'foo1.2'
@@ -409,13 +409,13 @@ define( 'module', ['module1', 'module2'], function( require, exports, module ){
 </code></pre>
 <h2><a id="define" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>define</h2>
 <p>通过define来定义模块，推荐依赖前置原则，当然也可以使用require动态按需加载。</p>
-<pre class="line-numbers"><code class="language-js">define(
+<pre><code class="language-js">define(
     [module_id,] // 模块名字，如果缺省则为匿名模块
     [dependencies,] // 模块依赖 
     definition function | object // 模块内容，可以为函数或者对象
 );
 </code></pre>
-<pre class="line-numbers"><code class="language-js">// 如果仅仅返回一个键值对，可以采用如下格式，类似JSONP
+<pre><code class="language-js">// 如果仅仅返回一个键值对，可以采用如下格式，类似JSONP
 define({
     color: &quot;black&quot;,
     size: &quot;unisize&quot;
@@ -440,19 +440,19 @@ define(&quot;name&quot;,
 )
 </code></pre>
 <p>如要在define()内部使用诸如<code>require(&quot;./a/b&quot;)</code>相对路径，记得将&quot;require&quot;本身作为一个依赖注入到模块中：</p>
-<pre class="line-numbers"><code class="language-plain_text">define([&quot;require&quot;, &quot;./a/b&quot;], function(require) {
+<pre><code class="language-plain_text">define([&quot;require&quot;, &quot;./a/b&quot;], function(require) {
     var mod = require(&quot;./a/b&quot;);
 });
 </code></pre>
 <p>或者使用如下方式：</p>
-<pre class="line-numbers"><code class="language-plain_text">define(function(require) {
+<pre><code class="language-plain_text">define(function(require) {
     var mod = require(&quot;./a/b&quot;);
 })
 </code></pre>
 <h3><a id="%E6%A0%87%E8%AF%86" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>标识</h3>
 <p>require加载的所有模块都是单例的，每个模块都有一个唯一的标识，这个标识是模块的名字或者模块的相对路径（如匿名模块）。</p>
 <p>模块的唯一性与它们的访问路径无关，即使是地址完全相同的一份JS文件，如果引用的方式与模块的配置方式不一致，依旧会产生多个模块。</p>
-<pre class="line-numbers"><code class="language-plain_text">// User.js
+<pre><code class="language-plain_text">// User.js
 define([], function() {
     return {
         username : 'yiifaa',
@@ -460,7 +460,7 @@ define([], function() {
     };
 });
 </code></pre>
-<pre class="line-numbers"><code class="language-plain_text">require(['user/User'], function(user) {
+<pre><code class="language-plain_text">require(['user/User'], function(user) {
     //  修改了User模块的内容
     user.username = 'yiifee';
     //  em/User以baseUrl定义的模块进行访问
@@ -473,7 +473,7 @@ define([], function() {
 </code></pre>
 <h3><a id="%E4%BE%9D%E8%B5%96" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>依赖</h3>
 <p>requirejs推荐依赖前置，在define或者require模块的时候，可以将需要依赖的模块作为第一个参数，以数组的方式声明，然后在回调函数中，依赖会以参数的形式注入到该函数上，参数列表需要和依赖数组中位置一一对应。</p>
-<pre class="line-numbers"><code class="language-plain_text">define([&quot;./a&quot;, &quot;./b&quot;], function(a, b) {
+<pre><code class="language-plain_text">define([&quot;./a&quot;, &quot;./b&quot;], function(a, b) {
     
 })
 </code></pre>
@@ -482,7 +482,7 @@ define([], function() {
 <ul>
 <li>通过return方式导出，优先级最高（推荐）；</li>
 </ul>
-<pre class="line-numbers"><code class="language-js">define(function(require, exports, module) {
+<pre><code class="language-js">define(function(require, exports, module) {
     return {
         a : 'a'
     }
@@ -491,7 +491,7 @@ define([], function() {
 <ul>
 <li>通关module.exports对象赋值导出，优先级次之；</li>
 </ul>
-<pre class="line-numbers"><code class="language-js">define(function(require, exports, module) {
+<pre><code class="language-js">define(function(require, exports, module) {
     module.exports = {
         a : 'a'
     }
@@ -500,13 +500,13 @@ define([], function() {
 <ul>
 <li>通过exports对象赋值导出，优先级最低；</li>
 </ul>
-<pre class="line-numbers"><code class="language-js">define(function(require, exports, module) {
+<pre><code class="language-js">define(function(require, exports, module) {
     exports.a = 'a'
 });
 </code></pre>
 <h2><a id="require" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>require</h2>
 <p>requirejs提供了两个全局变量<code>require</code>、<code>requirejs</code>供我们加载模块，这二者是完全等价的。</p>
-<pre class="line-numbers"><code class="language-js">// 此处require 和 define 函数仅仅是一个参数（模块标识）的差异，
+<pre><code class="language-js">// 此处require 和 define 函数仅仅是一个参数（模块标识）的差异，
 // 一般require用于没有返回的模块，如应用顶层模块
 require(
     [dependencies,] // 模块依赖 
@@ -514,7 +514,7 @@ require(
 );
 </code></pre>
 <p>require是内置模块，不用在配置中定义，直接进行引用即可。</p>
-<pre class="line-numbers"><code class="language-plain_text">define(['require'], function(require) {
+<pre><code class="language-plain_text">define(['require'], function(require) {
     var $ = require('jquery');
 })
 </code></pre>
@@ -531,7 +531,7 @@ require(
 <li>明确知道模块的先后顺序，确认此模块已经被加载过，例如系统通用模块，在载入完成后，之后的模块就可以进行同步的引用，或者在Vue等前端技术框架中，在应用模块同步加载vue模块。</li>
 <li>引用的资源列表太长，懒得回调函数中写一一对应的相关参数</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">//  假定这里引用的资源有数十个，回调函数的参数必定非常多
+<pre><code class="language-plain_text">//  假定这里引用的资源有数十个，回调函数的参数必定非常多
 define(['jquery'], function() {
     return function(el) {
         //  这就是传说中的同步调用
@@ -543,7 +543,7 @@ define(['jquery'], function() {
 <ul>
 <li>可以减少命名或者命名空间冲突，例如<code>prototype</code>与<code>jquery</code>的冲突问题</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">define(['jquery', 'prototype'], function() {
+<pre><code class="language-plain_text">define(['jquery', 'prototype'], function() {
     var export = {};
     export.jquery = function(el) {
         //  这就是传说中的同步调用
@@ -567,13 +567,13 @@ define(['jquery'], function() {
 <li><code>define([],function())</code>：依赖数组中的模块会异步加载，所有模块加载完成后混执行回调函数</li>
 <li><code>require([])</code>：传入数组格式即表示需要异步加载</li>
 </ul>
-<pre class="line-numbers"><code class="language-js">require === requirejs //=&gt; true
+<pre><code class="language-js">require === requirejs //=&gt; true
 </code></pre>
 <h4><a id="require-tourl-a-css%E8%8E%B7%E5%8F%96%E6%A8%A1%E5%9D%97-url" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>require.toUrl(&quot;./a.css&quot;)</code>: 获取模块url</h4>
 <h4><a id="%E6%A8%A1%E5%9D%97%E5%8D%B8%E8%BD%BD" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>模块卸载</h4>
 <p>只要页面不刷新，被requirejs加载的模块只会执行一次，后面会一直缓存在内存中，即时重新引入模块也不会再进行初始化。<br />
 我们可以通过<code>undef</code>卸载已加载的模块。</p>
-<pre class="line-numbers"><code class="language-plain_text">require.undef(&quot;moduleName&quot;) // moduleName是模块标识
+<pre><code class="language-plain_text">require.undef(&quot;moduleName&quot;) // moduleName是模块标识
 </code></pre>
 <h2><a id="%E5%85%B6%E4%BB%96" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>其他</h2>
 <h3><a id="%E6%8F%92%E4%BB%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>插件</h3>
@@ -589,7 +589,7 @@ define(['jquery'], function() {
 </ul>
 <p>此错误表示执行时模块还未加载成功，一般为异步加载所致，改成同步加载即可。</p>
 <h3><a id="%E5%80%9F%E5%8A%A9%E7%B1%BB%E8%A7%A3%E5%86%B3%E6%A8%A1%E5%9D%97%E9%97%B4%E7%9A%84%E7%9B%B8%E4%BA%92%E5%B9%B2%E6%89%B0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>借助类解决模块间的相互干扰</h3>
-<pre class="line-numbers"><code class="language-plain_text">//C模块
+<pre><code class="language-plain_text">//C模块
 define([],function(){
  
  // 定义一个类
@@ -632,14 +632,14 @@ require(['C'],
 </ul>
 <p>通过<code>exports + require</code>实现模块的加载与导出。</p>
 <h2><a id="%E5%BC%95%E5%85%A5" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>引入</h2>
-<pre class="line-numbers"><code class="language-plain_text">&lt;script src=&quot;assets/lib/seajs/sea.js&quot;&gt;&lt;/script&gt;
+<pre><code class="language-plain_text">&lt;script src=&quot;assets/lib/seajs/sea.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;assets/lib/seajs/seajs.config.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;text/javascript&quot;&gt;
     seajs.use('app');
 &lt;/script&gt;
 </code></pre>
 <h2><a id="config" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>config</h2>
-<pre class="line-numbers"><code class="language-plain_text">//seajs配置
+<pre><code class="language-plain_text">//seajs配置
 seajs.config({
 
     //1.顶级标识始终相对 base 基础路径解析。
@@ -703,7 +703,7 @@ seajs.config({
 </ul>
 <h2><a id="use" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>use</code></h2>
 <p>用来在页面中加载一个或多个模块。<code>seajs.use</code> 理论上只用于加载启动，不应该出现在 define 中的模块代码里。在模块代码里需要异步加载其他模块时，推荐使用 <code>require.async</code> 方法。</p>
-<pre class="line-numbers"><code class="language-plain_text">// 加载一个模块
+<pre><code class="language-plain_text">// 加载一个模块
 seajs.use('./a');
 
 // 加载一个模块，在加载完成时，执行回调
@@ -718,7 +718,7 @@ seajs.use(['./a', './b'], function(a, b) {
 });
 </code></pre>
 <h2><a id="define" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>define</code></h2>
-<pre class="line-numbers"><code class="language-plain_text">// 方式一
+<pre><code class="language-plain_text">// 方式一
 define(function(require, exports, module) { 
     // 模块代码
     var a = require('a')
@@ -735,12 +735,12 @@ define('I am a template. My name is {{name}}.');
 <p><code>require</code> 是一个方法，接受 模块标识作为唯一参数，用来获取其他模块提供的接口。</p>
 <h4><a id="%E5%90%8C%E6%AD%A5%E6%89%A7%E8%A1%8C" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>同步执行</h4>
 <p>此方式，<code>require</code> 的参数值 必须 是字符串直接量。</p>
-<pre class="line-numbers"><code class="language-plain_text">var a = require('./a');
+<pre><code class="language-plain_text">var a = require('./a');
 </code></pre>
 <h4><a id="%E5%BC%82%E6%AD%A5%E5%9B%9E%E8%B0%83%E6%89%A7%E8%A1%8C" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>异步回调执行</h4>
 <p><strong><code>require.async</code></strong> 方法用来在模块内部异步加载模块，并在加载完成后执行指定回调。<code>callback</code> 参数可选。<br />
 此时，参数值可以是动态的，以实现动态加载。</p>
-<pre class="line-numbers"><code class="language-plain_text">define(function(require, exports, module) {
+<pre><code class="language-plain_text">define(function(require, exports, module) {
 
   // 异步加载一个模块，在加载完成时，执行回调
   require.async('./b', function(b) {
@@ -756,7 +756,7 @@ define('I am a template. My name is {{name}}.');
 });
 </code></pre>
 <p><strong><code>require.resolve</code></strong> 使用模块系统内部的路径解析机制来解析并返回模块绝对路径。</p>
-<pre class="line-numbers"><code class="language-plain_text">define(function(require, exports) {
+<pre><code class="language-plain_text">define(function(require, exports) {
 
   console.log(require.resolve('./b'));
   // ==&gt; http://example.com/path/to/b.js
@@ -765,7 +765,7 @@ define('I am a template. My name is {{name}}.');
 </code></pre>
 <h2><a id="%E5%AF%BC%E5%87%BA" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>导出</h2>
 <p><code>exports</code> 是一个对象，用来向外提供模块接口，也可以使用<code>return</code>或者<code>module.exports</code>来进行导出</p>
-<pre class="line-numbers"><code class="language-plain_text">define(function(require, exports) {
+<pre><code class="language-plain_text">define(function(require, exports) {
 
   // 对外提供 foo 属性
   exports.foo = 'bar';
@@ -831,7 +831,7 @@ define('I am a template. My name is {{name}}.');
 <p>定义模块的对外接口。<br />
 一个模块就是一个独立的文件。该文件内部的所有变量，外部无法获取。如果你希望外部能够读取模块内部的某个变量，就必须使用<code>export</code>关键字输出该变量。<br />
 以下是几种用法：</p>
-<pre class="line-numbers"><code class="language-plain_text">//------输出变量------
+<pre><code class="language-plain_text">//------输出变量------
 export var firstName = 'Michael';
 export var lastName = 'Jackson';
 //等价于
@@ -855,7 +855,7 @@ export default function () { ... }
 <h2><a id="import%E5%91%BD%E4%BB%A4" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>import</code> 命令</h2>
 <p>使用<code>export</code>命令定义了模块的对外接口以后，其他 JS 文件就可以通过<code>import</code>命令加载这个模块。<br />
 以下是几种用法，必须和上面的<code>export</code>对应：</p>
-<pre class="line-numbers"><code class="language-plain_text">//------加载变量、函数或类------
+<pre><code class="language-plain_text">//------加载变量、函数或类------
 import {firstName, lastName} from './profile.js';
 //------加载并as重命名------
 import { lastName as surname } from './profile.js';
@@ -868,7 +868,7 @@ import  * as surname from './profile.js';
 </code></pre>
 <h2><a id="%E5%A4%8D%E5%90%88%E5%86%99%E6%B3%95" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>复合写法</h2>
 <p>如果在一个模块之中，先输入后输出同一个模块，<code>import</code>语句可以与<code>export</code>语句写在一起。</p>
-<pre class="line-numbers"><code class="language-plain_text">export { foo, bar } from 'my_module';
+<pre><code class="language-plain_text">export { foo, bar } from 'my_module';
 
 // 等同于
 import { foo, bar } from 'my_module';
@@ -1063,6 +1063,7 @@ body{ box-sizing: border-box;
      word-wrap: break-word !important;       /* Internet Explorer 5.5+ */
     }
     html,body{margin:0;padding:4px;}
+    .mweb-yaml{display:none;}
 }
 
 

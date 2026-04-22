@@ -139,18 +139,18 @@
 <li><code>nodemon</code>+<code>tsc</code>:</li>
 </ul>
 <p>这个方法很简单，首先通过tsc将我们的ts文件编译到dist目录下，然后再通过nodemon直接运行dist目录下的文件即可。至于ts的输出目录相关配置可在tsconfig.js中设置。</p>
-<pre class="line-numbers"><code class="language-bash">tsc &amp;&amp; nodemon --watch dist/index.js
+<pre><code class="language-bash">tsc &amp;&amp; nodemon --watch dist/index.js
 </code></pre>
 <p>但是这种方式有个缺点，就是nodemon只监听了dist目录，可能有时候你修改了源码并不能触发热更新，另外还有个问题就是多了一个dist目录中转，感觉不爽。</p>
 <ul>
 <li><code>nodemon</code>+<code>ts-node</code>:</li>
 </ul>
 <p>命令如下：</p>
-<pre class="line-numbers"><code class="language-plain_text">nodemon  -e  ts,tsx  --exec ts-node  ./index.ts&quot;
+<pre><code class="language-plain_text">nodemon  -e  ts,tsx  --exec ts-node  ./index.ts&quot;
 </code></pre>
 <p>大概意思就是监听文件增加<code>ts</code>、<code>tsx</code>两种文件类型，使用ts-node运行<code>index.ts</code>文件。</p>
 <p>当然，上述参数是设置在命令行中的，也可以在<code>nodemon.json</code>中设置：</p>
-<pre class="line-numbers"><code class="language-plain_text">{
+<pre><code class="language-plain_text">{
   &quot;verbose&quot;: false,
   &quot;debug&quot;: false,
   &quot;exec&quot;: &quot;ts-node  ./index.ts&quot;,
@@ -175,10 +175,10 @@
 </code></pre>
 <p>如果有使用到tsx文件，记得在<code>tsconfig.json</code>文件中将jsx取消注释,否则编译时可能会提示错误。</p>
 <p>除了上述两种方法，今天无意中试了下直接使用nodemon来执行ts文件，发现控制台报错了，原谅我是个英语渣，不明白具体说了什么，但是看到了ts-node的身影，果断安装ts-node再试，竟然成功了。</p>
-<pre class="line-numbers"><code class="language-plain_text">nodemon  ./index.ts
+<pre><code class="language-plain_text">nodemon  ./index.ts
 </code></pre>
 <p>但是这样修改了ts文件不会热更新，可以在<code>nodemon.json</code>文件中将<code>ext</code>属性添加上<code>ts</code>就可以了。</p>
-<pre class="line-numbers"><code class="language-plain_text">{
+<pre><code class="language-plain_text">{
   &quot;restartable&quot;: &quot;rs&quot;,
   &quot;ignore&quot;: [&quot;.git&quot;, &quot;node_modules/**&quot;, &quot;client/*&quot;, &quot;dist&quot;, &quot;.cache&quot;, &quot;logs&quot;],
   &quot;verbose&quot;: true,
@@ -384,6 +384,7 @@ body{ box-sizing: border-box;
      word-wrap: break-word !important;       /* Internet Explorer 5.5+ */
     }
     html,body{margin:0;padding:4px;}
+    .mweb-yaml{display:none;}
 }
 
 

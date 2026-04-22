@@ -180,7 +180,7 @@
 <li><strong>session 是另一种记录服务器和客户端会话状态的机制</strong></li>
 <li><strong>session 是基于 cookie 实现的，session 存储在服务器端，sessionId 会被存储到客户端的 cookie 中</strong></li>
 </ul>
-<p><figure><img src="media/17289745203360/17289745622104.png" alt="" /></figure></p>
+<p><img src="media/17289745203360/17289745622104.png" alt="" /></p>
 <ul>
 <li><strong>session 认证流程：</strong>
 <ul>
@@ -214,7 +214,7 @@
 </li>
 <li><strong>token 的身份验证流程：</strong></li>
 </ul>
-<p><figure><img src="media/17289745203360/17289745622140.png" alt="" /></figure></p>
+<p><img src="media/17289745203360/17289745622140.png" alt="" /></p>
 <ol>
 <li>客户端使用用户名跟密码请求登录</li>
 <li>服务端收到请求，去验证用户名与密码</li>
@@ -237,7 +237,7 @@
 <p>refresh token 是专用于刷新 access token 的 token。如果没有 refresh token，也可以刷新 access token，但每次刷新都要用户输入登录用户名与密码，会很麻烦。有了 refresh token，可以减少这个麻烦，客户端直接用 refresh token 去更新 access token，无需用户进行额外的操作。</p>
 </li>
 </ul>
-<p><figure><img src="media/17289745203360/17289745622163.png" alt="" /></figure></p>
+<p><img src="media/17289745203360/17289745622163.png" alt="" /></p>
 <ul>
 <li>Access Token 的有效期比较短，当 Acesss Token 由于过期而失效时，使用 Refresh Token 就可以获取到新的 Token，如果 Refresh Token 也失效了，用户就只能重新登录了。</li>
 <li>Refresh Token 及过期时间是存储在服务器的数据库中，只有在申请新的 Acesss Token 时才会验证，不会对业务接口响应时间造成影响，也不需要向 Session 一样一直保持在内存中以应对大量的请求。</li>
@@ -260,7 +260,7 @@
 <p><a href="https://link.juejin.cn?target=https%3A%2F%2Fjwt.io%2F" title="https://jwt.io/">jwt.io/</a><br />
 <a href="https://link.juejin.cn?target=https%3A%2F%2Fwww.jsonwebtoken.io%2F" title="https://www.jsonwebtoken.io/">www.jsonwebtoken.io/</a></p>
 <h3><a id="jwt%E7%9A%84%E5%8E%9F%E7%90%86" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>JWT 的原理</h3>
-<p><figure><img src="media/17289745203360/17289745622175.png" alt="" /></figure></p>
+<p><img src="media/17289745203360/17289745622175.png" alt="" /></p>
 <ul>
 <li><strong>JWT 认证流程：</strong>
 <ul>
@@ -270,7 +270,7 @@
 </ul>
 </li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">Authorization: Bearer &lt;token&gt;
+<pre><code class="language-plain_text">Authorization: Bearer &lt;token&gt;
 
 
 </code></pre>
@@ -288,7 +288,7 @@
 <ul>
 <li>
 <p>当用户希望访问一个受保护的路由或者资源的时候，可以把它放在 Cookie 里面自动发送，但是这样不能跨域，所以更好的做法是放在 HTTP 请求头信息的 Authorization 字段里，使用 Bearer 模式添加 JWT。</p>
-<pre class="line-numbers"><code class="language-plain_text">GET /calendar/v1/events
+<pre><code class="language-plain_text">GET /calendar/v1/events
 Host: api.example.com
 Authorization: Bearer &lt;token&gt;
 
@@ -311,7 +311,7 @@ Authorization: Bearer &lt;token&gt;
 <ul>
 <li>通过 URL 传输</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">http://www.example.com/user?token=xxx
+<pre><code class="language-plain_text">http://www.example.com/user?token=xxx
 
 
 </code></pre>
@@ -339,7 +339,7 @@ Authorization: Bearer &lt;token&gt;
 <li>OAuth2.0（开放授权）</li>
 </ol>
 <h2><a id="%E5%B8%B8%E8%A7%81%E7%9A%84%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>常见的加密算法</h2>
-<p><figure><img src="media/17289745203360/17289745622186.png" alt="" /></figure></p>
+<p><img src="media/17289745203360/17289745622186.png" alt="" /></p>
 <ul>
 <li>哈希算法 (Hash Algorithm) 又称散列算法、散列函数、哈希函数，是一种从任何一种数据中创建小的数字 “指纹” 的方法。哈希算法将数据重新打乱混合，重新创建一个哈希值。</li>
 <li>哈希算法主要用来保障数据真实性 (即完整性)，即发信人将原始消息和哈希值一起发送，收信人通过相同的哈希函数来校验原始数据是否真实。</li>
@@ -435,7 +435,7 @@ Authorization: Bearer &lt;token&gt;
 </ul>
 </li>
 </ul>
-<p><figure><img src="media/17289745203360/17289745622205.png" alt="" /></figure></p>
+<p><img src="media/17289745203360/17289745622205.png" alt="" /></p>
 <h4><a id="4-session%E6%8C%81%E4%B9%85%E5%8C%96" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>4. session 持久化</h4>
 <ul>
 <li>将 session 存储到数据库中，保证 session 的持久化</li>
@@ -654,6 +654,7 @@ body{ box-sizing: border-box;
      word-wrap: break-word !important;       /* Internet Explorer 5.5+ */
     }
     html,body{margin:0;padding:4px;}
+    .mweb-yaml{display:none;}
 }
 
 

@@ -143,18 +143,18 @@
           <p>异步变成对于js来说非常重要，解决异步应用的方法也在不断更新，有人说终极目标就是使用同步的语法解决异步问题。下面我们就来看下异步编程的几种解决方案。</p>
 <h2><a id="%E5%90%8C%E6%AD%A5%E5%92%8C%E5%BC%82%E6%AD%A5" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>同步和异步</h2>
 <h4><a id="%E5%90%8C%E6%AD%A5" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>同步</h4>
-<p><figure><img src="media/17280300534464/17280301636465.jpg" alt="" /></figure></p>
+<p><img src="media/17280300534464/17280301636465.jpg" alt="" /></p>
 <h4><a id="%E5%BC%82%E6%AD%A5" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>异步</h4>
-<p><figure><img src="media/17280300534464/17280301751071.jpg" alt="" /></figure></p>
+<p><img src="media/17280300534464/17280301751071.jpg" alt="" /></p>
 <h2><a id="callback" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Callback</h2>
 <p>回调函数：把任务的第二段单独写在一个函数里面，等到重新执行这个任务的时候，就直接调用这个函数。</p>
-<pre class="line-numbers"><code class="language-plain_text">fs.readFile('/etc/passwd', function (err, data) {
+<pre><code class="language-plain_text">fs.readFile('/etc/passwd', function (err, data) {
   if (err) throw err;
   console.log(data);
 });
 </code></pre>
 <p>回调函数的缺点是在多个回调函数嵌套的时候会横向发展，出现“回调地狱”（回调函数噩梦/callback hell），阅读起来也比较恼火</p>
-<pre class="line-numbers"><code class="language-plain_text">fs.readFile(fileA, function (err, data) {
+<pre><code class="language-plain_text">fs.readFile(fileA, function (err, data) {
   fs.readFile(fileB, function (err, data) {
     // ...
   });
@@ -162,7 +162,7 @@
 </code></pre>
 <h2><a id="promise" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Promise</h2>
 <p>Promise解决回调的方式其实是纵向发展，虽然解决了回调地狱，但是一大堆then，语义不清楚。</p>
-<pre class="line-numbers"><code class="language-plain_text">var readFile = require('fs-readfile-promise');
+<pre><code class="language-plain_text">var readFile = require('fs-readfile-promise');
 
 readFile(fileA)
 .then(function(data){
@@ -188,7 +188,7 @@ readFile(fileA)
 <li>第四步，协程A恢复执行。<br />
 Generator最大的特点就是可以交出函数的执行权（即可以暂停）。</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">function* gen(x){
+<pre><code class="language-plain_text">function* gen(x){
   var y = yield x + 2;
   return y;
 }
@@ -205,7 +205,7 @@ g.next(2) // { value: 2, done: true }
 <p>Generator调用的时候不会自动执行（不自带执行器），必须通过执行next()方法来将内部指针移动到下一步。</p>
 <h4><a id="%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>错误处理</h4>
 <p>使用try...catch在Generator 函数内部部署错误处理代码，用于捕获函数体外抛出的错误。</p>
-<pre class="line-numbers"><code class="language-plain_text">function* gen(x){
+<pre><code class="language-plain_text">function* gen(x){
   try {
     var y = yield x + 2;
   } catch (e){
@@ -220,7 +220,7 @@ g.throw（'出错了'）;
 // 出错了
 </code></pre>
 <h4><a id="%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>使用方法</h4>
-<pre class="line-numbers"><code class="language-plain_text">var fetch = require('node-fetch');
+<pre><code class="language-plain_text">var fetch = require('node-fetch');
 //Fetch 模块会返回一个 Promise 对象
 function* gen(){
   var url = 'https://api.github.com/users/github';
@@ -250,7 +250,7 @@ result.value.then(function(data){
 <li>语义更强：async关键词相比*、await相比yield都更加让人容易理解</li>
 <li>返回Promise：返回值为Promise，可使用then（包括catch）方法执行下一步操作，更加方便</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">async function getStockPriceByName(name) {
+<pre><code class="language-plain_text">async function getStockPriceByName(name) {
  var symbol = await getStockSymbol(name);
  var stockPrice = await getStockPrice(symbol);
  return stockPrice;
@@ -266,7 +266,7 @@ getStockPriceByName('goog').then(function (result){
 </ul>
 <p>异步编程的最高境界，就是根本不用关心它是不是异步，很多人认为Async是终极解决方案。</p>
 <p>我们可以和Generator对比下：</p>
-<pre class="line-numbers"><code class="language-plain_text">// Generator
+<pre><code class="language-plain_text">// Generator
 var fs = require('fs');
 
 var readFile = function (fileName){
@@ -298,7 +298,7 @@ var asyncReadFile = async function (){
 </code></pre>
 <h4><a id="%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>错误处理</h4>
 <p>await 命令后面的 Promise 对象，运行结果可能是 rejected，所以最好把 await 命令放在 try...catch 代码块中或者使用catch接收错误。</p>
-<pre class="line-numbers"><code class="language-plain_text">async function myFunction() {
+<pre><code class="language-plain_text">async function myFunction() {
   try {
     await somethingThatReturnsAPromise();
   } catch (err) {
@@ -496,6 +496,7 @@ body{ box-sizing: border-box;
      word-wrap: break-word !important;       /* Internet Explorer 5.5+ */
     }
     html,body{margin:0;padding:4px;}
+    .mweb-yaml{display:none;}
 }
 
 

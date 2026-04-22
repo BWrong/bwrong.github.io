@@ -133,16 +133,16 @@
         </div>
         <article class="markdown-body single-content">
           <p>安装软件时出现...已损坏，无法打开...解决办法<br />
-<figure><img src="media/17509210538857/17509211119862.jpg" alt="" /></figure></p>
+<img src="media/17509210538857/17509211119862.jpg" alt="" /></p>
 <p>在终端或控制台输入如下命令，然后回车，就会弹出提示输入密码，输入开机密码回车。</p>
-<pre class="line-numbers"><code class="language-plain_text">sudo spctl --master-disable
+<pre><code class="language-plain_text">sudo spctl --master-disable
 </code></pre>
 <p>以上操作是为了打开：系统偏好设置 – 安全性与隐私 – 通用 ，中的“任何来源”选项。<br />
-<figure><img src="media/17509210538857/17509211231877.jpg" alt="" /></figure></p>
+<img src="media/17509210538857/17509211231877.jpg" alt="" /></p>
 <p>打开已安装软件时出现...已损坏，无法打开...解决办法<br />
-<figure><img src="media/17509210538857/17509211552801.jpg" alt="" /></figure></p>
+<img src="media/17509210538857/17509211552801.jpg" alt="" /></p>
 <p>在终端中输入<code>sudo xattr -cr </code>,(这里要注意后面有个空格)。将提示已损坏，无法打开的程序图标拖到命令栏中<br />
-<figure><img src="media/17509210538857/17509211765908.jpg" alt="" /></figure></p>
+<img src="media/17509210538857/17509211765908.jpg" alt="" /></p>
 <p>拖入命令行后， 拖入程序图标后类似显示<code>sudo xattr -cr /Applications/XXX.app</code>，然后回车，再去打开程序即可正常运行。</p>
 <p>提示：在macOS Ventura 13系统上操作之后如果还是提示损坏，就右键软件，选择打开，再点击打开。</p>
 
@@ -157,6 +157,9 @@
           </div>
         </div><!-- end comments wrap -->
         <p class="meta post-nav">
+          
+          <a class="basic-alignment left" href="17579088353267.html"
+            title="Previous Post: 人生若只如初见">&laquo; 人生若只如初见</a>
           
           
           <a class="basic-alignment right" href="17448568756381.html" title="Next Post: MCP（Model Context Protocol）入门与实践">MCP（Model Context Protocol）入门与实践 &raquo;</a>
@@ -324,6 +327,7 @@ body{ box-sizing: border-box;
      word-wrap: break-word !important;       /* Internet Explorer 5.5+ */
     }
     html,body{margin:0;padding:4px;}
+    .mweb-yaml{display:none;}
 }
 
 

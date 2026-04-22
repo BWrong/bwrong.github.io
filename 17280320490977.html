@@ -150,7 +150,7 @@
 <ul>
 <li>首先安装一下</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">// 安装eslint
+<pre><code class="language-plain_text">// 安装eslint
 // 安装eslint-loader 在webpack中解析
 // 安装babel-eslint  对Babel解析器的包装与ESLint兼容
 // -D 安装在开发依赖环境 devDependencies 原--save-dev的简写
@@ -160,7 +160,7 @@ npm i eslint eslint-loader babel-eslint -D
 <ul>
 <li>创建.eslintrc.js配置文件(默认是.eslintrc文件)</li>
 </ul>
-<pre class="line-numbers"><code class="language-plain_text">// .eslintrc.js
+<pre><code class="language-plain_text">// .eslintrc.js
 module.exports = {
     // 指定解析器
     'parse': '',
@@ -177,7 +177,7 @@ module.exports = {
 };
 </code></pre>
 <p>将配置好的规则添加到webpack中对js文件检查</p>
-<pre class="line-numbers"><code class="language-plain_text">// webpack.config.js
+<pre><code class="language-plain_text">// webpack.config.js
 
 module.exports = {
     entry: '',
@@ -214,7 +214,7 @@ module.exports = {
 this的别名规则，只允许self和that，防止有些人写成_this或者me等等，哈哈</p>
 <p><code>curly</code><br />
 if 后必须包含 { ，单行 if 除外，也是为了方便阅读代码</p>
-<pre class="line-numbers"><code class="language-plain_text">// 错误写法
+<pre><code class="language-plain_text">// 错误写法
 function fn (key) {
    if (key === 'a') 
        return 1;
@@ -231,7 +231,7 @@ fn('a');
 </code></pre>
 <p><code>default-case</code><br />
 switch 语句必须包含 default</p>
-<pre class="line-numbers"><code class="language-plain_text">// 错误写法
+<pre><code class="language-plain_text">// 错误写法
 function fn (key) {
     let str = '';
 
@@ -269,7 +269,7 @@ function fn (key) {
 for in时需检测hasOwnProperty，避免遍历到继承来的属性方法</p>
 <p><code>max-depth</code><br />
 最大块嵌套不能超过5层</p>
-<pre class="line-numbers"><code class="language-plain_text">// 正确写法
+<pre><code class="language-plain_text">// 正确写法
 if () {
     if () {
         if () {
@@ -307,7 +307,7 @@ new关键字后类名应首字母大写，区分类和函数</p>
 <p>no-global-assign</p>
 <p>禁止对全局变量赋值</p>
 <p>好了还有一些就需要大家在使用中来去体会了，下面我将我司工作当中用到的ESLint规则贴出来，方便大家去做代码检查了</p>
-<pre class="line-numbers"><code class="language-plain_text">// .eslintrc.js
+<pre><code class="language-plain_text">// .eslintrc.js
 module.exports = {
     // 解析ES6
     'parser': 'babel-eslint',
@@ -1411,6 +1411,7 @@ body{ box-sizing: border-box;
      word-wrap: break-word !important;       /* Internet Explorer 5.5+ */
     }
     html,body{margin:0;padding:4px;}
+    .mweb-yaml{display:none;}
 }
 
 

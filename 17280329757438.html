@@ -140,20 +140,20 @@
 <li>VueCli4.5+</li>
 </ul>
 <p>安装：</p>
-<pre class="line-numbers"><code class="language-bash">npm install -g @vue/cli
+<pre><code class="language-bash">npm install -g @vue/cli
 # OR
 yarn global add @vue/cli
 </code></pre>
 <p>使用：</p>
-<pre class="line-numbers"><code class="language-bash">vue create &lt;项目名称&gt;
+<pre><code class="language-bash">vue create &lt;项目名称&gt;
 </code></pre>
-<p><figure><img src="media/17280329757438/17281432106477.png" alt="cli-select-features" /><figcaption>cli-select-features<figcaption></figure></p>
+<p><img src="media/17280329757438/17281432106477.png" alt="cli-select-features" /></p>
 <p>或者直接使用<code>vue ui</code>命令，通过图形化界面方式创建。</p>
 <p>关于VueCli更多使用方法请查看<a href="https://cli.vuejs.org/zh/">官方文档</a>。</p>
 <ul>
 <li>Vite</li>
 </ul>
-<pre class="line-numbers"><code class="language-bash"># npm 6.x
+<pre><code class="language-bash"># npm 6.x
 npm init vite@latest my-vue-app --template vue
 
 # npm 7+, 需要额外的双横线：
@@ -174,7 +174,7 @@ yarn create vite my-vue-app --template vue
 <ul>
 <li>创建路由</li>
 </ul>
-<pre class="line-numbers"><code class="language-js">import { createRouter } from 'vue-router'
+<pre><code class="language-js">import { createRouter } from 'vue-router'
 const router = createRouter({
   // ...
 })
@@ -182,7 +182,7 @@ const router = createRouter({
 <ul>
 <li>mode配置</li>
 </ul>
-<pre class="line-numbers"><code class="language-js">import { createRouter, createWebHistory } from 'vue-router'
+<pre><code class="language-js">import { createRouter, createWebHistory } from 'vue-router'
 // 还有 createWebHashHistory 和 createMemoryHistory
 
 createRouter({
@@ -199,7 +199,7 @@ createRouter({
 <li><code>*</code>通配符路由</li>
 </ul>
 <p>Vue Router 不再使用 <code>path-to-regexp</code>，而是实现了自己的解析系统，允许路由排序并实现动态路由。</p>
-<pre class="line-numbers"><code class="language-js">const routes = [
+<pre><code class="language-js">const routes = [
   // pathMatch 是参数的名称，例如，跳转到 /not/found 会得到
   // { params: { params: { pathMatch: ['not', 'found'] }}
   // 这要归功于最后一个 *，意思是重复的参数，如果你
@@ -212,7 +212,7 @@ createRouter({
 <ul>
 <li><code>&lt;router-view&gt;</code>、<code>&lt;keep-alive&gt;</code> 和 <code>&lt;transition&gt;</code></li>
 </ul>
-<pre class="line-numbers"><code class="language-html">&lt;router-view v-slot=&quot;{ Component }&quot;&gt;
+<pre><code class="language-html">&lt;router-view v-slot=&quot;{ Component }&quot;&gt;
   &lt;transition&gt;
     &lt;keep-alive&gt;
       &lt;component :is=&quot;Component&quot; /&gt;
@@ -223,7 +223,7 @@ createRouter({
 <ul>
 <li>组合式API</li>
 </ul>
-<pre class="line-numbers"><code class="language-js">import { useRouter, useRoute } from 'vue-router'
+<pre><code class="language-js">import { useRouter, useRoute } from 'vue-router'
 
 export default {
   setup() {
@@ -241,7 +241,7 @@ export default {
   },
 }
 </code></pre>
-<pre class="line-numbers"><code class="language-js">import { onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router'
+<pre><code class="language-js">import { onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router'
 
 export default {
   setup() {
@@ -271,7 +271,7 @@ export default {
 <ul>
 <li>创建</li>
 </ul>
-<pre class="line-numbers"><code class="language-js">// src/store/index.js
+<pre><code class="language-js">// src/store/index.js
 import { createStore } from 'vuex'
 
 export const store = createStore({
@@ -294,7 +294,7 @@ app.mount('#app')
 <ul>
 <li>组合式API</li>
 </ul>
-<pre class="line-numbers"><code class="language-js">import { useStore } from 'vuex'
+<pre><code class="language-js">import { useStore } from 'vuex'
 
 export default {
   setup () {
@@ -314,7 +314,7 @@ export default {
 <li><a href="https://github.com/johnsoncodehk/volar">Volar</a>：Volar 是一个专为 Vue 3 构建的语言支持插件。它基于<a href="https://www.npmjs.com/package/@vue/reactivity"><code>@vue/reactivity</code></a>按需计算一切，实现原生 TypeScript 语言服务级别性能。在Vue3的项目中强烈建议使用该插件，并禁用掉Vuter，它提供了很多好用的东西。</li>
 <li><a href="https://devtools.vuejs.org/">VueDevTools</a>：新版插件可以同时兼容Vue2和3，建议安装。</li>
 </ul>
-<p><figure><img src="media/17280329757438/17281432106500.png" alt="image-20210909112702791" /><figcaption>image-20210909112702791<figcaption></figure></p>
+<p><img src="media/17280329757438/17281432106500.png" alt="image-20210909112702791" /></p>
 <h3><a id="hooks" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Hooks</h3>
 <p>Vue3带来的组合式API，让我们在复用代码逻辑的时候可以使用hooks，所以社区出现了一些比较好用的hooks库。</p>
 <ul>
@@ -340,7 +340,7 @@ export default {
 </ul>
 <h1><a id="%E5%A6%82%E4%BD%95%E5%B0%81%E8%A3%85%E8%87%AA%E5%B7%B1%E7%9A%84hooks" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>如何封装自己的Hooks</h1>
 <p>下面就就简单的实现一个执行Promise的hooks：</p>
-<pre class="line-numbers"><code class="language-js">// usePromise.js
+<pre><code class="language-js">// usePromise.js
 import { reactive, toRefs } from &quot;vue&quot;;
 interface _IOptions {
   autoRun?: boolean;
@@ -383,7 +383,7 @@ export default &lt;T = unknown&gt;(
 };
 </code></pre>
 <p>使用：</p>
-<pre class="line-numbers"><code class="language-js">// 接口或者异步任务
+<pre><code class="language-js">// 接口或者异步任务
 const task = () =&gt;
   new Promise((resolve) =&gt; {
     setTimeout(() =&gt; {
@@ -594,6 +594,7 @@ body{ box-sizing: border-box;
      word-wrap: break-word !important;       /* Internet Explorer 5.5+ */
     }
     html,body{margin:0;padding:4px;}
+    .mweb-yaml{display:none;}
 }
 
 
